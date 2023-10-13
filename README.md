@@ -1,2 +1,2 @@
-# ShuttleX.FE.Core.v1
-ShuttleX - FE - Core utilities / shared components and features
+# ShuttleX.FE.Integration.v1
+ShuttleX - FE - Integration contains utilities / shared components and features
