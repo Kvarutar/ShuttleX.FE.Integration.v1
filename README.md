@@ -47,6 +47,17 @@ import { ExampleComponent } from 'shuttlex-integration';
 
 >**Note**: ShuttleX.FE.Contractor, ShuttleX.FE.Passenger and ShuttleX.FE.Integration projects must be located in the same folder at the same level
 
+## Bootstrap
+
+To run example project use following commands:
+
+```
+# Android app
+yarn example android
+# iOS app
+yarn example ios
+```
+
 ## License
 
 ShuttleX Inc. license

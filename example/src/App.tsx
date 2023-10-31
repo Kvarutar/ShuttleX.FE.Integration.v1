@@ -1,18 +1,18 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'shuttlex-integration';
+import { StyleSheet, View } from 'react-native';
+import {
+  ContainedButton,
+  GroupedBrandIcon,
+  TextButton,
+} from 'shuttlex-integration';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <GroupedBrandIcon />
+      <ContainedButton />
+      <TextButton />
     </View>
   );
 }
@@ -22,10 +22,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
   },
 });

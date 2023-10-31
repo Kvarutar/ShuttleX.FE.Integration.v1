@@ -1,26 +1,13 @@
-import * as React from 'react';
+import ContainedButton from './shared/BrandBook/Buttons/ContainedButton';
+import TextButton from './shared/BrandBook/Buttons/TextButton';
+import BrandFavIcon from './shared/BrandBook/Icons/BrandFavIcon';
+import BrandTextIcon from './shared/BrandBook/Icons/BrandTextIcon';
+import GroupedBrandIcon from './shared/GroupedBrandIcon';
 
-import { StyleSheet, View, Text } from 'react-native';
-
-export function multiply(a: number, b: number): Promise<number> {
-  return Promise.resolve(a * b);
-}
-
-export default function ExampleComponent() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Example</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    color: 'red',
-  },
-});
+export {
+  BrandFavIcon,
+  BrandTextIcon,
+  GroupedBrandIcon,
+  ContainedButton,
+  TextButton,
+};
