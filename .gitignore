@@ -79,4 +79,4 @@ yarn.lock
 lib/
 
 # packs
-.tgz
+shuttlex-integration-*.tgz
