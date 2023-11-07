@@ -1,14 +1,11 @@
 import React from 'react';
-import Svg, { Path } from 'react-native-svg';
-import type { StyleProps } from '../../../utils/react-native-props';
 import { StyleSheet } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
+
+import { type StyleProps } from '../../../utils/react-native-props';
 
 const BrandFavIcon = ({ style }: StyleProps): JSX.Element => (
-  <Svg
-    style={[styles.BrandFavIcon, style]}
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-  >
+  <Svg style={[styles.BrandFavIcon, style]} xmlns="http://www.w3.org/2000/svg" fill="none">
     <Path
       fill="#000"
       fillRule="evenodd"

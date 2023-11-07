@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
-import { containedMode, type ButtonProps } from './props';
+
+import { type ButtonProps, containedMode } from './props';
 
 const ContainedButton = ({
   color = '#FFFFFF', //TODO: Adjust after implementing https://www.notion.so/shuttlex/i18n-install-library-to-support-i18n-77e236ccfc344d67b9d370e400d45557

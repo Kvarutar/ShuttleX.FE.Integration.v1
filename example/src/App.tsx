@@ -1,11 +1,6 @@
 import * as React from 'react';
-
 import { StyleSheet, View } from 'react-native';
-import {
-  ContainedButton,
-  GroupedBrandIcon,
-  TextButton,
-} from 'shuttlex-integration';
+import { ContainedButton, GroupedBrandIcon, TextButton } from 'shuttlex-integration';
 
 export default function App() {
   return (

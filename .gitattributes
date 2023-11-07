@@ -1,3 +1,6 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
 *.pbxproj -text
 # specific for windows script files
 *.bat text eol=crlf

@@ -4,10 +4,4 @@ import BrandFavIcon from './shared/BrandBook/Icons/BrandFavIcon';
 import BrandTextIcon from './shared/BrandBook/Icons/BrandTextIcon';
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
 
-export {
-  BrandFavIcon,
-  BrandTextIcon,
-  GroupedBrandIcon,
-  ContainedButton,
-  TextButton,
-};
+export { BrandFavIcon, BrandTextIcon, ContainedButton, GroupedBrandIcon, TextButton };
