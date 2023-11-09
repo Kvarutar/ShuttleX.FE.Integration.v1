@@ -1,6 +1,5 @@
 {
-  "root": true,
-  "ignorePatterns": ["node_modules", "lib", "!.prettierrc.js"],
+  "ignorePatterns": ["node_modules"],
   "extends": "@react-native",
   "plugins": ["simple-import-sort", "import"],
   "rules": {
@@ -11,6 +10,13 @@
     "import/no-duplicates": "error",
     "react/react-in-jsx-scope": "error",
     "no-var": "error",
-    "prefer-const": "error"
+    "prefer-const": "error",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
   }
 }

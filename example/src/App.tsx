@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ContainedButton, GroupedBrandIcon, TextButton } from 'shuttlex-integration';
 
-export default function App() {
+const App = () => {
   return (
     <View style={styles.container}>
       <GroupedBrandIcon />
@@ -10,7 +10,7 @@ export default function App() {
       <TextButton />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -19,3 +19,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
