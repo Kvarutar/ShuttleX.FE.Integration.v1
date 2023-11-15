@@ -1,10 +1,8 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-import { type StyleProps } from '../../../utils/react-native-props';
-
-const BrandFavIcon = ({ style }: StyleProps): JSX.Element => (
+const BrandFavIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
   <Svg style={[styles.BrandFavIcon, style]} xmlns="http://www.w3.org/2000/svg" fill="none">
     <Path
       fill="#000"
