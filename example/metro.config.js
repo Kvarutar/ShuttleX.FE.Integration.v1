@@ -35,4 +35,6 @@ const config = {
   },
 };
 
+config.resolver.resolverMainFields.unshift('sbmodern');
+
 module.exports = config;
