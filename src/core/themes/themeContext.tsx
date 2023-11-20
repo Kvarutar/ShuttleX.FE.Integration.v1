@@ -34,4 +34,4 @@ const ThemeProvider = ({ children }: ThemeProviderProps): JSX.Element => {
   return <ThemeContext.Provider value={{ colors, themeMode, setThemeMode }}>{children}</ThemeContext.Provider>;
 };
 
-export { ThemeProvider, useTheme };
+export { type ThemeContextType, ThemeProvider, useTheme };

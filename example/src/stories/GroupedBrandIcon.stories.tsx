@@ -1,32 +1,40 @@
+import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
-import React from 'react';
-import { View } from 'react-native';
-import { GroupedBrandIcon } from 'shuttlex-integration';
+import React, { useEffect } from 'react';
+import { GroupedBrandIcon, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
 const GroupedBrandIconMeta: Meta<typeof GroupedBrandIcon> = {
   title: 'GroupedBrandIcon',
   component: GroupedBrandIcon,
-  decorators: [
-    Story => (
-      <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-        <Story />
-      </View>
-    ),
-  ],
+  args: {
+    theme: 'light',
+  },
+  argTypes: {
+    theme: {
+      options: Object.keys(palettes),
+      control: { type: 'select' },
+    },
+  },
 };
 
 export default GroupedBrandIconMeta;
 
+const GroupedBrandIconWithHooks = ({ themeName }: { themeName: ThemeContextType['themeMode'] }) => {
+  const { setThemeMode } = useTheme();
+
+  useEffect(() => {
+    setThemeMode(themeName);
+  }, [themeName, setThemeMode]);
+
+  return <GroupedBrandIcon />;
+};
+
 type Story = StoryObj<typeof GroupedBrandIcon>;
 
 export const BasicExample: Story = {
-  args: {},
-};
+  render: function Render(args) {
+    const [{ theme }] = useArgs();
 
-export const AnotherExample: Story = {
-  args: {},
-};
-
-export const MainExample: Story = {
-  args: {},
+    return <GroupedBrandIconWithHooks {...args} themeName={theme} />;
+  },
 };
