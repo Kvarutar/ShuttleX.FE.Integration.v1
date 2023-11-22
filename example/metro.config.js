@@ -15,6 +15,8 @@ const defaultConfig = getDefaultConfig(__dirname);
  *
  * @type {import('metro-config').MetroConfig}
  */
+const { resolver } = defaultConfig;
+
 const config = {
   ...defaultConfig,
 
@@ -23,6 +25,10 @@ const config = {
 
   // We need to make sure that only one version is loaded for peerDependencies
   // So we block them at the root, and alias them to the versions in example's node_modules
+  transformer: {
+    ...defaultConfig.transformer,
+    babelTransformerPath: require.resolve('react-native-svg-transformer'),
+  },
   resolver: {
     ...defaultConfig.resolver,
 
@@ -32,6 +38,8 @@ const config = {
       acc[name] = path.join(__dirname, 'node_modules', name);
       return acc;
     }, {}),
+    assetExts: resolver.assetExts.filter(ext => ext !== 'svg'),
+    sourceExts: [...resolver.sourceExts, 'svg'],
   },
 };
 

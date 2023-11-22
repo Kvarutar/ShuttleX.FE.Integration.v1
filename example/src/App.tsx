@@ -1,8 +1,10 @@
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, GroupedBrandIcon, ThemeProvider, useTheme } from 'shuttlex-integration';
+import { Button, GroupedBrandIcon, GroupedButtons, PhoneInput, ThemeProvider, useTheme } from 'shuttlex-integration';
+
+import { type GroupedButtonsProps } from '../../src/shared/Widgets/GroupedButtons/props';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -27,6 +29,9 @@ const Content = (): JSX.Element | null => {
     'Inter Thin': require('../../src/assets/fonts/Inter Thin.ttf'),
   });
 
+  const [selectedGroupedButton, setSelectedGroupedButton] =
+    useState<GroupedButtonsProps['isFirstSelectedButton']>(true);
+
   const { colors, setThemeMode } = useTheme();
 
   const onLayoutRootView = useCallback(async () => {
@@ -47,18 +52,26 @@ const Content = (): JSX.Element | null => {
 
   return (
     <View style={[styles.container, computedStyles.container]} onLayout={onLayoutRootView}>
+      <PhoneInput />
       <GroupedBrandIcon />
       <Button text="Change theme to test" onPress={() => setThemeMode('test')} />
       <Button text="Change theme to dark" onPress={() => setThemeMode('dark')} />
       <Button text="Change theme to light" mode="mode2" onPress={() => setThemeMode('light')} />
       <Button text="Test 33" mode="mode3" />
       <Button text="Test 444" mode="mode4" />
+      <GroupedButtons
+        firstTextButton="Sign In"
+        secondTextButton="Sign Up"
+        isFirstSelectedButton={selectedGroupedButton}
+        setIsFirstSelectedButton={setSelectedGroupedButton}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: 24,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
