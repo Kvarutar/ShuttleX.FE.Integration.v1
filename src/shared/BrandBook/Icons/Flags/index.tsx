@@ -1,0 +1,506 @@
+import React from 'react';
+import { type ViewStyle } from 'react-native';
+
+import Ad from './svg/ad.svg';
+import Ae from './svg/ae.svg';
+import Af from './svg/af.svg';
+import Ag from './svg/ag.svg';
+import Ai from './svg/ai.svg';
+import Al from './svg/al.svg';
+import Am from './svg/am.svg';
+import Ao from './svg/ao.svg';
+import Aq from './svg/aq.svg';
+import Ar from './svg/ar.svg';
+import As from './svg/as.svg';
+import At from './svg/at.svg';
+import Au from './svg/au.svg';
+import Aw from './svg/aw.svg';
+import Ax from './svg/ax.svg';
+import Az from './svg/az.svg';
+import Ba from './svg/ba.svg';
+import Bb from './svg/bb.svg';
+import Bd from './svg/bd.svg';
+import Be from './svg/be.svg';
+import Bf from './svg/bf.svg';
+import Bg from './svg/bg.svg';
+import Bh from './svg/bh.svg';
+import Bi from './svg/bi.svg';
+import Bj from './svg/bj.svg';
+import Bl from './svg/bl.svg';
+import Bm from './svg/bm.svg';
+import Bn from './svg/bn.svg';
+import Bo from './svg/bo.svg';
+import Bq from './svg/bq.svg';
+import Br from './svg/br.svg';
+import Bs from './svg/bs.svg';
+import Bt from './svg/bt.svg';
+import Bv from './svg/bv.svg';
+import Bw from './svg/bw.svg';
+import By from './svg/by.svg';
+import Bz from './svg/bz.svg';
+import Ca from './svg/ca.svg';
+import Cc from './svg/cc.svg';
+import Cd from './svg/cd.svg';
+import Cf from './svg/cf.svg';
+import Cg from './svg/cg.svg';
+import Ch from './svg/ch.svg';
+import Ci from './svg/ci.svg';
+import Ck from './svg/ck.svg';
+import Cl from './svg/cl.svg';
+import Cm from './svg/cm.svg';
+import Cn from './svg/cn.svg';
+import Co from './svg/co.svg';
+import Cr from './svg/cr.svg';
+import Cu from './svg/cu.svg';
+import Cv from './svg/cv.svg';
+import Cw from './svg/cw.svg';
+import Cx from './svg/cx.svg';
+import Cy from './svg/cy.svg';
+import Cz from './svg/cz.svg';
+import De from './svg/de.svg';
+import Dj from './svg/dj.svg';
+import Dk from './svg/dk.svg';
+import Dm from './svg/dm.svg';
+import Do from './svg/do.svg';
+import Dz from './svg/dz.svg';
+import Ec from './svg/ec.svg';
+import Ee from './svg/ee.svg';
+import Eg from './svg/eg.svg';
+import Eh from './svg/eh.svg';
+import Er from './svg/er.svg';
+import Es from './svg/es.svg';
+import Et from './svg/et.svg';
+import Fi from './svg/fi.svg';
+import Fj from './svg/fj.svg';
+import Fk from './svg/fk.svg';
+import Fm from './svg/fm.svg';
+import Fo from './svg/fo.svg';
+import Fr from './svg/fr.svg';
+import Ga from './svg/ga.svg';
+import Gb from './svg/gb.svg';
+import Gd from './svg/gd.svg';
+import Ge from './svg/ge.svg';
+import Gf from './svg/gf.svg';
+import Gg from './svg/gg.svg';
+import Gh from './svg/gh.svg';
+import Gi from './svg/gi.svg';
+import Gl from './svg/gl.svg';
+import Gm from './svg/gm.svg';
+import Gn from './svg/gn.svg';
+import Gp from './svg/gp.svg';
+import Gq from './svg/gq.svg';
+import Gr from './svg/gr.svg';
+import Gs from './svg/gs.svg';
+import Gt from './svg/gt.svg';
+import Gu from './svg/gu.svg';
+import Gw from './svg/gw.svg';
+import Gy from './svg/gy.svg';
+import Hk from './svg/hk.svg';
+import Hm from './svg/hm.svg';
+import Hn from './svg/hn.svg';
+import Hr from './svg/hr.svg';
+import Ht from './svg/ht.svg';
+import Hu from './svg/hu.svg';
+import Id from './svg/id.svg';
+import Ie from './svg/ie.svg';
+import Il from './svg/il.svg';
+import Im from './svg/im.svg';
+import In from './svg/in.svg';
+import Io from './svg/io.svg';
+import Iq from './svg/iq.svg';
+import Ir from './svg/ir.svg';
+import Is from './svg/is.svg';
+import It from './svg/it.svg';
+import Je from './svg/je.svg';
+import Jm from './svg/jm.svg';
+import Jo from './svg/jo.svg';
+import Jp from './svg/jp.svg';
+import Ke from './svg/ke.svg';
+import Kg from './svg/kg.svg';
+import Kh from './svg/kh.svg';
+import Ki from './svg/ki.svg';
+import Km from './svg/km.svg';
+import Kn from './svg/kn.svg';
+import Kp from './svg/kp.svg';
+import Kr from './svg/kr.svg';
+import Kw from './svg/kw.svg';
+import Ky from './svg/ky.svg';
+import Kz from './svg/kz.svg';
+import La from './svg/la.svg';
+import Lb from './svg/lb.svg';
+import Lc from './svg/lc.svg';
+import Li from './svg/li.svg';
+import Lk from './svg/lk.svg';
+import Lr from './svg/lr.svg';
+import Ls from './svg/ls.svg';
+import Lt from './svg/lt.svg';
+import Lu from './svg/lu.svg';
+import Lv from './svg/lv.svg';
+import Ly from './svg/ly.svg';
+import Ma from './svg/ma.svg';
+import Mc from './svg/mc.svg';
+import Md from './svg/md.svg';
+import Me from './svg/me.svg';
+import Mf from './svg/mf.svg';
+import Mg from './svg/mg.svg';
+import Mh from './svg/mh.svg';
+import Mk from './svg/mk.svg';
+import Ml from './svg/ml.svg';
+import Mm from './svg/mm.svg';
+import Mn from './svg/mn.svg';
+import Mo from './svg/mo.svg';
+import Mp from './svg/mp.svg';
+import Mq from './svg/mq.svg';
+import Mr from './svg/mr.svg';
+import Ms from './svg/ms.svg';
+import Mt from './svg/mt.svg';
+import Mu from './svg/mu.svg';
+import Mv from './svg/mv.svg';
+import Mw from './svg/mw.svg';
+import Mx from './svg/mx.svg';
+import My from './svg/my.svg';
+import Mz from './svg/mz.svg';
+import Na from './svg/na.svg';
+import Nc from './svg/nc.svg';
+import Ne from './svg/ne.svg';
+import Nf from './svg/nf.svg';
+import Ng from './svg/ng.svg';
+import Ni from './svg/ni.svg';
+import Nl from './svg/nl.svg';
+import No from './svg/no.svg';
+import Np from './svg/np.svg';
+import Nr from './svg/nr.svg';
+import Nu from './svg/nu.svg';
+import Nz from './svg/nz.svg';
+import Om from './svg/om.svg';
+import Pa from './svg/pa.svg';
+import Pe from './svg/pe.svg';
+import Pf from './svg/pf.svg';
+import Pg from './svg/pg.svg';
+import Ph from './svg/ph.svg';
+import Pk from './svg/pk.svg';
+import Pl from './svg/pl.svg';
+import Pm from './svg/pm.svg';
+import Pn from './svg/pn.svg';
+import Pr from './svg/pr.svg';
+import Ps from './svg/ps.svg';
+import Pt from './svg/pt.svg';
+import Pw from './svg/pw.svg';
+import Py from './svg/py.svg';
+import Qa from './svg/qa.svg';
+import Re from './svg/re.svg';
+import Ro from './svg/ro.svg';
+import Rs from './svg/rs.svg';
+import Ru from './svg/ru.svg';
+import Rw from './svg/rw.svg';
+import Sa from './svg/sa.svg';
+import Sb from './svg/sb.svg';
+import Sc from './svg/sc.svg';
+import Sd from './svg/sd.svg';
+import Se from './svg/se.svg';
+import Sg from './svg/sg.svg';
+import Sh from './svg/sh.svg';
+import Si from './svg/si.svg';
+import Sj from './svg/sj.svg';
+import Sk from './svg/sk.svg';
+import Sl from './svg/sl.svg';
+import Sm from './svg/sm.svg';
+import Sn from './svg/sn.svg';
+import So from './svg/so.svg';
+import Sr from './svg/sr.svg';
+import Ss from './svg/ss.svg';
+import St from './svg/st.svg';
+import Sv from './svg/sv.svg';
+import Sx from './svg/sx.svg';
+import Sy from './svg/sy.svg';
+import Sz from './svg/sz.svg';
+import Tc from './svg/tc.svg';
+import Td from './svg/td.svg';
+import Tf from './svg/tf.svg';
+import Tg from './svg/tg.svg';
+import Th from './svg/th.svg';
+import Tj from './svg/tj.svg';
+import Tk from './svg/tk.svg';
+import Tl from './svg/tl.svg';
+import Tm from './svg/tm.svg';
+import Tn from './svg/tn.svg';
+import To from './svg/to.svg';
+import Tr from './svg/tr.svg';
+import Tt from './svg/tt.svg';
+import Tv from './svg/tv.svg';
+import Tw from './svg/tw.svg';
+import Tz from './svg/tz.svg';
+import Ua from './svg/ua.svg';
+import Ug from './svg/ug.svg';
+import Um from './svg/um.svg';
+import Us from './svg/us.svg';
+import Uy from './svg/uy.svg';
+import Uz from './svg/uz.svg';
+import Va from './svg/va.svg';
+import Vc from './svg/vc.svg';
+import Ve from './svg/ve.svg';
+import Vg from './svg/vg.svg';
+import Vi from './svg/vi.svg';
+import Vn from './svg/vn.svg';
+import Vu from './svg/vu.svg';
+import Wf from './svg/wf.svg';
+import Ws from './svg/ws.svg';
+import Ye from './svg/ye.svg';
+import Yt from './svg/yt.svg';
+import Za from './svg/za.svg';
+import Zm from './svg/zm.svg';
+import Zw from './svg/zw.svg';
+
+const style: ViewStyle = { width: 24, height: 18 };
+
+export const countryFlags = {
+  AD: <Ad style={style} />,
+  AE: <Ae style={style} />,
+  AF: <Af style={style} />,
+  AG: <Ag style={style} />,
+  AI: <Ai style={style} />,
+  AL: <Al style={style} />,
+  AM: <Am style={style} />,
+  AO: <Ao style={style} />,
+  AQ: <Aq style={style} />,
+  AR: <Ar style={style} />,
+  AS: <As style={style} />,
+  AT: <At style={style} />,
+  AU: <Au style={style} />,
+  AW: <Aw style={style} />,
+  AX: <Ax style={style} />,
+  AZ: <Az style={style} />,
+  BA: <Ba style={style} />,
+  BB: <Bb style={style} />,
+  BD: <Bd style={style} />,
+  BE: <Be style={style} />,
+  BF: <Bf style={style} />,
+  BG: <Bg style={style} />,
+  BH: <Bh style={style} />,
+  BI: <Bi style={style} />,
+  BJ: <Bj style={style} />,
+  BL: <Bl style={style} />,
+  BM: <Bm style={style} />,
+  BN: <Bn style={style} />,
+  BO: <Bo style={style} />,
+  BQ: <Bq style={style} />,
+  BR: <Br style={style} />,
+  BS: <Bs style={style} />,
+  BT: <Bt style={style} />,
+  BV: <Bv style={style} />,
+  BW: <Bw style={style} />,
+  BY: <By style={style} />,
+  BZ: <Bz style={style} />,
+  CA: <Ca style={style} />,
+  CC: <Cc style={style} />,
+  CD: <Cd style={style} />,
+  CF: <Cf style={style} />,
+  CG: <Cg style={style} />,
+  CH: <Ch style={style} />,
+  CI: <Ci style={style} />,
+  CK: <Ck style={style} />,
+  CL: <Cl style={style} />,
+  CM: <Cm style={style} />,
+  CN: <Cn style={style} />,
+  CO: <Co style={style} />,
+  CR: <Cr style={style} />,
+  CU: <Cu style={style} />,
+  CV: <Cv style={style} />,
+  CW: <Cw style={style} />,
+  CX: <Cx style={style} />,
+  CY: <Cy style={style} />,
+  CZ: <Cz style={style} />,
+  DE: <De style={style} />,
+  DJ: <Dj style={style} />,
+  DK: <Dk style={style} />,
+  DM: <Dm style={style} />,
+  DO: <Do style={style} />,
+  DZ: <Dz style={style} />,
+  EC: <Ec style={style} />,
+  EE: <Ee style={style} />,
+  EG: <Eg style={style} />,
+  EH: <Eh style={style} />,
+  ER: <Er style={style} />,
+  ES: <Es style={style} />,
+  ET: <Et style={style} />,
+  FI: <Fi style={style} />,
+  FJ: <Fj style={style} />,
+  FK: <Fk style={style} />,
+  FM: <Fm style={style} />,
+  FO: <Fo style={style} />,
+  FR: <Fr style={style} />,
+  GA: <Ga style={style} />,
+  GB: <Gb style={style} />,
+  GD: <Gd style={style} />,
+  GE: <Ge style={style} />,
+  GF: <Gf style={style} />,
+  GG: <Gg style={style} />,
+  GH: <Gh style={style} />,
+  GI: <Gi style={style} />,
+  GL: <Gl style={style} />,
+  GM: <Gm style={style} />,
+  GN: <Gn style={style} />,
+  GP: <Gp style={style} />,
+  GQ: <Gq style={style} />,
+  GR: <Gr style={style} />,
+  GS: <Gs style={style} />,
+  GT: <Gt style={style} />,
+  GU: <Gu style={style} />,
+  GW: <Gw style={style} />,
+  GY: <Gy style={style} />,
+  HK: <Hk style={style} />,
+  HM: <Hm style={style} />,
+  HN: <Hn style={style} />,
+  HR: <Hr style={style} />,
+  HT: <Ht style={style} />,
+  HU: <Hu style={style} />,
+  ID: <Id style={style} />,
+  IE: <Ie style={style} />,
+  IL: <Il style={style} />,
+  IM: <Im style={style} />,
+  IN: <In style={style} />,
+  IO: <Io style={style} />,
+  IQ: <Iq style={style} />,
+  IR: <Ir style={style} />,
+  IS: <Is style={style} />,
+  IT: <It style={style} />,
+  JE: <Je style={style} />,
+  JM: <Jm style={style} />,
+  JO: <Jo style={style} />,
+  JP: <Jp style={style} />,
+  KE: <Ke style={style} />,
+  KG: <Kg style={style} />,
+  KH: <Kh style={style} />,
+  KI: <Ki style={style} />,
+  KM: <Km style={style} />,
+  KN: <Kn style={style} />,
+  KP: <Kp style={style} />,
+  KR: <Kr style={style} />,
+  KW: <Kw style={style} />,
+  KY: <Ky style={style} />,
+  KZ: <Kz style={style} />,
+  LA: <La style={style} />,
+  LB: <Lb style={style} />,
+  LC: <Lc style={style} />,
+  LI: <Li style={style} />,
+  LK: <Lk style={style} />,
+  LR: <Lr style={style} />,
+  LS: <Ls style={style} />,
+  LT: <Lt style={style} />,
+  LU: <Lu style={style} />,
+  LV: <Lv style={style} />,
+  LY: <Ly style={style} />,
+  MA: <Ma style={style} />,
+  MC: <Mc style={style} />,
+  MD: <Md style={style} />,
+  ME: <Me style={style} />,
+  MF: <Mf style={style} />,
+  MG: <Mg style={style} />,
+  MH: <Mh style={style} />,
+  MK: <Mk style={style} />,
+  ML: <Ml style={style} />,
+  MM: <Mm style={style} />,
+  MN: <Mn style={style} />,
+  MO: <Mo style={style} />,
+  MP: <Mp style={style} />,
+  MQ: <Mq style={style} />,
+  MR: <Mr style={style} />,
+  MS: <Ms style={style} />,
+  MT: <Mt style={style} />,
+  MU: <Mu style={style} />,
+  MV: <Mv style={style} />,
+  MW: <Mw style={style} />,
+  MX: <Mx style={style} />,
+  MY: <My style={style} />,
+  MZ: <Mz style={style} />,
+  NA: <Na style={style} />,
+  NC: <Nc style={style} />,
+  NE: <Ne style={style} />,
+  NF: <Nf style={style} />,
+  NG: <Ng style={style} />,
+  NI: <Ni style={style} />,
+  NL: <Nl style={style} />,
+  NO: <No style={style} />,
+  NP: <Np style={style} />,
+  NR: <Nr style={style} />,
+  NU: <Nu style={style} />,
+  NZ: <Nz style={style} />,
+  OM: <Om style={style} />,
+  PA: <Pa style={style} />,
+  PE: <Pe style={style} />,
+  PF: <Pf style={style} />,
+  PG: <Pg style={style} />,
+  PH: <Ph style={style} />,
+  PK: <Pk style={style} />,
+  PL: <Pl style={style} />,
+  PM: <Pm style={style} />,
+  PN: <Pn style={style} />,
+  PR: <Pr style={style} />,
+  PS: <Ps style={style} />,
+  PT: <Pt style={style} />,
+  PW: <Pw style={style} />,
+  PY: <Py style={style} />,
+  QA: <Qa style={style} />,
+  RE: <Re style={style} />,
+  RO: <Ro style={style} />,
+  RS: <Rs style={style} />,
+  RU: <Ru style={style} />,
+  RW: <Rw style={style} />,
+  SA: <Sa style={style} />,
+  SB: <Sb style={style} />,
+  SC: <Sc style={style} />,
+  SD: <Sd style={style} />,
+  SE: <Se style={style} />,
+  SG: <Sg style={style} />,
+  SH: <Sh style={style} />,
+  SI: <Si style={style} />,
+  SJ: <Sj style={style} />,
+  SK: <Sk style={style} />,
+  SL: <Sl style={style} />,
+  SM: <Sm style={style} />,
+  SN: <Sn style={style} />,
+  SO: <So style={style} />,
+  SR: <Sr style={style} />,
+  SS: <Ss style={style} />,
+  ST: <St style={style} />,
+  SV: <Sv style={style} />,
+  SX: <Sx style={style} />,
+  SY: <Sy style={style} />,
+  SZ: <Sz style={style} />,
+  TC: <Tc style={style} />,
+  TD: <Td style={style} />,
+  TF: <Tf style={style} />,
+  TG: <Tg style={style} />,
+  TH: <Th style={style} />,
+  TJ: <Tj style={style} />,
+  TK: <Tk style={style} />,
+  TL: <Tl style={style} />,
+  TM: <Tm style={style} />,
+  TN: <Tn style={style} />,
+  TO: <To style={style} />,
+  TR: <Tr style={style} />,
+  TT: <Tt style={style} />,
+  TV: <Tv style={style} />,
+  TW: <Tw style={style} />,
+  TZ: <Tz style={style} />,
+  UA: <Ua style={style} />,
+  UG: <Ug style={style} />,
+  UM: <Um style={style} />,
+  US: <Us style={style} />,
+  UY: <Uy style={style} />,
+  UZ: <Uz style={style} />,
+  VA: <Va style={style} />,
+  VC: <Vc style={style} />,
+  VE: <Ve style={style} />,
+  VG: <Vg style={style} />,
+  VI: <Vi style={style} />,
+  VN: <Vn style={style} />,
+  VU: <Vu style={style} />,
+  WF: <Wf style={style} />,
+  WS: <Ws style={style} />,
+  YE: <Ye style={style} />,
+  YT: <Yt style={style} />,
+  ZA: <Za style={style} />,
+  ZM: <Zm style={style} />,
+  ZW: <Zw style={style} />,
+};
