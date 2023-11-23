@@ -8,6 +8,7 @@ export type TextInputProps = {
   maxLength?: TextInputPropsNative['maxLength'];
   inputMode?: TextInputPropsNative['inputMode'];
   onEndEditing?: TextInputPropsNative['onEndEditing'];
+  editable?: TextInputPropsNative['editable'];
   onFocus?: () => void;
   onBlur?: () => void;
 };

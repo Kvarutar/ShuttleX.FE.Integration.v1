@@ -3556,12 +3556,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-community/datetimepicker@npm:^6.7.3":
-  version: 6.7.5
-  resolution: "@react-native-community/datetimepicker@npm:6.7.5"
+"@react-native-community/datetimepicker@npm:7.2.0":
+  version: 7.2.0
+  resolution: "@react-native-community/datetimepicker@npm:7.2.0"
   dependencies:
     invariant: "npm:^2.2.4"
-  checksum: 8540b3b033b466baa3ed1d4036c2496a9a25de01cee134f6528aa482b8b7fbaa70993471becf43d819fed3ff36365a3683255eb8f897dcec83197e3cd63644dd
+  checksum: 19579fe59dbdff7410b07034973a72fcac6c37214c5665c9665590017403ea33ba44e0c98780b4037169c22119ee1d81099d897fd1bd97d85fe9457f480f3f2b
+  languageName: node
+  linkType: hard
+
+"@react-native-community/datetimepicker@npm:^7.6.1":
+  version: 7.6.1
+  resolution: "@react-native-community/datetimepicker@npm:7.6.1"
+  dependencies:
+    invariant: "npm:^2.2.4"
+  checksum: 20d9b35747532e2031b981305f16998e1bd4c651e2c44cd65c4dd5bd4ebe66fd0ed49292bc6883821faf56c1cb3698b16c2b8fb1e9782b8c6f00f3506cf8ee55
   languageName: node
   linkType: hard
 
@@ -21185,7 +21194,7 @@ __metadata:
     "@babel/core": "npm:^7.20.0"
     "@expo/webpack-config": "npm:^19.0.0"
     "@react-native-async-storage/async-storage": "npm:1.19.5"
-    "@react-native-community/datetimepicker": "npm:^6.7.3"
+    "@react-native-community/datetimepicker": "npm:7.2.0"
     "@react-native-community/slider": "npm:4.4.3"
     "@storybook/addon-actions": "npm:6.5.16"
     "@storybook/addon-controls": "npm:6.5.16"
@@ -21220,6 +21229,7 @@ __metadata:
   dependencies:
     "@commitlint/config-conventional": "npm:^17.0.2"
     "@evilmartians/lefthook": "npm:^1.5.0"
+    "@react-native-community/datetimepicker": "npm:^7.6.1"
     "@react-native/eslint-config": "npm:^0.72.2"
     "@reduxjs/toolkit": "npm:^1.9.7"
     "@release-it/conventional-changelog": "npm:^5.0.0"
@@ -21251,6 +21261,7 @@ __metadata:
     release-it: "npm:^15.0.0"
     typescript: "npm:^5.2.2"
   peerDependencies:
+    "@react-native-community/datetimepicker": "*"
     "@reduxjs/toolkit": "*"
     react: "*"
     react-native: "*"

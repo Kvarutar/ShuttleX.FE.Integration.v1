@@ -2,7 +2,15 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useCallback, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Button, GroupedBrandIcon, GroupedButtons, PhoneInput, ThemeProvider, useTheme } from 'shuttlex-integration';
+import {
+  Button,
+  DatePickerTest,
+  GroupedBrandIcon,
+  GroupedButtons,
+  PhoneInput,
+  ThemeProvider,
+  useTheme,
+} from 'shuttlex-integration';
 
 import { type GroupedButtonsProps } from '../../src/shared/Widgets/GroupedButtons/props';
 
@@ -65,6 +73,7 @@ const Content = (): JSX.Element | null => {
         isFirstSelectedButton={selectedGroupedButton}
         setIsFirstSelectedButton={setSelectedGroupedButton}
       />
+      <DatePickerTest />
     </View>
   );
 };

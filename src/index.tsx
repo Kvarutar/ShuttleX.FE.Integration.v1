@@ -6,9 +6,11 @@ import Button from './shared/BrandBook/Button';
 import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
 import BrandFavIcon from './shared/BrandBook/Icons/BrandFavIcon';
 import BrandTextIcon from './shared/BrandBook/Icons/BrandTextIcon';
+import CalendarIcon from './shared/BrandBook/Icons/CalendarIcon';
 import Text from './shared/BrandBook/Text';
 import TextInput from './shared/BrandBook/TextInput';
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
+import DatePickerTest from './shared/Widgets/DatePickerTest';
 import GroupedButtons from './shared/Widgets/GroupedButtons';
 import PhoneInput from './shared/Widgets/PhoneInput';
 
@@ -17,6 +19,8 @@ export {
   BrandFavIcon,
   BrandTextIcon,
   Button,
+  CalendarIcon,
+  DatePickerTest,
   GroupedBrandIcon,
   GroupedButtons,
   nameof,

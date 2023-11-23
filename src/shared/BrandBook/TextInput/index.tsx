@@ -14,6 +14,7 @@ const TextInput = ({
   onBlur,
   inputMode,
   maxLength,
+  editable,
 }: TextInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -57,6 +58,7 @@ const TextInput = ({
       onFocus={onInputFocus}
       onBlur={onInputBlur}
       maxLength={maxLength}
+      editable={editable}
     />
   );
 };
