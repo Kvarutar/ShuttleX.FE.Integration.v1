@@ -4,8 +4,9 @@ import { Pressable, StyleSheet } from 'react-native';
 
 import CalendarIcon from '../../BrandBook/Icons/CalendarIcon';
 import TextInput from '../../BrandBook/TextInput';
+import { type DatePickerProps } from './props';
 
-const DatePickerTest = (): JSX.Element => {
+const DatePicker = ({ style }: DatePickerProps): JSX.Element => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
@@ -31,11 +32,11 @@ const DatePickerTest = (): JSX.Element => {
   };
 
   return (
-    <Pressable style={styles.datePickerContainer} onPress={showDatepicker}>
+    <Pressable style={[styles.datePickerContainer, style]} onPress={showDatepicker}>
       <TextInput value={date.toDateString()} editable={false} placeholder="Date of Birth" />
       <CalendarIcon style={styles.calendarIcon} />
       {show && (
-        <DateTimePicker testID="dateTimePicker" value={date} display="calendar" is24Hour={true} onChange={onChange} />
+        <DateTimePicker testID="dateTimePicker" value={date} display={'calendar'} is24Hour={true} onChange={onChange} />
       )}
     </Pressable>
   );
@@ -52,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DatePickerTest;
+export default DatePicker;

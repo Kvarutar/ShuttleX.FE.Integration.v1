@@ -12,7 +12,7 @@ import Text from './shared/BrandBook/Text';
 import TextInput from './shared/BrandBook/TextInput';
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
 import RoundButton from './shared/RoundButton';
-import DatePickerTest from './shared/Widgets/DatePickerTest';
+import DatePicker from './shared/Widgets/DatePicker';
 import GroupedButtons from './shared/Widgets/GroupedButtons';
 import PhoneInput from './shared/Widgets/PhoneInput';
 
@@ -23,7 +23,7 @@ export {
   BrandTextIcon,
   Button,
   CalendarIcon,
-  DatePickerTest,
+  DatePicker,
   GroupedBrandIcon,
   GroupedButtons,
   nameof,

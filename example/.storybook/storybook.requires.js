@@ -48,7 +48,11 @@ try {
 const getStories = () => {
   return {
     "./src/stories/Button.stories.tsx": require("../src/stories/Button.stories.tsx"),
+    "./src/stories/DatePicker.stories.tsx": require("../src/stories/DatePicker.stories.tsx"),
     "./src/stories/GroupedBrandIcon.stories.tsx": require("../src/stories/GroupedBrandIcon.stories.tsx"),
+    "./src/stories/GroupedButtons.stories.tsx": require("../src/stories/GroupedButtons.stories.tsx"),
+    "./src/stories/RoundButton.stories.tsx": require("../src/stories/RoundButton.stories.tsx"),
+    "./src/stories/TextInput.stories.tsx": require("../src/stories/TextInput.stories.tsx"),
   };
 };
 
