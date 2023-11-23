@@ -37,7 +37,6 @@
     "formatter": "yarn run prettier:fix && yarn run lint:fix",
     "clean": "del-cli lib",
     "prepare": "bob build",
-    "release": "release-it",
     "pack": "npm pack"
   },
   "keywords": [
@@ -63,10 +62,8 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
-    "@evilmartians/lefthook": "^1.5.0",
     "@react-native-community/datetimepicker": "^7.6.1",
     "@reduxjs/toolkit": "^1.9.7",
-    "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.70",
     "@types/react-native": "0.72.6",
@@ -89,7 +86,6 @@
     "react-native-svg": "^13.14.0",
     "react-native-svg-transformer": "^1.1.0",
     "react-redux": "^8.1.3",
-    "release-it": "^15.0.0",
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
@@ -126,23 +122,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
   },
   "react-native-builder-bob": {
     "source": "src",

@@ -1,5 +1,5 @@
 {
-  "ignorePatterns": ["node_modules"],
+  "ignorePatterns": ["node_modules", "**/storybook.requires.js"],
   "extends": "@react-native",
   "plugins": ["simple-import-sort", "import"],
   "rules": {

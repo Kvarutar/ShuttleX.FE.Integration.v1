@@ -1,0 +1,33 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build .tgz
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
+
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn run pack
+      - name: Retrieve version
+        run: echo "VERSION_NAME=$(cat package.json | jq -r '.version')" >> "$GITHUB_ENV"
+      - name: Publish release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.VERSION_NAME }}
+          files: './shuttlex-integration-*.tgz'
