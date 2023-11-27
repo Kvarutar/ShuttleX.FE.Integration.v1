@@ -38,16 +38,16 @@ npm install <Path to your library>/shuttlex-integration-<integration version>.tg
 
 ### Library dependencies
 
+- [@react-native-community/datetimepicker](https://www.npmjs.com/package/@react-native-community/datetimepicker)
+- [@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit)
 - [react](https://www.npmjs.com/package/react)
 - [react-native](https://www.npmjs.com/package/react-native)
 - [react-native-material-ripple](https://www.npmjs.com/package/react-native-material-ripple)
-- [react-native-paper](https://www.npmjs.com/package/react-native-paper)
 - [react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context)
 - [react-native-shadow-2](https://www.npmjs.com/package/react-native-shadow-2)
 - [react-native-svg](https://www.npmjs.com/package/react-native-svg)
 - [react-native-svg-transformer](https://www.npmjs.com/package/react-native-svg-transformer)
 - [react-redux](https://www.npmjs.com/package/react-redux)
-- [@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit)
 
 ## Usage
 
