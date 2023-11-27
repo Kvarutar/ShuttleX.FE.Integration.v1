@@ -1,12 +1,12 @@
 import { type ReactNode } from 'react';
-import React, { StyleSheet, View } from 'react-native';
+import React, { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../core/themes/shadows';
 import sizes from '../core/themes/sizes';
 import { useTheme } from '../core/themes/themeContext';
 
-const BottomWindow = ({ children }: { children: ReactNode }): JSX.Element => {
+const BottomWindow = ({ children, style }: { children: ReactNode; style?: StyleProp<ViewStyle> }): JSX.Element => {
   const { colors } = useTheme();
   const { backgroundPrimaryColor, weakShadowColor } = colors;
   const shadowProps = defaultShadow(weakShadowColor);
@@ -20,7 +20,7 @@ const BottomWindow = ({ children }: { children: ReactNode }): JSX.Element => {
   return (
     <View style={styles.container}>
       <Shadow stretch {...shadowProps}>
-        <View style={[computedStyles.bottomWindow, styles.bottomWindow]}>{children}</View>
+        <View style={[computedStyles.bottomWindow, styles.bottomWindow, style]}>{children}</View>
       </Shadow>
     </View>
   );
@@ -35,9 +35,6 @@ const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
   },
 });
 

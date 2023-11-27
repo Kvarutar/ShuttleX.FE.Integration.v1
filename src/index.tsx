@@ -2,6 +2,7 @@ import { nameof } from './core/monkey-patch/ts.helper';
 import palettes from './core/themes/palettes';
 import sizes from './core/themes/sizes';
 import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/themeContext';
+import Bar from './shared/Bar';
 import BottomWindow from './shared/BottomWindow';
 import Button from './shared/BrandBook/Button';
 import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
@@ -18,6 +19,7 @@ import PhoneInput from './shared/Widgets/PhoneInput';
 
 export {
   ArrowIcon,
+  Bar,
   BottomWindow,
   BrandFavIcon,
   BrandTextIcon,
