@@ -21,6 +21,7 @@ export type Palette = {
   backgroundSecondaryColor: string;
   backgroundTertiaryColor: string; // mainly used for the background of some icons
   outlineColor: string; // mainly used for the outline of avatar or arrow of the current position
+  strokeColor: string; //for bar's stroke
   textPrimaryColor: string;
   textSecondaryColor: string;
   weakShadowColor: string; // specified in rgba, opacity = CSS opacity * 2/3, e.g., 0.03 * 2/3 = 0.02

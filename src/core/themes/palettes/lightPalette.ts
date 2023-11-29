@@ -8,6 +8,7 @@ const colors: Omit<Palette, 'buttonModes'> = {
   backgroundSecondaryColor: '#F3F3F3',
   backgroundTertiaryColor: '#000000',
   outlineColor: '#FFFFFF',
+  strokeColor: '#B4B4B466',
   textPrimaryColor: '#000000',
   textSecondaryColor: '#B4B4B4',
   weakShadowColor: 'rgba(0, 0, 0, 0.02)',

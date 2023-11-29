@@ -16,6 +16,8 @@ import RoundButton from './shared/RoundButton';
 import DatePicker from './shared/Widgets/DatePicker';
 import GroupedButtons from './shared/Widgets/GroupedButtons';
 import PhoneInput from './shared/Widgets/PhoneInput';
+import SwipeButton from './shared/Widgets/SwipeButton';
+import { SwipeButtonModes } from './shared/Widgets/SwipeButton/props';
 
 export {
   ArrowIcon,
@@ -33,6 +35,8 @@ export {
   PhoneInput,
   RoundButton,
   sizes,
+  SwipeButton,
+  SwipeButtonModes,
   Text,
   TextInput,
   type ThemeContextType,

@@ -8,6 +8,7 @@ const BarMeta: Meta<typeof Bar> = {
   component: Bar,
   args: {
     theme: 'light',
+    isActive: true,
   },
   argTypes: {
     theme: {
@@ -19,22 +20,22 @@ const BarMeta: Meta<typeof Bar> = {
 
 export default BarMeta;
 
-const BarWithHooks = ({ themeName }: { themeName: ThemeContextType['themeMode'] }) => {
+const BarWithHooks = ({ themeName, isActive }: { themeName: ThemeContextType['themeMode']; isActive: boolean }) => {
   const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <Bar children={<CalendarIcon />} />;
+  return <Bar children={<CalendarIcon />} isActive={isActive} />;
 };
 
 type Story = StoryObj<typeof Bar>;
 
 export const BasicExample: Story = {
   render: function Render(args) {
-    const [{ theme }] = useArgs();
+    const [{ theme, isActive }] = useArgs();
 
-    return <BarWithHooks {...args} themeName={theme} />;
+    return <BarWithHooks {...args} themeName={theme} isActive={isActive} />;
   },
 };
