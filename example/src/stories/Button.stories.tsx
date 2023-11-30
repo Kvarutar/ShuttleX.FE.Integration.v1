@@ -3,16 +3,20 @@ import { type Meta, type StoryObj } from '@storybook/react-native';
 import React, { useEffect } from 'react';
 import { Button, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { type ButtonProps } from '../../../src/shared/BrandBook/Button/props';
-
-const modes: ButtonProps['mode'][] = ['mode1', 'mode2', 'mode3', 'mode4'];
+import { ButtonModes, type ButtonProps, ButtonShadows } from '../../../src/shared/BrandBook/Button/props';
 
 const ButtonMeta: Meta<typeof Button> = {
   title: 'Button',
   component: Button,
   args: {
     theme: 'light',
-    mode: modes[0],
+    mode: ButtonModes.Mode1,
+    text: 'Sample text',
+    borderRadius: 28,
+    shadow: undefined,
+    disableShadow: false,
+    disableRipple: false,
+    disabled: false,
   },
   argTypes: {
     theme: {
@@ -20,7 +24,11 @@ const ButtonMeta: Meta<typeof Button> = {
       control: { type: 'select' },
     },
     mode: {
-      options: modes,
+      options: Object.values(ButtonModes),
+      control: { type: 'select' },
+    },
+    shadow: {
+      options: [undefined, ...Object.values(ButtonShadows)],
       control: { type: 'select' },
     },
   },
@@ -28,28 +36,24 @@ const ButtonMeta: Meta<typeof Button> = {
 
 export default ButtonMeta;
 
-const ButtonWithHooks = ({
-  themeName,
-  mode,
-}: {
-  themeName: ThemeContextType['themeMode'];
-  mode: ButtonProps['mode'];
-}) => {
+type ButtonWithHooksProps = { themeName: ThemeContextType['themeMode'] } & ButtonProps;
+
+const ButtonWithHooks = ({ themeName, ...props }: ButtonWithHooksProps) => {
   const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <Button text="Sample text" mode={mode} />;
+  return <Button {...props} />;
 };
 
 type Story = StoryObj<typeof ButtonWithHooks>;
 
 export const Basic: Story = {
   render: function Render(args) {
-    const [{ theme, mode }] = useArgs();
+    const [{ theme }] = useArgs();
 
-    return <ButtonWithHooks {...args} themeName={theme} mode={mode} />;
+    return <ButtonWithHooks themeName={theme} {...args} />;
   },
 };

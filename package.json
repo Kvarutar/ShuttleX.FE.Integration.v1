@@ -29,15 +29,15 @@
   "scripts": {
     "example": "yarn workspace shuttlex-integration-example",
     "test": "jest",
+    "clean": "del-cli lib",
+    "prepare": "bob build",
+    "pack": "npm pack",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "lint:fix": "eslint \"**/*.{js,ts,tsx}\" --fix",
     "prettier": "prettier -c .",
     "prettier:fix": "prettier -w .",
-    "formatter": "yarn run prettier:fix && yarn run lint:fix",
-    "clean": "del-cli lib",
-    "prepare": "bob build",
-    "pack": "npm pack"
+    "formatter": "yarn run prettier:fix && yarn run lint:fix"
   },
   "keywords": [
     "react-native",

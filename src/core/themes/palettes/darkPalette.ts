@@ -1,4 +1,4 @@
-import { type ButtonModes, type Palette } from './paletteTypes';
+import { type Palette, type PaletteButtonModes } from './paletteTypes';
 
 const colors: Omit<Palette, 'buttonModes'> = {
   primaryColor: '#5295F7',
@@ -15,7 +15,7 @@ const colors: Omit<Palette, 'buttonModes'> = {
   strongShadowColor: 'rgba(0, 0, 0, 0.04)',
 };
 
-const buttonModes: ButtonModes = {
+const buttonModes: PaletteButtonModes = {
   mode1: {
     backgroundColor: colors.primaryColor,
     textColor: '#FFFFFF',
@@ -27,11 +27,6 @@ const buttonModes: ButtonModes = {
   mode3: {
     backgroundColor: '#000000',
     textColor: '#FFFFFF',
-  },
-  mode4: {
-    backgroundColor: 'transparent',
-    textColor: '#FFFFFF',
-    strokeColor: '#B4B4B466', // with opacity
   },
 };
 

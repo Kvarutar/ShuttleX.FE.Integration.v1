@@ -1,17 +1,13 @@
-type ButtonMode = {
+import { type ButtonModes } from '../../../shared/BrandBook/Button/props';
+
+type PaletteButtonMode = {
   backgroundColor: string;
   textColor: string;
-  strokeColor?: string;
   rippleColor?: string;
   shadowColor?: string;
 };
 
-export type ButtonModes = {
-  mode1: ButtonMode;
-  mode2: ButtonMode;
-  mode3: ButtonMode;
-  mode4: ButtonMode;
-};
+export type PaletteButtonModes = { [key in ButtonModes]: PaletteButtonMode };
 
 export type Palette = {
   primaryColor: string;
@@ -26,5 +22,5 @@ export type Palette = {
   textSecondaryColor: string;
   weakShadowColor: string; // specified in rgba, opacity = CSS opacity * 2/3, e.g., 0.03 * 2/3 = 0.02
   strongShadowColor: string; // specified in rgba
-  buttonModes: ButtonModes;
+  buttonModes: PaletteButtonModes;
 };

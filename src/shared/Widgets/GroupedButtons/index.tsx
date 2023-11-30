@@ -5,6 +5,7 @@ import { Shadow } from 'react-native-shadow-2';
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
 import Button from '../../BrandBook/Button';
+import { ButtonModes } from '../../BrandBook/Button/props';
 import { type GroupedButtonsProps } from './props';
 
 const GroupedButtons = ({
@@ -32,7 +33,7 @@ const GroupedButtons = ({
     <Shadow stretch {...defaultShadow(colors.weakShadowColor)}>
       <View style={[styles.groupedButtons, computedStyles.groupedButtons, style]}>
         <Button
-          mode="mode2"
+          mode={ButtonModes.Mode2}
           disableShadow
           text={firstTextButton}
           style={isFirstSelectedButton ? computedStyles.activeButton : styles.passiveButton}
@@ -40,7 +41,7 @@ const GroupedButtons = ({
           onPress={() => setIsFirstSelectedButton(true)}
         />
         <Button
-          mode="mode2"
+          mode={ButtonModes.Mode2}
           disableShadow
           text={secondTextButton}
           style={!isFirstSelectedButton ? computedStyles.activeButton : styles.passiveButton}

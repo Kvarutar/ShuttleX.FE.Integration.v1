@@ -1,5 +1,4 @@
 import React from 'react';
-import { type ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
 import Ripple from 'react-native-material-ripple';
 import { Shadow } from 'react-native-shadow-2';
@@ -7,10 +6,10 @@ import { Shadow } from 'react-native-shadow-2';
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
 import Text from '../Text';
-import { type ButtonProps } from './props';
+import { ButtonModes, type ButtonProps, ButtonShadows } from './props';
 
 const Button = ({
-  mode = 'mode1',
+  mode = ButtonModes.Mode1,
   text,
   textStyle,
   style,
@@ -24,14 +23,14 @@ const Button = ({
 }: ButtonProps): JSX.Element => {
   const { colors } = useTheme();
 
-  const { backgroundColor, textColor, strokeColor, rippleColor, shadowColor } = colors.buttonModes[mode];
+  const { backgroundColor, textColor, rippleColor, shadowColor } = colors.buttonModes[mode];
   let shadowProps = shadowColor ? defaultShadow(shadowColor) : { disabled: true };
 
   switch (shadow) {
-    case 'weak':
+    case ButtonShadows.Weak:
       shadowProps = defaultShadow(colors.weakShadowColor);
       break;
-    case 'strong':
+    case ButtonShadows.Strong:
       shadowProps = defaultShadow(colors.strongShadowColor);
       break;
   }
@@ -40,20 +39,10 @@ const Button = ({
     shadowProps = { disabled: true };
   }
 
-  let strokeProps: ViewStyle = {};
-  if (strokeColor) {
-    strokeProps = {
-      borderColor: strokeColor,
-      borderWidth: 1,
-      borderStyle: 'dashed',
-    };
-  }
-
   const computedStyles = StyleSheet.create({
     container: {
       backgroundColor,
       borderRadius,
-      ...strokeProps,
     },
     text: { color: textColor },
   });
