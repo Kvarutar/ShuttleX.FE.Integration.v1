@@ -30,26 +30,28 @@ const GroupedButtons = ({
   });
 
   return (
-    <Shadow stretch {...defaultShadow(colors.weakShadowColor)}>
-      <View style={[styles.groupedButtons, computedStyles.groupedButtons, style]}>
-        <Button
-          mode={ButtonModes.Mode2}
-          disableShadow
-          text={firstTextButton}
-          style={isFirstSelectedButton ? computedStyles.activeButton : styles.passiveButton}
-          textStyle={isFirstSelectedButton ? {} : computedStyles.passiveTextColor}
-          onPress={() => setIsFirstSelectedButton(true)}
-        />
-        <Button
-          mode={ButtonModes.Mode2}
-          disableShadow
-          text={secondTextButton}
-          style={!isFirstSelectedButton ? computedStyles.activeButton : styles.passiveButton}
-          textStyle={!isFirstSelectedButton ? {} : computedStyles.passiveTextColor}
-          onPress={() => setIsFirstSelectedButton(false)}
-        />
-      </View>
-    </Shadow>
+    <View style={style}>
+      <Shadow stretch {...defaultShadow(colors.weakShadowColor)}>
+        <View style={[styles.groupedButtons, computedStyles.groupedButtons]}>
+          <Button
+            mode={ButtonModes.Mode2}
+            disableShadow
+            text={firstTextButton}
+            style={isFirstSelectedButton ? computedStyles.activeButton : styles.passiveButton}
+            textStyle={isFirstSelectedButton ? {} : computedStyles.passiveTextColor}
+            onPress={() => setIsFirstSelectedButton(true)}
+          />
+          <Button
+            mode={ButtonModes.Mode2}
+            disableShadow
+            text={secondTextButton}
+            style={!isFirstSelectedButton ? computedStyles.activeButton : styles.passiveButton}
+            textStyle={!isFirstSelectedButton ? {} : computedStyles.passiveTextColor}
+            onPress={() => setIsFirstSelectedButton(false)}
+          />
+        </View>
+      </Shadow>
+    </View>
   );
 };
 
