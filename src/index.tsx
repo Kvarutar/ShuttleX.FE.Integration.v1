@@ -5,6 +5,7 @@ import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/th
 import Bar from './shared/Bar';
 import BottomWindow from './shared/BottomWindow';
 import Button from './shared/BrandBook/Button';
+import { ButtonModes } from './shared/BrandBook/Button/props';
 import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
 import BrandFavIcon from './shared/BrandBook/Icons/BrandFavIcon';
 import BrandTextIcon from './shared/BrandBook/Icons/BrandTextIcon';
@@ -26,6 +27,7 @@ export {
   BrandFavIcon,
   BrandTextIcon,
   Button,
+  ButtonModes,
   CalendarIcon,
   DatePicker,
   GroupedBrandIcon,

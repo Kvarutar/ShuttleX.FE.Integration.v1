@@ -19,22 +19,19 @@ const SwipeButton = ({ onSwipeEnd, mode, text = 'Slide to confirm' }: SwipeButto
   const computedStyles = StyleSheet.create({
     text: {
       color: textSecondaryColor,
-      marginLeft: 62,
     },
     slider: {
       backgroundColor: backgroundPrimaryColor,
-      overflow: 'hidden',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 28,
     },
   });
+
+  const sliderStyles = { ...computedStyles.slider, ...styles.slider };
 
   return (
     <Shadow stretch {...shadowProps}>
       <Slider
         onEndReached={() => onSwipeEnd()}
-        containerStyle={computedStyles.slider}
+        containerStyle={sliderStyles}
         sliderElement={
           <Button
             style={styles.button}
@@ -43,7 +40,7 @@ const SwipeButton = ({ onSwipeEnd, mode, text = 'Slide to confirm' }: SwipeButto
           />
         }
       >
-        <Text style={computedStyles.text}>{text}</Text>
+        <Text style={[computedStyles.text, styles.text]}>{text}</Text>
       </Slider>
     </Shadow>
   );
@@ -52,6 +49,15 @@ const SwipeButton = ({ onSwipeEnd, mode, text = 'Slide to confirm' }: SwipeButto
 const styles = StyleSheet.create({
   button: {
     paddingHorizontal: 38,
+  },
+  text: {
+    marginLeft: 62,
+  },
+  slider: {
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 28,
   },
 });
 
