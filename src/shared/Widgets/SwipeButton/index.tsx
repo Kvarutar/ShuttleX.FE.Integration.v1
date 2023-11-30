@@ -6,6 +6,7 @@ import Slider from 'react-native-slide-to-unlock';
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
 import Button from '../../BrandBook/Button';
+import { ButtonModes } from '../../BrandBook/Button/props';
 import ArrowIcon from '../../BrandBook/Icons/ArrowIcon';
 import Text from '../../BrandBook/Text';
 import { SwipeButtonModes, type SwipeButtonProps } from './props';
@@ -38,7 +39,7 @@ const SwipeButton = ({ onSwipeEnd, mode, text = 'Slide to confirm' }: SwipeButto
           <Button
             style={styles.button}
             children={<ArrowIcon />}
-            mode={mode === SwipeButtonModes.Confirm ? 'mode1' : 'mode3'}
+            mode={mode === SwipeButtonModes.Confirm ? ButtonModes.Mode1 : ButtonModes.Mode3}
           />
         }
       >
