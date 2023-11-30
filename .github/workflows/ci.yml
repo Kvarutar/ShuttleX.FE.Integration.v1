@@ -20,6 +20,8 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+      - name: Run typescript check
+        run: npm run typecheck
       - name: Run eslint check
         run: yarn run lint
       - name: Run prettier check
