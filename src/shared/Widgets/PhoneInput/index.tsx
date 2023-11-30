@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Keyboard, type LayoutRectangle, Pressable, StyleSheet, View } from 'react-native';
+import { Keyboard, type LayoutRectangle, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
 import { countryDtos } from '../../../core/countries/countryDtos';
 import { indexOfNotFound, timeDropdownVisible } from '../../../core/monkey-patch/array.helper';
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
-import ArrowIcon from '../../BrandBook/Icons/ArrowIcon';
+import { BackIcon } from '../../BrandBook/Icons';
 import { countryFlags } from '../../BrandBook/Icons/Flags';
 import TextInput from '../../BrandBook/TextInput';
 import { type TextInputProps } from '../../BrandBook/TextInput/props';
@@ -136,7 +136,7 @@ const PhoneInput = (): JSX.Element => {
           onPress={() => onInputFlagPress()}
         >
           {flagState && countryFlags[flagState.countryCode]}
-          <ArrowIcon />
+          <BackIcon style={styles.backIcon} />
         </Pressable>
         <TextInput
           style={[styles.input, computedStyles.input]}
@@ -161,21 +161,23 @@ const PhoneInput = (): JSX.Element => {
               },
             ]}
           >
-            <FlatList
-              data={countryDtos}
-              renderItem={({ item, index }) => (
-                <ListItem
-                  iconSvg={countryFlags[item.countryCode]}
-                  icc={item.icc}
-                  countryName={item.countryName}
-                  onFlagContainerPress={() => {
-                    setFlagState(item);
-                    setIsDropdownVisible(false);
-                  }}
-                  {...(index === 0 ? { withArrow: true } : {})}
-                />
-              )}
-            />
+            <ScrollView nestedScrollEnabled>
+              {countryDtos.map((item, index) => {
+                return (
+                  <ListItem
+                    iconSvg={countryFlags[item.countryCode]}
+                    icc={item.icc}
+                    countryName={item.countryName}
+                    onFlagContainerPress={() => {
+                      setFlagState(item);
+                      setIsDropdownVisible(false);
+                    }}
+                    key={item.countryCode}
+                    {...(index === 0 ? { withArrow: true } : {})}
+                  />
+                );
+              })}
+            </ScrollView>
             <View style={[styles.line, computedStyles.line]} />
           </View>
         </Pressable>
@@ -196,7 +198,7 @@ const styles = StyleSheet.create({
     width: 90,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 18,
+    paddingVertical: 16,
     paddingLeft: 20,
     paddingRight: 16,
     gap: 8,
@@ -235,6 +237,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 88,
     width: 1,
+  },
+  backIcon: {
+    transform: [{ rotate: '270deg' }],
   },
 });
 

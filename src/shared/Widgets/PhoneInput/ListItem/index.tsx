@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import ArrowIcon from '../../../BrandBook/Icons/ArrowIcon';
+import { BackIcon } from '../../../BrandBook/Icons';
 import Text from '../../../BrandBook/Text';
 import { type ListItemProps } from './props';
 
@@ -16,7 +16,7 @@ const ListItem = ({
   <Pressable style={[styles.container, style]} onPress={onFlagContainerPress}>
     <View style={[styles.flagContainer]}>
       {iconSvg}
-      {withArrow && <ArrowIcon style={styles.arrowIcon} />}
+      {withArrow && <BackIcon style={styles.backIcon} />}
     </View>
     <Text style={styles.codePhone}>{`+${icc}`}</Text>
     <Text style={styles.labelPhone}>{countryName}</Text>
@@ -27,12 +27,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 8,
   },
   flagContainer: {
     width: 89,
     flexDirection: 'row',
     gap: 8,
+    alignItems: 'center',
   },
   codePhone: {
     width: 70,
@@ -42,8 +43,8 @@ const styles = StyleSheet.create({
     flex: 1,
     lineHeight: 19,
   },
-  arrowIcon: {
-    transform: [{ rotate: '180deg' }],
+  backIcon: {
+    transform: [{ rotate: '90deg' }, { translateX: 1 }],
   },
 });
 
