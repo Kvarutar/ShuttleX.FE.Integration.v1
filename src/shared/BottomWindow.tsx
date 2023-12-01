@@ -18,9 +18,9 @@ const BottomWindow = ({ children, style }: { children: ReactNode; style?: StyleP
   });
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <Shadow stretch {...shadowProps}>
-        <View style={[computedStyles.bottomWindow, styles.bottomWindow, style]}>{children}</View>
+        <View style={[computedStyles.bottomWindow, styles.bottomWindow]}>{children}</View>
       </Shadow>
     </View>
   );
