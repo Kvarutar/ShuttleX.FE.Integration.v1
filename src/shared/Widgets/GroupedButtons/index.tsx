@@ -37,7 +37,7 @@ const GroupedButtons = ({
             mode={ButtonModes.Mode2}
             disableShadow
             text={firstTextButton}
-            style={isFirstSelectedButton ? computedStyles.activeButton : styles.passiveButton}
+            buttonStyle={isFirstSelectedButton ? computedStyles.activeButton : styles.passiveButton}
             textStyle={isFirstSelectedButton ? {} : computedStyles.passiveTextColor}
             onPress={() => setIsFirstSelectedButton(true)}
           />
@@ -45,7 +45,7 @@ const GroupedButtons = ({
             mode={ButtonModes.Mode2}
             disableShadow
             text={secondTextButton}
-            style={!isFirstSelectedButton ? computedStyles.activeButton : styles.passiveButton}
+            buttonStyle={!isFirstSelectedButton ? computedStyles.activeButton : styles.passiveButton}
             textStyle={!isFirstSelectedButton ? {} : computedStyles.passiveTextColor}
             onPress={() => setIsFirstSelectedButton(false)}
           />

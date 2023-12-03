@@ -13,13 +13,12 @@ export enum ButtonShadows {
 
 export type ButtonProps = {
   style?: StyleProp<ViewStyle>;
+  buttonStyle?: StyleProp<ViewStyle>;
   mode?: ButtonModes;
   text?: string;
   textStyle?: StyleProp<TextStyle>;
-  borderRadius?: number;
   shadow?: ButtonShadows;
   disableShadow?: boolean;
-  disableRipple?: boolean;
   disabled?: boolean;
   children?: React.ReactNode;
   onPress?: () => void;

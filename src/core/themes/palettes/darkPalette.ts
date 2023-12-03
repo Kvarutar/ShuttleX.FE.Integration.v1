@@ -18,15 +18,18 @@ const colors: Omit<Palette, 'buttonModes'> = {
 const buttonModes: PaletteButtonModes = {
   mode1: {
     backgroundColor: colors.primaryColor,
-    textColor: '#FFFFFF',
+    backgroundColorOnPress: '#3281F5',
+    textColor: colors.textPrimaryColor,
   },
   mode2: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.backgroundTertiaryColor,
+    backgroundColorOnPress: colors.backgroundTertiaryColor,
     textColor: '#000000',
   },
   mode3: {
     backgroundColor: '#000000',
-    textColor: '#FFFFFF',
+    backgroundColorOnPress: '#222222',
+    textColor: colors.textPrimaryColor,
   },
 };
 

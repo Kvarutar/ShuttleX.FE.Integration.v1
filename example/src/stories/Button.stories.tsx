@@ -15,7 +15,6 @@ const ButtonMeta: Meta<typeof Button> = {
     borderRadius: 28,
     shadow: undefined,
     disableShadow: false,
-    disableRipple: false,
     disabled: false,
   },
   argTypes: {

@@ -34,7 +34,7 @@ const SwipeButton = ({ onSwipeEnd, mode, text = 'Slide to confirm' }: SwipeButto
         containerStyle={sliderStyles}
         sliderElement={
           <Button
-            style={styles.button}
+            buttonStyle={styles.button}
             children={<ArrowIcon />}
             mode={mode === SwipeButtonModes.Confirm ? ButtonModes.Mode1 : ButtonModes.Mode3}
           />

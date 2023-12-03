@@ -42,7 +42,6 @@ npm install <Path to your library>/shuttlex-integration-<integration version>.tg
 - [@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit)
 - [react](https://www.npmjs.com/package/react)
 - [react-native](https://www.npmjs.com/package/react-native)
-- [react-native-material-ripple](https://www.npmjs.com/package/react-native-material-ripple)
 - [react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context)
 - [react-native-shadow-2](https://www.npmjs.com/package/react-native-shadow-2)
 - [react-native-svg](https://www.npmjs.com/package/react-native-svg)

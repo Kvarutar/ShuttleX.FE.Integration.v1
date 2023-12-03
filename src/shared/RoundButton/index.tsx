@@ -8,8 +8,9 @@ import { type RoundButtonProps } from './types';
 
 const RoundButton = ({ onPress, style, children }: RoundButtonProps): JSX.Element => {
   const { colors } = useTheme();
-  const { backgroundPrimaryColor, weakShadowColor } = colors;
-  const shadowProps = defaultShadow(weakShadowColor);
+
+  const { backgroundPrimaryColor, strongShadowColor } = colors;
+  const shadowProps = defaultShadow(strongShadowColor);
 
   const computedStyles = StyleSheet.create({
     container: {

@@ -18,16 +18,18 @@ const colors: Omit<Palette, 'buttonModes'> = {
 const buttonModes: PaletteButtonModes = {
   mode1: {
     backgroundColor: colors.primaryColor,
+    backgroundColorOnPress: '#3281F5',
     textColor: '#FFFFFF',
-    rippleColor: '#FF0000',
   },
   mode2: {
     backgroundColor: '#FFFFFF',
+    backgroundColorOnPress: '#FFFFFF',
     textColor: '#000000',
-    shadowColor: colors.weakShadowColor,
+    shadowColor: 'rgba(0, 0, 0, 0.03)',
   },
   mode3: {
     backgroundColor: '#000000',
+    backgroundColorOnPress: '#222222',
     textColor: '#FFFFFF',
   },
 };

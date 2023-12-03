@@ -45,16 +45,23 @@ const Content = (): JSX.Element | null => {
     },
   });
 
-  return <View style={[styles.container, computedStyles.container]} onLayout={onLayoutRootView} />;
+  return (
+    <View style={[styles.container, computedStyles.container]} onLayout={onLayoutRootView}>
+      <View style={styles.testZone}>{/* Some component */}</View>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 24,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 20,
+  },
+  testZone: {
+    backgroundColor: 'blanchedalmond',
+    width: 300,
+    height: 500,
   },
 });
 

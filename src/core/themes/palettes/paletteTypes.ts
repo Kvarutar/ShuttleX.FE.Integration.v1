@@ -2,8 +2,8 @@ import { type ButtonModes } from '../../../shared/BrandBook/Button/props';
 
 type PaletteButtonMode = {
   backgroundColor: string;
+  backgroundColorOnPress: string;
   textColor: string;
-  rippleColor?: string;
   shadowColor?: string;
 };
 
