@@ -66,7 +66,6 @@ const TextInput = ({
 const styles = StyleSheet.create({
   input: {
     alignSelf: 'stretch',
-    padding: 0,
     borderWidth: 1,
     borderRadius: 16,
     paddingHorizontal: 30,

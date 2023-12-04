@@ -9,7 +9,7 @@ import { useTheme } from '../../../core/themes/themeContext';
 import { BackIcon } from '../../BrandBook/Icons';
 import { countryFlags } from '../../BrandBook/Icons/Flags';
 import TextInput from '../../BrandBook/TextInput';
-import { type TextInputProps } from '../../BrandBook/TextInput/props';
+import { TextInputInputMode, type TextInputProps } from '../../BrandBook/TextInput/props';
 import ListItem from './ListItem';
 
 const PhoneInput = (): JSX.Element => {
@@ -140,7 +140,7 @@ const PhoneInput = (): JSX.Element => {
         </Pressable>
         <TextInput
           style={[styles.input, computedStyles.input]}
-          inputMode="numeric"
+          inputMode={TextInputInputMode.Numeric}
           value={inputValue}
           onChangeText={onInputChangeText}
           onFocus={() => setIsInputFocused(true)}

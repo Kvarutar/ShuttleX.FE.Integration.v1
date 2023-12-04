@@ -4,18 +4,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { palettes, TextInput, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { type TextInputProps } from '../../../src/shared/BrandBook/TextInput/props';
-
-const inputModes: TextInputProps['inputMode'][] = [
-  'none',
-  'text',
-  'decimal',
-  'numeric',
-  'tel',
-  'search',
-  'email',
-  'url',
-];
+import { TextInputInputMode } from '../../../src/shared/BrandBook/TextInput/props';
 
 const TextInputMeta: Meta<typeof TextInput> = {
   title: 'TextInput',
@@ -29,10 +18,10 @@ const TextInputMeta: Meta<typeof TextInput> = {
   ],
   args: {
     theme: 'light',
-    editable: true,
     placeholder: 'Example',
     maxLength: 100,
-    inputMode: 'text',
+    inputMode: undefined,
+    editable: true,
   },
   argTypes: {
     theme: {
@@ -40,7 +29,7 @@ const TextInputMeta: Meta<typeof TextInput> = {
       control: { type: 'select' },
     },
     inputMode: {
-      options: inputModes,
+      options: [undefined, ...Object.values(TextInputInputMode)],
       control: { type: 'select' },
     },
   },
