@@ -6,7 +6,7 @@ import { defaultShadow } from '../../core/themes/shadows';
 import { useTheme } from '../../core/themes/themeContext';
 import { type RoundButtonProps } from './types';
 
-const RoundButton = ({ onPress, style, children }: RoundButtonProps): JSX.Element => {
+const RoundButton = ({ onPress, style, children, roundButtonStyle }: RoundButtonProps): JSX.Element => {
   const { colors } = useTheme();
 
   const { backgroundPrimaryColor, strongShadowColor } = colors;
@@ -19,11 +19,13 @@ const RoundButton = ({ onPress, style, children }: RoundButtonProps): JSX.Elemen
   });
 
   return (
-    <Pressable onPress={onPress}>
+    <View style={style}>
       <Shadow stretch {...shadowProps}>
-        <View style={[computedStyles.container, styles.container, style]}>{children}</View>
+        <Pressable style={roundButtonStyle} onPress={onPress}>
+          <View style={[computedStyles.container, styles.container]}>{children}</View>
+        </Pressable>
       </Shadow>
-    </Pressable>
+    </View>
   );
 };
 

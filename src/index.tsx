@@ -3,6 +3,7 @@ import palettes from './core/themes/palettes';
 import sizes from './core/themes/sizes';
 import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/themeContext';
 import Bar from './shared/Bar';
+import Blur from './shared/Blur';
 import BottomWindow from './shared/BottomWindow';
 import Button from './shared/BrandBook/Button';
 import { ButtonModes } from './shared/BrandBook/Button/props';
@@ -10,9 +11,16 @@ import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
 import BrandFavIcon from './shared/BrandBook/Icons/BrandFavIcon';
 import BrandTextIcon from './shared/BrandBook/Icons/BrandTextIcon';
 import CalendarIcon from './shared/BrandBook/Icons/CalendarIcon';
+import ClockIcon from './shared/BrandBook/Icons/ClockIcon';
+import CloseIcon from './shared/BrandBook/Icons/CloseIcon';
+import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
+import NotificationIcon from './shared/BrandBook/Icons/NotificationIcon';
+import PreferencesIcon from './shared/BrandBook/Icons/PreferencesIcon';
+import StatisticsIcon from './shared/BrandBook/Icons/StatitsticsIcon';
 import Text from './shared/BrandBook/Text';
 import TextInput from './shared/BrandBook/TextInput';
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
+import Popup from './shared/Popup';
 import RoundButton from './shared/RoundButton';
 import DatePicker from './shared/Widgets/DatePicker';
 import GroupedButtons from './shared/Widgets/GroupedButtons';
@@ -23,20 +31,28 @@ import { SwipeButtonModes } from './shared/Widgets/SwipeButton/props';
 export {
   ArrowIcon,
   Bar,
+  Blur,
   BottomWindow,
   BrandFavIcon,
   BrandTextIcon,
   Button,
   ButtonModes,
   CalendarIcon,
+  ClockIcon,
+  CloseIcon,
   DatePicker,
   GroupedBrandIcon,
   GroupedButtons,
+  MenuIcon,
   nameof,
+  NotificationIcon,
   palettes,
   PhoneInput,
+  Popup,
+  PreferencesIcon,
   RoundButton,
   sizes,
+  StatisticsIcon,
   SwipeButton,
   SwipeButtonModes,
   Text,

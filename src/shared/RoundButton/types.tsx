@@ -4,4 +4,5 @@ export type RoundButtonProps = {
   onPress?: () => void;
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  roundButtonStyle?: StyleProp<ViewStyle>;
 };
