@@ -17,6 +17,7 @@ import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
 import NotificationIcon from './shared/BrandBook/Icons/NotificationIcon';
 import PreferencesIcon from './shared/BrandBook/Icons/PreferencesIcon';
 import StatisticsIcon from './shared/BrandBook/Icons/StatitsticsIcon';
+import TimeIcon from './shared/BrandBook/Icons/TimeIcon';
 import Text from './shared/BrandBook/Text';
 import TextInput from './shared/BrandBook/TextInput';
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
@@ -27,6 +28,7 @@ import GroupedButtons from './shared/Widgets/GroupedButtons';
 import PhoneInput from './shared/Widgets/PhoneInput';
 import SwipeButton from './shared/Widgets/SwipeButton';
 import { SwipeButtonModes } from './shared/Widgets/SwipeButton/props';
+import TimePicker from './shared/Widgets/TimePicker';
 
 export {
   ArrowIcon,
@@ -59,5 +61,7 @@ export {
   TextInput,
   type ThemeContextType,
   ThemeProvider,
+  TimeIcon,
+  TimePicker,
   useTheme,
 };

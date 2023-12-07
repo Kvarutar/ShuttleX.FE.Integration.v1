@@ -4,6 +4,8 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { DatePicker, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
+import { DatePickerDisplay, type DatePickerProps } from '../../../src/shared/Widgets/DatePicker/props';
+
 const DatePickerMeta: Meta<typeof DatePicker> = {
   title: 'DatePicker',
   component: DatePicker,
@@ -16,10 +18,15 @@ const DatePickerMeta: Meta<typeof DatePicker> = {
   ],
   args: {
     theme: 'light',
+    display: DatePickerDisplay.Calendar,
   },
   argTypes: {
     theme: {
       options: Object.keys(palettes),
+      control: { type: 'select' },
+    },
+    display: {
+      options: Object.values(DatePickerDisplay),
       control: { type: 'select' },
     },
   },
@@ -27,14 +34,16 @@ const DatePickerMeta: Meta<typeof DatePicker> = {
 
 export default DatePickerMeta;
 
-const DatePickerWithHooks = ({ themeName }: { themeName: ThemeContextType['themeMode'] }) => {
+type DatePickerWithHooksProps = { themeName: ThemeContextType['themeMode'] } & DatePickerProps;
+
+const DatePickerWithHooks = ({ themeName, ...props }: DatePickerWithHooksProps) => {
   const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <DatePicker />;
+  return <DatePicker {...props} />;
 };
 
 type Story = StoryObj<typeof DatePicker>;

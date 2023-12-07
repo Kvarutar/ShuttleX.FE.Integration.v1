@@ -56,6 +56,7 @@ const getStories = () => {
     "./src/stories/SwipeButton.stories.tsx": require("../src/stories/SwipeButton.stories.tsx"),
     "./src/stories/Text.stories.tsx": require("../src/stories/Text.stories.tsx"),
     "./src/stories/TextInput.stories.tsx": require("../src/stories/TextInput.stories.tsx"),
+    "./src/stories/TimePicker.stories.tsx": require("../src/stories/TimePicker.stories.tsx"),
   };
 };
 

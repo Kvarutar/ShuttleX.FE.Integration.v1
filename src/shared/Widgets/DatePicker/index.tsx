@@ -1,14 +1,16 @@
 import DateTimePicker, { type DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import { format } from 'date-fns';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
+import { dateOfBirthDateFormat } from '../../../core/consts/date.consts';
 import CalendarIcon from '../../BrandBook/Icons/CalendarIcon';
 import TextInput from '../../BrandBook/TextInput';
-import { type DatePickerProps } from './props';
+import { DatePickerDisplay, type DatePickerProps } from './props';
 
-const DatePicker = ({ style }: DatePickerProps): JSX.Element => {
+const DatePicker = ({ style, display = DatePickerDisplay.Calendar }: DatePickerProps): JSX.Element => {
   const [date, setDate] = useState(new Date());
-  const [show, setShow] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     if (!selectedDate) {
@@ -17,27 +19,26 @@ const DatePicker = ({ style }: DatePickerProps): JSX.Element => {
 
     const currentDate: Date = selectedDate;
 
-    setShow(false);
+    setIsVisible(false);
 
     if (event?.type === 'dismissed') {
       setDate(date);
-      return;
+    } else {
+      setDate(currentDate);
     }
-
-    setDate(currentDate);
   };
 
   const showDatepicker = () => {
-    setShow(true);
+    setIsVisible(true);
   };
+
+  const formatDate = (): string => format(date, dateOfBirthDateFormat);
 
   return (
     <Pressable style={[styles.datePickerContainer, style]} onPress={showDatepicker}>
-      <TextInput value={date.toDateString()} editable={false} />
+      <TextInput value={formatDate()} editable={false} />
       <CalendarIcon style={styles.calendarIcon} />
-      {show && (
-        <DateTimePicker testID="dateTimePicker" value={date} display={'calendar'} is24Hour={true} onChange={onChange} />
-      )}
+      {isVisible && <DateTimePicker value={date} display={display} onChange={onChange} />}
     </Pressable>
   );
 };
