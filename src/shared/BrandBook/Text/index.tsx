@@ -3,16 +3,20 @@ import { type TextStyle } from 'react-native';
 import { StyleSheet, Text as TextNative } from 'react-native';
 
 import { useTheme } from '../../../core/themes/themeContext';
-import { type TextProps } from './props';
+import { TextElipsizeMode, type TextProps } from './props';
 
-const Text = ({ children, style }: TextProps): JSX.Element => {
+const Text = ({ children, style, numberOfLines, elipsizeMode = TextElipsizeMode.Tail }: TextProps): JSX.Element => {
   const { colors } = useTheme();
 
   const computedStyles: TextStyle = {
     color: colors.textPrimaryColor,
   };
 
-  return <TextNative style={[styles.text, computedStyles, style]}>{children}</TextNative>;
+  return (
+    <TextNative numberOfLines={numberOfLines} ellipsizeMode={elipsizeMode} style={[styles.text, computedStyles, style]}>
+      {children}
+    </TextNative>
+  );
 };
 
 const styles = StyleSheet.create({

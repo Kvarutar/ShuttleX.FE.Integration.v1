@@ -1,0 +1,82 @@
+import { useArgs } from '@storybook/client-api';
+import { type Meta, type StoryObj } from '@storybook/react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { palettes, Text, type ThemeContextType, useTheme } from 'shuttlex-integration';
+
+import { TextElipsizeMode } from '../../../src/shared/BrandBook/Text/props';
+
+const TextMeta: Meta<typeof Text> = {
+  title: 'Text',
+  component: Text,
+  decorators: [
+    Story => (
+      <View style={styles.container}>
+        <Story />
+      </View>
+    ),
+  ],
+  args: {
+    theme: 'light',
+    numberOfLines: undefined,
+    text: 'Some text',
+    elipsizeMode: TextElipsizeMode.Tail,
+  },
+  argTypes: {
+    theme: {
+      options: Object.keys(palettes),
+      control: { type: 'select' },
+    },
+    numberOfLines: {
+      control: { type: 'number' },
+    },
+    elipsizeMode: {
+      options: Object.values(TextElipsizeMode),
+      control: { type: 'select' },
+    },
+  },
+};
+
+export default TextMeta;
+
+const TextWithHooks = ({
+  themeName,
+  children,
+  numberOfLines,
+  ...args
+}: {
+  themeName: ThemeContextType['themeMode'];
+  children: React.ReactNode;
+  numberOfLines: number | undefined;
+}) => {
+  const { setThemeMode } = useTheme();
+
+  useEffect(() => {
+    setThemeMode(themeName);
+  }, [themeName, setThemeMode]);
+
+  return (
+    <Text numberOfLines={numberOfLines} {...args}>
+      {children}
+    </Text>
+  );
+};
+
+type Story = StoryObj<typeof Text>;
+
+export const BasicExample: Story = {
+  render: function Render(args) {
+    const [{ theme, text, numberOfLines }] = useArgs();
+    return (
+      <TextWithHooks numberOfLines={numberOfLines} {...args} themeName={theme}>
+        {text}
+      </TextWithHooks>
+    );
+  },
+};
+
+const styles = StyleSheet.create({
+  container: {
+    width: 300,
+  },
+});

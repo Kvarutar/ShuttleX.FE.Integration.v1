@@ -54,6 +54,7 @@ const getStories = () => {
     "./src/stories/GroupedButtons.stories.tsx": require("../src/stories/GroupedButtons.stories.tsx"),
     "./src/stories/RoundButton.stories.tsx": require("../src/stories/RoundButton.stories.tsx"),
     "./src/stories/SwipeButton.stories.tsx": require("../src/stories/SwipeButton.stories.tsx"),
+    "./src/stories/Text.stories.tsx": require("../src/stories/Text.stories.tsx"),
     "./src/stories/TextInput.stories.tsx": require("../src/stories/TextInput.stories.tsx"),
   };
 };
