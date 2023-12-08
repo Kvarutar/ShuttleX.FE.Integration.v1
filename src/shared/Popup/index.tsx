@@ -8,17 +8,28 @@ import CloseIcon from '../BrandBook/Icons/CloseIcon';
 import RoundButton from '../RoundButton';
 import { type PopupProps } from './props';
 
-const Popup = ({ closePopupHandler, children, withClose }: PopupProps) => {
+const animationDuration = {
+  closeButtonDuration: 300,
+  bottomWindowDuration: 500,
+};
+
+const Popup = ({ onCloseButtonPress, children, withCloseButton }: PopupProps) => {
   return (
     <View style={styles.bottom}>
-      {withClose && (
-        <Animated.View entering={FadeIn.duration(300)} exiting={FadeOut.duration(300)}>
-          <RoundButton style={styles.close} onPress={closePopupHandler}>
+      {withCloseButton && (
+        <Animated.View
+          entering={FadeIn.duration(animationDuration.closeButtonDuration)}
+          exiting={FadeOut.duration(animationDuration.closeButtonDuration)}
+        >
+          <RoundButton style={styles.close} onPress={onCloseButtonPress}>
             <CloseIcon />
           </RoundButton>
         </Animated.View>
       )}
-      <Animated.View entering={SlideInDown.duration(500)} exiting={SlideOutDown.duration(500)}>
+      <Animated.View
+        entering={SlideInDown.duration(animationDuration.bottomWindowDuration)}
+        exiting={SlideOutDown.duration(animationDuration.bottomWindowDuration)}
+      >
         <BottomWindow>{children}</BottomWindow>
       </Animated.View>
     </View>

@@ -1,5 +1,5 @@
 export type PopupProps = {
-  closePopupHandler: () => void;
+  onCloseButtonPress: () => void;
   children: React.ReactNode;
-  withClose: boolean;
+  withCloseButton: boolean;
 };

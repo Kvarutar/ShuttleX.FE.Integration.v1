@@ -21,8 +21,8 @@ const RoundButton = ({ onPress, style, children, roundButtonStyle }: RoundButton
   return (
     <View style={style}>
       <Shadow stretch {...shadowProps}>
-        <Pressable style={roundButtonStyle} onPress={onPress}>
-          <View style={[computedStyles.container, styles.container]}>{children}</View>
+        <Pressable style={[computedStyles.container, styles.container, roundButtonStyle]} onPress={onPress}>
+          {children}
         </Pressable>
       </Shadow>
     </View>
