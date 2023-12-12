@@ -1,4 +1,4 @@
-import { en, he, ru } from './translations';
+import { en, ru } from './translations';
 
 const resources = {
   en: {
@@ -6,9 +6,6 @@ const resources = {
   },
   ru: {
     translation: ru,
-  },
-  he: {
-    translation: he,
   },
 };
 

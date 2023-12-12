@@ -1,8 +1,10 @@
 import React from 'react';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 import Slider from 'react-native-slide-to-unlock';
 
+import i18nIntegration from '../../../core/locales/i18n';
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
 import Button from '../../BrandBook/Button';
@@ -11,10 +13,11 @@ import ArrowIcon from '../../BrandBook/Icons/ArrowIcon';
 import Text from '../../BrandBook/Text';
 import { SwipeButtonModes, type SwipeButtonProps } from './props';
 
-const SwipeButton = ({ onSwipeEnd, mode, text = 'Slide to confirm' }: SwipeButtonProps): JSX.Element => {
+const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): JSX.Element => {
   const { colors } = useTheme();
   const { weakShadowColor, backgroundPrimaryColor, textSecondaryColor } = colors;
   const shadowProps = defaultShadow(weakShadowColor);
+  const { t } = useTranslation();
 
   const computedStyles = StyleSheet.create({
     text: {
@@ -40,11 +43,17 @@ const SwipeButton = ({ onSwipeEnd, mode, text = 'Slide to confirm' }: SwipeButto
           />
         }
       >
-        <Text style={[computedStyles.text, styles.text]}>{text}</Text>
+        <Text style={[computedStyles.text, styles.text]}>{text ?? t('swipeButtonHint')}</Text>
       </Slider>
     </Shadow>
   );
 };
+
+const SwipeButton = ({ onSwipeEnd, mode, text }: SwipeButtonProps) => (
+  <I18nextProvider i18n={i18nIntegration}>
+    <SwipeButtonWithoutI18n onSwipeEnd={onSwipeEnd} mode={mode} text={text} />
+  </I18nextProvider>
+);
 
 const styles = StyleSheet.create({
   button: {

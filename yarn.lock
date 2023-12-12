@@ -18097,20 +18097,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-localize@npm:^3.0.2":
-  version: 3.0.4
-  resolution: "react-native-localize@npm:3.0.4"
-  peerDependencies:
-    react: ">=18.1.0"
-    react-native: ">=0.70.0"
-    react-native-macos: ">=0.70.0"
-  peerDependenciesMeta:
-    react-native-macos:
-      optional: true
-  checksum: c45b20e8cd15adf74e7ce3f7a52941c39a7f614e54e90f406c63164ce71af7562c4d809f9ecf234ed035c875b10be542ebe32e131e94d3ff025c71274daaa785
-  languageName: node
-  linkType: hard
-
 "react-native-modal-datetime-picker@npm:^14.0.0":
   version: 14.0.1
   resolution: "react-native-modal-datetime-picker@npm:14.0.1"
@@ -19613,7 +19599,6 @@ __metadata:
     react-i18next: "npm:^13.3.1"
     react-native: "npm:0.72.6"
     react-native-builder-bob: "npm:^0.20.0"
-    react-native-localize: "npm:^3.0.2"
     react-native-reanimated: "npm:3.3.0"
     react-native-safe-area-context: "npm:^4.7.4"
     react-native-shadow-2: "npm:^7.0.8"

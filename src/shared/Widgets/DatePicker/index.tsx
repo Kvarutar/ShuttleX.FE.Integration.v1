@@ -33,7 +33,7 @@ const DatePicker = ({ style }: DatePickerProps): JSX.Element => {
 
   return (
     <Pressable style={[styles.datePickerContainer, style]} onPress={showDatepicker}>
-      <TextInput value={date.toDateString()} editable={false} placeholder="Date of Birth" />
+      <TextInput value={date.toDateString()} editable={false} />
       <CalendarIcon style={styles.calendarIcon} />
       {show && (
         <DateTimePicker testID="dateTimePicker" value={date} display={'calendar'} is24Hour={true} onChange={onChange} />
