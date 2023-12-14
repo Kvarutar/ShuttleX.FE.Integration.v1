@@ -18,7 +18,7 @@ const TextMeta: Meta<typeof Text> = {
   ],
   args: {
     theme: 'light',
-    numberOfLines: undefined,
+    numberOfLines: 10,
     text: 'Some text',
     elipsizeMode: TextElipsizeMode.Tail,
   },
@@ -42,12 +42,10 @@ export default TextMeta;
 const TextWithHooks = ({
   themeName,
   children,
-  numberOfLines,
   ...args
 }: {
   themeName: ThemeContextType['themeMode'];
   children: React.ReactNode;
-  numberOfLines: number | undefined;
 }) => {
   const { setThemeMode } = useTheme();
 
@@ -55,20 +53,16 @@ const TextWithHooks = ({
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return (
-    <Text numberOfLines={numberOfLines} {...args}>
-      {children}
-    </Text>
-  );
+  return <Text {...args}>{children}</Text>;
 };
 
 type Story = StoryObj<typeof Text>;
 
 export const BasicExample: Story = {
   render: function Render(args) {
-    const [{ theme, text, numberOfLines }] = useArgs();
+    const [{ theme, text }] = useArgs();
     return (
-      <TextWithHooks numberOfLines={numberOfLines} {...args} themeName={theme}>
+      <TextWithHooks {...args} themeName={theme}>
         {text}
       </TextWithHooks>
     );
