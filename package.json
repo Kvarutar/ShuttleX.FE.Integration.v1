@@ -55,7 +55,6 @@
     "registry": "https://www.shuttlex.com/"
   },
   "dependencies": {
-    "@react-native-community/blur": "^4.3.2",
     "@react-native/eslint-config": "^0.72.2",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
@@ -64,6 +63,7 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
+    "@react-native-community/blur": "^4.3.2",
     "@react-native-community/datetimepicker": "^7.6.1",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/jest": "^28.1.2",
@@ -89,6 +89,7 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
+    "@react-native-community/blur": "*",
     "@react-native-community/datetimepicker": "*",
     "@reduxjs/toolkit": "*",
     "date-fns": "*",

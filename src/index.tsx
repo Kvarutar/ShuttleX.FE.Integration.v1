@@ -4,9 +4,8 @@ import sizes from './core/themes/sizes';
 import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/themeContext';
 import Bar from './shared/Bar';
 import Blur from './shared/Blur';
-import BottomWindow from './shared/BottomWindow';
 import Button from './shared/BrandBook/Button';
-import { ButtonModes } from './shared/BrandBook/Button/props';
+import { ButtonModes, ButtonShadows } from './shared/BrandBook/Button/props';
 import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
 import BrandFavIcon from './shared/BrandBook/Icons/BrandFavIcon';
 import BrandTextIcon from './shared/BrandBook/Icons/BrandTextIcon';
@@ -16,6 +15,7 @@ import CloseIcon from './shared/BrandBook/Icons/CloseIcon';
 import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
 import NotificationIcon from './shared/BrandBook/Icons/NotificationIcon';
 import PreferencesIcon from './shared/BrandBook/Icons/PreferencesIcon';
+import ShortArrowIcon from './shared/BrandBook/Icons/ShortArrowIcon';
 import StatisticsIcon from './shared/BrandBook/Icons/StatitsticsIcon';
 import TimeIcon from './shared/BrandBook/Icons/TimeIcon';
 import Text from './shared/BrandBook/Text';
@@ -23,6 +23,7 @@ import TextInput from './shared/BrandBook/TextInput';
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
 import Popup from './shared/Popup';
 import RoundButton from './shared/RoundButton';
+import BottomWindow from './shared/Widgets/BottomWindow';
 import DatePicker from './shared/Widgets/DatePicker';
 import GroupedButtons from './shared/Widgets/GroupedButtons';
 import PhoneInput from './shared/Widgets/PhoneInput';
@@ -39,6 +40,7 @@ export {
   BrandTextIcon,
   Button,
   ButtonModes,
+  ButtonShadows,
   CalendarIcon,
   ClockIcon,
   CloseIcon,
@@ -53,6 +55,7 @@ export {
   Popup,
   PreferencesIcon,
   RoundButton,
+  ShortArrowIcon,
   sizes,
   StatisticsIcon,
   SwipeButton,

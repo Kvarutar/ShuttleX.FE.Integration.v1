@@ -16,6 +16,8 @@ export type Palette = {
   backgroundPrimaryColor: string;
   backgroundSecondaryColor: string;
   backgroundTertiaryColor: string; // mainly used for the background of some icons
+  iconPrimaryColor: string;
+  iconSecondaryColor: string;
   outlineColor: string; // mainly used for the outline of avatar or arrow of the current position
   strokeColor: string;
   textPrimaryColor: string;

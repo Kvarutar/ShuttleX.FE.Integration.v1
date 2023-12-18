@@ -6,8 +6,8 @@ import { countryDtos } from '../../../core/countries/countryDtos';
 import { indexOfNotFound, timeDropdownVisible } from '../../../core/monkey-patch/array.helper';
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
-import { BackIcon } from '../../BrandBook/Icons';
 import { countryFlags } from '../../BrandBook/Icons/Flags';
+import ShortArrowIcon from '../../BrandBook/Icons/ShortArrowIcon';
 import TextInput from '../../BrandBook/TextInput';
 import { TextInputInputMode, type TextInputProps } from '../../BrandBook/TextInput/props';
 import ListItem from './ListItem';
@@ -136,7 +136,7 @@ const PhoneInput = (): JSX.Element => {
           onPress={() => onInputFlagPress()}
         >
           {flagState && countryFlags[flagState.countryCode]}
-          <BackIcon style={styles.backIcon} />
+          <ShortArrowIcon style={styles.shortArrowIcon} />
         </Pressable>
         <TextInput
           style={[styles.input, computedStyles.input]}
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     left: 88,
     width: 1,
   },
-  backIcon: {
+  shortArrowIcon: {
     transform: [{ rotate: '270deg' }],
   },
 });

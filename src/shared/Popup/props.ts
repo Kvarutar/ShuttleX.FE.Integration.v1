@@ -1,5 +1,8 @@
+import { type StyleProp, type ViewStyle } from 'react-native';
+
 export type PopupProps = {
-  onCloseButtonPress: () => void;
   children: React.ReactNode;
-  withCloseButton: boolean;
+  style: StyleProp<ViewStyle>;
+  isWithBlur?: boolean;
+  onCloseButtonPress?: () => void;
 };

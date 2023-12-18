@@ -42,6 +42,7 @@ const Button = ({
   const computedStyles = StyleSheet.create({
     container: {
       backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+      height: children ? undefined : 48,
     },
     text: { color: textColor },
   });
@@ -65,7 +66,6 @@ const Button = ({
 
 const styles = StyleSheet.create({
   container: {
-    height: 48,
     paddingHorizontal: 24,
     borderRadius: 28,
     alignItems: 'center',

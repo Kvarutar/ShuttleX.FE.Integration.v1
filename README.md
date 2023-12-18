@@ -38,6 +38,7 @@ npm install <Path to your library>/shuttlex-integration-<integration version>.tg
 
 ### Library dependencies
 
+- [@react-native-community/blur](https://www.npmjs.com/package/@react-native-community/blur)
 - [@react-native-community/datetimepicker](https://www.npmjs.com/package/@react-native-community/datetimepicker)
 - [@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit)
 - [react](https://www.npmjs.com/package/react)

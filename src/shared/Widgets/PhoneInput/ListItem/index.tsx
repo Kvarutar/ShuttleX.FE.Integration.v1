@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { BackIcon } from '../../../BrandBook/Icons';
+import ShortArrowIcon from '../../../BrandBook/Icons/ShortArrowIcon';
 import Text from '../../../BrandBook/Text';
 import { type ListItemProps } from './props';
 
@@ -16,7 +16,7 @@ const ListItem = ({
   <Pressable style={[styles.container, style]} onPress={onFlagContainerPress}>
     <View style={[styles.flagContainer]}>
       {iconSvg}
-      {withArrow && <BackIcon style={styles.backIcon} />}
+      {withArrow && <ShortArrowIcon style={styles.shortArrowIcon} />}
     </View>
     <Text style={styles.codePhone}>{`+${icc}`}</Text>
     <Text style={styles.labelPhone}>{countryName}</Text>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     lineHeight: 19,
   },
-  backIcon: {
+  shortArrowIcon: {
     transform: [{ rotate: '90deg' }, { translateX: 1 }],
   },
 });

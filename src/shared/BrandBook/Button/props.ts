@@ -4,6 +4,7 @@ export enum ButtonModes {
   Mode1 = 'mode1',
   Mode2 = 'mode2',
   Mode3 = 'mode3',
+  Mode4 = 'mode4',
 }
 
 export enum ButtonShadows {

@@ -1,12 +1,12 @@
-import { type ReactNode } from 'react';
-import React, { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
+import React, { StyleSheet, View } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
-import { defaultShadow } from '../core/themes/shadows';
-import sizes from '../core/themes/sizes';
-import { useTheme } from '../core/themes/themeContext';
+import { defaultShadow } from '../../../core/themes/shadows';
+import sizes from '../../../core/themes/sizes';
+import { useTheme } from '../../../core/themes/themeContext';
+import { type BottomWindowProps } from './props';
 
-const BottomWindow = ({ children, style }: { children: ReactNode; style?: StyleProp<ViewStyle> }): JSX.Element => {
+const BottomWindow = ({ children, style, windowStyle }: BottomWindowProps): JSX.Element => {
   const { colors } = useTheme();
   const { backgroundPrimaryColor, weakShadowColor } = colors;
   const shadowProps = defaultShadow(weakShadowColor);
@@ -20,7 +20,7 @@ const BottomWindow = ({ children, style }: { children: ReactNode; style?: StyleP
   return (
     <View style={[styles.container, style]}>
       <Shadow stretch {...shadowProps}>
-        <View style={[computedStyles.bottomWindow, styles.bottomWindow]}>{children}</View>
+        <View style={[computedStyles.bottomWindow, styles.bottomWindow, windowStyle]}>{children}</View>
       </Shadow>
     </View>
   );
@@ -34,7 +34,10 @@ const styles = StyleSheet.create({
     paddingVertical: sizes.paddingVertical,
   },
   container: {
-    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
 });
 

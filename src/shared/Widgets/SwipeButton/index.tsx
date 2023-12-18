@@ -28,19 +28,18 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): J
     },
   });
 
-  const sliderStyles = { ...computedStyles.slider, ...styles.slider };
-
   return (
     <Shadow stretch {...shadowProps}>
       <Slider
         onEndReached={() => onSwipeEnd()}
-        containerStyle={sliderStyles}
+        containerStyle={{ ...computedStyles.slider, ...styles.slider }}
         sliderElement={
           <Button
             buttonStyle={styles.button}
-            children={<ArrowIcon />}
             mode={mode === SwipeButtonModes.Confirm ? ButtonModes.Mode1 : ButtonModes.Mode3}
-          />
+          >
+            <ArrowIcon />
+          </Button>
         }
       >
         <Text style={[computedStyles.text, styles.text]}>{text ?? t('swipeButtonHint')}</Text>
@@ -57,6 +56,7 @@ const SwipeButton = ({ onSwipeEnd, mode, text }: SwipeButtonProps) => (
 
 const styles = StyleSheet.create({
   button: {
+    height: 48,
     paddingHorizontal: 38,
   },
   text: {

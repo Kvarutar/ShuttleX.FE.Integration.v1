@@ -7,6 +7,8 @@ const colors: Omit<Palette, 'buttonModes'> = {
   backgroundPrimaryColor: '#FFFFFF',
   backgroundSecondaryColor: '#23FF17',
   backgroundTertiaryColor: '#3717FF',
+  iconPrimaryColor: '#000000',
+  iconSecondaryColor: '#B4B4B4',
   outlineColor: '#FF8C00',
   strokeColor: '#FF0000',
   textPrimaryColor: '#000000',
@@ -31,6 +33,11 @@ const buttonModes: PaletteButtonModes = {
     backgroundColor: '#000000',
     backgroundColorOnPress: '#222222',
     textColor: '#FFFFFF',
+  },
+  mode4: {
+    backgroundColor: '#F3F3F3',
+    backgroundColorOnPress: '#E2E2E2',
+    textColor: colors.textPrimaryColor,
   },
 };
 
