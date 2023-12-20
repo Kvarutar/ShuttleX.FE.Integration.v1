@@ -14,7 +14,7 @@ const animationDuration = {
   bottomWindowDuration: 500,
 };
 
-const Popup = ({ children, style, isWithBlur = true, onCloseButtonPress }: PopupProps) => (
+const Popup = ({ children, style, bottomWindowStyle, isWithBlur = true, onCloseButtonPress }: PopupProps) => (
   <>
     {isWithBlur && <Blur />}
     <View style={[styles.bottom, style]}>
@@ -32,7 +32,9 @@ const Popup = ({ children, style, isWithBlur = true, onCloseButtonPress }: Popup
         entering={SlideInDown.duration(animationDuration.bottomWindowDuration)}
         exiting={SlideOutDown.duration(animationDuration.bottomWindowDuration)}
       >
-        <BottomWindow style={styles.bottomWindow}>{children}</BottomWindow>
+        <BottomWindow style={styles.bottomWindow} windowStyle={bottomWindowStyle}>
+          {children}
+        </BottomWindow>
       </Animated.View>
     </View>
   </>

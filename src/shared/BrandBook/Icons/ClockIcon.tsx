@@ -7,7 +7,7 @@ import { useTheme } from '../../../core/themes/themeContext';
 
 const ClockIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
   const { colors } = useTheme();
-  const svgColor = color ?? colors.iconPrimaryColor;
+  const svgColor = color ?? colors.iconSecondaryColor;
 
   return (
     <Svg style={[styles.ClockIcon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
