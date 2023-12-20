@@ -11,30 +11,30 @@ corepack enable
 # this command is from node.js
 ```
 
-In this project run this command to install dependencies:
+Run this command to install dependencies:
 
 ```sh
 yarn install
 ```
 
-Use script for create .tgz:
+## Run storybook and example apps
+
+To run storybook:
 
 ```sh
-yarn run pack
+yarn example storybook
 ```
 
-> **Note**: If you make some changes in **shuttlex-integration**, always run this command
+To run example app:
+
+```sh
+yarn example start
+```
 
 ## Installation to project
 
-```sh
-npm install <Path to your library>/shuttlex-integration-<integration version>.tgz
-```
-
-> **Note**: If you make some changes in **shuttlex-integration**, always run this command
-
 > [!WARNING]
-> You also need to install all library dependencies in the project
+> You also need to install all library peer dependencies in the project
 
 ### Library dependencies
 
@@ -49,6 +49,30 @@ npm install <Path to your library>/shuttlex-integration-<integration version>.tg
 - [react-native-svg-transformer](https://www.npmjs.com/package/react-native-svg-transformer)
 - [react-redux](https://www.npmjs.com/package/react-redux)
 
+### Install from GitHub
+
+```sh
+npm i DevShuttleXInc/ShuttleX.FE.Integration.v1#<commit hash, tag or branch name>
+```
+
+> **Note**: You need access to Integration repository to install it this way
+
+### Install from .tgz
+
+Use script for create .tgz:
+
+```sh
+yarn run pack
+```
+
+Install .tgz to **your** project
+
+```sh
+npm install <Path to your library>/shuttlex-integration-<integration version>.tgz
+```
+
+> **Note**: If you make some changes in **shuttlex-integration**, always run both commands again
+
 ## Usage
 
 ```js
@@ -61,19 +85,6 @@ return (
   </View>
 );
 // ...
-```
-
-> **Note**: ShuttleX.FE.Contractor, ShuttleX.FE.Passenger and ShuttleX.FE.Integration projects must be located in the same folder at the same level
-
-## Bootstrap
-
-To run example project use following commands:
-
-```sh
-# Android app
-yarn example android
-# iOS app
-yarn example ios
 ```
 
 ## License
