@@ -7,6 +7,8 @@ import Blur from './shared/Blur';
 import Button from './shared/BrandBook/Button';
 import { ButtonModes, ButtonShadows } from './shared/BrandBook/Button/props';
 import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
+import BlueCheck1 from './shared/BrandBook/Icons/BlueCheck1';
+import BlueCheck2 from './shared/BrandBook/Icons/BlueCheck2';
 import BrandFavIcon from './shared/BrandBook/Icons/BrandFavIcon';
 import BrandTextIcon from './shared/BrandBook/Icons/BrandTextIcon';
 import CalendarIcon from './shared/BrandBook/Icons/CalendarIcon';
@@ -34,6 +36,8 @@ import TimePicker from './shared/Widgets/TimePicker';
 export {
   ArrowIcon,
   Bar,
+  BlueCheck1,
+  BlueCheck2,
   Blur,
   BottomWindow,
   BrandFavIcon,
