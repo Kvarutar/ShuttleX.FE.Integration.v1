@@ -4,9 +4,9 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { palettes, TextInput, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { TextInputInputMode } from '../../../src/shared/BrandBook/TextInput/props';
+import { TextInputInputMode, type TextInputProps } from '../../../src/shared/BrandBook/TextInput/props';
 
-const TextInputMeta: Meta<typeof TextInput> = {
+const TextInputMeta: Meta<TextInputProps & { theme: ThemeContextType['themeMode'] }> = {
   title: 'TextInput',
   component: TextInput,
   decorators: [

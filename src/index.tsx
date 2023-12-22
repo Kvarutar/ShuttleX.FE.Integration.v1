@@ -26,6 +26,7 @@ import GroupedBrandIcon from './shared/GroupedBrandIcon';
 import Popup from './shared/Popup';
 import RoundButton from './shared/RoundButton';
 import BottomWindow from './shared/Widgets/BottomWindow';
+import CodeInput from './shared/Widgets/CodeInput';
 import DatePicker from './shared/Widgets/DatePicker';
 import GroupedButtons from './shared/Widgets/GroupedButtons';
 import PhoneInput from './shared/Widgets/PhoneInput';
@@ -48,6 +49,7 @@ export {
   CalendarIcon,
   ClockIcon,
   CloseIcon,
+  CodeInput,
   DatePicker,
   GroupedBrandIcon,
   GroupedButtons,

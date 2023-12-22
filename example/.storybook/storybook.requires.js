@@ -49,6 +49,7 @@ const getStories = () => {
   return {
     "./src/stories/Bar.stories.tsx": require("../src/stories/Bar.stories.tsx"),
     "./src/stories/Button.stories.tsx": require("../src/stories/Button.stories.tsx"),
+    "./src/stories/CodeInput.stories.tsx": require("../src/stories/CodeInput.stories.tsx"),
     "./src/stories/DatePicker.stories.tsx": require("../src/stories/DatePicker.stories.tsx"),
     "./src/stories/GroupedBrandIcon.stories.tsx": require("../src/stories/GroupedBrandIcon.stories.tsx"),
     "./src/stories/GroupedButtons.stories.tsx": require("../src/stories/GroupedButtons.stories.tsx"),

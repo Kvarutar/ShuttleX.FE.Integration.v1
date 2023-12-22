@@ -1,4 +1,4 @@
-import { type TextInputProps as TextInputPropsNative } from 'react-native';
+import { TextInput, type TextInputProps as TextInputPropsNative } from 'react-native';
 
 export enum TextInputInputMode {
   None = 'none',
@@ -18,8 +18,11 @@ export type TextInputProps = {
   value?: TextInputPropsNative['value'];
   maxLength?: TextInputPropsNative['maxLength'];
   inputMode?: TextInputInputMode;
+  onKeyPress?: TextInputPropsNative['onKeyPress'];
   onEndEditing?: TextInputPropsNative['onEndEditing'];
   editable?: TextInputPropsNative['editable'];
   onFocus?: () => void;
   onBlur?: () => void;
 };
+
+export type TextInputRef = Pick<TextInput, 'focus' | 'clear' | 'blur' | 'isFocused' | 'setNativeProps'>;
