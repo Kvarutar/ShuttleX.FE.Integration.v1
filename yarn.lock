@@ -19552,7 +19552,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "shuttlex-integration-example@workspace:example"
   dependencies:
-    "@babel/core": "npm:^7.20.0"
+    "@babel/core": "npm:^7.21.3"
+    "@babel/plugin-proposal-nullish-coalescing-operator": "npm:^7.18.0"
+    "@babel/plugin-proposal-optional-chaining": "npm:^7.20.0"
+    "@babel/plugin-transform-arrow-functions": "npm:^7.23.3"
+    "@babel/plugin-transform-shorthand-properties": "npm:^7.23.3"
+    "@babel/plugin-transform-template-literals": "npm:^7.23.3"
     "@expo/webpack-config": "npm:^19.0.0"
     "@react-native-async-storage/async-storage": "npm:1.18.2"
     "@react-native-community/blur": "npm:^4.3.2"
@@ -19589,11 +19594,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "shuttlex-integration@workspace:."
   dependencies:
+    "@babel/core": "npm:^7.21.3"
+    "@babel/plugin-proposal-nullish-coalescing-operator": "npm:^7.18.0"
+    "@babel/plugin-proposal-optional-chaining": "npm:^7.20.0"
+    "@babel/plugin-transform-arrow-functions": "npm:^7.23.3"
+    "@babel/plugin-transform-shorthand-properties": "npm:^7.23.3"
+    "@babel/plugin-transform-template-literals": "npm:^7.23.3"
     "@commitlint/config-conventional": "npm:^17.0.2"
     "@react-native-community/blur": "npm:^4.3.2"
     "@react-native-community/datetimepicker": "npm:^7.6.1"
     "@react-native/eslint-config": "npm:^0.72.2"
     "@reduxjs/toolkit": "npm:^1.9.7"
+    "@types/babel__core": "npm:^7.1.14"
     "@types/jest": "npm:^28.1.2"
     "@types/react": "npm:~17.0.70"
     "@types/react-native": "npm:0.72.6"
