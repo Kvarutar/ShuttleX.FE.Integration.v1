@@ -29,7 +29,7 @@ const GroupedButtonsWithHooks = ({
 }: { themeName: ThemeContextType['themeMode'] } & GroupedButtonsProps) => {
   const { setThemeMode } = useTheme();
 
-  const [isFirstSelectedButton, setIsFirstSelectedButton] = useState(false);
+  const [isFirstButtonSelected, setIsFirstButtonSelected] = useState(true);
 
   useEffect(() => {
     setThemeMode(themeName);
@@ -38,8 +38,8 @@ const GroupedButtonsWithHooks = ({
   return (
     <GroupedButtons
       {...args}
-      isFirstSelectedButton={isFirstSelectedButton}
-      setIsFirstSelectedButton={setIsFirstSelectedButton}
+      isFirstButtonSelected={isFirstButtonSelected}
+      setIsFirstButtonSelected={setIsFirstButtonSelected}
     />
   );
 };
