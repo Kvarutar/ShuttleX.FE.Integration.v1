@@ -28,6 +28,7 @@ import RoundButton from './shared/RoundButton';
 import BottomWindow from './shared/Widgets/BottomWindow';
 import CodeInput from './shared/Widgets/CodeInput';
 import DatePicker from './shared/Widgets/DatePicker';
+import FlatListWithCustomScroll from './shared/Widgets/FlatListWithCustomScroll';
 import GroupedButtons from './shared/Widgets/GroupedButtons';
 import PhoneInput from './shared/Widgets/PhoneInput';
 import SwipeButton from './shared/Widgets/SwipeButton';
@@ -51,6 +52,7 @@ export {
   CloseIcon,
   CodeInput,
   DatePicker,
+  FlatListWithCustomScroll,
   GroupedBrandIcon,
   GroupedButtons,
   MenuIcon,
