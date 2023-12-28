@@ -22,6 +22,7 @@ const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(({ input, setInput,
 ));
 
 const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
+  //TODO: Refactor code by using dictionary
   const firstCodeNumberRef = useRef<TextInputRef>(null);
   const secondCodeNumberRef = useRef<TextInputRef>(null);
   const thirdCodeNumberRef = useRef<TextInputRef>(null);
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     height: 72,
     flex: 1,
-    paddingHorizontal: 0,
+    padding: 0,
     fontSize: 48,
   },
 });
