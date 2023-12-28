@@ -114,8 +114,9 @@ const styles = StyleSheet.create({
   codeInput: {
     textAlign: 'center',
     height: 72,
-    flex: 1,
-    padding: 0,
+    width: 64,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
     fontSize: 48,
   },
 });
