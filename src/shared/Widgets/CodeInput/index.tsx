@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import TextInput from '../../BrandBook/TextInput';
@@ -23,6 +23,7 @@ const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(({ input, setInput,
 
 const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
   //TODO: Refactor code by using dictionary
+  const isFirstRender = useRef(true);
   const firstCodeNumberRef = useRef<TextInputRef>(null);
   const secondCodeNumberRef = useRef<TextInputRef>(null);
   const thirdCodeNumberRef = useRef<TextInputRef>(null);
@@ -34,10 +35,20 @@ const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
   const [fourthCodeNumberInput, setFourthCodeNumberInput] = useState('');
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      firstCodeNumberRef.current?.focus();
+    }
+  }, []);
+
+  useEffect(() => {
     onCodeChange(firstCodeNumberInput + secondCodeNumberInput + thirdCodeNumberInput + fourthCodeNumberInput);
   }, [firstCodeNumberInput, secondCodeNumberInput, thirdCodeNumberInput, fourthCodeNumberInput, onCodeChange]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (isFirstRender.current) {
+      return;
+    }
     if (firstCodeNumberInput.length) {
       secondCodeNumberRef.current?.focus();
     } else {
@@ -45,7 +56,10 @@ const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
     }
   }, [firstCodeNumberInput]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (isFirstRender.current) {
+      return;
+    }
     if (secondCodeNumberInput.length) {
       thirdCodeNumberRef.current?.focus();
     } else {
@@ -53,7 +67,10 @@ const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
     }
   }, [secondCodeNumberInput]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (isFirstRender.current) {
+      return;
+    }
     if (thirdCodeNumberInput.length) {
       fourthCodeNumberRef.current?.focus();
     } else {
@@ -61,7 +78,10 @@ const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
     }
   }, [thirdCodeNumberInput]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (isFirstRender.current) {
+      return;
+    }
     if (fourthCodeNumberInput.length) {
       fourthCodeNumberRef.current?.blur();
     } else {
