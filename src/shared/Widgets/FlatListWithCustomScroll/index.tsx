@@ -10,10 +10,11 @@ const FlatListWithCustomScroll = ({
   itemHeight,
   style,
   barStyle,
+  withScroll = false,
 }: FlatListWithCustomScrollProps) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
-  const [isScrollBarVisible, setIsScrollBarVisible] = useState(false);
+  const [isScrollBarVisible, setIsScrollBarVisible] = useState(withScroll);
 
   const scrollIndicator = useRef(new Animated.Value(0)).current;
 

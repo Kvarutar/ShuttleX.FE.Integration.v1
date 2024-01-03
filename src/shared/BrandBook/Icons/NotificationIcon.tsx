@@ -5,7 +5,7 @@ import Svg, { Path } from 'react-native-svg';
 import sizes from '../../../core/themes/sizes';
 
 const NotificationIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.NotificationIcon, style]} fill="none">
+  <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.NotificationIcon, style]} fill="none" viewBox="0 0 24 24">
     <Path
       d="M12.1766 5.88281C15.1735 5.88281 17.603 8.31233 17.603 11.3093L17.603 19.3828H6.75009V11.3093C6.75009 8.31233 9.1796 5.88281 12.1766 5.88281Z"
       stroke="black"

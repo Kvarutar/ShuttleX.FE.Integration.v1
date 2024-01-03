@@ -14,10 +14,15 @@ import BrandTextIcon from './shared/BrandBook/Icons/BrandTextIcon';
 import CalendarIcon from './shared/BrandBook/Icons/CalendarIcon';
 import ClockIcon from './shared/BrandBook/Icons/ClockIcon';
 import CloseIcon from './shared/BrandBook/Icons/CloseIcon';
+import CurrencyIcon from './shared/BrandBook/Icons/CurrencyIcon';
+import DropOffIcon from './shared/BrandBook/Icons/DropOffIcon';
+import LocationIcon from './shared/BrandBook/Icons/LocationIcon';
 import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
 import NotificationIcon from './shared/BrandBook/Icons/NotificationIcon';
+import PickUpIcon from './shared/BrandBook/Icons/PickUpIcon';
 import PreferencesIcon from './shared/BrandBook/Icons/PreferencesIcon';
 import ShortArrowIcon from './shared/BrandBook/Icons/ShortArrowIcon';
+import SpinnerIcon from './shared/BrandBook/Icons/SpinnerIcon';
 import StatisticsIcon from './shared/BrandBook/Icons/StatitsticsIcon';
 import TimeIcon from './shared/BrandBook/Icons/TimeIcon';
 import Text from './shared/BrandBook/Text';
@@ -34,6 +39,8 @@ import PhoneInput from './shared/Widgets/PhoneInput';
 import SwipeButton from './shared/Widgets/SwipeButton';
 import { SwipeButtonModes } from './shared/Widgets/SwipeButton/props';
 import TimePicker from './shared/Widgets/TimePicker';
+import Timer from './shared/Widgets/Timer';
+import { TimerModes } from './shared/Widgets/Timer/props';
 
 export {
   ArrowIcon,
@@ -51,20 +58,25 @@ export {
   ClockIcon,
   CloseIcon,
   CodeInput,
+  CurrencyIcon,
   DatePicker,
+  DropOffIcon,
   FlatListWithCustomScroll,
   GroupedBrandIcon,
   GroupedButtons,
+  LocationIcon,
   MenuIcon,
   nameof,
   NotificationIcon,
   palettes,
   PhoneInput,
+  PickUpIcon,
   Popup,
   PreferencesIcon,
   RoundButton,
   ShortArrowIcon,
   sizes,
+  SpinnerIcon,
   StatisticsIcon,
   SwipeButton,
   SwipeButtonModes,
@@ -74,5 +86,7 @@ export {
   ThemeProvider,
   TimeIcon,
   TimePicker,
+  Timer,
+  TimerModes,
   useTheme,
 };

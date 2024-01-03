@@ -6,4 +6,5 @@ export type FlatListWithCustomScrollProps = {
   itemHeight: number;
   style?: StyleProp<ViewStyle>;
   barStyle?: StyleProp<ViewStyle>;
+  withScroll?: boolean;
 };

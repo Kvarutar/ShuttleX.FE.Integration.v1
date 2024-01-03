@@ -2,6 +2,9 @@ import { type Palette, type PaletteButtonModes } from './paletteTypes';
 
 const colors: Omit<Palette, 'buttonModes'> = {
   primaryColor: '#008D0A',
+  primaryGradientStartColor: '#EEF5FF',
+  secondaryGradientStartColor: '#EAEAEA',
+  secondaryGradientEndColor: '#010101',
   errorColor: '#FF7777',
   borderColor: '#B4B4B44D', // with opacity
   backgroundPrimaryColor: '#FFFFFF',

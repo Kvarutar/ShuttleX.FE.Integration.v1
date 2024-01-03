@@ -11,6 +11,9 @@ export type PaletteButtonModes = { [key in ButtonModes]: PaletteButtonMode };
 
 export type Palette = {
   primaryColor: string;
+  primaryGradientStartColor: string;
+  secondaryGradientStartColor: string;
+  secondaryGradientEndColor: string;
   errorColor: string;
   borderColor: string;
   backgroundPrimaryColor: string;
