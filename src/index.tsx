@@ -36,6 +36,7 @@ import DatePicker from './shared/Widgets/DatePicker';
 import FlatListWithCustomScroll from './shared/Widgets/FlatListWithCustomScroll';
 import GroupedButtons from './shared/Widgets/GroupedButtons';
 import PhoneInput from './shared/Widgets/PhoneInput';
+import ScrollViewWithCustomScroll from './shared/Widgets/ScrollViewWithCustomScroll';
 import SwipeButton from './shared/Widgets/SwipeButton';
 import { SwipeButtonModes } from './shared/Widgets/SwipeButton/props';
 import TimePicker from './shared/Widgets/TimePicker';
@@ -74,6 +75,7 @@ export {
   Popup,
   PreferencesIcon,
   RoundButton,
+  ScrollViewWithCustomScroll,
   ShortArrowIcon,
   sizes,
   SpinnerIcon,

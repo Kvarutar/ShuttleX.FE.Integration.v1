@@ -1,19 +1,18 @@
 import React, { useRef, useState } from 'react';
-import { Animated, FlatList, StyleSheet } from 'react-native';
+import { Animated, ScrollView, StyleSheet } from 'react-native';
 
 import { useTheme } from '../../../core/themes/themeContext';
-import { type FlatListWithCustomScrollProps } from './props';
+import { type ScrollViewWithCustomScrollProps } from './props';
 
-const FlatListWithCustomScroll = ({
-  items,
-  renderItems,
-  style,
-  barStyle,
+const ScrollViewWithCustomScroll = ({
+  children,
   withScroll = false,
-  visibleBarOffset = 0,
-}: FlatListWithCustomScrollProps) => {
+  barStyle,
+  style,
+}: ScrollViewWithCustomScrollProps) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
+
   const [isScrollBarVisible, setIsScrollBarVisible] = useState(withScroll);
 
   const scrollIndicator = useRef(new Animated.Value(0)).current;
@@ -46,18 +45,19 @@ const FlatListWithCustomScroll = ({
 
   return (
     <>
-      <FlatList
-        data={items}
-        renderItem={renderItems}
+      <ScrollView
         showsVerticalScrollIndicator={false}
+        scrollEventThrottle={16}
         style={style}
         onContentSizeChange={(_, height) => setCompleteScrollBarHeight(height)}
-        onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height - visibleBarOffset)}
+        onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height)}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollIndicator } } }], {
           useNativeDriver: false,
           listener: () => !isScrollBarVisible && setIsScrollBarVisible(true),
         })}
-      />
+      >
+        {children}
+      </ScrollView>
       {isScrollBarVisible && <Animated.View style={[styles.scrollBar, computedStyles.scrollBar, barStyle]} />}
     </>
   );
@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlatListWithCustomScroll;
+export default ScrollViewWithCustomScroll;
