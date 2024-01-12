@@ -44,6 +44,7 @@ yarn example start
 - [date-fns](https://www.npmjs.com/package/date-fns)
 - [react](https://www.npmjs.com/package/react)
 - [react-native](https://www.npmjs.com/package/react-native)
+- [react-native-gesture-handler](https://www.npmjs.com/package/react-native-gesture-handler)
 - [react-native-reanimated](https://www.npmjs.com/package/react-native-reanimated)
 - [react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context)
 - [react-native-shadow-2](https://www.npmjs.com/package/react-native-shadow-2)

@@ -6,7 +6,7 @@ import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/themeContext';
 import { type BottomWindowProps } from './props';
 
-const BottomWindow = ({ children, style, windowStyle }: BottomWindowProps): JSX.Element => {
+const BottomWindow = ({ children, alerts, style, windowStyle }: BottomWindowProps): JSX.Element => {
   const { colors } = useTheme();
   const { backgroundPrimaryColor, weakShadowColor } = colors;
   const shadowProps = defaultShadow(weakShadowColor);
@@ -19,6 +19,7 @@ const BottomWindow = ({ children, style, windowStyle }: BottomWindowProps): JSX.
 
   return (
     <View style={[styles.container, style]}>
+      <View style={styles.alerts}>{alerts}</View>
       <Shadow stretch {...shadowProps}>
         <View style={[computedStyles.bottomWindow, styles.bottomWindow, windowStyle]}>{children}</View>
       </Shadow>
@@ -27,6 +28,10 @@ const BottomWindow = ({ children, style, windowStyle }: BottomWindowProps): JSX.
 };
 
 const styles = StyleSheet.create({
+  alerts: {
+    padding: 16,
+    gap: 12,
+  },
   bottomWindow: {
     borderTopLeftRadius: 36,
     borderTopRightRadius: 36,

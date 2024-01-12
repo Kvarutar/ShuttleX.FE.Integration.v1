@@ -42,7 +42,7 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): J
           </Button>
         }
       >
-        <Text style={[computedStyles.text, styles.text]}>{text ?? t('swipeButtonHint')}</Text>
+        <Text style={[computedStyles.text, styles.text]}>{text ?? t('SwipeButton_buttonHint')}</Text>
       </Slider>
     </Shadow>
   );

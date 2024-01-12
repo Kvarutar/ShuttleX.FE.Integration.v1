@@ -18,6 +18,14 @@
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
       }
+    ],
+    "@typescript-eslint/no-restricted-imports": [
+      "error",
+      {
+        "name": "react-redux",
+        "importNames": ["useDispatch"],
+        "message": "Use typed hook `useAppDispatch` instead."
+      }
     ]
   }
 }

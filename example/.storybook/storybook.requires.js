@@ -47,12 +47,18 @@ try {
 
 const getStories = () => {
   return {
+    "./src/stories/Alert.stories.tsx": require("../src/stories/Alert.stories.tsx"),
     "./src/stories/Bar.stories.tsx": require("../src/stories/Bar.stories.tsx"),
     "./src/stories/Button.stories.tsx": require("../src/stories/Button.stories.tsx"),
     "./src/stories/CodeInput.stories.tsx": require("../src/stories/CodeInput.stories.tsx"),
     "./src/stories/DatePicker.stories.tsx": require("../src/stories/DatePicker.stories.tsx"),
+    "./src/stories/DriverArrivedAlert.stories.tsx": require("../src/stories/DriverArrivedAlert.stories.tsx"),
+    "./src/stories/FreeTimeAlert.stories.tsx": require("../src/stories/FreeTimeAlert.stories.tsx"),
     "./src/stories/GroupedBrandIcon.stories.tsx": require("../src/stories/GroupedBrandIcon.stories.tsx"),
     "./src/stories/GroupedButtons.stories.tsx": require("../src/stories/GroupedButtons.stories.tsx"),
+    "./src/stories/InternetDisconnectedAlert.stories.tsx": require("../src/stories/InternetDisconnectedAlert.stories.tsx"),
+    "./src/stories/PaidTimeAlert.stories.tsx": require("../src/stories/PaidTimeAlert.stories.tsx"),
+    "./src/stories/PlannedTripAlert.stories.tsx": require("../src/stories/PlannedTripAlert.stories.tsx"),
     "./src/stories/RoundButton.stories.tsx": require("../src/stories/RoundButton.stories.tsx"),
     "./src/stories/SwipeButton.stories.tsx": require("../src/stories/SwipeButton.stories.tsx"),
     "./src/stories/Text.stories.tsx": require("../src/stories/Text.stories.tsx"),

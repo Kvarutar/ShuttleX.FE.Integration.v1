@@ -2065,6 +2065,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@egjs/hammerjs@npm:^2.0.17":
+  version: 2.0.17
+  resolution: "@egjs/hammerjs@npm:2.0.17"
+  dependencies:
+    "@types/hammerjs": "npm:^2.0.36"
+  checksum: dbedc15a0e633f887c08394bd636faf6a3abd05726dc0909a0e01209d5860a752d9eca5e512da623aecfabe665f49f1d035de3103eb2f9022c5cea692f9cc9be
+  languageName: node
+  linkType: hard
+
 "@eslint-community/eslint-utils@npm:^4.2.0":
   version: 4.4.0
   resolution: "@eslint-community/eslint-utils@npm:4.4.0"
@@ -4760,6 +4769,13 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 235d2fc69741448e853333b7c3d1180a966dd2b8972c8cbcd6b2a0c6cd7f8d582ab2b8e58219dbc62cce8f1b40aa317ff78ea2201cdd8249da5025adebed6f0b
+  languageName: node
+  linkType: hard
+
+"@types/hammerjs@npm:^2.0.36":
+  version: 2.0.45
+  resolution: "@types/hammerjs@npm:2.0.45"
+  checksum: 1f01e3d0260e3cb824fd0ae32c9a8e1b3727e53ef31682612a0a282c4a84bb758dd30b04749b2ae91e621443c80bfe541b38e91e33308f9dea5d9ac92bd0e854
   languageName: node
   linkType: hard
 
@@ -18174,6 +18190,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-gesture-handler@npm:^2.14.0":
+  version: 2.14.0
+  resolution: "react-native-gesture-handler@npm:2.14.0"
+  dependencies:
+    "@egjs/hammerjs": "npm:^2.0.17"
+    hoist-non-react-statics: "npm:^3.3.0"
+    invariant: "npm:^2.2.4"
+    lodash: "npm:^4.17.21"
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: d567c26756aefc85fb6056efc6be4cdf0c1e7fd45a9d92f4bf0dc0fd94d3e099207398978bac8bdf3fa731f1020d41a7576566b552c525dc71bf7bc270bad25f
+  languageName: node
+  linkType: hard
+
+"react-native-gesture-handler@npm:~2.12.0":
+  version: 2.12.1
+  resolution: "react-native-gesture-handler@npm:2.12.1"
+  dependencies:
+    "@egjs/hammerjs": "npm:^2.0.17"
+    hoist-non-react-statics: "npm:^3.3.0"
+    invariant: "npm:^2.2.4"
+    lodash: "npm:^4.17.21"
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 4d4271d26d8a9f799987c05652793baf3e57cf71debb3940e8f37d84f026ee38b7d0d3a3d26774b9f111d033ffedc8db4303c6b1f52155b6bee33774e83592f1
+  languageName: node
+  linkType: hard
+
 "react-native-modal-datetime-picker@npm:^14.0.0":
   version: 14.0.1
   resolution: "react-native-modal-datetime-picker@npm:14.0.1"
@@ -19668,6 +19716,7 @@ __metadata:
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     react-native: "npm:0.72.6"
+    react-native-gesture-handler: "npm:~2.12.0"
     react-native-reanimated: "npm:~3.3.0"
     react-native-safe-area-context: "npm:4.6.3"
     react-native-shadow-2: "npm:^7.0.8"
@@ -19713,6 +19762,7 @@ __metadata:
     react-i18next: "npm:^13.3.1"
     react-native: "npm:0.72.6"
     react-native-builder-bob: "npm:^0.20.0"
+    react-native-gesture-handler: "npm:^2.14.0"
     react-native-reanimated: "npm:^3.6.1"
     react-native-safe-area-context: "npm:^4.7.4"
     react-native-shadow-2: "npm:^7.0.8"
@@ -19728,6 +19778,7 @@ __metadata:
     date-fns: "*"
     react: "*"
     react-native: "*"
+    react-native-gesture-handler: "*"
     react-native-reanimated: "*"
     react-native-safe-area-context: "*"
     react-native-shadow-2: "*"

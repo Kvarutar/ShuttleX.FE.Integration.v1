@@ -1,3 +1,13 @@
 {
-  "swipeButtonHint": "Slide to confirm"
+  "minute": "{{count}} minute",
+  "minute_plural": "{{count}} minutes",
+  "second": "{{count}} second",
+  "second_plural": "{{count}} seconds",
+  "SwipeButton_buttonHint": "Slide to confirm",
+  "PaidTimeAlert_description": "Paid time started - {{currency}}/minute",
+  "PlannedTripAlert_description": "You have planned trip at {{time}}",
+  "PlannedTripAlert_cancelButton": "Cancel trip",
+  "DriverArrivedAlert_description": "Driver has arrived",
+  "FreeTimeAlert_description": "Free time ends in {{time}}",
+  "InternetDisconnectedAlert_description": "Internet is disconnected"
 }
