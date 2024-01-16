@@ -6,6 +6,7 @@ import Bar from './shared/Bar';
 import Blur from './shared/Blur';
 import Button from './shared/BrandBook/Button';
 import { ButtonModes, ButtonShadows } from './shared/BrandBook/Button/props';
+import CheckBox from './shared/BrandBook/Checkbox';
 import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
 import BlueCheck1 from './shared/BrandBook/Icons/BlueCheck1';
 import BlueCheck2 from './shared/BrandBook/Icons/BlueCheck2';
@@ -67,6 +68,7 @@ export {
   ButtonModes,
   ButtonShadows,
   CalendarIcon,
+  CheckBox,
   ClockIcon,
   CloseIcon,
   CodeInput,
