@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Animated, ScrollView, StyleSheet } from 'react-native';
+import { Animated, type LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native';
 
+import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/themeContext';
 import { type ScrollViewWithCustomScrollProps } from './props';
 
@@ -8,7 +9,9 @@ const ScrollViewWithCustomScroll = ({
   children,
   withScroll = false,
   barStyle,
+  onLayout,
   style,
+  visibleBarOffset = 0,
 }: ScrollViewWithCustomScrollProps) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
@@ -43,14 +46,22 @@ const ScrollViewWithCustomScroll = ({
     },
   });
 
+  const onLayoutHandler = (e: LayoutChangeEvent) => {
+    setVisibleScrollBarHeight(e.nativeEvent.layout.height - visibleBarOffset);
+    if (onLayout) {
+      onLayout(e);
+    }
+  };
+
   return (
-    <>
+    <View>
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        style={style}
+        contentContainerStyle={styles.contentContainerStyle}
+        style={[styles.scrollView, style]}
         onContentSizeChange={(_, height) => setCompleteScrollBarHeight(height)}
-        onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height)}
+        onLayout={onLayoutHandler}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollIndicator } } }], {
           useNativeDriver: false,
           listener: () => !isScrollBarVisible && setIsScrollBarVisible(true),
@@ -59,7 +70,7 @@ const ScrollViewWithCustomScroll = ({
         {children}
       </ScrollView>
       {isScrollBarVisible && <Animated.View style={[styles.scrollBar, computedStyles.scrollBar, barStyle]} />}
-    </>
+    </View>
   );
 };
 
@@ -70,6 +81,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     top: 0,
+  },
+  scrollView: {
+    marginHorizontal: -sizes.paddingHorizontal,
+    marginVertical: -10,
+  },
+  contentContainerStyle: {
+    paddingHorizontal: sizes.paddingHorizontal,
+    paddingVertical: 10,
   },
 });
 

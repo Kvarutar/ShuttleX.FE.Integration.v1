@@ -42,6 +42,7 @@ import { type PaidTimeAlertProps } from './shared/Widgets/alerts/PaidTimeAlert/p
 import PlannedTripAlert from './shared/Widgets/alerts/PlannedTripAlert';
 import { type PlannedTripAlertProps } from './shared/Widgets/alerts/PlannedTripAlert/props';
 import BottomWindow from './shared/Widgets/BottomWindow';
+import BottomWindowWithGesture from './shared/Widgets/BottomWindowWithGesture';
 import CodeInput from './shared/Widgets/CodeInput';
 import DatePicker from './shared/Widgets/DatePicker';
 import FlatListWithCustomScroll from './shared/Widgets/FlatListWithCustomScroll';
@@ -62,6 +63,7 @@ export {
   BlueCheck2,
   Blur,
   BottomWindow,
+  BottomWindowWithGesture,
   BrandFavIcon,
   BrandTextIcon,
   Button,

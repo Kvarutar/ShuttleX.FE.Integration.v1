@@ -1,8 +1,11 @@
-import { type StyleProp, type ViewStyle } from 'react-native';
+import { type LayoutChangeEvent, type StyleProp, type ViewStyle } from 'react-native';
 
 export type ScrollViewWithCustomScrollProps = {
   children: React.ReactNode;
   withScroll?: boolean;
   style?: StyleProp<ViewStyle>;
   barStyle?: StyleProp<ViewStyle>;
+  onLayout?: (nativeEvent: LayoutChangeEvent) => void;
+  visibleBarOffset?: number;
+  contentContainerStyle?: StyleProp<ViewStyle>;
 };
