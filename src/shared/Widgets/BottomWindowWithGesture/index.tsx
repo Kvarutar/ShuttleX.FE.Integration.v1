@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dimensions, type LayoutChangeEvent, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   FadeIn,
@@ -71,6 +71,9 @@ const BottomWindowWithGesture = ({
     draggableElement: {
       backgroundColor: colors.textSecondaryColor,
     },
+    separator: {
+      borderColor: colors.strokeColor,
+    },
   });
 
   return (
@@ -90,13 +93,16 @@ const BottomWindowWithGesture = ({
               <View style={[styles.visiblePart, visiblePartStyles]}>{visiblePart}</View>
             </View>
           </GestureDetector>
-          <ScrollViewWithCustomScroll
-            onLayout={(e: LayoutChangeEvent) => setHiddenPartHeight(e.nativeEvent.layout.height)}
-            style={[computedStyles.hiddenPartStyle, hiddenPartStyles]}
-            barStyle={styles.scrollBar}
-          >
-            {hiddenPart}
-          </ScrollViewWithCustomScroll>
+          <View onLayout={e => setHiddenPartHeight(e.nativeEvent.layout.height)} style={styles.hiddenWrapper}>
+            <View style={[styles.separator, computedStyles.separator]} />
+            <ScrollViewWithCustomScroll
+              style={[computedStyles.hiddenPartStyle, hiddenPartStyles]}
+              barStyle={styles.scrollBar}
+              visibleBarOffset={10}
+            >
+              {hiddenPart}
+            </ScrollViewWithCustomScroll>
+          </View>
         </BottomWindow>
       </Animated.View>
     </>
@@ -133,9 +139,18 @@ const styles = StyleSheet.create({
   },
   visiblePart: {
     marginTop: sizes.paddingVertical,
-    paddingBottom: sizes.paddingVertical + 10,
+    paddingBottom: sizes.paddingVertical,
   },
   scrollBar: {
     right: -10,
+  },
+  separator: {
+    flex: 1,
+    borderStyle: 'dashed',
+    borderBottomWidth: 1,
+    marginBottom: 30,
+  },
+  hiddenWrapper: {
+    paddingBottom: sizes.paddingVertical,
   },
 });

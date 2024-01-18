@@ -13,15 +13,21 @@ import BlueCheck2 from './shared/BrandBook/Icons/BlueCheck2';
 import BrandFavIcon from './shared/BrandBook/Icons/BrandFavIcon';
 import BrandTextIcon from './shared/BrandBook/Icons/BrandTextIcon';
 import CalendarIcon from './shared/BrandBook/Icons/CalendarIcon';
+import ChatIcon from './shared/BrandBook/Icons/ChatIcon';
 import ClockIcon from './shared/BrandBook/Icons/ClockIcon';
 import CloseIcon from './shared/BrandBook/Icons/CloseIcon';
 import CurrencyIcon from './shared/BrandBook/Icons/CurrencyIcon';
 import DropOffIcon from './shared/BrandBook/Icons/DropOffIcon';
+import EmergencyServiceIcon from './shared/BrandBook/Icons/EmergencyServiceIcon';
+import ExternalMapIcon from './shared/BrandBook/Icons/ExternalMapIcon';
 import LocationIcon from './shared/BrandBook/Icons/LocationIcon';
 import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
 import NotificationIcon from './shared/BrandBook/Icons/NotificationIcon';
+import PassengerIcon from './shared/BrandBook/Icons/PassengerIcon';
+import PhoneIcon from './shared/BrandBook/Icons/PhoneIcon';
 import PickUpIcon from './shared/BrandBook/Icons/PickUpIcon';
 import PreferencesIcon from './shared/BrandBook/Icons/PreferencesIcon';
+import ReportIcon from './shared/BrandBook/Icons/ReportIcon';
 import ShortArrowIcon from './shared/BrandBook/Icons/ShortArrowIcon';
 import SpinnerIcon from './shared/BrandBook/Icons/SpinnerIcon';
 import StatisticsIcon from './shared/BrandBook/Icons/StatitsticsIcon';
@@ -70,6 +76,7 @@ export {
   ButtonModes,
   ButtonShadows,
   CalendarIcon,
+  ChatIcon,
   CheckBox,
   ClockIcon,
   CloseIcon,
@@ -78,6 +85,8 @@ export {
   DatePicker,
   DriverArrivedAlert,
   DropOffIcon,
+  EmergencyServiceIcon,
+  ExternalMapIcon,
   FlatListWithCustomScroll,
   FreeTimeAlert,
   type FreeTimeAlertProps,
@@ -92,12 +101,15 @@ export {
   PaidTimeAlert,
   type PaidTimeAlertProps,
   palettes,
+  PassengerIcon,
+  PhoneIcon,
   PhoneInput,
   PickUpIcon,
   PlannedTripAlert,
   type PlannedTripAlertProps,
   Popup,
   PreferencesIcon,
+  ReportIcon,
   RoundButton,
   ScrollViewWithCustomScroll,
   ShortArrowIcon,

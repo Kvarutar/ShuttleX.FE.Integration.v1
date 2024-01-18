@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Animated, type LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native';
+import { Animated, ScrollView, StyleSheet, View } from 'react-native';
 
 import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/themeContext';
@@ -9,7 +9,6 @@ const ScrollViewWithCustomScroll = ({
   children,
   withScroll = false,
   barStyle,
-  onLayout,
   style,
   visibleBarOffset = 0,
 }: ScrollViewWithCustomScrollProps) => {
@@ -46,13 +45,6 @@ const ScrollViewWithCustomScroll = ({
     },
   });
 
-  const onLayoutHandler = (e: LayoutChangeEvent) => {
-    setVisibleScrollBarHeight(e.nativeEvent.layout.height - visibleBarOffset);
-    if (onLayout) {
-      onLayout(e);
-    }
-  };
-
   return (
     <View>
       <ScrollView
@@ -61,7 +53,7 @@ const ScrollViewWithCustomScroll = ({
         contentContainerStyle={styles.contentContainerStyle}
         style={[styles.scrollView, style]}
         onContentSizeChange={(_, height) => setCompleteScrollBarHeight(height)}
-        onLayout={onLayoutHandler}
+        onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height - visibleBarOffset)}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollIndicator } } }], {
           useNativeDriver: false,
           listener: () => !isScrollBarVisible && setIsScrollBarVisible(true),
