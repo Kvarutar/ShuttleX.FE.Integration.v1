@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { Shadow } from 'react-native-shadow-2';
 
@@ -47,11 +47,9 @@ const Alert = ({ children, style, isSwipeable = true, onClose }: AlertProps) => 
 
   if (isSwipeable) {
     return (
-      <GestureHandlerRootView>
-        <GestureDetector gesture={pan}>
-          <Animated.View style={animatedStyles}>{component}</Animated.View>
-        </GestureDetector>
-      </GestureHandlerRootView>
+      <GestureDetector gesture={pan}>
+        <Animated.View style={animatedStyles}>{component}</Animated.View>
+      </GestureDetector>
     );
   }
   return <View>{component}</View>;
