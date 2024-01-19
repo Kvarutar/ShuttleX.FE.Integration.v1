@@ -58,8 +58,9 @@ import ScrollViewWithCustomScroll from './shared/Widgets/ScrollViewWithCustomScr
 import SwipeButton from './shared/Widgets/SwipeButton';
 import { SwipeButtonModes } from './shared/Widgets/SwipeButton/props';
 import TimePicker from './shared/Widgets/TimePicker';
-import Timer from './shared/Widgets/Timer';
-import { TimerModes } from './shared/Widgets/Timer/props';
+import StopWatch from './shared/Widgets/timerAndStopwatch/StopWatch';
+import Timer from './shared/Widgets/timerAndStopwatch/Timer';
+import { TimerModes } from './shared/Widgets/timerAndStopwatch/Timer/props';
 
 export {
   type AlertDescendantProps,
@@ -116,6 +117,7 @@ export {
   sizes,
   SpinnerIcon,
   StatisticsIcon,
+  StopWatch,
   SwipeButton,
   SwipeButtonModes,
   Text,
