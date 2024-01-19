@@ -52,7 +52,7 @@ export const BasicExample: Story = {
   render: function Render(args) {
     const [{ theme }] = useArgs();
 
-    return <DatePickerWithHooks {...args} themeName={theme} />;
+    return <DatePickerWithHooks getDate={() => {}} {...args} themeName={theme} />;
   },
 };
 

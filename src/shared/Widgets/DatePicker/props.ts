@@ -8,4 +8,5 @@ export enum DatePickerDisplay {
 export type DatePickerProps = {
   style?: TextInputPropsNative['style'];
   display?: DatePickerDisplay;
+  getDate: (date: Date) => void;
 };

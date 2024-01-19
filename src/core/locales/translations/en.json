@@ -9,5 +9,6 @@
   "PlannedTripAlert_cancelButton": "Cancel trip",
   "DriverArrivedAlert_description": "Driver has arrived",
   "FreeTimeAlert_description": "Free time ends in {{time}}",
-  "InternetDisconnectedAlert_description": "Internet is disconnected"
+  "InternetDisconnectedAlert_description": "Internet is disconnected",
+  "DatePicker_placeholder": "Date of birth"
 }
