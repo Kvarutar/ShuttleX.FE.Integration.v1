@@ -11,8 +11,9 @@ import ShortArrowIcon from '../../BrandBook/Icons/ShortArrowIcon';
 import TextInput from '../../BrandBook/TextInput';
 import { TextInputInputMode, type TextInputProps } from '../../BrandBook/TextInput/props';
 import ListItem from './ListItem';
+import { type PhoneInputProps } from './props';
 
-const PhoneInput = (): JSX.Element => {
+const PhoneInput = ({ style, getPhoneNumber }: PhoneInputProps): JSX.Element => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [inputContainerLayout, setInputContainerLayout] = useState<LayoutRectangle | null>(null);
   const [flagState, setFlagState] = useState(countryDtos[0]);
@@ -30,6 +31,14 @@ const PhoneInput = (): JSX.Element => {
       setOnlyNumbersInputValue('');
     }
   }, [flagState]);
+
+  useEffect(() => {
+    if (isInputDone) {
+      getPhoneNumber(inputValue);
+    } else {
+      getPhoneNumber(null);
+    }
+  }, [getPhoneNumber, inputValue, isInputDone]);
 
   useEffect(() => {
     if (flagState) {
@@ -118,7 +127,10 @@ const PhoneInput = (): JSX.Element => {
 
   return (
     <>
-      <View style={styles.flagAndInputContainer} onLayout={event => setInputContainerLayout(event.nativeEvent.layout)}>
+      <View
+        style={[styles.flagAndInputContainer, style]}
+        onLayout={event => setInputContainerLayout(event.nativeEvent.layout)}
+      >
         {isInputDone && !isInputFocused && inputContainerLayout && (
           <Shadow
             {...defaultShadow(colors.weakShadowColor)}
