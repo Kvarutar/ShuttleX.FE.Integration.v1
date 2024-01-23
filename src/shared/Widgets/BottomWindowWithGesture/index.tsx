@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   FadeIn,
@@ -76,6 +76,18 @@ const BottomWindowWithGesture = ({
     },
   });
 
+  const onHiddenPartLayout = (e: LayoutChangeEvent) => {
+    const changedHeight = e.nativeEvent.layout.height;
+    if (translateY.value !== 0 && hiddenPartHeight !== -height) {
+      if (changedHeight > hiddenPartHeight) {
+        translateY.value = translateY.value - (changedHeight - hiddenPartHeight);
+      } else if (changedHeight < hiddenPartHeight) {
+        translateY.value = translateY.value + (hiddenPartHeight - changedHeight);
+      }
+    }
+    setHiddenPartHeight(changedHeight);
+  };
+
   return (
     <>
       {isBlur && <Blur />}
@@ -93,7 +105,7 @@ const BottomWindowWithGesture = ({
               <View style={[styles.visiblePart, visiblePartStyles]}>{visiblePart}</View>
             </View>
           </GestureDetector>
-          <View onLayout={e => setHiddenPartHeight(e.nativeEvent.layout.height)} style={styles.hiddenWrapper}>
+          <View onLayout={onHiddenPartLayout} style={styles.hiddenWrapper}>
             <View style={[styles.separator, computedStyles.separator]} />
             <ScrollViewWithCustomScroll
               style={[computedStyles.hiddenPartStyle, hiddenPartStyles]}
