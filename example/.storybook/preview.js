@@ -1,11 +1,14 @@
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ThemeLoader from '../src/ThemeLoader';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export const decorators = [
   Story => (
-    <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+    <View style={styles.wrapper}>
       <ThemeLoader>
-        <Story />
+        <GestureHandlerRootView style={styles.gestureHandlerRootView}>
+          <Story />
+        </GestureHandlerRootView>
       </ThemeLoader>
     </View>
   ),
@@ -19,3 +22,16 @@ export const parameters = {
     },
   },
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  gestureHandlerRootView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+});

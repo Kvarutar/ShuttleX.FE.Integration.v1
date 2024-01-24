@@ -3,6 +3,7 @@ import palettes from './core/themes/palettes';
 import sizes from './core/themes/sizes';
 import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/themeContext';
 import Bar from './shared/Bar';
+import { BarModes } from './shared/Bar/types';
 import Blur from './shared/Blur';
 import Button from './shared/BrandBook/Button';
 import { ButtonModes, ButtonShadows } from './shared/BrandBook/Button/props';
@@ -66,6 +67,7 @@ export {
   type AlertDescendantProps,
   ArrowIcon,
   Bar,
+  BarModes,
   BlueCheck1,
   BlueCheck2,
   Blur,

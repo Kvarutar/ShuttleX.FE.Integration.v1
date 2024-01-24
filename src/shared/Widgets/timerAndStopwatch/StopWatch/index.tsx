@@ -12,7 +12,7 @@ const StopWatch = ({ initialDate, mask }: StopWatchProps) => {
 
   return (
     <View style={styles.stopwatchWrapper}>
-      <Bar style={styles.roundButton} isActive>
+      <Bar style={styles.roundButton}>
         <ClockIcon style={[styles.clockIcon]} color={colors.iconPrimaryColor} />
         <CountingComponent initialDate={initialDate} mask={mask} />
       </Bar>

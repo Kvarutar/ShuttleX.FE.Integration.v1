@@ -1,28 +1,50 @@
 import React, { StyleSheet, View, type ViewStyle } from 'react-native';
-import { Shadow } from 'react-native-shadow-2';
+import { Shadow, type ShadowProps } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../core/themes/shadows';
 import { useTheme } from '../../core/themes/themeContext';
-import { type BarProps } from './types';
+import { BarModes, type BarProps } from './types';
 
-const Bar = ({ children, style, isActive }: BarProps): JSX.Element => {
+type BarStylesType = {
+  shadowProps: ShadowProps;
+  strokeProps: ViewStyle;
+  backgroundColor: string;
+};
+type BarPropertiesType = Record<BarModes, BarStylesType>;
+
+const Bar = ({ children, style, mode = BarModes.Active }: BarProps): JSX.Element => {
   const { colors } = useTheme();
-  const { backgroundPrimaryColor, strongShadowColor, strokeColor } = colors;
-  let shadowProps = defaultShadow(strongShadowColor);
+  const { backgroundPrimaryColor, strongShadowColor, strokeColor, iconSecondaryColor } = colors;
 
-  let strokeProps: ViewStyle = {};
-  if (!isActive) {
-    shadowProps = { disabled: true };
-    strokeProps = {
-      borderColor: strokeColor,
-      borderWidth: 1,
-      borderStyle: 'dashed',
-    };
-  }
+  const barProperties: BarPropertiesType = {
+    active: {
+      shadowProps: defaultShadow(strongShadowColor),
+      strokeProps: {},
+      backgroundColor: backgroundPrimaryColor,
+    },
+    default: {
+      shadowProps: { disabled: true },
+      strokeProps: {
+        borderColor: strokeColor,
+        borderWidth: 1,
+        borderStyle: 'dashed',
+      },
+      backgroundColor: backgroundPrimaryColor,
+    },
+    disabled: {
+      shadowProps: { disabled: true },
+      strokeProps: {},
+      backgroundColor: iconSecondaryColor,
+    },
+  };
+
+  const strokeProps: ViewStyle = barProperties[mode].strokeProps;
+
+  const { shadowProps, backgroundColor } = barProperties[mode];
 
   const computedStyles = StyleSheet.create({
     bar: {
-      backgroundColor: backgroundPrimaryColor,
+      backgroundColor,
       ...strokeProps,
     },
   });

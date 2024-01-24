@@ -3,16 +3,26 @@ import { type Meta, type StoryObj } from '@storybook/react-native';
 import React, { useEffect } from 'react';
 import { Bar, CalendarIcon, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-const BarMeta: Meta<typeof Bar> = {
+import { BarModes, type BarProps } from '../../../src/shared/Bar/types';
+
+const modes: BarProps['mode'][] = Object.values(BarModes);
+
+type BarStorybookProps = BarProps & { theme: ThemeContextType['themeMode'] };
+
+const BarMeta: Meta<BarStorybookProps> = {
   title: 'Bar',
   component: Bar,
   args: {
     theme: 'light',
-    isActive: true,
+    mode: BarModes.Default,
   },
   argTypes: {
     theme: {
       options: Object.keys(palettes),
+      control: { type: 'select' },
+    },
+    mode: {
+      options: modes,
       control: { type: 'select' },
     },
   },
@@ -20,22 +30,22 @@ const BarMeta: Meta<typeof Bar> = {
 
 export default BarMeta;
 
-const BarWithHooks = ({ themeName, isActive }: { themeName: ThemeContextType['themeMode']; isActive: boolean }) => {
+const BarWithHooks = ({ themeName, mode }: { themeName: ThemeContextType['themeMode']; mode: BarProps['mode'] }) => {
   const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <Bar children={<CalendarIcon />} isActive={isActive} />;
+  return <Bar children={<CalendarIcon />} mode={mode} />;
 };
 
 type Story = StoryObj<typeof Bar>;
 
 export const BasicExample: Story = {
   render: function Render(args) {
-    const [{ theme, isActive }] = useArgs();
+    const [{ theme, mode }] = useArgs();
 
-    return <BarWithHooks {...args} themeName={theme} isActive={isActive} />;
+    return <BarWithHooks {...args} themeName={theme} mode={mode} />;
   },
 };

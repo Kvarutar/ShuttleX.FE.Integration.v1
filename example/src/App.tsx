@@ -2,6 +2,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider, useTheme } from 'shuttlex-integration';
 
 SplashScreen.preventAutoHideAsync();
@@ -9,7 +10,9 @@ SplashScreen.preventAutoHideAsync();
 const App = (): JSX.Element => {
   return (
     <ThemeProvider>
-      <Content />
+      <GestureHandlerRootView style={styles.gestureHandlerRootView}>
+        <Content />
+      </GestureHandlerRootView>
     </ThemeProvider>
   );
 };
@@ -62,6 +65,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'blanchedalmond',
     width: 300,
     height: 500,
+  },
+  gestureHandlerRootView: {
+    flex: 1,
   },
 });
 
