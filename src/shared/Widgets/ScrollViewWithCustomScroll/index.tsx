@@ -10,7 +10,7 @@ const ScrollViewWithCustomScroll = ({
   withScroll = false,
   barStyle,
   style,
-  visibleBarOffset = 0,
+  visibleBarOffset = 10,
 }: ScrollViewWithCustomScrollProps) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     width: 2,
     borderRadius: 8,
     position: 'absolute',
-    right: 0,
-    top: 0,
+    right: -sizes.paddingVertical / 2,
+    top: 10,
   },
   scrollView: {
     marginHorizontal: -sizes.paddingHorizontal,

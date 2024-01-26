@@ -34,7 +34,7 @@ import SpinnerIcon from './shared/BrandBook/Icons/SpinnerIcon';
 import StatisticsIcon from './shared/BrandBook/Icons/StatitsticsIcon';
 import TimeIcon from './shared/BrandBook/Icons/TimeIcon';
 import WarningIcon from './shared/BrandBook/Icons/WarningIcon';
-import TariffsCarImage from './shared/BrandBook/Images/TariffsCarImage';
+import TariffsCarImage, { type TariffType } from './shared/BrandBook/Images/TariffsCarImage';
 import Text from './shared/BrandBook/Text';
 import TextInput from './shared/BrandBook/TextInput';
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
@@ -124,6 +124,7 @@ export {
   SwipeButton,
   SwipeButtonModes,
   TariffsCarImage,
+  type TariffType,
   Text,
   TextInput,
   type ThemeContextType,

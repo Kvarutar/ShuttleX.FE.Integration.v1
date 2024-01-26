@@ -1,16 +1,18 @@
 import React, { useRef, useState } from 'react';
 import { Animated, FlatList, StyleSheet } from 'react-native';
 
+import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/themeContext';
 import { type FlatListWithCustomScrollProps } from './props';
 
 const FlatListWithCustomScroll = ({
   items,
-  renderItems,
+  renderItem,
   style,
   barStyle,
+  contentContainerStyle,
   withScroll = false,
-  visibleBarOffset = 0,
+  visibleBarOffset = 10,
 }: FlatListWithCustomScrollProps) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
@@ -48,9 +50,10 @@ const FlatListWithCustomScroll = ({
     <>
       <FlatList
         data={items}
-        renderItem={renderItems}
+        renderItem={renderItem}
         showsVerticalScrollIndicator={false}
-        style={style}
+        contentContainerStyle={[styles.contentContainerStyle, contentContainerStyle]}
+        style={[styles.flatList, style]}
         onContentSizeChange={(_, height) => setCompleteScrollBarHeight(height)}
         onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height - visibleBarOffset)}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollIndicator } } }], {
@@ -68,8 +71,16 @@ const styles = StyleSheet.create({
     width: 2,
     borderRadius: 8,
     position: 'absolute',
-    right: 0,
-    top: 0,
+    right: -sizes.paddingVertical / 2,
+    top: 10,
+  },
+  flatList: {
+    marginHorizontal: -sizes.paddingHorizontal,
+    marginVertical: -10,
+  },
+  contentContainerStyle: {
+    paddingHorizontal: sizes.paddingHorizontal,
+    paddingVertical: 10,
   },
 });
 

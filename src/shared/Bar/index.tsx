@@ -14,7 +14,7 @@ type BarPropertiesType = Record<BarModes, BarStylesType>;
 
 const Bar = ({ children, style, mode = BarModes.Active }: BarProps): JSX.Element => {
   const { colors } = useTheme();
-  const { backgroundPrimaryColor, strongShadowColor, strokeColor, iconSecondaryColor } = colors;
+  const { backgroundPrimaryColor, strongShadowColor, strokeColor, borderColor } = colors;
 
   const barProperties: BarPropertiesType = {
     active: {
@@ -34,7 +34,7 @@ const Bar = ({ children, style, mode = BarModes.Active }: BarProps): JSX.Element
     disabled: {
       shadowProps: { disabled: true },
       strokeProps: {},
-      backgroundColor: iconSecondaryColor,
+      backgroundColor: borderColor,
     },
   };
 

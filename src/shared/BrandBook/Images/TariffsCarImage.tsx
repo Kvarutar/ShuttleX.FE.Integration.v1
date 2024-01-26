@@ -1,5 +1,5 @@
 import React, { type ReactNode } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 
 import { useTheme } from '../../../core/themes/themeContext';
 import BasicXImage from './BasicXImage';
@@ -9,7 +9,7 @@ import PremiumXImage from './PremiumXImage';
 import PremiumXLImage from './PremiumXLImage';
 import TeslaXImage from './TeslaXImage';
 
-type TariffType = 'BasicX' | 'BasicXL' | 'ComfortX' | 'PremiumX' | 'PremiumXL' | 'TeslaX';
+export type TariffType = 'BasicX' | 'BasicXL' | 'ComfortX' | 'PremiumX' | 'PremiumXL' | 'TeslaX';
 
 const images: Record<TariffType, ReactNode> = {
   BasicX: <BasicXImage />,
@@ -20,7 +20,7 @@ const images: Record<TariffType, ReactNode> = {
   TeslaX: <TeslaXImage />,
 };
 
-const TariffsCarImage = ({ tariff }: { tariff: TariffType }) => {
+const TariffsCarImage = ({ tariff, style }: { tariff: TariffType; style?: StyleProp<ViewStyle> }) => {
   const { colors } = useTheme();
 
   const computedStyles = StyleSheet.create({
@@ -30,7 +30,7 @@ const TariffsCarImage = ({ tariff }: { tariff: TariffType }) => {
   });
 
   return (
-    <View style={styles.imgWrapper}>
+    <View style={[styles.imgWrapper, style]}>
       <View style={[styles.circle, computedStyles.circle]} />
       <View style={styles.img}>{images[tariff]}</View>
     </View>
