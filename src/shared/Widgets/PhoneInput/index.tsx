@@ -38,7 +38,8 @@ const PhoneInput = ({ style, getPhoneNumber }: PhoneInputProps): JSX.Element => 
     } else {
       getPhoneNumber(null);
     }
-  }, [getPhoneNumber, inputValue, isInputDone]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputValue, isInputDone]);
 
   useEffect(() => {
     if (flagState) {

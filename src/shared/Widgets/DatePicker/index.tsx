@@ -33,7 +33,8 @@ const DatePickerWithoutI18n = ({
     if (isFirstSelect && date !== maximumDate) {
       getDate(date);
     }
-  }, [isFirstSelect, date, maximumDate, getDate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFirstSelect, date, maximumDate]);
 
   const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     if (!selectedDate) {

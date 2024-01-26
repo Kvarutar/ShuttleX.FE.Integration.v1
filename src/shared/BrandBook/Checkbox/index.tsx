@@ -22,7 +22,8 @@ const CheckBox = ({ style, textStyle, buttonStyle, text, children, getCheckValue
 
   useEffect(() => {
     getCheckValue(isChecked);
-  }, [getCheckValue, isChecked]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isChecked]);
 
   return (
     <View style={[styles.checkBoxContainer, style]}>
