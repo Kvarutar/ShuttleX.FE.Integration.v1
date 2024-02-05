@@ -12,7 +12,7 @@ type BarStylesType = {
 };
 type BarPropertiesType = Record<BarModes, BarStylesType>;
 
-const Bar = ({ children, style, mode = BarModes.Active }: BarProps): JSX.Element => {
+const Bar = ({ children, style, mode = BarModes.Active, disableShadow = false }: BarProps): JSX.Element => {
   const { colors } = useTheme();
   const { backgroundPrimaryColor, strongShadowColor, strokeColor, borderColor } = colors;
 
@@ -50,7 +50,7 @@ const Bar = ({ children, style, mode = BarModes.Active }: BarProps): JSX.Element
   });
 
   return (
-    <Shadow stretch {...shadowProps}>
+    <Shadow disabled={disableShadow} stretch {...shadowProps}>
       <View style={[styles.bar, computedStyles.bar, style]}>{children}</View>
     </Shadow>
   );

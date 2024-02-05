@@ -9,6 +9,7 @@ import Button from './shared/BrandBook/Button';
 import { ButtonModes, ButtonShadows } from './shared/BrandBook/Button/props';
 import CheckBox from './shared/BrandBook/Checkbox';
 import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
+import BaggageIcon from './shared/BrandBook/Icons/BaggageIcon';
 import BlueCheck1 from './shared/BrandBook/Icons/BlueCheck1';
 import BlueCheck2 from './shared/BrandBook/Icons/BlueCheck2';
 import BrandFavIcon from './shared/BrandBook/Icons/BrandFavIcon';
@@ -25,6 +26,7 @@ import LocationIcon from './shared/BrandBook/Icons/LocationIcon';
 import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
 import NotificationIcon from './shared/BrandBook/Icons/NotificationIcon';
 import PassengerIcon from './shared/BrandBook/Icons/PassengerIcon';
+import PassengerIcon2 from './shared/BrandBook/Icons/PassengerIcon2';
 import PhoneIcon from './shared/BrandBook/Icons/PhoneIcon';
 import PickUpIcon from './shared/BrandBook/Icons/PickUpIcon';
 import PreferencesIcon from './shared/BrandBook/Icons/PreferencesIcon';
@@ -34,7 +36,13 @@ import SpinnerIcon from './shared/BrandBook/Icons/SpinnerIcon';
 import StatisticsIcon from './shared/BrandBook/Icons/StatitsticsIcon';
 import TimeIcon from './shared/BrandBook/Icons/TimeIcon';
 import WarningIcon from './shared/BrandBook/Icons/WarningIcon';
+import BasicXImage from './shared/BrandBook/Images/BasicXImage';
+import BasicXLImage from './shared/BrandBook/Images/BasicXLImage';
+import ComfortXImage from './shared/BrandBook/Images/ComfortXImage';
+import PremiumXImage from './shared/BrandBook/Images/PremiumXImage';
+import PremiumXLImage from './shared/BrandBook/Images/PremiumXLImage';
 import TariffsCarImage, { type TariffType } from './shared/BrandBook/Images/TariffsCarImage';
+import TeslaXImage from './shared/BrandBook/Images/TeslaXImage';
 import Text from './shared/BrandBook/Text';
 import TextInput from './shared/BrandBook/TextInput';
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
@@ -67,8 +75,11 @@ import { TimerModes } from './shared/Widgets/timerAndStopwatch/Timer/props';
 export {
   type AlertDescendantProps,
   ArrowIcon,
+  BaggageIcon,
   Bar,
   BarModes,
+  BasicXImage,
+  BasicXLImage,
   BlueCheck1,
   BlueCheck2,
   Blur,
@@ -85,6 +96,7 @@ export {
   ClockIcon,
   CloseIcon,
   CodeInput,
+  ComfortXImage,
   CurrencyIcon,
   DatePicker,
   DriverArrivedAlert,
@@ -106,6 +118,7 @@ export {
   type PaidTimeAlertProps,
   palettes,
   PassengerIcon,
+  PassengerIcon2,
   PhoneIcon,
   PhoneInput,
   PickUpIcon,
@@ -113,6 +126,8 @@ export {
   type PlannedTripAlertProps,
   Popup,
   PreferencesIcon,
+  PremiumXImage,
+  PremiumXLImage,
   ReportIcon,
   RoundButton,
   ScrollViewWithCustomScroll,
@@ -125,6 +140,7 @@ export {
   SwipeButtonModes,
   TariffsCarImage,
   type TariffType,
+  TeslaXImage,
   Text,
   TextInput,
   type ThemeContextType,

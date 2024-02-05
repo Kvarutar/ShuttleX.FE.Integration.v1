@@ -11,4 +11,5 @@ export type BarProps = {
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
   mode?: BarModes;
+  disableShadow?: boolean;
 };
