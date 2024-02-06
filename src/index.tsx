@@ -63,6 +63,8 @@ import CodeInput from './shared/Widgets/CodeInput';
 import DatePicker from './shared/Widgets/DatePicker';
 import FlatListWithCustomScroll from './shared/Widgets/FlatListWithCustomScroll';
 import GroupedButtons from './shared/Widgets/GroupedButtons';
+import LocationUnavailable from './shared/Widgets/LocationUnavailable';
+import { type LocationUnavailableProps } from './shared/Widgets/LocationUnavailable/props';
 import PhoneInput from './shared/Widgets/PhoneInput';
 import ScrollViewWithCustomScroll from './shared/Widgets/ScrollViewWithCustomScroll';
 import SwipeButton from './shared/Widgets/SwipeButton';
@@ -111,6 +113,8 @@ export {
   GroupedButtons,
   InternetDisconnectedAlert,
   LocationIcon,
+  LocationUnavailable,
+  type LocationUnavailableProps,
   MenuIcon,
   nameof,
   NotificationIcon,
