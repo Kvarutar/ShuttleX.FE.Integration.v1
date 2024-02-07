@@ -8,6 +8,7 @@ import Blur from './shared/Blur';
 import Button from './shared/BrandBook/Button';
 import { ButtonModes, ButtonShadows } from './shared/BrandBook/Button/props';
 import CheckBox from './shared/BrandBook/Checkbox';
+import ApplePayIcon from './shared/BrandBook/Icons/ApplePayIcon';
 import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
 import BaggageIcon from './shared/BrandBook/Icons/BaggageIcon';
 import BlueCheck1 from './shared/BrandBook/Icons/BlueCheck1';
@@ -23,18 +24,22 @@ import DropOffIcon from './shared/BrandBook/Icons/DropOffIcon';
 import EmergencyServiceIcon from './shared/BrandBook/Icons/EmergencyServiceIcon';
 import ExternalMapIcon from './shared/BrandBook/Icons/ExternalMapIcon';
 import LocationIcon from './shared/BrandBook/Icons/LocationIcon';
+import MasterCardIcon from './shared/BrandBook/Icons/MasterCardIcon';
 import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
 import NotificationIcon from './shared/BrandBook/Icons/NotificationIcon';
 import PassengerIcon from './shared/BrandBook/Icons/PassengerIcon';
 import PassengerIcon2 from './shared/BrandBook/Icons/PassengerIcon2';
+import PayPalIcon from './shared/BrandBook/Icons/PayPalIcon';
 import PhoneIcon from './shared/BrandBook/Icons/PhoneIcon';
 import PickUpIcon from './shared/BrandBook/Icons/PickUpIcon';
 import PreferencesIcon from './shared/BrandBook/Icons/PreferencesIcon';
 import ReportIcon from './shared/BrandBook/Icons/ReportIcon';
 import ShortArrowIcon from './shared/BrandBook/Icons/ShortArrowIcon';
+import ShortArrowSmallIcon from './shared/BrandBook/Icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/BrandBook/Icons/SpinnerIcon';
 import StatisticsIcon from './shared/BrandBook/Icons/StatitsticsIcon';
 import TimeIcon from './shared/BrandBook/Icons/TimeIcon';
+import VisaIcon from './shared/BrandBook/Icons/VisaIcon';
 import WarningIcon from './shared/BrandBook/Icons/WarningIcon';
 import BasicXImage from './shared/BrandBook/Images/BasicXImage';
 import BasicXLImage from './shared/BrandBook/Images/BasicXLImage';
@@ -76,6 +81,7 @@ import { TimerModes } from './shared/Widgets/timerAndStopwatch/Timer/props';
 
 export {
   type AlertDescendantProps,
+  ApplePayIcon,
   ArrowIcon,
   BaggageIcon,
   Bar,
@@ -115,6 +121,7 @@ export {
   LocationIcon,
   LocationUnavailable,
   type LocationUnavailableProps,
+  MasterCardIcon,
   MenuIcon,
   nameof,
   NotificationIcon,
@@ -123,6 +130,7 @@ export {
   palettes,
   PassengerIcon,
   PassengerIcon2,
+  PayPalIcon,
   PhoneIcon,
   PhoneInput,
   PickUpIcon,
@@ -136,6 +144,7 @@ export {
   RoundButton,
   ScrollViewWithCustomScroll,
   ShortArrowIcon,
+  ShortArrowSmallIcon,
   sizes,
   SpinnerIcon,
   StatisticsIcon,
@@ -154,5 +163,6 @@ export {
   Timer,
   TimerModes,
   useTheme,
+  VisaIcon,
   WarningIcon,
 };

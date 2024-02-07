@@ -6,4 +6,5 @@ export type PopupProps = {
   bottomWindowStyle?: StyleProp<ViewStyle>;
   isWithBlur?: boolean;
   onCloseButtonPress?: () => void;
+  onBackButtonPress?: () => void;
 };

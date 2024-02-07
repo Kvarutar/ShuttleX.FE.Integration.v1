@@ -5,6 +5,7 @@ import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from 'react-nati
 import sizes from '../../core/themes/sizes';
 import Blur from '../Blur';
 import CloseIcon from '../BrandBook/Icons/CloseIcon';
+import ShortArrowIcon from '../BrandBook/Icons/ShortArrowIcon';
 import RoundButton from '../RoundButton';
 import BottomWindow from '../Widgets/BottomWindow';
 import { type PopupProps } from './props';
@@ -14,9 +15,27 @@ const animationDuration = {
   bottomWindowDuration: 500,
 };
 
-const Popup = ({ children, style, bottomWindowStyle, isWithBlur = true, onCloseButtonPress }: PopupProps) => (
+const Popup = ({
+  children,
+  style,
+  bottomWindowStyle,
+  isWithBlur = true,
+  onCloseButtonPress,
+  onBackButtonPress,
+}: PopupProps) => (
   <>
     {isWithBlur && <Blur />}
+    {onBackButtonPress && (
+      <Animated.View
+        entering={FadeIn.duration(animationDuration.closeButtonDuration)}
+        exiting={FadeOut.duration(animationDuration.closeButtonDuration)}
+        style={styles.backButton}
+      >
+        <RoundButton onPress={onBackButtonPress}>
+          <ShortArrowIcon />
+        </RoundButton>
+      </Animated.View>
+    )}
     <View style={[styles.bottom, style]}>
       {onCloseButtonPress && (
         <Animated.View
@@ -51,6 +70,11 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginBottom: 26,
     marginRight: sizes.paddingHorizontal,
+  },
+  backButton: {
+    position: 'absolute',
+    left: sizes.paddingHorizontal,
+    top: sizes.paddingVertical,
   },
   bottomWindow: {
     position: 'relative',
