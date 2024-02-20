@@ -18,6 +18,7 @@ const Content = ({ children }: { children: React.ReactNode }): JSX.Element | nul
     'Inter Regular': require('../../src/assets/fonts/Inter Regular.ttf'),
     'Inter SemiBold': require('../../src/assets/fonts/Inter SemiBold.ttf'),
     'Inter Thin': require('../../src/assets/fonts/Inter Thin.ttf'),
+    'Dealerplate California': require('../../src/assets/fonts/Dealerplate California.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {

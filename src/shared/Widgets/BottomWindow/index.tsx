@@ -1,10 +1,13 @@
 import React, { StyleSheet, View } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../core/themes/shadows';
 import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/themeContext';
 import { type BottomWindowProps } from './props';
+
+const animationDuration = 300;
 
 const BottomWindow = ({ children, alerts, style, windowStyle }: BottomWindowProps): JSX.Element => {
   const { colors } = useTheme();
@@ -18,12 +21,16 @@ const BottomWindow = ({ children, alerts, style, windowStyle }: BottomWindowProp
   });
 
   return (
-    <View style={[styles.container, style]}>
+    <Animated.View
+      style={[styles.container, style]}
+      entering={FadeIn.duration(animationDuration)}
+      exiting={FadeOut.duration(animationDuration)}
+    >
       <View style={styles.alerts}>{alerts}</View>
       <Shadow stretch {...shadowProps}>
         <View style={[computedStyles.bottomWindow, styles.bottomWindow, windowStyle]}>{children}</View>
       </Shadow>
-    </View>
+    </Animated.View>
   );
 };
 

@@ -22,7 +22,15 @@ const timerSizes: TimerSizesType = {
   },
 };
 
-const Timer = ({ initialDate = new Date(), onAfterCountdownEnds, style, startColor, endColor, mode }: TimerProps) => {
+const Timer = ({
+  initialDate = new Date(),
+  onAfterCountdownEnds,
+  style,
+  startColor,
+  endColor,
+  mode,
+  withCountdown = true,
+}: TimerProps) => {
   const { iconSize, iconStrokeWidth, timerSize, fontSize } = timerSizes[mode];
   const computedStyles = StyleSheet.create({
     timerWrapper: {
@@ -50,14 +58,16 @@ const Timer = ({ initialDate = new Date(), onAfterCountdownEnds, style, startCol
       <Animated.View style={[animatedStyle]}>
         <SpinnerIcon size={iconSize} strokeWidth={iconStrokeWidth} startColor={startColor} endColor={endColor} />
       </Animated.View>
-      <View style={[StyleSheet.absoluteFill, styles.timerTextWrapper]}>
-        <CountingComponent
-          initialDate={initialDate}
-          onAfterCountdownEnds={onAfterCountdownEnds}
-          mask="{m}:{s}"
-          style={computedStyles.timerText}
-        />
-      </View>
+      {withCountdown && (
+        <View style={[StyleSheet.absoluteFill, styles.timerTextWrapper]}>
+          <CountingComponent
+            initialDate={initialDate}
+            onAfterCountdownEnds={onAfterCountdownEnds}
+            mask="{m}:{s}"
+            style={computedStyles.timerText}
+          />
+        </View>
+      )}
     </RoundButton>
   );
 };

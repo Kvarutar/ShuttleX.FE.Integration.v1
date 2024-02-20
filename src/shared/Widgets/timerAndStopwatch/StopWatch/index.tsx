@@ -7,14 +7,14 @@ import ClockIcon from '../../../BrandBook/Icons/ClockIcon';
 import CountingComponent from '../CountingComponent';
 import { type StopWatchProps } from './props';
 
-const StopWatch = ({ initialDate, mask }: StopWatchProps) => {
+const StopWatch = ({ initialDate, onAfterCountdownEnds, mask }: StopWatchProps) => {
   const { colors } = useTheme();
 
   return (
     <View style={styles.stopwatchWrapper}>
       <Bar style={styles.roundButton}>
         <ClockIcon style={[styles.clockIcon]} color={colors.iconPrimaryColor} />
-        <CountingComponent initialDate={initialDate} mask={mask} />
+        <CountingComponent initialDate={initialDate} mask={mask} onAfterCountdownEnds={onAfterCountdownEnds} />
       </Bar>
     </View>
   );

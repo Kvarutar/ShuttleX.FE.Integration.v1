@@ -22,4 +22,5 @@ export type TimerProps = {
   startColor: string;
   endColor: string;
   mode: TimerModes;
+  withCountdown?: boolean;
 };

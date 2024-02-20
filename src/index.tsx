@@ -44,6 +44,7 @@ import WarningIcon from './shared/BrandBook/Icons/WarningIcon';
 import BasicXImage from './shared/BrandBook/Images/BasicXImage';
 import BasicXLImage from './shared/BrandBook/Images/BasicXLImage';
 import ComfortXImage from './shared/BrandBook/Images/ComfortXImage';
+import MenuUserImage from './shared/BrandBook/Images/MenuUserImage';
 import PremiumXImage from './shared/BrandBook/Images/PremiumXImage';
 import PremiumXLImage from './shared/BrandBook/Images/PremiumXLImage';
 import TariffsCarImage, { type TariffType } from './shared/BrandBook/Images/TariffsCarImage';
@@ -123,6 +124,7 @@ export {
   type LocationUnavailableProps,
   MasterCardIcon,
   MenuIcon,
+  MenuUserImage,
   nameof,
   NotificationIcon,
   PaidTimeAlert,
