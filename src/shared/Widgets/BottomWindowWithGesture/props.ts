@@ -6,4 +6,9 @@ export type BottomWindowWithGestureProps = {
   style?: StyleProp<ViewStyle>;
   visiblePartStyles?: StyleProp<ViewStyle>;
   hiddenPartStyles?: StyleProp<ViewStyle>;
+  setIsOpened?: (isOpened: boolean) => void;
+};
+
+export type BottomWindowWithGestureRef = {
+  closeWindow: () => void;
 };
