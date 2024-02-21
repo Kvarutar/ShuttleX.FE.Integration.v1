@@ -69,7 +69,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
           runOnJS(onWindowStateChange)({ isOpened: true, isCurrentBlur: true });
         } else if (translateY.value > -hiddenPartHeight / 1.5) {
           translateY.value = withSpring(0, { duration, dampingRatio });
-          runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: true });
+          runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
         }
       });
 

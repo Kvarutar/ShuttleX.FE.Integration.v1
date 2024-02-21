@@ -1,25 +1,33 @@
 import { BlurView } from '@react-native-community/blur';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import { type BlurProps } from './props';
 
-const Blur = ({ children, style, animationDuration = 500 }: BlurProps) => (
+const Blur = ({ style, animationDuration = 500 }: BlurProps) => (
   <Animated.View
     style={StyleSheet.absoluteFill}
     entering={FadeIn.duration(animationDuration)}
     exiting={FadeOut.duration(animationDuration)}
   >
-    <BlurView
-      blurType="light"
-      blurAmount={7}
-      reducedTransparencyFallbackColor="white"
-      style={[StyleSheet.absoluteFill, style]}
-    >
-      {children}
-    </BlurView>
+    {Platform.OS === 'ios' ? (
+      <BlurView style={[styles.ios, style]} blurType="light" blurAmount={7} reducedTransparencyFallbackColor="white" />
+    ) : (
+      <View style={[styles.android, style]} />
+    )}
   </Animated.View>
 );
+
+const styles = StyleSheet.create({
+  ios: {
+    flex: 1,
+  },
+  android: {
+    flex: 1,
+    backgroundColor: 'black',
+    opacity: 0.4,
+  },
+});
 
 export default Blur;
