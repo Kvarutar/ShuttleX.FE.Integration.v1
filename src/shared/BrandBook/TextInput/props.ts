@@ -23,6 +23,7 @@ export type TextInputProps = {
   editable?: TextInputPropsNative['editable'];
   onFocus?: () => void;
   onBlur?: () => void;
+  error?: { isError: boolean; message?: string };
 };
 
 export type TextInputRef = Pick<TextInput, 'focus' | 'clear' | 'blur' | 'isFocused' | 'setNativeProps'>;

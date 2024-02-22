@@ -12,8 +12,10 @@ import { DatePickerDisplay, type DatePickerProps } from './props';
 
 const DatePickerWithoutI18n = ({
   style,
+  inputDatePickerStyle,
   display = DatePickerDisplay.Calendar,
   getDate,
+  error,
 }: DatePickerProps): JSX.Element => {
   const [maximumDate, setMaximumDate] = useState(new Date());
   const [date, setDate] = useState(new Date());
@@ -66,7 +68,13 @@ const DatePickerWithoutI18n = ({
 
   return (
     <Pressable style={[styles.datePickerContainer, style]} onPress={showDatepicker}>
-      <TextInput placeholder={t('DatePicker_placeholder')} value={formatDate()} editable={false} />
+      <TextInput
+        error={error}
+        style={inputDatePickerStyle}
+        placeholder={t('DatePicker_placeholder')}
+        value={formatDate()}
+        editable={false}
+      />
       <CalendarIcon style={styles.calendarIcon} />
       {isVisible && <DateTimePicker maximumDate={maximumDate} value={date} display={display} onChange={onChange} />}
     </Pressable>

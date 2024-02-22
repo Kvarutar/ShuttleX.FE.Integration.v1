@@ -6,15 +6,29 @@ import CheckIcon from '../Icons/CheckIcon';
 import Text from '../Text';
 import { type CheckBoxProps } from './props';
 
-const CheckBox = ({ style, textStyle, buttonStyle, text, children, getCheckValue }: CheckBoxProps): JSX.Element => {
+const CheckBox = ({
+  style,
+  textStyle,
+  buttonStyle,
+  text,
+  children,
+  getCheckValue,
+  error = { isError: false, message: '' },
+}: CheckBoxProps): JSX.Element => {
   const { colors } = useTheme();
 
   const computedStyles = StyleSheet.create({
     checkButtonContainer: {
-      borderColor: colors.borderColor,
+      borderColor: error.isError ? colors.errorColor : colors.borderColor,
     },
     checkBoxText: {
-      color: colors.textSecondaryColor,
+      color: error.isError ? colors.errorColor : colors.textSecondaryColor,
+    },
+    errorText: {
+      color: colors.errorColor,
+    },
+    checkBoxContainer: {
+      marginBottom: error.isError ? 12 : 0,
     },
   });
 
@@ -26,21 +40,24 @@ const CheckBox = ({ style, textStyle, buttonStyle, text, children, getCheckValue
   }, [isChecked]);
 
   return (
-    <View style={[styles.checkBoxContainer, style]}>
-      <Pressable
-        onPress={() => setIsChecked(prev => !prev)}
-        style={[styles.checkButtonContainer, computedStyles.checkButtonContainer, buttonStyle]}
-      >
-        {isChecked && <CheckIcon />}
-      </Pressable>
-      {text && (
-        <Pressable onPress={() => setIsChecked(prev => !prev)}>
-          <Text numberOfLines={1} style={[styles.checkBoxText, computedStyles.checkBoxText, textStyle]}>
-            {text}
-          </Text>
+    <View style={style}>
+      <View style={[styles.checkBoxContainer, computedStyles.checkBoxContainer]}>
+        <Pressable
+          onPress={() => setIsChecked(prev => !prev)}
+          style={[styles.checkButtonContainer, computedStyles.checkButtonContainer, buttonStyle]}
+        >
+          {isChecked && <CheckIcon />}
         </Pressable>
-      )}
-      {children}
+        {text && (
+          <Pressable onPress={() => setIsChecked(prev => !prev)}>
+            <Text numberOfLines={1} style={[styles.checkBoxText, computedStyles.checkBoxText, textStyle]}>
+              {text}
+            </Text>
+          </Pressable>
+        )}
+        {children}
+      </View>
+      {error.isError && <Text style={[styles.errorText, computedStyles.errorText]}>{error.message}</Text>}
     </View>
   );
 };
@@ -64,6 +81,9 @@ const styles = StyleSheet.create({
   },
   checkBoxLinkText: {
     textDecorationLine: 'underline',
+  },
+  errorText: {
+    fontSize: 12,
   },
 });
 

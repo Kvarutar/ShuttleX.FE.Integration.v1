@@ -1,4 +1,4 @@
-import { type TextInputProps as TextInputPropsNative } from 'react-native';
+import { type StyleProp, type TextInputProps as TextInputPropsNative, type ViewStyle } from 'react-native';
 
 export enum DatePickerDisplay {
   Spinner = 'spinner',
@@ -7,6 +7,8 @@ export enum DatePickerDisplay {
 
 export type DatePickerProps = {
   style?: TextInputPropsNative['style'];
+  inputDatePickerStyle?: StyleProp<ViewStyle>;
   display?: DatePickerDisplay;
   getDate: (date: Date) => void;
+  error?: { isError: boolean; message: string };
 };

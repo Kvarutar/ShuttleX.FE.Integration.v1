@@ -8,12 +8,17 @@ import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
 import { countryFlags } from '../../BrandBook/Icons/Flags';
 import ShortArrowIcon from '../../BrandBook/Icons/ShortArrowIcon';
+import Text from '../../BrandBook/Text';
 import TextInput from '../../BrandBook/TextInput';
 import { TextInputInputMode, type TextInputProps } from '../../BrandBook/TextInput/props';
 import ListItem from './ListItem';
 import { type PhoneInputProps } from './props';
 
-const PhoneInput = ({ style, getPhoneNumber }: PhoneInputProps): JSX.Element => {
+const PhoneInput = ({
+  style,
+  getPhoneNumber,
+  error = { isError: false, message: '' },
+}: PhoneInputProps): JSX.Element => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [inputContainerLayout, setInputContainerLayout] = useState<LayoutRectangle | null>(null);
   const [flagState, setFlagState] = useState(countryDtos[0]);
@@ -33,7 +38,7 @@ const PhoneInput = ({ style, getPhoneNumber }: PhoneInputProps): JSX.Element => 
   }, [flagState]);
 
   useEffect(() => {
-    if (isInputDone) {
+    if (onlyNumbersInputValue !== '') {
       getPhoneNumber(inputValue);
     } else {
       getPhoneNumber(null);
@@ -104,9 +109,9 @@ const PhoneInput = ({ style, getPhoneNumber }: PhoneInputProps): JSX.Element => 
       borderTopWidth: isInputDone && !isInputFocused ? 0 : 1,
       borderBottomWidth: isInputDone && !isInputFocused ? 0 : 1,
       borderLeftWidth: isInputDone && !isInputFocused ? 0 : 1,
-      borderTopColor: colors.borderColor,
-      borderBottomColor: colors.borderColor,
-      borderLeftColor: colors.borderColor,
+      borderTopColor: error.isError ? colors.errorColor : colors.borderColor,
+      borderBottomColor: error.isError ? colors.errorColor : colors.borderColor,
+      borderLeftColor: error.isError ? colors.errorColor : colors.borderColor,
       borderRightColor: colors.borderColor,
     },
     flagContainerFocused: {
@@ -124,12 +129,18 @@ const PhoneInput = ({ style, getPhoneNumber }: PhoneInputProps): JSX.Element => 
     line: {
       backgroundColor: colors.borderColor,
     },
+    errorText: {
+      color: colors.errorColor,
+    },
+    flagAndInputContainer: {
+      marginBottom: error.isError ? 12 : 0,
+    },
   });
 
   return (
-    <>
+    <View>
       <View
-        style={[styles.flagAndInputContainer, style]}
+        style={[styles.flagAndInputContainer, computedStyles.flagAndInputContainer, style]}
         onLayout={event => setInputContainerLayout(event.nativeEvent.layout)}
       >
         {isInputDone && !isInputFocused && inputContainerLayout && (
@@ -152,6 +163,7 @@ const PhoneInput = ({ style, getPhoneNumber }: PhoneInputProps): JSX.Element => 
           <ShortArrowIcon style={styles.shortArrowIcon} />
         </Pressable>
         <TextInput
+          error={{ isError: error.isError }}
           style={[styles.input, computedStyles.input]}
           inputMode={TextInputInputMode.Numeric}
           value={inputValue}
@@ -160,7 +172,7 @@ const PhoneInput = ({ style, getPhoneNumber }: PhoneInputProps): JSX.Element => 
           onBlur={() => setIsInputFocused(false)}
         />
       </View>
-
+      {error.isError && <Text style={[styles.errorText, computedStyles.errorText]}>{error.message}</Text>}
       {isDropdownVisible && inputContainerLayout && (
         <Pressable style={styles.dropdownWrapper} onPress={() => setIsDropdownVisible(false)}>
           <View
@@ -195,7 +207,7 @@ const PhoneInput = ({ style, getPhoneNumber }: PhoneInputProps): JSX.Element => 
           </View>
         </Pressable>
       )}
-    </>
+    </View>
   );
 };
 
@@ -253,6 +265,12 @@ const styles = StyleSheet.create({
   },
   shortArrowIcon: {
     transform: [{ rotate: '270deg' }],
+  },
+  errorText: {
+    fontSize: 12,
+  },
+  containerInputStyle: {
+    flex: 1,
   },
 });
 

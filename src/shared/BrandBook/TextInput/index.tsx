@@ -1,7 +1,8 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { StyleSheet, TextInput as TextInputNative } from 'react-native';
+import { StyleSheet, TextInput as TextInputNative, View } from 'react-native';
 
 import { useTheme } from '../../../core/themes/themeContext';
+import Text from '../Text';
 import { type TextInputProps, type TextInputRef } from './props';
 
 const TextInput = forwardRef<TextInputRef, TextInputProps>(
@@ -18,6 +19,7 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
       onKeyPress,
       maxLength,
       editable,
+      error = { isError: false },
     },
     ref,
   ) => {
@@ -52,36 +54,48 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
     const computedStyles = StyleSheet.create({
       input: {
         backgroundColor: colors.backgroundPrimaryColor,
-        borderColor: colors.borderColor,
+        borderColor: error.isError ? colors.errorColor : colors.borderColor,
         color: colors.textPrimaryColor,
+        marginBottom: error.isError && error.message ? 12 : 0,
       },
       focused: {
         borderColor: colors.primaryColor,
       },
+      errorText: {
+        color: colors.errorColor,
+      },
     });
 
     return (
-      <TextInputNative
-        style={[styles.input, computedStyles.input, isFocused ? computedStyles.focused : {}, style]}
-        placeholderTextColor={colors.textSecondaryColor}
-        cursorColor={colors.textPrimaryColor}
-        placeholder={placeholder}
-        onChangeText={onChangeText}
-        value={value}
-        inputMode={inputMode}
-        onKeyPress={onKeyPress}
-        onEndEditing={onEndEditing}
-        onFocus={onInputFocus}
-        onBlur={onInputBlur}
-        maxLength={maxLength}
-        editable={editable}
-        ref={innerRef}
-      />
+      <View style={styles.container}>
+        <TextInputNative
+          style={[styles.input, computedStyles.input, isFocused ? computedStyles.focused : {}, style]}
+          placeholderTextColor={colors.textSecondaryColor}
+          cursorColor={colors.textPrimaryColor}
+          placeholder={placeholder}
+          onChangeText={onChangeText}
+          value={value}
+          inputMode={inputMode}
+          onKeyPress={onKeyPress}
+          onEndEditing={onEndEditing}
+          onFocus={onInputFocus}
+          onBlur={onInputBlur}
+          maxLength={maxLength}
+          editable={editable}
+          ref={innerRef}
+        />
+        {error.isError && error.message && (
+          <Text style={[styles.errorText, computedStyles.errorText]}>{error.message}</Text>
+        )}
+      </View>
     );
   },
 );
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   input: {
     alignSelf: 'stretch',
     borderWidth: 1,
@@ -91,6 +105,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Inter Regular',
     letterSpacing: 0.64,
+  },
+  errorText: {
+    fontSize: 12,
   },
 });
 
