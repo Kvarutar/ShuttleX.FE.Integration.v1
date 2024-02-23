@@ -4,6 +4,12 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { palettes, type ThemeContextType, TimePicker, useTheme } from 'shuttlex-integration';
 
+const formatTime = (time: Date): string =>
+  new Intl.DateTimeFormat('en', {
+    hour: 'numeric',
+    minute: 'numeric',
+  }).format(time);
+
 const TimePickerMeta: Meta<typeof TimePicker> = {
   title: 'TimePicker',
   component: TimePicker,
@@ -36,7 +42,7 @@ const TimePickerWithHooks = ({ themeName }: TimePickerWithHooksProps) => {
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <TimePicker />;
+  return <TimePicker placeholder="Time" onTimeSelect={() => {}} formatTime={formatTime} />;
 };
 
 type Story = StoryObj<typeof TimePicker>;

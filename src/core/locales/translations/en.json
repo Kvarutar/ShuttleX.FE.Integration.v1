@@ -16,6 +16,5 @@
   "LocationUnavailable_settingsButton": "Go to settings",
   "DriverArrivedAlert_description": "Driver has arrived",
   "FreeTimeAlert_description": "Free time ends in {{time}}",
-  "InternetDisconnectedAlert_description": "Internet is disconnected",
-  "DatePicker_placeholder": "Date of birth"
+  "InternetDisconnectedAlert_description": "Internet is disconnected"
 }

@@ -19,6 +19,7 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
       onKeyPress,
       maxLength,
       editable,
+      containerStyle,
       error = { isError: false },
     },
     ref,
@@ -67,7 +68,7 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
     });
 
     return (
-      <View style={styles.container}>
+      <View style={containerStyle}>
         <TextInputNative
           style={[styles.input, computedStyles.input, isFocused ? computedStyles.focused : {}, style]}
           placeholderTextColor={colors.textSecondaryColor}
@@ -93,9 +94,6 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
 );
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   input: {
     alignSelf: 'stretch',
     borderWidth: 1,

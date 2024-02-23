@@ -23,15 +23,18 @@ import CurrencyIcon from './shared/BrandBook/Icons/CurrencyIcon';
 import DropOffIcon from './shared/BrandBook/Icons/DropOffIcon';
 import EmergencyServiceIcon from './shared/BrandBook/Icons/EmergencyServiceIcon';
 import ExternalMapIcon from './shared/BrandBook/Icons/ExternalMapIcon';
+import InputXIcon from './shared/BrandBook/Icons/InputXIcon';
 import LocationIcon from './shared/BrandBook/Icons/LocationIcon';
 import MasterCardIcon from './shared/BrandBook/Icons/MasterCardIcon';
 import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
+import MinusIcon from './shared/BrandBook/Icons/MinusIcon';
 import NotificationIcon from './shared/BrandBook/Icons/NotificationIcon';
 import PassengerIcon from './shared/BrandBook/Icons/PassengerIcon';
 import PassengerIcon2 from './shared/BrandBook/Icons/PassengerIcon2';
 import PayPalIcon from './shared/BrandBook/Icons/PayPalIcon';
 import PhoneIcon from './shared/BrandBook/Icons/PhoneIcon';
 import PickUpIcon from './shared/BrandBook/Icons/PickUpIcon';
+import PlusIcon from './shared/BrandBook/Icons/PlusIcon';
 import PreferencesIcon from './shared/BrandBook/Icons/PreferencesIcon';
 import ReportIcon from './shared/BrandBook/Icons/ReportIcon';
 import ShortArrowIcon from './shared/BrandBook/Icons/ShortArrowIcon';
@@ -118,6 +121,7 @@ export {
   FreeTimeAlertType,
   GroupedBrandIcon,
   GroupedButtons,
+  InputXIcon,
   InternetDisconnectedAlert,
   LocationIcon,
   LocationUnavailable,
@@ -125,6 +129,7 @@ export {
   MasterCardIcon,
   MenuIcon,
   MenuUserImage,
+  MinusIcon,
   nameof,
   NotificationIcon,
   PaidTimeAlert,
@@ -138,6 +143,7 @@ export {
   PickUpIcon,
   PlannedTripAlert,
   type PlannedTripAlertProps,
+  PlusIcon,
   Popup,
   PreferencesIcon,
   PremiumXImage,

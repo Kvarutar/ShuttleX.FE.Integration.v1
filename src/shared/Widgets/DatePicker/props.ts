@@ -9,6 +9,10 @@ export type DatePickerProps = {
   style?: TextInputPropsNative['style'];
   inputDatePickerStyle?: StyleProp<ViewStyle>;
   display?: DatePickerDisplay;
-  getDate: (date: Date) => void;
+  onDateSelect: (date: Date) => void;
+  placeholder: string;
+  maximumDate?: Date;
+  minimumDate?: Date;
+  formatDate: (date: Date) => string;
   error?: { isError: boolean; message: string };
 };

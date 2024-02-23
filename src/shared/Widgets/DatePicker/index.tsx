@@ -1,57 +1,38 @@
 import DateTimePicker, { type DateTimePickerEvent } from '@react-native-community/datetimepicker';
-import { format } from 'date-fns';
-import React, { useEffect, useState } from 'react';
-import { I18nextProvider, useTranslation } from 'react-i18next';
+import React, { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
-import { dateOfBirthDateFormat } from '../../../core/consts/date.consts';
-import i18nIntegration from '../../../core/locales/i18n';
 import CalendarIcon from '../../BrandBook/Icons/CalendarIcon';
 import TextInput from '../../BrandBook/TextInput';
 import { DatePickerDisplay, type DatePickerProps } from './props';
 
-const DatePickerWithoutI18n = ({
+const DatePicker = ({
   style,
   inputDatePickerStyle,
   display = DatePickerDisplay.Calendar,
-  getDate,
+  onDateSelect,
   error,
+  placeholder,
+  maximumDate,
+  minimumDate,
+  formatDate,
 }: DatePickerProps): JSX.Element => {
-  const [maximumDate, setMaximumDate] = useState(new Date());
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState<Date | null>();
   const [isVisible, setIsVisible] = useState(false);
-  const [isFirstSelect, setIsFirstSelect] = useState(false);
-
-  const { t } = useTranslation();
-
-  useEffect(() => {
-    const tempDate = new Date();
-    tempDate.setFullYear(tempDate.getFullYear() - 18);
-    setMaximumDate(tempDate);
-    setDate(tempDate);
-  }, []);
-
-  useEffect(() => {
-    if (isFirstSelect && date !== maximumDate) {
-      getDate(date);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFirstSelect, date, maximumDate]);
+  const [isDateSelected, setIsDateSelected] = useState(false);
 
   const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     if (!selectedDate) {
+      setIsDateSelected(false);
       return;
     }
 
-    const currentDate: Date = selectedDate;
-
+    setIsDateSelected(true);
     setIsVisible(false);
 
-    if (event?.type !== 'dismissed') {
-      if (!isFirstSelect) {
-        setIsFirstSelect(true);
-      }
-      setDate(currentDate);
+    if (event.type === 'set') {
+      setDate(selectedDate);
+      onDateSelect(selectedDate);
     }
   };
 
@@ -59,9 +40,9 @@ const DatePickerWithoutI18n = ({
     setIsVisible(true);
   };
 
-  const formatDate = (): string => {
-    if (isFirstSelect) {
-      return format(date, dateOfBirthDateFormat);
+  const formatSelectedDate = (): string => {
+    if (isDateSelected && date) {
+      return formatDate(date);
     }
     return '';
   };
@@ -71,21 +52,23 @@ const DatePickerWithoutI18n = ({
       <TextInput
         error={error}
         style={inputDatePickerStyle}
-        placeholder={t('DatePicker_placeholder')}
-        value={formatDate()}
+        placeholder={placeholder}
+        value={formatSelectedDate()}
         editable={false}
       />
       <CalendarIcon style={styles.calendarIcon} />
-      {isVisible && <DateTimePicker maximumDate={maximumDate} value={date} display={display} onChange={onChange} />}
+      {isVisible && (
+        <DateTimePicker
+          maximumDate={maximumDate}
+          minimumDate={minimumDate}
+          value={isDateSelected && date ? date : new Date()}
+          display={display}
+          onChange={onChange}
+        />
+      )}
     </Pressable>
   );
 };
-
-const DatePicker = (props: DatePickerProps) => (
-  <I18nextProvider i18n={i18nIntegration}>
-    <DatePickerWithoutI18n {...props} />
-  </I18nextProvider>
-);
 
 const styles = StyleSheet.create({
   datePickerContainer: {

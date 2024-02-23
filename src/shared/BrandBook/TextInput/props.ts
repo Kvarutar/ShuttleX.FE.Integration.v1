@@ -1,4 +1,4 @@
-import { TextInput, type TextInputProps as TextInputPropsNative } from 'react-native';
+import { type StyleProp, TextInput, type TextInputProps as TextInputPropsNative, type ViewStyle } from 'react-native';
 
 export enum TextInputInputMode {
   None = 'none',
@@ -23,6 +23,7 @@ export type TextInputProps = {
   editable?: TextInputPropsNative['editable'];
   onFocus?: () => void;
   onBlur?: () => void;
+  containerStyle?: StyleProp<ViewStyle>;
   error?: { isError: boolean; message?: string };
 };
 

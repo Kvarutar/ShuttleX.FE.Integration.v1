@@ -11,6 +11,7 @@ const ScrollViewWithCustomScroll = ({
   barStyle,
   style,
   visibleBarOffset = 10,
+  contentContainerStyle,
 }: ScrollViewWithCustomScrollProps) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
@@ -45,15 +46,22 @@ const ScrollViewWithCustomScroll = ({
     },
   });
 
+  const onLayoutHeight = (height: number) => {
+    setVisibleScrollBarHeight(height - visibleBarOffset);
+    if (height - visibleBarOffset < visibleScrollBarHeight) {
+      setTimeout(() => setIsScrollBarVisible(false), 1);
+    }
+  };
+
   return (
     <View>
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        contentContainerStyle={styles.contentContainerStyle}
+        contentContainerStyle={[styles.contentContainerStyle, contentContainerStyle]}
         style={[styles.scrollView, style]}
         onContentSizeChange={(_, height) => setCompleteScrollBarHeight(height)}
-        onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height - visibleBarOffset)}
+        onLayout={e => onLayoutHeight(e.nativeEvent.layout.height)}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollIndicator } } }], {
           useNativeDriver: false,
           listener: () => !isScrollBarVisible && setIsScrollBarVisible(true),

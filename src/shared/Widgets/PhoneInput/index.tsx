@@ -167,6 +167,7 @@ const PhoneInput = ({
           style={[styles.input, computedStyles.input]}
           inputMode={TextInputInputMode.Numeric}
           value={inputValue}
+          containerStyle={styles.inputContainerStyle}
           onChangeText={onInputChangeText}
           onFocus={() => setIsInputFocused(true)}
           onBlur={() => setIsInputFocused(false)}
@@ -232,11 +233,13 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 16,
   },
   input: {
-    flex: 1,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
     borderLeftWidth: 0,
     paddingLeft: 20,
+  },
+  inputContainerStyle: {
+    flex: 1,
   },
   dropdownWrapper: {
     position: 'absolute',

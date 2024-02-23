@@ -22,42 +22,44 @@ const Popup = ({
   isWithBlur = true,
   onCloseButtonPress,
   onBackButtonPress,
-}: PopupProps) => (
-  <>
-    {isWithBlur && <Blur />}
-    {onBackButtonPress && (
-      <Animated.View
-        entering={FadeIn.duration(animationDuration.closeButtonDuration)}
-        exiting={FadeOut.duration(animationDuration.closeButtonDuration)}
-        style={styles.backButton}
-      >
-        <RoundButton onPress={onBackButtonPress}>
-          <ShortArrowIcon />
-        </RoundButton>
-      </Animated.View>
-    )}
-    <View style={[styles.bottom, style]}>
-      {onCloseButtonPress && (
+}: PopupProps) => {
+  return (
+    <>
+      {isWithBlur && <Blur />}
+      {onBackButtonPress && (
         <Animated.View
           entering={FadeIn.duration(animationDuration.closeButtonDuration)}
           exiting={FadeOut.duration(animationDuration.closeButtonDuration)}
+          style={styles.topButtons}
         >
-          <RoundButton style={styles.closeButton} onPress={onCloseButtonPress}>
-            <CloseIcon />
+          <RoundButton onPress={onBackButtonPress}>
+            <ShortArrowIcon />
           </RoundButton>
         </Animated.View>
       )}
-      <Animated.View
-        entering={SlideInDown.duration(animationDuration.bottomWindowDuration)}
-        exiting={SlideOutDown.duration(animationDuration.bottomWindowDuration)}
-      >
-        <BottomWindow style={styles.bottomWindow} windowStyle={bottomWindowStyle}>
-          {children}
-        </BottomWindow>
-      </Animated.View>
-    </View>
-  </>
-);
+      <View style={[styles.bottom, style]}>
+        {onCloseButtonPress && (
+          <Animated.View
+            entering={FadeIn.duration(animationDuration.closeButtonDuration)}
+            exiting={FadeOut.duration(animationDuration.closeButtonDuration)}
+          >
+            <RoundButton style={styles.closeButton} onPress={onCloseButtonPress}>
+              <CloseIcon />
+            </RoundButton>
+          </Animated.View>
+        )}
+        <Animated.View
+          entering={SlideInDown.duration(animationDuration.bottomWindowDuration)}
+          exiting={SlideOutDown.duration(animationDuration.bottomWindowDuration)}
+        >
+          <BottomWindow style={styles.bottomWindow} windowStyle={bottomWindowStyle}>
+            {children}
+          </BottomWindow>
+        </Animated.View>
+      </View>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   bottom: {
@@ -71,10 +73,14 @@ const styles = StyleSheet.create({
     marginBottom: 26,
     marginRight: sizes.paddingHorizontal,
   },
-  backButton: {
+  topButtons: {
     position: 'absolute',
     left: sizes.paddingHorizontal,
+    right: sizes.paddingHorizontal,
     top: sizes.paddingVertical,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   bottomWindow: {
     position: 'relative',
