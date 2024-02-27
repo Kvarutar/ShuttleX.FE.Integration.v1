@@ -1,25 +1,44 @@
 import React, { forwardRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, type TextInputProps, View } from 'react-native';
 
 import TextInput from '../../BrandBook/TextInput';
 import { TextInputInputMode, type TextInputRef } from '../../BrandBook/TextInput/props';
 import { type CodeInputProps, type CodeNumberProps } from './props';
 
-const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(({ input, setInput, onKeyPress }, ref) => (
-  <TextInput
-    ref={ref}
-    value={input}
-    onChangeText={text => {
-      if (text === '' || /\d/.test(text)) {
-        setInput(text);
+const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(({ input, setInput, onBackspaceKeyPress }, ref) => {
+  const [lastKeyEventTimestamp, setLastKeyEventTimestamp] = useState(0);
+
+  const onKeyPress: TextInputProps['onKeyPress'] = e => {
+    if (onBackspaceKeyPress) {
+      // fix for issue https://github.com/facebook/react-native/issues/37967
+      // older version same issue https://github.com/facebook/react-native/issues/18374
+      if (e.nativeEvent.key === 'Backspace') {
+        if (Math.abs(lastKeyEventTimestamp - e.timeStamp) < 20) {
+          return;
+        }
+        onBackspaceKeyPress();
+      } else {
+        setLastKeyEventTimestamp(e.timeStamp);
       }
-    }}
-    onKeyPress={onKeyPress}
-    inputMode={TextInputInputMode.Numeric}
-    style={styles.codeInput}
-    maxLength={1}
-  />
-));
+    }
+  };
+
+  return (
+    <TextInput
+      ref={ref}
+      value={input}
+      onChangeText={text => {
+        if (text === '' || /\d/.test(text)) {
+          setInput(text);
+        }
+      }}
+      onKeyPress={onKeyPress}
+      inputMode={TextInputInputMode.Numeric}
+      style={styles.codeInput}
+      maxLength={1}
+    />
+  );
+});
 
 const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
   //TODO: Refactor code by using dictionary
@@ -96,31 +115,19 @@ const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
         ref={secondCodeNumberRef}
         input={secondCodeNumberInput}
         setInput={setSecondCodeNumberInput}
-        onKeyPress={e => {
-          if (e.nativeEvent.key === 'Backspace') {
-            firstCodeNumberRef.current?.focus();
-          }
-        }}
+        onBackspaceKeyPress={() => firstCodeNumberRef.current?.focus()}
       />
       <CodeNumber
         ref={thirdCodeNumberRef}
         input={thirdCodeNumberInput}
         setInput={setThirdCodeNumberInput}
-        onKeyPress={e => {
-          if (e.nativeEvent.key === 'Backspace') {
-            secondCodeNumberRef.current?.focus();
-          }
-        }}
+        onBackspaceKeyPress={() => secondCodeNumberRef.current?.focus()}
       />
       <CodeNumber
         ref={fourthCodeNumberRef}
         input={fourthCodeNumberInput}
         setInput={setFourthCodeNumberInput}
-        onKeyPress={e => {
-          if (e.nativeEvent.key === 'Backspace') {
-            thirdCodeNumberRef.current?.focus();
-          }
-        }}
+        onBackspaceKeyPress={() => thirdCodeNumberRef.current?.focus()}
       />
     </View>
   );

@@ -25,6 +25,7 @@ import EmergencyServiceIcon from './shared/BrandBook/Icons/EmergencyServiceIcon'
 import ExternalMapIcon from './shared/BrandBook/Icons/ExternalMapIcon';
 import InputXIcon from './shared/BrandBook/Icons/InputXIcon';
 import LocationIcon from './shared/BrandBook/Icons/LocationIcon';
+import MapPinIcon from './shared/BrandBook/Icons/MapPinIcon';
 import MasterCardIcon from './shared/BrandBook/Icons/MasterCardIcon';
 import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
 import MinusIcon from './shared/BrandBook/Icons/MinusIcon';
@@ -47,6 +48,7 @@ import WarningIcon from './shared/BrandBook/Icons/WarningIcon';
 import BasicXImage from './shared/BrandBook/Images/BasicXImage';
 import BasicXLImage from './shared/BrandBook/Images/BasicXLImage';
 import ComfortXImage from './shared/BrandBook/Images/ComfortXImage';
+import LocationArrowImage from './shared/BrandBook/Images/LocationArrowImage';
 import MenuUserImage from './shared/BrandBook/Images/MenuUserImage';
 import PremiumXImage from './shared/BrandBook/Images/PremiumXImage';
 import PremiumXLImage from './shared/BrandBook/Images/PremiumXLImage';
@@ -123,9 +125,11 @@ export {
   GroupedButtons,
   InputXIcon,
   InternetDisconnectedAlert,
+  LocationArrowImage,
   LocationIcon,
   LocationUnavailable,
   type LocationUnavailableProps,
+  MapPinIcon,
   MasterCardIcon,
   MenuIcon,
   MenuUserImage,

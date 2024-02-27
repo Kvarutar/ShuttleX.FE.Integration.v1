@@ -14,7 +14,7 @@ export enum ButtonShadows {
 
 export type ButtonProps = {
   style?: StyleProp<ViewStyle>;
-  buttonStyle?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
   mode?: ButtonModes;
   text?: string;
   textStyle?: StyleProp<TextStyle>;

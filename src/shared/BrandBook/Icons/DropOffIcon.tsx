@@ -3,19 +3,24 @@ import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 
 import sizes from '../../../core/themes/sizes';
+import { useTheme } from '../../../core/themes/themeContext';
 
-const DropOffIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.DropOffIcon, style]} fill="none" viewBox="0 0 24 24">
-    <Path d="M11.5 16V21.4167" stroke="#B4B4B4" strokeWidth={1.5} strokeLinecap="round" />
-    <Circle cx={11.5} cy={9.5} r={5.75} fill="#5295F7" stroke="#F4F4F4" strokeWidth={1.5} />
-    <Path
-      d="M8.25 8.41667C8.43056 7.69444 9.33333 6.25 10.9583 6.25"
-      stroke="white"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-    />
-  </Svg>
-);
+const DropOffIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => {
+  const { colors } = useTheme();
+
+  return (
+    <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.DropOffIcon, style]} fill="none" viewBox="0 0 24 24">
+      <Path d="M12 15V21" stroke="#B4B4B4" strokeWidth={1.5} strokeLinecap="round" />
+      <Circle cx={12} cy={9} r={5.25} fill={colors.primaryColor} stroke="#F4F4F4" strokeWidth={1.5} />
+      <Path
+        d="M9.10028 8.13622C9.20702 7.4353 10.3588 6.00891 11.8996 5.86387"
+        stroke="white"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+    </Svg>
+  );
+};
 
 const styles = StyleSheet.create({
   DropOffIcon: {

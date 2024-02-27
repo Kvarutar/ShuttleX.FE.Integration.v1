@@ -3,10 +3,10 @@ import { Image, type StyleProp, StyleSheet, View, type ViewStyle } from 'react-n
 
 import MenuUserImageLineIcon from '../Icons/MenuUserImageLineIcon';
 
-const MenuUserImage = ({ path, style }: { path: string; style?: StyleProp<ViewStyle> }) => (
+const MenuUserImage = ({ url, style }: { url: string; style?: StyleProp<ViewStyle> }) => (
   <View style={[styles.wrapper, style]}>
     <MenuUserImageLineIcon style={styles.line} />
-    <Image style={styles.image} source={{ uri: path }} />
+    <Image style={styles.image} source={{ uri: url }} />
   </View>
 );
 

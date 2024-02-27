@@ -12,7 +12,7 @@ const Button = ({
   text,
   textStyle,
   style,
-  buttonStyle,
+  containerStyle,
   shadow,
   disableShadow,
   disabled,
@@ -40,7 +40,7 @@ const Button = ({
   }
 
   const computedStyles = StyleSheet.create({
-    container: {
+    button: {
       backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
       height: children ? undefined : 48,
     },
@@ -48,10 +48,10 @@ const Button = ({
   });
 
   return (
-    <View style={style}>
+    <View style={containerStyle}>
       <Shadow stretch {...shadowProps}>
         <Pressable
-          style={[styles.container, computedStyles.container, buttonStyle]}
+          style={[styles.button, computedStyles.button, style]}
           disabled={disabled}
           onPress={onPress}
           onPressIn={() => setIsPressed(true)}
@@ -65,7 +65,7 @@ const Button = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
+  button: {
     paddingHorizontal: 24,
     borderRadius: 28,
     alignItems: 'center',

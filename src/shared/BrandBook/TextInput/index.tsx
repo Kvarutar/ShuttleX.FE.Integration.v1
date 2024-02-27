@@ -83,6 +83,7 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
           onBlur={onInputBlur}
           maxLength={maxLength}
           editable={editable}
+          pointerEvents={!editable ? 'none' : undefined}
           ref={innerRef}
         />
         {error.isError && error.message && (

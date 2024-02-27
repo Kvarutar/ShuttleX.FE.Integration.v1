@@ -35,7 +35,7 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): J
         containerStyle={{ ...computedStyles.slider, ...styles.slider }}
         sliderElement={
           <Button
-            buttonStyle={styles.button}
+            style={styles.button}
             mode={mode === SwipeButtonModes.Confirm ? ButtonModes.Mode1 : ButtonModes.Mode3}
           >
             <ArrowIcon />

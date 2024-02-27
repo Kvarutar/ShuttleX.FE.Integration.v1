@@ -6,43 +6,46 @@ import { Shadow } from 'react-native-shadow-2';
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
 import Button from '../../BrandBook/Button';
-import { ButtonModes } from '../../BrandBook/Button/props';
+import { ButtonModes, type ButtonProps } from '../../BrandBook/Button/props';
 import { type GroupedButtonsProps } from './props';
 
-const paddingGroupedButton = 5;
+const constants = {
+  paddingGroupedButton: 5,
+  animationDuration: 200,
+};
 
 const GroupedButtons = ({
-  style,
-  firstTextButton,
-  secondTextButton,
+  width,
   isFirstButtonSelected,
   setIsFirstButtonSelected,
+  firstButtonText,
+  secondButtonText,
+  style,
 }: GroupedButtonsProps): JSX.Element => {
   const { colors } = useTheme();
 
   const [endButtonPosition, setEndButtonPosition] = useState(0);
 
-  const translateX = useSharedValue(paddingGroupedButton);
+  const translateX = useSharedValue(constants.paddingGroupedButton);
 
   useEffect(() => {
     if (isFirstButtonSelected) {
-      translateX.value = withTiming(paddingGroupedButton);
+      translateX.value = withTiming(constants.paddingGroupedButton, { duration: constants.animationDuration });
     } else {
-      translateX.value = withTiming(endButtonPosition);
+      translateX.value = withTiming(endButtonPosition, { duration: constants.animationDuration });
     }
   }, [isFirstButtonSelected, translateX, endButtonPosition]);
+
+  const commonButtonProps: ButtonProps = {
+    mode: ButtonModes.Mode2,
+    disableShadow: true,
+    style: styles.button,
+    containerStyle: styles.buttonContainer,
+  };
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
   }));
-
-  const toggleButtonToStart = () => {
-    setIsFirstButtonSelected(true);
-  };
-
-  const toggleButtonToEnd = () => {
-    setIsFirstButtonSelected(false);
-  };
 
   const computedStyles = StyleSheet.create({
     groupedButtons: {
@@ -57,7 +60,7 @@ const GroupedButtons = ({
   });
 
   return (
-    <View style={style}>
+    <View style={[{ width }, style]}>
       <Shadow stretch {...defaultShadow(colors.weakShadowColor)}>
         <View
           style={[styles.groupedButtons, computedStyles.groupedButtons]}
@@ -65,20 +68,16 @@ const GroupedButtons = ({
         >
           <Animated.View style={[styles.animatedToggleButton, computedStyles.animatedToggleButton, animatedStyles]} />
           <Button
-            mode={ButtonModes.Mode2}
-            disableShadow
-            text={firstTextButton}
-            buttonStyle={styles.button}
-            textStyle={isFirstButtonSelected ? {} : computedStyles.passiveTextColor}
-            onPress={() => toggleButtonToStart()}
+            {...commonButtonProps}
+            text={firstButtonText}
+            textStyle={isFirstButtonSelected ? undefined : computedStyles.passiveTextColor}
+            onPress={() => setIsFirstButtonSelected(true)}
           />
           <Button
-            mode={ButtonModes.Mode2}
-            disableShadow
-            text={secondTextButton}
-            buttonStyle={styles.button}
-            textStyle={!isFirstButtonSelected ? {} : computedStyles.passiveTextColor}
-            onPress={() => toggleButtonToEnd()}
+            {...commonButtonProps}
+            text={secondButtonText}
+            textStyle={!isFirstButtonSelected ? undefined : computedStyles.passiveTextColor}
+            onPress={() => setIsFirstButtonSelected(false)}
           />
         </View>
       </Shadow>
@@ -89,21 +88,23 @@ const GroupedButtons = ({
 const styles = StyleSheet.create({
   groupedButtons: {
     position: 'relative',
-    padding: paddingGroupedButton,
+    padding: constants.paddingGroupedButton,
     flexDirection: 'row',
-    gap: 2,
     borderRadius: 30,
+  },
+  buttonContainer: {
+    flex: 1,
   },
   button: {
     backgroundColor: 'transparent',
+    paddingHorizontal: 0,
   },
   animatedToggleButton: {
     position: 'absolute',
+    top: constants.paddingGroupedButton,
+    bottom: constants.paddingGroupedButton,
     width: '50%',
-    height: '100%',
     borderRadius: 30,
-    zIndex: 0,
-    top: paddingGroupedButton,
   },
 });
 

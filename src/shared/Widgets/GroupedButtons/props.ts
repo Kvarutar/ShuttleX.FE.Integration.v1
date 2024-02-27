@@ -1,9 +1,10 @@
 import { type StyleProp, type ViewStyle } from 'react-native';
 
 export type GroupedButtonsProps = {
-  style?: StyleProp<ViewStyle>;
+  width: number;
   isFirstButtonSelected: boolean;
-  setIsFirstButtonSelected: React.Dispatch<React.SetStateAction<boolean>>;
-  firstTextButton: string;
-  secondTextButton: string;
+  setIsFirstButtonSelected: (arg0: boolean) => void;
+  firstButtonText: string;
+  secondButtonText: string;
+  style?: StyleProp<ViewStyle>;
 };
