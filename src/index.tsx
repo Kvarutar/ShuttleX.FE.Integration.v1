@@ -11,6 +11,7 @@ import CheckBox from './shared/BrandBook/Checkbox';
 import ApplePayIcon from './shared/BrandBook/Icons/ApplePayIcon';
 import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
 import BaggageIcon from './shared/BrandBook/Icons/BaggageIcon';
+import BigCameraIcon from './shared/BrandBook/Icons/BigCameraIcon';
 import BlueCheck1 from './shared/BrandBook/Icons/BlueCheck1';
 import BlueCheck2 from './shared/BrandBook/Icons/BlueCheck2';
 import BrandFavIcon from './shared/BrandBook/Icons/BrandFavIcon';
@@ -94,6 +95,7 @@ export {
   BarModes,
   BasicXImage,
   BasicXLImage,
+  BigCameraIcon,
   BlueCheck1,
   BlueCheck2,
   Blur,
