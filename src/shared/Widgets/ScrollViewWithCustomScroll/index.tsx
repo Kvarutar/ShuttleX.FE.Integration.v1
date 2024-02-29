@@ -54,7 +54,7 @@ const ScrollViewWithCustomScroll = ({
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
@@ -75,6 +75,9 @@ const ScrollViewWithCustomScroll = ({
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   scrollBar: {
     width: 2,
     borderRadius: 8,
