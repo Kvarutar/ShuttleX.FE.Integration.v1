@@ -10,6 +10,7 @@ import { ButtonModes, ButtonShadows } from './shared/BrandBook/Button/props';
 import CheckBox from './shared/BrandBook/Checkbox';
 import ApplePayIcon from './shared/BrandBook/Icons/ApplePayIcon';
 import ArrowIcon from './shared/BrandBook/Icons/ArrowIcon';
+import ArrowInPrimaryColorIcon from './shared/BrandBook/Icons/ArrowInPrimaryColorIcon';
 import BaggageIcon from './shared/BrandBook/Icons/BaggageIcon';
 import BigCameraIcon from './shared/BrandBook/Icons/BigCameraIcon';
 import BlueCheck1 from './shared/BrandBook/Icons/BlueCheck1';
@@ -21,10 +22,19 @@ import ChatIcon from './shared/BrandBook/Icons/ChatIcon';
 import ClockIcon from './shared/BrandBook/Icons/ClockIcon';
 import CloseIcon from './shared/BrandBook/Icons/CloseIcon';
 import CurrencyIcon from './shared/BrandBook/Icons/CurrencyIcon';
+import DislikeIcon from './shared/BrandBook/Icons/DislikeIcon';
 import DropOffIcon from './shared/BrandBook/Icons/DropOffIcon';
 import EmergencyServiceIcon from './shared/BrandBook/Icons/EmergencyServiceIcon';
 import ExternalMapIcon from './shared/BrandBook/Icons/ExternalMapIcon';
+import FeedbackCleanIcon from './shared/BrandBook/Icons/FeedbackCleanIcon';
+import FeedbackDirtyIcon from './shared/BrandBook/Icons/FeedbackDirtyIcon';
+import FeedbackHeartBrokenIcon from './shared/BrandBook/Icons/FeedbackHeartBrokenIcon';
+import FeedbackHeartIcon from './shared/BrandBook/Icons/FeedbackHeartIcon';
+import FeedbackThumbDownIcon from './shared/BrandBook/Icons/FeedbackThumbDownIcon';
+import FeedbackThumbUpIcon from './shared/BrandBook/Icons/FeedbackThumbUpIcon';
+import FeedbackWheelIcon from './shared/BrandBook/Icons/FeedbackWheelIcon';
 import InputXIcon from './shared/BrandBook/Icons/InputXIcon';
+import LikeIcon from './shared/BrandBook/Icons/LikeIcon';
 import LocationIcon from './shared/BrandBook/Icons/LocationIcon';
 import MapPinIcon from './shared/BrandBook/Icons/MapPinIcon';
 import MasterCardIcon from './shared/BrandBook/Icons/MasterCardIcon';
@@ -51,12 +61,16 @@ import BasicXLImage from './shared/BrandBook/Images/BasicXLImage';
 import ComfortXImage from './shared/BrandBook/Images/ComfortXImage';
 import LocationArrowImage from './shared/BrandBook/Images/LocationArrowImage';
 import MenuUserImage from './shared/BrandBook/Images/MenuUserImage';
+import MenuUserImage2 from './shared/BrandBook/Images/MenuUserImage2';
 import PremiumXImage from './shared/BrandBook/Images/PremiumXImage';
 import PremiumXLImage from './shared/BrandBook/Images/PremiumXLImage';
 import TariffsCarImage, { type TariffType } from './shared/BrandBook/Images/TariffsCarImage';
 import TeslaXImage from './shared/BrandBook/Images/TeslaXImage';
 import Text from './shared/BrandBook/Text';
 import TextInput from './shared/BrandBook/TextInput';
+import { TextInputInputMode } from './shared/BrandBook/TextInput/props';
+import Feedback from './shared/Feedback';
+import { type FeedbackRating, type FeedbackType } from './shared/Feedback/props';
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
 import Popup from './shared/Popup';
 import RoundButton from './shared/RoundButton';
@@ -90,6 +104,7 @@ export {
   type AlertDescendantProps,
   ApplePayIcon,
   ArrowIcon,
+  ArrowInPrimaryColorIcon,
   BaggageIcon,
   Bar,
   BarModes,
@@ -115,10 +130,21 @@ export {
   ComfortXImage,
   CurrencyIcon,
   DatePicker,
+  DislikeIcon,
   DriverArrivedAlert,
   DropOffIcon,
   EmergencyServiceIcon,
   ExternalMapIcon,
+  Feedback,
+  FeedbackCleanIcon,
+  FeedbackDirtyIcon,
+  FeedbackHeartBrokenIcon,
+  FeedbackHeartIcon,
+  type FeedbackRating,
+  FeedbackThumbDownIcon,
+  FeedbackThumbUpIcon,
+  type FeedbackType,
+  FeedbackWheelIcon,
   FlatListWithCustomScroll,
   FreeTimeAlert,
   type FreeTimeAlertProps,
@@ -127,6 +153,7 @@ export {
   GroupedButtons,
   InputXIcon,
   InternetDisconnectedAlert,
+  LikeIcon,
   LocationArrowImage,
   LocationIcon,
   LocationUnavailable,
@@ -135,6 +162,7 @@ export {
   MasterCardIcon,
   MenuIcon,
   MenuUserImage,
+  MenuUserImage2,
   MinusIcon,
   nameof,
   NotificationIcon,
@@ -170,6 +198,7 @@ export {
   TeslaXImage,
   Text,
   TextInput,
+  TextInputInputMode,
   type ThemeContextType,
   ThemeProvider,
   TimeIcon,

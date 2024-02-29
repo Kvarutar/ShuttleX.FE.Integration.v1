@@ -16,5 +16,21 @@
   "LocationUnavailable_settingsButton": "Go to settings",
   "DriverArrivedAlert_description": "Driver has arrived",
   "FreeTimeAlert_description": "Free time ends in {{time}}",
-  "InternetDisconnectedAlert_description": "Internet is disconnected"
+  "InternetDisconnectedAlert_description": "Internet is disconnected",
+  "DatePicker_placeholder": "Date of birth",
+  "Feedback_likeTitle": "Compliment the driver",
+  "Feedback_dislikeTitle": "Reproach the driver",
+  "Feedback_tipsTitle": "Tips for driver",
+  "Feedback_helpButton": "Get help",
+  "Feedback_sendFeedbackButton": "Done",
+  "Feedback_likeOption1": "Nice\natmosphere",
+  "Feedback_likeOption2": "Friendly\ndriver",
+  "Feedback_likeOption3": "Good\ndriving",
+  "Feedback_likeOption4": "Clean\ncar",
+  "Feedback_dislikeOption1": "Bad\natmosphere",
+  "Feedback_dislikeOption2": "Rude\ndriver",
+  "Feedback_dislikeOption3": "Bad\ndriving",
+  "Feedback_dislikeOption4": "Dirty\ncar",
+  "Feedback_TipsPopup_title": "Tips for driver",
+  "Feedback_TipsPopup_addTipsButton": "Add tips"
 }
