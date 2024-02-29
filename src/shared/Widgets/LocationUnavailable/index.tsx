@@ -45,7 +45,7 @@ const LocationUnavailableWithoutI18n = ({ reason, onButtonPress }: LocationUnava
       <BottomWindow windowStyle={styles.container}>
         <Text style={[styles.title, computedStyles.title]}>{title}</Text>
         <Text style={styles.subtitle}>{subtitle}</Text>
-        <Button style={styles.button} text={t('LocationUnavailable_settingsButton')} onPress={onButtonPress} />
+        <Button containerStyle={styles.button} text={t('LocationUnavailable_settingsButton')} onPress={onButtonPress} />
       </BottomWindow>
     </>
   );
