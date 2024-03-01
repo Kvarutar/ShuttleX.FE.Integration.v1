@@ -1,6 +1,6 @@
 import React, { type ReactNode, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Dimensions, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import i18nIntegration from '../../core/locales/i18n';
@@ -28,7 +28,6 @@ import FeedbackDescriptionItem from './FeedbackDescriptionItem';
 import { type FeedbackProps, type FeedbackRating, type FeedbackType, type Option, Options } from './props';
 import TipsPopup from './TipsPopup';
 
-const windowHeight = Dimensions.get('window').height;
 const fadeAnimationDuration = 200;
 
 type FeedbackAdditionalContent = {
@@ -94,6 +93,7 @@ const FeedbackWithoutI18n = ({
   isFeedbackForContractor = false,
   onSendFeedback,
   tipsVariants,
+  style,
 }: FeedbackProps): JSX.Element => {
   const { t } = useTranslation();
   const { colors } = useTheme();
@@ -198,13 +198,13 @@ const FeedbackWithoutI18n = ({
 
   return (
     <>
-      <View>
+      <View style={[styles.wrapper, style]}>
         <View style={styles.header}>
           <RoundButton onPress={onBackButtonPress}>
             <CloseIcon />
           </RoundButton>
         </View>
-        <ScrollViewWithCustomScroll contentContainerStyle={styles.contentContainerStyle} style={styles.contentWrapper}>
+        <ScrollViewWithCustomScroll contentContainerStyle={styles.contentContainerStyle}>
           <View style={styles.content}>
             <Text style={styles.contentTitle}>{title}</Text>
             <MenuUserImage2 url={userImageUrl} />
@@ -223,22 +223,22 @@ const FeedbackWithoutI18n = ({
             {additionalContentBody}
           </View>
         </ScrollViewWithCustomScroll>
-      </View>
-      <View style={styles.buttons}>
-        {!feedback.rating && (
-          <Animated.View
-            style={styles.button}
-            entering={FadeIn.duration(fadeAnimationDuration)}
-            exiting={FadeOut.duration(fadeAnimationDuration)}
-          >
-            <Button mode={ButtonModes.Mode2} text={t('Feedback_helpButton')} />
-          </Animated.View>
-        )}
-        <Button
-          containerStyle={styles.button}
-          text={t('Feedback_sendFeedbackButton')}
-          onPress={() => onSendFeedback(feedback)}
-        />
+        <View style={styles.buttons}>
+          {!feedback.rating && (
+            <Animated.View
+              style={styles.button}
+              entering={FadeIn.duration(fadeAnimationDuration)}
+              exiting={FadeOut.duration(fadeAnimationDuration)}
+            >
+              <Button mode={ButtonModes.Mode2} text={t('Feedback_helpButton')} />
+            </Animated.View>
+          )}
+          <Button
+            containerStyle={styles.button}
+            text={t('Feedback_sendFeedbackButton')}
+            onPress={() => onSendFeedback(feedback)}
+          />
+        </View>
       </View>
       {isTipsPopupVisible && tipsVariants && (
         <TipsPopup onClosePopup={() => setIsTipsPopupVisible(false)} addTip={addTip} tipsVariants={tipsVariants} />
@@ -254,10 +254,14 @@ const Feedback = (props: FeedbackProps) => (
 );
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: 48,
   },
   buttons: {
     flexDirection: 'row',
@@ -267,14 +271,10 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
   },
-  contentWrapper: {
-    height: windowHeight * 0.8,
-  },
   contentContainerStyle: {
     justifyContent: 'space-between',
   },
   content: {
-    marginTop: 48,
     alignItems: 'center',
     gap: 40,
   },

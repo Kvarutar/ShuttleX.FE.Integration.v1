@@ -12,6 +12,7 @@ const ScrollViewWithCustomScroll = ({
   style,
   visibleBarOffset = 10,
   contentContainerStyle,
+  wrapperStyle,
 }: ScrollViewWithCustomScrollProps) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
@@ -54,7 +55,7 @@ const ScrollViewWithCustomScroll = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, wrapperStyle]}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}

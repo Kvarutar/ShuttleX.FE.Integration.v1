@@ -7,4 +7,5 @@ export type ScrollViewWithCustomScrollProps = {
   barStyle?: StyleProp<ViewStyle>;
   visibleBarOffset?: number;
   contentContainerStyle?: StyleProp<ViewStyle>;
+  wrapperStyle?: StyleProp<ViewStyle>;
 };

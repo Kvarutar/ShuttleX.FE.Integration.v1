@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import { type StyleProp, type ViewStyle } from 'react-native';
 
 export enum Options {
   NiceAtmosphere = 'niceAtmosphere',
@@ -34,6 +35,7 @@ export type FeedbackProps = {
   isFeedbackForContractor?: boolean;
   onSendFeedback: (feedback: FeedbackType) => void;
   tipsVariants?: TipsVariants;
+  style?: StyleProp<ViewStyle>;
 };
 
 export type TipsPopupProps = {
