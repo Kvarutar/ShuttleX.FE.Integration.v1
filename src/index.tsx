@@ -1,3 +1,4 @@
+import { emailRegex } from './core/consts/regex.consts';
 import { nameof } from './core/monkey-patch/ts.helper';
 import palettes from './core/themes/palettes';
 import sizes from './core/themes/sizes';
@@ -133,6 +134,7 @@ export {
   DislikeIcon,
   DriverArrivedAlert,
   DropOffIcon,
+  emailRegex,
   EmergencyServiceIcon,
   ExternalMapIcon,
   Feedback,
