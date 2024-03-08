@@ -22,6 +22,7 @@ import CalendarIcon from './shared/BrandBook/Icons/CalendarIcon';
 import ChatIcon from './shared/BrandBook/Icons/ChatIcon';
 import ClockIcon from './shared/BrandBook/Icons/ClockIcon';
 import CloseIcon from './shared/BrandBook/Icons/CloseIcon';
+import CreditCheckIcon from './shared/BrandBook/Icons/CreditCheckIcon';
 import CurrencyIcon from './shared/BrandBook/Icons/CurrencyIcon';
 import DislikeIcon from './shared/BrandBook/Icons/DislikeIcon';
 import DropOffIcon from './shared/BrandBook/Icons/DropOffIcon';
@@ -37,6 +38,7 @@ import FeedbackWheelIcon from './shared/BrandBook/Icons/FeedbackWheelIcon';
 import InputXIcon from './shared/BrandBook/Icons/InputXIcon';
 import LikeIcon from './shared/BrandBook/Icons/LikeIcon';
 import LocationIcon from './shared/BrandBook/Icons/LocationIcon';
+import LockIcon from './shared/BrandBook/Icons/LockIcon';
 import MapPinIcon from './shared/BrandBook/Icons/MapPinIcon';
 import MasterCardIcon from './shared/BrandBook/Icons/MasterCardIcon';
 import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
@@ -129,6 +131,7 @@ export {
   CloseIcon,
   CodeInput,
   ComfortXImage,
+  CreditCheckIcon,
   CurrencyIcon,
   DatePicker,
   DislikeIcon,
@@ -160,6 +163,7 @@ export {
   LocationIcon,
   LocationUnavailable,
   type LocationUnavailableProps,
+  LockIcon,
   MapPinIcon,
   MasterCardIcon,
   MenuIcon,
