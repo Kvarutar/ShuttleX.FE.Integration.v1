@@ -14,7 +14,7 @@ const AlertMeta: Meta<AlertStorybookProps> = {
   component: Alert,
   args: {
     theme: 'light',
-    isSwipeable: true,
+    isClosable: true,
   },
   argTypes: {
     theme: {

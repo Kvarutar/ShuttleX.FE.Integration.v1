@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
@@ -10,8 +10,9 @@ import { type AlertProps } from './props';
 
 const screenWidth = Dimensions.get('window').width;
 const disappearThreshold = screenWidth * 0.3;
+const closeAnimationDuration = 200;
 
-const Alert = ({ children, style, isSwipeable = true, onClose }: AlertProps) => {
+const Alert = ({ children, style, isClosable = true, closeTimeout, onClose }: AlertProps) => {
   const { colors } = useTheme();
 
   const computedStyles = StyleSheet.create({
@@ -21,19 +22,37 @@ const Alert = ({ children, style, isSwipeable = true, onClose }: AlertProps) => 
   });
 
   const translateX = useSharedValue(0);
+
+  const playCloseAnimation = useCallback(
+    (hideDirection: 'left' | 'right') => {
+      translateX.value = withTiming(
+        hideDirection === 'left' ? -screenWidth : screenWidth,
+        { duration: closeAnimationDuration },
+        () => onClose && runOnJS(onClose)(),
+      );
+    },
+    [translateX, onClose],
+  );
+
   const pan = Gesture.Pan()
     .onChange(event => {
       translateX.value = event.translationX;
     })
     .onEnd(event => {
       if (event.translationX > disappearThreshold) {
-        translateX.value = withTiming(screenWidth, {}, () => onClose && runOnJS(onClose)());
+        playCloseAnimation('right');
       } else if (-event.translationX > disappearThreshold) {
-        translateX.value = withTiming(-screenWidth, {}, () => onClose && runOnJS(onClose)());
+        playCloseAnimation('left');
       } else {
         translateX.value = withTiming(0);
       }
     });
+
+  useEffect(() => {
+    if (closeTimeout !== undefined) {
+      setTimeout(() => playCloseAnimation('left'), closeTimeout);
+    }
+  }, [closeTimeout, playCloseAnimation]);
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
@@ -45,7 +64,7 @@ const Alert = ({ children, style, isSwipeable = true, onClose }: AlertProps) => 
     </Shadow>
   );
 
-  if (isSwipeable) {
+  if (isClosable) {
     return (
       <GestureDetector gesture={pan}>
         <Animated.View style={animatedStyles}>{component}</Animated.View>

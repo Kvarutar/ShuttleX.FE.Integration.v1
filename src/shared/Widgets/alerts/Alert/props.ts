@@ -4,7 +4,8 @@ import { type StyleProp, type ViewStyle } from 'react-native';
 export type AlertProps = {
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
-  isSwipeable?: boolean;
+  isClosable?: boolean;
+  closeTimeout?: number;
   onClose?: () => void;
 };
 
