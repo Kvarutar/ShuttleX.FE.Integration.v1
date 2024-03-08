@@ -1,8 +1,13 @@
-import DateTimePicker, { type DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import DateTimePicker, {
+  type AndroidNativeProps,
+  type DateTimePickerEvent,
+  type IOSNativeProps,
+} from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Platform, Pressable, StyleSheet } from 'react-native';
 
 import TimeIcon from '../../BrandBook/Icons/TimeIcon';
+import Modal from '../../BrandBook/Modal';
 import TextInput from '../../BrandBook/TextInput';
 import { type DatePickerProps } from './props';
 
@@ -37,19 +42,26 @@ const TimePicker = ({ style, placeholder, onTimeSelect, formatTime }: DatePicker
     return '';
   };
 
+  const props: IOSNativeProps | AndroidNativeProps = {
+    value: isTimeSelected && time ? time : new Date(),
+    display: 'clock',
+    is24Hour: false,
+    onChange: onChange,
+    mode: 'time',
+  };
+
   return (
     <Pressable style={[styles.datePickerContainer, style]} onPress={showDatepicker}>
       <TextInput value={formatSelectedTime()} editable={false} placeholder={placeholder} />
       <TimeIcon style={styles.calendarIcon} />
-      {isVisible && (
-        <DateTimePicker
-          value={isTimeSelected && time ? time : new Date()}
-          mode="time"
-          display="clock"
-          is24Hour={false}
-          onChange={onChange}
-        />
-      )}
+      {isVisible &&
+        (Platform.OS === 'ios' ? (
+          <Modal>
+            <DateTimePicker {...props} display="spinner" />
+          </Modal>
+        ) : (
+          <DateTimePicker {...props} display="clock" />
+        ))}
     </Pressable>
   );
 };

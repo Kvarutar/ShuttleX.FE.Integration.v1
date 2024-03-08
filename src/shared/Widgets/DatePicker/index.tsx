@@ -1,9 +1,13 @@
-import DateTimePicker, { type DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import DateTimePicker, {
+  type AndroidNativeProps,
+  type DateTimePickerEvent,
+  type IOSNativeProps,
+} from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
-import { Modal, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, StyleSheet } from 'react-native';
 
-import { useTheme } from '../../../core/themes/themeContext';
 import CalendarIcon from '../../BrandBook/Icons/CalendarIcon';
+import Modal from '../../BrandBook/Modal';
 import TextInput from '../../BrandBook/TextInput';
 import { DatePickerDisplay, type DatePickerProps } from './props';
 
@@ -48,21 +52,13 @@ const DatePicker = ({
     return '';
   };
 
-  const props = {
+  const props: IOSNativeProps | AndroidNativeProps = {
     maximumDate: maximumDate,
     minimumDate: minimumDate,
     value: isDateSelected && date ? date : new Date(),
     onChange: onChange,
     display: display,
   };
-
-  const { colors } = useTheme();
-  const computedStyles = StyleSheet.create({
-    modal: {
-      borderColor: colors.borderColor,
-      backgroundColor: colors.backgroundPrimaryColor,
-    },
-  });
 
   return (
     <Pressable style={[styles.datePickerContainer, style]} onPress={showDatepicker}>
@@ -76,12 +72,8 @@ const DatePicker = ({
       <CalendarIcon style={styles.calendarIcon} />
       {isVisible &&
         (Platform.OS === 'ios' ? (
-          <Modal transparent>
-            <View style={styles.modalContainer}>
-              <View style={[styles.modal, computedStyles.modal]}>
-                <DateTimePicker {...props} display="inline" />
-              </View>
-            </View>
+          <Modal>
+            <DateTimePicker {...props} display="inline" />
           </Modal>
         ) : (
           <DateTimePicker {...props} />
@@ -98,16 +90,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     top: 18,
-  },
-  modalContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  modal: {
-    padding: 8,
-    borderRadius: 16,
-    borderWidth: 1,
   },
 });
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut, SlideInDown, SlideOutDown } from 'react-native-reanimated';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import sizes from '../../core/themes/sizes';
 import Blur from '../Blur';
@@ -23,6 +24,12 @@ const Popup = ({
   onCloseButtonPress,
   onBackButtonPress,
 }: PopupProps) => {
+  const computetStyles = StyleSheet.create({
+    container: {
+      paddingVertical: Platform.OS === 'android' ? sizes.paddingVertical : 0,
+    },
+  });
+
   return (
     <>
       {isWithBlur && <Blur />}
@@ -32,9 +39,11 @@ const Popup = ({
           exiting={FadeOut.duration(animationDuration.closeButtonDuration)}
           style={styles.topButtons}
         >
-          <RoundButton onPress={onBackButtonPress}>
-            <ShortArrowIcon />
-          </RoundButton>
+          <SafeAreaView style={computetStyles.container}>
+            <RoundButton onPress={onBackButtonPress}>
+              <ShortArrowIcon />
+            </RoundButton>
+          </SafeAreaView>
         </Animated.View>
       )}
       <View style={[styles.bottom, style]}>
@@ -77,7 +86,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: sizes.paddingHorizontal,
     right: sizes.paddingHorizontal,
-    top: sizes.paddingVertical,
+    top: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
