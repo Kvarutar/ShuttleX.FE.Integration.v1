@@ -26,7 +26,7 @@ const BottomWindow = ({ children, alerts, style, windowStyle }: BottomWindowProp
       entering={FadeIn.duration(animationDuration)}
       exiting={FadeOut.duration(animationDuration)}
     >
-      <View style={styles.alerts}>{alerts}</View>
+      {alerts && <View style={styles.alerts}>{alerts}</View>}
       <Shadow stretch {...shadowProps}>
         <View style={[computedStyles.bottomWindow, styles.bottomWindow, windowStyle]}>{children}</View>
       </Shadow>
