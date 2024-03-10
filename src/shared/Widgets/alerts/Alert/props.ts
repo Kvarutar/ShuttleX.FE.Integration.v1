@@ -10,3 +10,8 @@ export type AlertProps = {
 };
 
 export type AlertDescendantProps = Omit<AlertProps, 'children'>;
+
+export enum AlertRunsOn {
+  Passenger = 'passenger',
+  Contractor = 'contractor',
+}

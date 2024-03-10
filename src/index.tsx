@@ -77,7 +77,7 @@ import { type FeedbackRating, type FeedbackType } from './shared/Feedback/props'
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
 import Popup from './shared/Popup';
 import RoundButton from './shared/RoundButton';
-import { type AlertDescendantProps } from './shared/Widgets/alerts/Alert/props';
+import { type AlertDescendantProps, AlertRunsOn } from './shared/Widgets/alerts/Alert/props';
 import DriverArrivedAlert from './shared/Widgets/alerts/DriverArrivedAlert';
 import FreeTimeAlert from './shared/Widgets/alerts/FreeTimeAlert';
 import { type FreeTimeAlertProps, FreeTimeAlertType } from './shared/Widgets/alerts/FreeTimeAlert/props';
@@ -105,6 +105,7 @@ import { TimerModes } from './shared/Widgets/timerAndStopwatch/Timer/props';
 
 export {
   type AlertDescendantProps,
+  AlertRunsOn,
   ApplePayIcon,
   ArrowIcon,
   ArrowInPrimaryColorIcon,

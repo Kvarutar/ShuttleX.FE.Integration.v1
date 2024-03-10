@@ -40,9 +40,9 @@ const Alert = ({ children, style, isClosable = true, closeTimeout, onClose }: Al
     })
     .onEnd(event => {
       if (event.translationX > disappearThreshold) {
-        playCloseAnimation('right');
+        runOnJS(playCloseAnimation)('right');
       } else if (-event.translationX > disappearThreshold) {
-        playCloseAnimation('left');
+        runOnJS(playCloseAnimation)('left');
       } else {
         translateX.value = withTiming(0);
       }

@@ -6,10 +6,10 @@ import i18nIntegration from '../../../../core/locales/i18n';
 import ClockIcon2 from '../../../BrandBook/Icons/ClockIcon2';
 import Text from '../../../BrandBook/Text';
 import Alert from '../Alert';
-import { type AlertDescendantProps } from '../Alert/props';
+import { type AlertDescendantProps, AlertRunsOn } from '../Alert/props';
 import { type FreeTimeAlertProps } from './props';
 
-const FreeTimeAlertWithoutI18n = ({ time, style, ...props }: FreeTimeAlertProps & AlertDescendantProps) => {
+const FreeTimeAlertWithoutI18n = ({ runsOn, time, style, ...props }: FreeTimeAlertProps & AlertDescendantProps) => {
   const { t } = useTranslation();
 
   const timeTranslations: Record<FreeTimeAlertProps['time']['type'], string> = {
@@ -20,7 +20,16 @@ const FreeTimeAlertWithoutI18n = ({ time, style, ...props }: FreeTimeAlertProps 
   return (
     <Alert style={[styles.container, style]} {...props}>
       <ClockIcon2 />
-      <Text style={styles.text}>{t('FreeTimeAlert_description', { time: timeTranslations[time.type] })}</Text>
+      <Text style={styles.text}>
+        {t(
+          runsOn === AlertRunsOn.Passenger
+            ? 'FreeTimeAlert_passengerDescription'
+            : 'FreeTimeAlert_contractorDescription',
+          {
+            time: timeTranslations[time.type],
+          },
+        )}
+      </Text>
     </Alert>
   );
 };
