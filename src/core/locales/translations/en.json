@@ -33,5 +33,7 @@
   "Feedback_dislikeOption3": "Bad\ndriving",
   "Feedback_dislikeOption4": "Dirty\ncar",
   "Feedback_TipsPopup_title": "Tips for driver",
-  "Feedback_TipsPopup_addTipsButton": "Add tips"
+  "Feedback_TipsPopup_addTipsButton": "Add tips",
+  "Notifications_GroupedButton_firstButton": "General",
+  "Notifications_GroupedButton_secondButton": "Personal"
 }

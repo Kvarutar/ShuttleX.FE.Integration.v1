@@ -1,4 +1,5 @@
 import { emailRegex } from './core/consts/regex.consts';
+import i18nIntegration from './core/locales/i18n';
 import { nameof } from './core/monkey-patch/ts.helper';
 import palettes from './core/themes/palettes';
 import sizes from './core/themes/sizes';
@@ -21,6 +22,7 @@ import BrandTextIcon from './shared/BrandBook/Icons/BrandTextIcon';
 import CalendarIcon from './shared/BrandBook/Icons/CalendarIcon';
 import ChatIcon from './shared/BrandBook/Icons/ChatIcon';
 import ClockIcon from './shared/BrandBook/Icons/ClockIcon';
+import ClockIcon2 from './shared/BrandBook/Icons/ClockIcon2';
 import CloseIcon from './shared/BrandBook/Icons/CloseIcon';
 import CreditCheckIcon from './shared/BrandBook/Icons/CreditCheckIcon';
 import CurrencyIcon from './shared/BrandBook/Icons/CurrencyIcon';
@@ -55,6 +57,7 @@ import ReportIcon from './shared/BrandBook/Icons/ReportIcon';
 import ShortArrowIcon from './shared/BrandBook/Icons/ShortArrowIcon';
 import ShortArrowSmallIcon from './shared/BrandBook/Icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/BrandBook/Icons/SpinnerIcon';
+import StarIcon from './shared/BrandBook/Icons/StarIcon';
 import StatisticsIcon from './shared/BrandBook/Icons/StatitsticsIcon';
 import TimeIcon from './shared/BrandBook/Icons/TimeIcon';
 import VisaIcon from './shared/BrandBook/Icons/VisaIcon';
@@ -75,6 +78,8 @@ import { TextInputInputMode } from './shared/BrandBook/TextInput/props';
 import Feedback from './shared/Feedback';
 import { type FeedbackRating, type FeedbackType } from './shared/Feedback/props';
 import GroupedBrandIcon from './shared/GroupedBrandIcon';
+import Notifications from './shared/Notifications';
+import { type Notification, NotificationType } from './shared/Notifications/props';
 import Popup from './shared/Popup';
 import RoundButton from './shared/RoundButton';
 import { type AlertDescendantProps, AlertRunsOn } from './shared/Widgets/alerts/Alert/props';
@@ -129,6 +134,7 @@ export {
   ChatIcon,
   CheckBox,
   ClockIcon,
+  ClockIcon2,
   CloseIcon,
   CodeInput,
   ComfortXImage,
@@ -157,6 +163,7 @@ export {
   FreeTimeAlertType,
   GroupedBrandIcon,
   GroupedButtons,
+  i18nIntegration,
   InputXIcon,
   InternetDisconnectedAlert,
   LikeIcon,
@@ -172,7 +179,10 @@ export {
   MenuUserImage2,
   MinusIcon,
   nameof,
+  type Notification,
   NotificationIcon,
+  Notifications,
+  NotificationType,
   PaidTimeAlert,
   type PaidTimeAlertProps,
   palettes,
@@ -196,6 +206,7 @@ export {
   ShortArrowSmallIcon,
   sizes,
   SpinnerIcon,
+  StarIcon,
   StatisticsIcon,
   StopWatch,
   SwipeButton,
