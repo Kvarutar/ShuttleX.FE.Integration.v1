@@ -34,6 +34,8 @@
   "Feedback_dislikeOption4": "Dirty\ncar",
   "Feedback_TipsPopup_title": "Tips for driver",
   "Feedback_TipsPopup_addTipsButton": "Add tips",
+  "AddPayment_headerTitle": "Add Card",
+  "AddPayment_saveButton": "Save card",
   "Notifications_GroupedButton_firstButton": "General",
   "Notifications_GroupedButton_secondButton": "Personal"
 }

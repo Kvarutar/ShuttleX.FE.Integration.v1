@@ -9,15 +9,18 @@ export enum TextInputInputMode {
   Search = 'search',
   Email = 'email',
   Url = 'url',
+  Money = 'money',
 }
 
-export type TextInputProps = {
+export type TextInputBaseInputMode = Exclude<TextInputInputMode, TextInputInputMode.Money>;
+
+export type TextInputBaseProps = {
   style?: TextInputPropsNative['style'];
   placeholder?: TextInputPropsNative['placeholder'];
   onChangeText?: TextInputPropsNative['onChangeText'];
   value?: TextInputPropsNative['value'];
   maxLength?: TextInputPropsNative['maxLength'];
-  inputMode?: TextInputInputMode;
+  inputMode?: TextInputBaseInputMode;
   onKeyPress?: TextInputPropsNative['onKeyPress'];
   onEndEditing?: TextInputPropsNative['onEndEditing'];
   editable?: TextInputPropsNative['editable'];
@@ -25,6 +28,11 @@ export type TextInputProps = {
   onBlur?: () => void;
   containerStyle?: StyleProp<ViewStyle>;
   error?: { isError: boolean; message?: string };
+  multiline?: TextInputPropsNative['multiline'];
 };
 
 export type TextInputRef = Pick<TextInput, 'focus' | 'clear' | 'blur' | 'isFocused' | 'setNativeProps'>;
+
+export type TextInputProps = Omit<TextInputBaseProps, 'inputMode'> & {
+  inputMode?: TextInputInputMode;
+};

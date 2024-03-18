@@ -40,13 +40,6 @@ const TipsPopupWithoutI18n = ({ onClosePopup, addTip, tipsVariants }: TipsPopupP
     </Pressable>
   ));
 
-  const USDollar = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
-  });
-
   const onAddTips = () => {
     if (inputedTipAmount) {
       addTip(parseNumber(inputedTipAmount));
@@ -57,41 +50,12 @@ const TipsPopupWithoutI18n = ({ onClosePopup, addTip, tipsVariants }: TipsPopupP
   };
 
   const onChangeText = (text: string) => {
-    setInputedTipAmount(prevText => {
+    setInputedTipAmount(() => {
       if (selectedOption) {
         setSelectedOption(null);
       }
-      // Если текст стирают
-      if (text.length < prevText.length) {
-        if (text.length === 1) {
-          return '';
-        }
-        return USDollar.format(parseNumber(text));
-      }
-
-      const lastSymbol = text[text.length - 1];
-      // Если пользователь пытается поставить вторую точку
-      if (lastSymbol === '.' && prevText.includes('.')) {
-        return prevText;
-      }
-      // Если пользователь пытается поставить точку или ноль в конце
-      if (lastSymbol === '.' || (lastSymbol === '0' && text.includes('.'))) {
-        return text;
-      }
-
-      //если пользователь пытается ввести больше 2-х знаков после запятой
-      const decimalStartAt = text.indexOf('.');
-
-      if (decimalStartAt !== -1) {
-        const decimals = text.split('.');
-        if (decimals[1] && decimals[1].length > 2) {
-          return prevText;
-        }
-      }
-
-      return USDollar.format(parseNumber(text));
+      return text;
     });
-
     setTipsOptions(state => state.fill(false));
   };
 
@@ -101,13 +65,13 @@ const TipsPopupWithoutI18n = ({ onClosePopup, addTip, tipsVariants }: TipsPopupP
       <View style={styles.options}>
         {tipsOptionsItem}
         <TextInput
+          inputMode={TextInputInputMode.Money}
+          placeholder="0"
+          value={inputedTipAmount}
+          onChangeText={onChangeText}
           style={styles.input}
           containerStyle={styles.inputContainer}
           ref={inputRef}
-          inputMode={TextInputInputMode.Numeric}
-          placeholder={USDollar.format(0)}
-          value={inputedTipAmount}
-          onChangeText={onChangeText}
         />
       </View>
       {(Boolean(inputedTipAmount) || selectedOption) && (

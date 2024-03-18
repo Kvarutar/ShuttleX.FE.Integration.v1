@@ -4,6 +4,8 @@ import { nameof } from './core/monkey-patch/ts.helper';
 import palettes from './core/themes/palettes';
 import sizes from './core/themes/sizes';
 import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/themeContext';
+import AddCard from './shared/AddCard';
+import { type Card } from './shared/AddCard/props';
 import Bar from './shared/Bar';
 import { BarModes } from './shared/Bar/types';
 import Blur from './shared/Blur';
@@ -27,6 +29,7 @@ import CloseIcon from './shared/BrandBook/Icons/CloseIcon';
 import CreditCheckIcon from './shared/BrandBook/Icons/CreditCheckIcon';
 import CurrencyIcon from './shared/BrandBook/Icons/CurrencyIcon';
 import DislikeIcon from './shared/BrandBook/Icons/DislikeIcon';
+import DropDownIcon from './shared/BrandBook/Icons/DropDownArrowIcon';
 import DropOffIcon from './shared/BrandBook/Icons/DropOffIcon';
 import EmergencyServiceIcon from './shared/BrandBook/Icons/EmergencyServiceIcon';
 import ExternalMapIcon from './shared/BrandBook/Icons/ExternalMapIcon';
@@ -41,6 +44,7 @@ import InputXIcon from './shared/BrandBook/Icons/InputXIcon';
 import LikeIcon from './shared/BrandBook/Icons/LikeIcon';
 import LocationIcon from './shared/BrandBook/Icons/LocationIcon';
 import LockIcon from './shared/BrandBook/Icons/LockIcon';
+import MaestroIcon from './shared/BrandBook/Icons/MaestroIcon';
 import MapPinIcon from './shared/BrandBook/Icons/MapPinIcon';
 import MasterCardIcon from './shared/BrandBook/Icons/MasterCardIcon';
 import MenuIcon from './shared/BrandBook/Icons/MenuIcon';
@@ -59,7 +63,9 @@ import ShortArrowSmallIcon from './shared/BrandBook/Icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/BrandBook/Icons/SpinnerIcon';
 import StarIcon from './shared/BrandBook/Icons/StarIcon';
 import StatisticsIcon from './shared/BrandBook/Icons/StatitsticsIcon';
+import SuccessIcon from './shared/BrandBook/Icons/SuccessIcon';
 import TimeIcon from './shared/BrandBook/Icons/TimeIcon';
+import UnknownCardIcon from './shared/BrandBook/Icons/UnknownCardIcon';
 import VisaIcon from './shared/BrandBook/Icons/VisaIcon';
 import WarningIcon from './shared/BrandBook/Icons/WarningIcon';
 import BasicXImage from './shared/BrandBook/Images/BasicXImage';
@@ -107,8 +113,11 @@ import TimePicker from './shared/Widgets/TimePicker';
 import StopWatch from './shared/Widgets/timerAndStopwatch/StopWatch';
 import Timer from './shared/Widgets/timerAndStopwatch/Timer';
 import { TimerModes } from './shared/Widgets/timerAndStopwatch/Timer/props';
+import { getPaymentIcon } from './utils/payment/cardIcons';
+import { type PaymentMethod } from './utils/payment/types';
 
 export {
+  AddCard,
   type AlertDescendantProps,
   AlertRunsOn,
   ApplePayIcon,
@@ -131,6 +140,7 @@ export {
   ButtonModes,
   ButtonShadows,
   CalendarIcon,
+  type Card,
   ChatIcon,
   CheckBox,
   ClockIcon,
@@ -143,6 +153,7 @@ export {
   DatePicker,
   DislikeIcon,
   DriverArrivedAlert,
+  DropDownIcon,
   DropOffIcon,
   emailRegex,
   EmergencyServiceIcon,
@@ -161,6 +172,7 @@ export {
   FreeTimeAlert,
   type FreeTimeAlertProps,
   FreeTimeAlertType,
+  getPaymentIcon,
   GroupedBrandIcon,
   GroupedButtons,
   i18nIntegration,
@@ -172,6 +184,7 @@ export {
   LocationUnavailable,
   type LocationUnavailableProps,
   LockIcon,
+  MaestroIcon,
   MapPinIcon,
   MasterCardIcon,
   MenuIcon,
@@ -188,6 +201,7 @@ export {
   palettes,
   PassengerIcon,
   PassengerIcon2,
+  type PaymentMethod,
   PayPalIcon,
   PhoneIcon,
   PhoneInput,
@@ -209,6 +223,7 @@ export {
   StarIcon,
   StatisticsIcon,
   StopWatch,
+  SuccessIcon,
   SwipeButton,
   SwipeButtonModes,
   TariffsCarImage,
@@ -223,6 +238,7 @@ export {
   TimePicker,
   Timer,
   TimerModes,
+  UnknownCardIcon,
   useTheme,
   VisaIcon,
   WarningIcon,

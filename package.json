@@ -57,6 +57,7 @@
   "dependencies": {
     "@react-native/eslint-config": "^0.72.2",
     "color-interpolate": "^1.0.5",
+    "credit-card-type": "^10.0.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
