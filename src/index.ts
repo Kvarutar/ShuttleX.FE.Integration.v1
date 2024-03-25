@@ -1,5 +1,7 @@
 import { emailRegex } from './core/consts/regex.consts';
 import i18nIntegration from './core/locales/i18n';
+import { AnimatedMarker } from './core/map/hooks';
+import lightMapStyle from './core/map/lightMapStyle.json';
 import { nameof } from './core/monkey-patch/ts.helper';
 import palettes from './core/themes/palettes';
 import sizes from './core/themes/sizes';
@@ -72,6 +74,7 @@ import BasicXImage from './shared/BrandBook/Images/BasicXImage';
 import BasicXLImage from './shared/BrandBook/Images/BasicXLImage';
 import ComfortXImage from './shared/BrandBook/Images/ComfortXImage';
 import LocationArrowImage from './shared/BrandBook/Images/LocationArrowImage';
+import LocationArrowImage2 from './shared/BrandBook/Images/LocationArrowImage2';
 import MenuUserImage from './shared/BrandBook/Images/MenuUserImage';
 import MenuUserImage2 from './shared/BrandBook/Images/MenuUserImage2';
 import PremiumXImage from './shared/BrandBook/Images/PremiumXImage';
@@ -113,13 +116,26 @@ import TimePicker from './shared/Widgets/TimePicker';
 import StopWatch from './shared/Widgets/timerAndStopwatch/StopWatch';
 import Timer from './shared/Widgets/timerAndStopwatch/Timer';
 import { TimerModes } from './shared/Widgets/timerAndStopwatch/Timer/props';
+import { degToRad, radToDeg } from './utils';
+import { calculateExtendedHeading, useCompass } from './utils/compass';
+import { getAngleBetweenPoints, getDistanceBetweenPoints, useGeolocationStartWatch } from './utils/geolocation';
+import { useNetworkConnectionStartWatch } from './utils/network';
 import { getPaymentIcon } from './utils/payment/cardIcons';
 import { type PaymentMethod } from './utils/payment/types';
+import {
+  checkCameraUsagePermission,
+  checkGalleryUsagePermission,
+  checkGeolocationPermissionAndAccuracy,
+  requestCameraUsagePermission,
+  requestGalleryUsagePermission,
+  requestGeolocationPermission,
+} from './utils/permissions';
 
 export {
   AddCard,
   type AlertDescendantProps,
   AlertRunsOn,
+  AnimatedMarker,
   ApplePayIcon,
   ArrowIcon,
   ArrowInPrimaryColorIcon,
@@ -139,10 +155,14 @@ export {
   Button,
   ButtonModes,
   ButtonShadows,
+  calculateExtendedHeading,
   CalendarIcon,
   type Card,
   ChatIcon,
   CheckBox,
+  checkCameraUsagePermission,
+  checkGalleryUsagePermission,
+  checkGeolocationPermissionAndAccuracy,
   ClockIcon,
   ClockIcon2,
   CloseIcon,
@@ -151,6 +171,7 @@ export {
   CreditCheckIcon,
   CurrencyIcon,
   DatePicker,
+  degToRad,
   DislikeIcon,
   DriverArrivedAlert,
   DropDownIcon,
@@ -172,14 +193,18 @@ export {
   FreeTimeAlert,
   type FreeTimeAlertProps,
   FreeTimeAlertType,
+  getAngleBetweenPoints,
+  getDistanceBetweenPoints,
   getPaymentIcon,
   GroupedBrandIcon,
   GroupedButtons,
   i18nIntegration,
   InputXIcon,
   InternetDisconnectedAlert,
+  lightMapStyle,
   LikeIcon,
   LocationArrowImage,
+  LocationArrowImage2,
   LocationIcon,
   LocationUnavailable,
   type LocationUnavailableProps,
@@ -213,7 +238,11 @@ export {
   PreferencesIcon,
   PremiumXImage,
   PremiumXLImage,
+  radToDeg,
   ReportIcon,
+  requestCameraUsagePermission,
+  requestGalleryUsagePermission,
+  requestGeolocationPermission,
   RoundButton,
   ScrollViewWithCustomScroll,
   ShortArrowIcon,
@@ -239,6 +268,9 @@ export {
   Timer,
   TimerModes,
   UnknownCardIcon,
+  useCompass,
+  useGeolocationStartWatch,
+  useNetworkConnectionStartWatch,
   useTheme,
   VisaIcon,
   WarningIcon,

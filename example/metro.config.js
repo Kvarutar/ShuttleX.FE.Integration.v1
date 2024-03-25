@@ -45,4 +45,19 @@ const config = {
 
 config.resolver.resolverMainFields.unshift('sbmodern');
 
+// https://docs.expo.dev/versions/latest/config/metro/#mocking-modules
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  // Excludes modules incompatible with the Expo managed workflow from example app
+  if (
+    moduleName === 'react-native-sensors' ||
+    moduleName === 'react-native-device-info' ||
+    moduleName === 'react-native-device-info' ||
+    moduleName === 'react-native-permissions'
+  ) {
+    return { type: 'empty' };
+  }
+
+  return context.resolveRequest(context, moduleName, platform);
+};
+
 module.exports = config;
