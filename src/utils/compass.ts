@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { orientation, SensorTypes, setUpdateIntervalForType } from 'react-native-sensors';
 
-import { radToDeg } from '.';
+import { boolToSign, radToDeg } from '.';
 
 type ExtendedHeadingValueType = {
   current: number;
@@ -57,13 +57,10 @@ const useCompass = () => {
 
         if (extendedHeadingValue) {
           headingRef.current = extendedHeadingValue;
-          let reverseSignForIOS = 1;
-          if (Platform.OS === 'ios') {
-            reverseSignForIOS = -1;
-          }
+          const sign = boolToSign(Platform.OS === 'android');
           heading.value = {
-            heading: extendedHeadingValue.heading * reverseSignForIOS,
-            headingExtended: extendedHeadingValue.headingExtended * reverseSignForIOS,
+            heading: extendedHeadingValue.heading * sign,
+            headingExtended: extendedHeadingValue.headingExtended * sign,
           };
         }
       },
