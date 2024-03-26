@@ -1,3 +1,4 @@
+import { type ReactNode } from 'react';
 import { type StyleProp, type ViewStyle } from 'react-native';
 
 export type BottomWindowWithGestureProps = {
@@ -6,6 +7,8 @@ export type BottomWindowWithGestureProps = {
   style?: StyleProp<ViewStyle>;
   visiblePartStyles?: StyleProp<ViewStyle>;
   hiddenPartStyles?: StyleProp<ViewStyle>;
+  hiddenPartContainerStyles?: StyleProp<ViewStyle>;
+  hiddenPartButton?: ReactNode;
   setIsOpened?: (isOpened: boolean) => void;
 };
 

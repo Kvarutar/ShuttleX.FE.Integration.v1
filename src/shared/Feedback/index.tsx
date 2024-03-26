@@ -154,7 +154,7 @@ const FeedbackWithoutI18n = ({
           </Animated.View>
         ),
         feedbackTitle: t('Feedback_likeTitle'),
-        tips: (
+        tips: tipsVariants && (
           <Pressable onPress={() => setIsTipsPopupVisible(true)}>
             <Bar style={styles.tips}>
               <Text style={styles.tipsTitle}>{t('Feedback_tipsTitle')}</Text>

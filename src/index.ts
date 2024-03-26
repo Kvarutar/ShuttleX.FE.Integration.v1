@@ -82,6 +82,7 @@ import PremiumXImage from './shared/BrandBook/Images/PremiumXImage';
 import PremiumXLImage from './shared/BrandBook/Images/PremiumXLImage';
 import TariffsCarImage, { type TariffType } from './shared/BrandBook/Images/TariffsCarImage';
 import TeslaXImage from './shared/BrandBook/Images/TeslaXImage';
+import Separator from './shared/BrandBook/Separator';
 import Text from './shared/BrandBook/Text';
 import TextInput from './shared/BrandBook/TextInput';
 import { TextInputInputMode } from './shared/BrandBook/TextInput/props';
@@ -121,6 +122,7 @@ import Timer from './shared/Widgets/timerAndStopwatch/Timer';
 import { TimerModes } from './shared/Widgets/timerAndStopwatch/Timer/props';
 import { degToRad, radToDeg } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
+import { useDebounce } from './utils/debounce';
 import { getAngleBetweenPoints, getDistanceBetweenPoints, useGeolocationStartWatch } from './utils/geolocation';
 import { useNetworkConnectionStartWatch } from './utils/network';
 import { getPaymentIcon } from './utils/payment/cardIcons';
@@ -251,6 +253,7 @@ export {
   requestGeolocationPermission,
   RoundButton,
   ScrollViewWithCustomScroll,
+  Separator,
   ShortArrowIcon,
   ShortArrowSmallIcon,
   sizes,
@@ -275,6 +278,7 @@ export {
   TimerModes,
   UnknownCardIcon,
   useCompass,
+  useDebounce,
   useGeolocationStartWatch,
   useNetworkConnectionStartWatch,
   useTheme,

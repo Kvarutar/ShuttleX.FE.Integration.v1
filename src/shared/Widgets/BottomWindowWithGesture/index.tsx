@@ -13,6 +13,7 @@ import Animated, {
 import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/themeContext';
 import Blur from '../../Blur';
+import Separator from '../../BrandBook/Separator';
 import BottomWindow from '../BottomWindow';
 import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type BottomWindowWithGestureProps, type BottomWindowWithGestureRef } from './props';
@@ -22,7 +23,19 @@ const duration = 1200;
 const dampingRatio = 0.9;
 
 const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWindowWithGestureProps>(
-  ({ visiblePart, hiddenPart, style, visiblePartStyles, hiddenPartStyles, setIsOpened }, ref) => {
+  (
+    {
+      visiblePart,
+      hiddenPart,
+      style,
+      visiblePartStyles,
+      hiddenPartStyles,
+      setIsOpened,
+      hiddenPartContainerStyles,
+      hiddenPartButton,
+    },
+    ref,
+  ) => {
     const [hiddenPartHeight, setHiddenPartHeight] = useState<number>(-height);
 
     const [isBlur, setIsBlur] = useState<boolean>(false);
@@ -120,14 +133,21 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
               </View>
             </GestureDetector>
             <View onLayout={onHiddenPartLayout} style={styles.hiddenWrapper}>
-              <View style={[styles.separator, computedStyles.separator]} />
+              <Separator style={styles.separator} />
               <ScrollViewWithCustomScroll
                 style={[computedStyles.hiddenPartStyle, hiddenPartStyles]}
                 barStyle={styles.scrollBar}
+                contentContainerStyle={hiddenPartContainerStyles}
                 visibleBarOffset={10}
               >
                 {hiddenPart}
               </ScrollViewWithCustomScroll>
+              {hiddenPartButton && (
+                <>
+                  <Separator style={styles.buttonSeparator} />
+                  {hiddenPartButton}
+                </>
+              )}
             </View>
           </BottomWindow>
         </Animated.View>
@@ -172,10 +192,10 @@ const styles = StyleSheet.create({
     right: -10,
   },
   separator: {
-    flex: 1,
-    borderStyle: 'dashed',
-    borderBottomWidth: 1,
     marginBottom: 30,
+  },
+  buttonSeparator: {
+    marginVertical: 20,
   },
   hiddenWrapper: {
     paddingBottom: sizes.paddingVertical,

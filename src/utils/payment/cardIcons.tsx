@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ApplePayIcon from '../../shared/BrandBook/Icons/ApplePayIcon';
+import CashIcon from '../../shared/BrandBook/Icons/CashIcon';
 import MaestroIcon from '../../shared/BrandBook/Icons/MaestroIcon';
 import MasterCardIcon from '../../shared/BrandBook/Icons/MasterCardIcon';
 import PayPalIcon from '../../shared/BrandBook/Icons/PayPalIcon';
@@ -20,6 +21,8 @@ export const getPaymentIcon = (type: PaymentMethod['method']) => {
       return <ApplePayIcon />;
     case 'maestro':
       return <MaestroIcon />;
+    case 'cash':
+      return <CashIcon />;
     default:
       return <UnknownCardIcon />;
   }
