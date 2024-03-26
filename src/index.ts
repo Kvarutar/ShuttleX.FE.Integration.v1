@@ -42,6 +42,7 @@ import FeedbackHeartIcon from './shared/BrandBook/Icons/FeedbackHeartIcon';
 import FeedbackThumbDownIcon from './shared/BrandBook/Icons/FeedbackThumbDownIcon';
 import FeedbackThumbUpIcon from './shared/BrandBook/Icons/FeedbackThumbUpIcon';
 import FeedbackWheelIcon from './shared/BrandBook/Icons/FeedbackWheelIcon';
+import GroupedBrandIconMini from './shared/BrandBook/Icons/GroupedBrandIconMini';
 import InputXIcon from './shared/BrandBook/Icons/InputXIcon';
 import LikeIcon from './shared/BrandBook/Icons/LikeIcon';
 import LocationIcon from './shared/BrandBook/Icons/LocationIcon';
@@ -108,6 +109,8 @@ import FlatListWithCustomScroll from './shared/Widgets/FlatListWithCustomScroll'
 import GroupedButtons from './shared/Widgets/GroupedButtons';
 import LocationUnavailable from './shared/Widgets/LocationUnavailable';
 import { type LocationUnavailableProps } from './shared/Widgets/LocationUnavailable/props';
+import MenuBase from './shared/Widgets/MenuBase';
+import { type MenuNavigation } from './shared/Widgets/MenuBase/props';
 import PhoneInput from './shared/Widgets/PhoneInput';
 import ScrollViewWithCustomScroll from './shared/Widgets/ScrollViewWithCustomScroll';
 import SwipeButton from './shared/Widgets/SwipeButton';
@@ -197,6 +200,7 @@ export {
   getDistanceBetweenPoints,
   getPaymentIcon,
   GroupedBrandIcon,
+  GroupedBrandIconMini,
   GroupedButtons,
   i18nIntegration,
   InputXIcon,
@@ -212,7 +216,9 @@ export {
   MaestroIcon,
   MapPinIcon,
   MasterCardIcon,
+  MenuBase,
   MenuIcon,
+  type MenuNavigation,
   MenuUserImage,
   MenuUserImage2,
   MinusIcon,
