@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, type ImageStyle, StyleSheet } from 'react-native';
 
 const PremiumXLImage = ({ style }: { style?: ImageStyle }) => (
-  <Image style={[styles.img, style]} source={require('../../../assets/img/PremiumXL.png')} />
+  <Image style={[styles.img, style]} source={require('../../assets/img/PremiumXL.png')} />
 );
 
 const styles = StyleSheet.create({

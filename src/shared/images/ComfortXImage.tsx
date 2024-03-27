@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, type ImageStyle, StyleSheet } from 'react-native';
 
 const ComfortXImage = ({ style }: { style?: ImageStyle }) => (
-  <Image style={[styles.img, style]} source={require('../../../assets/img/ComfortX.png')} />
+  <Image style={[styles.img, style]} source={require('../../assets/img/ComfortX.png')} />
 );
 
 const styles = StyleSheet.create({

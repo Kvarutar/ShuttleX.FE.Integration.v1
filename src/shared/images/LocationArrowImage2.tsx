@@ -11,9 +11,9 @@ const LocationArrowImage2 = ({
   type?: 'outlined' | 'filled';
 }): JSX.Element => {
   if (type === 'outlined') {
-    return <Image style={[styles.img, style]} source={require('../../../assets/img/LocationArrow2_1.png')} />;
+    return <Image style={[styles.img, style]} source={require('../../assets/img/LocationArrow2_1.png')} />;
   }
-  return <Image style={[styles.img, style]} source={require('../../../assets/img/LocationArrow2_2.png')} />;
+  return <Image style={[styles.img, style]} source={require('../../assets/img/LocationArrow2_2.png')} />;
 };
 
 const styles = StyleSheet.create({
