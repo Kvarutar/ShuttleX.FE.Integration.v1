@@ -1,12 +1,12 @@
 import React from 'react';
 
-import ApplePayIcon from '../../shared/BrandBook/Icons/ApplePayIcon';
-import CashIcon from '../../shared/BrandBook/Icons/CashIcon';
-import MaestroIcon from '../../shared/BrandBook/Icons/MaestroIcon';
-import MasterCardIcon from '../../shared/BrandBook/Icons/MasterCardIcon';
-import PayPalIcon from '../../shared/BrandBook/Icons/PayPalIcon';
-import UnknownCardIcon from '../../shared/BrandBook/Icons/UnknownCardIcon';
-import VisaIcon from '../../shared/BrandBook/Icons/VisaIcon';
+import ApplePayIcon from '../../shared/icons/ApplePayIcon';
+import CashIcon from '../../shared/icons/CashIcon';
+import MaestroIcon from '../../shared/icons/MaestroIcon';
+import MasterCardIcon from '../../shared/icons/MasterCardIcon';
+import PayPalIcon from '../../shared/icons/PayPalIcon';
+import UnknownCardIcon from '../../shared/icons/UnknownCardIcon';
+import VisaIcon from '../../shared/icons/VisaIcon';
 import { type PaymentMethod } from './types';
 
 export const getPaymentIcon = (type: PaymentMethod['method']) => {

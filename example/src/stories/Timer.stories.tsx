@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Alert, View } from 'react-native';
 import { palettes, type ThemeContextType, Timer, useTheme } from 'shuttlex-integration';
 
-import { TimerModes, type TimerProps } from '../../../src/shared/Widgets/timerAndStopwatch/Timer/props';
+import { TimerModes, type TimerProps } from '../../../src/shared/molecules/timerAndStopwatch/Timer/props';
 
 const modes: TimerProps['mode'][] = Object.values(TimerModes);
 

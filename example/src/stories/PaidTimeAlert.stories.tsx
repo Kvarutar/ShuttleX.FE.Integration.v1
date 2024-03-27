@@ -3,7 +3,7 @@ import { type Meta, type StoryObj } from '@storybook/react-native';
 import React, { useEffect } from 'react';
 import { PaidTimeAlert, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { type PaidTimeAlertProps } from '../../../src/shared/Widgets/alerts/PaidTimeAlert/props';
+import { type PaidTimeAlertProps } from '../../../src/shared/molecules/alerts/PaidTimeAlert/props';
 
 type PaidTimeAlertStorybookProps = { theme: ThemeContextType['themeMode'] } & PaidTimeAlertProps;
 

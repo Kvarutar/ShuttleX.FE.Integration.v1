@@ -3,7 +3,7 @@ import { type Meta, type StoryObj } from '@storybook/react-native';
 import React, { useEffect } from 'react';
 import { Button, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { ButtonModes, type ButtonProps, ButtonShadows } from '../../../src/shared/BrandBook/Button/props';
+import { ButtonModes, type ButtonProps, ButtonShadows } from '../../../src/shared/atoms/Button/props';
 
 const ButtonMeta: Meta<typeof Button> = {
   title: 'Button',

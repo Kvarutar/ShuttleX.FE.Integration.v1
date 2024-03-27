@@ -1,4 +1,4 @@
-import { type countryFlags } from '../../shared/BrandBook/Icons/Flags';
+import { type countryFlags } from '../../shared/icons/Flags';
 
 export type countryDtosProps = {
   countryCode: keyof typeof countryFlags;

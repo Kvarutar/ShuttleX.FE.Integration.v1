@@ -3,7 +3,7 @@ import { type Meta, type StoryObj } from '@storybook/react-native';
 import React, { useEffect } from 'react';
 import { Bar, CalendarIcon, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { BarModes, type BarProps } from '../../../src/shared/Bar/types';
+import { BarModes, type BarProps } from '../../../src/shared/atoms/Bar/types';
 
 const modes: BarProps['mode'][] = Object.values(BarModes);
 

@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Alert } from 'react-native';
 import { palettes, PlannedTripAlert, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { type PlannedTripAlertProps } from '../../../src/shared/Widgets/alerts/PlannedTripAlert/props';
+import { type PlannedTripAlertProps } from '../../../src/shared/molecules/alerts/PlannedTripAlert/props';
 
 const locales = ['en-US', 'it-IT', 'ar-EG'];
 

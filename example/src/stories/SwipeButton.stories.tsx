@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 import { palettes, SwipeButton, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { SwipeButtonModes, type SwipeButtonProps } from '../../../src/shared/Widgets/SwipeButton/props';
+import { SwipeButtonModes, type SwipeButtonProps } from '../../../src/shared/molecules/SwipeButton/props';
 
 const modes: SwipeButtonProps['mode'][] = Object.values(SwipeButtonModes);
 

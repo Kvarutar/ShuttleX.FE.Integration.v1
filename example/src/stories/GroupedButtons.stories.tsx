@@ -3,7 +3,7 @@ import { type Meta, type StoryObj } from '@storybook/react-native';
 import React, { useEffect, useState } from 'react';
 import { GroupedButtons, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { type GroupedButtonsProps } from '../../../src/shared/Widgets/GroupedButtons/props';
+import { type GroupedButtonsProps } from '../../../src/shared/molecules/GroupedButtons/props';
 
 const GroupedButtonsMeta: Meta<typeof GroupedButtons> = {
   title: 'GroupedButtons',

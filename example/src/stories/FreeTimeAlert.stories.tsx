@@ -2,8 +2,8 @@ import { type Meta } from '@storybook/react-native';
 import React, { useEffect } from 'react';
 import { FreeTimeAlert, FreeTimeAlertType, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { AlertRunsOn } from '../../../src/shared/Widgets/alerts/Alert/props';
-import { type FreeTimeAlertProps } from '../../../src/shared/Widgets/alerts/FreeTimeAlert/props';
+import { AlertRunsOn } from '../../../src/shared/molecules/alerts/Alert/props';
+import { type FreeTimeAlertProps } from '../../../src/shared/molecules/alerts/FreeTimeAlert/props';
 
 type FreeTimeAlertStorybookProps = { theme: ThemeContextType['themeMode'] } & Omit<FreeTimeAlertProps, 'time'> & {
     timeNumber: FreeTimeAlertProps['time']['number'];

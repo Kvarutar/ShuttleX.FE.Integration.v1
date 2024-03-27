@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { palettes, Text, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { TextElipsizeMode } from '../../../src/shared/BrandBook/Text/props';
+import { TextElipsizeMode } from '../../../src/shared/atoms/Text/props';
 
 const TextMeta: Meta<typeof Text> = {
   title: 'Text',

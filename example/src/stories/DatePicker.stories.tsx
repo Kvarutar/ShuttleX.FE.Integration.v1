@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { DatePicker, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { DatePickerDisplay, type DatePickerProps } from '../../../src/shared/Widgets/DatePicker/props';
+import { DatePickerDisplay, type DatePickerProps } from '../../../src/shared/molecules/DatePicker/props';
 
 const formatDate = (date: Date): string =>
   new Intl.DateTimeFormat('en', {

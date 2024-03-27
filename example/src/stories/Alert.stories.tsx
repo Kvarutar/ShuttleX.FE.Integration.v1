@@ -4,8 +4,8 @@ import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import Alert from '../../../src/shared/Widgets/alerts/Alert';
-import { type AlertProps } from '../../../src/shared/Widgets/alerts/Alert/props';
+import Alert from '../../../src/shared/molecules/alerts/Alert';
+import { type AlertProps } from '../../../src/shared/molecules/alerts/Alert/props';
 
 type AlertStorybookProps = AlertProps & { theme: ThemeContextType['themeMode'] };
 

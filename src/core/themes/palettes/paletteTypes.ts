@@ -1,4 +1,4 @@
-import { type ButtonModes } from '../../../shared/BrandBook/Button/props';
+import { type ButtonModes } from '../../../shared/atoms/Button/props';
 
 type PaletteButtonMode = {
   backgroundColor: string;
