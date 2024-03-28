@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react';
+import { type StyleProp, type ViewStyle } from 'react-native';
 
 export type MenuNavigationBlocks = 'wallet' | 'notifications' | 'help' | 'subscription' | 'becomeDriver';
 
@@ -17,4 +18,5 @@ export type MenuBaseProps = {
   userName?: string;
   userSurname?: string;
   additionalContent?: ReactNode;
+  style?: StyleProp<ViewStyle>;
 };

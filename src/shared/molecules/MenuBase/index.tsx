@@ -41,6 +41,7 @@ const MenuBase = ({
   userSurname,
   additionalContent,
   menuNavigation,
+  style,
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
@@ -97,7 +98,7 @@ const MenuBase = ({
     <>
       <Blur animationDuration={constants.animationDurations.blur} />
       <GestureDetector gesture={pan}>
-        <Animated.View style={[styles.window, animatedStyles]}>
+        <Animated.View style={[styles.window, animatedStyles, style]}>
           <SafeAreaView style={[styles.wrapper, computedStyles.wrapper]}>
             <View style={[styles.container, computedStyles.container]}>
               <View style={styles.content}>
