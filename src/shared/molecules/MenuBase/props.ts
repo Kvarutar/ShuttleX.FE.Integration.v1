@@ -13,7 +13,7 @@ export type MenuNavigation = Partial<Record<MenuNavigationBlocks, MenuNavigation
 export type MenuBaseProps = {
   onClose: () => void;
   menuNavigation: MenuNavigation;
-  userImage?: string;
+  userImageUri?: string;
   userName?: string;
   userSurname?: string;
   additionalContent?: ReactNode;

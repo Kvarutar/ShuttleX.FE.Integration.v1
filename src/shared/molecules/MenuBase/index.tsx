@@ -34,7 +34,14 @@ const navigationIcons: Record<MenuNavigationBlocks, ReactNode> = {
   wallet: <WalletIcon />,
 };
 
-const MenuBase = ({ onClose, userImage, userName, userSurname, additionalContent, menuNavigation }: MenuBaseProps) => {
+const MenuBase = ({
+  onClose,
+  userImageUri,
+  userName,
+  userSurname,
+  additionalContent,
+  menuNavigation,
+}: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
 
@@ -95,7 +102,7 @@ const MenuBase = ({ onClose, userImage, userName, userSurname, additionalContent
             <View style={[styles.container, computedStyles.container]}>
               <View style={styles.content}>
                 <View style={styles.profile}>
-                  <MenuUserImage url={userImage ?? ''} />
+                  <MenuUserImage url={userImageUri ?? ''} />
                   <View>
                     <Text style={styles.name}>{userName ?? ''}</Text>
                     <Text style={styles.surname}>{userSurname ?? ''}</Text>
