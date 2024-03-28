@@ -89,7 +89,7 @@ const MapView = ({
   });
 
   useEffect(() => {
-    if (geolocationCoordinates && mapRef.current) {
+    if (geolocationCoordinates !== undefined && mapRef.current) {
       // Sets camera without animation on first map render
       if (isMapLoaded && isCameraAnimatingFirstTime.current) {
         mapRef.current.setCamera({ center: geolocationCoordinates, zoom: constants.cameraZoom });
