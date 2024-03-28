@@ -1,0 +1,50 @@
+import React from 'react';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+
+import RoundButton from '../../shared/atoms/RoundButton';
+import LocationArrowImage2 from '../../shared/images/LocationArrowImage2';
+import { type MapCameraModeButtonProps } from './types';
+
+const constants = {
+  rotationAnimationDuration: 300,
+  defaultIconAngle: '31deg',
+};
+
+const MapCameraModeButton = ({ mode, onPress, style }: MapCameraModeButtonProps) => {
+  const iconAngle = useSharedValue(constants.defaultIconAngle);
+
+  const rotationAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: iconAngle.value }],
+  }));
+
+  const changeIconAngle = (angle: string) => {
+    iconAngle.value = withTiming(angle, {
+      duration: constants.rotationAnimationDuration,
+    });
+  };
+
+  const getIcon = (): JSX.Element => {
+    switch (mode) {
+      case 'free': {
+        changeIconAngle(constants.defaultIconAngle);
+        return <LocationArrowImage2 />;
+      }
+      case 'follow': {
+        changeIconAngle(constants.defaultIconAngle);
+        return <LocationArrowImage2 type="filled" />;
+      }
+      case 'followWithCompass': {
+        changeIconAngle('0deg');
+        return <LocationArrowImage2 type="filled" />;
+      }
+    }
+  };
+
+  return (
+    <RoundButton style={style} onPress={onPress}>
+      <Animated.View style={rotationAnimatedStyle}>{getIcon()}</Animated.View>
+    </RoundButton>
+  );
+};
+
+export default MapCameraModeButton;

@@ -2,6 +2,9 @@ import { emailRegex } from './core/consts/regex.consts';
 import i18nIntegration from './core/locales/i18n';
 import { AnimatedMarker } from './core/map/hooks';
 import lightMapStyle from './core/map/lightMapStyle.json';
+import MapCameraModeButton from './core/map/MapCameraModeButton';
+import MapView from './core/map/MapView';
+import { type MapCameraMode } from './core/map/types';
 import { nameof } from './core/monkey-patch/ts.helper';
 import palettes from './core/themes/palettes';
 import sizes from './core/themes/sizes';
@@ -216,7 +219,10 @@ export {
   type LocationUnavailableProps,
   LockIcon,
   MaestroIcon,
+  type MapCameraMode,
+  MapCameraModeButton,
   MapPinIcon,
+  MapView,
   MasterCardIcon,
   MenuBase,
   MenuIcon,
