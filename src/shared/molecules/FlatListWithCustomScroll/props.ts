@@ -7,5 +7,6 @@ export type FlatListWithCustomScrollProps = {
   barStyle?: StyleProp<ViewStyle>;
   contentContainerStyle?: StyleProp<ViewStyle>;
   withScroll?: boolean;
+  wrapperStyle?: StyleProp<ViewStyle>;
   visibleBarOffset?: number;
 };

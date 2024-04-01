@@ -4,10 +4,12 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   FadeIn,
   FadeOut,
+  LinearTransition,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 
 import sizes from '../../../core/themes/sizes';
@@ -19,7 +21,7 @@ import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type BottomWindowWithGestureProps, type BottomWindowWithGestureRef } from './props';
 
 const { height } = Dimensions.get('window');
-const duration = 1200;
+const duration = 300;
 const dampingRatio = 0.9;
 
 const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWindowWithGestureProps>(
@@ -37,6 +39,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     ref,
   ) => {
     const [hiddenPartHeight, setHiddenPartHeight] = useState<number>(-height);
+    const [visiblePartHeight, setVisiblePartHeight] = useState<number>(0);
 
     const [isBlur, setIsBlur] = useState<boolean>(false);
 
@@ -47,8 +50,8 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
 
     useImperativeHandle(ref, () => ({
       closeWindow: () => {
-        translateY.value = withSpring(0, { duration, dampingRatio });
         runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
+        setTimeout(() => (translateY.value = withTiming(0, { duration })), 200);
       },
     }));
 
@@ -92,8 +95,8 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       animatedWrapper: {
         bottom: -hiddenPartHeight,
       },
-      hiddenPartStyle: {
-        maxHeight: height * 0.6,
+      bottom: {
+        height: height * 0.8,
       },
       draggableElement: {
         backgroundColor: colors.textSecondaryColor,
@@ -105,14 +108,15 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
 
     const onHiddenPartLayout = (e: LayoutChangeEvent) => {
       const changedHeight = e.nativeEvent.layout.height;
-      if (translateY.value !== 0 && hiddenPartHeight !== -height) {
-        if (changedHeight > hiddenPartHeight) {
-          translateY.value = translateY.value - (changedHeight - hiddenPartHeight);
-        } else if (changedHeight < hiddenPartHeight) {
-          translateY.value = translateY.value + (hiddenPartHeight - changedHeight);
-        }
-      }
       setHiddenPartHeight(changedHeight);
+    };
+
+    const onVisiblePartLayout = (e: LayoutChangeEvent) => {
+      const newHeight = e.nativeEvent.layout.height;
+      if (newHeight > visiblePartHeight && visiblePartHeight !== 0) {
+        translateY.value = withTiming(translateY.value + (newHeight - visiblePartHeight), { duration: 200 });
+      }
+      setVisiblePartHeight(e.nativeEvent.layout.height);
     };
 
     return (
@@ -122,21 +126,29 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
           style={[styles.animatedWrapper, computedStyles.animatedWrapper, bottomWindowAnimatedStyle, style]}
           exiting={FadeOut}
           entering={FadeIn}
+          layout={LinearTransition}
         >
-          <BottomWindow style={styles.bottom} windowStyle={styles.window}>
+          <BottomWindow style={styles.bottom} windowStyle={[styles.window, computedStyles.bottom]}>
             <GestureDetector gesture={gesture}>
-              <View>
+              <Animated.View layout={LinearTransition}>
                 <View style={styles.draggableZone}>
                   <View style={[styles.draggableElement, computedStyles.draggableElement]} />
                 </View>
-                <View style={[styles.visiblePart, visiblePartStyles]}>{visiblePart}</View>
-              </View>
+                <Animated.View
+                  layout={LinearTransition}
+                  style={[styles.visiblePart, visiblePartStyles]}
+                  onLayout={onVisiblePartLayout}
+                >
+                  {visiblePart}
+                </Animated.View>
+              </Animated.View>
             </GestureDetector>
-            <View onLayout={onHiddenPartLayout} style={styles.hiddenWrapper}>
+            <Animated.View onLayout={onHiddenPartLayout} layout={LinearTransition} style={styles.hiddenWrapper}>
               <Separator style={styles.separator} />
               <ScrollViewWithCustomScroll
-                style={[computedStyles.hiddenPartStyle, hiddenPartStyles]}
+                style={hiddenPartStyles}
                 barStyle={styles.scrollBar}
+                wrapperStyle={styles.scrollViewWrapper}
                 contentContainerStyle={hiddenPartContainerStyles}
                 visibleBarOffset={10}
               >
@@ -148,7 +160,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
                   {hiddenPartButton}
                 </>
               )}
-            </View>
+            </Animated.View>
           </BottomWindow>
         </Animated.View>
       </>
@@ -199,5 +211,10 @@ const styles = StyleSheet.create({
   },
   hiddenWrapper: {
     paddingBottom: sizes.paddingVertical,
+    flexShrink: 1,
+  },
+  scrollViewWrapper: {
+    flex: 0,
+    flexShrink: 1,
   },
 });

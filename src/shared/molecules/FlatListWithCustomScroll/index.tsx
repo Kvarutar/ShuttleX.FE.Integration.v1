@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Animated, FlatList, StyleSheet } from 'react-native';
+import { Animated, FlatList, StyleSheet, View } from 'react-native';
 
 import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/themeContext';
@@ -12,6 +12,7 @@ const FlatListWithCustomScroll = ({
   barStyle,
   contentContainerStyle,
   withScroll = false,
+  wrapperStyle,
   visibleBarOffset = 10,
 }: FlatListWithCustomScrollProps) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
@@ -47,7 +48,7 @@ const FlatListWithCustomScroll = ({
   });
 
   return (
-    <>
+    <View style={[styles.container, wrapperStyle]}>
       <FlatList
         data={items}
         renderItem={renderItem}
@@ -62,11 +63,14 @@ const FlatListWithCustomScroll = ({
         })}
       />
       {isScrollBarVisible && <Animated.View style={[styles.scrollBar, computedStyles.scrollBar, barStyle]} />}
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   scrollBar: {
     width: 2,
     borderRadius: 8,
