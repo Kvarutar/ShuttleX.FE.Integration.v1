@@ -34,9 +34,11 @@ import ChatIcon from './shared/icons/ChatIcon';
 import ClockIcon from './shared/icons/ClockIcon';
 import ClockIcon2 from './shared/icons/ClockIcon2';
 import CloseIcon from './shared/icons/CloseIcon';
+import CloseIconMini from './shared/icons/CloseIconMini';
 import CreditCheckIcon from './shared/icons/CreditCheckIcon';
 import CurrencyIcon from './shared/icons/CurrencyIcon';
 import DislikeIcon from './shared/icons/DislikeIcon';
+import DocumentIcon from './shared/icons/DocumentIcon';
 import DropDownIcon from './shared/icons/DropDownArrowIcon';
 import DropOffIcon from './shared/icons/DropOffIcon';
 import EmergencyServiceIcon from './shared/icons/EmergencyServiceIcon';
@@ -174,6 +176,7 @@ export {
   ClockIcon,
   ClockIcon2,
   CloseIcon,
+  CloseIconMini,
   CodeInput,
   ComfortXImage,
   CreditCheckIcon,
@@ -181,6 +184,7 @@ export {
   DatePicker,
   degToRad,
   DislikeIcon,
+  DocumentIcon,
   DriverArrivedAlert,
   DropDownIcon,
   DropOffIcon,
