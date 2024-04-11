@@ -29,12 +29,7 @@ const NotificationsScreenWithoutI18n = ({ notifications }: NotificationsScreenPr
         isFirstButtonSelected={isFirstButtonSelected}
         setIsFirstButtonSelected={setIsFirstButtonSelected}
       />
-      <ScrollViewWithCustomScroll
-        contentContainerStyle={styles.contentContainer}
-        style={styles.scrollView}
-        visibleBarOffset={0}
-        barStyle={styles.barStyle}
-      >
+      <ScrollViewWithCustomScroll withShadow contentContainerStyle={styles.contentContainer}>
         {content}
       </ScrollViewWithCustomScroll>
     </>
@@ -51,17 +46,8 @@ const styles = StyleSheet.create({
   groupedButtons: {
     marginBottom: 20,
   },
-  barStyle: {
-    top: 0,
-  },
-  scrollView: {
-    marginTop: -10,
-    marginBottom: -sizes.paddingVertical,
-  },
   contentContainer: {
     gap: 16,
-    paddingTop: 10,
-    paddingBottom: sizes.paddingVertical,
   },
 });
 

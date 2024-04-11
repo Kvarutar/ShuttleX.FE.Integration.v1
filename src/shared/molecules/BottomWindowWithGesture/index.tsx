@@ -1,10 +1,9 @@
-import React, { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { Dimensions, type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   FadeIn,
   FadeOut,
-  LinearTransition,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
@@ -38,20 +37,25 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     },
     ref,
   ) => {
-    const [hiddenPartHeight, setHiddenPartHeight] = useState<number>(-height);
+    const { colors } = useTheme();
+
+    const [hiddenPartHeight, setHiddenPartHeight] = useState<number>(0);
     const [visiblePartHeight, setVisiblePartHeight] = useState<number>(0);
 
     const [isBlur, setIsBlur] = useState<boolean>(false);
 
-    const translateY = useSharedValue(0);
+    const translateY = useSharedValue(-height);
     const context = useSharedValue({ y: 0 });
 
-    const { colors } = useTheme();
+    useEffect(() => {
+      if (translateY.value === -height && hiddenPartHeight !== 0) {
+        translateY.value = -hiddenPartHeight;
+      }
+    }, [hiddenPartHeight, translateY]);
 
     useImperativeHandle(ref, () => ({
       closeWindow: () => {
         runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
-        setTimeout(() => (translateY.value = withTiming(0, { duration })), 200);
       },
     }));
 
@@ -72,31 +76,28 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
         context.value = { y: translateY.value };
       })
       .onUpdate(event => {
-        translateY.value = event.translationY + context.value.y;
-        if (translateY.value < 0) {
-          translateY.value = Math.max(translateY.value, -hiddenPartHeight);
-        } else {
+        const shift = context.value.y - event.translationY;
+        if (shift > 0) {
           translateY.value = 0;
+        } else {
+          translateY.value = Math.max(shift, -hiddenPartHeight);
         }
       })
       .onEnd(() => {
         if (translateY.value < -hiddenPartHeight / 2) {
           translateY.value = withSpring(-hiddenPartHeight, { duration, dampingRatio });
-          runOnJS(onWindowStateChange)({ isOpened: true, isCurrentBlur: true });
+          runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
         } else if (translateY.value > -hiddenPartHeight / 1.5) {
           translateY.value = withSpring(0, { duration, dampingRatio });
-          runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
+          runOnJS(onWindowStateChange)({ isOpened: true, isCurrentBlur: true });
         }
       });
 
-    const bottomWindowAnimatedStyle = useAnimatedStyle(() => ({ transform: [{ translateY: translateY.value }] }));
+    const bottomWindowAnimatedStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -translateY.value }] }));
 
     const computedStyles = StyleSheet.create({
-      animatedWrapper: {
-        bottom: -hiddenPartHeight,
-      },
       bottom: {
-        height: height * 0.8,
+        maxHeight: height * 0.8,
       },
       draggableElement: {
         backgroundColor: colors.textSecondaryColor,
@@ -105,7 +106,6 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
         borderColor: colors.strokeColor,
       },
     });
-
     const onHiddenPartLayout = (e: LayoutChangeEvent) => {
       const changedHeight = e.nativeEvent.layout.height;
       setHiddenPartHeight(changedHeight);
@@ -113,8 +113,10 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
 
     const onVisiblePartLayout = (e: LayoutChangeEvent) => {
       const newHeight = e.nativeEvent.layout.height;
-      if (newHeight > visiblePartHeight && visiblePartHeight !== 0) {
-        translateY.value = withTiming(translateY.value + (newHeight - visiblePartHeight), { duration: 200 });
+      if (newHeight < visiblePartHeight && visiblePartHeight !== 0) {
+        translateY.value = withTiming(-hiddenPartHeight - (visiblePartHeight - newHeight), { duration });
+      } else if (newHeight > visiblePartHeight && visiblePartHeight !== 0 && !isBlur) {
+        translateY.value = withTiming(-hiddenPartHeight + (newHeight - visiblePartHeight), { duration });
       }
       setVisiblePartHeight(e.nativeEvent.layout.height);
     };
@@ -123,37 +125,32 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       <>
         {isBlur && <Blur />}
         <Animated.View
-          style={[styles.animatedWrapper, computedStyles.animatedWrapper, bottomWindowAnimatedStyle, style]}
+          style={[styles.animatedWrapper, bottomWindowAnimatedStyle, style]}
           exiting={FadeOut}
           entering={FadeIn}
-          layout={LinearTransition}
         >
           <BottomWindow style={styles.bottom} windowStyle={[styles.window, computedStyles.bottom]}>
             <GestureDetector gesture={gesture}>
-              <Animated.View layout={LinearTransition}>
+              <Animated.View onLayout={onVisiblePartLayout}>
                 <View style={styles.draggableZone}>
                   <View style={[styles.draggableElement, computedStyles.draggableElement]} />
                 </View>
-                <Animated.View
-                  layout={LinearTransition}
-                  style={[styles.visiblePart, visiblePartStyles]}
-                  onLayout={onVisiblePartLayout}
-                >
-                  {visiblePart}
-                </Animated.View>
+                <View style={[styles.visiblePart, visiblePartStyles]}>{visiblePart}</View>
               </Animated.View>
             </GestureDetector>
-            <Animated.View onLayout={onHiddenPartLayout} layout={LinearTransition} style={styles.hiddenWrapper}>
+            <Animated.View onLayout={onHiddenPartLayout} style={styles.hiddenWrapper}>
               <Separator style={styles.separator} />
-              <ScrollViewWithCustomScroll
-                style={hiddenPartStyles}
-                barStyle={styles.scrollBar}
-                wrapperStyle={styles.scrollViewWrapper}
-                contentContainerStyle={hiddenPartContainerStyles}
-                visibleBarOffset={10}
-              >
-                {hiddenPart}
-              </ScrollViewWithCustomScroll>
+              <View style={styles.hiddenScrollWrapper}>
+                <ScrollViewWithCustomScroll
+                  withShadow
+                  style={hiddenPartStyles}
+                  barStyle={styles.scrollBar}
+                  wrapperStyle={styles.scrollViewWrapper}
+                  contentContainerStyle={hiddenPartContainerStyles}
+                >
+                  {hiddenPart}
+                </ScrollViewWithCustomScroll>
+              </View>
               {hiddenPartButton && (
                 <>
                   <Separator style={styles.buttonSeparator} />
@@ -178,15 +175,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
-    zIndex: 1,
+    bottom: 0,
   },
   draggableZone: {
     position: 'absolute',
     left: 0,
     right: 0,
     top: 10,
-    zIndex: 2,
     alignItems: 'center',
+  },
+  hiddenScrollWrapper: {
+    flex: 0,
+    flexShrink: 1,
   },
   draggableElement: {
     width: 33,
@@ -201,13 +201,15 @@ const styles = StyleSheet.create({
     paddingBottom: sizes.paddingVertical,
   },
   scrollBar: {
-    right: -10,
+    right: -sizes.paddingHorizontal / 2,
   },
   separator: {
     marginBottom: 30,
+    flex: 0,
   },
   buttonSeparator: {
     marginVertical: 20,
+    flex: 0,
   },
   hiddenWrapper: {
     paddingBottom: sizes.paddingVertical,

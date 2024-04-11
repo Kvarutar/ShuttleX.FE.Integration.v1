@@ -12,8 +12,9 @@ const FlatListWithCustomScroll = ({
   barStyle,
   contentContainerStyle,
   withScroll = false,
+  offsetForShadow = 10,
+  withShadow,
   wrapperStyle,
-  visibleBarOffset = 10,
 }: FlatListWithCustomScrollProps) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
@@ -26,6 +27,10 @@ const FlatListWithCustomScroll = ({
   let scrollIndicatorSize = visibleScrollBarHeight;
   if (completeScrollBarHeight > visibleScrollBarHeight) {
     scrollIndicatorSize = (visibleScrollBarHeight * visibleScrollBarHeight) / completeScrollBarHeight;
+  }
+
+  if (withShadow) {
+    scrollIndicatorSize -= offsetForShadow * 2;
   }
 
   const difference = visibleScrollBarHeight > scrollIndicatorSize ? visibleScrollBarHeight - scrollIndicatorSize : 1;
@@ -45,6 +50,12 @@ const FlatListWithCustomScroll = ({
       height: scrollIndicatorSize,
       transform: [{ translateY: scrollIndicatorPosition }],
     },
+    flatList: {
+      marginVertical: withShadow ? -offsetForShadow : 0,
+    },
+    contentContainerStyle: {
+      paddingVertical: withShadow ? offsetForShadow : 0,
+    },
   });
 
   return (
@@ -53,10 +64,14 @@ const FlatListWithCustomScroll = ({
         data={items}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[styles.contentContainerStyle, contentContainerStyle]}
-        style={[styles.flatList, style]}
+        contentContainerStyle={[
+          styles.contentContainerStyle,
+          computedStyles.contentContainerStyle,
+          contentContainerStyle,
+        ]}
+        style={[styles.flatList, computedStyles.flatList, style]}
         onContentSizeChange={(_, height) => setCompleteScrollBarHeight(height)}
-        onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height - visibleBarOffset)}
+        onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height)}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollIndicator } } }], {
           useNativeDriver: false,
           listener: () => !isScrollBarVisible && setIsScrollBarVisible(true),
@@ -76,15 +91,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     position: 'absolute',
     right: -sizes.paddingVertical / 2,
-    top: 10,
+    top: 0,
   },
   flatList: {
     marginHorizontal: -sizes.paddingHorizontal,
-    marginVertical: -10,
   },
   contentContainerStyle: {
     paddingHorizontal: sizes.paddingHorizontal,
-    paddingVertical: 10,
   },
 });
 

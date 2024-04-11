@@ -10,10 +10,12 @@ const ScrollViewWithCustomScroll = ({
   withScroll = false,
   barStyle,
   style,
-  visibleBarOffset = 10,
+  withShadow = false,
+  offsetForShadow = 10,
   contentContainerStyle,
   wrapperStyle,
 }: ScrollViewWithCustomScrollProps) => {
+  const { colors } = useTheme();
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
 
@@ -21,11 +23,13 @@ const ScrollViewWithCustomScroll = ({
 
   const scrollIndicator = useRef(new Animated.Value(0)).current;
 
-  const { colors } = useTheme();
-
   let scrollIndicatorSize = visibleScrollBarHeight;
   if (completeScrollBarHeight > visibleScrollBarHeight) {
     scrollIndicatorSize = (visibleScrollBarHeight * visibleScrollBarHeight) / completeScrollBarHeight;
+  }
+
+  if (withShadow) {
+    scrollIndicatorSize -= offsetForShadow * 2;
   }
 
   const difference = visibleScrollBarHeight > scrollIndicatorSize ? visibleScrollBarHeight - scrollIndicatorSize : 1;
@@ -45,6 +49,12 @@ const ScrollViewWithCustomScroll = ({
       height: scrollIndicatorSize,
       transform: [{ translateY: scrollIndicatorPosition }],
     },
+    scrollView: {
+      marginVertical: withShadow ? -offsetForShadow : 0,
+    },
+    contentContainerStyle: {
+      paddingVertical: withShadow ? offsetForShadow : 0,
+    },
   });
 
   const onContentSizeChange = (height: number) => {
@@ -59,10 +69,14 @@ const ScrollViewWithCustomScroll = ({
       <ScrollView
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
-        contentContainerStyle={[styles.contentContainerStyle, contentContainerStyle]}
-        style={[styles.scrollView, style]}
+        contentContainerStyle={[
+          styles.contentContainerStyle,
+          computedStyles.contentContainerStyle,
+          contentContainerStyle,
+        ]}
+        style={[styles.scrollView, computedStyles.scrollView, style]}
         onContentSizeChange={(_, height) => onContentSizeChange(height)}
-        onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height - visibleBarOffset)}
+        onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height)}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollIndicator } } }], {
           useNativeDriver: false,
           listener: () =>
@@ -85,15 +99,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     position: 'absolute',
     right: -sizes.paddingVertical / 2,
-    top: 10,
+    top: 0,
   },
   scrollView: {
     marginHorizontal: -sizes.paddingHorizontal,
-    marginVertical: -10,
   },
   contentContainerStyle: {
     paddingHorizontal: sizes.paddingHorizontal,
-    paddingVertical: 10,
   },
 });
 

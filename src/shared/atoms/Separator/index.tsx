@@ -27,6 +27,7 @@ const Separator = ({ style, mode = 'horizontal' }: SeparatorProps) => {
 const styles = StyleSheet.create({
   separatorWrapper: {
     overflow: 'hidden',
+    flex: 1,
   },
   separator: {
     borderStyle: 'dashed',
