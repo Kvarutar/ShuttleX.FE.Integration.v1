@@ -112,6 +112,7 @@ import MenuBase from './shared/molecules/MenuBase';
 import { type MenuNavigation } from './shared/molecules/MenuBase/props';
 import PhoneInput from './shared/molecules/PhoneInput';
 import Popup from './shared/molecules/Popup';
+import SafeAreaView from './shared/molecules/SafeAreaView';
 import ScrollViewWithCustomScroll from './shared/molecules/ScrollViewWithCustomScroll';
 import SwipeButton from './shared/molecules/SwipeButton';
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/props';
@@ -262,6 +263,7 @@ export {
   requestGalleryUsagePermission,
   requestGeolocationPermission,
   RoundButton,
+  SafeAreaView,
   ScrollViewWithCustomScroll,
   Separator,
   ShortArrowIcon,

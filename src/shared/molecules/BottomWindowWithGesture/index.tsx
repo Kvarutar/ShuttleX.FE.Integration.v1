@@ -62,11 +62,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     const onWindowStateChange = useCallback(
       ({ isOpened, isCurrentBlur }: { isOpened: boolean; isCurrentBlur: boolean }) => {
         setIsBlur(isCurrentBlur);
-        if (setIsOpened) {
-          setTimeout(() => {
-            setIsOpened(isOpened);
-          }, 300);
-        }
+        setIsOpened?.(isOpened);
       },
       [setIsOpened],
     );

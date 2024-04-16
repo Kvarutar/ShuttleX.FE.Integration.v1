@@ -2,6 +2,7 @@ import React, { type ReactNode, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import { sizes } from 'shuttlex-integration';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/themeContext';
@@ -206,7 +207,7 @@ const FeedbackScreenWithoutI18n = ({
 
   return (
     <>
-      <View style={[styles.wrapper, style]}>
+      <View style={style}>
         <View style={styles.header}>
           <RoundButton onPress={onBackButtonPress}>
             <CloseIcon />
@@ -262,8 +263,9 @@ const FeedbackScreen = (props: FeedbackScreenProps) => (
 );
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
+  container: {
+    justifyContent: 'space-between',
+    paddingHorizontal: sizes.paddingHorizontal,
   },
   header: {
     flexDirection: 'row',

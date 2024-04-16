@@ -74,7 +74,8 @@ const FlatListWithCustomScroll = ({
         onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height)}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollIndicator } } }], {
           useNativeDriver: false,
-          listener: () => !isScrollBarVisible && setIsScrollBarVisible(true),
+          listener: () =>
+            !isScrollBarVisible && visibleScrollBarHeight < completeScrollBarHeight && setIsScrollBarVisible(true),
         })}
       />
       {isScrollBarVisible && <Animated.View style={[styles.scrollBar, computedStyles.scrollBar, barStyle]} />}
