@@ -6,6 +6,7 @@ import MapCameraModeButton from './core/map/MapCameraModeButton';
 import MapView from './core/map/MapView';
 import { type MapCameraMode } from './core/map/types';
 import { nameof } from './core/monkey-patch/ts.helper';
+import { SignalR } from './core/signalR/middleware';
 import palettes from './core/themes/palettes';
 import sizes from './core/themes/sizes';
 import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/themeContext';
@@ -268,6 +269,7 @@ export {
   Separator,
   ShortArrowIcon,
   ShortArrowSmallIcon,
+  SignalR,
   sizes,
   SpinnerIcon,
   StarIcon,
