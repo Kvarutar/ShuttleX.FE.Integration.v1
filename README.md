@@ -38,9 +38,11 @@ yarn example start
 
 ### Library dependencies
 
+- [@microsoft/signalr](https://www.npmjs.com/package/@microsoft/signalr)
 - [@react-native-community/blur](https://www.npmjs.com/package/@react-native-community/blur)
 - [@react-native-community/datetimepicker](https://www.npmjs.com/package/@react-native-community/datetimepicker)
 - [@react-native-community/netinfo](https://www.npmjs.com/package/@react-native-community/netinfo)
+- [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native)
 - [@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit)
 - [date-fns](https://www.npmjs.com/package/date-fns)
 - [react](https://www.npmjs.com/package/react)
