@@ -107,6 +107,7 @@ import CodeInput from './shared/molecules/CodeInput';
 import DatePicker from './shared/molecules/DatePicker';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
 import GroupedButtons from './shared/molecules/GroupedButtons';
+import KeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
 import LocationUnavailable from './shared/molecules/LocationUnavailable';
 import { type LocationUnavailableProps } from './shared/molecules/LocationUnavailable/props';
 import MenuBase from './shared/molecules/MenuBase';
@@ -131,6 +132,7 @@ import { degToRad, radToDeg } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { useDebounce } from './utils/debounce';
 import { getAngleBetweenPoints, getDistanceBetweenPoints, useGeolocationStartWatch } from './utils/geolocation';
+import { IntegrationModule } from './utils/integrationModule';
 import { useNetworkConnectionStartWatch } from './utils/network';
 import { getPaymentIcon } from './utils/payment/cardIcons';
 import { type PaymentMethod } from './utils/payment/types';
@@ -215,7 +217,9 @@ export {
   GroupedButtons,
   i18nIntegration,
   InputXIcon,
+  IntegrationModule,
   InternetDisconnectedAlert,
+  KeyboardAvoidingView,
   lightMapStyle,
   LikeIcon,
   LocationArrowImage,
