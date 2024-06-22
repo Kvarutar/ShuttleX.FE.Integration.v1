@@ -52,7 +52,8 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     moduleName === 'react-native-device-info' ||
     moduleName === 'react-native-geolocation-service' ||
     moduleName === 'react-native-permissions' ||
-    moduleName === 'react-native-sensors'
+    moduleName === 'react-native-sensors' ||
+    moduleName === '@react-navigation/native'
   ) {
     return { type: 'empty' };
   }

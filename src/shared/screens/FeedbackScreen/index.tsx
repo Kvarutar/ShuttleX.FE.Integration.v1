@@ -2,9 +2,9 @@ import React, { type ReactNode, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
-import { sizes } from 'shuttlex-integration';
 
 import i18nIntegration from '../../../core/locales/i18n';
+import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/themeContext';
 import Bar from '../../atoms/Bar';
 import { BarModes } from '../../atoms/Bar/types';

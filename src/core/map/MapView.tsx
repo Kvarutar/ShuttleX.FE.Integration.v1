@@ -16,17 +16,15 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {
-  AnimatedMarker,
-  lightMapStyle,
-  LocationArrowImage,
-  MapPinIcon,
-  PickUpIcon,
-  Text,
-  useCompass,
-  useTheme,
-} from 'shuttlex-integration';
 
+import Text from '../../shared/atoms/Text';
+import MapPinIcon from '../../shared/icons/MapPinIcon';
+import PickUpIcon from '../../shared/icons/PickUpIcon';
+import LocationArrowImage from '../../shared/images/LocationArrowImage';
+import { useCompass } from '../../utils/compass';
+import { useTheme } from '../themes/themeContext';
+import { AnimatedMarker } from './hooks';
+import lightMapStyle from './lightMapStyle.json';
 import { type MapViewProps } from './types';
 
 const constants = {
