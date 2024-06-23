@@ -1,4 +1,4 @@
-import React, { StyleSheet, View, type ViewStyle } from 'react-native';
+import { StyleSheet, View, type ViewStyle } from 'react-native';
 import { Shadow, type ShadowProps } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../core/themes/shadows';

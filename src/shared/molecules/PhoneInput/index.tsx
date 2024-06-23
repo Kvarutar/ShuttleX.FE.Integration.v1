@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Keyboard, type LayoutRectangle, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 

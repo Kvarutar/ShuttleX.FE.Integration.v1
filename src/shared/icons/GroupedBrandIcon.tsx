@@ -1,4 +1,3 @@
-import React from 'react';
 import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 
 import BrandFavIcon from './BrandFavIcon';

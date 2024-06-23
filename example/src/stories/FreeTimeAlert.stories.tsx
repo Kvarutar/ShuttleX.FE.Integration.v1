@@ -1,5 +1,5 @@
 import { type Meta } from '@storybook/react-native';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { FreeTimeAlert, FreeTimeAlertType, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
 import { AlertRunsOn } from '../../../src/shared/molecules/alerts/Alert/props';

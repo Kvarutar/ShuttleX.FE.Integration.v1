@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Animated, ScrollView, StyleSheet, View } from 'react-native';
 
 import sizes from '../../../core/themes/sizes';

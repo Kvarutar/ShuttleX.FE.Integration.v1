@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image, type ImageStyle, type StyleProp, StyleSheet } from 'react-native';
 
 import sizes from '../../core/themes/sizes';

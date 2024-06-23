@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image, type ImageProps, StyleSheet } from 'react-native';
 
 const LocationArrowImage = ({ style }: { style?: ImageProps['style'] }) => (

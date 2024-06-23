@@ -1,6 +1,6 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Alert, View } from 'react-native';
 import { palettes, type ThemeContextType, Timer, useTheme } from 'shuttlex-integration';
 

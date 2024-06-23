@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modal as ModalBase, StyleSheet, View } from 'react-native';
 
 import { useTheme } from '../../../core/themes/themeContext';

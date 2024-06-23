@@ -1,6 +1,6 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { CalendarIcon, palettes, RoundButton, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
 const RoundButtonMeta: Meta<typeof RoundButton> = {

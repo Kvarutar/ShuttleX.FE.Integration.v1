@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Dimensions, StyleSheet } from 'react-native';
 

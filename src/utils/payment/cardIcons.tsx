@@ -1,5 +1,3 @@
-import React from 'react';
-
 import ApplePayIcon from '../../shared/icons/ApplePayIcon';
 import CashIcon from '../../shared/icons/CashIcon';
 import MaestroIcon from '../../shared/icons/MaestroIcon';

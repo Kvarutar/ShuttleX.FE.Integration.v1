@@ -1,4 +1,3 @@
-import React from 'react';
 import { Platform, SafeAreaView as SafeAreaViewBase, StyleSheet, View } from 'react-native';
 
 import sizes from '../../../core/themes/sizes';

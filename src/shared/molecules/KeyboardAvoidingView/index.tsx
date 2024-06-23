@@ -1,5 +1,5 @@
 import { useIsFocused } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { KeyboardAvoidingViewBase, NativeModules, Platform, StyleSheet, View } from 'react-native';
 
 import { type AndroidKeyboardAvoidingViewProps, type KeyboardAvoidingViewProps } from './props';

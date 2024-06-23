@@ -1,4 +1,4 @@
-import React, { StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { useTheme } from '../../../core/themes/themeContext';
 import { type SeparatorProps } from './props';

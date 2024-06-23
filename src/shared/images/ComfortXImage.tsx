@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image, type ImageStyle, StyleSheet } from 'react-native';
 
 const ComfortXImage = ({ style }: { style?: ImageStyle }) => (

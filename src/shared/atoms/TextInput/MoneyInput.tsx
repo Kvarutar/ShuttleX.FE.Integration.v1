@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import { forwardRef, useState } from 'react';
 
 import { TextInputInputMode, type TextInputProps, type TextInputRef } from './props';
 import TextInputBase from './TextInputBase';

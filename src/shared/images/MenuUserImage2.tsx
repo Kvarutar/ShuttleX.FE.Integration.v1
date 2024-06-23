@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image, type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 
 import MenuUserImageLineIcon2 from '../icons/MenuUserImageLineIcon2';

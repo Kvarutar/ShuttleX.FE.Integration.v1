@@ -1,6 +1,6 @@
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import type {} from 'react-native';
 import { View } from 'react-native';
 import { ThemeProvider } from 'shuttlex-integration';

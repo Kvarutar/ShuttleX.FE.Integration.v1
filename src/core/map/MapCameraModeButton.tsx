@@ -1,4 +1,3 @@
-import React from 'react';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import RoundButton from '../../shared/atoms/RoundButton';

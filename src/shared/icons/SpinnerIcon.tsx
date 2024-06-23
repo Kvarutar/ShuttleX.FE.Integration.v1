@@ -1,5 +1,4 @@
 import interpolate from 'color-interpolate';
-import React from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import Svg, { Circle, Defs, G, LinearGradient, Path, Stop } from 'react-native-svg';
 

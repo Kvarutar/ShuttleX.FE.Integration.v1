@@ -1,4 +1,3 @@
-import React from 'react';
 import { type ViewStyle } from 'react-native';
 
 import Ad from './svg/ad.svg';

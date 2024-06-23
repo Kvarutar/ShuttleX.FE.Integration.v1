@@ -1,4 +1,3 @@
-import React from 'react';
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 

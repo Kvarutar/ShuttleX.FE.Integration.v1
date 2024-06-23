@@ -1,6 +1,6 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { DriverArrivedAlert, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
 type DriverArrivedAlertStorybookProps = { theme: ThemeContextType['themeMode'] };

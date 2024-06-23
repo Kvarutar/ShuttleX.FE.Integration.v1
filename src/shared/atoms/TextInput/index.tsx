@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 import MoneyInput from './MoneyInput';
 import { type TextInputBaseInputMode, TextInputInputMode, type TextInputProps, type TextInputRef } from './props';

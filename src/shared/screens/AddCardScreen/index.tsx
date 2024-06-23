@@ -1,6 +1,6 @@
 import creditCardType from 'credit-card-type';
 import { type CreditCardType } from 'credit-card-type/dist/types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 

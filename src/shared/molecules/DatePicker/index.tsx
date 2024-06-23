@@ -3,7 +3,7 @@ import DateTimePicker, {
   type DateTimePickerEvent,
   type IOSNativeProps,
 } from '@react-native-community/datetimepicker';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Platform, Pressable, StyleSheet } from 'react-native';
 
 import Modal from '../../atoms/Modal';

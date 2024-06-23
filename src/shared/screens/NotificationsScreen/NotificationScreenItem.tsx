@@ -1,5 +1,4 @@
 import { type ReactNode } from 'react';
-import React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 

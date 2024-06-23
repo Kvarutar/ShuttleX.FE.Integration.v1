@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { StyleSheet, TextInput as TextInputNative, View } from 'react-native';
 
 import { useTheme } from '../../../core/themes/themeContext';
