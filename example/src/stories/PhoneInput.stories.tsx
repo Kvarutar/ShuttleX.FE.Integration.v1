@@ -34,7 +34,23 @@ const PhoneInputWithHooks = ({ themeName }: { themeName: ThemeContextType['theme
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <PhoneInput getPhoneNumber={() => {}} />;
+  return (
+    <PhoneInput
+      getPhoneNumber={() => {}}
+      onFlagPress={() => {}}
+      flagState={{
+        countryCode: 'AD',
+        countryCodeIso: '',
+        countryName: '',
+        currency: '',
+        phoneMask: '',
+        icc: 0,
+        iccPrefix: undefined,
+        prefix: undefined,
+        size: 0,
+      }}
+    />
+  );
 };
 
 type Story = StoryObj<typeof PhoneInput>;

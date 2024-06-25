@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Keyboard, type LayoutRectangle, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Keyboard, type LayoutRectangle, Pressable, StyleSheet, View } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
-import { countryDtos } from '../../../core/countries/countryDtos';
-import { indexOfNotFound, timeDropdownVisible } from '../../../core/monkey-patch/array.helper';
+import { indexOfNotFound } from '../../../core/monkey-patch/array.helper';
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
 import Text from '../../atoms/Text';
@@ -11,17 +10,16 @@ import TextInput from '../../atoms/TextInput';
 import { TextInputInputMode, type TextInputProps } from '../../atoms/TextInput/props';
 import { countryFlags } from '../../icons/Flags';
 import ShortArrowIcon from '../../icons/ShortArrowIcon';
-import ListItem from './ListItem';
 import { type PhoneInputProps } from './props';
 
 const PhoneInput = ({
   style,
   getPhoneNumber,
+  onFlagPress,
+  flagState,
   error = { isError: false, message: '' },
 }: PhoneInputProps): JSX.Element => {
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [inputContainerLayout, setInputContainerLayout] = useState<LayoutRectangle | null>(null);
-  const [flagState, setFlagState] = useState(countryDtos[0]);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [onlyNumbersInputValue, setOnlyNumbersInputValue] = useState('');
@@ -77,10 +75,8 @@ const PhoneInput = ({
   const onInputFlagPress = () => {
     if (Keyboard.isVisible()) {
       Keyboard.dismiss();
-      setTimeout(() => setIsDropdownVisible(true), timeDropdownVisible);
-    } else {
-      setIsDropdownVisible(true);
     }
+    onFlagPress();
   };
 
   const formatNumbersToMask = (numbers: string, mask: string): string => {
@@ -174,40 +170,6 @@ const PhoneInput = ({
         />
       </View>
       {error.isError && <Text style={[styles.errorText, computedStyles.errorText]}>{error.message}</Text>}
-      {isDropdownVisible && inputContainerLayout && (
-        <Pressable style={styles.dropdownWrapper} onPress={() => setIsDropdownVisible(false)}>
-          <View
-            style={[
-              styles.dropdownContainer,
-              computedStyles.dropdownContainer,
-              {
-                top: inputContainerLayout.y,
-                left: inputContainerLayout.x,
-                width: inputContainerLayout.width,
-              },
-            ]}
-          >
-            <ScrollView nestedScrollEnabled>
-              {countryDtos.map((item, index) => {
-                return (
-                  <ListItem
-                    iconSvg={countryFlags[item.countryCode]}
-                    icc={item.icc}
-                    countryName={item.countryName}
-                    onFlagContainerPress={() => {
-                      setFlagState(item);
-                      setIsDropdownVisible(false);
-                    }}
-                    key={item.countryCode}
-                    {...(index === 0 ? { withArrow: true } : {})}
-                  />
-                );
-              })}
-            </ScrollView>
-            <View style={[styles.line, computedStyles.line]} />
-          </View>
-        </Pressable>
-      )}
     </View>
   );
 };

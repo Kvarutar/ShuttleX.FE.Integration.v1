@@ -1,4 +1,6 @@
 import { emailRegex } from './core/consts/regex.consts';
+import { countryDtos } from './core/countries/countryDtos';
+import { type countryDtosProps } from './core/countries/props';
 import i18nIntegration from './core/locales/i18n';
 import { AnimatedMarker } from './core/map/hooks';
 import lightMapStyle from './core/map/lightMapStyle.json';
@@ -32,6 +34,7 @@ import BrandFavIcon from './shared/icons/BrandFavIcon';
 import BrandTextIcon from './shared/icons/BrandTextIcon';
 import CalendarIcon from './shared/icons/CalendarIcon';
 import ChatIcon from './shared/icons/ChatIcon';
+import CheckIcon2 from './shared/icons/CheckIcon2';
 import ClockIcon from './shared/icons/ClockIcon';
 import ClockIcon2 from './shared/icons/ClockIcon2';
 import CloseIcon from './shared/icons/CloseIcon';
@@ -51,6 +54,7 @@ import FeedbackHeartIcon from './shared/icons/FeedbackHeartIcon';
 import FeedbackThumbDownIcon from './shared/icons/FeedbackThumbDownIcon';
 import FeedbackThumbUpIcon from './shared/icons/FeedbackThumbUpIcon';
 import FeedbackWheelIcon from './shared/icons/FeedbackWheelIcon';
+import { countryFlags } from './shared/icons/Flags';
 import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
 import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini';
 import InputXIcon from './shared/icons/InputXIcon';
@@ -177,12 +181,16 @@ export {
   checkCameraUsagePermission,
   checkGalleryUsagePermission,
   checkGeolocationPermissionAndAccuracy,
+  CheckIcon2,
   ClockIcon,
   ClockIcon2,
   CloseIcon,
   CloseIconMini,
   CodeInput,
   ComfortXImage,
+  countryDtos,
+  type countryDtosProps,
+  countryFlags,
   CreditCheckIcon,
   CurrencyIcon,
   DatePicker,
