@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Animated, FlatList, StyleSheet, View } from 'react-native';
 
 import sizes from '../../../core/themes/sizes';
@@ -30,7 +30,7 @@ const FlatListWithCustomScroll = ({
   }
 
   if (withShadow) {
-    scrollIndicatorSize -= offsetForShadow * 2;
+    scrollIndicatorSize -= offsetForShadow;
   }
 
   const difference = visibleScrollBarHeight > scrollIndicatorSize ? visibleScrollBarHeight - scrollIndicatorSize : 1;
@@ -58,6 +58,14 @@ const FlatListWithCustomScroll = ({
     },
   });
 
+  const scrollBarListener = useCallback(() => {
+    if (!withScroll) {
+      if (!isScrollBarVisible && visibleScrollBarHeight < completeScrollBarHeight) {
+        setIsScrollBarVisible(true);
+      }
+    }
+  }, [withScroll, isScrollBarVisible, visibleScrollBarHeight, completeScrollBarHeight]);
+
   return (
     <View style={[styles.container, wrapperStyle]}>
       <FlatList
@@ -70,12 +78,16 @@ const FlatListWithCustomScroll = ({
           contentContainerStyle,
         ]}
         style={[styles.flatList, computedStyles.flatList, style]}
-        onContentSizeChange={(_, height) => setCompleteScrollBarHeight(height)}
+        onContentSizeChange={(_, height) => {
+          setCompleteScrollBarHeight(height);
+          if (visibleScrollBarHeight < completeScrollBarHeight) {
+            setIsScrollBarVisible(false);
+          }
+        }}
         onLayout={e => setVisibleScrollBarHeight(e.nativeEvent.layout.height)}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollIndicator } } }], {
           useNativeDriver: false,
-          listener: () =>
-            !isScrollBarVisible && visibleScrollBarHeight < completeScrollBarHeight && setIsScrollBarVisible(true),
+          listener: scrollBarListener,
         })}
       />
       {isScrollBarVisible && <Animated.View style={[styles.scrollBar, computedStyles.scrollBar, barStyle]} />}

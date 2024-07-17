@@ -111,7 +111,7 @@ import CodeInput from './shared/molecules/CodeInput';
 import DatePicker from './shared/molecules/DatePicker';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
 import GroupedButtons from './shared/molecules/GroupedButtons';
-import KeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
+import CustomKeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
 import LocationUnavailable from './shared/molecules/LocationUnavailable';
 import { type LocationUnavailableProps } from './shared/molecules/LocationUnavailable/props';
 import MenuBase from './shared/molecules/MenuBase';
@@ -193,6 +193,7 @@ export {
   countryFlags,
   CreditCheckIcon,
   CurrencyIcon,
+  CustomKeyboardAvoidingView,
   DatePicker,
   degToRad,
   DislikeIcon,
@@ -227,7 +228,6 @@ export {
   InputXIcon,
   IntegrationModule,
   InternetDisconnectedAlert,
-  KeyboardAvoidingView,
   lightMapStyle,
   LikeIcon,
   LocationArrowImage,

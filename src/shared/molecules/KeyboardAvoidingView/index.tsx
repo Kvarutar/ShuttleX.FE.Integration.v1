@@ -1,15 +1,19 @@
 import { useIsFocused } from '@react-navigation/native';
 import { useEffect } from 'react';
-import { KeyboardAvoidingViewBase, NativeModules, Platform, StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, NativeModules, Platform, StyleSheet, View } from 'react-native';
 
 import { type AndroidKeyboardAvoidingViewProps, type KeyboardAvoidingViewProps } from './props';
 
 const { IntegrationModule } = NativeModules;
 
-const KeyboardAvoidingView = ({ children, style, iosOptions = { behavior: 'padding' } }: KeyboardAvoidingViewProps) => {
+const CustomKeyboardAvoidingView = ({
+  children,
+  style,
+  iosOptions = { behavior: 'padding' },
+}: KeyboardAvoidingViewProps) => {
   if (Platform.OS === 'ios') {
     return (
-      <KeyboardAvoidingViewBase
+      <KeyboardAvoidingView
         children={children}
         style={[styles.keyboardAvoidingView, style]}
         behavior={iosOptions.behavior}
@@ -45,4 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KeyboardAvoidingView;
+export default CustomKeyboardAvoidingView;
