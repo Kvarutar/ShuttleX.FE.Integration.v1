@@ -1,13 +1,15 @@
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
 import { Dimensions, type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+  Extrapolation,
   FadeIn,
   FadeOut,
+  interpolate,
   runOnJS,
   useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 
@@ -20,8 +22,7 @@ import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type BottomWindowWithGestureProps, type BottomWindowWithGestureRef } from './props';
 
 const { height } = Dimensions.get('window');
-const duration = 300;
-const dampingRatio = 0.9;
+const duration = 200;
 
 const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWindowWithGestureProps>(
   (
@@ -39,19 +40,20 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
   ) => {
     const { colors } = useTheme();
 
-    const [hiddenPartHeight, setHiddenPartHeight] = useState<number>(0);
-    const [visiblePartHeight, setVisiblePartHeight] = useState<number>(0);
+    const progress = useSharedValue(0); // 0 - opened, 1 - closed
+    const isCurrentOpen = useSharedValue(true);
+
+    const hiddenAnimatedHeight = useSharedValue(0);
+    const visibleAnimatedHeight = useSharedValue(0);
+
+    const translateY = useDerivedValue(() => progress.value * hiddenAnimatedHeight.value);
+    const bottomWindowAnimatedStyle = useAnimatedStyle(() => ({
+      transform: [{ translateY: translateY.value }],
+    }));
 
     const [isBlur, setIsBlur] = useState<boolean>(false);
 
-    const translateY = useSharedValue(-height);
     const context = useSharedValue({ y: 0 });
-
-    useEffect(() => {
-      if (translateY.value === -height && hiddenPartHeight !== 0) {
-        translateY.value = -hiddenPartHeight;
-      }
-    }, [hiddenPartHeight, translateY]);
 
     useImperativeHandle(ref, () => ({
       closeWindow: () => {
@@ -63,8 +65,10 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       ({ isOpened, isCurrentBlur }: { isOpened: boolean; isCurrentBlur: boolean }) => {
         setIsBlur(isCurrentBlur);
         setIsOpened?.(isOpened);
+        progress.value = withTiming(isOpened ? 0 : 1, { duration });
+        isCurrentOpen.value = isOpened;
       },
-      [setIsOpened],
+      [setIsOpened, isCurrentOpen, progress],
     );
 
     const gesture = Gesture.Pan()
@@ -73,23 +77,26 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       })
       .onUpdate(event => {
         const shift = context.value.y - event.translationY;
-        if (shift > 0) {
-          translateY.value = 0;
+
+        if (isCurrentOpen.value) {
+          const percent = (Math.abs(shift) * 100) / hiddenAnimatedHeight.value;
+          if (shift < 0 && percent <= 100) {
+            progress.value = interpolate(percent, [0, 100], [0, 1], Extrapolation.CLAMP);
+          }
         } else {
-          translateY.value = Math.max(shift, -hiddenPartHeight);
+          const percent = ((shift - hiddenAnimatedHeight.value) * 100) / hiddenAnimatedHeight.value;
+          if (percent > 0) {
+            progress.value = 1 - interpolate(percent, [0, 100], [0, 1], Extrapolation.CLAMP);
+          }
         }
       })
       .onEnd(() => {
-        if (translateY.value < -hiddenPartHeight / 2) {
-          translateY.value = withSpring(-hiddenPartHeight, { duration, dampingRatio });
+        if (progress.value > 0.5) {
           runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
-        } else if (translateY.value > -hiddenPartHeight / 1.5) {
-          translateY.value = withSpring(0, { duration, dampingRatio });
+        } else if (progress.value < 0.5) {
           runOnJS(onWindowStateChange)({ isOpened: true, isCurrentBlur: true });
         }
       });
-
-    const bottomWindowAnimatedStyle = useAnimatedStyle(() => ({ transform: [{ translateY: -translateY.value }] }));
 
     const computedStyles = StyleSheet.create({
       bottom: {
@@ -103,18 +110,11 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       },
     });
     const onHiddenPartLayout = (e: LayoutChangeEvent) => {
-      const changedHeight = e.nativeEvent.layout.height;
-      setHiddenPartHeight(changedHeight);
+      hiddenAnimatedHeight.value = e.nativeEvent.layout.height;
     };
 
     const onVisiblePartLayout = (e: LayoutChangeEvent) => {
-      const newHeight = e.nativeEvent.layout.height;
-      if (newHeight < visiblePartHeight && visiblePartHeight !== 0) {
-        translateY.value = withTiming(-hiddenPartHeight - (visiblePartHeight - newHeight), { duration });
-      } else if (newHeight > visiblePartHeight && visiblePartHeight !== 0 && !isBlur) {
-        translateY.value = withTiming(-hiddenPartHeight + (newHeight - visiblePartHeight), { duration });
-      }
-      setVisiblePartHeight(e.nativeEvent.layout.height);
+      visibleAnimatedHeight.value = e.nativeEvent.layout.height;
     };
 
     return (
