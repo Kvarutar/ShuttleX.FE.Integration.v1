@@ -59,10 +59,8 @@ const FlatListWithCustomScroll = ({
   });
 
   const scrollBarListener = useCallback(() => {
-    if (!withScroll) {
-      if (!isScrollBarVisible && visibleScrollBarHeight < completeScrollBarHeight) {
-        setIsScrollBarVisible(true);
-      }
+    if (!withScroll && !isScrollBarVisible && visibleScrollBarHeight < completeScrollBarHeight) {
+      setIsScrollBarVisible(true);
     }
   }, [withScroll, isScrollBarVisible, visibleScrollBarHeight, completeScrollBarHeight]);
 
