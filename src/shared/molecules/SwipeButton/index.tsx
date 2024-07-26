@@ -13,17 +13,17 @@ import ArrowIcon from '../../icons/ArrowIcon';
 import { SwipeButtonModes, type SwipeButtonProps } from './props';
 
 const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): JSX.Element => {
-  const { colors } = useTheme();
-  const { weakShadowColor, backgroundPrimaryColor, textSecondaryColor } = colors;
-  const shadowProps = defaultShadow(weakShadowColor);
+  const { colors, themeMode } = useTheme();
+
+  const shadowProps = defaultShadow(colors.weakShadowColor);
   const { t } = useTranslation();
 
   const computedStyles = StyleSheet.create({
     text: {
-      color: textSecondaryColor,
+      color: colors.textSecondaryColor,
     },
     slider: {
-      backgroundColor: backgroundPrimaryColor,
+      backgroundColor: themeMode === 'light' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor,
     },
   });
 

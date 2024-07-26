@@ -6,14 +6,13 @@ import { useTheme } from '../../../core/themes/themeContext';
 import { type RoundButtonProps } from './types';
 
 const RoundButton = ({ onPress, style, children, roundButtonStyle }: RoundButtonProps): JSX.Element => {
-  const { colors } = useTheme();
+  const { colors, themeMode } = useTheme();
 
-  const { backgroundPrimaryColor, strongShadowColor } = colors;
-  const shadowProps = defaultShadow(strongShadowColor);
+  const shadowProps = defaultShadow(colors.strongShadowColor);
 
   const computedStyles = StyleSheet.create({
     container: {
-      backgroundColor: backgroundPrimaryColor,
+      backgroundColor: themeMode === 'light' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor,
     },
   });
 

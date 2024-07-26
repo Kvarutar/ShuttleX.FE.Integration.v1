@@ -39,7 +39,10 @@ type FeedbackAdditionalContent = {
 
 const getFeedbackOptions = (
   t: ReturnType<typeof useTranslation>['t'],
-  iconPrimaryColor?: string,
+  likeFeedbackWheelIcon?: {
+    color?: string;
+    backgroundColor?: string;
+  },
 ): Record<FeedbackRating, Option[]> => ({
   like: [
     {
@@ -55,7 +58,12 @@ const getFeedbackOptions = (
     {
       title: t('Feedback_likeOption3'),
       apiBody: Options.GoodDriving,
-      image: <FeedbackWheelIcon />,
+      image: (
+        <FeedbackWheelIcon
+          color={likeFeedbackWheelIcon?.color}
+          backgroundColor={likeFeedbackWheelIcon?.backgroundColor}
+        />
+      ),
     },
     {
       title: t('Feedback_likeOption4'),
@@ -77,7 +85,7 @@ const getFeedbackOptions = (
     {
       title: t('Feedback_dislikeOption3'),
       apiBody: Options.BadDriving,
-      image: <FeedbackWheelIcon color={iconPrimaryColor} />,
+      image: <FeedbackWheelIcon />,
     },
     {
       title: t('Feedback_dislikeOption4'),
@@ -97,7 +105,7 @@ const FeedbackScreenWithoutI18n = ({
   style,
 }: FeedbackScreenProps): JSX.Element => {
   const { t } = useTranslation();
-  const { colors } = useTheme();
+  const { colors, themeMode } = useTheme();
 
   const [feedback, setFeedback] = useState<FeedbackType>({ rating: null, description: [] });
   const [isTipsPopupVisible, setIsTipsPopupVisible] = useState<boolean>(false);
@@ -149,7 +157,10 @@ const FeedbackScreenWithoutI18n = ({
       like: {
         feedbackDescriptions: (
           <Animated.View entering={FadeIn} style={styles.descriptionsWrapper} key={'like'}>
-            {getFeedbackOptions(t).like.map((option, index) => (
+            {getFeedbackOptions(t, {
+              color: themeMode !== 'light' ? colors.iconTertiaryColor : undefined,
+              backgroundColor: colors.primaryColor,
+            }).like.map((option, index) => (
               <FeedbackScreenDescriptionItem
                 key={index}
                 option={option}
@@ -171,7 +182,7 @@ const FeedbackScreenWithoutI18n = ({
       dislike: {
         feedbackDescriptions: (
           <Animated.View entering={FadeIn} style={styles.descriptionsWrapper} key={'dislike'}>
-            {getFeedbackOptions(t, colors.iconPrimaryColor).dislike.map((option, index) => (
+            {getFeedbackOptions(t).dislike.map((option, index) => (
               <FeedbackScreenDescriptionItem
                 key={index}
                 option={option}

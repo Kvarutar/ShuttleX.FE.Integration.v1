@@ -11,7 +11,7 @@ import StarIcon from '../../icons/StarIcon';
 import { type Notification } from './props';
 
 const NotificationScreenItem = ({ notification }: { notification: Notification }) => {
-  const { colors } = useTheme();
+  const { colors, themeMode } = useTheme();
   const shadowProps = defaultShadow(colors.strongShadowColor);
 
   const computedStyles = StyleSheet.create({
@@ -22,7 +22,7 @@ const NotificationScreenItem = ({ notification }: { notification: Notification }
       color: colors.textSecondaryColor,
     },
     iconWrapper: {
-      backgroundColor: colors.backgroundSecondaryColor,
+      backgroundColor: themeMode === 'light' ? colors.backgroundSecondaryColor : colors.backgroundPrimaryColor,
     },
     unreadMarker: {
       backgroundColor: colors.primaryColor,

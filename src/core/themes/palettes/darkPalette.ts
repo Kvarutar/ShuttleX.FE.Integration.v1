@@ -12,10 +12,12 @@ const colors: Omit<Palette, 'buttonModes'> = {
   backgroundTertiaryColor: '#FFFFFF',
   iconPrimaryColor: '#FFFFFF',
   iconSecondaryColor: '#B4B4B4',
+  iconTertiaryColor: '#000000',
   outlineColor: '#000000',
   strokeColor: '#B4B4B466',
   textPrimaryColor: '#FFFFFF',
   textSecondaryColor: '#757575',
+  textTertiaryColor: '#000000',
   weakShadowColor: 'rgba(0, 0, 0, 0.02)',
   strongShadowColor: 'rgba(0, 0, 0, 0.04)',
 };
@@ -29,7 +31,7 @@ const buttonModes: PaletteButtonModes = {
   mode2: {
     backgroundColor: colors.backgroundTertiaryColor,
     backgroundColorOnPress: colors.backgroundTertiaryColor,
-    textColor: '#000000',
+    textColor: colors.textTertiaryColor,
   },
   mode3: {
     backgroundColor: '#000000',
@@ -39,7 +41,7 @@ const buttonModes: PaletteButtonModes = {
   mode4: {
     backgroundColor: '#F3F3F3',
     backgroundColorOnPress: '#E2E2E2',
-    textColor: '#000000',
+    textColor: colors.textTertiaryColor,
   },
 };
 

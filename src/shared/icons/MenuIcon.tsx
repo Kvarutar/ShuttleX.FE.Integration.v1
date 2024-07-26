@@ -2,15 +2,20 @@ import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Rect } from 'react-native-svg';
 
 import sizes from '../../core/themes/sizes';
+import { useTheme } from '../../core/themes/themeContext';
 
-const MenuIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.MenuIcon, style]} fill="none" viewBox="0 0 24 24">
-    <Rect x={3.75} y={3.75} width={6.5} height={6.5} rx={3.25} stroke="black" strokeWidth={1.5} />
-    <Rect x={3.75} y={13.75} width={6.5} height={6.5} rx={3.25} stroke="black" strokeWidth={1.5} />
-    <Rect x={13.75} y={3.75} width={6.5} height={6.5} rx={3.25} stroke="black" strokeWidth={1.5} />
-    <Rect x={13.75} y={13.75} width={6.5} height={6.5} rx={3.25} stroke="black" strokeWidth={1.5} />
-  </Svg>
-);
+const MenuIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => {
+  const { colors } = useTheme();
+
+  return (
+    <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.MenuIcon, style]} fill="none" viewBox="0 0 24 24">
+      <Rect x={3.75} y={3.75} width={6.5} height={6.5} rx={3.25} stroke={colors.iconPrimaryColor} strokeWidth={1.5} />
+      <Rect x={3.75} y={13.75} width={6.5} height={6.5} rx={3.25} stroke={colors.iconPrimaryColor} strokeWidth={1.5} />
+      <Rect x={13.75} y={3.75} width={6.5} height={6.5} rx={3.25} stroke={colors.iconPrimaryColor} strokeWidth={1.5} />
+      <Rect x={13.75} y={13.75} width={6.5} height={6.5} rx={3.25} stroke={colors.iconPrimaryColor} strokeWidth={1.5} />
+    </Svg>
+  );
+};
 
 const styles = StyleSheet.create({
   MenuIcon: {

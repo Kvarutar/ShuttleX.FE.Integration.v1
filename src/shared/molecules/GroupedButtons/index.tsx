@@ -22,7 +22,7 @@ const GroupedButtons = ({
   secondButtonText,
   style,
 }: GroupedButtonsProps): JSX.Element => {
-  const { colors } = useTheme();
+  const { colors, themeMode } = useTheme();
 
   const [endButtonPosition, setEndButtonPosition] = useState(0);
 
@@ -49,13 +49,13 @@ const GroupedButtons = ({
 
   const computedStyles = StyleSheet.create({
     groupedButtons: {
-      backgroundColor: colors.backgroundPrimaryColor,
+      backgroundColor: themeMode === 'light' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor,
     },
     passiveTextColor: {
       color: colors.textSecondaryColor,
     },
     animatedToggleButton: {
-      backgroundColor: colors.backgroundSecondaryColor,
+      backgroundColor: themeMode === 'light' ? colors.backgroundSecondaryColor : colors.backgroundTertiaryColor,
     },
   });
 
