@@ -40,8 +40,8 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
   ) => {
     const { colors } = useTheme();
 
-    const progress = useSharedValue(0); // 0 - opened, 1 - closed
-    const isCurrentOpen = useSharedValue(true);
+    const progress = useSharedValue(1); // 0 - opened, 1 - closed
+    const isCurrentOpen = useSharedValue(false);
 
     const hiddenAnimatedHeight = useSharedValue(0);
     const visibleAnimatedHeight = useSharedValue(0);

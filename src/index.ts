@@ -1,3 +1,6 @@
+import createAxiosInstance from './core/client';
+import defaultAxiosRetryConfig from './core/client/helpers/defaultRetryConfig';
+import getAxiosErrorInfo from './core/client/helpers/getAxiosErrorInfo';
 import { emailRegex } from './core/consts/regex.consts';
 import { countryDtos } from './core/countries/countryDtos';
 import { type countryDtosProps } from './core/countries/props';
@@ -191,10 +194,12 @@ export {
   countryDtos,
   type countryDtosProps,
   countryFlags,
+  createAxiosInstance,
   CreditCheckIcon,
   CurrencyIcon,
   CustomKeyboardAvoidingView,
   DatePicker,
+  defaultAxiosRetryConfig,
   degToRad,
   DislikeIcon,
   DocumentIcon,
@@ -219,6 +224,7 @@ export {
   type FreeTimeAlertProps,
   FreeTimeAlertType,
   getAngleBetweenPoints,
+  getAxiosErrorInfo,
   getDistanceBetweenPoints,
   getPaymentIcon,
   GroupedBrandIcon,
