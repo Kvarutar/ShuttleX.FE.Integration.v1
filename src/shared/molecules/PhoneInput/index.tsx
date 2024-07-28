@@ -25,7 +25,7 @@ const PhoneInput = ({
   const [onlyNumbersInputValue, setOnlyNumbersInputValue] = useState('');
   const [isInputDone, setIsInputDone] = useState(false);
 
-  const { colors } = useTheme();
+  const { colors, themeMode } = useTheme();
 
   useEffect(() => {
     if (flagState) {
@@ -99,15 +99,18 @@ const PhoneInput = ({
     return maskArr.slice(0, hashPosition).join('');
   };
 
+  const borderColor = error.isError ? colors.errorColor : colors.borderColor;
+  const borderWidth = isInputDone && !isInputFocused && themeMode === 'light' ? 0 : 1;
+
   const computedStyles = StyleSheet.create({
     flagContainer: {
       backgroundColor: colors.backgroundPrimaryColor,
-      borderTopWidth: isInputDone && !isInputFocused ? 0 : 1,
-      borderBottomWidth: isInputDone && !isInputFocused ? 0 : 1,
-      borderLeftWidth: isInputDone && !isInputFocused ? 0 : 1,
-      borderTopColor: error.isError ? colors.errorColor : colors.borderColor,
-      borderBottomColor: error.isError ? colors.errorColor : colors.borderColor,
-      borderLeftColor: error.isError ? colors.errorColor : colors.borderColor,
+      borderTopWidth: borderWidth,
+      borderBottomWidth: borderWidth,
+      borderLeftWidth: borderWidth,
+      borderTopColor: borderColor,
+      borderBottomColor: borderColor,
+      borderLeftColor: borderColor,
       borderRightColor: colors.borderColor,
     },
     flagContainerFocused: {
@@ -116,7 +119,7 @@ const PhoneInput = ({
       borderBottomColor: colors.primaryColor,
     },
     input: {
-      borderWidth: isInputDone && !isInputFocused ? 0 : 1,
+      borderWidth: borderWidth,
     },
     dropdownContainer: {
       borderColor: colors.primaryColor,
