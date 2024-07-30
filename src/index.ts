@@ -22,6 +22,7 @@ import Button from './shared/atoms/Button';
 import { ButtonModes, ButtonShadows } from './shared/atoms/Button/props';
 import CheckBox from './shared/atoms/Checkbox';
 import RoundButton from './shared/atoms/RoundButton';
+import { RoundButtonMode } from './shared/atoms/RoundButton/types';
 import Separator from './shared/atoms/Separator';
 import Text from './shared/atoms/Text';
 import TextInput from './shared/atoms/TextInput';
@@ -282,6 +283,7 @@ export {
   requestGalleryUsagePermission,
   requestGeolocationPermission,
   RoundButton,
+  RoundButtonMode,
   SafeAreaView,
   ScrollViewWithCustomScroll,
   Separator,

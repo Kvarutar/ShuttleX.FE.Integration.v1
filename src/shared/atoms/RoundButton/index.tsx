@@ -1,18 +1,42 @@
 import { Pressable, StyleSheet, View } from 'react-native';
-import { Shadow } from 'react-native-shadow-2';
+import { Shadow, type ShadowProps } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
-import { type RoundButtonProps } from './types';
+import { RoundButtonMode, type RoundButtonProps } from './types';
 
-const RoundButton = ({ onPress, style, children, roundButtonStyle }: RoundButtonProps): JSX.Element => {
+type RoundButtonStyleProperties = {
+  shadowProps: ShadowProps;
+  backgroundColor: string;
+};
+
+type RoundButtonProperties = Record<RoundButtonMode, RoundButtonStyleProperties>;
+
+const RoundButton = ({
+  onPress,
+  style,
+  children,
+  roundButtonStyle,
+  mode = RoundButtonMode.Active,
+}: RoundButtonProps): JSX.Element => {
   const { colors, themeMode } = useTheme();
 
-  const shadowProps = defaultShadow(colors.strongShadowColor);
+  const roundButtonProperties: RoundButtonProperties = {
+    active: {
+      shadowProps: defaultShadow(colors.strongShadowColor),
+      backgroundColor: themeMode === 'light' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor,
+    },
+    disabled: {
+      shadowProps: { disabled: true },
+      backgroundColor: colors.borderColor,
+    },
+  };
+
+  const { shadowProps, backgroundColor } = roundButtonProperties[mode];
 
   const computedStyles = StyleSheet.create({
     container: {
-      backgroundColor: themeMode === 'light' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor,
+      backgroundColor: backgroundColor,
     },
   });
 

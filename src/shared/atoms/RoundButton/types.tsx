@@ -5,4 +5,10 @@ export type RoundButtonProps = {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   roundButtonStyle?: StyleProp<ViewStyle>;
+  mode?: RoundButtonMode;
 };
+
+export enum RoundButtonMode {
+  Active = 'active',
+  Disabled = 'disabled',
+}
