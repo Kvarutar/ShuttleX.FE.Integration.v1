@@ -6,6 +6,8 @@ const colors: Omit<Palette, 'buttonModes'> = {
   secondaryGradientStartColor: '#EAEAEA',
   secondaryGradientEndColor: '#010101',
   errorColor: '#FF7777',
+  warningColor: '#FFE54E',
+  successColor: '#4FAD40',
   borderColor: '#B4B4B44D', // with opacity
   backgroundPrimaryColor: '#121212',
   backgroundSecondaryColor: '#1B1B1B',

@@ -5,12 +5,12 @@ import { useTheme } from '../../core/themes/themeContext';
 
 const BigCameraIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
   const { colors } = useTheme();
-  const svgColor = color ?? colors.iconPrimaryColor;
+  const svgColor = color ?? colors.iconSecondaryColor;
 
   return (
     <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 254 250" fill="none">
-      <G opacity={0.05}>
-        <Mask id="path-1-inside-1_115_2042" fill={colors.backgroundPrimaryColor}>
+      <G opacity={0.2}>
+        <Mask id="path-1-inside-1_115_2042" fill={svgColor}>
           <Path
             fillRule="evenodd"
             clipRule="evenodd"

@@ -1,35 +1,21 @@
 import { type Meta } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { FreeTimeAlert, FreeTimeAlertType, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { FreeTimeAlert, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { AlertRunsOn } from '../../../src/shared/molecules/alerts/Alert/props';
 import { type FreeTimeAlertProps } from '../../../src/shared/molecules/alerts/FreeTimeAlert/props';
 
-type FreeTimeAlertStorybookProps = { theme: ThemeContextType['themeMode'] } & Omit<FreeTimeAlertProps, 'time'> & {
-    timeNumber: FreeTimeAlertProps['time']['number'];
-    timeType: FreeTimeAlertProps['time']['type'];
-  };
+type FreeTimeAlertStorybookProps = { theme: ThemeContextType['themeMode'] } & FreeTimeAlertProps;
 
 const FreeTimeAlertMeta: Meta<FreeTimeAlertStorybookProps> = {
   title: 'FreeTimeAlert',
   component: FreeTimeAlert,
   args: {
     theme: 'light',
-    runsOn: AlertRunsOn.Passenger,
-    timeNumber: 3,
-    timeType: FreeTimeAlertType.Minutes,
+    text: 'Free time ends in 5 minutes',
   },
   argTypes: {
     theme: {
       options: Object.keys(palettes),
-      control: { type: 'select' },
-    },
-    runsOn: {
-      options: Object.values(AlertRunsOn),
-      control: { type: 'select' },
-    },
-    timeType: {
-      options: Object.values(FreeTimeAlertType),
       control: { type: 'select' },
     },
   },
@@ -37,14 +23,14 @@ const FreeTimeAlertMeta: Meta<FreeTimeAlertStorybookProps> = {
 
 export default FreeTimeAlertMeta;
 
-const FreeTimeAlertWithHooks = ({ theme, timeNumber, timeType, ...props }: FreeTimeAlertStorybookProps) => {
+const FreeTimeAlertWithHooks = ({ theme, ...props }: FreeTimeAlertStorybookProps) => {
   const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(theme);
   }, [theme, setThemeMode]);
 
-  return <FreeTimeAlert time={{ number: timeNumber, type: timeType }} {...props} />;
+  return <FreeTimeAlert {...props} />;
 };
 
 export const BasicExample: Meta<FreeTimeAlertStorybookProps> = {

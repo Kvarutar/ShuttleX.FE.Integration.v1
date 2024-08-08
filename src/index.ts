@@ -100,15 +100,18 @@ import PremiumXImage from './shared/images/PremiumXImage';
 import PremiumXLImage from './shared/images/PremiumXLImage';
 import TariffsCarImage, { type TariffType } from './shared/images/TariffsCarImage';
 import TeslaXImage from './shared/images/TeslaXImage';
-import { type AlertDescendantProps, AlertRunsOn } from './shared/molecules/alerts/Alert/props';
+import { type AlertDescendantProps } from './shared/molecules/alerts/Alert/props';
 import DriverArrivedAlert from './shared/molecules/alerts/DriverArrivedAlert';
 import FreeTimeAlert from './shared/molecules/alerts/FreeTimeAlert';
-import { type FreeTimeAlertProps, FreeTimeAlertType } from './shared/molecules/alerts/FreeTimeAlert/props';
+import { type FreeTimeAlertProps } from './shared/molecules/alerts/FreeTimeAlert/props';
 import InternetDisconnectedAlert from './shared/molecules/alerts/InternetDisconnectedAlert';
 import PaidTimeAlert from './shared/molecules/alerts/PaidTimeAlert';
 import { type PaidTimeAlertProps } from './shared/molecules/alerts/PaidTimeAlert/props';
 import PlannedTripAlert from './shared/molecules/alerts/PlannedTripAlert';
 import { type PlannedTripAlertProps } from './shared/molecules/alerts/PlannedTripAlert/props';
+import RideHasFinishedAlert from './shared/molecules/alerts/RideHasFinishedAlert';
+import { type RideHasFinishedAlertProps } from './shared/molecules/alerts/RideHasFinishedAlert/props';
+import SecondRideAlert from './shared/molecules/alerts/SecondRideAlert';
 import BottomWindow from './shared/molecules/BottomWindow';
 import BottomWindowWithGesture from './shared/molecules/BottomWindowWithGesture';
 import CodeInput from './shared/molecules/CodeInput';
@@ -156,7 +159,6 @@ import {
 export {
   AddCardScreen,
   type AlertDescendantProps,
-  AlertRunsOn,
   AnimatedMarker,
   ApplePayIcon,
   ArrowIcon,
@@ -223,7 +225,6 @@ export {
   FlatListWithCustomScroll,
   FreeTimeAlert,
   type FreeTimeAlertProps,
-  FreeTimeAlertType,
   getAngleBetweenPoints,
   getAxiosErrorInfo,
   getDistanceBetweenPoints,
@@ -282,10 +283,13 @@ export {
   requestCameraUsagePermission,
   requestGalleryUsagePermission,
   requestGeolocationPermission,
+  RideHasFinishedAlert,
+  type RideHasFinishedAlertProps,
   RoundButton,
   RoundButtonMode,
   SafeAreaView,
   ScrollViewWithCustomScroll,
+  SecondRideAlert,
   Separator,
   ShortArrowIcon,
   ShortArrowSmallIcon,

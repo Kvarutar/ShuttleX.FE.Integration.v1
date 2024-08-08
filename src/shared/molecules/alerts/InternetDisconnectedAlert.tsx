@@ -22,7 +22,7 @@ const InternetDisconnectedAlertWithoutI18n = ({ style, ...props }: AlertDescenda
   });
 
   return (
-    <Alert style={[styles.alertContainer, computedStyles.alertContainer, style]} {...props}>
+    <Alert style={[computedStyles.alertContainer, style]} {...props}>
       <View style={styles.container}>
         <LowSignalIcon style={styles.icon} />
         <Text style={[styles.text, computedStyles.text]}>{t('InternetDisconnectedAlert_description')}</Text>
@@ -32,10 +32,9 @@ const InternetDisconnectedAlertWithoutI18n = ({ style, ...props }: AlertDescenda
 };
 
 const styles = StyleSheet.create({
-  alertContainer: {
-    alignItems: 'center',
-  },
   container: {
+    flex: 1,
+    justifyContent: 'center',
     flexDirection: 'row',
   },
   icon: {

@@ -38,6 +38,7 @@ const PlannedTripAlertWithoutI18n = ({
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: 'stretch',
     flexDirection: 'column',
     paddingVertical: 16,
   },

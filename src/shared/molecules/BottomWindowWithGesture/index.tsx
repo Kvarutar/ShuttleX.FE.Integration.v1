@@ -29,6 +29,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     {
       visiblePart,
       hiddenPart,
+      alerts,
       style,
       visiblePartStyles,
       hiddenPartStyles,
@@ -52,12 +53,14 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     }));
 
     const [isBlur, setIsBlur] = useState<boolean>(false);
+    const [isAlertsVisible, setIsAlertsVisible] = useState(true);
 
     const context = useSharedValue({ y: 0 });
 
     useImperativeHandle(ref, () => ({
       closeWindow: () => {
         runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
+        runOnJS(setIsAlertsVisible)(true);
       },
     }));
 
@@ -74,6 +77,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     const gesture = Gesture.Pan()
       .onStart(() => {
         context.value = { y: translateY.value };
+        runOnJS(setIsAlertsVisible)(false);
       })
       .onUpdate(event => {
         const shift = context.value.y - event.translationY;
@@ -93,6 +97,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       .onEnd(() => {
         if (progress.value > 0.5) {
           runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
+          runOnJS(setIsAlertsVisible)(true);
         } else if (progress.value < 0.5) {
           runOnJS(onWindowStateChange)({ isOpened: true, isCurrentBlur: true });
         }
@@ -125,7 +130,12 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
           exiting={FadeOut}
           entering={FadeIn}
         >
-          <BottomWindow style={styles.bottom} windowStyle={[styles.window, computedStyles.bottom]}>
+          <BottomWindow
+            alerts={alerts}
+            showAlerts={isAlertsVisible}
+            style={styles.bottom}
+            windowStyle={[styles.window, computedStyles.bottom]}
+          >
             <GestureDetector gesture={gesture}>
               <Animated.View onLayout={onVisiblePartLayout}>
                 <View style={styles.draggableZone}>

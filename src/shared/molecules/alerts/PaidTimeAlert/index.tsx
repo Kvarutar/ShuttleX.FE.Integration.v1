@@ -23,7 +23,6 @@ const PaidTimeAlertWithoutI18n = ({ currency, style, ...props }: PaidTimeAlertPr
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     gap: 12,
   },
   icon: {

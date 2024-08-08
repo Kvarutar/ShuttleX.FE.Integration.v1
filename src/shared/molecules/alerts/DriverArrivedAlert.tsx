@@ -19,7 +19,6 @@ const DriverArrivedAlertWithoutI18n = ({ style, ...props }: AlertDescendantProps
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     gap: 16,
     paddingHorizontal: 32,
   },

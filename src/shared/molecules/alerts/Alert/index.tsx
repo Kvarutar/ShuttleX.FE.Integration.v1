@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 14,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
 });
 

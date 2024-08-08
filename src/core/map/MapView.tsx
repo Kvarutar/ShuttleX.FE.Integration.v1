@@ -40,6 +40,7 @@ const MapView = ({
   stopPoints,
   cameraMode,
   setCameraModeOnDrag,
+  onDragComplete,
 }: MapViewProps): JSX.Element => {
   // Black magic, dont touch (prevents useEffects react to callbacks changes)
   const setCameraModeOnDragRef = useRef<MapViewProps['setCameraModeOnDrag']>();
@@ -167,6 +168,14 @@ const MapView = ({
         customMapStyle={lightMapStyle}
         rotateEnabled={cameraMode === 'free'}
         onPanDrag={onDrag}
+        onRegionChangeComplete={async () => {
+          if (onDragComplete) {
+            const camera = await mapRef.current?.getCamera();
+            if (camera) {
+              onDragComplete(camera.center);
+            }
+          }
+        }}
         onMapLoaded={() => setIsMapLoaded(true)}
       >
         {geolocationCoordinates && (

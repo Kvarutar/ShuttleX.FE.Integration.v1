@@ -6,6 +6,7 @@ import DateTimePicker, {
 import { useState } from 'react';
 import { Platform, Pressable, StyleSheet } from 'react-native';
 
+import { useTheme } from '../../../core/themes/themeContext';
 import Modal from '../../atoms/Modal';
 import TextInput from '../../atoms/TextInput';
 import CalendarIcon from '../../icons/CalendarIcon';
@@ -22,6 +23,8 @@ const DatePicker = ({
   minimumDate,
   formatDate,
 }: DatePickerProps): JSX.Element => {
+  const { colors, themeMode } = useTheme();
+
   const [date, setDate] = useState<Date | null>();
   const [isVisible, setIsVisible] = useState(false);
   const [isDateSelected, setIsDateSelected] = useState(false);
@@ -60,6 +63,17 @@ const DatePicker = ({
     display: display,
   };
 
+  let iosTheme: Omit<IOSNativeProps, 'value'> = {};
+  if (Platform.OS === 'ios' && themeMode !== 'light') {
+    // TODO: Later better create here switch case
+    // If ios version at least 14
+    if (Number(Platform.Version.toString().split('.')[0]) >= 14) {
+      iosTheme = { themeVariant: 'dark' };
+    } else {
+      iosTheme = { textColor: colors.textPrimaryColor };
+    }
+  }
+
   return (
     <Pressable style={[styles.datePickerContainer, style]} onPress={showDatepicker}>
       <TextInput
@@ -73,7 +87,7 @@ const DatePicker = ({
       {isVisible &&
         (Platform.OS === 'ios' ? (
           <Modal>
-            <DateTimePicker {...props} display="inline" />
+            <DateTimePicker {...props} {...iosTheme} display="inline" />
           </Modal>
         ) : (
           <DateTimePicker {...props} />

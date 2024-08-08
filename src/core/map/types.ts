@@ -11,6 +11,7 @@ export type MapViewProps = {
   stopPoints?: LatLng[];
   cameraMode?: MapCameraMode;
   setCameraModeOnDrag?: (cameraMode: MapCameraMode) => void;
+  onDragComplete?: (coordinates: LatLng) => void;
 };
 
 export type MapCameraModeButtonProps = {
