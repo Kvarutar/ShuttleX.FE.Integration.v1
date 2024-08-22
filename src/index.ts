@@ -137,9 +137,10 @@ import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
 import FeedbackScreen from './shared/screens/FeedbackScreen';
 import { type FeedbackRating, type FeedbackType } from './shared/screens/FeedbackScreen/props';
+import LockOutScreen from './shared/screens/LockOutScreen';
 import NotificationsScreen from './shared/screens/NotificationsScreen';
 import { type Notification, NotificationType } from './shared/screens/NotificationsScreen/props';
-import { degToRad, radToDeg } from './utils';
+import { degToRad, minToMilSec, radToDeg } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { useDebounce } from './utils/debounce';
 import { getAngleBetweenPoints, getDistanceBetweenPoints, useGeolocationStartWatch } from './utils/geolocation';
@@ -244,6 +245,7 @@ export {
   LocationUnavailable,
   type LocationUnavailableProps,
   LockIcon,
+  LockOutScreen,
   MaestroIcon,
   type MapCameraMode,
   MapCameraModeButton,
@@ -255,6 +257,7 @@ export {
   type MenuNavigation,
   MenuUserImage,
   MenuUserImage2,
+  minToMilSec,
   MinusIcon,
   nameof,
   type Notification,

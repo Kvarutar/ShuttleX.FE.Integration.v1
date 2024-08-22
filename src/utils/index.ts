@@ -19,4 +19,11 @@ const radToDeg = (rad: number) => rad * (180 / Math.PI);
  */
 const boolToSign = (flag: boolean) => (flag ? 1 : -1);
 
-export { boolToSign, degToRad, radToDeg };
+/**
+ * Converts minutes to milliseconds
+ * @param time value in seconds
+ * @returns milliseconds
+ */
+const minToMilSec = (time: number) => time * 60 * 1000;
+
+export { boolToSign, degToRad, minToMilSec, radToDeg };
