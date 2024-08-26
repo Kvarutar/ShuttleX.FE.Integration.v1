@@ -25,7 +25,7 @@ import { useCompass } from '../../utils/compass';
 import { useTheme } from '../themes/themeContext';
 import { AnimatedMarker } from './hooks';
 import lightMapStyle from './lightMapStyle.json';
-import { type MapViewProps } from './types';
+import { type MapPolyline, type MapViewProps } from './types';
 
 const constants = {
   cameraZoom: 15.8,
@@ -38,6 +38,7 @@ const MapView = ({
   geolocationCalculatedHeading,
   polylines,
   stopPoints,
+  finalStopPoint,
   cameraMode,
   setCameraModeOnDrag,
   onDragComplete,
@@ -188,18 +189,47 @@ const MapView = ({
           />
         )}
 
-        {polylines && polylines.length > 1 && (
-          <>
-            <Polyline coordinates={polylines} strokeWidth={6} strokeColor={colors.primaryColor} />
-            <Marker
-              coordinate={polylines[polylines.length - 1] as LatLng}
-              anchor={{ x: 0.5, y: 0.91 }}
-              tracksViewChanges={false}
-            >
-              <MapPinIcon />
-            </Marker>
-          </>
-        )}
+        {polylines &&
+          polylines.length > 0 &&
+          polylines.map((polyline, i) => {
+            const polylineColor = polyline.color ?? colors.primaryColor;
+            const polylineStyle: MapPolyline['style'] = polyline.style ?? 'straight';
+
+            switch (polylineStyle) {
+              case 'straight': {
+                return (
+                  <Polyline key={i} coordinates={polyline.coordinates} strokeWidth={6} strokeColor={polylineColor} />
+                );
+              }
+              case 'dotted': {
+                const coordinates: LatLng[] = [];
+
+                for (let j = 0; j < polyline.coordinates.length; j++) {
+                  const latlng = polyline.coordinates[j]!;
+                  if (j > 0) {
+                    const prevLatlng = polyline.coordinates[j - 1]!;
+                    const latitude = (prevLatlng.latitude + latlng.latitude) / 2;
+                    const longitude = (prevLatlng.longitude + latlng.longitude) / 2;
+                    coordinates.push({ latitude, longitude });
+                  }
+                  coordinates.push(latlng);
+                }
+
+                const lines: JSX.Element[] = [];
+                for (let j = 0; j < coordinates.length - 1; j += 2) {
+                  lines.push(
+                    <Polyline
+                      key={j}
+                      coordinates={coordinates.slice(j, j + 2)}
+                      strokeWidth={6}
+                      strokeColor={polylineColor}
+                    />,
+                  );
+                }
+                return lines;
+              }
+            }
+          })}
 
         {stopPoints &&
           stopPoints.length !== 0 &&
@@ -213,6 +243,12 @@ const MapView = ({
               </View>
             </Marker>
           ))}
+
+        {finalStopPoint && (
+          <Marker coordinate={finalStopPoint} anchor={{ x: 0.5, y: 0.91 }} tracksViewChanges={false}>
+            <MapPinIcon />
+          </Marker>
+        )}
       </MapViewNative>
     </>
   );
