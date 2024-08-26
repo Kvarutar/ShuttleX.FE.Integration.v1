@@ -1,6 +1,7 @@
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import RoundButton from '../../shared/atoms/RoundButton';
+import { ButtonV1 } from '../../shared/atoms/Button/index';
+import { ButtonV1Shapes } from '../../shared/atoms/Button/V1/props';
 import LocationArrowImage2 from '../../shared/images/LocationArrowImage2';
 import { type MapCameraModeButtonProps } from './types';
 
@@ -40,9 +41,9 @@ const MapCameraModeButton = ({ mode, onPress, style }: MapCameraModeButtonProps)
   };
 
   return (
-    <RoundButton style={style} onPress={onPress}>
+    <ButtonV1 shape={ButtonV1Shapes.Circle} style={style} onPress={onPress}>
       <Animated.View style={rotationAnimatedStyle}>{getIcon()}</Animated.View>
-    </RoundButton>
+    </ButtonV1>
   );
 };
 

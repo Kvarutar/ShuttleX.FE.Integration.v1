@@ -6,8 +6,8 @@ import Slider from 'react-native-slide-to-unlock';
 import i18nIntegration from '../../../core/locales/i18n';
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
-import Button from '../../atoms/Button';
-import { ButtonModes } from '../../atoms/Button/props';
+import ButtonV1 from '../../atoms/Button/V1';
+import { ButtonV1Modes } from '../../atoms/Button/V1/props';
 import Text from '../../atoms/Text';
 import ArrowIcon from '../../icons/ArrowIcon';
 import { SwipeButtonModes, type SwipeButtonProps } from './props';
@@ -33,12 +33,12 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): J
         onEndReached={() => onSwipeEnd()}
         containerStyle={{ ...computedStyles.slider, ...styles.slider }}
         sliderElement={
-          <Button
+          <ButtonV1
             style={styles.button}
-            mode={mode === SwipeButtonModes.Confirm ? ButtonModes.Mode1 : ButtonModes.Mode3}
+            mode={mode === SwipeButtonModes.Confirm ? ButtonV1Modes.Mode1 : ButtonV1Modes.Mode3}
           >
             <ArrowIcon />
-          </Button>
+          </ButtonV1>
         }
       >
         <Text style={[computedStyles.text, styles.text]}>{text ?? t('SwipeButton_buttonHint')}</Text>

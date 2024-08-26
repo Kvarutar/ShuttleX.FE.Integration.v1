@@ -1,6 +1,6 @@
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import { Button, ButtonModes, Text, Timer, TimerModes, useTheme } from 'shuttlex-integration';
+import { ButtonV1, ButtonV1Modes, Text, Timer, TimerModes, useTheme } from 'shuttlex-integration';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { type LockOutScreenProps } from './props';
@@ -32,9 +32,9 @@ const LockOutScreenWithoutI18n = ({
       <View style={styles.body}>
         <Text style={[styles.codeText]}>{t('LockOut_description')}</Text>
         <View style={styles.buttonsContainer}>
-          <Button mode={ButtonModes.Mode3} text={t('LockOut_supportButton')} onPress={onContactSupport} />
-          <Button
-            mode={ButtonModes.Mode2}
+          <ButtonV1 mode={ButtonV1Modes.Mode3} text={t('LockOut_supportButton')} onPress={onContactSupport} />
+          <ButtonV1
+            mode={ButtonV1Modes.Mode2}
             text={t('LockOut_requestButton')}
             onPress={onRequestCodeAgain}
             disableShadow={isLockedOut}

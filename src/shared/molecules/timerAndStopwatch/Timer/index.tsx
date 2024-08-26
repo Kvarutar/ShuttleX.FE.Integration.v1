@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 
-import RoundButton from '../../../atoms/RoundButton';
+import { ButtonV1 } from '../../../atoms/Button/index';
+import { ButtonV1Shapes } from '../../../atoms/Button/V1/props';
 import SpinnerIcon from '../../../icons/SpinnerIcon';
 import CountingComponent from '../CountingComponent';
 import { type TimerProps, type TimerSizesType } from './props';
@@ -54,7 +55,11 @@ const Timer = ({
   }));
 
   return (
-    <RoundButton roundButtonStyle={[styles.timerWrapper, computedStyles.timerWrapper]} style={style}>
+    <ButtonV1
+      shape={ButtonV1Shapes.Circle}
+      containerStyle={[styles.timerWrapper, computedStyles.timerWrapper]}
+      style={style}
+    >
       <Animated.View style={[animatedStyle]}>
         <SpinnerIcon size={iconSize} strokeWidth={iconStrokeWidth} startColor={startColor} endColor={endColor} />
       </Animated.View>
@@ -68,7 +73,7 @@ const Timer = ({
           />
         </View>
       )}
-    </RoundButton>
+    </ButtonV1>
   );
 };
 

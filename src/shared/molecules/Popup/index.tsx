@@ -4,7 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import sizes from '../../../core/themes/sizes';
 import Blur from '../../atoms/Blur';
-import RoundButton from '../../atoms/RoundButton';
+import { ButtonV1 } from '../../atoms/Button/index';
+import { ButtonV1Shapes } from '../../atoms/Button/V1/props';
 import CloseIcon from '../../icons/CloseIcon';
 import ShortArrowIcon from '../../icons/ShortArrowIcon';
 import BottomWindow from '../BottomWindow';
@@ -39,9 +40,9 @@ const Popup = ({
           style={styles.topButtons}
         >
           <SafeAreaView style={computetStyles.container}>
-            <RoundButton onPress={onBackButtonPress}>
+            <ButtonV1 shape={ButtonV1Shapes.Circle} onPress={onBackButtonPress}>
               <ShortArrowIcon />
-            </RoundButton>
+            </ButtonV1>
           </SafeAreaView>
         </Animated.View>
       )}
@@ -51,9 +52,9 @@ const Popup = ({
             entering={FadeIn.duration(animationDuration.closeButtonDuration)}
             exiting={FadeOut.duration(animationDuration.closeButtonDuration)}
           >
-            <RoundButton style={styles.closeButton} onPress={onCloseButtonPress}>
+            <ButtonV1 shape={ButtonV1Shapes.Circle} style={styles.closeButton} onPress={onCloseButtonPress}>
               <CloseIcon />
-            </RoundButton>
+            </ButtonV1>
           </Animated.View>
         )}
         <Animated.View

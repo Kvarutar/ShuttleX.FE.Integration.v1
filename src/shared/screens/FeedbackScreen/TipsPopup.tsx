@@ -6,7 +6,7 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import i18nIntegration from '../../../core/locales/i18n';
 import Bar from '../../atoms/Bar';
 import { BarModes } from '../../atoms/Bar/types';
-import Button from '../../atoms/Button';
+import ButtonV1 from '../../atoms/Button/V1';
 import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput';
 import { TextInputInputMode, type TextInputRef } from '../../atoms/TextInput/props';
@@ -79,7 +79,7 @@ const TipsPopupWithoutI18n = ({ onClosePopup, addTip, tipsVariants }: TipsPopupP
           entering={FadeIn.duration(fadeAnimationDuration)}
           exiting={FadeOut.duration(fadeAnimationDuration)}
         >
-          <Button text={t('Feedback_TipsPopup_addTipsButton')} onPress={onAddTips} />
+          <ButtonV1 text={t('Feedback_TipsPopup_addTipsButton')} onPress={onAddTips} />
         </Animated.View>
       )}
     </Popup>

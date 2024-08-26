@@ -18,11 +18,9 @@ import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/th
 import Bar from './shared/atoms/Bar';
 import { BarModes } from './shared/atoms/Bar/types';
 import Blur from './shared/atoms/Blur';
-import Button from './shared/atoms/Button';
-import { ButtonModes, ButtonShadows } from './shared/atoms/Button/props';
+import { ButtonV1 } from './shared/atoms/Button/index';
+import { ButtonV1Modes, ButtonV1Shadows, ButtonV1Shapes } from './shared/atoms/Button/V1/props';
 import CheckBox from './shared/atoms/Checkbox';
-import RoundButton from './shared/atoms/RoundButton';
-import { RoundButtonMode } from './shared/atoms/RoundButton/types';
 import Separator from './shared/atoms/Separator';
 import Text from './shared/atoms/Text';
 import TextInput from './shared/atoms/TextInput';
@@ -177,9 +175,10 @@ export {
   BottomWindowWithGesture,
   BrandFavIcon,
   BrandTextIcon,
-  Button,
-  ButtonModes,
-  ButtonShadows,
+  ButtonV1,
+  ButtonV1Modes,
+  ButtonV1Shadows,
+  ButtonV1Shapes,
   calculateExtendedHeading,
   CalendarIcon,
   type Card,
@@ -288,8 +287,6 @@ export {
   requestGeolocationPermission,
   RideHasFinishedAlert,
   type RideHasFinishedAlertProps,
-  RoundButton,
-  RoundButtonMode,
   SafeAreaView,
   ScrollViewWithCustomScroll,
   SecondRideAlert,

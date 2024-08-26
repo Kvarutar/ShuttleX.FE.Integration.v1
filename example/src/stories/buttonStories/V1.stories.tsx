@@ -1,16 +1,16 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { Button, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { ButtonV1, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { ButtonModes, type ButtonProps, ButtonShadows } from '../../../src/shared/atoms/Button/props';
+import { ButtonV1Modes, type ButtonV1Props, ButtonV1Shadows } from '../../../../src/shared/atoms/Button/V1/props';
 
-const ButtonMeta: Meta<typeof Button> = {
+const ButtonMeta: Meta<typeof ButtonV1> = {
   title: 'Button',
-  component: Button,
+  component: ButtonV1,
   args: {
     theme: 'light',
-    mode: ButtonModes.Mode1,
+    mode: ButtonV1Modes.Mode1,
     text: 'Sample text',
     borderRadius: 28,
     shadow: undefined,
@@ -23,11 +23,11 @@ const ButtonMeta: Meta<typeof Button> = {
       control: { type: 'select' },
     },
     mode: {
-      options: Object.values(ButtonModes),
+      options: Object.values(ButtonV1Modes),
       control: { type: 'select' },
     },
     shadow: {
-      options: [undefined, ...Object.values(ButtonShadows)],
+      options: [undefined, ...Object.values(ButtonV1Shadows)],
       control: { type: 'select' },
     },
   },
@@ -35,7 +35,7 @@ const ButtonMeta: Meta<typeof Button> = {
 
 export default ButtonMeta;
 
-type ButtonWithHooksProps = { themeName: ThemeContextType['themeMode'] } & ButtonProps;
+type ButtonWithHooksProps = { themeName: ThemeContextType['themeMode'] } & ButtonV1Props;
 
 const ButtonWithHooks = ({ themeName, ...props }: ButtonWithHooksProps) => {
   const { setThemeMode } = useTheme();
@@ -44,7 +44,7 @@ const ButtonWithHooks = ({ themeName, ...props }: ButtonWithHooksProps) => {
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <Button {...props} />;
+  return <ButtonV1 {...props} />;
 };
 
 type Story = StoryObj<typeof ButtonWithHooks>;

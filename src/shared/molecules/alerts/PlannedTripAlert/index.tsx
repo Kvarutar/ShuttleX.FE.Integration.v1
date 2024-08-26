@@ -3,8 +3,8 @@ import { StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import { useTheme } from '../../../../core/themes/themeContext';
-import Button from '../../../atoms/Button';
-import { ButtonModes } from '../../../atoms/Button/props';
+import ButtonV1 from '../../../atoms/Button/V1';
+import { ButtonV1Modes } from '../../../atoms/Button/V1/props';
 import Text from '../../../atoms/Text';
 import ClockIcon2 from '../../../icons/ClockIcon2';
 import Alert from '../Alert';
@@ -31,7 +31,7 @@ const PlannedTripAlertWithoutI18n = ({
           })}
         </Text>
       </View>
-      <Button mode={ButtonModes.Mode4} text={t('PlannedTripAlert_cancelButton')} onPress={onCancelPress} />
+      <ButtonV1 mode={ButtonV1Modes.Mode4} text={t('PlannedTripAlert_cancelButton')} onPress={onCancelPress} />
     </Alert>
   );
 };

@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/themeContext';
 import Blur from '../../atoms/Blur';
-import Button from '../../atoms/Button';
+import ButtonV1 from '../../atoms/Button/V1';
 import Text from '../../atoms/Text';
 import BottomWindow from '../BottomWindow';
 import { type LocationUnavailableProps } from './props';
@@ -44,7 +44,11 @@ const LocationUnavailableWithoutI18n = ({ reason, onButtonPress }: LocationUnava
       <BottomWindow windowStyle={styles.container}>
         <Text style={[styles.title, computedStyles.title]}>{title}</Text>
         <Text style={styles.subtitle}>{subtitle}</Text>
-        <Button containerStyle={styles.button} text={t('LocationUnavailable_settingsButton')} onPress={onButtonPress} />
+        <ButtonV1
+          containerStyle={styles.button}
+          text={t('LocationUnavailable_settingsButton')}
+          onPress={onButtonPress}
+        />
       </BottomWindow>
     </>
   );

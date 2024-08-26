@@ -49,7 +49,8 @@ const getStories = () => {
   return {
     "./src/stories/Alert.stories.tsx": require("../src/stories/Alert.stories.tsx"),
     "./src/stories/Bar.stories.tsx": require("../src/stories/Bar.stories.tsx"),
-    "./src/stories/Button.stories.tsx": require("../src/stories/Button.stories.tsx"),
+    "./src/stories/buttonStories/V1.stories.tsx": require("../src/stories/buttonStories/V1.stories.tsx"),
+    "./src/stories/buttonStories/V2.stories.tsx": require("../src/stories/buttonStories/V2.stories.tsx"),
     "./src/stories/CheckBox.stories.tsx": require("../src/stories/CheckBox.stories.tsx"),
     "./src/stories/CodeInput.stories.tsx": require("../src/stories/CodeInput.stories.tsx"),
     "./src/stories/DatePicker.stories.tsx": require("../src/stories/DatePicker.stories.tsx"),
@@ -62,7 +63,6 @@ const getStories = () => {
     "./src/stories/PhoneInput.stories.tsx": require("../src/stories/PhoneInput.stories.tsx"),
     "./src/stories/PlannedTripAlert.stories.tsx": require("../src/stories/PlannedTripAlert.stories.tsx"),
     "./src/stories/RideHasFinishedAlert.stories.tsx": require("../src/stories/RideHasFinishedAlert.stories.tsx"),
-    "./src/stories/RoundButton.stories.tsx": require("../src/stories/RoundButton.stories.tsx"),
     "./src/stories/SecondRideAlert.stories.tsx": require("../src/stories/SecondRideAlert.stories.tsx"),
     "./src/stories/StopWatch.stories.tsx": require("../src/stories/StopWatch.stories.tsx"),
     "./src/stories/SwipeButton.stories.tsx": require("../src/stories/SwipeButton.stories.tsx"),

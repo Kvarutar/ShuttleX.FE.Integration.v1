@@ -8,9 +8,8 @@ import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/themeContext';
 import Bar from '../../atoms/Bar';
 import { BarModes } from '../../atoms/Bar/types';
-import Button from '../../atoms/Button';
-import { ButtonModes } from '../../atoms/Button/props';
-import RoundButton from '../../atoms/RoundButton';
+import { ButtonV1 } from '../../atoms/Button/index';
+import { ButtonV1Modes, ButtonV1Shapes } from '../../atoms/Button/V1/props';
 import Text from '../../atoms/Text';
 import ArrowInPrimaryColorIcon from '../../icons/ArrowInPrimaryColorIcon';
 import CloseIcon from '../../icons/CloseIcon';
@@ -220,9 +219,9 @@ const FeedbackScreenWithoutI18n = ({
     <>
       <View style={style}>
         <View style={styles.header}>
-          <RoundButton onPress={onBackButtonPress}>
+          <ButtonV1 shape={ButtonV1Shapes.Circle} onPress={onBackButtonPress}>
             <CloseIcon />
-          </RoundButton>
+          </ButtonV1>
         </View>
         <ScrollViewWithCustomScroll contentContainerStyle={styles.contentContainerStyle}>
           <View style={styles.content}>
@@ -250,10 +249,10 @@ const FeedbackScreenWithoutI18n = ({
               entering={FadeIn.duration(fadeAnimationDuration)}
               exiting={FadeOut.duration(fadeAnimationDuration)}
             >
-              <Button mode={ButtonModes.Mode2} text={t('Feedback_helpButton')} />
+              <ButtonV1 mode={ButtonV1Modes.Mode2} text={t('Feedback_helpButton')} />
             </Animated.View>
           )}
-          <Button
+          <ButtonV1
             containerStyle={styles.button}
             text={t('Feedback_sendFeedbackButton')}
             onPress={() => onSendFeedback(feedback)}

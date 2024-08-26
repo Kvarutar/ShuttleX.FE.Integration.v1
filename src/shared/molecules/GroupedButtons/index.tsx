@@ -5,8 +5,8 @@ import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useTheme } from '../../../core/themes/themeContext';
-import Button from '../../atoms/Button';
-import { ButtonModes, type ButtonProps } from '../../atoms/Button/props';
+import ButtonV1 from '../../atoms/Button/V1';
+import { ButtonV1Modes, type ButtonV1Props } from '../../atoms/Button/V1/props';
 import { type GroupedButtonsProps } from './props';
 
 const constants = {
@@ -36,8 +36,8 @@ const GroupedButtons = ({
     }
   }, [isFirstButtonSelected, translateX, endButtonPosition]);
 
-  const commonButtonProps: ButtonProps = {
-    mode: ButtonModes.Mode2,
+  const commonButtonProps: ButtonV1Props = {
+    mode: ButtonV1Modes.Mode2,
     disableShadow: true,
     style: styles.button,
     containerStyle: styles.buttonContainer,
@@ -67,13 +67,13 @@ const GroupedButtons = ({
           onLayout={event => setEndButtonPosition(event.nativeEvent.layout.width / 2)}
         >
           <Animated.View style={[styles.animatedToggleButton, computedStyles.animatedToggleButton, animatedStyles]} />
-          <Button
+          <ButtonV1
             {...commonButtonProps}
             text={firstButtonText}
             textStyle={isFirstButtonSelected ? undefined : computedStyles.passiveTextColor}
             onPress={() => setIsFirstButtonSelected(true)}
           />
-          <Button
+          <ButtonV1
             {...commonButtonProps}
             text={secondButtonText}
             textStyle={!isFirstButtonSelected ? undefined : computedStyles.passiveTextColor}

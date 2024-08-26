@@ -7,8 +7,8 @@ import { StyleSheet, View } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
 import sizes from '../../../core/themes/sizes';
 import { getPaymentIcon } from '../../../utils/payment/cardIcons';
-import Button from '../../atoms/Button';
-import RoundButton from '../../atoms/RoundButton';
+import { ButtonV1 } from '../../atoms/Button/index';
+import { ButtonV1Shapes } from '../../atoms/Button/V1/props';
 import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput';
 import { TextInputInputMode } from '../../atoms/TextInput/props';
@@ -81,9 +81,9 @@ const AddCardScreenWithoutI18n = ({ onCardSave, onBackButtonPress }: AddCardScre
     <View style={styles.wrapper}>
       <View>
         <View style={[styles.header]}>
-          <RoundButton onPress={onBackButtonPress}>
+          <ButtonV1 shape={ButtonV1Shapes.Circle} onPress={onBackButtonPress}>
             <ShortArrowIcon />
-          </RoundButton>
+          </ButtonV1>
           <Text style={[styles.headerTitle]}>{t('AddPayment_headerTitle')}</Text>
           <View style={styles.headerDummy} />
         </View>
@@ -119,7 +119,7 @@ const AddCardScreenWithoutI18n = ({ onCardSave, onBackButtonPress }: AddCardScre
         </View>
       </View>
       {Boolean(cardData.number) && Boolean(cardData.code) && Boolean(cardData.expiresAt) && (
-        <Button text={t('AddPayment_saveButton')} onPress={onSaveCard} />
+        <ButtonV1 text={t('AddPayment_saveButton')} onPress={onSaveCard} />
       )}
     </View>
   );
