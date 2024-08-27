@@ -2,7 +2,7 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { Alert, View } from 'react-native';
-import { palettes, type ThemeContextType, Timer, useTheme } from 'shuttlex-integration';
+import { palettes, type ThemeContextTypeV1, Timer, useThemeV1 } from 'shuttlex-integration';
 
 import { TimerModes, type TimerProps } from '../../../src/shared/molecules/timerAndStopwatch/Timer/props';
 
@@ -33,10 +33,10 @@ const TimerWithHooks = ({
   themeName,
   mode,
 }: {
-  themeName: ThemeContextType['themeMode'];
+  themeName: ThemeContextTypeV1['themeMode'];
   mode: TimerProps['mode'];
 }) => {
-  const { setThemeMode, colors } = useTheme();
+  const { setThemeMode, colors } = useThemeV1();
   const { primaryGradientStartColor, primaryColor } = colors;
 
   useEffect(() => {

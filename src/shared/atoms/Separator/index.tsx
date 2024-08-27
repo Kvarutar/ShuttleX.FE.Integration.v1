@@ -1,10 +1,10 @@
 import { StyleSheet, View } from 'react-native';
 
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import { type SeparatorProps } from './props';
 
 const Separator = ({ style, mode = 'horizontal' }: SeparatorProps) => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   const computedStyles = StyleSheet.create({
     horizontal: {

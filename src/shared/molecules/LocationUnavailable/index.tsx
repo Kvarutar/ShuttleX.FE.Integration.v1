@@ -2,7 +2,7 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Blur from '../../atoms/Blur';
 import ButtonV1 from '../../atoms/Button/V1';
 import Text from '../../atoms/Text';
@@ -10,7 +10,7 @@ import BottomWindow from '../BottomWindow';
 import { type LocationUnavailableProps } from './props';
 
 const LocationUnavailableWithoutI18n = ({ reason, onButtonPress }: LocationUnavailableProps) => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
   const { t } = useTranslation();
 
   const computedStyles = StyleSheet.create({

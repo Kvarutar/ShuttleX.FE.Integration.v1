@@ -4,7 +4,7 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Blur from '../../atoms/Blur';
 import Text from '../../atoms/Text';
 import BecomeDriverIcon from '../../icons/BecomeDriverIcon';
@@ -43,7 +43,7 @@ const MenuBase = ({
   menuNavigation,
   style,
 }: MenuBaseProps) => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
   const translateX = useSharedValue(-constants.menuWidth);
 
   useEffect(() => {

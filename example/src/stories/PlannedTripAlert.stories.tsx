@@ -2,13 +2,13 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { Alert } from 'react-native';
-import { palettes, PlannedTripAlert, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { palettes, PlannedTripAlert, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 import { type PlannedTripAlertProps } from '../../../src/shared/molecules/alerts/PlannedTripAlert/props';
 
 const locales = ['en-US', 'it-IT', 'ar-EG'];
 
-type PlannedTripAlertStorybookProps = { theme: ThemeContextType['themeMode'] } & PlannedTripAlertProps;
+type PlannedTripAlertStorybookProps = { theme: ThemeContextTypeV1['themeMode'] } & PlannedTripAlertProps;
 
 const PlannedTripAlertMeta: Meta<PlannedTripAlertStorybookProps> = {
   title: 'PlannedTripAlert',
@@ -36,7 +36,7 @@ const PlannedTripAlertMeta: Meta<PlannedTripAlertStorybookProps> = {
 export default PlannedTripAlertMeta;
 
 const PlannedTripAlertWithHooks = ({ theme, ...props }: PlannedTripAlertStorybookProps) => {
-  const { setThemeMode } = useTheme();
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(theme);

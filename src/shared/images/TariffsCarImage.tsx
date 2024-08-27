@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 
-import { useTheme } from '../../core/themes/themeContext';
+import { useThemeV1 } from '../../core/themes/v1/themeContext';
 import BasicXImage from './BasicXImage';
 import BasicXLImage from './BasicXLImage';
 import ComfortXImage from './ComfortXImage';
@@ -21,7 +21,7 @@ const images: Record<TariffType, ReactNode> = {
 };
 
 const TariffsCarImage = ({ tariff, style }: { tariff: TariffType; style?: StyleProp<ViewStyle> }) => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   const computedStyles = StyleSheet.create({
     circle: {

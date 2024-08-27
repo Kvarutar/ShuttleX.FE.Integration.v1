@@ -3,7 +3,7 @@ import { Pressable, type StyleProp, StyleSheet, type TextStyle, View, type ViewS
 import { Shadow } from 'react-native-shadow-2';
 
 import { buttonShadow, DISABLED_SHADOW_COLOR } from '../../../../core/themes/shadows';
-import { useTheme } from '../../../../core/themes/themeContext';
+import { useTheme } from '../../../../core/themes/v2/themeContext';
 import Text from '../../Text';
 import { ButtonModes, type ButtonProps, ButtonShadows, ButtonShapes } from './props';
 

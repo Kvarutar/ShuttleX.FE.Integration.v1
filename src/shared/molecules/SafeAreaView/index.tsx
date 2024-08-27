@@ -1,11 +1,11 @@
 import { Platform, SafeAreaView as SafeAreaViewBase, StyleSheet, View } from 'react-native';
 
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import { type SafeAreaViewProps } from './props';
 
 const SafeAreaView = ({ children, containerStyle, wrapperStyle }: SafeAreaViewProps) => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   const computedStyles = StyleSheet.create({
     wrapper: {

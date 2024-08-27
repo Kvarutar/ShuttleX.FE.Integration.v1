@@ -2,10 +2,10 @@ import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Mask, Rect } from 'react-native-svg';
 
 import sizes from '../../core/themes/sizes';
-import { useTheme } from '../../core/themes/themeContext';
+import { useThemeV1 } from '../../core/themes/v1/themeContext';
 
 const StatisticsIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   return (
     <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.StatisticsIcon, style]} fill="none" viewBox="0 0 24 24">

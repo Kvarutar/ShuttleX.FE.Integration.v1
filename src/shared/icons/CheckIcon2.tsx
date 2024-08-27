@@ -1,10 +1,10 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-import { useTheme } from '../../core/themes/themeContext';
+import { useThemeV1 } from '../../core/themes/v1/themeContext';
 
 const CheckIcon2 = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }) => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
   const svgColor = color ?? colors.iconSecondaryColor;
   return (
     <Svg style={[styles.icon, style]} viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">

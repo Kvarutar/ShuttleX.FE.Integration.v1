@@ -14,7 +14,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Blur from '../../atoms/Blur';
 import Separator from '../../atoms/Separator';
 import BottomWindow from '../BottomWindow';
@@ -39,7 +39,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     },
     ref,
   ) => {
-    const { colors } = useTheme();
+    const { colors } = useThemeV1();
 
     const progress = useSharedValue(1); // 0 - opened, 1 - closed
     const isCurrentOpen = useSharedValue(false);

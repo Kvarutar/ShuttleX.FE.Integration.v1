@@ -2,7 +2,7 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
-import { palettes, SwipeButton, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { palettes, SwipeButton, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 import { SwipeButtonModes, type SwipeButtonProps } from '../../../src/shared/molecules/SwipeButton/props';
 
@@ -34,10 +34,10 @@ const SwipeButtonWithHooks = ({
   themeName,
   mode,
 }: {
-  themeName: ThemeContextType['themeMode'];
+  themeName: ThemeContextTypeV1['themeMode'];
   mode: SwipeButtonProps['mode'];
 }) => {
-  const { setThemeMode } = useTheme();
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(themeName);

@@ -2,7 +2,7 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { palettes, type ThemeContextType, TimePicker, useTheme } from 'shuttlex-integration';
+import { palettes, type ThemeContextTypeV1, TimePicker, useThemeV1 } from 'shuttlex-integration';
 
 const formatTime = (time: Date): string =>
   new Intl.DateTimeFormat('en', {
@@ -33,10 +33,10 @@ const TimePickerMeta: Meta<typeof TimePicker> = {
 
 export default TimePickerMeta;
 
-type TimePickerWithHooksProps = { themeName: ThemeContextType['themeMode'] };
+type TimePickerWithHooksProps = { themeName: ThemeContextTypeV1['themeMode'] };
 
 const TimePickerWithHooks = ({ themeName }: TimePickerWithHooksProps) => {
-  const { setThemeMode } = useTheme();
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(themeName);

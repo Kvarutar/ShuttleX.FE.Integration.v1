@@ -1,7 +1,7 @@
 import { Image, type ImageStyle, type StyleProp, StyleSheet } from 'react-native';
 
 import sizes from '../../core/themes/sizes';
-import { useTheme } from '../../core/themes/themeContext';
+import { useThemeV1 } from '../../core/themes/v1/themeContext';
 
 const LocationArrowImage2 = ({
   style,
@@ -10,7 +10,7 @@ const LocationArrowImage2 = ({
   style?: StyleProp<ImageStyle>;
   type?: 'outlined' | 'filled';
 }): JSX.Element => {
-  const { themeMode } = useTheme();
+  const { themeMode } = useThemeV1();
 
   const sourceLocationArrow2_1_dark = require('../../assets/img/LocationArrow2_1_dark.png');
   const sourceLocationArrow2_1_light = require('../../assets/img/LocationArrow2_1_light.png');

@@ -3,7 +3,7 @@ import { Image, StyleSheet, View } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../core/themes/shadows';
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Bar from '../../atoms/Bar';
 import Text from '../../atoms/Text';
 import ClockIcon2 from '../../icons/ClockIcon2';
@@ -11,7 +11,7 @@ import StarIcon from '../../icons/StarIcon';
 import { type Notification } from './props';
 
 const NotificationScreenItem = ({ notification }: { notification: Notification }) => {
-  const { colors, themeMode } = useTheme();
+  const { colors, themeMode } = useThemeV1();
   const shadowProps = defaultShadow(colors.strongShadowColor);
 
   const computedStyles = StyleSheet.create({

@@ -2,7 +2,7 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { View } from 'react-native';
-import { palettes, StopWatch, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { palettes, StopWatch, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 const StopWatchMeta: Meta<typeof StopWatch> = {
   title: 'Stopwatch',
@@ -21,8 +21,8 @@ const StopWatchMeta: Meta<typeof StopWatch> = {
 
 export default StopWatchMeta;
 
-const StopWatchWithHooks = ({ themeName }: { themeName: ThemeContextType['themeMode'] }) => {
-  const { setThemeMode } = useTheme();
+const StopWatchWithHooks = ({ themeName }: { themeName: ThemeContextTypeV1['themeMode'] }) => {
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(themeName);

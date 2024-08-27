@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import CheckIcon from '../../icons/CheckIcon';
 import Text from '../Text';
 import { type CheckBoxProps } from './props';
@@ -15,7 +15,7 @@ const CheckBox = ({
   getCheckValue,
   error = { isError: false, message: '' },
 }: CheckBoxProps): JSX.Element => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   const computedStyles = StyleSheet.create({
     checkButtonContainer: {

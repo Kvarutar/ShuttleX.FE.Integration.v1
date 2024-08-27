@@ -1,10 +1,10 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
 
-import { useTheme } from '../../core/themes/themeContext';
+import { useThemeV1 } from '../../core/themes/v1/themeContext';
 
 const FeedbackHeartBrokenIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
-  const { colors, themeMode } = useTheme();
+  const { colors, themeMode } = useThemeV1();
 
   const color1 = color ?? (themeMode === 'light' ? colors.iconPrimaryColor : colors.iconTertiaryColor);
   const color2 = themeMode === 'light' ? colors.iconTertiaryColor : colors.iconPrimaryColor;

@@ -2,10 +2,10 @@ import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 
 import sizes from '../../core/themes/sizes';
-import { useTheme } from '../../core/themes/themeContext';
+import { useThemeV1 } from '../../core/themes/v1/themeContext';
 
 const SvgComponent = ({ style }: { style?: StyleProp<ViewStyle> }) => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   return (
     <Svg style={[styles.timeIcon, style]} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

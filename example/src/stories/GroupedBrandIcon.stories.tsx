@@ -1,7 +1,7 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { GroupedBrandIcon, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { GroupedBrandIcon, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 const GroupedBrandIconMeta: Meta<typeof GroupedBrandIcon> = {
   title: 'GroupedBrandIcon',
@@ -19,8 +19,8 @@ const GroupedBrandIconMeta: Meta<typeof GroupedBrandIcon> = {
 
 export default GroupedBrandIconMeta;
 
-const GroupedBrandIconWithHooks = ({ themeName }: { themeName: ThemeContextType['themeMode'] }) => {
-  const { setThemeMode } = useTheme();
+const GroupedBrandIconWithHooks = ({ themeName }: { themeName: ThemeContextTypeV1['themeMode'] }) => {
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(themeName);

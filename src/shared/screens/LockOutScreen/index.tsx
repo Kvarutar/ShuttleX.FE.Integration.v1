@@ -1,6 +1,6 @@
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import { ButtonV1, ButtonV1Modes, Text, Timer, TimerModes, useTheme } from 'shuttlex-integration';
+import { ButtonV1, ButtonV1Modes, Text, Timer, TimerModes, useThemeV1 } from 'shuttlex-integration';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { type LockOutScreenProps } from './props';
@@ -13,7 +13,7 @@ const LockOutScreenWithoutI18n = ({
   isLockedOut,
 }: LockOutScreenProps): JSX.Element => {
   const { t } = useTranslation();
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   return (
     <View style={styles.container}>

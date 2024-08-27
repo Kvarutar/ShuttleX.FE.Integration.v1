@@ -1,7 +1,7 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
 
-import { useTheme } from '../../core/themes/themeContext';
+import { useThemeV1 } from '../../core/themes/v1/themeContext';
 
 const FeedbackWheelIcon = ({
   style,
@@ -12,7 +12,7 @@ const FeedbackWheelIcon = ({
   color?: string;
   backgroundColor?: string;
 }): JSX.Element => {
-  const { colors, themeMode } = useTheme();
+  const { colors, themeMode } = useThemeV1();
 
   const color1 = backgroundColor ?? (themeMode === 'light' ? colors.iconPrimaryColor : colors.iconTertiaryColor);
   const color2 = color ?? (themeMode === 'light' ? colors.iconTertiaryColor : colors.iconPrimaryColor);

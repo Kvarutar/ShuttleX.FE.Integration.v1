@@ -1,7 +1,7 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 import { Button } from '../../../../src/shared/atoms/Button';
 import { ButtonModes, type ButtonProps, ButtonShadows } from '../../../../src/shared/atoms/Button/V2/props';
@@ -36,10 +36,10 @@ const ButtonMeta: Meta<typeof Button> = {
 
 export default ButtonMeta;
 
-type ButtonWithHooksProps = { themeName: ThemeContextType['themeMode'] } & ButtonProps;
+type ButtonWithHooksProps = { themeName: ThemeContextTypeV1['themeMode'] } & ButtonProps;
 
 const ButtonWithHooks = ({ themeName, ...props }: ButtonWithHooksProps) => {
-  const { setThemeMode } = useTheme();
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(themeName);

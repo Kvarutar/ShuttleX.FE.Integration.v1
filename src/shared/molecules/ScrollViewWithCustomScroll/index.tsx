@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { Animated, ScrollView, StyleSheet, View } from 'react-native';
 
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import { type ScrollViewWithCustomScrollProps } from './props';
 
 const ScrollViewWithCustomScroll = ({
@@ -15,7 +15,7 @@ const ScrollViewWithCustomScroll = ({
   contentContainerStyle,
   wrapperStyle,
 }: ScrollViewWithCustomScrollProps) => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
 

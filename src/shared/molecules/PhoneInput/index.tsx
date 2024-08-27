@@ -4,7 +4,7 @@ import { Shadow } from 'react-native-shadow-2';
 
 import { indexOfNotFound } from '../../../core/monkey-patch/array.helper';
 import { defaultShadow } from '../../../core/themes/shadows';
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput';
 import { TextInputInputMode, type TextInputProps } from '../../atoms/TextInput/props';
@@ -25,7 +25,7 @@ const PhoneInput = ({
   const [onlyNumbersInputValue, setOnlyNumbersInputValue] = useState('');
   const [isInputDone, setIsInputDone] = useState(false);
 
-  const { colors, themeMode } = useTheme();
+  const { colors, themeMode } = useThemeV1();
 
   useEffect(() => {
     if (flagState) {

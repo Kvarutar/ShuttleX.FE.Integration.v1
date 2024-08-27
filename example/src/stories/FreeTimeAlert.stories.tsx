@@ -1,10 +1,10 @@
 import { type Meta } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { FreeTimeAlert, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { FreeTimeAlert, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 import { type FreeTimeAlertProps } from '../../../src/shared/molecules/alerts/FreeTimeAlert/props';
 
-type FreeTimeAlertStorybookProps = { theme: ThemeContextType['themeMode'] } & FreeTimeAlertProps;
+type FreeTimeAlertStorybookProps = { theme: ThemeContextTypeV1['themeMode'] } & FreeTimeAlertProps;
 
 const FreeTimeAlertMeta: Meta<FreeTimeAlertStorybookProps> = {
   title: 'FreeTimeAlert',
@@ -24,7 +24,7 @@ const FreeTimeAlertMeta: Meta<FreeTimeAlertStorybookProps> = {
 export default FreeTimeAlertMeta;
 
 const FreeTimeAlertWithHooks = ({ theme, ...props }: FreeTimeAlertStorybookProps) => {
-  const { setThemeMode } = useTheme();
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(theme);

@@ -2,7 +2,7 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { palettes, PhoneInput, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { palettes, PhoneInput, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 const PhoneInputMeta: Meta<typeof PhoneInput> = {
   title: 'PhoneInput',
@@ -27,8 +27,8 @@ const PhoneInputMeta: Meta<typeof PhoneInput> = {
 
 export default PhoneInputMeta;
 
-const PhoneInputWithHooks = ({ themeName }: { themeName: ThemeContextType['themeMode'] }) => {
-  const { setThemeMode } = useTheme();
+const PhoneInputWithHooks = ({ themeName }: { themeName: ThemeContextTypeV1['themeMode'] }) => {
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(themeName);

@@ -2,12 +2,12 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 import Alert from '../../../src/shared/molecules/alerts/Alert';
 import { type AlertProps } from '../../../src/shared/molecules/alerts/Alert/props';
 
-type AlertStorybookProps = AlertProps & { theme: ThemeContextType['themeMode'] };
+type AlertStorybookProps = AlertProps & { theme: ThemeContextTypeV1['themeMode'] };
 
 const AlertMeta: Meta<AlertStorybookProps> = {
   title: 'Alert',
@@ -27,7 +27,7 @@ const AlertMeta: Meta<AlertStorybookProps> = {
 export default AlertMeta;
 
 const AlertWithHooks = ({ theme, ...args }: AlertStorybookProps) => {
-  const { setThemeMode } = useTheme();
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(theme);

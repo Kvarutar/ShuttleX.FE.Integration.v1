@@ -1,11 +1,11 @@
 import { Modal as ModalBase, StyleSheet, View } from 'react-native';
 
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Blur from '../Blur';
 import { type ModalProps } from './props';
 
 const Modal = ({ children, style, containerStyle }: ModalProps) => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   const computedStyles = StyleSheet.create({
     modal: {

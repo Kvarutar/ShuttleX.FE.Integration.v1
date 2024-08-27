@@ -2,7 +2,7 @@ import { StyleSheet, View, type ViewStyle } from 'react-native';
 import { Shadow, type ShadowProps } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../core/themes/shadows';
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import { BarModes, type BarProps } from './types';
 
 type BarStylesType = {
@@ -13,7 +13,7 @@ type BarStylesType = {
 type BarPropertiesType = Record<BarModes, BarStylesType>;
 
 const Bar = ({ children, style, mode = BarModes.Active, disableShadow = false }: BarProps): JSX.Element => {
-  const { colors, themeMode } = useTheme();
+  const { colors, themeMode } = useThemeV1();
   const { backgroundPrimaryColor, backgroundSecondaryColor, strongShadowColor, strokeColor, borderColor } = colors;
 
   const barProperties: BarPropertiesType = {

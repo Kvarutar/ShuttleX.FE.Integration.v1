@@ -22,7 +22,7 @@ import MapPinIcon from '../../shared/icons/MapPinIcon';
 import PickUpIcon from '../../shared/icons/PickUpIcon';
 import LocationArrowImage from '../../shared/images/LocationArrowImage';
 import { useCompass } from '../../utils/compass';
-import { useTheme } from '../themes/themeContext';
+import { useThemeV1 } from '../themes/v1/themeContext';
 import { AnimatedMarker } from './hooks';
 import lightMapStyle from './lightMapStyle.json';
 import { type MapPolyline, type MapViewProps } from './types';
@@ -54,7 +54,7 @@ const MapView = ({
   const currentLocationMarkerRef = useRef<MapMarker>(null);
 
   const { compassSharedValue } = useCompass();
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   const [isMapLoaded, setIsMapLoaded] = useState(false);
 

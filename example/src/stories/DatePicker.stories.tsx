@@ -2,7 +2,7 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { DatePicker, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { DatePicker, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 import { DatePickerDisplay, type DatePickerProps } from '../../../src/shared/molecules/DatePicker/props';
 
@@ -43,10 +43,10 @@ const DatePickerMeta: Meta<typeof DatePicker> = {
 
 export default DatePickerMeta;
 
-type DatePickerWithHooksProps = { themeName: ThemeContextType['themeMode'] } & DatePickerProps;
+type DatePickerWithHooksProps = { themeName: ThemeContextTypeV1['themeMode'] } & DatePickerProps;
 
 const DatePickerWithHooks = ({ themeName, ...props }: DatePickerWithHooksProps) => {
-  const { setThemeMode } = useTheme();
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(themeName);

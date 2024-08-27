@@ -5,7 +5,7 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Bar from '../../atoms/Bar';
 import { BarModes } from '../../atoms/Bar/types';
 import { ButtonV1 } from '../../atoms/Button/index';
@@ -104,7 +104,7 @@ const FeedbackScreenWithoutI18n = ({
   style,
 }: FeedbackScreenProps): JSX.Element => {
   const { t } = useTranslation();
-  const { colors, themeMode } = useTheme();
+  const { colors, themeMode } = useThemeV1();
 
   const [feedback, setFeedback] = useState<FeedbackType>({ rating: null, description: [] });
   const [isTipsPopupVisible, setIsTipsPopupVisible] = useState<boolean>(false);

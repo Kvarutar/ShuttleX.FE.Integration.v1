@@ -3,7 +3,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import type {} from 'react-native';
 import { View } from 'react-native';
-import { ThemeProvider } from 'shuttlex-integration';
+import { ThemeProviderV1 } from 'shuttlex-integration';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -35,9 +35,9 @@ const Content = ({ children }: { children: React.ReactNode }): JSX.Element | nul
 };
 
 const ThemeLoader = ({ children }: { children: React.ReactNode }) => (
-  <ThemeProvider>
+  <ThemeProviderV1>
     <Content>{children}</Content>
-  </ThemeProvider>
+  </ThemeProviderV1>
 );
 
 export default ThemeLoader;

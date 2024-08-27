@@ -1,10 +1,10 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 
-import { useTheme } from '../../core/themes/themeContext';
+import { useThemeV1 } from '../../core/themes/v1/themeContext';
 
 const SuccessIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   return (
     <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">

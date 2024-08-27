@@ -1,7 +1,7 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { CheckBox, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { CheckBox, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 const CheckBoxMeta: Meta<typeof CheckBox> = {
   title: 'CheckBox',
@@ -19,8 +19,8 @@ const CheckBoxMeta: Meta<typeof CheckBox> = {
 
 export default CheckBoxMeta;
 
-const CheckBoxWithHooks = ({ themeName }: { themeName: ThemeContextType['themeMode'] }) => {
-  const { setThemeMode } = useTheme();
+const CheckBoxWithHooks = ({ themeName }: { themeName: ThemeContextTypeV1['themeMode'] }) => {
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(themeName);

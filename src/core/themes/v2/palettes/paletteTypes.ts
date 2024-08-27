@@ -1,4 +1,4 @@
-import { type ButtonV1Modes } from '../../../shared/atoms/Button/V1/props';
+import { type ButtonModes } from '../../../../shared/atoms/Button/V2/props';
 
 type PaletteButtonMode = {
   backgroundColor: string;
@@ -7,7 +7,7 @@ type PaletteButtonMode = {
   shadowColor?: string;
 };
 
-export type PaletteButtonModes = { [key in ButtonV1Modes]: PaletteButtonMode };
+export type PaletteButtonModes = { [key in ButtonModes]: PaletteButtonMode };
 
 export type Palette = {
   primaryColor: string;

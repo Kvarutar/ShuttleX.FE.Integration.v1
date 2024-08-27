@@ -1,7 +1,7 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect, useState } from 'react';
-import { GroupedButtons, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { GroupedButtons, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 import { type GroupedButtonsProps } from '../../../src/shared/molecules/GroupedButtons/props';
 
@@ -26,8 +26,8 @@ export default GroupedButtonsMeta;
 const GroupedButtonsWithHooks = ({
   themeName,
   ...args
-}: { themeName: ThemeContextType['themeMode'] } & GroupedButtonsProps) => {
-  const { setThemeMode } = useTheme();
+}: { themeName: ThemeContextTypeV1['themeMode'] } & GroupedButtonsProps) => {
+  const { setThemeMode } = useThemeV1();
 
   const [isFirstButtonSelected, setIsFirstButtonSelected] = useState(true);
 

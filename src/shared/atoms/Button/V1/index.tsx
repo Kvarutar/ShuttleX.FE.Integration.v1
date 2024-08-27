@@ -3,7 +3,7 @@ import { Pressable, type StyleProp, StyleSheet, type TextStyle, View, type ViewS
 import { Shadow } from 'react-native-shadow-2';
 
 import { buttonShadow, DISABLED_SHADOW_COLOR } from '../../../../core/themes/shadows';
-import { useTheme } from '../../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
 import Text from '../../Text';
 import { ButtonV1Modes, type ButtonV1Props, ButtonV1Shadows, ButtonV1Shapes } from './props';
 
@@ -31,7 +31,7 @@ const Button = ({
   onPress,
   innerSpacing,
 }: ButtonV1Props): JSX.Element => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   const [isPressed, setIsPressed] = useState(false);
 

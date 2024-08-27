@@ -1,9 +1,9 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { InternetDisconnectedAlert, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { InternetDisconnectedAlert, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
-type InternetDisconnectedAlertStorybookProps = { theme: ThemeContextType['themeMode'] };
+type InternetDisconnectedAlertStorybookProps = { theme: ThemeContextTypeV1['themeMode'] };
 
 const InternetDisconnectedAlertMeta: Meta<InternetDisconnectedAlertStorybookProps> = {
   title: 'InternetDisconnectedAlert',
@@ -22,7 +22,7 @@ const InternetDisconnectedAlertMeta: Meta<InternetDisconnectedAlertStorybookProp
 export default InternetDisconnectedAlertMeta;
 
 const InternetDisconnectedAlertWithHooks = ({ theme }: InternetDisconnectedAlertStorybookProps) => {
-  const { setThemeMode } = useTheme();
+  const { setThemeMode } = useThemeV1();
 
   useEffect(() => {
     setThemeMode(theme);

@@ -1,10 +1,10 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { G, Mask, Path } from 'react-native-svg';
 
-import { useTheme } from '../../core/themes/themeContext';
+import { useThemeV1 } from '../../core/themes/v1/themeContext';
 
 const BigCameraIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
   const svgColor = color ?? colors.iconSecondaryColor;
 
   return (

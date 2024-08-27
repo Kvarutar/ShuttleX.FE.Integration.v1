@@ -12,9 +12,10 @@ import MapView from './core/map/MapView';
 import { type MapCameraMode } from './core/map/types';
 import { nameof } from './core/monkey-patch/ts.helper';
 import { SignalR } from './core/signalR/middleware';
-import palettes from './core/themes/palettes';
 import sizes from './core/themes/sizes';
-import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/themeContext';
+import palettes from './core/themes/v1/palettes';
+import { type ThemeContextTypeV1, ThemeProviderV1, useThemeV1 } from './core/themes/v1/themeContext';
+import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/v2/themeContext';
 import Bar from './shared/atoms/Bar';
 import { BarModes } from './shared/atoms/Bar/types';
 import Blur from './shared/atoms/Blur';
@@ -309,7 +310,9 @@ export {
   TextInput,
   TextInputInputMode,
   type ThemeContextType,
+  type ThemeContextTypeV1,
   ThemeProvider,
+  ThemeProviderV1,
   TimeIcon,
   TimePicker,
   Timer,
@@ -320,6 +323,7 @@ export {
   useGeolocationStartWatch,
   useNetworkConnectionStartWatch,
   useTheme,
+  useThemeV1,
   VisaIcon,
   WarningIcon,
 };

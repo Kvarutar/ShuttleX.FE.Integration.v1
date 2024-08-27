@@ -2,7 +2,7 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { CodeInput, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { CodeInput, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 const CodeInputMeta: Meta<typeof CodeInput> = {
   title: 'CodeInput',
@@ -27,8 +27,8 @@ const CodeInputMeta: Meta<typeof CodeInput> = {
 
 export default CodeInputMeta;
 
-const CodeInputWithHooks = ({ themeName }: { themeName: ThemeContextType['themeMode'] }) => {
-  const { setThemeMode } = useTheme();
+const CodeInputWithHooks = ({ themeName }: { themeName: ThemeContextTypeV1['themeMode'] }) => {
+  const { setThemeMode } = useThemeV1();
 
   const getCode = () => {};
 

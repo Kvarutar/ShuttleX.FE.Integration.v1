@@ -2,7 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 import { Animated, FlatList, StyleSheet, View } from 'react-native';
 
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import { type FlatListWithCustomScrollProps } from './props';
 
 const FlatListWithCustomScroll = ({
@@ -22,7 +22,7 @@ const FlatListWithCustomScroll = ({
 
   const scrollIndicator = useRef(new Animated.Value(0)).current;
 
-  const { colors } = useTheme();
+  const { colors } = useThemeV1();
 
   let scrollIndicatorSize = visibleScrollBarHeight;
   if (completeScrollBarHeight > visibleScrollBarHeight) {
