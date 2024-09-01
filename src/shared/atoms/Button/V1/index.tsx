@@ -64,7 +64,11 @@ const Button = ({
       width: styleHeight,
       paddingHorizontal: 0,
       borderRadius: 1000,
-      backgroundColor: themeMode === 'dark' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor,
+      backgroundColor: disabled
+        ? borderColor
+        : themeMode === 'light'
+          ? colors.backgroundPrimaryColor
+          : colors.backgroundSecondaryColor,
       padding: innerSpacing,
     },
     text: { color: textColor },
@@ -75,7 +79,6 @@ const Button = ({
       height: styleHeight || 48,
       backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
       paddingHorizontal: 24,
-      borderRadius: 16,
     },
     text: { color: textColor },
   });
@@ -102,7 +105,11 @@ const Button = ({
           borderColor: borderColor,
           borderRadius: 1000,
           borderWidth: 1,
-          backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+          backgroundColor: disabled
+            ? borderColor
+            : themeMode === 'dark'
+              ? colors.backgroundPrimaryColor
+              : colors.backgroundSecondaryColor,
         }}
       >
         {renderedChildren}

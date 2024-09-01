@@ -33,6 +33,7 @@ export enum ButtonSizes {
 export type ButtonProps = {
   style?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
+  circleSubContainerStyle?: StyleProp<ViewStyle>;
   mode?: SquareButtonModes | CircleButtonModes;
   shape?: ButtonShapes;
   text?: string;

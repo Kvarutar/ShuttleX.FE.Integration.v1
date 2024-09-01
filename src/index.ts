@@ -19,8 +19,9 @@ import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/v2
 import Bar from './shared/atoms/Bar';
 import { BarModes } from './shared/atoms/Bar/types';
 import Blur from './shared/atoms/Blur';
-import { ButtonV1 } from './shared/atoms/Button/index';
+import { Button, ButtonV1 } from './shared/atoms/Button/index';
 import { ButtonV1Modes, ButtonV1Shadows, ButtonV1Shapes } from './shared/atoms/Button/V1/props';
+import { ButtonShadows, ButtonShapes, CircleButtonModes, SquareButtonModes } from './shared/atoms/Button/V2/props';
 import CheckBox from './shared/atoms/Checkbox';
 import Separator from './shared/atoms/Separator';
 import Text from './shared/atoms/Text';
@@ -176,6 +177,9 @@ export {
   BottomWindowWithGesture,
   BrandFavIcon,
   BrandTextIcon,
+  Button,
+  ButtonShadows,
+  ButtonShapes,
   ButtonV1,
   ButtonV1Modes,
   ButtonV1Shadows,
@@ -189,6 +193,7 @@ export {
   checkGalleryUsagePermission,
   checkGeolocationPermissionAndAccuracy,
   CheckIcon2,
+  CircleButtonModes,
   ClockIcon,
   ClockIcon2,
   CloseIcon,
@@ -297,6 +302,7 @@ export {
   SignalR,
   sizes,
   SpinnerIcon,
+  SquareButtonModes,
   StarIcon,
   StatisticsIcon,
   StopWatch,

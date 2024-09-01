@@ -28,6 +28,7 @@ const Button = ({
   textStyle,
   style,
   containerStyle,
+  circleSubContainerStyle,
   shadow,
   disableShadow,
   disabled,
@@ -61,7 +62,7 @@ const Button = ({
       break;
   }
 
-  if (disableShadow || (isPressed && mode === SquareButtonModes.Mode2) || mode === CircleButtonModes.Mode2) {
+  if (disableShadow) {
     shadowProps = { startColor: DISABLED_SHADOW_COLOR };
   }
 
@@ -129,6 +130,7 @@ const Button = ({
             borderColor: borderColor,
             backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
           },
+          circleSubContainerStyle,
         ]}
       >
         {renderedChildren}
