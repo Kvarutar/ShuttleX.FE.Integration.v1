@@ -3,16 +3,19 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { ThemeProviderV1, useThemeV1 } from 'shuttlex-integration';
+import { ThemeProvider, ThemeProviderV1, useThemeV1 } from 'shuttlex-integration';
 
 SplashScreen.preventAutoHideAsync();
 
 const App = (): JSX.Element => {
   return (
     <ThemeProviderV1>
-      <GestureHandlerRootView style={styles.gestureHandlerRootView}>
-        <Content />
-      </GestureHandlerRootView>
+      {/* {TODO: Remove one of ThemeProviders when we won't need it} */}
+      <ThemeProvider>
+        <GestureHandlerRootView style={styles.gestureHandlerRootView}>
+          <Content />
+        </GestureHandlerRootView>
+      </ThemeProvider>
     </ThemeProviderV1>
   );
 };

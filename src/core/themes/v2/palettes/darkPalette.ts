@@ -1,6 +1,6 @@
-import { type Palette, type PaletteButtonModes } from './paletteTypes';
+import { type Palette, type PaletteCircleButtonModes, type PaletteSquareButtonModes } from './paletteTypes';
 
-const colors: Omit<Palette, 'buttonModes'> = {
+const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes'> = {
   primaryColor: '#CEFC28',
   primaryGradientStartColor: '#EEF5FF',
   secondaryGradientStartColor: '#EAEAEA',
@@ -24,7 +24,25 @@ const colors: Omit<Palette, 'buttonModes'> = {
   strongShadowColor: 'rgba(0, 0, 0, 0.04)',
 };
 
-const buttonModes: PaletteButtonModes = {
+const squareButtonModes: PaletteSquareButtonModes = {
+  mode1: {
+    backgroundColor: colors.primaryColor,
+    backgroundColorOnPress: '#D5FF3BFF', // random color
+    textColor: colors.textPrimaryColor,
+  },
+  mode2: {
+    backgroundColor: '#000000',
+    backgroundColorOnPress: '#222222',
+    textColor: colors.textPrimaryColor,
+  },
+  mode3: {
+    backgroundColor: '#FFFFFF38',
+    backgroundColorOnPress: '#E2E2E2',
+    textColor: colors.textTertiaryColor,
+  },
+};
+
+const circleButtonModes: PaletteCircleButtonModes = {
   mode1: {
     backgroundColor: colors.primaryColor,
     backgroundColorOnPress: '#D5FF3BFF', // random color
@@ -45,9 +63,15 @@ const buttonModes: PaletteButtonModes = {
     backgroundColorOnPress: '#E2E2E2',
     textColor: colors.textTertiaryColor,
   },
+  mode5: {
+    backgroundColor: '#F3F3F3',
+    backgroundColorOnPress: '#E34000',
+    textColor: colors.textTertiaryColor,
+  },
 };
 
 export const darkPalette: Palette = {
   ...colors,
-  buttonModes,
+  squareButtonModes,
+  circleButtonModes,
 };

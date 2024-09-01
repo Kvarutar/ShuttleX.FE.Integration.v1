@@ -1,19 +1,28 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
+import { palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
 import { Button } from '../../../../src/shared/atoms/Button';
-import { ButtonModes, type ButtonProps, ButtonShadows } from '../../../../src/shared/atoms/Button/V2/props';
+import {
+  type ButtonProps,
+  ButtonShadows,
+  ButtonShapes,
+  ButtonSizes,
+  CircleButtonModes,
+  SquareButtonModes,
+} from '../../../../src/shared/atoms/Button/V2/props';
 
 const ButtonMeta: Meta<typeof Button> = {
-  title: 'Button',
+  title: 'ButtonV2',
   component: Button,
   args: {
     theme: 'light',
-    mode: ButtonModes.Mode1,
+    mode: SquareButtonModes.Mode1,
+    shape: ButtonShapes.Square,
+    size: ButtonSizes.L,
+    innerSpacing: 12,
     text: 'Sample text',
-    borderRadius: 28,
     shadow: undefined,
     disableShadow: false,
     disabled: false,
@@ -23,8 +32,17 @@ const ButtonMeta: Meta<typeof Button> = {
       options: Object.keys(palettes),
       control: { type: 'select' },
     },
+    //TODO: create separate modes argTypes for options
     mode: {
-      options: Object.values(ButtonModes),
+      options: Object.values(CircleButtonModes),
+      control: { type: 'select' },
+    },
+    shape: {
+      options: Object.values(ButtonShapes),
+      control: { type: 'select' },
+    },
+    size: {
+      options: Object.values(ButtonSizes),
       control: { type: 'select' },
     },
     shadow: {
@@ -36,10 +54,10 @@ const ButtonMeta: Meta<typeof Button> = {
 
 export default ButtonMeta;
 
-type ButtonWithHooksProps = { themeName: ThemeContextTypeV1['themeMode'] } & ButtonProps;
+type ButtonWithHooksProps = { themeName: ThemeContextType['themeMode'] } & ButtonProps;
 
 const ButtonWithHooks = ({ themeName, ...props }: ButtonWithHooksProps) => {
-  const { setThemeMode } = useThemeV1();
+  const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(themeName);

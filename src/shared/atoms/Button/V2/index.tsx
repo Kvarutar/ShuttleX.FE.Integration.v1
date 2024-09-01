@@ -3,23 +3,27 @@ import { Pressable, type StyleProp, StyleSheet, type TextStyle, View, type ViewS
 import { Shadow } from 'react-native-shadow-2';
 
 import { buttonShadow, DISABLED_SHADOW_COLOR } from '../../../../core/themes/shadows';
+import { type PaletteButtonMode } from '../../../../core/themes/v2/palettes/paletteTypes';
 import { useTheme } from '../../../../core/themes/v2/themeContext';
 import Text from '../../Text';
-import { ButtonModes, type ButtonProps, ButtonShadows, ButtonShapes } from './props';
+import {
+  type ButtonProps,
+  ButtonShadows,
+  ButtonShapes,
+  ButtonSizes,
+  CircleButtonModes,
+  SquareButtonModes,
+} from './props';
 
 type ButtonStyle = {
   button: StyleProp<ViewStyle>;
   text: StyleProp<TextStyle>;
 };
 
-type ComputedStylesProperties = {
-  square: ButtonStyle;
-  circle: ButtonStyle;
-};
-
 const Button = ({
-  mode = ButtonModes.Mode1,
+  mode = SquareButtonModes.Mode1,
   shape = ButtonShapes.Square,
+  size = ButtonSizes.M,
   text,
   textStyle,
   style,
@@ -35,7 +39,16 @@ const Button = ({
 
   const [isPressed, setIsPressed] = useState(false);
 
-  const { backgroundColor, backgroundColorOnPress, textColor, shadowColor } = colors.buttonModes[mode];
+  let buttonColors: PaletteButtonMode;
+  switch (shape) {
+    case ButtonShapes.Circle:
+      buttonColors = colors.circleButtonModes[mode as CircleButtonModes];
+      break;
+    case ButtonShapes.Square:
+      buttonColors = colors.squareButtonModes[mode as SquareButtonModes];
+      break;
+  }
+  const { backgroundColor, backgroundColorOnPress, textColor, shadowColor } = buttonColors;
   const { borderColor } = colors;
   let shadowProps = shadowColor ? buttonShadow(shadowColor) : { startColor: DISABLED_SHADOW_COLOR };
 
@@ -48,37 +61,53 @@ const Button = ({
       break;
   }
 
-  if (disableShadow || (isPressed && mode === ButtonModes.Mode2)) {
+  if (disableShadow || (isPressed && mode === SquareButtonModes.Mode2) || mode === CircleButtonModes.Mode2) {
     shadowProps = { startColor: DISABLED_SHADOW_COLOR };
   }
 
-  const styleHeight = (StyleSheet.flatten(containerStyle)?.height as number) || undefined;
+  const circleButtonSizes: Record<ButtonSizes, number> = {
+    s: 44,
+    m: 60,
+    l: 92,
+  };
 
-  const computedStylesCircleShape: ButtonStyle = StyleSheet.create({
-    button: {
-      height: styleHeight,
-      width: styleHeight,
-      paddingHorizontal: 0,
-      borderRadius: 1000,
-      backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
-      padding: innerSpacing,
+  const squareButtonSizes: Record<ButtonSizes, { h: number; w: number }> = {
+    s: {
+      h: 52,
+      w: 156,
     },
-    text: { color: textColor },
-  });
-
-  const computedStylesSquareShape: ButtonStyle = StyleSheet.create({
-    button: {
-      height: styleHeight || 48,
-      backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
-      paddingHorizontal: 24,
-      borderRadius: 16,
+    m: {
+      h: 52,
+      w: 168,
     },
-    text: { color: textColor },
-  });
+    l: {
+      h: 52,
+      w: 343,
+    },
+  };
 
-  const computedStyles: ComputedStylesProperties = {
-    square: computedStylesSquareShape,
-    circle: computedStylesCircleShape,
+  const computedStyles: Record<ButtonShapes, ButtonStyle> = {
+    square: {
+      button: {
+        height: size ? squareButtonSizes[size].h : 48,
+        width: size ? squareButtonSizes[size].w : undefined,
+        backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+        paddingHorizontal: 24,
+        borderRadius: 16,
+      },
+      text: { color: textColor },
+    },
+    circle: {
+      button: {
+        height: size ? circleButtonSizes[size] : circleButtonSizes.m,
+        width: size ? circleButtonSizes[size] : circleButtonSizes.m,
+        paddingHorizontal: 0,
+        borderRadius: 1000,
+        backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+        padding: innerSpacing,
+      },
+      text: { color: textColor },
+    },
   };
 
   const renderedChildren = children ? (
@@ -90,16 +119,17 @@ const Button = ({
   const containers = {
     circle: (
       <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: innerSpacing && styleHeight ? styleHeight - innerSpacing : styleHeight || 48,
-          width: innerSpacing && styleHeight ? styleHeight - innerSpacing : styleHeight || 48,
-          borderColor: borderColor,
-          borderRadius: 1000,
-          borderWidth: 1,
-          backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
-        }}
+        style={[
+          styles.subContainerCircleButton,
+          {
+            height:
+              innerSpacing && size ? circleButtonSizes[size] - innerSpacing : (size && circleButtonSizes[size]) || 48,
+            width:
+              innerSpacing && size ? circleButtonSizes[size] - innerSpacing : (size && circleButtonSizes[size]) || 48,
+            borderColor: borderColor,
+            backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+          },
+        ]}
       >
         {renderedChildren}
       </View>
@@ -125,6 +155,12 @@ const Button = ({
 };
 
 const styles = StyleSheet.create({
+  subContainerCircleButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 1000,
+    borderWidth: 1,
+  },
   button: {
     paddingHorizontal: 24,
     borderRadius: 28,

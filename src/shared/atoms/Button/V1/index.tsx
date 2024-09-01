@@ -31,7 +31,7 @@ const Button = ({
   onPress,
   innerSpacing,
 }: ButtonV1Props): JSX.Element => {
-  const { colors } = useThemeV1();
+  const { colors, themeMode } = useThemeV1();
 
   const [isPressed, setIsPressed] = useState(false);
 
@@ -52,6 +52,10 @@ const Button = ({
     shadowProps = { startColor: DISABLED_SHADOW_COLOR };
   }
 
+  if (shape === ButtonV1Shapes.Circle && disabled) {
+    shadowProps = { disabled: true };
+  }
+
   const styleHeight = (StyleSheet.flatten(containerStyle)?.height as number) || undefined;
 
   const computedStylesCircleShape: ButtonStyle = StyleSheet.create({
@@ -60,7 +64,7 @@ const Button = ({
       width: styleHeight,
       paddingHorizontal: 0,
       borderRadius: 1000,
-      backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+      backgroundColor: themeMode === 'dark' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor,
       padding: innerSpacing,
     },
     text: { color: textColor },

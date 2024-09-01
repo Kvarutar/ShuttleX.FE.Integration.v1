@@ -14,7 +14,7 @@ global.STORIES = [
     directory: "./src/stories",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:src[\\\\/]stories(?:[\\\\/](?!\\.)(?:(?:(?!(?:^|[\\\\/])\\.).)*?)[\\\\/]|[\\\\/]|$)(?!\\.)(?=.)[^\\\\/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:src\\/stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
 ];
 
@@ -49,8 +49,8 @@ const getStories = () => {
   return {
     "./src/stories/Alert.stories.tsx": require("../src/stories/Alert.stories.tsx"),
     "./src/stories/Bar.stories.tsx": require("../src/stories/Bar.stories.tsx"),
-    "./src/stories/buttonStories/V1.stories.tsx": require("../src/stories/buttonStories/V1.stories.tsx"),
-    "./src/stories/buttonStories/V2.stories.tsx": require("../src/stories/buttonStories/V2.stories.tsx"),
+    "./src/stories/Button/V1.stories.tsx": require("../src/stories/Button/V1.stories.tsx"),
+    "./src/stories/Button/V2.stories.tsx": require("../src/stories/Button/V2.stories.tsx"),
     "./src/stories/CheckBox.stories.tsx": require("../src/stories/CheckBox.stories.tsx"),
     "./src/stories/CodeInput.stories.tsx": require("../src/stories/CodeInput.stories.tsx"),
     "./src/stories/DatePicker.stories.tsx": require("../src/stories/DatePicker.stories.tsx"),
