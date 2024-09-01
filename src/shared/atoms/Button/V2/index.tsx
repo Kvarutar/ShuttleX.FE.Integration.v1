@@ -72,26 +72,10 @@ const Button = ({
     l: 92,
   };
 
-  const squareButtonSizes: Record<ButtonSizes, { h: number; w: number }> = {
-    s: {
-      h: 52,
-      w: 156,
-    },
-    m: {
-      h: 52,
-      w: 168,
-    },
-    l: {
-      h: 52,
-      w: 343,
-    },
-  };
-
   const computedStyles: Record<ButtonShapes, ButtonStyle> = {
     square: {
       button: {
-        height: size ? squareButtonSizes[size].h : 48,
-        width: size ? squareButtonSizes[size].w : undefined,
+        height: 52,
         backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
         paddingHorizontal: 24,
         borderRadius: 16,
