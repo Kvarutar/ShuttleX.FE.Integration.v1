@@ -9,6 +9,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes'> = {
   warningColor: '#FFE54E',
   successColor: '#4FAD40',
   borderColor: '#B4B4B44D', // with opacity
+  borderDashColor: '#CFCFCF',
   backgroundPrimaryColor: '#FFFFFF',
   backgroundSecondaryColor: '#23FF17',
   backgroundTertiaryColor: '#3717FF',

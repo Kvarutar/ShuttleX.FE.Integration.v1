@@ -1,7 +1,7 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { Bar, CalendarIcon, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
+import { BarV1, CalendarIcon, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 import { BarModes, type BarProps } from '../../../src/shared/atoms/Bar/types';
 
@@ -11,7 +11,7 @@ type BarStorybookProps = BarProps & { theme: ThemeContextTypeV1['themeMode'] };
 
 const BarMeta: Meta<BarStorybookProps> = {
   title: 'Bar',
-  component: Bar,
+  component: BarV1,
   args: {
     theme: 'light',
     mode: BarModes.Default,
@@ -37,10 +37,10 @@ const BarWithHooks = ({ themeName, mode }: { themeName: ThemeContextTypeV1['them
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <Bar children={<CalendarIcon />} mode={mode} />;
+  return <BarV1 children={<CalendarIcon />} mode={mode} />;
 };
 
-type Story = StoryObj<typeof Bar>;
+type Story = StoryObj<typeof BarV1>;
 
 export const BasicExample: Story = {
   render: function Render(args) {

@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 
 import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
-import Bar from '../../../atoms/Bar';
+import BarV1 from '../../../atoms/Bar/v1';
 import ClockIcon from '../../../icons/ClockIcon';
 import CountingComponent from '../CountingComponent';
 import { type StopWatchProps } from './props';
@@ -11,10 +11,10 @@ const StopWatch = ({ initialDate, onAfterCountdownEnds, mask }: StopWatchProps) 
 
   return (
     <View style={styles.stopwatchWrapper}>
-      <Bar style={styles.roundButton}>
+      <BarV1 style={styles.roundButton}>
         <ClockIcon style={[styles.clockIcon]} color={colors.iconPrimaryColor} />
         <CountingComponent initialDate={initialDate} mask={mask} onAfterCountdownEnds={onAfterCountdownEnds} />
-      </Bar>
+      </BarV1>
     </View>
   );
 };

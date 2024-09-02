@@ -4,8 +4,8 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import Bar from '../../atoms/Bar';
 import { BarModes } from '../../atoms/Bar/types';
+import BarV1 from '../../atoms/Bar/v1';
 import ButtonV1 from '../../atoms/Button/V1';
 import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput';
@@ -34,9 +34,9 @@ const TipsPopupWithoutI18n = ({ onClosePopup, addTip, tipsVariants }: TipsPopupP
 
   const tipsOptionsItem = tipsOptions.map((isActive, index) => (
     <Pressable onPress={() => onTipOptionSelect(index)} key={index}>
-      <Bar style={styles.option} mode={isActive ? BarModes.Active : BarModes.Default}>
+      <BarV1 style={styles.option} mode={isActive ? BarModes.Active : BarModes.Default}>
         <Text>${tipsVariants[index]}</Text>
-      </Bar>
+      </BarV1>
     </Pressable>
   ));
 

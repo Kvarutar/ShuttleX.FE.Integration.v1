@@ -16,8 +16,9 @@ import sizes from './core/themes/sizes';
 import palettes from './core/themes/v1/palettes';
 import { type ThemeContextTypeV1, ThemeProviderV1, useThemeV1 } from './core/themes/v1/themeContext';
 import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/v2/themeContext';
-import Bar from './shared/atoms/Bar';
 import { BarModes } from './shared/atoms/Bar/types';
+import BarV1 from './shared/atoms/Bar/v1';
+import Bar from './shared/atoms/Bar/v2';
 import Blur from './shared/atoms/Blur';
 import { Button, ButtonV1 } from './shared/atoms/Button/index';
 import { ButtonV1Modes, ButtonV1Shadows, ButtonV1Shapes } from './shared/atoms/Button/V1/props';
@@ -173,6 +174,7 @@ export {
   BaggageIcon,
   Bar,
   BarModes,
+  BarV1,
   BasicXImage,
   BasicXLImage,
   BigCameraIcon,

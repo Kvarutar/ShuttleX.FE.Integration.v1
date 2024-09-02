@@ -19,6 +19,7 @@ export type Palette = {
   warningColor: string;
   successColor: string;
   borderColor: string;
+  borderDashColor: string;
   backgroundPrimaryColor: string;
   backgroundSecondaryColor: string;
   backgroundTertiaryColor: string; // mainly used for the background of some icons

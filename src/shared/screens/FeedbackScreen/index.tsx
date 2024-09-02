@@ -6,8 +6,8 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import i18nIntegration from '../../../core/locales/i18n';
 import sizes from '../../../core/themes/sizes';
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import Bar from '../../atoms/Bar';
 import { BarModes } from '../../atoms/Bar/types';
+import BarV1 from '../../atoms/Bar/v1';
 import { ButtonV1 } from '../../atoms/Button/index';
 import { ButtonV1Modes, ButtonV1Shapes } from '../../atoms/Button/V1/props';
 import Text from '../../atoms/Text';
@@ -171,10 +171,10 @@ const FeedbackScreenWithoutI18n = ({
         feedbackTitle: t('Feedback_likeTitle'),
         tips: tipsVariants && (
           <Pressable onPress={() => setIsTipsPopupVisible(true)}>
-            <Bar style={styles.tips}>
+            <BarV1 style={styles.tips}>
               <Text style={styles.tipsTitle}>{t('Feedback_tipsTitle')}</Text>
               <ArrowInPrimaryColorIcon />
-            </Bar>
+            </BarV1>
           </Pressable>
         ),
       },
@@ -229,14 +229,14 @@ const FeedbackScreenWithoutI18n = ({
             <MenuUserImage2 url={userImageUrl} />
             <View style={[styles.ratingWrapper, !isFeedbackForContractor ? styles.additionalMargin : {}]}>
               <Pressable onPress={() => onSelectRating('dislike')}>
-                <Bar mode={dislikeButtonMode} style={styles.ratingItem}>
+                <BarV1 mode={dislikeButtonMode} style={styles.ratingItem}>
                   <DislikeIcon />
-                </Bar>
+                </BarV1>
               </Pressable>
               <Pressable onPress={() => onSelectRating('like')}>
-                <Bar mode={likeButtonMode} style={styles.ratingItem}>
+                <BarV1 mode={likeButtonMode} style={styles.ratingItem}>
                   <LikeIcon />
-                </Bar>
+                </BarV1>
               </Pressable>
             </View>
             {additionalContentBody}

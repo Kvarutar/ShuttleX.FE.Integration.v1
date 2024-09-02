@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import Bar from '../../atoms/Bar';
+import BarV1 from '../../atoms/Bar/v1';
 import { type Option } from './props';
 
 const FeedbackScreenDescriptionItem = ({ option, onOptionSelect }: { option: Option; onOptionSelect: () => void }) => {
@@ -22,9 +22,9 @@ const FeedbackScreenDescriptionItem = ({ option, onOptionSelect }: { option: Opt
 
   return (
     <Pressable onPress={onPress} style={styles.descriptionItemWrapper}>
-      <Bar disableShadow={!isActive} style={styles.descriptionItemBar}>
+      <BarV1 disableShadow={!isActive} style={styles.descriptionItemBar}>
         {option.image}
-      </Bar>
+      </BarV1>
       <Text style={[styles.descriptionItemText, computedStyles.text]}>{option.title}</Text>
     </Pressable>
   );

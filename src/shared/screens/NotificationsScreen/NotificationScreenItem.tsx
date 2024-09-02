@@ -4,7 +4,7 @@ import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import Bar from '../../atoms/Bar';
+import BarV1 from '../../atoms/Bar/v1';
 import Text from '../../atoms/Text';
 import ClockIcon2 from '../../icons/ClockIcon2';
 import StarIcon from '../../icons/StarIcon';
@@ -55,7 +55,7 @@ const NotificationScreenItem = ({ notification }: { notification: Notification }
   };
 
   return (
-    <Bar style={styles.notification}>
+    <BarV1 style={styles.notification}>
       {image[notification.type]}
       <View style={styles.notificationContentWrapper}>
         <View style={styles.notificationTop}>
@@ -67,7 +67,7 @@ const NotificationScreenItem = ({ notification }: { notification: Notification }
         </View>
         <Text style={[styles.notificationContent, computedStyles.notificationContent]}>{notification.description}</Text>
       </View>
-    </Bar>
+    </BarV1>
   );
 };
 

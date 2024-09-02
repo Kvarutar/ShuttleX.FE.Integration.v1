@@ -54,7 +54,7 @@ const Content = (): JSX.Element | null => {
 
   return (
     <View style={[styles.container, computedStyles.container]} onLayout={onLayoutRootView}>
-      <View style={styles.testZone}>{/* Some component */}</View>
+      <View style={styles.testZone}>{/* some component */}</View>
     </View>
   );
 };
