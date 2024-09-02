@@ -29,12 +29,12 @@ const squareButtonModes: PaletteSquareButtonModes = {
   mode1: {
     backgroundColor: colors.primaryColor,
     backgroundColorOnPress: '#D5FF3BFF', // random color
-    textColor: colors.textPrimaryColor,
+    textColor: colors.textTertiaryColor,
   },
   mode2: {
-    backgroundColor: '#000000',
+    backgroundColor: colors.backgroundTertiaryColor,
     backgroundColorOnPress: '#222222',
-    textColor: colors.textPrimaryColor,
+    textColor: colors.textTertiaryColor,
   },
   mode3: {
     backgroundColor: '#FFFFFF38',
@@ -47,27 +47,28 @@ const circleButtonModes: PaletteCircleButtonModes = {
   mode1: {
     backgroundColor: colors.primaryColor,
     backgroundColorOnPress: '#D5FF3BFF', // random color
-    textColor: colors.textPrimaryColor,
+    textColor: colors.textTertiaryColor,
   },
   mode2: {
-    backgroundColor: colors.backgroundTertiaryColor,
-    backgroundColorOnPress: colors.backgroundTertiaryColor,
-    textColor: colors.textTertiaryColor,
+    backgroundColor: colors.backgroundPrimaryColor,
+    backgroundColorOnPress: '#E2E2E2',
+    textColor: colors.textPrimaryColor,
+    shadowColor: 'rgba(0, 0, 0, 0.03)',
   },
   mode3: {
-    backgroundColor: '#000000',
+    backgroundColor: colors.backgroundTertiaryColor,
     backgroundColorOnPress: '#222222',
-    textColor: colors.textPrimaryColor,
+    textColor: colors.textTertiaryColor,
   },
   mode4: {
-    backgroundColor: '#F3F3F3',
-    backgroundColorOnPress: '#E2E2E2',
-    textColor: colors.textTertiaryColor,
+    backgroundColor: colors.borderColor,
+    backgroundColorOnPress: '#CBD0D1',
+    textColor: colors.textPrimaryColor,
   },
   mode5: {
-    backgroundColor: '#F3F3F3',
+    backgroundColor: colors.errorColor,
     backgroundColorOnPress: '#E34000',
-    textColor: colors.textTertiaryColor,
+    textColor: colors.textPrimaryColor,
   },
 };
 

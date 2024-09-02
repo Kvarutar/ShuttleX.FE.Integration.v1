@@ -29,7 +29,7 @@ const squareButtonModes: PaletteSquareButtonModes = {
   mode1: {
     backgroundColor: colors.primaryColor,
     backgroundColorOnPress: '#D5FF3BFF', // random color
-    textColor: colors.textTertiaryColor,
+    textColor: colors.textPrimaryColor,
   },
   mode2: {
     backgroundColor: colors.backgroundTertiaryColor,
@@ -39,7 +39,7 @@ const squareButtonModes: PaletteSquareButtonModes = {
   mode3: {
     backgroundColor: '#FFFFFF38',
     backgroundColorOnPress: '#E2E2E2',
-    textColor: colors.textPrimaryColor,
+    textColor: colors.textTertiaryColor,
   },
 };
 
@@ -47,7 +47,7 @@ const circleButtonModes: PaletteCircleButtonModes = {
   mode1: {
     backgroundColor: colors.primaryColor,
     backgroundColorOnPress: '#D5FF3BFF', // random color
-    textColor: colors.textTertiaryColor,
+    textColor: colors.textPrimaryColor,
   },
   mode2: {
     backgroundColor: colors.backgroundPrimaryColor,
@@ -68,7 +68,7 @@ const circleButtonModes: PaletteCircleButtonModes = {
   mode5: {
     backgroundColor: colors.errorColor,
     backgroundColorOnPress: '#E34000',
-    textColor: colors.textPrimaryColor,
+    textColor: colors.textTertiaryColor,
   },
 };
 
