@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { Platform, Pressable, StyleSheet } from 'react-native';
 
 import Modal from '../../atoms/Modal';
-import TextInput from '../../atoms/TextInput';
+import TextInputV1 from '../../atoms/TextInput/v1';
 import TimeIcon from '../../icons/TimeIcon';
 import { type DatePickerProps } from './props';
 
@@ -52,7 +52,7 @@ const TimePicker = ({ style, placeholder, onTimeSelect, formatTime }: DatePicker
 
   return (
     <Pressable style={[styles.datePickerContainer, style]} onPress={showDatepicker}>
-      <TextInput value={formatSelectedTime()} editable={false} placeholder={placeholder} />
+      <TextInputV1 value={formatSelectedTime()} editable={false} placeholder={placeholder} />
       <TimeIcon style={styles.calendarIcon} />
       {isVisible &&
         (Platform.OS === 'ios' ? (

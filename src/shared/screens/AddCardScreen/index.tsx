@@ -10,8 +10,8 @@ import { getPaymentIcon } from '../../../utils/payment/cardIcons';
 import { ButtonV1 } from '../../atoms/Button/index';
 import { ButtonV1Shapes } from '../../atoms/Button/V1/props';
 import Text from '../../atoms/Text';
-import TextInput from '../../atoms/TextInput';
-import { TextInputInputMode } from '../../atoms/TextInput/props';
+import TextInputV1 from '../../atoms/TextInput/v1';
+import { TextInputV1InputMode } from '../../atoms/TextInput/v1/props';
 import ShortArrowIcon from '../../icons/ShortArrowIcon';
 import UnknownCardIcon from '../../icons/UnknownCardIcon';
 import { type AddCardScreenProps, type Card } from './props';
@@ -88,9 +88,9 @@ const AddCardScreenWithoutI18n = ({ onCardSave, onBackButtonPress }: AddCardScre
           <View style={styles.headerDummy} />
         </View>
         <View>
-          <TextInput
+          <TextInputV1
             maxLength={19}
-            inputMode={TextInputInputMode.Numeric}
+            inputMode={TextInputV1InputMode.Numeric}
             value={cardData.number}
             placeholder="0000 0000 0000 0000"
             onChangeText={onNumberChange}
@@ -100,8 +100,8 @@ const AddCardScreenWithoutI18n = ({ onCardSave, onBackButtonPress }: AddCardScre
         </View>
         <View style={styles.creditionals}>
           <View style={styles.creditionalsItemWrapper}>
-            <TextInput
-              inputMode={TextInputInputMode.Numeric}
+            <TextInputV1
+              inputMode={TextInputV1InputMode.Numeric}
               value={cardData.expiresAt}
               placeholder="MM/YY"
               onChangeText={onDateChange}
@@ -109,8 +109,8 @@ const AddCardScreenWithoutI18n = ({ onCardSave, onBackButtonPress }: AddCardScre
             />
           </View>
           <View style={styles.creditionalsItemWrapper}>
-            <TextInput
-              inputMode={TextInputInputMode.Numeric}
+            <TextInputV1
+              inputMode={TextInputV1InputMode.Numeric}
               placeholder={cardType ? cardType.code.name : 'CVV'}
               onChangeText={onCodeChange}
               maxLength={cardType ? cardType.code.size : 3}

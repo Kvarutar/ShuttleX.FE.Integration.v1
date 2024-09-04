@@ -32,8 +32,8 @@ import {
 import CheckBox from './shared/atoms/Checkbox';
 import Separator from './shared/atoms/Separator';
 import Text from './shared/atoms/Text';
-import TextInput from './shared/atoms/TextInput';
-import { TextInputInputMode } from './shared/atoms/TextInput/props';
+import TextInputV1 from './shared/atoms/TextInput/v1';
+import { TextInputV1InputMode } from './shared/atoms/TextInput/v1/props';
 import ApplePayIcon from './shared/icons/ApplePayIcon';
 import ArrowIcon from './shared/icons/ArrowIcon';
 import ArrowInPrimaryColorIcon from './shared/icons/ArrowInPrimaryColorIcon';
@@ -324,8 +324,8 @@ export {
   type TariffType,
   TeslaXImage,
   Text,
-  TextInput,
-  TextInputInputMode,
+  TextInputV1,
+  TextInputV1InputMode,
   type ThemeContextType,
   type ThemeContextTypeV1,
   ThemeProvider,

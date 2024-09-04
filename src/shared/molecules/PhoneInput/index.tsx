@@ -6,8 +6,8 @@ import { indexOfNotFound } from '../../../core/monkey-patch/array.helper';
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Text from '../../atoms/Text';
-import TextInput from '../../atoms/TextInput';
-import { TextInputInputMode, type TextInputProps } from '../../atoms/TextInput/props';
+import TextInputV1 from '../../atoms/TextInput/v1';
+import { TextInputV1InputMode, type TextInputV1Props } from '../../atoms/TextInput/v1/props';
 import { countryFlags } from '../../icons/Flags';
 import ShortArrowIcon from '../../icons/ShortArrowIcon';
 import { type PhoneInputProps } from './props';
@@ -50,7 +50,7 @@ const PhoneInput = ({
     }
   }, [onlyNumbersInputValue, flagState]);
 
-  const onInputChangeText: TextInputProps['onChangeText'] = text => {
+  const onInputChangeText: TextInputV1Props['onChangeText'] = text => {
     // Checks is phone is fully entered
     if (flagState && text.length >= flagState.phoneMask.length) {
       setIsInputDone(true);
@@ -161,10 +161,10 @@ const PhoneInput = ({
           {flagState && countryFlags[flagState.countryCode]}
           <ShortArrowIcon style={styles.shortArrowIcon} />
         </Pressable>
-        <TextInput
+        <TextInputV1
           error={{ isError: error.isError }}
           style={[styles.input, computedStyles.input]}
-          inputMode={TextInputInputMode.Numeric}
+          inputMode={TextInputV1InputMode.Numeric}
           value={inputValue}
           containerStyle={styles.inputContainerStyle}
           onChangeText={onInputChangeText}

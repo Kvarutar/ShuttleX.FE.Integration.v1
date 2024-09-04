@@ -1,11 +1,11 @@
 import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { StyleSheet, type TextInputProps, View } from 'react-native';
 
-import TextInput from '../../atoms/TextInput';
-import { TextInputInputMode, type TextInputRef } from '../../atoms/TextInput/props';
+import TextInputV1 from '../../atoms/TextInput/v1';
+import { TextInputV1InputMode, type TextInputV1Ref } from '../../atoms/TextInput/v1/props';
 import { type CodeInputProps, type CodeNumberProps } from './props';
 
-const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(({ input, setInput, onBackspaceKeyPress }, ref) => {
+const CodeNumber = forwardRef<TextInputV1Ref, CodeNumberProps>(({ input, setInput, onBackspaceKeyPress }, ref) => {
   const [lastKeyEventTimestamp, setLastKeyEventTimestamp] = useState(0);
 
   const onKeyPress: TextInputProps['onKeyPress'] = e => {
@@ -24,7 +24,7 @@ const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(({ input, setInput,
   };
 
   return (
-    <TextInput
+    <TextInputV1
       ref={ref}
       value={input}
       onChangeText={text => {
@@ -33,7 +33,7 @@ const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(({ input, setInput,
         }
       }}
       onKeyPress={onKeyPress}
-      inputMode={TextInputInputMode.Numeric}
+      inputMode={TextInputV1InputMode.Numeric}
       style={styles.codeInput}
       maxLength={1}
     />
@@ -43,10 +43,10 @@ const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(({ input, setInput,
 const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
   //TODO: Refactor code by using dictionary
   const isFirstRender = useRef(true);
-  const firstCodeNumberRef = useRef<TextInputRef>(null);
-  const secondCodeNumberRef = useRef<TextInputRef>(null);
-  const thirdCodeNumberRef = useRef<TextInputRef>(null);
-  const fourthCodeNumberRef = useRef<TextInputRef>(null);
+  const firstCodeNumberRef = useRef<TextInputV1Ref>(null);
+  const secondCodeNumberRef = useRef<TextInputV1Ref>(null);
+  const thirdCodeNumberRef = useRef<TextInputV1Ref>(null);
+  const fourthCodeNumberRef = useRef<TextInputV1Ref>(null);
 
   const [firstCodeNumberInput, setFirstCodeNumberInput] = useState('');
   const [secondCodeNumberInput, setSecondCodeNumberInput] = useState('');

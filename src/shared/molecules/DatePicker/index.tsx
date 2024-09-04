@@ -8,7 +8,7 @@ import { Platform, Pressable, StyleSheet } from 'react-native';
 
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Modal from '../../atoms/Modal';
-import TextInput from '../../atoms/TextInput';
+import TextInputV1 from '../../atoms/TextInput/v1';
 import CalendarIcon from '../../icons/CalendarIcon';
 import { DatePickerDisplay, type DatePickerProps } from './props';
 
@@ -76,7 +76,7 @@ const DatePicker = ({
 
   return (
     <Pressable style={[styles.datePickerContainer, style]} onPress={showDatepicker}>
-      <TextInput
+      <TextInputV1
         error={error}
         style={inputDatePickerStyle}
         placeholder={placeholder}

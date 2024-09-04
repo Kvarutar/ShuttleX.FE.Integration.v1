@@ -2,9 +2,10 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { palettes, TextInput, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
+import { palettes, type ThemeContextTypeV1, useTheme } from 'shuttlex-integration';
 
-import { TextInputInputMode, type TextInputProps } from '../../../src/shared/atoms/TextInput/props';
+import TextInput from '../../../../src/shared/atoms/TextInput/v2';
+import { TextInputInputMode, type TextInputProps } from '../../../../src/shared/atoms/TextInput/v2/props';
 
 const TextInputMeta: Meta<TextInputProps & { theme: ThemeContextTypeV1['themeMode'] }> = {
   title: 'TextInput',
@@ -21,7 +22,6 @@ const TextInputMeta: Meta<TextInputProps & { theme: ThemeContextTypeV1['themeMod
     placeholder: 'Example',
     maxLength: 100,
     inputMode: undefined,
-    editable: true,
   },
   argTypes: {
     theme: {
@@ -38,7 +38,7 @@ const TextInputMeta: Meta<TextInputProps & { theme: ThemeContextTypeV1['themeMod
 export default TextInputMeta;
 
 const TextInputWithHooks = ({ themeName, ...args }: { themeName: ThemeContextTypeV1['themeMode'] }) => {
-  const { setThemeMode } = useThemeV1();
+  const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(themeName);

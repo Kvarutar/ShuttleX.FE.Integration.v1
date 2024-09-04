@@ -8,8 +8,8 @@ import { BarModes } from '../../atoms/Bar/types';
 import BarV1 from '../../atoms/Bar/v1';
 import ButtonV1 from '../../atoms/Button/V1';
 import Text from '../../atoms/Text';
-import TextInput from '../../atoms/TextInput';
-import { TextInputInputMode, type TextInputRef } from '../../atoms/TextInput/props';
+import TextInputV1 from '../../atoms/TextInput/v1';
+import { TextInputV1InputMode, type TextInputV1Ref } from '../../atoms/TextInput/v1/props';
 import Popup from '../../molecules/Popup';
 import { type TipsPopupProps } from './props';
 
@@ -22,7 +22,7 @@ const TipsPopupWithoutI18n = ({ onClosePopup, addTip, tipsVariants }: TipsPopupP
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [tipsOptions, setTipsOptions] = useState(new Array<boolean>(tipsVariants.length).fill(false));
 
-  const inputRef = useRef<TextInputRef>(null);
+  const inputRef = useRef<TextInputV1Ref>(null);
 
   const onTipOptionSelect = (tipIndex: number) => {
     setTipsOptions(state => state.map((_, index) => index === tipIndex));
@@ -64,8 +64,8 @@ const TipsPopupWithoutI18n = ({ onClosePopup, addTip, tipsVariants }: TipsPopupP
       <Text style={styles.title}>{t('Feedback_TipsPopup_title')}</Text>
       <View style={styles.options}>
         {tipsOptionsItem}
-        <TextInput
-          inputMode={TextInputInputMode.Money}
+        <TextInputV1
+          inputMode={TextInputV1InputMode.Money}
           placeholder="0"
           value={inputedTipAmount}
           onChangeText={onChangeText}

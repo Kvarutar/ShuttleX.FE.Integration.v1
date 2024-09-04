@@ -51,6 +51,7 @@ const getStories = () => {
     "./src/stories/Bar.stories.tsx": require("../src/stories/Bar.stories.tsx"),
     "./src/stories/Button/V1.stories.tsx": require("../src/stories/Button/V1.stories.tsx"),
     "./src/stories/Button/V2.stories.tsx": require("../src/stories/Button/V2.stories.tsx"),
+    "./src/stories/ChatInput.stories.tsx": require("../src/stories/ChatInput.stories.tsx"),
     "./src/stories/CheckBox.stories.tsx": require("../src/stories/CheckBox.stories.tsx"),
     "./src/stories/CodeInput.stories.tsx": require("../src/stories/CodeInput.stories.tsx"),
     "./src/stories/DatePicker.stories.tsx": require("../src/stories/DatePicker.stories.tsx"),
@@ -68,7 +69,8 @@ const getStories = () => {
     "./src/stories/StopWatch.stories.tsx": require("../src/stories/StopWatch.stories.tsx"),
     "./src/stories/SwipeButton.stories.tsx": require("../src/stories/SwipeButton.stories.tsx"),
     "./src/stories/Text.stories.tsx": require("../src/stories/Text.stories.tsx"),
-    "./src/stories/TextInput.stories.tsx": require("../src/stories/TextInput.stories.tsx"),
+    "./src/stories/TextInput/V1.stories.tsx": require("../src/stories/TextInput/V1.stories.tsx"),
+    "./src/stories/TextInput/V2.stories.tsx": require("../src/stories/TextInput/V2.stories.tsx"),
     "./src/stories/TimePicker.stories.tsx": require("../src/stories/TimePicker.stories.tsx"),
     "./src/stories/Timer.stories.tsx": require("../src/stories/Timer.stories.tsx"),
   };

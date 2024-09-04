@@ -29,6 +29,7 @@ export type TextInputBaseProps = {
   containerStyle?: StyleProp<ViewStyle>;
   error?: { isError: boolean; message?: string };
   multiline?: TextInputPropsNative['multiline'];
+  withClearButton?: boolean;
 };
 
 export type TextInputRef = Pick<TextInput, 'focus' | 'clear' | 'blur' | 'isFocused' | 'setNativeProps'>;
