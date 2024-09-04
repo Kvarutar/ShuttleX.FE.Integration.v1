@@ -5,6 +5,7 @@ import { Shadow } from 'react-native-shadow-2';
 import { buttonShadow, DISABLED_SHADOW_COLOR } from '../../../../core/themes/shadows';
 import { type PaletteButtonMode } from '../../../../core/themes/v2/palettes/paletteTypes';
 import { useTheme } from '../../../../core/themes/v2/themeContext';
+import Blur from '../../Blur';
 import Text from '../../Text';
 import {
   type ButtonProps,
@@ -77,8 +78,6 @@ const Button = ({
       button: {
         height: 52,
         backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
-        paddingHorizontal: 24,
-        borderRadius: 16,
       },
       text: { color: textColor },
     },
@@ -120,7 +119,15 @@ const Button = ({
         {renderedChildren}
       </View>
     ),
-    square: renderedChildren,
+    square:
+      mode === SquareButtonModes.Mode3 ? (
+        <>
+          <Blur />
+          {renderedChildren}
+        </>
+      ) : (
+        renderedChildren
+      ),
   };
 
   return (
@@ -149,9 +156,10 @@ const styles = StyleSheet.create({
   },
   button: {
     paddingHorizontal: 24,
-    borderRadius: 28,
+    borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
   text: {
     fontFamily: 'Inter Medium',
