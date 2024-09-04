@@ -67,7 +67,8 @@ import FeedbackThumbUpIcon from './shared/icons/FeedbackThumbUpIcon';
 import FeedbackWheelIcon from './shared/icons/FeedbackWheelIcon';
 import { countryFlags } from './shared/icons/Flags';
 import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
-import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini';
+import GroupedBrandIconMiniV1 from './shared/icons/GroupedBrandIconMini/V1';
+import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
 import InputXIcon from './shared/icons/InputXIcon';
 import LikeIcon from './shared/icons/LikeIcon';
 import LocationIcon from './shared/icons/LocationIcon';
@@ -246,6 +247,7 @@ export {
   getPaymentIcon,
   GroupedBrandIcon,
   GroupedBrandIconMini,
+  GroupedBrandIconMiniV1,
   GroupedButtons,
   i18nIntegration,
   InputXIcon,

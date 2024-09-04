@@ -1,7 +1,7 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-import { useThemeV1 } from '../../core/themes/v1/themeContext';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 
 const GroupedBrandIconMini = ({
   style,

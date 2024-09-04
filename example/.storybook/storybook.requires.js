@@ -57,6 +57,7 @@ const getStories = () => {
     "./src/stories/DriverArrivedAlert.stories.tsx": require("../src/stories/DriverArrivedAlert.stories.tsx"),
     "./src/stories/FreeTimeAlert.stories.tsx": require("../src/stories/FreeTimeAlert.stories.tsx"),
     "./src/stories/GroupedBrandIcon.stories.tsx": require("../src/stories/GroupedBrandIcon.stories.tsx"),
+    "./src/stories/GroupedBrandIconMini/V2.stories.tsx": require("../src/stories/GroupedBrandIconMini/V2.stories.tsx"),
     "./src/stories/GroupedButtons.stories.tsx": require("../src/stories/GroupedButtons.stories.tsx"),
     "./src/stories/InternetDisconnectedAlert.stories.tsx": require("../src/stories/InternetDisconnectedAlert.stories.tsx"),
     "./src/stories/PaidTimeAlert.stories.tsx": require("../src/stories/PaidTimeAlert.stories.tsx"),

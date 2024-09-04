@@ -8,7 +8,7 @@ import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Blur from '../../atoms/Blur';
 import Text from '../../atoms/Text';
 import BecomeDriverIcon from '../../icons/BecomeDriverIcon';
-import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini';
+import GroupedBrandIconMiniV1 from '../../icons/GroupedBrandIconMini/V1';
 import HelpIcon from '../../icons/HelpIcon';
 import NotificationIcon from '../../icons/NotificationIcon';
 import SubscriptionIcon from '../../icons/SubscriptionIcon';
@@ -112,7 +112,7 @@ const MenuBase = ({
                 {additionalContent}
                 <View style={styles.navigation}>{navigationContent}</View>
               </View>
-              <GroupedBrandIconMini />
+              <GroupedBrandIconMiniV1 />
             </View>
           </SafeAreaView>
           <Pressable style={styles.outsider} onPress={closeMenu} />
