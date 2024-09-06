@@ -32,6 +32,7 @@ import {
 import CheckBox from './shared/atoms/Checkbox';
 import Separator from './shared/atoms/Separator';
 import Text from './shared/atoms/Text';
+import { TextElipsizeMode } from './shared/atoms/Text/props';
 import TextInputV1 from './shared/atoms/TextInput/v1';
 import { TextInputV1InputMode } from './shared/atoms/TextInput/v1/props';
 import ApplePayIcon from './shared/icons/ApplePayIcon';
@@ -70,6 +71,7 @@ import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
 import GroupedBrandIconMiniV1 from './shared/icons/GroupedBrandIconMini/V1';
 import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
 import InputXIcon from './shared/icons/InputXIcon';
+import Like2Icon from './shared/icons/Like2Icon';
 import LikeIcon from './shared/icons/LikeIcon';
 import LocationIcon from './shared/icons/LocationIcon';
 import LockIcon from './shared/icons/LockIcon';
@@ -92,6 +94,7 @@ import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/icons/SpinnerIcon';
 import StarIcon from './shared/icons/StarIcon';
 import StatisticsIcon from './shared/icons/StatitsticsIcon';
+import SteeringWheelIcon from './shared/icons/SteeringWheelIcon';
 import SuccessIcon from './shared/icons/SuccessIcon';
 import TimeIcon from './shared/icons/TimeIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
@@ -122,6 +125,7 @@ import { type RideHasFinishedAlertProps } from './shared/molecules/alerts/RideHa
 import SecondRideAlert from './shared/molecules/alerts/SecondRideAlert';
 import BottomWindow from './shared/molecules/BottomWindow';
 import BottomWindowWithGesture from './shared/molecules/BottomWindowWithGesture';
+import { type BottomWindowWithGestureRef } from './shared/molecules/BottomWindowWithGesture/props';
 import CodeInput from './shared/molecules/CodeInput';
 import DatePicker from './shared/molecules/DatePicker';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
@@ -138,6 +142,7 @@ import ScrollViewWithCustomScroll from './shared/molecules/ScrollViewWithCustomS
 import SwipeButton from './shared/molecules/SwipeButton';
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/props';
 import TimePicker from './shared/molecules/TimePicker';
+import CountingComponent from './shared/molecules/timerAndStopwatch/CountingComponent';
 import StopWatch from './shared/molecules/timerAndStopwatch/StopWatch';
 import Timer from './shared/molecules/timerAndStopwatch/Timer';
 import { TimerModes } from './shared/molecules/timerAndStopwatch/Timer/props';
@@ -184,6 +189,7 @@ export {
   Blur,
   BottomWindow,
   BottomWindowWithGesture,
+  type BottomWindowWithGestureRef,
   BrandFavIcon,
   BrandTextIcon,
   Button,
@@ -210,6 +216,7 @@ export {
   CloseIconMini,
   CodeInput,
   ComfortXImage,
+  CountingComponent,
   countryDtos,
   type countryDtosProps,
   countryFlags,
@@ -254,6 +261,7 @@ export {
   IntegrationModule,
   InternetDisconnectedAlert,
   lightMapStyle,
+  Like2Icon,
   LikeIcon,
   LocationArrowImage,
   LocationArrowImage2,
@@ -316,6 +324,7 @@ export {
   SquareButtonModes,
   StarIcon,
   StatisticsIcon,
+  SteeringWheelIcon,
   StopWatch,
   SuccessIcon,
   SwipeButton,
@@ -324,6 +333,7 @@ export {
   type TariffType,
   TeslaXImage,
   Text,
+  TextElipsizeMode,
   TextInputV1,
   TextInputV1InputMode,
   type ThemeContextType,

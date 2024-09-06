@@ -6,6 +6,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes'> = {
   secondaryGradientStartColor: '#EAEAEA',
   secondaryGradientEndColor: '#010101',
   errorColor: '#FF7777',
+  errorColorWithOpacity: '#FF4A001A',
   warningColor: '#FFE54E',
   successColor: '#4FAD40',
   borderColor: '#B4B4B44D', // with opacity

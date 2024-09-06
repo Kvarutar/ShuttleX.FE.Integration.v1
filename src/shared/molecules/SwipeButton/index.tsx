@@ -5,25 +5,25 @@ import Slider from 'react-native-slide-to-unlock';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { defaultShadow } from '../../../core/themes/shadows';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import { ButtonV1 } from '../../atoms/Button';
-import { ButtonV1Modes } from '../../atoms/Button/V1/props';
+import { useTheme } from '../../../core/themes/v2/themeContext';
+import { Button } from '../../atoms/Button';
+import { SquareButtonModes } from '../../atoms/Button/V2/props';
 import Text from '../../atoms/Text';
 import ArrowIcon from '../../icons/ArrowIcon';
 import { SwipeButtonModes, type SwipeButtonProps } from './props';
 
 const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): JSX.Element => {
-  const { colors, themeMode } = useThemeV1();
+  const { colors } = useTheme();
 
   const shadowProps = defaultShadow(colors.weakShadowColor);
   const { t } = useTranslation();
 
   const computedStyles = StyleSheet.create({
     text: {
-      color: colors.textSecondaryColor,
+      color: mode === SwipeButtonModes.Confirm ? colors.textPrimaryColor : colors.errorColor,
     },
     slider: {
-      backgroundColor: themeMode === 'light' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor,
+      backgroundColor: mode === SwipeButtonModes.Confirm ? colors.primaryColor : colors.errorColorWithOpacity,
     },
   });
 
@@ -33,12 +33,13 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): J
         onEndReached={() => onSwipeEnd()}
         containerStyle={{ ...computedStyles.slider, ...styles.slider }}
         sliderElement={
-          <ButtonV1
+          <Button
             style={styles.button}
-            mode={mode === SwipeButtonModes.Confirm ? ButtonV1Modes.Mode1 : ButtonV1Modes.Mode3}
+            //TODO: Add button mode with white background
+            mode={SquareButtonModes.Mode2}
           >
             <ArrowIcon />
-          </ButtonV1>
+          </Button>
         }
       >
         <Text style={[computedStyles.text, styles.text]}>{text ?? t('SwipeButton_buttonHint')}</Text>
@@ -56,7 +57,8 @@ const SwipeButton = ({ onSwipeEnd, mode, text }: SwipeButtonProps) => (
 const styles = StyleSheet.create({
   button: {
     height: 48,
-    paddingHorizontal: 38,
+    paddingHorizontal: 24,
+    borderRadius: 28,
   },
   text: {
     marginLeft: 62,
@@ -65,6 +67,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 8,
     borderRadius: 28,
   },
 });

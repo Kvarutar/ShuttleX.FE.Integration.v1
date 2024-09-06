@@ -36,6 +36,8 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       setIsOpened,
       hiddenPartContainerStyles,
       hiddenPartButton,
+      windowStyle,
+      withSeparator = true,
     },
     ref,
   ) => {
@@ -61,6 +63,10 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       closeWindow: () => {
         runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
         runOnJS(setIsAlertsVisible)(true);
+      },
+      openWindow: () => {
+        runOnJS(onWindowStateChange)({ isOpened: true, isCurrentBlur: true });
+        runOnJS(setIsAlertsVisible)(false);
       },
     }));
 
@@ -134,7 +140,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
             alerts={alerts}
             showAlerts={isAlertsVisible}
             style={styles.bottom}
-            windowStyle={[styles.window, computedStyles.bottom]}
+            windowStyle={[styles.window, computedStyles.bottom, windowStyle]}
           >
             <GestureDetector gesture={gesture}>
               <Animated.View onLayout={onVisiblePartLayout}>
@@ -145,7 +151,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
               </Animated.View>
             </GestureDetector>
             <Animated.View onLayout={onHiddenPartLayout} style={styles.hiddenWrapper}>
-              <Separator style={styles.separator} />
+              {withSeparator && <Separator style={styles.separator} />}
               <View style={styles.hiddenScrollWrapper}>
                 <ScrollViewWithCustomScroll
                   withShadow
