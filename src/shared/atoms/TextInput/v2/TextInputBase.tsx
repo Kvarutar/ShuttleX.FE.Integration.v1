@@ -28,6 +28,7 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
     ref,
   ) => {
     const [isFocused, setIsFocused] = useState(false);
+    const [isInputFilled, setIsInputFilled] = useState(false);
     const { colors } = useTheme();
     const innerRef = useRef<TextInputNative>(null);
 
@@ -53,12 +54,18 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
       setIsFocused(false);
     };
 
+    const onChangeTextHandler = (text: string) => {
+      onChangeText?.(text);
+      setIsInputFilled(Boolean(text.length));
+    };
+
     const computedStyles = StyleSheet.create({
       inputContainer: {
         backgroundColor: colors.backgroundPrimaryColor,
         borderColor: error.isError ? colors.errorColor : colors.borderColor,
         color: colors.textPrimaryColor,
         marginBottom: error.isError && error.message ? 12 : 0,
+        fontFamily: isInputFilled ? 'Inter Medium' : 'Inter Regular',
       },
       focused: {
         borderColor: colors.primaryColor,
@@ -78,7 +85,7 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
             placeholderTextColor={colors.textSecondaryColor}
             cursorColor={colors.textPrimaryColor}
             placeholder={placeholder}
-            onChangeText={onChangeText}
+            onChangeText={onChangeTextHandler}
             value={value}
             multiline={multiline}
             inputMode={inputMode}

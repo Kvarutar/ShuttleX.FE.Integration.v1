@@ -1,10 +1,10 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import Text from '../../../atoms/Text';
-import ShortArrowIcon from '../../../icons/ShortArrowIcon';
-import { type ListItemProps } from './props';
+import Text from '../../../../atoms/Text';
+import ShortArrowIcon from '../../../../icons/ShortArrowIcon';
+import { type ListItemProps } from '../props';
 
-const ListItem = ({
+const ListItemV1 = ({
   iconSvg,
   icc,
   countryName,
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListItem;
+export default ListItemV1;

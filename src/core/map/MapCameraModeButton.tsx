@@ -1,7 +1,7 @@
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { ButtonV1 } from '../../shared/atoms/Button/index';
-import { ButtonV1Shapes } from '../../shared/atoms/Button/V1/props';
+import ButtonV1 from '../../shared/atoms/Button/v1';
+import { ButtonV1Shapes } from '../../shared/atoms/Button/v1/props';
 import LocationArrowImage2 from '../../shared/images/LocationArrowImage2';
 import { type MapCameraModeButtonProps } from './types';
 

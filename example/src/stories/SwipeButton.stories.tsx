@@ -2,15 +2,15 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
-import { palettes, SwipeButton, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
+import { palettes, SwipeButtonV1, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
 import { SwipeButtonModes, type SwipeButtonProps } from '../../../src/shared/molecules/SwipeButton/props';
 
 const modes: SwipeButtonProps['mode'][] = Object.values(SwipeButtonModes);
 
-const SwipeButtonMeta: Meta<typeof SwipeButton> = {
+const SwipeButtonMeta: Meta<typeof SwipeButtonV1> = {
   title: 'SlideToConfirmButton',
-  component: SwipeButton,
+  component: SwipeButtonV1,
   args: {
     theme: 'light',
     mode: 'confirm',
@@ -44,7 +44,7 @@ const SwipeButtonWithHooks = ({
   }, [themeName, setThemeMode]);
 
   return (
-    <SwipeButton
+    <SwipeButtonV1
       mode={mode}
       onSwipeEnd={() => {
         Alert.alert('Attention', 'onEndReached!');
@@ -53,7 +53,7 @@ const SwipeButtonWithHooks = ({
   );
 };
 
-type Story = StoryObj<typeof SwipeButton>;
+type Story = StoryObj<typeof SwipeButtonV1>;
 
 export const BasicExample: Story = {
   render: function Render(args) {

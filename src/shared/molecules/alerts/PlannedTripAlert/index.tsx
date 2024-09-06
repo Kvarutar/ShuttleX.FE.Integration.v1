@@ -3,8 +3,8 @@ import { StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
-import { ButtonV1 } from '../../../atoms/Button';
-import { ButtonV1Modes } from '../../../atoms/Button/V1/props';
+import ButtonV1 from '../../../atoms/Button/v1/index';
+import { ButtonV1Modes } from '../../../atoms/Button/v1/props';
 import Text from '../../../atoms/Text';
 import ClockIcon2 from '../../../icons/ClockIcon2';
 import Alert from '../Alert';

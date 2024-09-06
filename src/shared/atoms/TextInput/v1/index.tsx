@@ -9,7 +9,7 @@ import {
 } from './props';
 import TextInputBase from './TextInputBase';
 
-const TextInput = forwardRef<TextInputV1Ref, TextInputV1Props>(
+const TextInputV1 = forwardRef<TextInputV1Ref, TextInputV1Props>(
   (
     {
       style,
@@ -54,4 +54,4 @@ const TextInput = forwardRef<TextInputV1Ref, TextInputV1Props>(
   },
 );
 
-export default TextInput;
+export default TextInputV1;

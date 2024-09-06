@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 
-import { ButtonV1 } from '../../../atoms/Button/index';
-import { ButtonV1Shapes } from '../../../atoms/Button/V1/props';
+import ButtonV1 from '../../../atoms/Button/v1/index';
+import { ButtonV1Shapes } from '../../../atoms/Button/v1/props';
 import SpinnerIcon from '../../../icons/SpinnerIcon';
 import CountingComponent from '../CountingComponent';
 import { type TimerProps, type TimerSizesType } from './props';

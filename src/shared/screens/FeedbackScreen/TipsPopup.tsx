@@ -6,7 +6,7 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import i18nIntegration from '../../../core/locales/i18n';
 import { BarModes } from '../../atoms/Bar/types';
 import BarV1 from '../../atoms/Bar/v1';
-import ButtonV1 from '../../atoms/Button/V1';
+import ButtonV1 from '../../atoms/Button/v1';
 import Text from '../../atoms/Text';
 import TextInputV1 from '../../atoms/TextInput/v1';
 import { TextInputV1InputMode, type TextInputV1Ref } from '../../atoms/TextInput/v1/props';

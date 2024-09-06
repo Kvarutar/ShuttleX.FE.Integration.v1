@@ -4,8 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import sizes from '../../../core/themes/sizes';
 import Blur from '../../atoms/Blur';
-import { ButtonV1 } from '../../atoms/Button/index';
-import { ButtonV1Shapes } from '../../atoms/Button/V1/props';
+import ButtonV1 from '../../atoms/Button/v1/index';
+import { ButtonV1Shapes } from '../../atoms/Button/v1/props';
 import CloseIcon from '../../icons/CloseIcon';
 import ShortArrowIcon from '../../icons/ShortArrowIcon';
 import BottomWindow from '../BottomWindow';

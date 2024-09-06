@@ -2,15 +2,15 @@ import { type ReactNode } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
-import { defaultShadow } from '../../../core/themes/shadows';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import BarV1 from '../../atoms/Bar/v1';
-import Text from '../../atoms/Text';
-import ClockIcon2 from '../../icons/ClockIcon2';
-import StarIcon from '../../icons/StarIcon';
-import { type Notification } from './props';
+import { defaultShadow } from '../../../../core/themes/shadows';
+import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
+import BarV1 from '../../../atoms/Bar/v1/index';
+import Text from '../../../atoms/Text';
+import ClockIcon2 from '../../../icons/ClockIcon2';
+import StarIcon from '../../../icons/StarIcon';
+import { type Notification } from '../props';
 
-const NotificationScreenItem = ({ notification }: { notification: Notification }) => {
+const NotificationScreenItemV1 = ({ notification }: { notification: Notification }) => {
   const { colors, themeMode } = useThemeV1();
   const shadowProps = defaultShadow(colors.strongShadowColor);
 
@@ -132,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NotificationScreenItem;
+export default NotificationScreenItemV1;

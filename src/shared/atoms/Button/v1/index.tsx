@@ -17,7 +17,7 @@ type ComputedStylesProperties = {
   circle: ButtonStyle;
 };
 
-const Button = ({
+const ButtonV1 = ({
   mode = ButtonV1Modes.Mode1,
   shape = ButtonV1Shapes.Square,
   text,
@@ -147,4 +147,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Button;
+export default ButtonV1;

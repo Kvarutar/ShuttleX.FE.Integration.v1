@@ -20,15 +20,16 @@ import { BarModes } from './shared/atoms/Bar/types';
 import BarV1 from './shared/atoms/Bar/v1';
 import Bar from './shared/atoms/Bar/v2';
 import Blur from './shared/atoms/Blur';
-import { Button, ButtonV1 } from './shared/atoms/Button/index';
-import { ButtonV1Modes, ButtonV1Shadows, ButtonV1Shapes } from './shared/atoms/Button/V1/props';
+import ButtonV1 from './shared/atoms/Button/v1';
+import { ButtonV1Modes, ButtonV1Shadows, ButtonV1Shapes } from './shared/atoms/Button/v1/props';
+import Button from './shared/atoms/Button/v2';
 import {
   ButtonShadows,
   ButtonShapes,
   ButtonSizes,
   CircleButtonModes,
   SquareButtonModes,
-} from './shared/atoms/Button/V2/props';
+} from './shared/atoms/Button/v2/props';
 import CheckBox from './shared/atoms/Checkbox';
 import Separator from './shared/atoms/Separator';
 import Text from './shared/atoms/Text';
@@ -122,32 +123,37 @@ import { type RideHasFinishedAlertProps } from './shared/molecules/alerts/RideHa
 import SecondRideAlert from './shared/molecules/alerts/SecondRideAlert';
 import BottomWindow from './shared/molecules/BottomWindow';
 import BottomWindowWithGesture from './shared/molecules/BottomWindowWithGesture';
-import CodeInput from './shared/molecules/CodeInput';
+import CodeInputV1 from './shared/molecules/CodeInput/v1';
+import CodeInput from './shared/molecules/CodeInput/v2';
 import DatePicker from './shared/molecules/DatePicker';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
 import GroupedButtons from './shared/molecules/GroupedButtons';
 import CustomKeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
 import LocationUnavailable from './shared/molecules/LocationUnavailable';
 import { type LocationUnavailableProps } from './shared/molecules/LocationUnavailable/props';
-import MenuBase from './shared/molecules/MenuBase';
 import { type MenuNavigation } from './shared/molecules/MenuBase/props';
+import MenuBaseV1 from './shared/molecules/MenuBase/v1';
+import MenuBase from './shared/molecules/MenuBase/v2';
 import PhoneInput from './shared/molecules/PhoneInput';
 import Popup from './shared/molecules/Popup';
 import SafeAreaView from './shared/molecules/SafeAreaView';
 import ScrollViewWithCustomScroll from './shared/molecules/ScrollViewWithCustomScroll';
-import SwipeButton from './shared/molecules/SwipeButton';
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/props';
+import SwipeButtonV1 from './shared/molecules/SwipeButton/v1';
+import SwipeButton from './shared/molecules/SwipeButton/v2';
 import TimePicker from './shared/molecules/TimePicker';
 import StopWatch from './shared/molecules/timerAndStopwatch/StopWatch';
 import Timer from './shared/molecules/timerAndStopwatch/Timer';
 import { TimerModes } from './shared/molecules/timerAndStopwatch/Timer/props';
-import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
+import AddCardScreenV1 from './shared/screens/AddCardScreen/v1';
+import AddCardScreen from './shared/screens/AddCardScreen/v2';
 import FeedbackScreen from './shared/screens/FeedbackScreen';
 import { type FeedbackRating, type FeedbackType } from './shared/screens/FeedbackScreen/props';
 import LockOutScreen from './shared/screens/LockOutScreen';
-import NotificationsScreen from './shared/screens/NotificationsScreen';
 import { type Notification, NotificationType } from './shared/screens/NotificationsScreen/props';
+import NotificationsScreenV1 from './shared/screens/NotificationsScreen/v1';
+import NotificationsScreen from './shared/screens/NotificationsScreen/v2';
 import { degToRad, minToMilSec, radToDeg } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { useDebounce } from './utils/debounce';
@@ -167,6 +173,7 @@ import {
 
 export {
   AddCardScreen,
+  AddCardScreenV1,
   type AlertDescendantProps,
   AnimatedMarker,
   ApplePayIcon,
@@ -209,6 +216,7 @@ export {
   CloseIcon,
   CloseIconMini,
   CodeInput,
+  CodeInputV1,
   ComfortXImage,
   countryDtos,
   type countryDtosProps,
@@ -269,6 +277,7 @@ export {
   MapView,
   MasterCardIcon,
   MenuBase,
+  MenuBaseV1,
   MenuIcon,
   type MenuNavigation,
   MenuUserImage,
@@ -279,6 +288,7 @@ export {
   type Notification,
   NotificationIcon,
   NotificationsScreen,
+  NotificationsScreenV1,
   NotificationType,
   PaidTimeAlert,
   type PaidTimeAlertProps,
@@ -320,6 +330,7 @@ export {
   SuccessIcon,
   SwipeButton,
   SwipeButtonModes,
+  SwipeButtonV1,
   TariffsCarImage,
   type TariffType,
   TeslaXImage,

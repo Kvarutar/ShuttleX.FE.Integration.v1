@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Dimensions, StyleSheet } from 'react-native';
 
-import i18nIntegration from '../../../core/locales/i18n';
-import sizes from '../../../core/themes/sizes';
-import GroupedButtons from '../../molecules/GroupedButtons';
-import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
-import NotificationScreenItem from './NotificationScreenItem';
-import { type NotificationsScreenProps } from './props';
+import i18nIntegration from '../../../../core/locales/i18n';
+import sizes from '../../../../core/themes/sizes';
+import GroupedButtons from '../../../molecules/GroupedButtons';
+import ScrollViewWithCustomScroll from '../../../molecules/ScrollViewWithCustomScroll';
+import { type NotificationsScreenProps } from '../props';
+import NotificationScreenItemV1 from './NotificationScreenItemV1';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -16,7 +16,7 @@ const NotificationsScreenWithoutI18n = ({ notifications }: NotificationsScreenPr
   const [isFirstButtonSelected, setIsFirstButtonSelected] = useState(true);
 
   const content = notifications.map((notification, index) => (
-    <NotificationScreenItem key={index} notification={notification} />
+    <NotificationScreenItemV1 key={index} notification={notification} />
   ));
 
   return (
@@ -36,7 +36,7 @@ const NotificationsScreenWithoutI18n = ({ notifications }: NotificationsScreenPr
   );
 };
 
-const NotificationsScreen = (props: NotificationsScreenProps) => (
+const NotificationsScreenV1 = (props: NotificationsScreenProps) => (
   <I18nextProvider i18n={i18nIntegration}>
     <NotificationsScreenWithoutI18n {...props} />
   </I18nextProvider>
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NotificationsScreen;
+export default NotificationsScreenV1;

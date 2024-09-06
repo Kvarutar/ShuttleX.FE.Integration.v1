@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   text: {
-    fontFamily: 'Inter Medium',
+    fontFamily: 'Inter Bold',
   },
 });
 

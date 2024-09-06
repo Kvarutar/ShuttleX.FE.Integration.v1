@@ -3,14 +3,14 @@ import { StyleSheet } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 import Slider from 'react-native-slide-to-unlock';
 
-import i18nIntegration from '../../../core/locales/i18n';
-import { defaultShadow } from '../../../core/themes/shadows';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import { ButtonV1 } from '../../atoms/Button';
-import { ButtonV1Modes } from '../../atoms/Button/V1/props';
-import Text from '../../atoms/Text';
-import ArrowIcon from '../../icons/ArrowIcon';
-import { SwipeButtonModes, type SwipeButtonProps } from './props';
+import i18nIntegration from '../../../../core/locales/i18n';
+import { defaultShadow } from '../../../../core/themes/shadows';
+import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
+import ButtonV1 from '../../../atoms/Button/v1/index';
+import { ButtonV1Modes } from '../../../atoms/Button/v1/props';
+import Text from '../../../atoms/Text';
+import ArrowIcon from '../../../icons/ArrowIcon';
+import { SwipeButtonModes, type SwipeButtonProps } from '../props';
 
 const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): JSX.Element => {
   const { colors, themeMode } = useThemeV1();
@@ -47,7 +47,7 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): J
   );
 };
 
-const SwipeButton = ({ onSwipeEnd, mode, text }: SwipeButtonProps) => (
+const SwipeButtonV1 = ({ onSwipeEnd, mode, text }: SwipeButtonProps) => (
   <I18nextProvider i18n={i18nIntegration}>
     <SwipeButtonWithoutI18n onSwipeEnd={onSwipeEnd} mode={mode} text={text} />
   </I18nextProvider>
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SwipeButton;
+export default SwipeButtonV1;
