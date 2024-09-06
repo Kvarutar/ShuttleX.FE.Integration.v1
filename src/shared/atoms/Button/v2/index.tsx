@@ -54,13 +54,15 @@ const Button = ({
   const { borderColor } = colors;
   let shadowProps = shadowColor ? buttonShadow(shadowColor) : { startColor: DISABLED_SHADOW_COLOR };
 
-  switch (shadow) {
-    case ButtonShadows.Weak:
-      shadowProps = buttonShadow(colors.weakShadowColor);
-      break;
-    case ButtonShadows.Strong:
-      shadowProps = buttonShadow(colors.strongShadowColor);
-      break;
+  if (shadow) {
+    switch (shadow) {
+      case ButtonShadows.Weak:
+        shadowProps = buttonShadow(colors.weakShadowColor);
+        break;
+      case ButtonShadows.Strong:
+        shadowProps = buttonShadow(colors.strongShadowColor);
+        break;
+    }
   }
 
   if (disableShadow) {

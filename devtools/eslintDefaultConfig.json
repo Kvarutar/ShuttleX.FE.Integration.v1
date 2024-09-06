@@ -25,6 +25,7 @@
         "importNames": ["useDispatch"],
         "message": "Use typed hook `useAppDispatch` instead."
       }
-    ]
+    ],
+    "@typescript-eslint/switch-exhaustiveness-check": "error"
   }
 }

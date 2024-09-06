@@ -16,16 +16,18 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { v4 as uuidv4 } from 'uuid';
 
 import Text from '../../shared/atoms/Text';
 import MapPinIcon from '../../shared/icons/MapPinIcon';
 import PickUpIcon from '../../shared/icons/PickUpIcon';
 import LocationArrowImage from '../../shared/images/LocationArrowImage';
 import { useCompass } from '../../utils/compass';
+import { drawArcPolyline } from '../../utils/geolocation/drawArcPolyline';
 import { useThemeV1 } from '../themes/v1/themeContext';
 import { AnimatedMarker } from './hooks';
 import lightMapStyle from './lightMapStyle.json';
-import { type MapPolyline, type MapViewProps } from './types';
+import { type MapViewProps } from './types';
 
 const constants = {
   cameraZoom: 15.8,
@@ -192,22 +194,26 @@ const MapView = ({
         {polylines &&
           polylines.length > 0 &&
           polylines.map((polyline, i) => {
-            const polylineColor = polyline.color ?? colors.primaryColor;
-            const polylineStyle: MapPolyline['style'] = polyline.style ?? 'straight';
-
-            switch (polylineStyle) {
+            switch (polyline.type) {
               case 'straight': {
+                const polylineOptions = polyline.options;
                 return (
-                  <Polyline key={i} coordinates={polyline.coordinates} strokeWidth={6} strokeColor={polylineColor} />
+                  <Polyline
+                    key={i}
+                    coordinates={polylineOptions.coordinates}
+                    strokeColor={polylineOptions.color ?? colors.primaryColor}
+                    strokeWidth={6}
+                  />
                 );
               }
               case 'dotted': {
+                const polylineOptions = polyline.options;
                 const coordinates: LatLng[] = [];
 
-                for (let j = 0; j < polyline.coordinates.length; j++) {
-                  const latlng = polyline.coordinates[j]!;
+                for (let j = 0; j < polylineOptions.coordinates.length; j++) {
+                  const latlng = polylineOptions.coordinates[j]!;
                   if (j > 0) {
-                    const prevLatlng = polyline.coordinates[j - 1]!;
+                    const prevLatlng = polylineOptions.coordinates[j - 1]!;
                     const latitude = (prevLatlng.latitude + latlng.latitude) / 2;
                     const longitude = (prevLatlng.longitude + latlng.longitude) / 2;
                     coordinates.push({ latitude, longitude });
@@ -221,12 +227,31 @@ const MapView = ({
                     <Polyline
                       key={j}
                       coordinates={coordinates.slice(j, j + 2)}
+                      strokeColor={polylineOptions.color ?? colors.primaryColor}
                       strokeWidth={6}
-                      strokeColor={polylineColor}
                     />,
                   );
                 }
                 return lines;
+              }
+              case 'arc': {
+                const polylineOptions = polyline.options;
+                return (
+                  <>
+                    <Polyline
+                      key={i}
+                      strokeWidth={3}
+                      strokeColor="#000000"
+                      coordinates={drawArcPolyline(polylineOptions.startPont, polylineOptions.endPoint)}
+                    />
+                    <Polyline
+                      key={uuidv4()}
+                      strokeWidth={3}
+                      strokeColor="#00000033"
+                      coordinates={[polylineOptions.startPont, polylineOptions.endPoint]}
+                    />
+                  </>
+                );
               }
             }
           })}

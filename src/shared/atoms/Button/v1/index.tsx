@@ -39,13 +39,15 @@ const ButtonV1 = ({
   const { borderColor } = colors;
   let shadowProps = shadowColor ? buttonShadow(shadowColor) : { startColor: DISABLED_SHADOW_COLOR };
 
-  switch (shadow) {
-    case ButtonV1Shadows.Weak:
-      shadowProps = buttonShadow(colors.weakShadowColor);
-      break;
-    case ButtonV1Shadows.Strong:
-      shadowProps = buttonShadow(colors.strongShadowColor);
-      break;
+  if (shadow) {
+    switch (shadow) {
+      case ButtonV1Shadows.Weak:
+        shadowProps = buttonShadow(colors.weakShadowColor);
+        break;
+      case ButtonV1Shadows.Strong:
+        shadowProps = buttonShadow(colors.strongShadowColor);
+        break;
+    }
   }
 
   if (disableShadow || (isPressed && mode === ButtonV1Modes.Mode2)) {

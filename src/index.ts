@@ -9,7 +9,7 @@ import { AnimatedMarker } from './core/map/hooks';
 import lightMapStyle from './core/map/lightMapStyle.json';
 import MapCameraModeButton from './core/map/MapCameraModeButton';
 import MapView from './core/map/MapView';
-import { type MapCameraMode } from './core/map/types';
+import { type MapCameraMode, type MapViewProps } from './core/map/types';
 import { nameof } from './core/monkey-patch/ts.helper';
 import { SignalR } from './core/signalR/middleware';
 import sizes from './core/themes/sizes';
@@ -157,10 +157,16 @@ import LockOutScreen from './shared/screens/LockOutScreen';
 import { type Notification, NotificationType } from './shared/screens/NotificationsScreen/props';
 import NotificationsScreenV1 from './shared/screens/NotificationsScreen/v1';
 import NotificationsScreen from './shared/screens/NotificationsScreen/v2';
-import { degToRad, minToMilSec, radToDeg } from './utils';
+import { minToMilSec } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { useDebounce } from './utils/debounce';
-import { getAngleBetweenPoints, getDistanceBetweenPoints, useGeolocationStartWatch } from './utils/geolocation';
+import {
+  degToRad,
+  getAngleBetweenPoints,
+  getDistanceBetweenPoints,
+  radToDeg,
+  useGeolocationStartWatch,
+} from './utils/geolocation';
 import { IntegrationModule } from './utils/integrationModule';
 import { useNetworkConnectionStartWatch } from './utils/network';
 import { getPaymentIcon } from './utils/payment/cardIcons';
@@ -279,6 +285,7 @@ export {
   MapCameraModeButton,
   MapPinIcon,
   MapView,
+  type MapViewProps,
   MasterCardIcon,
   MenuBase,
   MenuBaseV1,

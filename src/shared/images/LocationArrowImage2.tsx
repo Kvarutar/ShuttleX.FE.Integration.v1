@@ -16,10 +16,9 @@ const LocationArrowImage2 = ({
   const sourceLocationArrow2_1_light = require('../../assets/img/LocationArrow2_1_light.png');
 
   let sourceLocationArrow2_1 = sourceLocationArrow2_1_dark;
-  switch (themeMode) {
-    case 'dark':
-      sourceLocationArrow2_1 = sourceLocationArrow2_1_light;
-      break;
+  // TODO: switch statement would be better if there were more than two themes.
+  if (themeMode === 'dark') {
+    sourceLocationArrow2_1 = sourceLocationArrow2_1_light;
   }
 
   if (type === 'outlined') {
