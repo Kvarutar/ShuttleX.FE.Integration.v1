@@ -3,7 +3,7 @@ import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { Button } from '../../../../src/shared/atoms/Button';
+import Button from '../../../../src/shared/atoms/Button/v2';
 import {
   type ButtonProps,
   ButtonShadows,
@@ -11,7 +11,7 @@ import {
   ButtonSizes,
   CircleButtonModes,
   SquareButtonModes,
-} from '../../../../src/shared/atoms/Button/V2/props';
+} from '../../../../src/shared/atoms/Button/v2/props';
 
 const ButtonMeta: Meta<typeof Button> = {
   title: 'ButtonV2',

@@ -1,15 +1,14 @@
-import { StyleSheet, View, type ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, type ViewStyle } from 'react-native';
 
 import { useTheme } from '../../../../core/themes/v2/themeContext';
-import { BarModes, type BarProps } from '../types';
+import { BarModes, type BarPressableProps, type BarPropertiesType, type BarProps } from '../types';
 
-type BarStylesType = {
-  strokeProps: ViewStyle;
-  backgroundColor: string;
-};
-type BarPropertiesType = Record<BarModes, BarStylesType>;
-
-const Bar = ({ children, style, mode = BarModes.Active }: BarProps): JSX.Element => {
+const Bar = ({
+  children,
+  style,
+  mode = BarModes.Active,
+  ...pressableProps
+}: BarProps & BarPressableProps): JSX.Element => {
   const { colors } = useTheme();
   const { backgroundPrimaryColor, backgroundSecondaryColor, borderColor, borderDashColor } = colors;
 
@@ -47,7 +46,11 @@ const Bar = ({ children, style, mode = BarModes.Active }: BarProps): JSX.Element
     },
   });
 
-  return <View style={[styles.bar, computedStyles.bar, style]}>{children}</View>;
+  return (
+    <Pressable style={[styles.bar, computedStyles.bar, style]} {...pressableProps}>
+      {children}
+    </Pressable>
+  );
 };
 
 const styles = StyleSheet.create({

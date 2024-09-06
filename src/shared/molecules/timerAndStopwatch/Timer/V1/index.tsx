@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 
-import { ButtonV1 } from '../../../atoms/Button/index';
-import { ButtonV1Shapes } from '../../../atoms/Button/V1/props';
-import SpinnerIcon from '../../../icons/SpinnerIcon';
-import CountingComponent from '../CountingComponent';
-import { type TimerProps, type TimerSizesType } from './props';
+import ButtonV1 from '../../../../atoms/Button/v1';
+import { ButtonV1Shapes } from '../../../../atoms/Button/v1/props';
+import SpinnerIcon from '../../../../icons/SpinnerIcon';
+import CountingComponent from '../../CountingComponent/V1';
+import { type TimerV1Props, type TimerV1SizesType } from './props';
 
-const timerSizes: TimerSizesType = {
+const timerSizes: TimerV1SizesType = {
   normal: {
     iconSize: 87,
     iconStrokeWidth: 7,
@@ -23,7 +23,7 @@ const timerSizes: TimerSizesType = {
   },
 };
 
-const Timer = ({
+const TimerV1 = ({
   initialDate = new Date(),
   onAfterCountdownEnds,
   style,
@@ -31,7 +31,7 @@ const Timer = ({
   endColor,
   mode,
   withCountdown = true,
-}: TimerProps) => {
+}: TimerV1Props) => {
   const { iconSize, iconStrokeWidth, timerSize, fontSize } = timerSizes[mode];
   const computedStyles = StyleSheet.create({
     timerWrapper: {
@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Timer;
+export default TimerV1;

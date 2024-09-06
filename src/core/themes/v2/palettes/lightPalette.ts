@@ -22,6 +22,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes'> = {
   textPrimaryColor: '#000000',
   textSecondaryColor: '#6E7A81',
   textTertiaryColor: '#FFFFFF',
+  textTitleColor: '#ACACAC',
   weakShadowColor: 'rgba(0, 0, 0, 0.02)',
   strongShadowColor: 'rgba(0, 0, 0, 0.04)',
 };

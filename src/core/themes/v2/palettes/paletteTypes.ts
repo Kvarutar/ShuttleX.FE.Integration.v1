@@ -1,4 +1,4 @@
-import { CircleButtonModes, type SquareButtonModes } from '../../../../shared/atoms/Button/V2/props';
+import { CircleButtonModes, type SquareButtonModes } from '../../../../shared/atoms/Button/v2/props';
 
 export type PaletteButtonMode = {
   backgroundColor: string;
@@ -32,6 +32,7 @@ export type Palette = {
   textPrimaryColor: string;
   textSecondaryColor: string;
   textTertiaryColor: string;
+  textTitleColor: string;
   weakShadowColor: string; // specified in rgba, opacity = CSS opacity * 2/3, e.g., 0.03 * 2/3 = 0.02
   strongShadowColor: string; // specified in rgba
   squareButtonModes: PaletteSquareButtonModes;

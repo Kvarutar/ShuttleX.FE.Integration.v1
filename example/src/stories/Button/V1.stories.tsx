@@ -8,7 +8,7 @@ import {
   type ButtonV1Props,
   ButtonV1Shadows,
   ButtonV1Shapes,
-} from '../../../../src/shared/atoms/Button/V1/props';
+} from '../../../../src/shared/atoms/Button/v1/props';
 
 const ButtonMeta: Meta<typeof ButtonV1> = {
   title: 'ButtonV1',

@@ -5,8 +5,8 @@ import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../core/themes/shadows';
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import { ButtonV1 } from '../../atoms/Button';
-import { ButtonV1Modes, type ButtonV1Props } from '../../atoms/Button/V1/props';
+import ButtonV1 from '../../atoms/Button/v1/index';
+import { ButtonV1Modes, type ButtonV1Props } from '../../atoms/Button/v1/props';
 import { type GroupedButtonsProps } from './props';
 
 const constants = {

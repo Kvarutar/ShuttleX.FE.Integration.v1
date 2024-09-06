@@ -72,7 +72,8 @@ const getStories = () => {
     "./src/stories/TextInput/V1.stories.tsx": require("../src/stories/TextInput/V1.stories.tsx"),
     "./src/stories/TextInput/V2.stories.tsx": require("../src/stories/TextInput/V2.stories.tsx"),
     "./src/stories/TimePicker.stories.tsx": require("../src/stories/TimePicker.stories.tsx"),
-    "./src/stories/Timer.stories.tsx": require("../src/stories/Timer.stories.tsx"),
+    "./src/stories/timerStories/V1.stories.tsx": require("../src/stories/timerStories/V1.stories.tsx"),
+    "./src/stories/timerStories/V2.stories.tsx": require("../src/stories/timerStories/V2.stories.tsx"),
   };
 };
 

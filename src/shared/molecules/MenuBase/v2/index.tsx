@@ -3,18 +3,18 @@ import { Dimensions, Platform, Pressable, SafeAreaView, StyleSheet, View } from 
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import sizes from '../../../core/themes/sizes';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import Blur from '../../atoms/Blur';
-import Text from '../../atoms/Text';
-import BecomeDriverIcon from '../../icons/BecomeDriverIcon';
-import GroupedBrandIconMiniV1 from '../../icons/GroupedBrandIconMini/V1';
-import HelpIcon from '../../icons/HelpIcon';
-import NotificationIcon from '../../icons/NotificationIcon';
-import SubscriptionIcon from '../../icons/SubscriptionIcon';
-import WalletIcon from '../../icons/WalletIcon';
-import MenuUserImage from '../../images/MenuUserImage';
-import { type MenuBaseProps, type MenuNavigationBlocks } from './props';
+import sizes from '../../../../core/themes/sizes';
+import { useTheme } from '../../../../core/themes/v2/themeContext';
+import Blur from '../../../atoms/Blur';
+import Text from '../../../atoms/Text';
+import BecomeDriverIcon from '../../../icons/BecomeDriverIcon';
+import GroupedBrandIconMini from '../../../icons/GroupedBrandIconMini/V2';
+import HelpIcon from '../../../icons/HelpIcon';
+import NotificationIcon from '../../../icons/NotificationIcon';
+import SubscriptionIcon from '../../../icons/SubscriptionIcon';
+import WalletIcon from '../../../icons/WalletIcon';
+import MenuUserImage from '../../../images/MenuUserImage';
+import { type MenuBaseProps, type MenuNavigationBlocks } from '../props';
 
 const windowSizes = Dimensions.get('window');
 
@@ -43,7 +43,7 @@ const MenuBase = ({
   menuNavigation,
   style,
 }: MenuBaseProps) => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
 
   useEffect(() => {
@@ -104,7 +104,7 @@ const MenuBase = ({
               <View style={styles.content}>
                 <View style={styles.profile}>
                   <MenuUserImage url={userImageUri ?? ''} />
-                  <View>
+                  <View style={styles.nameContainer}>
                     <Text style={styles.name}>{userName ?? ''}</Text>
                     <Text style={styles.surname}>{userSurname ?? ''}</Text>
                   </View>
@@ -112,7 +112,7 @@ const MenuBase = ({
                 {additionalContent}
                 <View style={styles.navigation}>{navigationContent}</View>
               </View>
-              <GroupedBrandIconMiniV1 />
+              <GroupedBrandIconMini />
             </View>
           </SafeAreaView>
           <Pressable style={styles.outsider} onPress={closeMenu} />
@@ -145,35 +145,39 @@ const styles = StyleSheet.create({
     gap: 40,
   },
   profile: {
-    flexDirection: 'row',
-    alignItems: 'center',
     gap: 12,
+    paddingHorizontal: 32,
+  },
+  nameContainer: {
+    flexDirection: 'row',
+    paddingTop: 22,
   },
   name: {
     fontFamily: 'Inter Medium',
-    fontSize: 18,
+    fontSize: 21,
   },
   surname: {
     fontFamily: 'Inter Medium',
-    fontSize: 18,
+    fontSize: 21,
   },
   navigation: {
     gap: 10,
   },
   navigationItem: {
     paddingHorizontal: 26,
-    paddingVertical: 14,
+    paddingVertical: 16,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
   },
   navigationItemTitle: {
     fontFamily: 'Inter Medium',
+    fontSize: 17,
   },
   navigationItemWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: 16,
   },
 });
 

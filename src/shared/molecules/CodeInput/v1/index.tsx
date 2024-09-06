@@ -1,9 +1,9 @@
 import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { StyleSheet, type TextInputProps, View } from 'react-native';
 
-import TextInputV1 from '../../atoms/TextInput/v1';
-import { TextInputV1InputMode, type TextInputV1Ref } from '../../atoms/TextInput/v1/props';
-import { type CodeInputProps, type CodeNumberProps } from './props';
+import TextInputV1 from '../../../atoms/TextInput/v1';
+import { TextInputV1InputMode, type TextInputV1Ref } from '../../../atoms/TextInput/v1/props';
+import { type CodeInputProps, type CodeNumberProps } from '../props';
 
 const CodeNumber = forwardRef<TextInputV1Ref, CodeNumberProps>(({ input, setInput, onBackspaceKeyPress }, ref) => {
   const [lastKeyEventTimestamp, setLastKeyEventTimestamp] = useState(0);
@@ -40,7 +40,7 @@ const CodeNumber = forwardRef<TextInputV1Ref, CodeNumberProps>(({ input, setInpu
   );
 });
 
-const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
+const CodeInputV1 = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
   //TODO: Refactor code by using dictionary
   const isFirstRender = useRef(true);
   const firstCodeNumberRef = useRef<TextInputV1Ref>(null);
@@ -148,4 +148,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CodeInput;
+export default CodeInputV1;

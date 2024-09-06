@@ -3,7 +3,8 @@ import { Platform } from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { orientation, SensorTypes, setUpdateIntervalForType } from 'react-native-sensors';
 
-import { boolToSign, radToDeg } from '.';
+import { boolToSign } from '.';
+import { radToDeg } from './geolocation';
 
 type ExtendedHeadingValueType = {
   current: number;

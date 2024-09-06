@@ -2,15 +2,15 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { Alert, View } from 'react-native';
-import { palettes, type ThemeContextTypeV1, Timer, useThemeV1 } from 'shuttlex-integration';
+import { palettes, type ThemeContextTypeV1, TimerV1, useThemeV1 } from 'shuttlex-integration';
 
-import { TimerModes, type TimerProps } from '../../../src/shared/molecules/timerAndStopwatch/Timer/props';
+import { TimerV1Modes, type TimerV1Props } from '../../../../src/shared/molecules/timerAndStopwatch/Timer/V1/props';
 
-const modes: TimerProps['mode'][] = Object.values(TimerModes);
+const modes: TimerV1Props['mode'][] = Object.values(TimerV1Modes);
 
-const SwipeButtonMeta: Meta<typeof Timer> = {
+const SwipeButtonMeta: Meta<typeof TimerV1> = {
   title: 'Timer',
-  component: Timer,
+  component: TimerV1,
   args: {
     theme: 'light',
     mode: 'normal',
@@ -34,7 +34,7 @@ const TimerWithHooks = ({
   mode,
 }: {
   themeName: ThemeContextTypeV1['themeMode'];
-  mode: TimerProps['mode'];
+  mode: TimerV1Props['mode'];
 }) => {
   const { setThemeMode, colors } = useThemeV1();
   const { primaryGradientStartColor, primaryColor } = colors;
@@ -44,7 +44,7 @@ const TimerWithHooks = ({
   }, [themeName, setThemeMode]);
 
   return (
-    <Timer
+    <TimerV1
       initialDate={new Date(new Date().getTime() + 120000)}
       startColor={primaryGradientStartColor}
       endColor={primaryColor}
@@ -54,7 +54,7 @@ const TimerWithHooks = ({
   );
 };
 
-type Story = StoryObj<typeof Timer>;
+type Story = StoryObj<typeof TimerV1>;
 
 export const BasicExample: Story = {
   render: function Render(args) {

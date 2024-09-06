@@ -2,12 +2,12 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { palettes, type ThemeContextTypeV1, useTheme } from 'shuttlex-integration';
+import { palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
 import TextInput from '../../../../src/shared/atoms/TextInput/v2';
 import { TextInputInputMode, type TextInputProps } from '../../../../src/shared/atoms/TextInput/v2/props';
 
-const TextInputMeta: Meta<TextInputProps & { theme: ThemeContextTypeV1['themeMode'] }> = {
+const TextInputMeta: Meta<TextInputProps & { theme: ThemeContextType['themeMode'] }> = {
   title: 'TextInput',
   component: TextInput,
   decorators: [
@@ -37,7 +37,7 @@ const TextInputMeta: Meta<TextInputProps & { theme: ThemeContextTypeV1['themeMod
 
 export default TextInputMeta;
 
-const TextInputWithHooks = ({ themeName, ...args }: { themeName: ThemeContextTypeV1['themeMode'] }) => {
+const TextInputWithHooks = ({ themeName, ...args }: { themeName: ThemeContextType['themeMode'] }) => {
   const { setThemeMode } = useTheme();
 
   useEffect(() => {

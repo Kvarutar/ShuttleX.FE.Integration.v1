@@ -4,10 +4,25 @@ import Geolocation from 'react-native-geolocation-service';
 import { type LatLng } from 'react-native-maps';
 import { type LocationAccuracy } from 'react-native-permissions';
 
-import { degToRad, radToDeg } from '..';
 import { checkGeolocationPermissionAndAccuracy, requestGeolocationPermission } from '../permissions';
 import { geolocationConsts } from './consts';
 import { type useGeolocationStartWatchArgs } from './types';
+
+const EARTH_RADIUS_IN_METERS = 6378137;
+
+/**
+ * Сonverts degrees to radians
+ * @param deg angle value in degrees
+ * @returns angle value in radians
+ */
+const degToRad = (deg: number) => (deg * Math.PI) / 180;
+
+/**
+ * Сonverts radians to degrees
+ * @param rad angle value in radians
+ * @returns angle value in degrees
+ */
+const radToDeg = (rad: number) => rad * (180 / Math.PI);
 
 /**
  * Calculates the distance between two geolocation points
@@ -16,14 +31,13 @@ import { type useGeolocationStartWatchArgs } from './types';
  * @returns distance between points in meters
  */
 const getDistanceBetweenPoints = (p1: LatLng, p2: LatLng) => {
-  const R = 6378137; // Earth’s mean radius in meter
   const dLat = degToRad(p2.latitude - p1.latitude);
   const dLong = degToRad(p2.longitude - p1.longitude);
   const a =
     Math.sin(dLat / 2) ** 2 +
     Math.cos(degToRad(p1.latitude)) * Math.cos(degToRad(p2.latitude)) * Math.sin(dLong / 2) ** 2;
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const d = R * c;
+  const d = EARTH_RADIUS_IN_METERS * c;
   return d;
 };
 
@@ -41,11 +55,7 @@ const getAngleBetweenPoints = (p1: LatLng, p2: LatLng) => {
   const y = Math.sin(dlng) * Math.cos(lat2);
   const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dlng);
 
-  let brng = Math.atan2(y, x);
-  brng = radToDeg(brng);
-  brng = (brng + 360) % 360;
-
-  return brng;
+  return (radToDeg(Math.atan2(y, x)) + 360) % 360;
 };
 
 const useGeolocationStartWatch = ({
@@ -133,4 +143,11 @@ const useGeolocationStartWatch = ({
   }, [isLocationEnabled, isPermissionGranted, accuracy]);
 };
 
-export { getAngleBetweenPoints, getDistanceBetweenPoints, useGeolocationStartWatch };
+export {
+  degToRad,
+  EARTH_RADIUS_IN_METERS,
+  getAngleBetweenPoints,
+  getDistanceBetweenPoints,
+  radToDeg,
+  useGeolocationStartWatch,
+};

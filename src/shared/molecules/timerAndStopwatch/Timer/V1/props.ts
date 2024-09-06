@@ -1,7 +1,7 @@
 import { type StyleProp, type ViewStyle } from 'react-native';
 
-export type TimerSizesType = Record<
-  TimerModes,
+export type TimerV1SizesType = Record<
+  TimerV1Modes,
   {
     iconSize: number;
     iconStrokeWidth: number;
@@ -10,17 +10,17 @@ export type TimerSizesType = Record<
   }
 >;
 
-export enum TimerModes {
+export enum TimerV1Modes {
   Normal = 'normal',
   Mini = 'mini',
 }
 
-export type TimerProps = {
+export type TimerV1Props = {
   initialDate?: Date;
   onAfterCountdownEnds?: () => void;
   style?: StyleProp<ViewStyle>;
   startColor: string;
   endColor: string;
-  mode: TimerModes;
+  mode: TimerV1Modes;
   withCountdown?: boolean;
 };

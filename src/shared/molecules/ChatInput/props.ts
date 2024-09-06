@@ -1,6 +1,6 @@
 import { type StyleProp, type TextInputProps as TextInputPropsNative, type ViewStyle } from 'react-native';
 
-import { ButtonShapes, ButtonSizes, type CircleButtonModes, SquareButtonModes } from '../../atoms/Button/V2/props';
+import { ButtonShapes, ButtonSizes, type CircleButtonModes, SquareButtonModes } from '../../atoms/Button/v2/props';
 
 export type ChatInputProps = {
   style?: TextInputPropsNative['style'];

@@ -3,11 +3,10 @@ import { type LatLng } from 'react-native-maps';
 
 export type MapCameraMode = 'free' | 'follow' | 'followWithCompass';
 
-export type MapPolyline = {
-  coordinates: LatLng[];
-  style?: 'straight' | 'dotted';
-  color?: string;
-};
+type MapPolyline =
+  | { type: 'straight'; options: { coordinates: LatLng[]; color?: string } }
+  | { type: 'dotted'; options: { coordinates: LatLng[]; color?: string } }
+  | { type: 'arc'; options: { startPont: LatLng; endPoint: LatLng } };
 
 export type MapViewProps = {
   style?: StyleProp<ViewStyle>;

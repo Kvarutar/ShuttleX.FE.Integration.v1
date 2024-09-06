@@ -17,7 +17,7 @@ type ComputedStylesProperties = {
   circle: ButtonStyle;
 };
 
-const Button = ({
+const ButtonV1 = ({
   mode = ButtonV1Modes.Mode1,
   shape = ButtonV1Shapes.Square,
   text,
@@ -39,13 +39,15 @@ const Button = ({
   const { borderColor } = colors;
   let shadowProps = shadowColor ? buttonShadow(shadowColor) : { startColor: DISABLED_SHADOW_COLOR };
 
-  switch (shadow) {
-    case ButtonV1Shadows.Weak:
-      shadowProps = buttonShadow(colors.weakShadowColor);
-      break;
-    case ButtonV1Shadows.Strong:
-      shadowProps = buttonShadow(colors.strongShadowColor);
-      break;
+  if (shadow) {
+    switch (shadow) {
+      case ButtonV1Shadows.Weak:
+        shadowProps = buttonShadow(colors.weakShadowColor);
+        break;
+      case ButtonV1Shadows.Strong:
+        shadowProps = buttonShadow(colors.strongShadowColor);
+        break;
+    }
   }
 
   if (disableShadow || (isPressed && mode === ButtonV1Modes.Mode2)) {
@@ -147,4 +149,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Button;
+export default ButtonV1;

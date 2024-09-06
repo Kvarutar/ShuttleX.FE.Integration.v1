@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Blur from '../../atoms/Blur';
-import ButtonV1 from '../../atoms/Button/V1';
+import ButtonV1 from '../../atoms/Button/v1';
 import Text from '../../atoms/Text';
 import BottomWindow from '../BottomWindow';
 import { type LocationUnavailableProps } from './props';
