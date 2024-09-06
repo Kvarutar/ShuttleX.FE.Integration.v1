@@ -1,4 +1,7 @@
 {
+  "hours_abbrev": "h",
+  "minutes_abbrev": "min",
+  "seconds_abbrev": "sec",
   "minute": "{{count}} minute",
   "minute_plural": "{{count}} minutes",
   "second": "{{count}} second",

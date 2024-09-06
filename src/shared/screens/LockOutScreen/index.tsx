@@ -1,6 +1,6 @@
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import { ButtonV1, ButtonV1Modes, Text, Timer, TimerModes, useThemeV1 } from 'shuttlex-integration';
+import { ButtonV1, ButtonV1Modes, Text, TimerV1, TimerV1Modes, useThemeV1 } from 'shuttlex-integration';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { type LockOutScreenProps } from './props';
@@ -20,12 +20,12 @@ const LockOutScreenWithoutI18n = ({
       <View style={styles.header}>
         <View style={styles.headerDummy} />
         <Text style={[styles.headerTitle]}>{t('LockOut_headerTitle')}</Text>
-        <Timer
+        <TimerV1
           initialDate={new Date(lockoutEndTimestamp)}
           onAfterCountdownEnds={onAfterCountdownEnds}
           startColor={colors.secondaryGradientStartColor}
           endColor={colors.secondaryGradientEndColor}
-          mode={TimerModes.Mini}
+          mode={TimerV1Modes.Mini}
         />
       </View>
 

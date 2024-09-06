@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import Text from '../../../atoms/Text';
-import { type CountingComponentProps } from './props';
+import Text from '../../../../atoms/Text';
+import { type CountingV1ComponentProps } from './props';
 
 const calculateTime = (difference: number, isWithoutSeconds: boolean, isWithoutMinutes: boolean) => {
   const seconds = Math.floor(Math.abs(difference / 1000) % 60);
@@ -24,7 +24,7 @@ const calculateTime = (difference: number, isWithoutSeconds: boolean, isWithoutM
   };
 };
 
-const CountingComponent = ({ initialDate, onAfterCountdownEnds, mask, style }: CountingComponentProps) => {
+const CountingComponentV1 = ({ initialDate, onAfterCountdownEnds, mask, style }: CountingV1ComponentProps) => {
   const [remainingHours, setRemainingHours] = useState<string>('0');
   const [remainingMinutes, setRemainingMinutes] = useState<string>('0');
   const [remainingSeconds, setRemainingSeconds] = useState<string>('0');
@@ -75,4 +75,4 @@ const CountingComponent = ({ initialDate, onAfterCountdownEnds, mask, style }: C
   return <Text style={style}>{content}</Text>;
 };
 
-export default CountingComponent;
+export default CountingComponentV1;
