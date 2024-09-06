@@ -127,6 +127,7 @@ import CodeInputV1 from './shared/molecules/CodeInput/v1';
 import CodeInput from './shared/molecules/CodeInput/v2';
 import DatePicker from './shared/molecules/DatePicker';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
+import Fog from './shared/molecules/Fog';
 import GroupedButtons from './shared/molecules/GroupedButtons';
 import CustomKeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
 import LocationUnavailable from './shared/molecules/LocationUnavailable';
@@ -247,6 +248,7 @@ export {
   type FeedbackType,
   FeedbackWheelIcon,
   FlatListWithCustomScroll,
+  Fog,
   FreeTimeAlert,
   type FreeTimeAlertProps,
   getAngleBetweenPoints,
