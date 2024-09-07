@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import Text from '../../../atoms/Text';
-import BlueCheck1 from '../../../icons/BlueCheck1';
+import LimeYellowCheck1 from '../../../icons/LimeYellowCheck1';
 import Alert from '../Alert';
 import { type AlertDescendantProps } from '../Alert/props';
 import { type RideHasFinishedAlertProps } from './props';
@@ -17,7 +17,7 @@ const RideHasFinishedAlertWithoutI18n = ({
 
   return (
     <Alert style={[styles.container, style]} {...props}>
-      <BlueCheck1 />
+      <LimeYellowCheck1 />
       <Text style={styles.text}>{t('RideHasFinishedAlert_description', { name })}</Text>
     </Alert>
   );

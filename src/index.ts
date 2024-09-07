@@ -41,8 +41,6 @@ import ArrowIcon from './shared/icons/ArrowIcon';
 import ArrowInPrimaryColorIcon from './shared/icons/ArrowInPrimaryColorIcon';
 import BaggageIcon from './shared/icons/BaggageIcon';
 import BigCameraIcon from './shared/icons/BigCameraIcon';
-import BlueCheck1 from './shared/icons/BlueCheck1';
-import BlueCheck2 from './shared/icons/BlueCheck2';
 import BrandFavIcon from './shared/icons/BrandFavIcon';
 import BrandTextIcon from './shared/icons/BrandTextIcon';
 import CalendarIcon from './shared/icons/CalendarIcon';
@@ -74,6 +72,8 @@ import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
 import InputXIcon from './shared/icons/InputXIcon';
 import Like2Icon from './shared/icons/Like2Icon';
 import LikeIcon from './shared/icons/LikeIcon';
+import LimeYellowCheck1 from './shared/icons/LimeYellowCheck1';
+import LimeYellowCheck2 from './shared/icons/LimeYellowCheck2';
 import LocationIcon from './shared/icons/LocationIcon';
 import LockIcon from './shared/icons/LockIcon';
 import MaestroIcon from './shared/icons/MaestroIcon';
@@ -89,6 +89,7 @@ import PhoneIcon from './shared/icons/PhoneIcon';
 import PickUpIcon from './shared/icons/PickUpIcon';
 import PlusIcon from './shared/icons/PlusIcon';
 import PreferencesIcon from './shared/icons/PreferencesIcon';
+import ProfileIconMini from './shared/icons/ProfileIconMini';
 import ReportIcon from './shared/icons/ReportIcon';
 import ShortArrowIcon from './shared/icons/ShortArrowIcon';
 import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
@@ -200,8 +201,6 @@ export {
   BasicXImage,
   BasicXLImage,
   BigCameraIcon,
-  BlueCheck1,
-  BlueCheck2,
   Blur,
   BottomWindow,
   BottomWindowWithGesture,
@@ -281,6 +280,8 @@ export {
   lightMapStyle,
   Like2Icon,
   LikeIcon,
+  LimeYellowCheck1,
+  LimeYellowCheck2,
   LocationArrowImage,
   LocationArrowImage2,
   LocationIcon,
@@ -326,6 +327,7 @@ export {
   PreferencesIcon,
   PremiumXImage,
   PremiumXLImage,
+  ProfileIconMini,
   radToDeg,
   ReportIcon,
   requestCameraUsagePermission,
