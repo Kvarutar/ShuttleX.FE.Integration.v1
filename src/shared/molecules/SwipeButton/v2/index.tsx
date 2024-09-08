@@ -1,7 +1,6 @@
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
-import Slider from 'react-native-slide-to-unlock';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import { defaultShadow } from '../../../../core/themes/shadows';
@@ -10,9 +9,10 @@ import ButtonV1 from '../../../atoms/Button/v1/index';
 import { ButtonV1Modes } from '../../../atoms/Button/v1/props';
 import Text from '../../../atoms/Text';
 import ArrowIcon from '../../../icons/ArrowIcon';
+import SliderWithCustomGesture from '../../SliderWithCustomGesture';
 import { SwipeButtonModes, type SwipeButtonProps } from '../props';
 
-const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): JSX.Element => {
+const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text, containerStyle }: SwipeButtonProps): JSX.Element => {
   const { colors, themeMode } = useTheme();
 
   const shadowProps = defaultShadow(colors.weakShadowColor);
@@ -30,9 +30,9 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): J
 
   return (
     <Shadow stretch {...shadowProps}>
-      <Slider
-        onEndReached={() => onSwipeEnd()}
-        containerStyle={{ ...computedStyles.slider, ...styles.slider }}
+      <SliderWithCustomGesture
+        onSwipeEnd={onSwipeEnd}
+        containerStyle={[computedStyles.slider, containerStyle]}
         sliderElement={
           <ButtonV1 style={styles.button} mode={modeIsConfirm ? ButtonV1Modes.Mode1 : ButtonV1Modes.Mode3}>
             <ArrowIcon />
@@ -42,7 +42,7 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): J
         <Text style={[computedStyles.text, styles.text, !modeIsConfirm && { color: colors.errorColor }]}>
           {text ?? t('SwipeButton_buttonHint')}
         </Text>
-      </Slider>
+      </SliderWithCustomGesture>
     </Shadow>
   );
 };
