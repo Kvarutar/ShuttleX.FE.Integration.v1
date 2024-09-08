@@ -13,7 +13,7 @@ import SliderWithCustomGesture from '../../SliderWithCustomGesture';
 import { SwipeButtonModes, type SwipeButtonProps } from '../props';
 
 const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text, containerStyle }: SwipeButtonProps): JSX.Element => {
-  const { colors, themeMode } = useTheme();
+  const { colors } = useTheme();
 
   const shadowProps = defaultShadow(colors.weakShadowColor);
   const { t } = useTranslation();
@@ -24,7 +24,7 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text, containerStyle }: Swip
       color: colors.textSecondaryColor,
     },
     slider: {
-      backgroundColor: themeMode === 'light' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor,
+      backgroundColor: (modeIsConfirm && colors.primaryColor) || colors.errorColorWithOpacity,
     },
   });
 
