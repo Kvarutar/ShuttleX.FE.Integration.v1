@@ -38,6 +38,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       hiddenPartButton,
       windowStyle,
       withSeparator = true,
+      withHiddenPartScroll = true,
     },
     ref,
   ) => {
@@ -153,15 +154,19 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
             <Animated.View onLayout={onHiddenPartLayout} style={styles.hiddenWrapper}>
               {withSeparator && <Separator style={styles.separator} />}
               <View style={styles.hiddenScrollWrapper}>
-                <ScrollViewWithCustomScroll
-                  withShadow
-                  style={hiddenPartStyles}
-                  barStyle={styles.scrollBar}
-                  wrapperStyle={styles.scrollViewWrapper}
-                  contentContainerStyle={hiddenPartContainerStyles}
-                >
-                  {hiddenPart}
-                </ScrollViewWithCustomScroll>
+                {withHiddenPartScroll ? (
+                  <ScrollViewWithCustomScroll
+                    withShadow
+                    style={hiddenPartStyles}
+                    barStyle={styles.scrollBar}
+                    wrapperStyle={styles.scrollViewWrapper}
+                    contentContainerStyle={hiddenPartContainerStyles}
+                  >
+                    {hiddenPart}
+                  </ScrollViewWithCustomScroll>
+                ) : (
+                  <View style={hiddenPartStyles}>{hiddenPart}</View>
+                )}
               </View>
               {hiddenPartButton && (
                 <>

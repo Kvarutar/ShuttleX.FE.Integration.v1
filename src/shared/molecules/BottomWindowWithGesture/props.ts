@@ -13,6 +13,7 @@ export type BottomWindowWithGestureProps = {
   setIsOpened?: (isOpened: boolean) => void;
   windowStyle?: StyleProp<ViewStyle>;
   withSeparator?: boolean;
+  withHiddenPartScroll?: boolean;
 };
 
 export type BottomWindowWithGestureRef = {
