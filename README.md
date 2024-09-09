@@ -59,6 +59,8 @@ yarn example start
 - [react-native-svg](https://www.npmjs.com/package/react-native-svg)
 - [react-native-svg-transformer](https://www.npmjs.com/package/react-native-svg-transformer)
 - [react-redux](https://www.npmjs.com/package/react-redux)
+- [react-native-firebase/app](https://www.npmjs.com/package/@react-native-firebase/app)
+- [react-native-firebase/messaging](https://www.npmjs.com/package/@react-native-firebase/messaging)
 
 ### Install from GitHub
 
