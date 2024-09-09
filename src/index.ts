@@ -72,8 +72,6 @@ import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
 import InputXIcon from './shared/icons/InputXIcon';
 import Like2Icon from './shared/icons/Like2Icon';
 import LikeIcon from './shared/icons/LikeIcon';
-import LimeYellowCheck1 from './shared/icons/LimeYellowCheck1';
-import LimeYellowCheck2 from './shared/icons/LimeYellowCheck2';
 import LocationIcon from './shared/icons/LocationIcon';
 import LockIcon from './shared/icons/LockIcon';
 import MaestroIcon from './shared/icons/MaestroIcon';
@@ -91,6 +89,8 @@ import PlusIcon from './shared/icons/PlusIcon';
 import PreferencesIcon from './shared/icons/PreferencesIcon';
 import ProfileIconMini from './shared/icons/ProfileIconMini';
 import ReportIcon from './shared/icons/ReportIcon';
+import RoundCheckIcon1 from './shared/icons/RoundCheckIcon1';
+import RoundCheckIcon2 from './shared/icons/RoundCheckIcon2';
 import ShortArrowIcon from './shared/icons/ShortArrowIcon';
 import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/icons/SpinnerIcon';
@@ -280,8 +280,6 @@ export {
   lightMapStyle,
   Like2Icon,
   LikeIcon,
-  LimeYellowCheck1,
-  LimeYellowCheck2,
   LocationArrowImage,
   LocationArrowImage2,
   LocationIcon,
@@ -335,6 +333,8 @@ export {
   requestGeolocationPermission,
   RideHasFinishedAlert,
   type RideHasFinishedAlertProps,
+  RoundCheckIcon1,
+  RoundCheckIcon2,
   SafeAreaView,
   ScrollViewWithCustomScroll,
   SecondRideAlert,

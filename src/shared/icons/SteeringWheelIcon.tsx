@@ -6,6 +6,7 @@ import { useTheme } from '../../core/themes/v2/themeContext';
 
 const SteeringWheelIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
   const { colors } = useTheme();
+  const svgBgColor = colors.backgroundPrimaryColor;
   const svgColor = color ?? colors.iconSecondaryColor;
 
   return (
@@ -18,7 +19,7 @@ const SteeringWheelIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; col
       </G>
       <Defs>
         <ClipPath id="clip0_8627_14562">
-          <Rect width={24} height={24} fill="white" />
+          <Rect width={24} height={24} fill={svgBgColor} />
         </ClipPath>
       </Defs>
     </Svg>

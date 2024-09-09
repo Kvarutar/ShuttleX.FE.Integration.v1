@@ -24,7 +24,7 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text, containerStyle }: Swip
       color: colors.textSecondaryColor,
     },
     slider: {
-      backgroundColor: (modeIsConfirm && colors.primaryColor) || colors.errorColorWithOpacity,
+      backgroundColor: modeIsConfirm ? colors.primaryColor : colors.errorColorWithOpacity,
     },
   });
 
