@@ -5,14 +5,13 @@ export type BottomWindowWithGestureProps = {
   visiblePart: React.ReactNode;
   hiddenPart: React.ReactNode;
   alerts?: ReactNode;
-  style?: StyleProp<ViewStyle>;
-  visiblePartStyles?: StyleProp<ViewStyle>;
-  hiddenPartStyles?: StyleProp<ViewStyle>;
-  hiddenPartContainerStyles?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  visiblePartStyle?: StyleProp<ViewStyle>;
+  hiddenPartStyle?: StyleProp<ViewStyle>;
+  hiddenPartContainerStyle?: StyleProp<ViewStyle>;
   hiddenPartButton?: ReactNode;
   setIsOpened?: (isOpened: boolean) => void;
-  windowStyle?: StyleProp<ViewStyle>;
-  withSeparator?: boolean;
+  bottomWindowStyle?: StyleProp<ViewStyle>;
   withHiddenPartScroll?: boolean;
 };
 

@@ -1,25 +1,22 @@
 import React from 'react';
-import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { useTheme } from '../../../core/themes/v2/themeContext';
+import { type SliderWithCustomGestureProps } from './types';
+
+const buttonPercentage = 0.3;
+const padding = 8;
 
 const SliderWithCustomGesture = ({
   onSwipeEnd,
   sliderElement,
   children,
   containerStyle,
-}: {
-  onSwipeEnd: () => Promise<void> | void;
-  sliderElement: React.ReactNode;
-  children?: React.ReactNode;
-  containerStyle?: StyleProp<ViewStyle>;
-}) => {
+}: SliderWithCustomGestureProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(0);
-  const buttonPercentage = 0.3;
-  const padding = 8;
 
   const [sliderWidth, setSliderWidth] = React.useState(0);
 
