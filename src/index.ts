@@ -148,7 +148,7 @@ import { SwipeButtonModes } from './shared/molecules/SwipeButton/props';
 import SwipeButtonV1 from './shared/molecules/SwipeButton/v1';
 import SwipeButton from './shared/molecules/SwipeButton/v2';
 import TimePicker from './shared/molecules/TimePicker';
-import CountingComponent from './shared/molecules/timerAndStopwatch/CountingComponent/V1';
+import CountingComponentV1 from './shared/molecules/timerAndStopwatch/CountingComponent/V1';
 import StopWatch from './shared/molecules/timerAndStopwatch/StopWatch';
 import TimerV1 from './shared/molecules/timerAndStopwatch/Timer/V1';
 import { TimerV1Modes } from './shared/molecules/timerAndStopwatch/Timer/V1/props';
@@ -232,7 +232,7 @@ export {
   CodeInput,
   CodeInputV1,
   ComfortXImage,
-  CountingComponent,
+  CountingComponentV1,
   countryDtos,
   type countryDtosProps,
   countryFlags,
