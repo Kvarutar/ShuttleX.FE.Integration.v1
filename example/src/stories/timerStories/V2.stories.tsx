@@ -19,9 +19,8 @@ const TimerMeta: Meta<typeof Timer> = {
   component: Timer,
   args: {
     theme: 'light',
-    isWithMarks: false,
-    sizeMode: 'big',
-    colorMode: 'main',
+    sizeMode: 'l',
+    colorMode: 'mode1',
   },
   argTypes: {
     theme: {
@@ -36,9 +35,6 @@ const TimerMeta: Meta<typeof Timer> = {
       options: colorModes,
       control: { type: 'select' },
     },
-    isWithMarks: {
-      control: { type: 'boolean' },
-    },
   },
 };
 
@@ -48,12 +44,10 @@ const TimerWithHooks = ({
   themeName,
   sizeMode,
   colorMode,
-  isWithMarks,
 }: {
   themeName: ThemeContextType['themeMode'];
   sizeMode: TimerProps['sizeMode'];
   colorMode: TimerProps['colorMode'];
-  isWithMarks: boolean;
 }) => {
   const { setThemeMode } = useTheme();
 
@@ -66,7 +60,6 @@ const TimerWithHooks = ({
       time={2 * 60 * 1000}
       sizeMode={sizeMode}
       colorMode={colorMode}
-      isWithMarks={isWithMarks}
       onAfterCountdownEnds={() => Alert.alert('Attention', 'onAfterCountdownEndsReached!')}
     />
   );
@@ -76,17 +69,11 @@ type Story = StoryObj<typeof Timer>;
 
 export const BasicExample: Story = {
   render: function Render(args) {
-    const [{ isWithMarks, theme, sizeMode, colorMode }] = useArgs();
+    const [{ theme, sizeMode, colorMode }] = useArgs();
 
     return (
       <View>
-        <TimerWithHooks
-          {...args}
-          themeName={theme}
-          isWithMarks={isWithMarks}
-          colorMode={colorMode}
-          sizeMode={sizeMode}
-        />
+        <TimerWithHooks {...args} themeName={theme} colorMode={colorMode} sizeMode={sizeMode} />
       </View>
     );
   },

@@ -1,12 +1,13 @@
 import { StyleSheet, View } from 'react-native';
 
+import { lightPalette } from '../../../../../core/themes/v2/palettes/lightPalette';
 import { useTheme } from '../../../../../core/themes/v2/themeContext';
 import CircularTimerIcon from '../../../../icons/CircularTimerIcon';
 import CountingComponent from '../../CountingComponent/V2';
-import { type TimerColorsType, type TimerProps, type TimerSizesType } from './props';
+import { TimerColorModes, type TimerProps, TimerSizesModes, type TimerSizesType } from './props';
 
 const timerSizes: TimerSizesType = {
-  normal: {
+  s: {
     iconStrokeWidth: 6,
     timerSize: 92,
     numFontSize: 26,
@@ -14,8 +15,10 @@ const timerSizes: TimerSizesType = {
     marksHeight: 6,
     marksWidth: 1.6,
     opacity: 0.38,
+    padding: 6,
+    lineHeight: 10,
   },
-  big: {
+  l: {
     iconStrokeWidth: 10,
     timerSize: 160,
     numFontSize: 45,
@@ -23,68 +26,65 @@ const timerSizes: TimerSizesType = {
     marksHeight: 10,
     marksWidth: 2.7,
     opacity: 0.48,
+    padding: 8,
+    lineHeight: 13,
   },
 };
-
+/**
+ * Timer Component Props
+ *
+ * @param {number} time - The timer takes `time` in milliseconds.
+ * Convert minutes to milliseconds using the `minToMilSec` function in Integration.
+ * @param {function} [onAfterCountdownEnds] - A function that is called after the countdown ends.
+ * @param {boolean} [isWaiting=false] - Set to `true` to start counting forward after the countdown ends.
+ * @param {object} [style] - Custom styles for the timer.
+ * @param {TimerSizesModes} sizeMode - The size of the timer, either `Normal` or `Big`.
+ * @param {TimerColorModes} colorMode - Defines the color mode for the timer and its elements.
+ * @param {string} [text] - Static text to display instead of the countdown timer.
+ * @param {boolean} [withCountdown=true] - Set to `true` to display a countdown timer.
+ */
 const Timer = ({
   time, // milliseconds
   onAfterCountdownEnds,
   isWaiting = false,
   style,
-  sizeMode,
-  colorMode,
-  timerBackgroundColor,
+  sizeMode = TimerSizesModes.S,
+  colorMode = TimerColorModes.Mode1,
   text,
   withCountdown = true,
-  isWithMarks = false,
 }: TimerProps) => {
   const { colors } = useTheme();
 
-  const chooseColor = (backgroundColor: string) => (timerBackgroundColor ? timerBackgroundColor : backgroundColor);
-
-  const timerColors: TimerColorsType = {
-    main: {
-      timerCustomBackgroundColor: chooseColor(colors.primaryColor),
-      timerElemColor: colors.textPrimaryColor,
-      strokeColor: colors.strokeColor,
-    },
-    neutral: {
-      timerCustomBackgroundColor: chooseColor(colors.backgroundPrimaryColor),
-      timerElemColor: colors.textPrimaryColor,
-    },
-    warning: {
-      timerCustomBackgroundColor: chooseColor(colors.errorColor),
-      timerElemColor: colors.textTertiaryColor,
-      strokeColor: colors.iconTertiaryColor,
-    },
-    black: {
-      timerCustomBackgroundColor: chooseColor(colors.backgroundTertiaryColor),
-      timerElemColor: colors.iconTertiaryColor,
-      strokeColor: colors.strokeColor,
-    },
-  };
-
-  const { iconStrokeWidth, timerSize, numFontSize, textFontSize, marksHeight, marksWidth, opacity } =
-    timerSizes[sizeMode];
-  const { timerCustomBackgroundColor, timerElemColor, strokeColor } = timerColors[colorMode];
+  const {
+    iconStrokeWidth,
+    timerSize,
+    numFontSize,
+    textFontSize,
+    marksHeight,
+    marksWidth,
+    opacity,
+    padding,
+    lineHeight,
+  } = timerSizes[sizeMode];
+  const { backgroundColor, textColor, strokeColor, lineColor } = lightPalette.timerColorModes[colorMode];
 
   const computedStyles = StyleSheet.create({
     timerWrapper: {
       width: timerSize,
       height: timerSize,
-      backgroundColor: timerCustomBackgroundColor,
+      backgroundColor: backgroundColor,
       borderColor: colors.borderColor,
     },
     timerNumText: {
       fontSize: numFontSize,
-      color: timerElemColor,
+      color: textColor,
     },
     timerMainText: {
       fontSize: textFontSize,
-      color: timerElemColor,
+      color: textColor,
     },
     timerSecondaryText: {
-      color: timerElemColor,
+      color: textColor,
       fontSize: textFontSize,
       opacity: opacity,
     },
@@ -99,9 +99,11 @@ const Timer = ({
         marksHeight={marksHeight}
         marksWidth={marksWidth}
         opacity={opacity}
+        padding={padding}
+        lineHeight={lineHeight}
+        lineColor={lineColor}
         strokeColor={strokeColor ? strokeColor : '#979797'}
-        isWithMarks={isWithMarks}
-        marksColor={timerElemColor}
+        marksColor={textColor}
       />
       {withCountdown && (
         <View style={[StyleSheet.absoluteFill, styles.timerTextWrapper]}>

@@ -10,26 +10,22 @@ export type TimerSizesType = Record<
     textFontSize: number;
     marksWidth: number;
     opacity: number;
-  }
->;
-export type TimerColorsType = Record<
-  TimerColorModes,
-  {
-    timerCustomBackgroundColor: string;
-    timerElemColor: string;
-    strokeColor?: string;
+    padding: number;
+    lineHeight: number;
   }
 >;
 
 export enum TimerSizesModes {
-  Normal = 'normal',
-  Big = 'big',
+  S = 's',
+  L = 'l',
 }
+
 export enum TimerColorModes {
-  Main = 'main',
-  Neutral = 'neutral',
-  Warning = 'warning',
-  Black = 'black',
+  Mode1 = 'mode1',
+  Mode2 = 'mode2',
+  Mode3 = 'mode3',
+  Mode4 = 'mode4',
+  Mode5 = 'mode5',
 }
 
 export type TimerProps = {
@@ -44,8 +40,6 @@ export type TimerProps = {
   };
   sizeMode: TimerSizesModes;
   colorMode: TimerColorModes;
-  timerBackgroundColor?: string;
   text?: string;
   withCountdown?: boolean;
-  isWithMarks?: boolean;
 };

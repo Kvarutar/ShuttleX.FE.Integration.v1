@@ -1,6 +1,11 @@
-import { type Palette, type PaletteCircleButtonModes, type PaletteSquareButtonModes } from './paletteTypes';
+import {
+  type Palette,
+  type PaletteCircleButtonModes,
+  type PaletteSquareButtonModes,
+  type PaletteTimerModes,
+} from './paletteTypes';
 
-const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes'> = {
+const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerColorModes'> = {
   primaryColor: '#008D0A',
   primaryGradientStartColor: '#EEF5FF',
   secondaryGradientStartColor: '#EAEAEA',
@@ -73,8 +78,42 @@ const circleButtonModes: PaletteCircleButtonModes = {
   },
 };
 
+const timerColorModes: PaletteTimerModes = {
+  mode1: {
+    backgroundColor: colors.primaryColor,
+    textColor: colors.textPrimaryColor,
+    strokeColor: colors.strokeColor,
+    lineColor: colors.errorColor,
+  },
+  mode2: {
+    backgroundColor: colors.backgroundPrimaryColor,
+    textColor: colors.textPrimaryColor,
+    strokeColor: colors.borderDashColor,
+    lineColor: colors.iconPrimaryColor,
+  },
+  mode3: {
+    backgroundColor: colors.errorColor,
+    textColor: colors.textTertiaryColor,
+    strokeColor: colors.iconTertiaryColor,
+    lineColor: colors.primaryColor,
+  },
+  mode4: {
+    backgroundColor: colors.backgroundTertiaryColor,
+    textColor: colors.iconTertiaryColor,
+    strokeColor: colors.strokeColor,
+    lineColor: colors.errorColor,
+  },
+  mode5: {
+    backgroundColor: colors.errorColor,
+    textColor: colors.textPrimaryColor,
+    strokeColor: colors.strokeColor,
+    lineColor: colors.iconPrimaryColor,
+  },
+};
+
 export const testPalette: Palette = {
   ...colors,
   squareButtonModes,
   circleButtonModes,
+  timerColorModes,
 };

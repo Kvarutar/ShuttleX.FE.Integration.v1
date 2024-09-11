@@ -169,6 +169,7 @@ import {
 } from './utils/geolocation';
 import { IntegrationModule } from './utils/integrationModule';
 import { useNetworkConnectionStartWatch } from './utils/network';
+import { getNotificationToken } from './utils/notifications/getNotificationToken';
 import { getPaymentIcon } from './utils/payment/cardIcons';
 import { type PaymentMethod } from './utils/payment/types';
 import {
@@ -262,6 +263,7 @@ export {
   getAngleBetweenPoints,
   getAxiosErrorInfo,
   getDistanceBetweenPoints,
+  getNotificationToken,
   getPaymentIcon,
   GroupedBrandIcon,
   GroupedBrandIconMini,
