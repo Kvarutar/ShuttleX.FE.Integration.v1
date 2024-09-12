@@ -30,12 +30,14 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       visiblePart,
       hiddenPart,
       alerts,
-      style,
-      visiblePartStyles,
-      hiddenPartStyles,
+      containerStyle,
+      visiblePartStyle,
+      hiddenPartStyle,
       setIsOpened,
-      hiddenPartContainerStyles,
+      hiddenPartContainerStyle,
       hiddenPartButton,
+      bottomWindowStyle,
+      withHiddenPartScroll = true,
     },
     ref,
   ) => {
@@ -61,6 +63,10 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       closeWindow: () => {
         runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
         runOnJS(setIsAlertsVisible)(true);
+      },
+      openWindow: () => {
+        runOnJS(onWindowStateChange)({ isOpened: true, isCurrentBlur: true });
+        runOnJS(setIsAlertsVisible)(false);
       },
     }));
 
@@ -126,7 +132,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       <>
         {isBlur && <Blur />}
         <Animated.View
-          style={[styles.animatedWrapper, bottomWindowAnimatedStyle, style]}
+          style={[styles.animatedWrapper, bottomWindowAnimatedStyle, containerStyle]}
           exiting={FadeOut}
           entering={FadeIn}
         >
@@ -134,28 +140,31 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
             alerts={alerts}
             showAlerts={isAlertsVisible}
             style={styles.bottom}
-            windowStyle={[styles.window, computedStyles.bottom]}
+            windowStyle={[styles.window, computedStyles.bottom, bottomWindowStyle]}
           >
             <GestureDetector gesture={gesture}>
               <Animated.View onLayout={onVisiblePartLayout}>
                 <View style={styles.draggableZone}>
                   <View style={[styles.draggableElement, computedStyles.draggableElement]} />
                 </View>
-                <View style={[styles.visiblePart, visiblePartStyles]}>{visiblePart}</View>
+                <View style={[styles.visiblePart, visiblePartStyle]}>{visiblePart}</View>
               </Animated.View>
             </GestureDetector>
             <Animated.View onLayout={onHiddenPartLayout} style={styles.hiddenWrapper}>
-              <Separator style={styles.separator} />
               <View style={styles.hiddenScrollWrapper}>
-                <ScrollViewWithCustomScroll
-                  withShadow
-                  style={hiddenPartStyles}
-                  barStyle={styles.scrollBar}
-                  wrapperStyle={styles.scrollViewWrapper}
-                  contentContainerStyle={hiddenPartContainerStyles}
-                >
-                  {hiddenPart}
-                </ScrollViewWithCustomScroll>
+                {withHiddenPartScroll ? (
+                  <ScrollViewWithCustomScroll
+                    withShadow
+                    style={hiddenPartStyle}
+                    barStyle={styles.scrollBar}
+                    wrapperStyle={styles.scrollViewWrapper}
+                    contentContainerStyle={hiddenPartContainerStyle}
+                  >
+                    {hiddenPart}
+                  </ScrollViewWithCustomScroll>
+                ) : (
+                  <View style={hiddenPartStyle}>{hiddenPart}</View>
+                )}
               </View>
               {hiddenPartButton && (
                 <>

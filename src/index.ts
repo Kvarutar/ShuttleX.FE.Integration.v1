@@ -33,6 +33,7 @@ import {
 import CheckBox from './shared/atoms/Checkbox';
 import Separator from './shared/atoms/Separator';
 import Text from './shared/atoms/Text';
+import { TextElipsizeMode } from './shared/atoms/Text/props';
 import TextInputV1 from './shared/atoms/TextInput/v1';
 import { TextInputV1InputMode } from './shared/atoms/TextInput/v1/props';
 import ApplePayIcon from './shared/icons/ApplePayIcon';
@@ -40,8 +41,6 @@ import ArrowIcon from './shared/icons/ArrowIcon';
 import ArrowInPrimaryColorIcon from './shared/icons/ArrowInPrimaryColorIcon';
 import BaggageIcon from './shared/icons/BaggageIcon';
 import BigCameraIcon from './shared/icons/BigCameraIcon';
-import BlueCheck1 from './shared/icons/BlueCheck1';
-import BlueCheck2 from './shared/icons/BlueCheck2';
 import BrandFavIcon from './shared/icons/BrandFavIcon';
 import BrandTextIcon from './shared/icons/BrandTextIcon';
 import CalendarIcon from './shared/icons/CalendarIcon';
@@ -71,6 +70,7 @@ import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
 import GroupedBrandIconMiniV1 from './shared/icons/GroupedBrandIconMini/V1';
 import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
 import InputXIcon from './shared/icons/InputXIcon';
+import Like2Icon from './shared/icons/Like2Icon';
 import LikeIcon from './shared/icons/LikeIcon';
 import LocationIcon from './shared/icons/LocationIcon';
 import LockIcon from './shared/icons/LockIcon';
@@ -87,12 +87,16 @@ import PhoneIcon from './shared/icons/PhoneIcon';
 import PickUpIcon from './shared/icons/PickUpIcon';
 import PlusIcon from './shared/icons/PlusIcon';
 import PreferencesIcon from './shared/icons/PreferencesIcon';
+import ProfileIconMini from './shared/icons/ProfileIconMini';
 import ReportIcon from './shared/icons/ReportIcon';
+import RoundCheckIcon1 from './shared/icons/RoundCheckIcon1';
+import RoundCheckIcon2 from './shared/icons/RoundCheckIcon2';
 import ShortArrowIcon from './shared/icons/ShortArrowIcon';
 import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/icons/SpinnerIcon';
 import StarIcon from './shared/icons/StarIcon';
 import StatisticsIcon from './shared/icons/StatitsticsIcon';
+import SteeringWheelIcon from './shared/icons/SteeringWheelIcon';
 import SuccessIcon from './shared/icons/SuccessIcon';
 import TimeIcon from './shared/icons/TimeIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
@@ -123,6 +127,7 @@ import { type RideHasFinishedAlertProps } from './shared/molecules/alerts/RideHa
 import SecondRideAlert from './shared/molecules/alerts/SecondRideAlert';
 import BottomWindow from './shared/molecules/BottomWindow';
 import BottomWindowWithGesture from './shared/molecules/BottomWindowWithGesture';
+import { type BottomWindowWithGestureRef } from './shared/molecules/BottomWindowWithGesture/props';
 import CodeInputV1 from './shared/molecules/CodeInput/v1';
 import CodeInput from './shared/molecules/CodeInput/v2';
 import DatePicker from './shared/molecules/DatePicker';
@@ -143,6 +148,7 @@ import { SwipeButtonModes } from './shared/molecules/SwipeButton/props';
 import SwipeButtonV1 from './shared/molecules/SwipeButton/v1';
 import SwipeButton from './shared/molecules/SwipeButton/v2';
 import TimePicker from './shared/molecules/TimePicker';
+import CountingComponentV1 from './shared/molecules/timerAndStopwatch/CountingComponent/V1';
 import StopWatch from './shared/molecules/timerAndStopwatch/StopWatch';
 import TimerV1 from './shared/molecules/timerAndStopwatch/Timer/V1';
 import { TimerV1Modes } from './shared/molecules/timerAndStopwatch/Timer/V1/props';
@@ -196,11 +202,10 @@ export {
   BasicXImage,
   BasicXLImage,
   BigCameraIcon,
-  BlueCheck1,
-  BlueCheck2,
   Blur,
   BottomWindow,
   BottomWindowWithGesture,
+  type BottomWindowWithGestureRef,
   BrandFavIcon,
   BrandTextIcon,
   Button,
@@ -228,6 +233,7 @@ export {
   CodeInput,
   CodeInputV1,
   ComfortXImage,
+  CountingComponentV1,
   countryDtos,
   type countryDtosProps,
   countryFlags,
@@ -274,6 +280,7 @@ export {
   IntegrationModule,
   InternetDisconnectedAlert,
   lightMapStyle,
+  Like2Icon,
   LikeIcon,
   LocationArrowImage,
   LocationArrowImage2,
@@ -320,6 +327,7 @@ export {
   PreferencesIcon,
   PremiumXImage,
   PremiumXLImage,
+  ProfileIconMini,
   radToDeg,
   ReportIcon,
   requestCameraUsagePermission,
@@ -327,6 +335,8 @@ export {
   requestGeolocationPermission,
   RideHasFinishedAlert,
   type RideHasFinishedAlertProps,
+  RoundCheckIcon1,
+  RoundCheckIcon2,
   SafeAreaView,
   ScrollViewWithCustomScroll,
   SecondRideAlert,
@@ -339,6 +349,7 @@ export {
   SquareButtonModes,
   StarIcon,
   StatisticsIcon,
+  SteeringWheelIcon,
   StopWatch,
   SuccessIcon,
   SwipeButton,
@@ -348,6 +359,7 @@ export {
   type TariffType,
   TeslaXImage,
   Text,
+  TextElipsizeMode,
   TextInputV1,
   TextInputV1InputMode,
   type ThemeContextType,

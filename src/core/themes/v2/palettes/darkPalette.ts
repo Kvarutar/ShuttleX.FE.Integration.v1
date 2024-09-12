@@ -11,6 +11,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerCo
   secondaryGradientStartColor: '#EAEAEA',
   secondaryGradientEndColor: '#010101',
   errorColor: '#FF4A00',
+  errorColorWithOpacity: '#FF4A001A',
   warningColor: '#FFE54E',
   successColor: '#CEFC28',
   borderColor: '#DEE3E4',

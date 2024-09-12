@@ -26,6 +26,7 @@ export type Palette = {
   secondaryGradientStartColor: string;
   secondaryGradientEndColor: string;
   errorColor: string;
+  errorColorWithOpacity: string;
   warningColor: string;
   successColor: string;
   borderColor: string;
