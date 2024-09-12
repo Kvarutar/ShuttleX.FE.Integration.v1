@@ -3,12 +3,12 @@ import { type CreditCardType } from 'credit-card-type/dist/types';
 import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import { ButtonV1Shapes } from 'shuttlex-integration';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import sizes from '../../../../core/themes/sizes';
 import { getPaymentIcon } from '../../../../utils/payment/cardIcons';
 import ButtonV1 from '../../../atoms/Button/v1/index';
+import { ButtonV1Shapes } from '../../../atoms/Button/v1/props';
 import Text from '../../../atoms/Text';
 import TextInputV1 from '../../../atoms/TextInput/v1';
 import { TextInputV1InputMode } from '../../../atoms/TextInput/v1/props';

@@ -1,4 +1,5 @@
 import { CircleButtonModes, type SquareButtonModes } from '../../../../shared/atoms/Button/v2/props';
+import { TimerColorModes } from '../../../../shared/molecules/timerAndStopwatch/Timer/V2/props';
 
 export type PaletteButtonMode = {
   backgroundColor: string;
@@ -7,8 +8,17 @@ export type PaletteButtonMode = {
   shadowColor?: string;
 };
 
+export type PaletteTimerMode = {
+  backgroundColor: string;
+  textColor: string;
+  strokeColor?: string;
+  lineColor?: string;
+};
+
 export type PaletteCircleButtonModes = { [key in CircleButtonModes]: PaletteButtonMode };
 export type PaletteSquareButtonModes = { [key in SquareButtonModes]: PaletteButtonMode };
+
+export type PaletteTimerModes = { [key in TimerColorModes]: PaletteTimerMode };
 
 export type Palette = {
   primaryColor: string;
@@ -37,4 +47,5 @@ export type Palette = {
   strongShadowColor: string; // specified in rgba
   squareButtonModes: PaletteSquareButtonModes;
   circleButtonModes: PaletteCircleButtonModes;
+  timerColorModes: PaletteTimerModes;
 };

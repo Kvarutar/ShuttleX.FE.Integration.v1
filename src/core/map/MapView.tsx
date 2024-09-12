@@ -158,6 +158,69 @@ const MapView = ({
           ),
         };
 
+  const rendredPolylines: React.ReactNode[] = [];
+  polylines?.map((polyline, i) => {
+    switch (polyline.type) {
+      case 'straight': {
+        const polylineOptions = polyline.options;
+        rendredPolylines.push(
+          <Polyline
+            key={i}
+            coordinates={polylineOptions.coordinates}
+            strokeColor={polylineOptions.color ?? colors.primaryColor}
+            strokeWidth={6}
+          />,
+        );
+        break;
+      }
+      case 'dotted': {
+        const polylineOptions = polyline.options;
+        const coordinates: LatLng[] = [];
+
+        for (let j = 0; j < polylineOptions.coordinates.length; j++) {
+          const latlng = polylineOptions.coordinates[j]!;
+          if (j > 0) {
+            const prevLatlng = polylineOptions.coordinates[j - 1]!;
+            const latitude = (prevLatlng.latitude + latlng.latitude) / 2;
+            const longitude = (prevLatlng.longitude + latlng.longitude) / 2;
+            coordinates.push({ latitude, longitude });
+          }
+          coordinates.push(latlng);
+        }
+
+        for (let j = 0; j < coordinates.length - 1; j += 2) {
+          rendredPolylines.push(
+            <Polyline
+              key={uuidv4()}
+              coordinates={coordinates.slice(j, j + 2)}
+              strokeColor={polylineOptions.color ?? colors.primaryColor}
+              strokeWidth={6}
+            />,
+          );
+        }
+        break;
+      }
+      case 'arc': {
+        const polylineOptions = polyline.options;
+        rendredPolylines.push(
+          <Polyline
+            key={i}
+            strokeWidth={3}
+            strokeColor="#000000"
+            coordinates={drawArcPolyline(polylineOptions.startPont, polylineOptions.endPoint)}
+          />,
+          <Polyline
+            key={uuidv4()}
+            strokeWidth={3}
+            strokeColor="#00000033"
+            coordinates={[polylineOptions.startPont, polylineOptions.endPoint]}
+          />,
+        );
+        break;
+      }
+    }
+  });
+
   return (
     <>
       {/* Preloads map raster image (easiest way for fixing several bugs on android) */}
@@ -191,70 +254,7 @@ const MapView = ({
           />
         )}
 
-        {polylines &&
-          polylines.length > 0 &&
-          polylines.map((polyline, i) => {
-            switch (polyline.type) {
-              case 'straight': {
-                const polylineOptions = polyline.options;
-                return (
-                  <Polyline
-                    key={i}
-                    coordinates={polylineOptions.coordinates}
-                    strokeColor={polylineOptions.color ?? colors.primaryColor}
-                    strokeWidth={6}
-                  />
-                );
-              }
-              case 'dotted': {
-                const polylineOptions = polyline.options;
-                const coordinates: LatLng[] = [];
-
-                for (let j = 0; j < polylineOptions.coordinates.length; j++) {
-                  const latlng = polylineOptions.coordinates[j]!;
-                  if (j > 0) {
-                    const prevLatlng = polylineOptions.coordinates[j - 1]!;
-                    const latitude = (prevLatlng.latitude + latlng.latitude) / 2;
-                    const longitude = (prevLatlng.longitude + latlng.longitude) / 2;
-                    coordinates.push({ latitude, longitude });
-                  }
-                  coordinates.push(latlng);
-                }
-
-                const lines: JSX.Element[] = [];
-                for (let j = 0; j < coordinates.length - 1; j += 2) {
-                  lines.push(
-                    <Polyline
-                      key={j}
-                      coordinates={coordinates.slice(j, j + 2)}
-                      strokeColor={polylineOptions.color ?? colors.primaryColor}
-                      strokeWidth={6}
-                    />,
-                  );
-                }
-                return lines;
-              }
-              case 'arc': {
-                const polylineOptions = polyline.options;
-                return (
-                  <>
-                    <Polyline
-                      key={i}
-                      strokeWidth={3}
-                      strokeColor="#000000"
-                      coordinates={drawArcPolyline(polylineOptions.startPont, polylineOptions.endPoint)}
-                    />
-                    <Polyline
-                      key={uuidv4()}
-                      strokeWidth={3}
-                      strokeColor="#00000033"
-                      coordinates={[polylineOptions.startPont, polylineOptions.endPoint]}
-                    />
-                  </>
-                );
-              }
-            }
-          })}
+        {rendredPolylines.length > 0 && rendredPolylines}
 
         {stopPoints &&
           stopPoints.length !== 0 &&

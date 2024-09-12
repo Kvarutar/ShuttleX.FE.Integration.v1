@@ -7,7 +7,7 @@ import Text from '../../../../atoms/Text';
 import { type CountingComponentProps } from './props';
 
 const calculateTime = (difference: number) => {
-  const totalSeconds = Math.max(Math.floor(difference / 1000), 0);
+  const totalSeconds = Math.max(Math.round(difference / 1000), 0);
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;

@@ -24,7 +24,6 @@ const AnimatedLineComponent = ({
   marksHeight,
   marksWidth,
   index,
-  opacity,
   size,
   radius,
   strokeWidth,
@@ -37,7 +36,6 @@ const AnimatedLineComponent = ({
   marksHeight: number;
   radius: number;
   index: number;
-  opacity: number;
   size: number;
   strokeWidth: number;
 }) => {
@@ -55,9 +53,7 @@ const AnimatedLineComponent = ({
       [0, 1],
       'clamp',
     );
-
     return {
-      strokeOpacity: interpolate(activationProgress, [0.99, 1], [opacity, 1], 'clamp'),
       stroke: interpolateColor(activationProgress, [0.99, 1], [strokeColor, marksColor]),
       strokeWidth: marksWidth,
     };
@@ -85,7 +81,9 @@ interface CircularTimerIconProps {
   opacity: number;
   strokeColor: string;
   marksColor: string;
-  isWithMarks?: boolean;
+  padding: number;
+  lineHeight: number;
+  lineColor?: string;
 }
 
 const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
@@ -96,11 +94,13 @@ const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
   strokeColor,
   marksColor,
   marksWidth,
+  padding,
+  lineHeight,
   marksHeight,
-  isWithMarks,
+  lineColor,
 }) => {
-  const padding = isWithMarks ? 8 : 0;
-  const radius = (size - strokeWidth) / 2 - padding;
+  const innerPadding = padding;
+  const radius = (size - strokeWidth) / 2 - innerPadding;
   const cx = size / 2;
   const cy = size / 2;
 
@@ -110,7 +110,6 @@ const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
 
   const progress = useSharedValue(0);
   const progressAngle = useDerivedValue(() => progress.value * 360);
-  const width = useSharedValue(strokeWidth);
 
   useEffect(() => {
     progress.value = withTiming(1, {
@@ -119,18 +118,28 @@ const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
     });
   }, [initTime, progress]);
 
-  //func for animated line
-  const animatedCircleProps = useAnimatedProps(() => {
-    const strokeDashoffset = circumference * (1 - progress.value);
-    const thinStrokeWidth = isWithMarks
-      ? width.value
-      : interpolate(progress.value, [0.99, 1], [width.value, 1], 'clamp');
+  const progressIndicatorProps = useAnimatedProps(() => {
+    const angle = progress.value * 2 * Math.PI - Math.PI / 2;
+    const indicatorLength = lineHeight; // short mark
+    const x1 = cx + (radius + 4) * Math.cos(angle);
+    const y1 = cy + (radius + 4) * Math.sin(angle);
+    const x2 = cx + (radius - indicatorLength) * Math.cos(angle);
+    const y2 = cy + (radius - indicatorLength) * Math.sin(angle);
     return {
-      strokeDashoffset,
-      strokeWidth: thinStrokeWidth,
+      x1,
+      y1,
+      x2,
+      y2,
     };
   });
 
+  //func for animated line
+  const animatedCircleProps = useAnimatedProps(() => {
+    const strokeDashoffset = circumference * (1 - progress.value);
+    return {
+      strokeDashoffset,
+    };
+  });
   return (
     <View style={styles.container}>
       <Svg width={size} height={size}>
@@ -140,30 +149,30 @@ const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
             cy={cy}
             r={radius}
             stroke={strokeColor}
-            fill="transparent"
             strokeDasharray={`${circumference} ${circumference}`}
+            strokeWidth={strokeWidth}
+            fill="transparent"
             animatedProps={animatedCircleProps}
             strokeLinecap="butt"
             strokeOpacity={opacity}
           />
         </G>
-        {isWithMarks &&
-          minuteMarks.map((markAngle, index) => (
-            <AnimatedLineComponent
-              key={index}
-              size={size}
-              radius={radius}
-              opacity={opacity}
-              strokeWidth={strokeWidth}
-              marksWidth={marksWidth}
-              marksHeight={marksHeight}
-              strokeColor={strokeColor}
-              markAngle={markAngle}
-              progressAngle={progressAngle}
-              marksColor={marksColor}
-              index={index}
-            />
-          ))}
+        <AnimatedLine stroke={lineColor} strokeWidth={2} animatedProps={progressIndicatorProps} />
+        {minuteMarks.map((markAngle, index) => (
+          <AnimatedLineComponent
+            key={index}
+            size={size}
+            radius={radius}
+            strokeWidth={strokeWidth}
+            marksWidth={marksWidth}
+            marksHeight={marksHeight}
+            strokeColor={strokeColor}
+            markAngle={markAngle}
+            progressAngle={progressAngle}
+            marksColor={marksColor}
+            index={index}
+          />
+        ))}
       </Svg>
     </View>
   );
