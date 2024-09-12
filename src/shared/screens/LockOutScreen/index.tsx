@@ -1,8 +1,13 @@
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import { ButtonV1, ButtonV1Modes, Text, TimerV1, TimerV1Modes, useThemeV1 } from 'shuttlex-integration';
 
 import i18nIntegration from '../../../core/locales/i18n';
+import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import ButtonV1 from '../../atoms/Button/v1';
+import { ButtonV1Modes } from '../../atoms/Button/v1/props';
+import Text from '../../atoms/Text';
+import TimerV1 from '../../molecules/timerAndStopwatch/Timer/V1';
+import { TimerV1Modes } from '../../molecules/timerAndStopwatch/Timer/V1/props';
 import { type LockOutScreenProps } from './props';
 
 const LockOutScreenWithoutI18n = ({

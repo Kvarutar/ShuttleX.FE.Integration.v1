@@ -53,7 +53,9 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     moduleName === 'react-native-geolocation-service' ||
     moduleName === 'react-native-permissions' ||
     moduleName === 'react-native-sensors' ||
-    moduleName === '@react-navigation/native'
+    moduleName === '@react-navigation/native' ||
+    moduleName === '@react-native-firebase/app' ||
+    moduleName === '@react-native-firebase/messaging'
   ) {
     return { type: 'empty' };
   }

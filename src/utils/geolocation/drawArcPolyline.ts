@@ -1,133 +1,49 @@
 import { type LatLng } from 'react-native-maps';
 
-import { degToRad, EARTH_RADIUS_IN_METERS, radToDeg } from '.';
+import { getAngleBetweenPoints } from '.';
 
-const computeDistance = (startLocation: LatLng, endLocation: LatLng) => {
-  const hav = (num: number) => {
-    const sinHalf = Math.sin(num * 0.5);
-    return sinHalf * sinHalf;
-  };
+const arcHeight = 0.8;
+const numPoints = 100;
 
-  const havDistance = (lat1: number, lat2: number, deltaLng: number) => {
-    return hav(lat1 - lat2) + hav(deltaLng) * Math.cos(lat1) * Math.cos(lat2);
-  };
+function quadraticBezierCurve(startPoint: LatLng, endPoint: LatLng, controlPoint: LatLng) {
+  const points: LatLng[] = [];
+  const step = 1 / (numPoints - 1);
 
-  return (
-    2 *
-    Math.asin(
-      Math.sqrt(
-        havDistance(
-          degToRad(startLocation.latitude),
-          degToRad(endLocation.latitude),
-          degToRad(startLocation.longitude) - degToRad(endLocation.longitude),
-        ),
-      ),
-    ) *
-    EARTH_RADIUS_IN_METERS
-  );
-};
-
-const computeHeading = (startLocation: LatLng, endLocation: LatLng) => {
-  const fromLat = degToRad(startLocation.latitude);
-  const fromLng = degToRad(startLocation.longitude);
-  const toLat = degToRad(endLocation.latitude);
-  const toLng = degToRad(endLocation.longitude);
-  const dLng = toLng - fromLng;
-  const heading = Math.atan2(
-    Math.sin(dLng) * Math.cos(toLat),
-    Math.cos(fromLat) * Math.sin(toLat) - Math.sin(fromLat) * Math.cos(toLat) * Math.cos(dLng),
-  );
-
-  const wrap = (n: number, min: number, max: number) => {
-    const mod = (x: number, m: number) => ((x % m) + m) % m;
-
-    return n >= min && n < max ? n : mod(n - min, max - min) + min;
-  };
-
-  return wrap(radToDeg(heading), -180, 180);
-};
-
-const computeOffset = (startLocation: LatLng, distance: number, heading: number): LatLng => {
-  const d = distance / EARTH_RADIUS_IN_METERS;
-  const h = degToRad(heading);
-  const startLatRad = degToRad(startLocation.latitude);
-  const startLngRad = degToRad(startLocation.longitude);
-  const cosDistance = Math.cos(d);
-  const sinDistance = Math.sin(d);
-  const sinStartLatRad = Math.sin(startLatRad);
-  const cosStartLatRad = Math.cos(startLatRad);
-  const sinLat = cosDistance * sinStartLatRad + sinDistance * cosStartLatRad * Math.cos(h);
-  const dLng = Math.atan2(sinDistance * cosStartLatRad * Math.sin(h), cosDistance - sinStartLatRad * sinLat);
-
-  return { latitude: radToDeg(Math.asin(sinLat)), longitude: radToDeg(startLngRad + dLng) };
-};
-
-const getDirection = (startLocation: LatLng, endLocation: LatLng) => {
-  let radians = Math.atan2(
-    endLocation.longitude - startLocation.longitude,
-    endLocation.latitude - startLocation.latitude,
-  );
-  if (radians < 0) {
-    radians = radians + 2 * Math.PI;
+  for (let t = 0; t <= 1; t += step) {
+    const x = (1 - t) ** 2 * startPoint.latitude + 2 * (1 - t) * t * controlPoint.latitude + t ** 2 * endPoint.latitude;
+    const y =
+      (1 - t) ** 2 * startPoint.longitude + 2 * (1 - t) * t * controlPoint.longitude + t ** 2 * endPoint.longitude;
+    const coord = { latitude: x, longitude: y };
+    points.push(coord);
   }
 
-  const val = Math.floor(radToDeg(radians) / 22.5 + 0.5);
-  const directions = [
-    'N',
-    'NNE',
-    'NE',
-    'ENE',
-    'E',
-    'ESE',
-    'SE',
-    'SSE',
-    'S',
-    'SSW',
-    'SW',
-    'WSW',
-    'W',
-    'WNW',
-    'NW',
-    'NNW',
-  ];
-  return directions[val % 16];
+  return points;
+}
+
+const calculateControlPoint = (startPoint: LatLng, endPoint: LatLng): LatLng => {
+  const latitdudeDelta = endPoint.latitude - startPoint.latitude;
+  const longitudeDelta = endPoint.longitude - startPoint.longitude;
+
+  const d = Math.sqrt(latitdudeDelta ** 2 + longitudeDelta ** 2);
+  const h = d * arcHeight;
+
+  const angle = getAngleBetweenPoints(startPoint, endPoint);
+  let w = d / 2;
+  if (angle > 180 && angle < 360) {
+    w *= -1;
+  }
+
+  const x_m = (startPoint.latitude + endPoint.latitude) / 2;
+  const y_m = (startPoint.longitude + endPoint.longitude) / 2;
+  const x_c = x_m + ((h * longitudeDelta) / (2 * Math.sqrt(latitdudeDelta ** 2 + longitudeDelta ** 2))) * (w / d);
+  const y_c = y_m - ((h * latitdudeDelta) / (2 * Math.sqrt(latitdudeDelta ** 2 + longitudeDelta ** 2))) * (w / d);
+
+  return { latitude: x_c, longitude: y_c };
 };
 
-const drawArcPolyline = (startLocation: LatLng, endLocation: LatLng) => {
-  // Curve line - set this between 0.2 to 0.5 for better results
-  const curveLine = 0.3;
-
-  const distance = computeDistance(startLocation, endLocation);
-  const heading = computeHeading(startLocation, endLocation);
-
-  // Calculate the midpoint
-  const p = computeOffset(startLocation, distance * 0.5, heading);
-
-  // Calcualte the position of the circle center
-  const x = ((1 - curveLine * curveLine) * distance * 0.5) / (2 * curveLine);
-  const r = ((1 + curveLine * curveLine) * distance * 0.5) / (2 * curveLine);
-  const direction = getDirection(startLocation, endLocation);
-  const angle =
-    direction === 'W' || direction === 'NW' || direction === 'WNW' || direction === 'SW' || direction === 'WSW'
-      ? -90
-      : 90;
-  const c = computeOffset(p, x, heading + angle);
-
-  // Calculate the heading between center of the circle and two points
-  const headingStart = computeHeading(c, startLocation);
-  const headingEnd = computeHeading(c, endLocation);
-
-  const numpoints = 50;
-  const step = (headingEnd - headingStart) / numpoints;
-
-  const result: LatLng[] = [];
-
-  for (let i = 0; i < numpoints; i++) {
-    result.push(computeOffset(c, r, headingStart + i * step));
-  }
-  result.push(endLocation);
-
-  return result;
+const drawArcPolyline = (startPoint: LatLng, endPoint: LatLng) => {
+  const controlPoint = calculateControlPoint(startPoint, endPoint);
+  return quadraticBezierCurve(startPoint, endPoint, controlPoint);
 };
 
 export { drawArcPolyline };
