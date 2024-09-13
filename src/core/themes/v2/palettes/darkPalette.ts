@@ -30,6 +30,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerCo
   textTitleColor: '#ACACAC',
   draggableColor: '#3C3C432B', // with opacity
   circleSeparatorColor: '#C1C9CA',
+  textLinkColor: '#5295F7',
   weakShadowColor: 'rgba(0, 0, 0, 0.02)',
   strongShadowColor: 'rgba(0, 0, 0, 0.04)',
 };

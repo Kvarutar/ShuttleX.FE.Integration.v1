@@ -6,6 +6,6 @@ export type CheckBoxProps = {
   text?: string;
   children?: React.ReactNode;
   textStyle?: StyleProp<TextStyle>;
-  getCheckValue: (text: boolean) => void;
-  error?: { isError: boolean; message: string };
+  onChange: (isChecked: boolean) => void;
+  error?: { isError: boolean; message?: string };
 };

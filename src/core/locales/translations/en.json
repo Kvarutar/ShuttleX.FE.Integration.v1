@@ -44,5 +44,18 @@
   "AddPayment_headerTitle": "Add Card",
   "AddPayment_saveButton": "Save card",
   "Notifications_GroupedButton_firstButton": "General",
-  "Notifications_GroupedButton_secondButton": "Personal"
+  "Notifications_GroupedButton_secondButton": "Personal",
+  "SignUp_firstPartHeader": "The Most",
+  "SignUp_secondPartHeader": "Innovative Taxi",
+  "SignUp_nameInputPlaceholder": "Preferable first name",
+  "SignUp_emailInputPlaceholder": "Email",
+  "SignUp_incorrectName": "Name must be between 2 and 30 characters",
+  "SignUp_incorrectEmail": "Enter correct Email",
+  "SignUp_agreeCheckBox": "I agree with the",
+  "SignUp_allowProcessCheckBox": "I allow to process",
+  "SignUp_termsAndConditionsCheckBox": "Terms & Conditions....",
+  "SignUp_personalDataCheckBox": "my personal data",
+  "SignUp_nextButton": "Next",
+  "SignUp_haveAccount": "Already have an account?",
+  "SignUp_signInButton": "Sign In"
 }

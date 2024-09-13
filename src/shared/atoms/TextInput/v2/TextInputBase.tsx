@@ -67,6 +67,9 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
         marginBottom: error.isError && error.message ? 12 : 0,
         fontFamily: isInputFilled ? 'Inter Medium' : 'Inter Regular',
       },
+      input: {
+        color: colors.textPrimaryColor,
+      },
       focused: {
         borderColor: colors.primaryColor,
       },
@@ -81,7 +84,7 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
           style={[styles.inputContainer, computedStyles.inputContainer, isFocused ? computedStyles.focused : {}, style]}
         >
           <TextInputNative
-            style={[styles.input, style]}
+            style={[styles.input, computedStyles.input, style]}
             placeholderTextColor={colors.textSecondaryColor}
             cursorColor={colors.textPrimaryColor}
             placeholder={placeholder}

@@ -26,7 +26,7 @@ const CheckBoxWithHooks = ({ themeName }: { themeName: ThemeContextTypeV1['theme
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <CheckBox getCheckValue={() => {}} />;
+  return <CheckBox onChange={() => {}} />;
 };
 
 type Story = StoryObj<typeof CheckBox>;

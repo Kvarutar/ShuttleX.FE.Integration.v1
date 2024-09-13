@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Keyboard, type LayoutRectangle, Pressable, StyleSheet, View } from 'react-native';
-import { Shadow } from 'react-native-shadow-2';
+import { Keyboard, Pressable, StyleSheet, View } from 'react-native';
 
 import { indexOfNotFound } from '../../../core/monkey-patch/array.helper';
-import { defaultShadow } from '../../../core/themes/shadows';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../core/themes/v2/themeContext';
 import Text from '../../atoms/Text';
-import TextInputV1 from '../../atoms/TextInput/v1';
-import { TextInputV1InputMode, type TextInputV1Props } from '../../atoms/TextInput/v1/props';
+import { type TextInputV1Props } from '../../atoms/TextInput/v1/props';
+import TextInput from '../../atoms/TextInput/v2';
+import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
 import { countryFlags } from '../../icons/Flags';
 import ShortArrowIcon from '../../icons/ShortArrowIcon';
 import { type PhoneInputProps } from './props';
@@ -19,13 +18,12 @@ const PhoneInput = ({
   flagState,
   error = { isError: false, message: '' },
 }: PhoneInputProps): JSX.Element => {
-  const [inputContainerLayout, setInputContainerLayout] = useState<LayoutRectangle | null>(null);
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [onlyNumbersInputValue, setOnlyNumbersInputValue] = useState('');
   const [isInputDone, setIsInputDone] = useState(false);
 
-  const { colors, themeMode } = useThemeV1();
+  const { colors } = useTheme();
 
   useEffect(() => {
     if (flagState) {
@@ -39,7 +37,7 @@ const PhoneInput = ({
     if (onlyNumbersInputValue !== '') {
       getPhoneNumber(inputValue);
     } else {
-      getPhoneNumber(null);
+      getPhoneNumber('');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue, isInputDone]);
@@ -100,14 +98,13 @@ const PhoneInput = ({
   };
 
   const borderColor = error.isError ? colors.errorColor : colors.borderColor;
-  const borderWidth = isInputDone && !isInputFocused && themeMode === 'light' ? 0 : 1;
 
   const computedStyles = StyleSheet.create({
     flagContainer: {
       backgroundColor: colors.backgroundPrimaryColor,
-      borderTopWidth: borderWidth,
-      borderBottomWidth: borderWidth,
-      borderLeftWidth: borderWidth,
+      borderTopWidth: 1,
+      borderBottomWidth: 1,
+      borderLeftWidth: 1,
       borderTopColor: borderColor,
       borderBottomColor: borderColor,
       borderLeftColor: borderColor,
@@ -117,9 +114,6 @@ const PhoneInput = ({
       borderLeftColor: colors.primaryColor,
       borderTopColor: colors.primaryColor,
       borderBottomColor: colors.primaryColor,
-    },
-    input: {
-      borderWidth: borderWidth,
     },
     dropdownContainer: {
       borderColor: colors.primaryColor,
@@ -132,24 +126,13 @@ const PhoneInput = ({
       color: colors.errorColor,
     },
     flagAndInputContainer: {
-      marginBottom: error.isError ? 12 : 0,
+      marginBottom: error.isError && error.message ? 12 : 0,
     },
   });
 
   return (
     <View>
-      <View
-        style={[styles.flagAndInputContainer, computedStyles.flagAndInputContainer, style]}
-        onLayout={event => setInputContainerLayout(event.nativeEvent.layout)}
-      >
-        {isInputDone && !isInputFocused && inputContainerLayout && (
-          <Shadow
-            {...defaultShadow(colors.weakShadowColor)}
-            style={[styles.shadow, { width: inputContainerLayout.width, height: inputContainerLayout.height }]}
-            stretch
-          />
-        )}
-
+      <View style={[styles.flagAndInputContainer, computedStyles.flagAndInputContainer, style]}>
         <Pressable
           style={[
             styles.flagContainer,
@@ -161,10 +144,10 @@ const PhoneInput = ({
           {flagState && countryFlags[flagState.countryCode]}
           <ShortArrowIcon style={styles.shortArrowIcon} />
         </Pressable>
-        <TextInputV1
+        <TextInput
           error={{ isError: error.isError }}
-          style={[styles.input, computedStyles.input]}
-          inputMode={TextInputV1InputMode.Numeric}
+          style={[styles.input]}
+          inputMode={TextInputInputMode.Numeric}
           value={inputValue}
           containerStyle={styles.inputContainerStyle}
           onChangeText={onInputChangeText}
@@ -172,15 +155,14 @@ const PhoneInput = ({
           onBlur={() => setIsInputFocused(false)}
         />
       </View>
-      {error.isError && <Text style={[styles.errorText, computedStyles.errorText]}>{error.message}</Text>}
+      {error.isError && error.message && (
+        <Text style={[styles.errorText, computedStyles.errorText]}>{error.message}</Text>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  shadow: {
-    position: 'absolute',
-  },
   flagAndInputContainer: {
     alignSelf: 'stretch',
     flexDirection: 'row',
@@ -236,9 +218,6 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontSize: 12,
-  },
-  containerInputStyle: {
-    flex: 1,
   },
 });
 

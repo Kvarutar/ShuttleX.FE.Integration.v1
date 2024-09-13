@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../core/themes/v2/themeContext';
 import CheckIcon from '../../icons/CheckIcon';
 import Text from '../Text';
 import { type CheckBoxProps } from './props';
@@ -12,44 +12,47 @@ const CheckBox = ({
   buttonStyle,
   text,
   children,
-  getCheckValue,
+  onChange,
   error = { isError: false, message: '' },
 }: CheckBoxProps): JSX.Element => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleChange = () => {
+    setIsChecked(prev => {
+      const newValue = !prev;
+      onChange(newValue);
+      return newValue;
+    });
+  };
 
   const computedStyles = StyleSheet.create({
     checkButtonContainer: {
       borderColor: error.isError ? colors.errorColor : colors.borderColor,
+      backgroundColor: isChecked ? colors.primaryColor : 'transparent',
     },
     checkBoxText: {
-      color: error.isError ? colors.errorColor : colors.textSecondaryColor,
+      color: error.isError && error.message ? colors.errorColor : colors.textSecondaryColor,
     },
     errorText: {
       color: colors.errorColor,
     },
     checkBoxContainer: {
-      marginBottom: error.isError ? 12 : 0,
+      marginBottom: error.isError && error.message ? 12 : 0,
     },
   });
-
-  const [isChecked, setIsChecked] = useState(false);
-
-  useEffect(() => {
-    getCheckValue(isChecked);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isChecked]);
 
   return (
     <View style={style}>
       <View style={[styles.checkBoxContainer, computedStyles.checkBoxContainer]}>
         <Pressable
-          onPress={() => setIsChecked(prev => !prev)}
+          onPress={handleChange}
           style={[styles.checkButtonContainer, computedStyles.checkButtonContainer, buttonStyle]}
         >
           {isChecked && <CheckIcon />}
         </Pressable>
         {text && (
-          <Pressable onPress={() => setIsChecked(prev => !prev)}>
+          <Pressable onPress={handleChange}>
             <Text numberOfLines={1} style={[styles.checkBoxText, computedStyles.checkBoxText, textStyle]}>
               {text}
             </Text>
@@ -57,7 +60,9 @@ const CheckBox = ({
         )}
         {children}
       </View>
-      {error.isError && <Text style={[styles.errorText, computedStyles.errorText]}>{error.message}</Text>}
+      {error.isError && error.message && (
+        <Text style={[styles.errorText, computedStyles.errorText]}>{error.message}</Text>
+      )}
     </View>
   );
 };

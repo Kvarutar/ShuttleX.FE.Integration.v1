@@ -32,6 +32,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       containerStyle,
       visiblePartStyle,
       hiddenPartStyle,
+      opened = false,
       setIsOpened,
       hiddenPartContainerStyle,
       hiddenPartButton,
@@ -44,8 +45,8 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
   ) => {
     const { colors } = useTheme();
 
-    const progress = useSharedValue(1); // 0 - opened, 1 - closed
-    const isCurrentOpen = useSharedValue(false);
+    const progress = useSharedValue(opened ? 0 : 1); // 0 - opened, 1 - closed
+    const isCurrentOpen = useSharedValue(opened);
 
     const hiddenAnimatedHeight = useSharedValue(0);
     const visibleAnimatedHeight = useSharedValue(0);
@@ -55,7 +56,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       transform: [{ translateY: translateY.value }],
     }));
 
-    const [isShadeVisible, setIsShadeVisible] = useState<boolean>(false);
+    const [isShadeVisible, setIsShadeVisible] = useState<boolean>(opened);
     const [isAlertsVisible, setIsAlertsVisible] = useState(true);
 
     const context = useSharedValue({ y: 0 });

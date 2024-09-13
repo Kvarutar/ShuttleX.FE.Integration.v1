@@ -141,6 +141,7 @@ import DatePicker from './shared/molecules/DatePicker';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
 import Fog from './shared/molecules/Fog';
 import GroupedButtons from './shared/molecules/GroupedButtons';
+import HeaderWithTwoTitles from './shared/molecules/HeaderWithTwoTitles';
 import CustomKeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
 import LocationUnavailable from './shared/molecules/LocationUnavailable';
 import { type LocationUnavailableProps } from './shared/molecules/LocationUnavailable/props';
@@ -148,6 +149,7 @@ import { type MenuNavigation } from './shared/molecules/MenuBase/props';
 import MenuBaseV1 from './shared/molecules/MenuBase/v1';
 import MenuBase from './shared/molecules/MenuBase/v2';
 import PhoneInput from './shared/molecules/PhoneInput';
+import PhoneSlidingPanel from './shared/molecules/PhoneSlidingPanel';
 import Popup from './shared/molecules/Popup';
 import SafeAreaView from './shared/molecules/SafeAreaView';
 import ScrollViewWithCustomScroll from './shared/molecules/ScrollViewWithCustomScroll';
@@ -156,6 +158,7 @@ import SwipeButtonV1 from './shared/molecules/SwipeButton/v1';
 import SwipeButton from './shared/molecules/SwipeButton/v2';
 import TimePicker from './shared/molecules/TimePicker';
 import CountingComponentV1 from './shared/molecules/timerAndStopwatch/CountingComponent/V1';
+import CountingComponent from './shared/molecules/timerAndStopwatch/CountingComponent/V2';
 import StopWatch from './shared/molecules/timerAndStopwatch/StopWatch';
 import TimerV1 from './shared/molecules/timerAndStopwatch/Timer/V1';
 import { TimerV1Modes } from './shared/molecules/timerAndStopwatch/Timer/V1/props';
@@ -170,6 +173,7 @@ import LockOutScreen from './shared/screens/LockOutScreen';
 import { type Notification, NotificationType } from './shared/screens/NotificationsScreen/props';
 import NotificationsScreenV1 from './shared/screens/NotificationsScreen/v1';
 import NotificationsScreen from './shared/screens/NotificationsScreen/v2';
+import SignUpScreen from './shared/screens/SignUpScreen';
 import { minToMilSec } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { useDebounce } from './utils/debounce';
@@ -242,6 +246,7 @@ export {
   CodeInput,
   CodeInputV1,
   ComfortXImage,
+  CountingComponent,
   CountingComponentV1,
   countryDtos,
   type countryDtosProps,
@@ -284,6 +289,7 @@ export {
   GroupedBrandIconMini,
   GroupedBrandIconMiniV1,
   GroupedButtons,
+  HeaderWithTwoTitles,
   i18nIntegration,
   InputXIcon,
   IntegrationModule,
@@ -328,6 +334,7 @@ export {
   PayPalIcon,
   PhoneIcon,
   PhoneInput,
+  PhoneSlidingPanel,
   PickUpIcon,
   PlannedTripAlert,
   type PlannedTripAlertProps,
@@ -354,6 +361,7 @@ export {
   ShortArrowIcon,
   ShortArrowSmallIcon,
   SignalR,
+  SignUpScreen,
   sizes,
   SpinnerIcon,
   SquareButtonModes,

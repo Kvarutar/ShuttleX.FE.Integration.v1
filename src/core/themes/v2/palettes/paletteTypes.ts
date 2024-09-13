@@ -45,6 +45,7 @@ export type Palette = {
   textTitleColor: string;
   draggableColor: string; //TODO: change to design
   circleSeparatorColor: string; //TODO: change to design
+  textLinkColor: string;
   weakShadowColor: string; // specified in rgba, opacity = CSS opacity * 2/3, e.g., 0.03 * 2/3 = 0.02
   strongShadowColor: string; // specified in rgba
   squareButtonModes: PaletteSquareButtonModes;
