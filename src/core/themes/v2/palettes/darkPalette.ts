@@ -18,7 +18,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerCo
   borderDashColor: '#CFCFCF',
   backgroundPrimaryColor: '#121212',
   backgroundSecondaryColor: '#1B1B1B',
-  backgroundTertiaryColor: '#FFFFFF',
+  backgroundTertiaryColor: '#000000',
   iconPrimaryColor: '#FFFFFF',
   iconSecondaryColor: '#C5CACD',
   iconTertiaryColor: '#000000',
@@ -26,8 +26,10 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerCo
   strokeColor: '#B4B4B466',
   textPrimaryColor: '#FFFFFF',
   textSecondaryColor: '#757575',
-  textTertiaryColor: '#000000',
+  textTertiaryColor: '#A5A8A9',
   textTitleColor: '#ACACAC',
+  draggableColor: '#3C3C432B', // with opacity
+  circleSeparatorColor: '#C1C9CA',
   weakShadowColor: 'rgba(0, 0, 0, 0.02)',
   strongShadowColor: 'rgba(0, 0, 0, 0.04)',
 };

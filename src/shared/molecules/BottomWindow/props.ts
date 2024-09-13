@@ -7,4 +7,5 @@ export type BottomWindowProps = {
   showAlerts?: boolean;
   style?: StyleProp<ViewStyle>;
   windowStyle?: StyleProp<ViewStyle>;
+  withShade?: boolean;
 };

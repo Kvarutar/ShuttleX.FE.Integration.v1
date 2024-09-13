@@ -26,7 +26,7 @@ export type Palette = {
   secondaryGradientStartColor: string;
   secondaryGradientEndColor: string;
   errorColor: string;
-  errorColorWithOpacity: string;
+  errorColorWithOpacity: string; //TODO: change to design color
   warningColor: string;
   successColor: string;
   borderColor: string;
@@ -43,6 +43,8 @@ export type Palette = {
   textSecondaryColor: string;
   textTertiaryColor: string;
   textTitleColor: string;
+  draggableColor: string; //TODO: change to design
+  circleSeparatorColor: string; //TODO: change to design
   weakShadowColor: string; // specified in rgba, opacity = CSS opacity * 2/3, e.g., 0.03 * 2/3 = 0.02
   strongShadowColor: string; // specified in rgba
   squareButtonModes: PaletteSquareButtonModes;

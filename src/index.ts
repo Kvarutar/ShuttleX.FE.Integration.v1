@@ -23,6 +23,7 @@ import Blur from './shared/atoms/Blur';
 import ButtonV1 from './shared/atoms/Button/v1';
 import { ButtonV1Modes, ButtonV1Shadows, ButtonV1Shapes } from './shared/atoms/Button/v1/props';
 import Button from './shared/atoms/Button/v2';
+import { type ButtonProps } from './shared/atoms/Button/v2/props';
 import {
   ButtonShadows,
   ButtonShapes,
@@ -32,10 +33,13 @@ import {
 } from './shared/atoms/Button/v2/props';
 import CheckBox from './shared/atoms/Checkbox';
 import Separator from './shared/atoms/Separator';
+import Shade from './shared/atoms/Shade';
 import Text from './shared/atoms/Text';
 import { TextElipsizeMode } from './shared/atoms/Text/props';
 import TextInputV1 from './shared/atoms/TextInput/v1';
 import { TextInputV1InputMode } from './shared/atoms/TextInput/v1/props';
+import TextInput from './shared/atoms/TextInput/v2';
+import { TextInputInputMode } from './shared/atoms/TextInput/v2/props';
 import ApplePayIcon from './shared/icons/ApplePayIcon';
 import ArrowIcon from './shared/icons/ArrowIcon';
 import ArrowInPrimaryColorIcon from './shared/icons/ArrowInPrimaryColorIcon';
@@ -127,7 +131,10 @@ import { type RideHasFinishedAlertProps } from './shared/molecules/alerts/RideHa
 import SecondRideAlert from './shared/molecules/alerts/SecondRideAlert';
 import BottomWindow from './shared/molecules/BottomWindow';
 import BottomWindowWithGesture from './shared/molecules/BottomWindowWithGesture';
-import { type BottomWindowWithGestureRef } from './shared/molecules/BottomWindowWithGesture/props';
+import {
+  type BottomWindowWithGestureProps,
+  type BottomWindowWithGestureRef,
+} from './shared/molecules/BottomWindowWithGesture/props';
 import CodeInputV1 from './shared/molecules/CodeInput/v1';
 import CodeInput from './shared/molecules/CodeInput/v2';
 import DatePicker from './shared/molecules/DatePicker';
@@ -205,10 +212,12 @@ export {
   Blur,
   BottomWindow,
   BottomWindowWithGesture,
+  type BottomWindowWithGestureProps,
   type BottomWindowWithGestureRef,
   BrandFavIcon,
   BrandTextIcon,
   Button,
+  type ButtonProps,
   ButtonShadows,
   ButtonShapes,
   ButtonSizes,
@@ -341,6 +350,7 @@ export {
   ScrollViewWithCustomScroll,
   SecondRideAlert,
   Separator,
+  Shade,
   ShortArrowIcon,
   ShortArrowSmallIcon,
   SignalR,
@@ -360,6 +370,8 @@ export {
   TeslaXImage,
   Text,
   TextElipsizeMode,
+  TextInput,
+  TextInputInputMode,
   TextInputV1,
   TextInputV1InputMode,
   type ThemeContextType,

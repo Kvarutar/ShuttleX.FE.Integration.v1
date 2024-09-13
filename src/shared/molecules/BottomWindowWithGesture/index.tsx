@@ -14,9 +14,8 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import sizes from '../../../core/themes/sizes';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import Blur from '../../atoms/Blur';
-import Separator from '../../atoms/Separator';
+import { useTheme } from '../../../core/themes/v2/themeContext';
+import Shade from '../../atoms/Shade';
 import BottomWindow from '../BottomWindow';
 import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type BottomWindowWithGestureProps, type BottomWindowWithGestureRef } from './props';
@@ -38,10 +37,12 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       hiddenPartButton,
       bottomWindowStyle,
       withHiddenPartScroll = true,
+      withShade = false,
+      maxHeight = 0.93,
     },
     ref,
   ) => {
-    const { colors } = useThemeV1();
+    const { colors } = useTheme();
 
     const progress = useSharedValue(1); // 0 - opened, 1 - closed
     const isCurrentOpen = useSharedValue(false);
@@ -54,25 +55,25 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       transform: [{ translateY: translateY.value }],
     }));
 
-    const [isBlur, setIsBlur] = useState<boolean>(false);
+    const [isShadeVisible, setIsShadeVisible] = useState<boolean>(false);
     const [isAlertsVisible, setIsAlertsVisible] = useState(true);
 
     const context = useSharedValue({ y: 0 });
 
     useImperativeHandle(ref, () => ({
       closeWindow: () => {
-        runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
+        runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
         runOnJS(setIsAlertsVisible)(true);
       },
       openWindow: () => {
-        runOnJS(onWindowStateChange)({ isOpened: true, isCurrentBlur: true });
+        runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
         runOnJS(setIsAlertsVisible)(false);
       },
     }));
 
     const onWindowStateChange = useCallback(
-      ({ isOpened, isCurrentBlur }: { isOpened: boolean; isCurrentBlur: boolean }) => {
-        setIsBlur(isCurrentBlur);
+      ({ isOpened, isCurrentShade }: { isOpened: boolean; isCurrentShade: boolean }) => {
+        setIsShadeVisible(isCurrentShade);
         setIsOpened?.(isOpened);
         progress.value = withTiming(isOpened ? 0 : 1, { duration });
         isCurrentOpen.value = isOpened;
@@ -102,22 +103,22 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       })
       .onEnd(() => {
         if (progress.value > 0.5) {
-          runOnJS(onWindowStateChange)({ isOpened: false, isCurrentBlur: false });
+          runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
           runOnJS(setIsAlertsVisible)(true);
         } else if (progress.value < 0.5) {
-          runOnJS(onWindowStateChange)({ isOpened: true, isCurrentBlur: true });
+          runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
         }
       });
 
     const computedStyles = StyleSheet.create({
       bottom: {
-        maxHeight: height * 0.8,
+        maxHeight: height * maxHeight,
       },
       draggableElement: {
-        backgroundColor: colors.textSecondaryColor,
+        backgroundColor: colors.draggableColor,
       },
-      separator: {
-        borderColor: colors.strokeColor,
+      visiblePart: {
+        marginTop: visiblePart ? 14 : 6,
       },
     });
     const onHiddenPartLayout = (e: LayoutChangeEvent) => {
@@ -130,7 +131,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
 
     return (
       <>
-        {isBlur && <Blur />}
+        {isShadeVisible && withShade && <Shade />}
         <Animated.View
           style={[styles.animatedWrapper, bottomWindowAnimatedStyle, containerStyle]}
           exiting={FadeOut}
@@ -147,7 +148,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
                 <View style={styles.draggableZone}>
                   <View style={[styles.draggableElement, computedStyles.draggableElement]} />
                 </View>
-                <View style={[styles.visiblePart, visiblePartStyle]}>{visiblePart}</View>
+                <View style={[styles.visiblePart, computedStyles.visiblePart, visiblePartStyle]}>{visiblePart}</View>
               </Animated.View>
             </GestureDetector>
             <Animated.View onLayout={onHiddenPartLayout} style={styles.hiddenWrapper}>
@@ -166,12 +167,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
                   <View style={hiddenPartStyle}>{hiddenPart}</View>
                 )}
               </View>
-              {hiddenPartButton && (
-                <>
-                  <Separator style={styles.buttonSeparator} />
-                  {hiddenPartButton}
-                </>
-              )}
+              {hiddenPartButton && <>{hiddenPartButton}</>}
             </Animated.View>
           </BottomWindow>
         </Animated.View>
@@ -193,10 +189,9 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   draggableZone: {
-    position: 'absolute',
     left: 0,
     right: 0,
-    top: 10,
+    top: 6,
     alignItems: 'center',
   },
   hiddenScrollWrapper: {
@@ -204,27 +199,18 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   draggableElement: {
-    width: 33,
-    height: 2,
+    width: 36,
+    height: 5,
     borderRadius: 5,
   },
   window: {
     paddingVertical: 0,
   },
   visiblePart: {
-    marginTop: sizes.paddingVertical,
-    paddingBottom: sizes.paddingVertical,
+    paddingBottom: 8,
   },
   scrollBar: {
     right: -sizes.paddingHorizontal / 2,
-  },
-  separator: {
-    marginBottom: 30,
-    flex: 0,
-  },
-  buttonSeparator: {
-    marginVertical: 20,
-    flex: 0,
   },
   hiddenWrapper: {
     paddingBottom: sizes.paddingVertical,
