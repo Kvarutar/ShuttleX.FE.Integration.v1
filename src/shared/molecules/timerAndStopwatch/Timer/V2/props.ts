@@ -9,7 +9,6 @@ export type TimerSizesType = Record<
     marksHeight: number;
     textFontSize: number;
     marksWidth: number;
-    opacity: number;
     padding: number;
     lineHeight: number;
   }
@@ -40,6 +39,5 @@ export type TimerProps = {
   };
   sizeMode: TimerSizesModes;
   colorMode: TimerColorModes;
-  text?: string;
   withCountdown?: boolean;
 };

@@ -85,32 +85,32 @@ const circleButtonModes: PaletteCircleButtonModes = {
 const timerColorModes: PaletteTimerModes = {
   mode1: {
     backgroundColor: colors.primaryColor,
-    textColor: colors.textPrimaryColor,
-    strokeColor: colors.strokeColor,
+    textColor: '#000000',
+    strokeColor: '#9797972E',
     lineColor: colors.errorColor,
   },
   mode2: {
     backgroundColor: colors.backgroundPrimaryColor,
     textColor: colors.textPrimaryColor,
-    strokeColor: colors.borderDashColor,
+    strokeColor: '#9797972E',
     lineColor: colors.iconPrimaryColor,
   },
   mode3: {
     backgroundColor: colors.errorColor,
-    textColor: colors.textTertiaryColor,
-    strokeColor: colors.iconTertiaryColor,
+    textColor: colors.outlineColor,
+    strokeColor: '#FFFFFF2E',
     lineColor: colors.primaryColor,
   },
   mode4: {
-    backgroundColor: colors.backgroundTertiaryColor,
-    textColor: colors.iconTertiaryColor,
-    strokeColor: colors.strokeColor,
+    backgroundColor: colors.iconPrimaryColor,
+    textColor: '#FFFFFF',
+    strokeColor: '#9797972E',
     lineColor: colors.errorColor,
   },
   mode5: {
     backgroundColor: colors.errorColor,
     textColor: colors.textPrimaryColor,
-    strokeColor: colors.strokeColor,
+    strokeColor: '#9797972E',
     lineColor: colors.iconPrimaryColor,
   },
 };

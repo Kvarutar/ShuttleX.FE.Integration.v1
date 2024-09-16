@@ -28,11 +28,11 @@ const CountingComponentWithoutI18n: React.FC<CountingComponentProps> = ({
 }) => {
   const [timeLeft, setTimeLeft] = useState(() => calculateTime(time));
   const [elapsedTime, setElapsedTime] = useState(0);
+  const [isCountingForward, setIsCountingForward] = useState(false);
   const { t } = useTranslation();
 
   const getTimeContent = () => {
-    if (isWaiting) {
-      //if isWaiting true - timer goes ahead
+    if (isCountingForward) {
       const elapsedMinutes = Math.floor(elapsedTime / 60);
       return { content: elapsedMinutes.toString(), label: t('minutes_abbrev') };
     } else {
@@ -49,7 +49,7 @@ const CountingComponentWithoutI18n: React.FC<CountingComponentProps> = ({
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
-    if (isWaiting && onAfterCountdownEnds) {
+    if (isCountingForward) {
       interval = setInterval(() => {
         setElapsedTime(prevTime => prevTime + 60);
       }, 60000);
@@ -62,18 +62,20 @@ const CountingComponentWithoutI18n: React.FC<CountingComponentProps> = ({
         if (difference <= 0) {
           onAfterCountdownEnds?.();
           clearInterval(interval);
+          if (isWaiting) {
+            setIsCountingForward(true);
+          }
         } else {
           setTimeLeft(calculateTime(difference));
         }
       };
 
       updateTime();
-
       interval = setInterval(updateTime, 1000);
     }
 
     return () => clearInterval(interval);
-  }, [time, onAfterCountdownEnds, isWaiting]);
+  }, [time, onAfterCountdownEnds, isWaiting, isCountingForward]);
 
   const { content, label } = getTimeContent();
 
@@ -84,7 +86,7 @@ const CountingComponentWithoutI18n: React.FC<CountingComponentProps> = ({
       ) : (
         <View style={styles.timeUnitContainer}>
           <Text style={style?.timerNumText}>{content}</Text>
-          <Text style={style?.timerSecondaryText}>{label}</Text>
+          <Text style={[style?.timerSecondaryText, styles.timerSecondaryText]}>{label}</Text>
         </View>
       )}
     </View>
@@ -106,6 +108,9 @@ const styles = StyleSheet.create({
   timeUnitContainer: {
     alignItems: 'center',
     marginHorizontal: 4,
+  },
+  timerSecondaryText: {
+    opacity: 0.31,
   },
 });
 

@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
+  cancelAnimation,
   Easing,
   interpolate,
-  interpolateColor,
   type SharedValue,
   useAnimatedProps,
   useDerivedValue,
@@ -17,7 +17,6 @@ const AnimatedLine = Animated.createAnimatedComponent(Line);
 
 //comp for animated marks
 const AnimatedLineComponent = ({
-  strokeColor,
   markAngle,
   progressAngle,
   marksColor,
@@ -30,7 +29,6 @@ const AnimatedLineComponent = ({
 }: {
   progressAngle: Readonly<SharedValue<number>>;
   markAngle: number;
-  strokeColor: string;
   marksColor: string;
   marksWidth: number;
   marksHeight: number;
@@ -53,8 +51,11 @@ const AnimatedLineComponent = ({
       [0, 1],
       'clamp',
     );
+
+    const strokeOpacity = interpolate(activationProgress, [0, 1], [0.25, 1]);
+
     return {
-      stroke: interpolateColor(activationProgress, [0.99, 1], [strokeColor, marksColor]),
+      strokeOpacity,
       strokeWidth: marksWidth,
     };
   });
@@ -69,7 +70,9 @@ const AnimatedLineComponent = ({
   const x2 = centerX + (radius - strokeWidth / 2 + marksHeight) * Math.cos(angleInRadians);
   const y2 = centerY + (radius - strokeWidth / 2 + marksHeight) * Math.sin(angleInRadians);
 
-  return <AnimatedLine key={index} x1={x1} y1={y1} x2={x2} y2={y2} animatedProps={animatedLineProps} />;
+  return (
+    <AnimatedLine key={index} x1={x1} y1={y1} x2={x2} y2={y2} animatedProps={animatedLineProps} stroke={marksColor} />
+  );
 };
 
 interface CircularTimerIconProps {
@@ -78,9 +81,9 @@ interface CircularTimerIconProps {
   strokeWidth: number;
   marksWidth: number;
   marksHeight: number;
-  opacity: number;
   strokeColor: string;
   marksColor: string;
+  isCountingForward: boolean;
   padding: number;
   lineHeight: number;
   lineColor?: string;
@@ -89,7 +92,7 @@ interface CircularTimerIconProps {
 const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
   initTime,
   size,
-  opacity,
+  isCountingForward,
   strokeWidth,
   strokeColor,
   marksColor,
@@ -111,12 +114,23 @@ const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
   const progress = useSharedValue(0);
   const progressAngle = useDerivedValue(() => progress.value * 360);
 
+  const restartAnimation = useCallback(
+    (isForward: boolean) => {
+      cancelAnimation(progress);
+      const targetValue = isForward ? 1 : 0;
+      const time = isForward ? 1200000 : initTime;
+      progress.value = isForward ? 0 : 1;
+      progress.value = withTiming(targetValue, {
+        duration: time,
+        easing: Easing.linear,
+      });
+    },
+    [initTime, progress],
+  );
+
   useEffect(() => {
-    progress.value = withTiming(1, {
-      duration: initTime,
-      easing: Easing.linear,
-    });
-  }, [initTime, progress]);
+    restartAnimation(isCountingForward);
+  }, [restartAnimation, isCountingForward]);
 
   const progressIndicatorProps = useAnimatedProps(() => {
     const angle = progress.value * 2 * Math.PI - Math.PI / 2;
@@ -154,7 +168,6 @@ const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
             fill="transparent"
             animatedProps={animatedCircleProps}
             strokeLinecap="butt"
-            strokeOpacity={opacity}
           />
         </G>
         <AnimatedLine stroke={lineColor} strokeWidth={2} animatedProps={progressIndicatorProps} />
@@ -166,7 +179,6 @@ const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
             strokeWidth={strokeWidth}
             marksWidth={marksWidth}
             marksHeight={marksHeight}
-            strokeColor={strokeColor}
             markAngle={markAngle}
             progressAngle={progressAngle}
             marksColor={marksColor}

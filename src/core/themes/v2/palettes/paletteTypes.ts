@@ -11,7 +11,7 @@ export type PaletteButtonMode = {
 export type PaletteTimerMode = {
   backgroundColor: string;
   textColor: string;
-  strokeColor?: string;
+  strokeColor: string;
   lineColor?: string;
 };
 

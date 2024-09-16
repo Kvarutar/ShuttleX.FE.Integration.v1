@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { lightPalette } from '../../../../../core/themes/v2/palettes/lightPalette';
@@ -14,7 +15,6 @@ const timerSizes: TimerSizesType = {
     textFontSize: 17,
     marksHeight: 6,
     marksWidth: 1.6,
-    opacity: 0.38,
     padding: 6,
     lineHeight: 10,
   },
@@ -25,7 +25,6 @@ const timerSizes: TimerSizesType = {
     textFontSize: 30,
     marksHeight: 10,
     marksWidth: 2.7,
-    opacity: 0.48,
     padding: 8,
     lineHeight: 13,
   },
@@ -40,33 +39,30 @@ const timerSizes: TimerSizesType = {
  * @param {object} [style] - Custom styles for the timer.
  * @param {TimerSizesModes} sizeMode - The size of the timer, either `Normal` or `Big`.
  * @param {TimerColorModes} colorMode - Defines the color mode for the timer and its elements.
- * @param {string} [text] - Static text to display instead of the countdown timer.
  * @param {boolean} [withCountdown=true] - Set to `true` to display a countdown timer.
  */
 const Timer = ({
   time, // milliseconds
   onAfterCountdownEnds,
-  isWaiting = false,
+  isWaiting,
   style,
   sizeMode = TimerSizesModes.S,
   colorMode = TimerColorModes.Mode1,
-  text,
   withCountdown = true,
 }: TimerProps) => {
   const { colors } = useTheme();
+  const [isCountingForward, setIsCountingForward] = useState(false); // To manage forward counting state
 
-  const {
-    iconStrokeWidth,
-    timerSize,
-    numFontSize,
-    textFontSize,
-    marksHeight,
-    marksWidth,
-    opacity,
-    padding,
-    lineHeight,
-  } = timerSizes[sizeMode];
+  const { iconStrokeWidth, timerSize, numFontSize, textFontSize, marksHeight, marksWidth, padding, lineHeight } =
+    timerSizes[sizeMode];
   const { backgroundColor, textColor, strokeColor, lineColor } = lightPalette.timerColorModes[colorMode];
+
+  const handleCountdownEnd = () => {
+    onAfterCountdownEnds?.();
+    if (isWaiting) {
+      setIsCountingForward(true);
+    }
+  };
 
   const computedStyles = StyleSheet.create({
     timerWrapper: {
@@ -86,7 +82,6 @@ const Timer = ({
     timerSecondaryText: {
       color: textColor,
       fontSize: textFontSize,
-      opacity: opacity,
     },
   });
 
@@ -95,23 +90,22 @@ const Timer = ({
       <CircularTimerIcon
         initTime={time}
         size={timerSize}
+        isCountingForward={isCountingForward}
         strokeWidth={iconStrokeWidth}
         marksHeight={marksHeight}
         marksWidth={marksWidth}
-        opacity={opacity}
         padding={padding}
         lineHeight={lineHeight}
         lineColor={lineColor}
-        strokeColor={strokeColor ? strokeColor : '#979797'}
+        strokeColor={strokeColor}
         marksColor={textColor}
       />
       {withCountdown && (
         <View style={[StyleSheet.absoluteFill, styles.timerTextWrapper]}>
           <CountingComponent
             time={time}
-            text={text}
             isWaiting={isWaiting}
-            onAfterCountdownEnds={onAfterCountdownEnds}
+            onAfterCountdownEnds={handleCountdownEnd}
             style={{
               timerNumText: [computedStyles.timerNumText, style?.timerNumText],
               timerSecondaryText: [computedStyles.timerSecondaryText, style?.timerSecondaryText],
