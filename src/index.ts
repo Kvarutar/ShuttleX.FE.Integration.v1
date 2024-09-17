@@ -54,7 +54,9 @@ import ClockIcon from './shared/icons/ClockIcon';
 import ClockIcon2 from './shared/icons/ClockIcon2';
 import CloseIcon from './shared/icons/CloseIcon';
 import CloseIconMini from './shared/icons/CloseIconMini';
+import CreditCardIcon from './shared/icons/CreditCardIcon';
 import CreditCheckIcon from './shared/icons/CreditCheckIcon';
+import CryptoIcon from './shared/icons/CryptoIcon';
 import CurrencyIcon from './shared/icons/CurrencyIcon';
 import DislikeIcon from './shared/icons/DislikeIcon';
 import DocumentIcon from './shared/icons/DocumentIcon';
@@ -146,7 +148,6 @@ import CustomKeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView'
 import LocationUnavailable from './shared/molecules/LocationUnavailable';
 import { type LocationUnavailableProps } from './shared/molecules/LocationUnavailable/props';
 import { type MenuNavigation } from './shared/molecules/MenuBase/props';
-import MenuBaseV1 from './shared/molecules/MenuBase/v1';
 import MenuBase from './shared/molecules/MenuBase/v2';
 import PhoneInput from './shared/molecules/PhoneInput';
 import PhoneSlidingPanel from './shared/molecules/PhoneSlidingPanel';
@@ -252,7 +253,9 @@ export {
   type countryDtosProps,
   countryFlags,
   createAxiosInstance,
+  CreditCardIcon,
   CreditCheckIcon,
+  CryptoIcon,
   CurrencyIcon,
   CustomKeyboardAvoidingView,
   DatePicker,
@@ -312,7 +315,6 @@ export {
   type MapViewProps,
   MasterCardIcon,
   MenuBase,
-  MenuBaseV1,
   MenuIcon,
   type MenuNavigation,
   MenuUserImage,
