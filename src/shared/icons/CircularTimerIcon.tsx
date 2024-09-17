@@ -112,20 +112,30 @@ const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
   const minuteMarks = Array.from({ length: numMarks }, (_, i) => (i / numMarks) * 360);
 
   const progress = useSharedValue(0);
+  const startTime = useSharedValue(Date.now());
   const progressAngle = useDerivedValue(() => progress.value * 360);
 
   const restartAnimation = useCallback(
     (isForward: boolean) => {
+      const currentTime = Date.now();
+      const elapsedTime = currentTime - startTime.value;
+
+      startTime.value = currentTime;
+
       cancelAnimation(progress);
+
+      const remainingTime = Math.max(initTime - elapsedTime, 0);
+
       const targetValue = isForward ? 1 : 0;
-      const time = isForward ? 1200000 : initTime;
+      const time = isForward ? 1200000 : remainingTime;
       progress.value = isForward ? 0 : 1;
+
       progress.value = withTiming(targetValue, {
         duration: time,
         easing: Easing.linear,
       });
     },
-    [initTime, progress],
+    [initTime, progress, startTime],
   );
 
   useEffect(() => {

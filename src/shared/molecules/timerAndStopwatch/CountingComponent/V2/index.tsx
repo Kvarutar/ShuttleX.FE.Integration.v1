@@ -65,6 +65,7 @@ const CountingComponentWithoutI18n: React.FC<CountingComponentProps> = ({
           if (isWaiting) {
             setIsCountingForward(true);
           }
+          setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
         } else {
           setTimeLeft(calculateTime(difference));
         }
