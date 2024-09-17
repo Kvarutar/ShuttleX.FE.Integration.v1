@@ -40,10 +40,12 @@ import TextInputV1 from './shared/atoms/TextInput/v1';
 import { TextInputV1InputMode } from './shared/atoms/TextInput/v1/props';
 import TextInput from './shared/atoms/TextInput/v2';
 import { TextInputInputMode } from './shared/atoms/TextInput/v2/props';
+import ActivityIcon from './shared/icons/ActivityIcon';
 import ApplePayIcon from './shared/icons/ApplePayIcon';
 import ArrowIcon from './shared/icons/ArrowIcon';
 import ArrowInPrimaryColorIcon from './shared/icons/ArrowInPrimaryColorIcon';
 import BaggageIcon from './shared/icons/BaggageIcon';
+import BecomeDriverIcon from './shared/icons/BecomeDriverIcon';
 import BigCameraIcon from './shared/icons/BigCameraIcon';
 import BrandFavIcon from './shared/icons/BrandFavIcon';
 import BrandTextIcon from './shared/icons/BrandTextIcon';
@@ -63,6 +65,7 @@ import DocumentIcon from './shared/icons/DocumentIcon';
 import DropDownIcon from './shared/icons/DropDownArrowIcon';
 import DropOffIcon from './shared/icons/DropOffIcon';
 import EmergencyServiceIcon from './shared/icons/EmergencyServiceIcon';
+import EmojiIcon from './shared/icons/EmojiIcon';
 import ExternalMapIcon from './shared/icons/ExternalMapIcon';
 import FeedbackCleanIcon from './shared/icons/FeedbackCleanIcon';
 import FeedbackDirtyIcon from './shared/icons/FeedbackDirtyIcon';
@@ -72,9 +75,11 @@ import FeedbackThumbDownIcon from './shared/icons/FeedbackThumbDownIcon';
 import FeedbackThumbUpIcon from './shared/icons/FeedbackThumbUpIcon';
 import FeedbackWheelIcon from './shared/icons/FeedbackWheelIcon';
 import { countryFlags } from './shared/icons/Flags';
+import GameIcon from './shared/icons/GameIcon';
 import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
 import GroupedBrandIconMiniV1 from './shared/icons/GroupedBrandIconMini/V1';
 import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
+import HelpIcon from './shared/icons/HelpIcon';
 import InputXIcon from './shared/icons/InputXIcon';
 import Like2Icon from './shared/icons/Like2Icon';
 import LikeIcon from './shared/icons/LikeIcon';
@@ -86,29 +91,36 @@ import MapPinIcon from './shared/icons/MapPinIcon';
 import MasterCardIcon from './shared/icons/MasterCardIcon';
 import MenuIcon from './shared/icons/MenuIcon';
 import MinusIcon from './shared/icons/MinusIcon';
+import MyRideIcon from './shared/icons/MyRideIcon';
 import NotificationIcon from './shared/icons/NotificationIcon';
 import PassengerIcon from './shared/icons/PassengerIcon';
 import PassengerIcon2 from './shared/icons/PassengerIcon2';
 import PayPalIcon from './shared/icons/PayPalIcon';
 import PhoneIcon from './shared/icons/PhoneIcon';
 import PickUpIcon from './shared/icons/PickUpIcon';
+import PlayIcon from './shared/icons/PlayIcon';
 import PlusIcon from './shared/icons/PlusIcon';
+import PlusRoundIcon from './shared/icons/PlusRoundIcon';
 import PreferencesIcon from './shared/icons/PreferencesIcon';
+import ProfileIcon from './shared/icons/ProfileIcon';
 import ProfileIconMini from './shared/icons/ProfileIconMini';
+import PromocodesIcon from './shared/icons/PromocodesIcon';
 import ReportIcon from './shared/icons/ReportIcon';
 import RoundCheckIcon1 from './shared/icons/RoundCheckIcon1';
 import RoundCheckIcon2 from './shared/icons/RoundCheckIcon2';
 import SearchIcon from './shared/icons/SearchIcon';
+import SettingsIcon from './shared/icons/SettingsIcon';
 import ShortArrowIcon from './shared/icons/ShortArrowIcon';
 import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/icons/SpinnerIcon';
 import StarIcon from './shared/icons/StarIcon';
-import StatisticsIcon from './shared/icons/StatitsticsIcon';
+import StatisticsIcon from './shared/icons/StatisticsIcon';
 import SteeringWheelIcon from './shared/icons/SteeringWheelIcon';
 import SuccessIcon from './shared/icons/SuccessIcon';
 import TimeIcon from './shared/icons/TimeIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
 import VisaIcon from './shared/icons/VisaIcon';
+import WalletIcon from './shared/icons/WalletIcon';
 import WarningIcon from './shared/icons/WarningIcon';
 import BasicXImage from './shared/images/BasicXImage';
 import BasicXLImage from './shared/images/BasicXLImage';
@@ -149,8 +161,8 @@ import HeaderWithTwoTitles from './shared/molecules/HeaderWithTwoTitles';
 import CustomKeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
 import LocationUnavailable from './shared/molecules/LocationUnavailable';
 import { type LocationUnavailableProps } from './shared/molecules/LocationUnavailable/props';
+import MenuBase from './shared/molecules/MenuBase';
 import { type MenuNavigation } from './shared/molecules/MenuBase/props';
-import MenuBase from './shared/molecules/MenuBase/v2';
 import PhoneInput from './shared/molecules/PhoneInput';
 import PhoneSlidingPanel from './shared/molecules/PhoneSlidingPanel';
 import Popup from './shared/molecules/Popup';
@@ -202,6 +214,7 @@ import {
 } from './utils/permissions';
 
 export {
+  ActivityIcon,
   AddCardScreen,
   AddCardScreenV1,
   type AlertDescendantProps,
@@ -215,6 +228,7 @@ export {
   BarV1,
   BasicXImage,
   BasicXLImage,
+  BecomeDriverIcon,
   BigCameraIcon,
   Blur,
   BottomWindow,
@@ -270,6 +284,7 @@ export {
   DropOffIcon,
   emailRegex,
   EmergencyServiceIcon,
+  EmojiIcon,
   ExternalMapIcon,
   FeedbackCleanIcon,
   FeedbackDirtyIcon,
@@ -285,6 +300,7 @@ export {
   Fog,
   FreeTimeAlert,
   type FreeTimeAlertProps,
+  GameIcon,
   getAngleBetweenPoints,
   getAxiosErrorInfo,
   getDistanceBetweenPoints,
@@ -295,6 +311,7 @@ export {
   GroupedBrandIconMiniV1,
   GroupedButtons,
   HeaderWithTwoTitles,
+  HelpIcon,
   i18nIntegration,
   InputXIcon,
   IntegrationModule,
@@ -324,6 +341,7 @@ export {
   MenuUserImage2,
   minToMilSec,
   MinusIcon,
+  MyRideIcon,
   nameof,
   type Notification,
   NotificationIcon,
@@ -343,12 +361,16 @@ export {
   PickUpIcon,
   PlannedTripAlert,
   type PlannedTripAlertProps,
+  PlayIcon,
   PlusIcon,
+  PlusRoundIcon,
   Popup,
   PreferencesIcon,
   PremiumXImage,
   PremiumXLImage,
+  ProfileIcon,
   ProfileIconMini,
+  PromocodesIcon,
   radToDeg,
   ReportIcon,
   requestCameraUsagePermission,
@@ -363,6 +385,7 @@ export {
   SearchIcon,
   SecondRideAlert,
   Separator,
+  SettingsIcon,
   Shade,
   ShortArrowIcon,
   ShortArrowSmallIcon,
@@ -407,5 +430,6 @@ export {
   useTheme,
   useThemeV1,
   VisaIcon,
+  WalletIcon,
   WarningIcon,
 };

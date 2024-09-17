@@ -1,33 +1,27 @@
 import { Image, type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 
-import MenuUserImageLineIcon from '../icons/MenuUserImageLineIcon';
+import EmojiIcon from '../icons/EmojiIcon';
 
-const MenuUserImage = ({ url, style }: { url: string; style?: StyleProp<ViewStyle> }) => (
+const MenuUserImage = ({ url, style }: { url?: string; style?: StyleProp<ViewStyle> }) => (
   <View style={[styles.wrapper, style]}>
-    <MenuUserImageLineIcon style={styles.line} />
-    <Image style={styles.image} source={{ uri: url }} />
+    {url ? <Image style={styles.image} source={{ uri: url }} /> : <EmojiIcon />}
   </View>
 );
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: 72,
-    height: 72,
+    width: 62,
+    height: 62,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
   },
   image: {
-    height: 60,
-    width: 60,
-    borderRadius: 17,
+    height: 62,
+    width: 62,
+    borderRadius: 1000,
     objectFit: 'cover',
-  },
-  line: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
   },
 });
 

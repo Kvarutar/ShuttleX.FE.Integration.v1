@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { type StyleProp, type ViewStyle } from 'react-native';
 
-export type MenuNavigationBlocks = 'wallet' | 'notifications' | 'help' | 'subscription' | 'becomeDriver';
+import { type MenuNavigationBlocks } from '../../../utils/menu/type';
 
 export type MenuNavigationContent = {
   navFunc: () => void;

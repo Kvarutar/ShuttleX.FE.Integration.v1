@@ -1,20 +1,21 @@
-import { type ReactNode, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Dimensions, Platform, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import sizes from '../../../../core/themes/sizes';
-import { useTheme } from '../../../../core/themes/v2/themeContext';
-import Blur from '../../../atoms/Blur';
-import Text from '../../../atoms/Text';
-import BecomeDriverIcon from '../../../icons/BecomeDriverIcon';
-import GroupedBrandIconMini from '../../../icons/GroupedBrandIconMini/V2';
-import HelpIcon from '../../../icons/HelpIcon';
-import NotificationIcon from '../../../icons/NotificationIcon';
-import SubscriptionIcon from '../../../icons/SubscriptionIcon';
-import WalletIcon from '../../../icons/WalletIcon';
-import MenuUserImage from '../../../images/MenuUserImage';
-import { type MenuBaseProps, type MenuNavigationBlocks } from '../props';
+import i18nIntegration from '../../../core/locales/i18n';
+import sizes from '../../../core/themes/sizes';
+import { useTheme } from '../../../core/themes/v2/themeContext';
+import { getMenuIcons } from '../../../utils/menu/menuIcons';
+import { type MenuNavigationBlocks } from '../../../utils/menu/type';
+import Blur from '../../atoms/Blur';
+import Text from '../../atoms/Text';
+import GameIcon from '../../icons/GameIcon';
+import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini/V2';
+import PlayIcon from '../../icons/PlayIcon';
+import MenuUserImage from '../../images/MenuUserImage';
+import { type MenuBaseProps } from './props';
 
 const windowSizes = Dimensions.get('window');
 
@@ -26,15 +27,7 @@ const constants = {
   menuWidth: windowSizes.width * 0.7,
 };
 
-const navigationIcons: Record<MenuNavigationBlocks, ReactNode> = {
-  becomeDriver: <BecomeDriverIcon />,
-  help: <HelpIcon />,
-  notifications: <NotificationIcon />,
-  subscription: <SubscriptionIcon />,
-  wallet: <WalletIcon />,
-};
-
-const MenuBase = ({
+const MenuBaseWithoutI18n = ({
   onClose,
   userImageUri,
   userName,
@@ -45,6 +38,8 @@ const MenuBase = ({
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
+  const [selectedItem, setSelectedItem] = useState<string | number>();
+  const { t } = useTranslation();
 
   useEffect(() => {
     translateX.value = withTiming(0, { duration: constants.animationDurations.menu });
@@ -67,8 +62,11 @@ const MenuBase = ({
     container: {
       paddingVertical: Platform.OS === 'android' ? sizes.paddingVertical : 0,
     },
-    signUpLabel: {
-      color: colors.primaryColor,
+    gameButton: {
+      backgroundColor: colors.backgroundSecondaryColor,
+    },
+    greenBackground: {
+      backgroundColor: colors.primaryColor,
     },
   });
 
@@ -85,9 +83,16 @@ const MenuBase = ({
     });
 
   const navigationContent = Object.entries(menuNavigation).map((nav, index) => (
-    <Pressable key={index} style={styles.navigationItem} onPress={nav[1].navFunc}>
-      <View style={styles.navigationItemWrapper}>
-        {navigationIcons[nav[0] as MenuNavigationBlocks]}
+    <Pressable
+      key={index}
+      style={[styles.navigationItem, selectedItem === index && styles.selectedNavigationItem]}
+      onPress={() => {
+        nav[1].navFunc();
+        setSelectedItem(index);
+      }}
+    >
+      <View style={styles.itemsWrapper}>
+        {getMenuIcons(nav[0] as MenuNavigationBlocks)}
         <Text style={styles.navigationItemTitle}>{nav[1].title}</Text>
       </View>
       {nav[1].content}
@@ -100,10 +105,11 @@ const MenuBase = ({
       <GestureDetector gesture={pan}>
         <Animated.View style={[styles.window, animatedStyles, style]}>
           <SafeAreaView style={[styles.wrapper, computedStyles.wrapper]}>
+            <View style={styles.greenBackground} />
             <View style={[styles.container, computedStyles.container]}>
               <View style={styles.content}>
                 <View style={styles.profile}>
-                  <MenuUserImage url={userImageUri ?? ''} />
+                  <MenuUserImage url={userImageUri} style={styles.profileImage} />
                   <View style={styles.nameContainer}>
                     <Text style={styles.name}>{userName ?? ''}</Text>
                     <Text style={styles.surname}>{userSurname ?? ''}</Text>
@@ -112,7 +118,16 @@ const MenuBase = ({
                 {additionalContent}
                 <View style={styles.navigation}>{navigationContent}</View>
               </View>
-              <GroupedBrandIconMini />
+              <View style={styles.bottomButtons}>
+                <Pressable style={[computedStyles.gameButton, styles.gameButton]}>
+                  <View style={styles.itemsWrapper}>
+                    <GameIcon />
+                    <Text>{t('Menu_playGameButton')}</Text>
+                  </View>
+                  <PlayIcon />
+                </Pressable>
+                <GroupedBrandIconMini style={styles.brandIconsStyle} />
+              </View>
             </View>
           </SafeAreaView>
           <Pressable style={styles.outsider} onPress={closeMenu} />
@@ -136,21 +151,33 @@ const styles = StyleSheet.create({
     width: constants.menuWidth,
     height: windowSizes.height,
   },
+  greenBackground: {
+    height: 96,
+    position: 'relative',
+    top: 0,
+    left: 0,
+  },
+  profileImage: {
+    borderRadius: 100,
+  },
+
   container: {
     flex: 1,
-    paddingHorizontal: sizes.paddingHorizontal,
+    position: 'relative',
+    top: -40,
     justifyContent: 'space-between',
+    paddingHorizontal: sizes.paddingHorizontal,
   },
   content: {
-    gap: 40,
+    gap: 26,
   },
   profile: {
-    gap: 12,
-    paddingHorizontal: 32,
+    gap: 22,
+    paddingHorizontal: sizes.paddingHorizontal,
   },
   nameContainer: {
     flexDirection: 'row',
-    paddingTop: 22,
+    gap: 2,
   },
   name: {
     fontFamily: 'Inter Medium',
@@ -161,24 +188,52 @@ const styles = StyleSheet.create({
     fontSize: 21,
   },
   navigation: {
-    gap: 10,
+    gap: 4,
   },
   navigationItem: {
-    paddingHorizontal: 26,
-    paddingVertical: 16,
+    paddingHorizontal: sizes.paddingHorizontal,
+    paddingVertical: 14,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    gap: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'transparent',
   },
+  selectedNavigationItem: {
+    borderWidth: 1,
+    borderColor: '#DEE3E4',
+  },
+
   navigationItemTitle: {
     fontFamily: 'Inter Medium',
     fontSize: 17,
   },
-  navigationItemWrapper: {
+  itemsWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
   },
+  gameButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: sizes.paddingHorizontal,
+    paddingVertical: 12,
+    borderRadius: 12,
+    justifyContent: 'space-between',
+  },
+  bottomButtons: {
+    gap: 17,
+  },
+  brandIconsStyle: {
+    marginLeft: 16,
+  },
 });
+
+const MenuBase = (props: MenuBaseProps) => (
+  <I18nextProvider i18n={i18nIntegration}>
+    <MenuBaseWithoutI18n {...props} />
+  </I18nextProvider>
+);
 
 export default MenuBase;
