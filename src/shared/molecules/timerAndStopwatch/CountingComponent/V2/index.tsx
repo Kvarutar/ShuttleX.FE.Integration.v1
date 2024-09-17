@@ -54,10 +54,8 @@ const CountingComponentWithoutI18n: React.FC<CountingComponentProps> = ({
         setElapsedTime(prevTime => prevTime + 60);
       }, 60000);
     } else {
-      const endTime = Date.now() + time;
-
       const updateTime = () => {
-        const difference = endTime - Date.now();
+        const difference = time - Date.now();
 
         if (difference <= 0) {
           onAfterCountdownEnds?.();

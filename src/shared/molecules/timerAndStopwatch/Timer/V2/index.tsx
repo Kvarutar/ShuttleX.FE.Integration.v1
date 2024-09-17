@@ -42,7 +42,7 @@ const timerSizes: TimerSizesType = {
  * @param {boolean} [withCountdown=true] - Set to `true` to display a countdown timer.
  */
 const Timer = ({
-  time, // milliseconds
+  time, // Date.now() + milliseconds
   onAfterCountdownEnds,
   isWaiting,
   style,
