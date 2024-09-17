@@ -81,6 +81,7 @@ import LikeIcon from './shared/icons/LikeIcon';
 import LocationIcon from './shared/icons/LocationIcon';
 import LockIcon from './shared/icons/LockIcon';
 import MaestroIcon from './shared/icons/MaestroIcon';
+import MapNavigationPlaneIcon from './shared/icons/MapNavigationPlaneIcon';
 import MapPinIcon from './shared/icons/MapPinIcon';
 import MasterCardIcon from './shared/icons/MasterCardIcon';
 import MenuIcon from './shared/icons/MenuIcon';
@@ -97,6 +98,7 @@ import ProfileIconMini from './shared/icons/ProfileIconMini';
 import ReportIcon from './shared/icons/ReportIcon';
 import RoundCheckIcon1 from './shared/icons/RoundCheckIcon1';
 import RoundCheckIcon2 from './shared/icons/RoundCheckIcon2';
+import SearchIcon from './shared/icons/SearchIcon';
 import ShortArrowIcon from './shared/icons/ShortArrowIcon';
 import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/icons/SpinnerIcon';
@@ -310,6 +312,7 @@ export {
   MaestroIcon,
   type MapCameraMode,
   MapCameraModeButton,
+  MapNavigationPlaneIcon,
   MapPinIcon,
   MapView,
   type MapViewProps,
@@ -357,6 +360,7 @@ export {
   RoundCheckIcon2,
   SafeAreaView,
   ScrollViewWithCustomScroll,
+  SearchIcon,
   SecondRideAlert,
   Separator,
   Shade,
