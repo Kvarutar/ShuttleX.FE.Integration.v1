@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Dimensions, Platform, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Dimensions, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
@@ -35,10 +35,10 @@ const MenuBaseWithoutI18n = ({
   additionalContent,
   menuNavigation,
   style,
+  selectedItem,
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
-  const [selectedItem, setSelectedItem] = useState<string | number>();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -59,13 +59,10 @@ const MenuBaseWithoutI18n = ({
     wrapper: {
       backgroundColor: colors.backgroundPrimaryColor,
     },
-    container: {
-      paddingVertical: Platform.OS === 'android' ? sizes.paddingVertical : 0,
-    },
     gameButton: {
       backgroundColor: colors.backgroundSecondaryColor,
     },
-    greenBackground: {
+    primaryColorBackground: {
       backgroundColor: colors.primaryColor,
     },
   });
@@ -82,20 +79,19 @@ const MenuBaseWithoutI18n = ({
       }
     });
 
-  const navigationContent = Object.entries(menuNavigation).map((nav, index) => (
+  const navigationContent = Object.entries(menuNavigation).map(([key, menuitem]) => (
     <Pressable
-      key={index}
-      style={[styles.navigationItem, selectedItem === index && styles.selectedNavigationItem]}
+      key={key}
+      style={[styles.navigationItem, selectedItem === key && styles.selectedNavigationItem]}
       onPress={() => {
-        nav[1].navFunc();
-        setSelectedItem(index);
+        menuitem.navFunc();
       }}
     >
       <View style={styles.itemsWrapper}>
-        {getMenuIcons(nav[0] as MenuNavigationBlocks)}
-        <Text style={styles.navigationItemTitle}>{nav[1].title}</Text>
+        {getMenuIcons(key as MenuNavigationBlocks)}
+        <Text style={styles.navigationItemTitle}>{menuitem.title}</Text>
       </View>
-      {nav[1].content}
+      {menuitem.content}
     </Pressable>
   ));
 
@@ -105,8 +101,8 @@ const MenuBaseWithoutI18n = ({
       <GestureDetector gesture={pan}>
         <Animated.View style={[styles.window, animatedStyles, style]}>
           <SafeAreaView style={[styles.wrapper, computedStyles.wrapper]}>
-            <View style={styles.greenBackground} />
-            <View style={[styles.container, computedStyles.container]}>
+            <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]} />
+            <View style={styles.container}>
               <View style={styles.content}>
                 <View style={styles.profile}>
                   <MenuUserImage url={userImageUri} style={styles.profileImage} />
@@ -151,20 +147,22 @@ const styles = StyleSheet.create({
     width: constants.menuWidth,
     height: windowSizes.height,
   },
-  greenBackground: {
+  primaryColorBackground: {
     height: 96,
     position: 'relative',
     top: 0,
     left: 0,
   },
   profileImage: {
-    borderRadius: 100,
+    borderRadius: 1000,
+    position: 'absolute',
+    top: -40,
+    left: 16,
   },
 
   container: {
     flex: 1,
     position: 'relative',
-    top: -40,
     justifyContent: 'space-between',
     paddingHorizontal: sizes.paddingHorizontal,
   },
@@ -172,10 +170,10 @@ const styles = StyleSheet.create({
     gap: 26,
   },
   profile: {
-    gap: 22,
     paddingHorizontal: sizes.paddingHorizontal,
   },
   nameContainer: {
+    marginTop: sizes.paddingVertical + 22,
     flexDirection: 'row',
     gap: 2,
   },

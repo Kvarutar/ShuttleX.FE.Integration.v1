@@ -200,6 +200,7 @@ import {
   useGeolocationStartWatch,
 } from './utils/geolocation';
 import { IntegrationModule } from './utils/integrationModule';
+import { getMenuIcons } from './utils/menu/menuIcons';
 import { useNetworkConnectionStartWatch } from './utils/network';
 import { getNotificationToken } from './utils/notifications/getNotificationToken';
 import { getPaymentIcon } from './utils/payment/cardIcons';
@@ -304,6 +305,7 @@ export {
   getAngleBetweenPoints,
   getAxiosErrorInfo,
   getDistanceBetweenPoints,
+  getMenuIcons,
   getNotificationToken,
   getPaymentIcon,
   GroupedBrandIcon,

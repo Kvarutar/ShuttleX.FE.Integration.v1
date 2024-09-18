@@ -19,4 +19,5 @@ export type MenuBaseProps = {
   userSurname?: string;
   additionalContent?: ReactNode;
   style?: StyleProp<ViewStyle>;
+  selectedItem: string;
 };
