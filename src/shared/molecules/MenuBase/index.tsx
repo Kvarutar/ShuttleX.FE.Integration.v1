@@ -35,7 +35,7 @@ const MenuBaseWithoutI18n = ({
   additionalContent,
   menuNavigation,
   style,
-  selectedItem,
+  currentRoute,
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
@@ -82,7 +82,7 @@ const MenuBaseWithoutI18n = ({
   const navigationContent = Object.entries(menuNavigation).map(([key, menuitem]) => (
     <Pressable
       key={key}
-      style={[styles.navigationItem, selectedItem === key && styles.selectedNavigationItem]}
+      style={[styles.navigationItem, currentRoute.toLowerCase() === key && styles.selectedNavigationItem]}
       onPress={() => {
         menuitem.navFunc();
       }}
