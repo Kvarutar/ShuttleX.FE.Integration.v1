@@ -8,6 +8,7 @@ import Text from '../../Text';
 import { ButtonV1Modes, type ButtonV1Props, ButtonV1Shadows, ButtonV1Shapes } from './props';
 
 type ButtonStyle = {
+  container?: StyleProp<ViewStyle>;
   button: StyleProp<ViewStyle>;
   text: StyleProp<TextStyle>;
 };
@@ -61,6 +62,16 @@ const ButtonV1 = ({
   const styleHeight = (StyleSheet.flatten(containerStyle)?.height as number) || undefined;
 
   const computedStylesCircleShape: ButtonStyle = StyleSheet.create({
+    container: {
+      height: innerSpacing && styleHeight ? styleHeight - innerSpacing : styleHeight || 48,
+      width: innerSpacing && styleHeight ? styleHeight - innerSpacing : styleHeight || 48,
+      borderColor: borderColor,
+      backgroundColor: disabled
+        ? borderColor
+        : themeMode === 'dark'
+          ? colors.backgroundPrimaryColor
+          : colors.backgroundSecondaryColor,
+    },
     button: {
       height: styleHeight,
       width: styleHeight,
@@ -97,26 +108,7 @@ const ButtonV1 = ({
   );
 
   const containers = {
-    circle: (
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: innerSpacing && styleHeight ? styleHeight - innerSpacing : styleHeight || 48,
-          width: innerSpacing && styleHeight ? styleHeight - innerSpacing : styleHeight || 48,
-          borderColor: borderColor,
-          borderRadius: 1000,
-          borderWidth: 1,
-          backgroundColor: disabled
-            ? borderColor
-            : themeMode === 'dark'
-              ? colors.backgroundPrimaryColor
-              : colors.backgroundSecondaryColor,
-        }}
-      >
-        {renderedChildren}
-      </View>
-    ),
+    circle: <View style={[styles.circleButtonContainer, computedStylesCircleShape.container]}>{renderedChildren}</View>,
     square: renderedChildren,
   };
 
@@ -138,6 +130,12 @@ const ButtonV1 = ({
 };
 
 const styles = StyleSheet.create({
+  circleButtonContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 1000,
+    borderWidth: 1,
+  },
   button: {
     paddingHorizontal: 24,
     borderRadius: 28,

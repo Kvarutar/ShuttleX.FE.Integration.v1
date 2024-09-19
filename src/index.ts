@@ -101,6 +101,7 @@ import PickUpIcon from './shared/icons/PickUpIcon';
 import PlayIcon from './shared/icons/PlayIcon';
 import PlusIcon from './shared/icons/PlusIcon';
 import PlusRoundIcon from './shared/icons/PlusRoundIcon';
+import PointIcon from './shared/icons/PointIcon';
 import PreferencesIcon from './shared/icons/PreferencesIcon';
 import ProfileIcon from './shared/icons/ProfileIcon';
 import ProfileIconMini from './shared/icons/ProfileIconMini';
@@ -366,6 +367,7 @@ export {
   PlayIcon,
   PlusIcon,
   PlusRoundIcon,
+  PointIcon,
   Popup,
   PreferencesIcon,
   PremiumXImage,

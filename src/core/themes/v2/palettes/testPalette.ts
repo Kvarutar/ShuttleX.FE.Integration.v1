@@ -51,6 +51,16 @@ const squareButtonModes: PaletteSquareButtonModes = {
     backgroundColorOnPress: '#E2E2E2',
     textColor: colors.textPrimaryColor,
   },
+  mode4: {
+    backgroundColor: colors.errorColorWithOpacity,
+    backgroundColorOnPress: '#FF4A0033',
+    textColor: colors.errorColor,
+  },
+  mode5: {
+    backgroundColor: colors.backgroundPrimaryColor,
+    backgroundColorOnPress: colors.backgroundSecondaryColor,
+    textColor: colors.textPrimaryColor,
+  },
 };
 
 const circleButtonModes: PaletteCircleButtonModes = {

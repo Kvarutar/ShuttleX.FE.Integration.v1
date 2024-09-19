@@ -1,12 +1,10 @@
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import { defaultShadow } from '../../../../core/themes/shadows';
 import { useTheme } from '../../../../core/themes/v2/themeContext';
-import ButtonV1 from '../../../atoms/Button/v1/index';
-import { ButtonV1Modes } from '../../../atoms/Button/v1/props';
 import Text from '../../../atoms/Text';
 import ArrowIcon from '../../../icons/ArrowIcon';
 import SliderWithCustomGesture from '../../SliderWithCustomGesture';
@@ -26,6 +24,9 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text, containerStyle }: Swip
     slider: {
       backgroundColor: modeIsConfirm ? colors.primaryColor : colors.errorColorWithOpacity,
     },
+    button: {
+      backgroundColor: colors.backgroundPrimaryColor,
+    },
   });
 
   return (
@@ -34,9 +35,9 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text, containerStyle }: Swip
         onSwipeEnd={onSwipeEnd}
         containerStyle={[computedStyles.slider, containerStyle]}
         sliderElement={
-          <ButtonV1 style={styles.button} mode={modeIsConfirm ? ButtonV1Modes.Mode1 : ButtonV1Modes.Mode3}>
+          <Pressable style={[styles.button, computedStyles.button]}>
             <ArrowIcon />
-          </ButtonV1>
+          </Pressable>
         }
       >
         <Text style={[computedStyles.text, styles.text, !modeIsConfirm && { color: colors.errorColor }]}>
@@ -55,8 +56,11 @@ const SwipeButton = ({ onSwipeEnd, mode, text }: SwipeButtonProps) => (
 
 const styles = StyleSheet.create({
   button: {
+    justifyContent: 'center',
+    alignItems: 'center',
     height: 48,
     paddingHorizontal: 38,
+    borderRadius: 24,
   },
   text: {
     marginLeft: 62,
