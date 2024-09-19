@@ -61,16 +61,15 @@ const ButtonV1 = ({
 
   const styleHeight = (StyleSheet.flatten(containerStyle)?.height as number) || undefined;
 
+  const circleButtonEnabledColor =
+    themeMode === 'dark' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor;
+
   const computedStylesCircleShape: ButtonStyle = StyleSheet.create({
     container: {
       height: innerSpacing && styleHeight ? styleHeight - innerSpacing : styleHeight || 48,
       width: innerSpacing && styleHeight ? styleHeight - innerSpacing : styleHeight || 48,
       borderColor: borderColor,
-      backgroundColor: disabled
-        ? borderColor
-        : themeMode === 'dark'
-          ? colors.backgroundPrimaryColor
-          : colors.backgroundSecondaryColor,
+      backgroundColor: disabled ? borderColor : circleButtonEnabledColor,
     },
     button: {
       height: styleHeight,

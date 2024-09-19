@@ -27,6 +27,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerCo
   textPrimaryColor: '#000000',
   textSecondaryColor: '#6E7A81',
   textTertiaryColor: '#FFFFFF',
+  textQuadraticColor: '#A5A8A9',
   textTitleColor: '#ACACAC',
   draggableColor: '#3C3C432B', // with opacity
   circleSeparatorColor: '#C1C9CA',

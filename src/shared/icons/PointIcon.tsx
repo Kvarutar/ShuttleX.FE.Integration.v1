@@ -14,8 +14,8 @@ const PointIcon = ({
   outerColor?: string;
 }): JSX.Element => {
   const { colors } = useTheme();
-  const outerSvgColor = outerColor ? outerColor : colors.primaryColor;
-  const innerSvgColor = innerColor ? innerColor : colors.iconPrimaryColor;
+  const outerSvgColor = outerColor ?? colors.primaryColor;
+  const innerSvgColor = innerColor ?? colors.iconPrimaryColor;
 
   return (
     <Svg style={[styles.DropOffIcon, style]} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

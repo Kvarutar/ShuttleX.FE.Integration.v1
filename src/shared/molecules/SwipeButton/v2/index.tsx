@@ -8,21 +8,34 @@ import { useTheme } from '../../../../core/themes/v2/themeContext';
 import Text from '../../../atoms/Text';
 import ArrowIcon from '../../../icons/ArrowIcon';
 import SliderWithCustomGesture from '../../SliderWithCustomGesture';
-import { SwipeButtonModes, type SwipeButtonProps } from '../props';
+import { type SwipeButtonProps } from '../props';
 
 const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text, containerStyle }: SwipeButtonProps): JSX.Element => {
-  const { colors } = useTheme();
+  const { colors, themeMode } = useTheme();
 
   const shadowProps = defaultShadow(colors.weakShadowColor);
   const { t } = useTranslation();
-  const modeIsConfirm = mode === SwipeButtonModes.Confirm;
+
+  const backgroundColors = {
+    confirm: colors.primaryColor,
+    decline: colors.errorColorWithOpacity,
+    finish: colors.errorColor,
+  };
+
+  // TODO: Remove conditions when we know how to change colors by theme
+  // There're conditionaly colors while not known how to change button colors by theme
+  const textColors = {
+    confirm: themeMode === 'dark' ? colors.textTertiaryColor : colors.textPrimaryColor,
+    decline: colors.errorColor,
+    finish: themeMode === 'light' ? colors.textTertiaryColor : colors.textPrimaryColor,
+  };
 
   const computedStyles = StyleSheet.create({
     text: {
-      color: colors.textSecondaryColor,
+      color: textColors[mode],
     },
     slider: {
-      backgroundColor: modeIsConfirm ? colors.primaryColor : colors.errorColorWithOpacity,
+      backgroundColor: backgroundColors[mode],
     },
     button: {
       backgroundColor: colors.backgroundPrimaryColor,
@@ -40,9 +53,7 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text, containerStyle }: Swip
           </Pressable>
         }
       >
-        <Text style={[computedStyles.text, styles.text, !modeIsConfirm && { color: colors.errorColor }]}>
-          {text ?? t('SwipeButton_buttonHint')}
-        </Text>
+        <Text style={[computedStyles.text, styles.text]}>{text ?? t('SwipeButton_buttonHint')}</Text>
       </SliderWithCustomGesture>
     </Shadow>
   );

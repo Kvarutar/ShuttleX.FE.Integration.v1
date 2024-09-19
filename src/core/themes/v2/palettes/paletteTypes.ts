@@ -42,6 +42,7 @@ export type Palette = {
   textPrimaryColor: string;
   textSecondaryColor: string;
   textTertiaryColor: string;
+  textQuadraticColor: string;
   textTitleColor: string;
   draggableColor: string; //TODO: change to design
   circleSeparatorColor: string; //TODO: change to design
