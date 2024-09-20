@@ -199,7 +199,7 @@ import NotificationsScreenV1 from './shared/screens/NotificationsScreen/v1';
 import NotificationsScreen from './shared/screens/NotificationsScreen/v2';
 import SignInScreen from './shared/screens/SignInScreen';
 import SignUpScreen from './shared/screens/SignUpScreen';
-import { type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
+import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
 import { minToMilSec } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { useDebounce } from './utils/debounce';
@@ -413,6 +413,7 @@ export {
   ShortArrowSmallIcon,
   SignalR,
   SignInScreen,
+  type SignUpForm,
   SignUpScreen,
   type SignUpScreenRef,
   sizes,
