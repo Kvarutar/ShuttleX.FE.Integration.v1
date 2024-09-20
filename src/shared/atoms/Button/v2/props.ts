@@ -6,6 +6,7 @@ export enum CircleButtonModes {
   Mode3 = 'mode3',
   Mode4 = 'mode4',
   Mode5 = 'mode5',
+  Mode6 = 'mode6',
 }
 
 export enum SquareButtonModes {
@@ -32,6 +33,12 @@ export enum ButtonSizes {
   L = 'l',
 }
 
+export type ButtonAnimationrProps = {
+  time: number;
+  children: React.ReactNode;
+  onAnimationEnd: () => void;
+};
+
 export type ButtonProps = {
   style?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
@@ -45,6 +52,7 @@ export type ButtonProps = {
   disabled?: boolean;
   children?: React.ReactNode;
   onPress?: () => void;
+  circleMode6Time?: number;
   innerSpacing?: number;
   size?: ButtonSizes;
 };

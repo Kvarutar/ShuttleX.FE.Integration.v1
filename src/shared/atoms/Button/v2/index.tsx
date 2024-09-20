@@ -7,6 +7,7 @@ import { type PaletteButtonMode } from '../../../../core/themes/v2/palettes/pale
 import { useTheme } from '../../../../core/themes/v2/themeContext';
 import Blur from '../../Blur';
 import Text from '../../Text';
+import ButtonAnimation from './ButtonAnimation';
 import {
   type ButtonProps,
   ButtonShadows,
@@ -35,11 +36,14 @@ const Button = ({
   disabled,
   children,
   onPress,
+  circleMode6Time,
   innerSpacing,
 }: ButtonProps): JSX.Element => {
   const { colors } = useTheme();
 
   const [isPressed, setIsPressed] = useState(false);
+  const [isAnimationEnded, setIsAnimationEnded] = useState(false);
+  const isMode6 = mode === CircleButtonModes.Mode6;
 
   let buttonColors: PaletteButtonMode;
   switch (shape) {
@@ -52,6 +56,11 @@ const Button = ({
   }
   const { backgroundColor, backgroundColorOnPress, textColor, shadowColor } = buttonColors;
   const { borderColor } = colors;
+
+  const mode6BackgroundColor = isMode6 && isAnimationEnded ? 'black' : backgroundColor;
+  const isButtonDisabled = isMode6 ? !isAnimationEnded : disabled;
+  //for proper work you have to put in the button disabled=false
+
   let shadowProps = shadowColor ? buttonShadow(shadowColor) : { startColor: DISABLED_SHADOW_COLOR };
 
   if (shadow) {
@@ -89,10 +98,10 @@ const Button = ({
         width: size ? circleButtonSizes[size] : circleButtonSizes.m,
         paddingHorizontal: 0,
         borderRadius: 1000,
-        backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+        backgroundColor: isPressed ? backgroundColorOnPress : mode6BackgroundColor,
         padding: innerSpacing,
       },
-      text: { color: textColor },
+      text: { color: isMode6 && isAnimationEnded ? colors.textTertiaryColor : textColor },
     },
   };
 
@@ -102,25 +111,33 @@ const Button = ({
     <Text style={[styles.text, computedStyles[shape].text, textStyle]}>{text}</Text>
   );
 
+  const handleAnimationEnd = () => {
+    setIsAnimationEnded(true);
+  };
   const containers = {
-    circle: (
-      <View
-        style={[
-          styles.subContainerCircleButton,
-          {
-            height:
-              innerSpacing && size ? circleButtonSizes[size] - innerSpacing : (size && circleButtonSizes[size]) || 48,
-            width:
-              innerSpacing && size ? circleButtonSizes[size] - innerSpacing : (size && circleButtonSizes[size]) || 48,
-            borderColor: borderColor,
-            backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
-          },
-          circleSubContainerStyle,
-        ]}
-      >
-        {renderedChildren}
-      </View>
-    ),
+    circle:
+      mode === CircleButtonModes.Mode6 ? (
+        <ButtonAnimation time={circleMode6Time || 30000} onAnimationEnd={handleAnimationEnd}>
+          {renderedChildren}
+        </ButtonAnimation>
+      ) : (
+        <View
+          style={[
+            styles.subContainerCircleButton,
+            {
+              height:
+                innerSpacing && size ? circleButtonSizes[size] - innerSpacing : (size && circleButtonSizes[size]) || 48,
+              width:
+                innerSpacing && size ? circleButtonSizes[size] - innerSpacing : (size && circleButtonSizes[size]) || 48,
+              borderColor: borderColor,
+              backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+            },
+            circleSubContainerStyle,
+          ]}
+        >
+          {renderedChildren}
+        </View>
+      ),
     square:
       mode === SquareButtonModes.Mode3 ? (
         <>
@@ -137,7 +154,7 @@ const Button = ({
       <Shadow stretch {...shadowProps}>
         <Pressable
           style={[styles.button, computedStyles[shape].button, style]}
-          disabled={disabled}
+          disabled={isButtonDisabled}
           onPress={onPress}
           onPressIn={() => setIsPressed(true)}
           onPressOut={() => setIsPressed(false)}

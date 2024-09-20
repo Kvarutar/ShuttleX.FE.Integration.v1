@@ -23,6 +23,7 @@ import Blur from './shared/atoms/Blur';
 import ButtonV1 from './shared/atoms/Button/v1';
 import { ButtonV1Modes, ButtonV1Shadows, ButtonV1Shapes } from './shared/atoms/Button/v1/props';
 import Button from './shared/atoms/Button/v2';
+import ButtonAnimation from './shared/atoms/Button/v2/ButtonAnimation';
 import { type ButtonProps } from './shared/atoms/Button/v2/props';
 import {
   ButtonShadows,
@@ -248,6 +249,7 @@ export {
   BrandFavIcon,
   BrandTextIcon,
   Button,
+  ButtonAnimation,
   type ButtonProps,
   ButtonShadows,
   ButtonShapes,

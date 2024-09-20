@@ -91,6 +91,11 @@ const circleButtonModes: PaletteCircleButtonModes = {
     backgroundColorOnPress: '#E2E2E2',
     textColor: colors.textPrimaryColor,
   },
+  mode6: {
+    backgroundColor: colors.backgroundSecondaryColor,
+    backgroundColorOnPress: '#E2E2E2',
+    textColor: colors.textPrimaryColor,
+  },
 };
 
 const timerColorModes: PaletteTimerModes = {
