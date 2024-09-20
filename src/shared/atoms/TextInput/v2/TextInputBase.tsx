@@ -19,6 +19,7 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
       inputMode,
       onKeyPress,
       maxLength,
+      onlyDigits,
       editable,
       containerStyle,
       error = { isError: false },
@@ -92,6 +93,7 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
             value={value}
             multiline={multiline}
             inputMode={inputMode}
+            keyboardType={onlyDigits ? 'numeric' : undefined}
             onKeyPress={onKeyPress}
             onEndEditing={onEndEditing}
             onFocus={onInputFocus}

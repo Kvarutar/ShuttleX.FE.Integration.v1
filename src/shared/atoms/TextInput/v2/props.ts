@@ -20,6 +20,7 @@ export type TextInputBaseProps = {
   onChangeText?: TextInputPropsNative['onChangeText'];
   value?: TextInputPropsNative['value'];
   maxLength?: TextInputPropsNative['maxLength'];
+  onlyDigits?: boolean;
   inputMode?: TextInputBaseInputMode;
   onKeyPress?: TextInputPropsNative['onKeyPress'];
   onEndEditing?: TextInputPropsNative['onEndEditing'];
