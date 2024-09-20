@@ -1,39 +1,29 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
-import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-import sizes from '../../core/themes/sizes';
 import { useTheme } from '../../core/themes/v2/themeContext';
 
 const ProfileIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }) => {
   const { colors } = useTheme();
-  const svgColor = color ?? colors.textSecondaryColor;
+  const svgColor = color ?? colors.iconSecondaryColor;
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <G clipPath="url(#clip0_8627_24045)">
-        <Path
-          d="M14.7067 8.73061C14.7067 10.9045 13.1638 12.4612 11.4998 12.4612C9.83581 12.4612 8.29297 10.9045 8.29297 8.73061C8.29297 6.55671 9.83581 5 11.4998 5C13.1638 5 14.7067 6.55671 14.7067 8.73061Z"
-          stroke={svgColor}
-          strokeWidth={2}
-        />
-        <Path
-          d="M3.94922 17.3542C3.94922 15.5096 5.83068 14.1703 7.67186 14.7733C8.41999 15.0183 9.1598 15.2441 9.80266 15.4096C10.4152 15.5674 11.0354 15.6968 11.4992 15.6968C11.963 15.6968 12.5832 15.5674 13.1958 15.4096C13.8386 15.2441 14.5785 15.0183 15.3266 14.7733C17.1678 14.1703 19.0492 15.5096 19.0492 17.3542C19.0492 18.8154 17.8646 20 16.4034 20H6.59506C5.1338 20 3.94922 18.8154 3.94922 17.3542Z"
-          stroke={svgColor}
-          strokeWidth={2}
-        />
-      </G>
-      <Defs>
-        <ClipPath id="clip0_8627_24045">
-          <Rect width="24" height="24" fill="white" />
-        </ClipPath>
-      </Defs>
+    <Svg style={[styles.icon, style]} viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Path
+        d="M3.20053 4.97229C3.36337 6.68142 4.45374 7.8102 5.99989 7.8102C7.54597 7.8102 8.63623 6.68139 8.79913 4.97229L9.02996 3.12574C9.17315 1.31156 7.71292 0 5.99989 0C4.2868 0 2.82656 1.31156 2.96966 3.12574L3.20053 4.97229Z"
+        fill={svgColor}
+      />
+      <Path
+        d="M11.988 12.3792L11.8775 11.6658C11.7849 11.0676 11.4141 10.5513 10.8812 10.2783L8.55573 9.08607C8.48294 9.04875 8.42367 8.9925 8.37399 8.92969C7.70076 9.65133 6.88287 10.0758 6.00004 10.0758C5.11724 10.0758 4.29923 9.65133 3.62603 8.92969C3.57635 8.9925 3.51709 9.04875 3.44429 9.08607L1.11883 10.2783C0.585897 10.5513 0.215138 11.0676 0.122579 11.6658L0.0120158 12.3792C-0.0273719 12.6338 0.0246152 13.0075 0.249613 13.1943C0.550439 13.4437 1.6617 14.9992 6.00004 14.9992C10.3383 14.9992 11.4495 13.4437 11.7504 13.1943C11.9754 13.0075 12.0274 12.6338 11.988 12.3792Z"
+        fill={svgColor}
+      />
     </Svg>
   );
 };
 
 const styles = StyleSheet.create({
   icon: {
-    width: sizes.iconSize,
-    height: sizes.iconSize,
+    width: 12,
+    height: 15,
   },
 });
 

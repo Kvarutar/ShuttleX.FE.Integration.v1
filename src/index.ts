@@ -80,7 +80,9 @@ import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
 import GroupedBrandIconMiniV1 from './shared/icons/GroupedBrandIconMini/V1';
 import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
 import HelpIcon from './shared/icons/HelpIcon';
+import InfoIcon from './shared/icons/InfoIcon';
 import InputXIcon from './shared/icons/InputXIcon';
+import LightningIcon from './shared/icons/LightningIcon';
 import Like2Icon from './shared/icons/Like2Icon';
 import LikeIcon from './shared/icons/LikeIcon';
 import LocationIcon from './shared/icons/LocationIcon';
@@ -316,10 +318,12 @@ export {
   HeaderWithTwoTitles,
   HelpIcon,
   i18nIntegration,
+  InfoIcon,
   InputXIcon,
   IntegrationModule,
   InternetDisconnectedAlert,
   lightMapStyle,
+  LightningIcon,
   Like2Icon,
   LikeIcon,
   LocationArrowImage,
