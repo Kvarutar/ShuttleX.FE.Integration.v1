@@ -45,8 +45,10 @@ import ApplePayIcon from './shared/icons/ApplePayIcon';
 import ArrowIcon from './shared/icons/ArrowIcon';
 import ArrowInPrimaryColorIcon from './shared/icons/ArrowInPrimaryColorIcon';
 import BaggageIcon from './shared/icons/BaggageIcon';
+import BarsIcon from './shared/icons/BarsIcon';
 import BecomeDriverIcon from './shared/icons/BecomeDriverIcon';
 import BigCameraIcon from './shared/icons/BigCameraIcon';
+import BookMarkIcon from './shared/icons/BookMarkIcon';
 import BrandFavIcon from './shared/icons/BrandFavIcon';
 import BrandTextIcon from './shared/icons/BrandTextIcon';
 import CalendarIcon from './shared/icons/CalendarIcon';
@@ -102,6 +104,7 @@ import PhoneIcon from './shared/icons/PhoneIcon';
 import PickUpIcon from './shared/icons/PickUpIcon';
 import PlayIcon from './shared/icons/PlayIcon';
 import PlusIcon from './shared/icons/PlusIcon';
+import PlusInCircleIcon from './shared/icons/PlusInCircleIcon';
 import PlusRoundIcon from './shared/icons/PlusRoundIcon';
 import PointIcon from './shared/icons/PointIcon';
 import PreferencesIcon from './shared/icons/PreferencesIcon';
@@ -112,6 +115,7 @@ import ReportIcon from './shared/icons/ReportIcon';
 import RoundCheckIcon1 from './shared/icons/RoundCheckIcon1';
 import RoundCheckIcon2 from './shared/icons/RoundCheckIcon2';
 import SearchIcon from './shared/icons/SearchIcon';
+import SelectOnMapIcon from './shared/icons/SelectOnMapIcon';
 import SettingsIcon from './shared/icons/SettingsIcon';
 import ShortArrowIcon from './shared/icons/ShortArrowIcon';
 import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
@@ -229,12 +233,14 @@ export {
   BaggageIcon,
   Bar,
   BarModes,
+  BarsIcon,
   BarV1,
   BasicXImage,
   BasicXLImage,
   BecomeDriverIcon,
   BigCameraIcon,
   Blur,
+  BookMarkIcon,
   BottomWindow,
   BottomWindowWithGesture,
   type BottomWindowWithGestureProps,
@@ -370,6 +376,7 @@ export {
   type PlannedTripAlertProps,
   PlayIcon,
   PlusIcon,
+  PlusInCircleIcon,
   PlusRoundIcon,
   PointIcon,
   Popup,
@@ -392,6 +399,7 @@ export {
   ScrollViewWithCustomScroll,
   SearchIcon,
   SecondRideAlert,
+  SelectOnMapIcon,
   Separator,
   SettingsIcon,
   Shade,
