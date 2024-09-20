@@ -58,5 +58,10 @@
   "SignUp_personalDataCheckBox": "my personal data",
   "SignUp_nextButton": "Next",
   "SignUp_haveAccount": "Already have an account?",
-  "SignUp_signInButton": "Sign In"
+  "SignUp_signInLabel": "Sign In",
+  "SignIn_firstPartHeader": "Enter Your\nPhone Number",
+  "SignIn_secondPartHeader": "to Receive\nCode",
+  "SignIn_nextButton": "Next",
+  "SignIn_dontHaveAccount": "Don’t have an account?",
+  "SignIn_signUpLabel": "Sign Up"
 }

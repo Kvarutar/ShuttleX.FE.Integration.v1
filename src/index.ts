@@ -24,8 +24,8 @@ import ButtonV1 from './shared/atoms/Button/v1';
 import { ButtonV1Modes, ButtonV1Shadows, ButtonV1Shapes } from './shared/atoms/Button/v1/props';
 import Button from './shared/atoms/Button/v2';
 import ButtonAnimation from './shared/atoms/Button/v2/ButtonAnimation';
-import { type ButtonProps } from './shared/atoms/Button/v2/props';
 import {
+  type ButtonProps,
   ButtonShadows,
   ButtonShapes,
   ButtonSizes,
@@ -196,7 +196,9 @@ import LockOutScreen from './shared/screens/LockOutScreen';
 import { type Notification, NotificationType } from './shared/screens/NotificationsScreen/props';
 import NotificationsScreenV1 from './shared/screens/NotificationsScreen/v1';
 import NotificationsScreen from './shared/screens/NotificationsScreen/v2';
+import SignInScreen from './shared/screens/SignInScreen';
 import SignUpScreen from './shared/screens/SignUpScreen';
+import { type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
 import { minToMilSec } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { useDebounce } from './utils/debounce';
@@ -408,7 +410,9 @@ export {
   ShortArrowIcon,
   ShortArrowSmallIcon,
   SignalR,
+  SignInScreen,
   SignUpScreen,
+  type SignUpScreenRef,
   sizes,
   SpinnerIcon,
   SquareButtonModes,

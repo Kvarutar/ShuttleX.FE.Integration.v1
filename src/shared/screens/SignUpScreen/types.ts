@@ -1,7 +1,11 @@
 export type SignUpProps = {
   navigateToSignIn: () => void;
   navigateToTerms: () => void;
-  navigateToSingUpCode: () => void;
+  onSubmit: (dataForm: SignUpForm) => void;
+};
+
+export type SignUpScreenRef = {
+  showErrors: (errorMessages: Partial<Record<keyof SignUpForm, string>>) => void;
 };
 
 export type SignUpForm = {
