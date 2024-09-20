@@ -108,6 +108,7 @@ import PlusIcon from './shared/icons/PlusIcon';
 import PlusInCircleIcon from './shared/icons/PlusInCircleIcon';
 import PlusRoundIcon from './shared/icons/PlusRoundIcon';
 import PointIcon from './shared/icons/PointIcon';
+import PointIcon2 from './shared/icons/PointIcon2';
 import PreferencesIcon from './shared/icons/PreferencesIcon';
 import ProfileIcon from './shared/icons/ProfileIcon';
 import ProfileIconMini from './shared/icons/ProfileIconMini';
@@ -383,6 +384,7 @@ export {
   PlusInCircleIcon,
   PlusRoundIcon,
   PointIcon,
+  PointIcon2,
   Popup,
   PreferencesIcon,
   PremiumXImage,
