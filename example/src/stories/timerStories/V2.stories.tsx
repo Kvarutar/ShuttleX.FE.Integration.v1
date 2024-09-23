@@ -57,7 +57,7 @@ const TimerWithHooks = ({
 
   return (
     <Timer
-      time={2 * 60 * 1000}
+      time={Date.now() + 5000}
       sizeMode={sizeMode}
       colorMode={colorMode}
       onAfterCountdownEnds={() => Alert.alert('Attention', 'onAfterCountdownEndsReached!')}

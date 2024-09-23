@@ -74,7 +74,8 @@ const CountingComponentWithoutI18n: React.FC<CountingComponentProps> = ({
     }
 
     return () => clearInterval(interval);
-  }, [time, onAfterCountdownEnds, isWaiting, isCountingForward]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [time, isWaiting, isCountingForward]);
 
   const { content, label } = getTimeContent();
 
