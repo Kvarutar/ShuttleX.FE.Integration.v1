@@ -116,6 +116,7 @@ import PromocodesIcon from './shared/icons/PromocodesIcon';
 import ReportIcon from './shared/icons/ReportIcon';
 import RoundCheckIcon1 from './shared/icons/RoundCheckIcon1';
 import RoundCheckIcon2 from './shared/icons/RoundCheckIcon2';
+import RoundCheckIcon3 from './shared/icons/RoundCheckIcon3';
 import SearchIcon from './shared/icons/SearchIcon';
 import SelectOnMapIcon from './shared/icons/SelectOnMapIcon';
 import SettingsIcon from './shared/icons/SettingsIcon';
@@ -401,6 +402,7 @@ export {
   type RideHasFinishedAlertProps,
   RoundCheckIcon1,
   RoundCheckIcon2,
+  RoundCheckIcon3,
   SafeAreaView,
   ScrollViewWithCustomScroll,
   SearchIcon,
