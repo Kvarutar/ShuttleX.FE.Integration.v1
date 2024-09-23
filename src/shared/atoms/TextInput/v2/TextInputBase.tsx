@@ -24,7 +24,7 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
       containerStyle,
       error = { isError: false },
       multiline,
-      withClearButton = false,
+      withClearButton,
     },
     ref,
   ) => {

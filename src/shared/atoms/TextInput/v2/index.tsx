@@ -22,6 +22,7 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
       containerStyle,
       error = { isError: false },
       multiline,
+      withClearButton = false,
     },
     ref,
   ) => {
@@ -41,6 +42,7 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
       error,
       multiline,
       ref,
+      withClearButton,
     };
 
     if (inputMode === TextInputInputMode.Money) {
