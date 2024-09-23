@@ -10,18 +10,17 @@ import {
   ButtonShapes,
   ButtonSizes,
   CircleButtonModes,
-  SquareButtonModes,
 } from '../../../../src/shared/atoms/Button/v2/props';
 
-const ButtonMeta: Meta<typeof Button> = {
+const ButtonMeta: Meta<ButtonProps & { theme: ThemeContextType['themeMode'] }> = {
   title: 'ButtonV2',
   component: Button,
   args: {
     theme: 'light',
-    mode: SquareButtonModes.Mode1,
-    shape: ButtonShapes.Square,
-    size: ButtonSizes.L,
-    innerSpacing: 12,
+    mode: undefined,
+    shape: undefined,
+    size: undefined,
+    innerSpacing: 0,
     text: 'Sample text',
     shadow: undefined,
     disableShadow: false,
@@ -34,15 +33,15 @@ const ButtonMeta: Meta<typeof Button> = {
     },
     //TODO: create separate modes argTypes for options
     mode: {
-      options: Object.values(CircleButtonModes),
+      options: [undefined, ...Object.values(CircleButtonModes)],
       control: { type: 'select' },
     },
     shape: {
-      options: Object.values(ButtonShapes),
+      options: [undefined, ...Object.values(ButtonShapes)],
       control: { type: 'select' },
     },
     size: {
-      options: Object.values(ButtonSizes),
+      options: [undefined, ...Object.values(ButtonSizes)],
       control: { type: 'select' },
     },
     shadow: {

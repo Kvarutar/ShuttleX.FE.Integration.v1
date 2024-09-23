@@ -25,7 +25,7 @@ type ButtonStyle = {
 const Button = ({
   mode = SquareButtonModes.Mode1,
   shape = ButtonShapes.Square,
-  size = ButtonSizes.M,
+  size = mode === CircleButtonModes.Mode2 ? ButtonSizes.S : ButtonSizes.M,
   text,
   textStyle,
   style,
