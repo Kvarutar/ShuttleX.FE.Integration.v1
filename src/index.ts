@@ -173,6 +173,7 @@ import LocationUnavailable from './shared/molecules/LocationUnavailable';
 import { type LocationUnavailableProps } from './shared/molecules/LocationUnavailable/props';
 import MenuBase from './shared/molecules/MenuBase';
 import { type MenuNavigation } from './shared/molecules/MenuBase/props';
+import MenuHeader from './shared/molecules/MenuHeader';
 import PhoneInput from './shared/molecules/PhoneInput';
 import PhoneSlidingPanel from './shared/molecules/PhoneSlidingPanel';
 import Popup from './shared/molecules/Popup';
@@ -354,6 +355,7 @@ export {
   type MapViewProps,
   MasterCardIcon,
   MenuBase,
+  MenuHeader,
   MenuIcon,
   type MenuNavigation,
   MenuUserImage,

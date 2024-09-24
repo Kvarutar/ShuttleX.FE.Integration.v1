@@ -9,7 +9,6 @@ import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import { getMenuIcons } from '../../../utils/menu/menuIcons';
 import { type MenuNavigationBlocks } from '../../../utils/menu/type';
-import Blur from '../../atoms/Blur';
 import Text from '../../atoms/Text';
 import GameIcon from '../../icons/GameIcon';
 import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini/V2';
@@ -98,45 +97,39 @@ const MenuBaseWithoutI18n = ({
   ));
 
   return (
-    <>
-      <Blur animationDuration={constants.animationDurations.blur} />
-      <GestureDetector gesture={pan}>
-        <Animated.View style={[styles.window, animatedStyles, style]}>
-          <SafeAreaView containerStyle={[styles.wrapper, computedStyles.wrapper]}>
-            <ScrollViewWithCustomScroll
-              contentContainerStyle={styles.scrollViewContent}
-              barStyle={styles.scrollBarStyle}
-            >
-              <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]} />
-              <View style={styles.container}>
-                <View style={styles.content}>
-                  <View style={styles.profile}>
-                    <MenuUserImage url={userImageUri} style={styles.profileImage} />
-                    <View style={styles.nameContainer}>
-                      <Text style={styles.name}>{userName ?? ''}</Text>
-                      <Text style={styles.surname}>{userSurname ?? ''}</Text>
-                    </View>
+    <GestureDetector gesture={pan}>
+      <Animated.View style={[styles.window, animatedStyles, style]}>
+        <SafeAreaView containerStyle={[styles.wrapper, computedStyles.wrapper]}>
+          <ScrollViewWithCustomScroll contentContainerStyle={styles.scrollViewContent} barStyle={styles.scrollBarStyle}>
+            <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]} />
+            <View style={styles.container}>
+              <View style={styles.content}>
+                <View style={styles.profile}>
+                  <MenuUserImage url={userImageUri} style={styles.profileImage} />
+                  <View style={styles.nameContainer}>
+                    <Text style={styles.name}>{userName ?? ''}</Text>
+                    <Text style={styles.surname}>{userSurname ?? ''}</Text>
                   </View>
-                  {additionalContent}
-                  <View style={styles.navigation}>{navigationContent}</View>
                 </View>
-                <View style={styles.bottomButtons}>
-                  <Pressable style={[computedStyles.gameButton, styles.gameButton]}>
-                    <View style={styles.itemsWrapper}>
-                      <GameIcon />
-                      <Text>{t('Menu_playGameButton')}</Text>
-                    </View>
-                    <PlayIcon />
-                  </Pressable>
-                  <GroupedBrandIconMini style={styles.brandIconsStyle} />
-                </View>
+                {additionalContent}
+                <View style={styles.navigation}>{navigationContent}</View>
               </View>
-            </ScrollViewWithCustomScroll>
-          </SafeAreaView>
-          <Pressable style={styles.outsider} onPress={closeMenu} />
-        </Animated.View>
-      </GestureDetector>
-    </>
+              <View style={styles.bottomButtons}>
+                <Pressable style={[computedStyles.gameButton, styles.gameButton]}>
+                  <View style={styles.itemsWrapper}>
+                    <GameIcon />
+                    <Text>{t('Menu_playGameButton')}</Text>
+                  </View>
+                  <PlayIcon />
+                </Pressable>
+                <GroupedBrandIconMini style={styles.brandIconsStyle} />
+              </View>
+            </View>
+          </ScrollViewWithCustomScroll>
+        </SafeAreaView>
+        <Pressable style={styles.outsider} onPress={closeMenu} />
+      </Animated.View>
+    </GestureDetector>
   );
 };
 
