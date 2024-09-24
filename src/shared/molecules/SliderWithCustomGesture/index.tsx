@@ -14,6 +14,8 @@ const SliderWithCustomGesture = ({
   sliderElement,
   children,
   containerStyle,
+  childrenStyle,
+  rightToLeftSwipe,
 }: SliderWithCustomGestureProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(0);
@@ -32,8 +34,10 @@ const SliderWithCustomGesture = ({
     slider: {
       padding: padding,
       backgroundColor: colors.backgroundPrimaryColor,
-      width: '100%',
+      width: sliderWidth,
+      borderRadius: rightToLeftSwipe ? 13 : 25,
     },
+
     textInSlider: {
       color: colors.textSecondaryColor,
     },
@@ -44,32 +48,41 @@ const SliderWithCustomGesture = ({
     translateX.value = withTiming(0);
   };
 
-  const gestureHandler = Gesture.Pan()
-    .onUpdate(event => {
-      translateX.value = Math.min(Math.max(event.translationX, 0), innerSliderWidth - buttonWidth);
-    })
-    .onEnd(() => {
-      if (translateX.value > innerSliderWidth - buttonWidth - 10) {
-        runOnJS(handleSwipeEnd)();
-      } else {
-        translateX.value = withTiming(0);
-      }
-    });
+  const gestureHandler = rightToLeftSwipe
+    ? Gesture.Pan()
+        .onUpdate(event => {
+          translateX.value = Math.max(Math.min(event.translationX, 0), -(innerSliderWidth - buttonWidth));
+        })
+        .onEnd(() => {
+          if (translateX.value < -(innerSliderWidth - buttonWidth) + 10) {
+            runOnJS(handleSwipeEnd)();
+          } else {
+            translateX.value = withTiming(0);
+          }
+        })
+    : Gesture.Pan()
+        .onUpdate(event => {
+          translateX.value = Math.min(Math.max(event.translationX, 0), innerSliderWidth - buttonWidth);
+        })
+        .onEnd(() => {
+          if (translateX.value > innerSliderWidth - buttonWidth - 10) {
+            runOnJS(handleSwipeEnd)();
+          } else {
+            translateX.value = withTiming(0);
+          }
+        });
 
   const animatedButtonStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
-    width: buttonWidth,
+    width: rightToLeftSwipe ? '100%' : buttonWidth,
   }));
 
   return (
     <View style={styles.container}>
-      <View
-        style={[styles.slider, { width: sliderWidth }, computedStyles.slider, containerStyle]}
-        onLayout={handleLayout}
-      >
-        <View style={styles.childrenStyle}>{children}</View>
+      <View style={[styles.slider, computedStyles.slider, containerStyle]} onLayout={handleLayout}>
+        <View style={[styles.childrenStyle, childrenStyle]}>{children}</View>
         <GestureDetector gesture={gestureHandler}>
-          <Animated.View style={[animatedButtonStyle]}>{sliderElement}</Animated.View>
+          <Animated.View style={animatedButtonStyle}>{sliderElement}</Animated.View>
         </GestureDetector>
       </View>
     </View>
@@ -83,7 +96,6 @@ const styles = StyleSheet.create({
   },
   slider: {
     justifyContent: 'center',
-    borderRadius: 25,
   },
   childrenStyle: {
     position: 'absolute',

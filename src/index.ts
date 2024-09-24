@@ -179,6 +179,7 @@ import PhoneSlidingPanel from './shared/molecules/PhoneSlidingPanel';
 import Popup from './shared/molecules/Popup';
 import SafeAreaView from './shared/molecules/SafeAreaView';
 import ScrollViewWithCustomScroll from './shared/molecules/ScrollViewWithCustomScroll';
+import SliderWithCustomGesture from './shared/molecules/SliderWithCustomGesture';
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/props';
 import SwipeButtonV1 from './shared/molecules/SwipeButton/v1';
 import SwipeButton from './shared/molecules/SwipeButton/v2';
@@ -421,6 +422,7 @@ export {
   SignUpScreen,
   type SignUpScreenRef,
   sizes,
+  SliderWithCustomGesture,
   SpinnerIcon,
   SquareButtonModes,
   StarIcon,

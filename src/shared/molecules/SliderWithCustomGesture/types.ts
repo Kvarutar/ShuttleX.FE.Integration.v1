@@ -5,4 +5,6 @@ export type SliderWithCustomGestureProps = {
   sliderElement: React.ReactNode;
   children?: React.ReactNode;
   containerStyle?: StyleProp<ViewStyle>;
+  childrenStyle?: StyleProp<ViewStyle>;
+  rightToLeftSwipe?: boolean;
 };
