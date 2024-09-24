@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Dimensions, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Dimensions, Pressable, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
@@ -15,6 +15,8 @@ import GameIcon from '../../icons/GameIcon';
 import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini/V2';
 import PlayIcon from '../../icons/PlayIcon';
 import MenuUserImage from '../../images/MenuUserImage';
+import SafeAreaView from '../SafeAreaView';
+import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type MenuBaseProps } from './props';
 
 const windowSizes = Dimensions.get('window');
@@ -100,31 +102,36 @@ const MenuBaseWithoutI18n = ({
       <Blur animationDuration={constants.animationDurations.blur} />
       <GestureDetector gesture={pan}>
         <Animated.View style={[styles.window, animatedStyles, style]}>
-          <SafeAreaView style={[styles.wrapper, computedStyles.wrapper]}>
-            <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]} />
-            <View style={styles.container}>
-              <View style={styles.content}>
-                <View style={styles.profile}>
-                  <MenuUserImage url={userImageUri} style={styles.profileImage} />
-                  <View style={styles.nameContainer}>
-                    <Text style={styles.name}>{userName ?? ''}</Text>
-                    <Text style={styles.surname}>{userSurname ?? ''}</Text>
+          <SafeAreaView containerStyle={[styles.wrapper, computedStyles.wrapper]}>
+            <ScrollViewWithCustomScroll
+              contentContainerStyle={styles.scrollViewContent}
+              barStyle={styles.scrollBarStyle}
+            >
+              <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]} />
+              <View style={styles.container}>
+                <View style={styles.content}>
+                  <View style={styles.profile}>
+                    <MenuUserImage url={userImageUri} style={styles.profileImage} />
+                    <View style={styles.nameContainer}>
+                      <Text style={styles.name}>{userName ?? ''}</Text>
+                      <Text style={styles.surname}>{userSurname ?? ''}</Text>
+                    </View>
                   </View>
+                  {additionalContent}
+                  <View style={styles.navigation}>{navigationContent}</View>
                 </View>
-                {additionalContent}
-                <View style={styles.navigation}>{navigationContent}</View>
+                <View style={styles.bottomButtons}>
+                  <Pressable style={[computedStyles.gameButton, styles.gameButton]}>
+                    <View style={styles.itemsWrapper}>
+                      <GameIcon />
+                      <Text>{t('Menu_playGameButton')}</Text>
+                    </View>
+                    <PlayIcon />
+                  </Pressable>
+                  <GroupedBrandIconMini style={styles.brandIconsStyle} />
+                </View>
               </View>
-              <View style={styles.bottomButtons}>
-                <Pressable style={[computedStyles.gameButton, styles.gameButton]}>
-                  <View style={styles.itemsWrapper}>
-                    <GameIcon />
-                    <Text>{t('Menu_playGameButton')}</Text>
-                  </View>
-                  <PlayIcon />
-                </Pressable>
-                <GroupedBrandIconMini style={styles.brandIconsStyle} />
-              </View>
-            </View>
+            </ScrollViewWithCustomScroll>
           </SafeAreaView>
           <Pressable style={styles.outsider} onPress={closeMenu} />
         </Animated.View>
@@ -134,6 +141,9 @@ const MenuBaseWithoutI18n = ({
 };
 
 const styles = StyleSheet.create({
+  scrollViewContent: {
+    flexGrow: 1,
+  },
   window: {
     position: 'absolute',
     top: 0,
@@ -142,16 +152,18 @@ const styles = StyleSheet.create({
   },
   outsider: {
     flex: 1,
+    height: windowSizes.height,
   },
   wrapper: {
     width: constants.menuWidth,
     height: windowSizes.height,
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+    position: 'absolute',
+    top: 0,
   },
   primaryColorBackground: {
     height: 96,
-    position: 'relative',
-    top: 0,
-    left: 0,
   },
   profileImage: {
     borderRadius: 1000,
@@ -162,9 +174,9 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    position: 'relative',
     justifyContent: 'space-between',
     paddingHorizontal: sizes.paddingHorizontal,
+    paddingBottom: 34,
   },
   content: {
     gap: 26,
@@ -222,9 +234,13 @@ const styles = StyleSheet.create({
   },
   bottomButtons: {
     gap: 17,
+    marginTop: 'auto',
   },
   brandIconsStyle: {
     marginLeft: 16,
+  },
+  scrollBarStyle: {
+    backgroundColor: 'transparent',
   },
 });
 

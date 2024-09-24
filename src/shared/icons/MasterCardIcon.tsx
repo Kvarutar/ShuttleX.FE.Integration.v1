@@ -1,22 +1,24 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
 
+import sizes from '../../core/themes/sizes';
+
 const MasterCardIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.MasterCardIcon, style]} fill="none" viewBox="0 0 32 32">
-    <G clipPath="url(#clip0_190_779)">
-      <Path d="M20.316 8.13281H11.6562V23.8028H20.316V8.13281Z" fill="#FF5A00" />
+  <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.MasterCardIcon, style]} fill="none" viewBox="0 0 24 24">
+    <G clipPath="url(#clip0_79_1520)">
+      <Path d="M15.237 6.09888H8.74212V17.8513H15.237V6.09888Z" fill="#FF5A00" />
       <Path
-        d="M12.2338 15.9671C12.2338 12.7834 13.7198 9.95781 16 8.13212C14.3219 6.80317 12.205 6 9.89592 6C4.42594 6 0 10.4578 0 15.9671C0 21.4764 4.42594 25.9342 9.89592 25.9342C12.205 25.9342 14.3219 25.131 16 23.8021C13.7166 22.0022 12.2338 19.1508 12.2338 15.9671Z"
+        d="M9.17532 11.9753C9.17532 9.58755 10.2898 7.46836 12 6.09909C10.7415 5.10238 9.15375 4.5 7.42194 4.5C3.31946 4.5 0 7.84335 0 11.9753C0 16.1073 3.31946 19.4507 7.42194 19.4507C9.15375 19.4507 10.7415 18.8483 12 17.8516C10.289 16.5016 9.17532 14.3381 9.17532 11.9753Z"
         fill="#EB001B"
       />
       <Path
-        d="M32 15.9671C32 21.4764 27.5741 25.9342 22.1041 25.9342C19.795 25.9342 17.6781 25.131 16 23.8021C18.309 21.9732 19.7662 19.1508 19.7662 15.9671C19.7662 12.7834 18.2802 9.95781 16 8.13212C17.6749 6.80317 19.7918 6 22.1009 6C27.5741 6 32 10.4868 32 15.9671Z"
+        d="M24 11.9753C24 16.1073 20.6805 19.4507 16.5781 19.4507C14.8463 19.4507 13.2585 18.8483 12 17.8516C13.2606 16.4799 14.3246 14.3381 14.3246 11.9753C14.3246 9.58755 13.2102 7.46836 12 6.09909C13.2562 5.10238 14.844 4.5 16.5758 4.5C20.6805 4.5 24 7.86445 24 11.9753Z"
         fill="#F79E1B"
       />
     </G>
     <Defs>
-      <ClipPath id="clip0_190_779">
-        <Rect width={32} height={32} fill="white" />
+      <ClipPath id="clip0_79_1520">
+        <Rect width="24" height="24" fill="white" />
       </ClipPath>
     </Defs>
   </Svg>
@@ -24,8 +26,8 @@ const MasterCardIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Elemen
 
 const styles = StyleSheet.create({
   MasterCardIcon: {
-    width: 32,
-    height: 32,
+    width: sizes.iconSize,
+    height: sizes.iconSize,
   },
 });
 

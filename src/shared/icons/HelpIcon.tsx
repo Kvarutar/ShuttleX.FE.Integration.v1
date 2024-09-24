@@ -1,6 +1,7 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 
+import sizes from '../../core/themes/sizes';
 import { useTheme } from '../../core/themes/v2/themeContext';
 
 const HelpIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
@@ -8,7 +9,7 @@ const HelpIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: stri
   const svgColor = color ?? colors.textSecondaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" fill="none">
+    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
       <Circle cx={13} cy={13.0014} r={8} transform="rotate(45 13 13.0014)" stroke={svgColor} strokeWidth={2} />
       <Circle cx={13} cy={13.0006} r={3} transform="rotate(45 13 13.0006)" stroke={svgColor} strokeWidth={2} />
       <Path d="M18.9434 7.20902L15.4137 10.7387" stroke={svgColor} strokeWidth={2} />
@@ -21,8 +22,8 @@ const HelpIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: stri
 
 const styles = StyleSheet.create({
   icon: {
-    width: 26,
-    height: 26,
+    width: sizes.iconSize,
+    height: sizes.iconSize,
   },
 });
 
