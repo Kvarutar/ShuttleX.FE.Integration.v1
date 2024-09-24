@@ -8,6 +8,7 @@ import Animated, {
   useAnimatedProps,
   useDerivedValue,
   useSharedValue,
+  withRepeat,
   withTiming,
 } from 'react-native-reanimated';
 import Svg, { Circle, G, Line } from 'react-native-svg';
@@ -122,13 +123,23 @@ const CircularTimerIcon: React.FC<CircularTimerIconProps> = ({
       const difference = initTime - currentTime;
 
       const targetValue = isForward ? 1 : 0;
-      const time = isForward ? 1200000 : difference;
+      const time = isForward ? 60000 : difference;
       progress.value = isForward ? 0 : 1;
 
-      progress.value = withTiming(targetValue, {
-        duration: time,
-        easing: Easing.linear,
-      });
+      if (isForward) {
+        progress.value = withRepeat(
+          withTiming(targetValue, {
+            duration: time,
+            easing: Easing.linear,
+          }),
+          -1,
+        );
+      } else {
+        progress.value = withTiming(targetValue, {
+          duration: time,
+          easing: Easing.linear,
+        });
+      }
     },
     [initTime, progress],
   );

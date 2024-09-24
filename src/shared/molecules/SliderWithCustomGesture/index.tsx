@@ -34,7 +34,7 @@ const SliderWithCustomGesture = ({
     slider: {
       padding: padding,
       backgroundColor: colors.backgroundPrimaryColor,
-      width: sliderWidth,
+      width: '100%',
       borderRadius: rightToLeftSwipe ? 13 : 25,
     },
 

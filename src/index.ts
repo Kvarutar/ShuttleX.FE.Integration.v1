@@ -191,9 +191,8 @@ import TimerV1 from './shared/molecules/timerAndStopwatch/Timer/V1';
 import { TimerV1Modes } from './shared/molecules/timerAndStopwatch/Timer/V1/props';
 import Timer from './shared/molecules/timerAndStopwatch/Timer/V2';
 import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/V2/props';
+import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
-import AddCardScreenV1 from './shared/screens/AddCardScreen/v1';
-import AddCardScreen from './shared/screens/AddCardScreen/v2';
 import FeedbackScreen from './shared/screens/FeedbackScreen';
 import { type FeedbackRating, type FeedbackType } from './shared/screens/FeedbackScreen/props';
 import LockOutScreen from './shared/screens/LockOutScreen';
@@ -231,7 +230,6 @@ import {
 export {
   ActivityIcon,
   AddCardScreen,
-  AddCardScreenV1,
   type AlertDescendantProps,
   AnimatedMarker,
   ApplePayIcon,

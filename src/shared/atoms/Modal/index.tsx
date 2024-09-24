@@ -1,11 +1,11 @@
 import { Modal as ModalBase, StyleSheet, View } from 'react-native';
 
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../core/themes/v2/themeContext';
 import Blur from '../Blur';
 import { type ModalProps } from './props';
 
 const Modal = ({ children, style, containerStyle }: ModalProps) => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
 
   const computedStyles = StyleSheet.create({
     modal: {
@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   modal: {
-    padding: 8,
     borderRadius: 16,
     borderWidth: 1,
+    padding: 8,
   },
 });
 
