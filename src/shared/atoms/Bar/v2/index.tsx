@@ -30,7 +30,10 @@ const Bar = ({
       backgroundColor: backgroundPrimaryColor,
     },
     disabled: {
-      strokeProps: {},
+      strokeProps: {
+        borderColor: 'transparent',
+        borderWidth: 1,
+      },
       backgroundColor: backgroundSecondaryColor,
     },
   };

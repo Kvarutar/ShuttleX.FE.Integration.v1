@@ -117,6 +117,7 @@ import ReportIcon from './shared/icons/ReportIcon';
 import RoundCheckIcon1 from './shared/icons/RoundCheckIcon1';
 import RoundCheckIcon2 from './shared/icons/RoundCheckIcon2';
 import RoundCheckIcon3 from './shared/icons/RoundCheckIcon3';
+import RoundCheckIcon4 from './shared/icons/RoundCheckIcon4';
 import SearchIcon from './shared/icons/SearchIcon';
 import SelectOnMapIcon from './shared/icons/SelectOnMapIcon';
 import SettingsIcon from './shared/icons/SettingsIcon';
@@ -163,7 +164,8 @@ import {
 } from './shared/molecules/BottomWindowWithGesture/props';
 import CodeInputV1 from './shared/molecules/CodeInput/v1';
 import CodeInput from './shared/molecules/CodeInput/v2';
-import DatePicker from './shared/molecules/DatePicker';
+import DatePickerV1 from './shared/molecules/DatePicker/v1';
+import DatePicker from './shared/molecules/DatePicker/v2';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
 import Fog from './shared/molecules/Fog';
 import GroupedButtons from './shared/molecules/GroupedButtons';
@@ -174,6 +176,7 @@ import { type LocationUnavailableProps } from './shared/molecules/LocationUnavai
 import MenuBase from './shared/molecules/MenuBase';
 import { type MenuNavigation } from './shared/molecules/MenuBase/props';
 import MenuHeader from './shared/molecules/MenuHeader';
+import PaymentBar from './shared/molecules/PaymentBar';
 import PhoneInput from './shared/molecules/PhoneInput';
 import PhoneSlidingPanel from './shared/molecules/PhoneSlidingPanel';
 import Popup from './shared/molecules/Popup';
@@ -183,7 +186,8 @@ import SliderWithCustomGesture from './shared/molecules/SliderWithCustomGesture'
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/props';
 import SwipeButtonV1 from './shared/molecules/SwipeButton/v1';
 import SwipeButton from './shared/molecules/SwipeButton/v2';
-import TimePicker from './shared/molecules/TimePicker';
+import TimePickerV1 from './shared/molecules/TimePicker/v1';
+import TimePicker from './shared/molecules/TimePicker/v2';
 import CountingComponentV1 from './shared/molecules/timerAndStopwatch/CountingComponent/V1';
 import CountingComponent from './shared/molecules/timerAndStopwatch/CountingComponent/V2';
 import StopWatch from './shared/molecules/timerAndStopwatch/StopWatch';
@@ -291,6 +295,7 @@ export {
   CurrencyIcon,
   CustomKeyboardAvoidingView,
   DatePicker,
+  DatePickerV1,
   defaultAxiosRetryConfig,
   degToRad,
   DislikeIcon,
@@ -373,6 +378,7 @@ export {
   palettes,
   PassengerIcon,
   PassengerIcon2,
+  PaymentBar,
   type PaymentMethod,
   PayPalIcon,
   PhoneIcon,
@@ -404,6 +410,7 @@ export {
   RoundCheckIcon1,
   RoundCheckIcon2,
   RoundCheckIcon3,
+  RoundCheckIcon4,
   SafeAreaView,
   ScrollViewWithCustomScroll,
   SearchIcon,
@@ -446,6 +453,7 @@ export {
   ThemeProviderV1,
   TimeIcon,
   TimePicker,
+  TimePickerV1,
   Timer,
   TimerColorModes,
   TimerSizesModes,

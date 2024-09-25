@@ -6,13 +6,13 @@ import DateTimePicker, {
 import { useState } from 'react';
 import { Platform, Pressable, StyleSheet } from 'react-native';
 
-import Modal from '../../atoms/Modal';
-import TextInputV1 from '../../atoms/TextInput/v1';
-import TimeIcon from '../../icons/TimeIcon';
-import { type DatePickerProps } from './props';
+import Modal from '../../../atoms/Modal';
+import TextInputV1 from '../../../atoms/TextInput/v1';
+import TimeIcon from '../../../icons/TimeIcon';
+import { type TimePickerPropsV1 } from '../props';
 
-const TimePicker = ({ style, placeholder, onTimeSelect, formatTime }: DatePickerProps): JSX.Element => {
-  const [time, setTime] = useState<Date | null>();
+const TimePickerV1 = ({ style, placeholder, onTimeSelect, formatTime }: TimePickerPropsV1): JSX.Element => {
+  const [time, setTime] = useState<Date | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isTimeSelected, setIsTimeSelected] = useState(false);
 
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TimePicker;
+export default TimePickerV1;

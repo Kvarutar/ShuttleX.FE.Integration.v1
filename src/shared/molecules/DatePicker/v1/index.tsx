@@ -6,13 +6,13 @@ import DateTimePicker, {
 import { useState } from 'react';
 import { Platform, Pressable, StyleSheet } from 'react-native';
 
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import Modal from '../../atoms/Modal';
-import TextInputV1 from '../../atoms/TextInput/v1';
-import CalendarIcon from '../../icons/CalendarIcon';
-import { DatePickerDisplay, type DatePickerProps } from './props';
+import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
+import Modal from '../../../atoms/Modal';
+import TextInputV1 from '../../../atoms/TextInput/v1';
+import CalendarIcon from '../../../icons/CalendarIcon';
+import { DatePickerDisplay, type DatePickerPropsV1 } from '../props';
 
-const DatePicker = ({
+const DatePickerV1 = ({
   style,
   inputDatePickerStyle,
   display = DatePickerDisplay.Calendar,
@@ -22,10 +22,10 @@ const DatePicker = ({
   maximumDate,
   minimumDate,
   formatDate,
-}: DatePickerProps): JSX.Element => {
+}: DatePickerPropsV1): JSX.Element => {
   const { colors, themeMode } = useThemeV1();
 
-  const [date, setDate] = useState<Date | null>();
+  const [date, setDate] = useState<Date | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isDateSelected, setIsDateSelected] = useState(false);
 
@@ -107,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DatePicker;
+export default DatePickerV1;

@@ -5,7 +5,7 @@ export enum DatePickerDisplay {
   Calendar = 'calendar',
 }
 
-export type DatePickerProps = {
+export type DatePickerPropsV1 = {
   style?: TextInputPropsNative['style'];
   inputDatePickerStyle?: StyleProp<ViewStyle>;
   display?: DatePickerDisplay;
@@ -15,4 +15,11 @@ export type DatePickerProps = {
   minimumDate?: Date;
   formatDate: (date: Date) => string;
   error?: { isError: boolean; message: string };
+};
+
+export type DatePickerProps = {
+  display?: DatePickerDisplay;
+  onDateSelect: (date: Date) => void;
+  maximumDate?: Date;
+  minimumDate?: Date;
 };

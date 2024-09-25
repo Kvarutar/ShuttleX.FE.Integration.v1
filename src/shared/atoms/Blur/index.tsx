@@ -5,14 +5,19 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { type BlurProps } from './props';
 
 //TODO: think of clever way to do this animation
-const Blur = ({ style, animationDuration = 500 }: BlurProps) => (
+const Blur = ({ style, animationDuration = 500, iosBlurAmount = 7 }: BlurProps) => (
   <Animated.View
     style={StyleSheet.absoluteFill}
     entering={FadeIn.duration(animationDuration)}
     exiting={Platform.OS === 'ios' ? FadeOut.duration(animationDuration) : undefined}
   >
     {Platform.OS === 'ios' ? (
-      <BlurView style={[styles.ios, style]} blurType="light" blurAmount={7} reducedTransparencyFallbackColor="white" />
+      <BlurView
+        style={[styles.ios, style]}
+        blurType="light"
+        blurAmount={iosBlurAmount}
+        reducedTransparencyFallbackColor="white"
+      />
     ) : (
       <View style={[styles.android, style]} />
     )}
