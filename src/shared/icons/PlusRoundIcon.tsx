@@ -11,7 +11,7 @@ const PlusRoundIcon = ({
 }: {
   style?: StyleProp<ViewStyle>;
   color?: string;
-  backgroundColor: string;
+  backgroundColor?: string;
 }): JSX.Element => {
   const { colors } = useTheme();
   const svgColor = color ?? colors.iconTertiaryColor;
@@ -19,8 +19,8 @@ const PlusRoundIcon = ({
 
   return (
     <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-      <Circle cx="12" cy="12" r="10" fill={svgBackgroundColor} />
-      <Path d="M11.5 8.5H12.5V11.5H15.5V12.5H12.5V15.5H11.5V12.5H8.5V11.5H11.5V8.5Z" fill={svgColor} />
+      <Circle cx="12" cy="12" r="12" fill={svgBackgroundColor} />
+      <Path d="M11 8H13V11H16V13H13V16H11V13H8V11H11V8Z" fill={svgColor} />
     </Svg>
   );
 };

@@ -127,6 +127,7 @@ import SpinnerIcon from './shared/icons/SpinnerIcon';
 import StarIcon from './shared/icons/StarIcon';
 import StatisticsIcon from './shared/icons/StatisticsIcon';
 import SteeringWheelIcon from './shared/icons/SteeringWheelIcon';
+import SubscriptionIcon from './shared/icons/SubscriptionIcon';
 import SuccessIcon from './shared/icons/SuccessIcon';
 import TimeIcon from './shared/icons/TimeIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
@@ -434,6 +435,7 @@ export {
   StatisticsIcon,
   SteeringWheelIcon,
   StopWatch,
+  SubscriptionIcon,
   SuccessIcon,
   SwipeButton,
   SwipeButtonModes,

@@ -1,20 +1,15 @@
 import { useEffect } from 'react';
-import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Dimensions, Pressable, StyleSheet, View } from 'react-native';
+import { Dimensions, Platform, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import i18nIntegration from '../../../core/locales/i18n';
 import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import { getMenuIcons } from '../../../utils/menu/menuIcons';
 import { type MenuNavigationBlocks } from '../../../utils/menu/type';
 import Text from '../../atoms/Text';
-import GameIcon from '../../icons/GameIcon';
 import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini/V2';
-import PlayIcon from '../../icons/PlayIcon';
 import MenuUserImage from '../../images/MenuUserImage';
-import SafeAreaView from '../SafeAreaView';
 import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type MenuBaseProps } from './props';
 
@@ -28,19 +23,19 @@ const constants = {
   menuWidth: windowSizes.width * 0.7,
 };
 
-const MenuBaseWithoutI18n = ({
+const MenuBase = ({
   onClose,
   userImageUri,
   userName,
   userSurname,
   additionalContent,
+  additionalButton,
   menuNavigation,
   style,
   currentRoute,
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
-  const { t } = useTranslation();
 
   useEffect(() => {
     translateX.value = withTiming(0, { duration: constants.animationDurations.menu });
@@ -57,8 +52,11 @@ const MenuBaseWithoutI18n = ({
   };
 
   const computedStyles = StyleSheet.create({
-    wrapper: {
+    safeAreaStyle: {
       backgroundColor: colors.backgroundPrimaryColor,
+      width: constants.menuWidth,
+      height: windowSizes.height,
+      paddingBottom: Platform.OS === 'android' ? sizes.paddingVertical : 0,
     },
     gameButton: {
       backgroundColor: colors.backgroundSecondaryColor,
@@ -99,29 +97,29 @@ const MenuBaseWithoutI18n = ({
   return (
     <GestureDetector gesture={pan}>
       <Animated.View style={[styles.window, animatedStyles, style]}>
-        <SafeAreaView containerStyle={[styles.wrapper, computedStyles.wrapper]}>
-          <ScrollViewWithCustomScroll contentContainerStyle={styles.scrollViewContent} barStyle={styles.scrollBarStyle}>
+        <SafeAreaView style={computedStyles.safeAreaStyle}>
+          <ScrollViewWithCustomScroll
+            contentContainerStyle={styles.scrollViewContent}
+            wrapperStyle={styles.wrapper}
+            barStyle={styles.scrollBarStyle}
+          >
             <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]} />
             <View style={styles.container}>
               <View style={styles.content}>
-                <View style={styles.profile}>
-                  <MenuUserImage url={userImageUri} style={styles.profileImage} />
-                  <View style={styles.nameContainer}>
-                    <Text style={styles.name}>{userName ?? ''}</Text>
-                    <Text style={styles.surname}>{userSurname ?? ''}</Text>
+                <View style={styles.gapAdditionalContent}>
+                  <View style={styles.profile}>
+                    <MenuUserImage url={userImageUri} style={styles.profileImage} />
+                    <View style={styles.nameContainer}>
+                      <Text style={styles.name}>{userName ?? ''}</Text>
+                      <Text style={styles.name}>{userSurname ?? ''}</Text>
+                    </View>
                   </View>
+                  {additionalContent}
                 </View>
-                {additionalContent}
                 <View style={styles.navigation}>{navigationContent}</View>
               </View>
               <View style={styles.bottomButtons}>
-                <Pressable style={[computedStyles.gameButton, styles.gameButton]}>
-                  <View style={styles.itemsWrapper}>
-                    <GameIcon />
-                    <Text>{t('Menu_playGameButton')}</Text>
-                  </View>
-                  <PlayIcon />
-                </Pressable>
+                {additionalButton}
                 <GroupedBrandIconMini style={styles.brandIconsStyle} />
               </View>
             </View>
@@ -135,6 +133,7 @@ const MenuBaseWithoutI18n = ({
 
 const styles = StyleSheet.create({
   scrollViewContent: {
+    paddingBottom: 16,
     flexGrow: 1,
   },
   window: {
@@ -145,15 +144,9 @@ const styles = StyleSheet.create({
   },
   outsider: {
     flex: 1,
-    height: windowSizes.height,
   },
   wrapper: {
-    width: constants.menuWidth,
-    height: windowSizes.height,
-    paddingVertical: 0,
-    paddingHorizontal: 0,
-    position: 'absolute',
-    top: 0,
+    flexGrow: 1,
   },
   primaryColorBackground: {
     height: 96,
@@ -166,10 +159,9 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'space-between',
     paddingHorizontal: sizes.paddingHorizontal,
-    paddingBottom: 34,
   },
   content: {
     gap: 26,
@@ -183,10 +175,6 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   name: {
-    fontFamily: 'Inter Medium',
-    fontSize: 21,
-  },
-  surname: {
     fontFamily: 'Inter Medium',
     fontSize: 21,
   },
@@ -207,40 +195,30 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#DEE3E4',
   },
-
+  gapAdditionalContent: {
+    gap: 15,
+  },
   navigationItemTitle: {
     fontFamily: 'Inter Medium',
     fontSize: 17,
+    lineHeight: 20.57,
+    letterSpacing: -0.4,
   },
   itemsWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
   },
-  gameButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: sizes.paddingHorizontal,
-    paddingVertical: 12,
-    borderRadius: 12,
-    justifyContent: 'space-between',
-  },
   bottomButtons: {
     gap: 17,
     marginTop: 'auto',
   },
   brandIconsStyle: {
-    marginLeft: 16,
+    marginLeft: 12,
   },
   scrollBarStyle: {
     backgroundColor: 'transparent',
   },
 });
-
-const MenuBase = (props: MenuBaseProps) => (
-  <I18nextProvider i18n={i18nIntegration}>
-    <MenuBaseWithoutI18n {...props} />
-  </I18nextProvider>
-);
 
 export default MenuBase;
