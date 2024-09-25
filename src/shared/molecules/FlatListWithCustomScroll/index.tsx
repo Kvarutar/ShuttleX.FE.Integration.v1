@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollBar: {
-    width: 2,
+    width: 4,
     borderRadius: 8,
     position: 'absolute',
     right: -sizes.paddingVertical / 2,

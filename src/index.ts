@@ -33,6 +33,7 @@ import {
   SquareButtonModes,
 } from './shared/atoms/Button/v2/props';
 import CheckBox from './shared/atoms/Checkbox';
+import CircleAnimatedProgress from './shared/atoms/CircleProgress';
 import Separator from './shared/atoms/Separator';
 import Shade from './shared/atoms/Shade';
 import Text from './shared/atoms/Text';
@@ -276,6 +277,7 @@ export {
   checkGalleryUsagePermission,
   checkGeolocationPermissionAndAccuracy,
   CheckIcon2,
+  CircleAnimatedProgress,
   CircleButtonModes,
   ClockIcon,
   ClockIcon2,

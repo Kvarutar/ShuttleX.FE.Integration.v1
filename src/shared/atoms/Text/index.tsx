@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Inter Regular',
     fontSize: 16,
-    letterSpacing: 0.64,
   },
 });
 
