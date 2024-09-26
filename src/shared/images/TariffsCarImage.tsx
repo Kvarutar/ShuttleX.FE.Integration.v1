@@ -1,22 +1,21 @@
 import { type ReactNode } from 'react';
 import { type ImageStyle } from 'react-native';
 
-import BasicXImage from './BasicXImage';
+import BasicImage from './BasicImage';
 import BasicXLImage from './BasicXLImage';
-import ComfortXImage from './ComfortXImage';
-import PremiumXImage from './PremiumXImage';
-import PremiumXLImage from './PremiumXLImage';
-import TeslaXImage from './TeslaXImage';
+import BusinessImage from './Business';
+import ComfortPlusImage from './ComfortPlusImage';
+import EcoImage from './EcoImage';
 
-export type TariffType = 'BasicX' | 'BasicXL' | 'ComfortX' | 'PremiumX' | 'PremiumXL' | 'TeslaX';
+// TODO: Change tariffs names to the frontend keys
+export type TariffType = 'Basic' | 'BasicXL' | 'ComfortPlus' | 'Business' | 'Eco';
 
 const images: Record<TariffType, ({ style }: { style?: ImageStyle }) => ReactNode> = {
-  BasicX: BasicXImage,
+  Basic: BasicImage,
   BasicXL: BasicXLImage,
-  ComfortX: ComfortXImage,
-  PremiumX: PremiumXImage,
-  PremiumXL: PremiumXLImage,
-  TeslaX: TeslaXImage,
+  Eco: EcoImage,
+  ComfortPlus: ComfortPlusImage,
+  Business: BusinessImage,
 };
 
 const TariffsCarImage = ({ tariff, style }: { tariff: TariffType; style?: ImageStyle }) => images[tariff]({ style });

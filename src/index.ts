@@ -136,17 +136,16 @@ import UnknownCardIcon from './shared/icons/UnknownCardIcon';
 import VisaIcon from './shared/icons/VisaIcon';
 import WalletIcon from './shared/icons/WalletIcon';
 import WarningIcon from './shared/icons/WarningIcon';
-import BasicXImage from './shared/images/BasicXImage';
+import BasicImage from './shared/images/BasicImage';
 import BasicXLImage from './shared/images/BasicXLImage';
-import ComfortXImage from './shared/images/ComfortXImage';
+import BusinessImage from './shared/images/Business';
+import ComfortPlusImage from './shared/images/ComfortPlusImage';
+import EcoImage from './shared/images/EcoImage';
 import LocationArrowImage from './shared/images/LocationArrowImage';
 import LocationArrowImage2 from './shared/images/LocationArrowImage2';
 import MenuUserImage from './shared/images/MenuUserImage';
 import MenuUserImage2 from './shared/images/MenuUserImage2';
-import PremiumXImage from './shared/images/PremiumXImage';
-import PremiumXLImage from './shared/images/PremiumXLImage';
 import TariffsCarImage, { type TariffType } from './shared/images/TariffsCarImage';
-import TeslaXImage from './shared/images/TeslaXImage';
 import { type AlertDescendantProps } from './shared/molecules/alerts/Alert/props';
 import DriverArrivedAlert from './shared/molecules/alerts/DriverArrivedAlert';
 import FreeTimeAlert from './shared/molecules/alerts/FreeTimeAlert';
@@ -250,7 +249,7 @@ export {
   BarModes,
   BarsIcon,
   BarV1,
-  BasicXImage,
+  BasicImage,
   BasicXLImage,
   BecomeDriverIcon,
   BigCameraIcon,
@@ -262,6 +261,7 @@ export {
   type BottomWindowWithGestureRef,
   BrandFavIcon,
   BrandTextIcon,
+  BusinessImage,
   Button,
   ButtonAnimation,
   type ButtonProps,
@@ -290,7 +290,7 @@ export {
   CodeInput,
   CodeInputV1,
   CodeVerificationScreen,
-  ComfortXImage,
+  ComfortPlusImage,
   CountingComponent,
   CountingComponentV1,
   countryDtos,
@@ -312,6 +312,7 @@ export {
   DriverArrivedAlert,
   DropDownIcon,
   DropOffIcon,
+  EcoImage,
   emailRegex,
   EmergencyServiceIcon,
   EmojiIcon,
@@ -404,8 +405,6 @@ export {
   PointIcon2,
   Popup,
   PreferencesIcon,
-  PremiumXImage,
-  PremiumXLImage,
   ProfileIcon,
   ProfileIconMini,
   PromocodesIcon,
@@ -450,7 +449,6 @@ export {
   SwipeButtonV1,
   TariffsCarImage,
   type TariffType,
-  TeslaXImage,
   Text,
   TextElipsizeMode,
   TextInput,
