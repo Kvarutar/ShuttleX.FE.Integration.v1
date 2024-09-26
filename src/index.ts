@@ -12,6 +12,7 @@ import MapView from './core/map/MapView';
 import { type MapCameraMode, type MapViewProps } from './core/map/types';
 import { nameof } from './core/monkey-patch/ts.helper';
 import { SignalR } from './core/signalR/middleware';
+import { defaultShadow } from './core/themes/shadows';
 import sizes from './core/themes/sizes';
 import palettes from './core/themes/v1/palettes';
 import { type ThemeContextTypeV1, ThemeProviderV1, useThemeV1 } from './core/themes/v1/themeContext';
@@ -197,6 +198,7 @@ import TimerV1 from './shared/molecules/timerAndStopwatch/Timer/V1';
 import { TimerV1Modes } from './shared/molecules/timerAndStopwatch/Timer/V1/props';
 import Timer from './shared/molecules/timerAndStopwatch/Timer/V2';
 import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/V2/props';
+import UnclosablePopup from './shared/molecules/UnclosablePopup';
 import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
 import CodeVerificationScreen from './shared/screens/CodeVerificationScreen';
@@ -303,6 +305,7 @@ export {
   DatePicker,
   DatePickerV1,
   defaultAxiosRetryConfig,
+  defaultShadow,
   degToRad,
   DislikeIcon,
   DocumentIcon,
@@ -467,6 +470,7 @@ export {
   TimerV1,
   TimerV1Modes,
   TitleWithCloseButton,
+  UnclosablePopup,
   UnknownCardIcon,
   useCompass,
   useDebounce,
