@@ -37,8 +37,8 @@ const PhoneSelect = ({ flagState, onFlagSelect, hidePanel }: PhoneSelectProps): 
             });
             setFilteredCountryDtos(filtered);
           }}
-          containerStyle={styles.textInputSearchContainer}
-          style={[styles.textInputSearch, computedStyles.textInputSearch]}
+          wrapperStyle={styles.textInputSearchWrapper}
+          inputStyle={[styles.textInputSearch, computedStyles.textInputSearch]}
         />
       </View>
       <ScrollViewWithCustomScroll style={[styles.flagListContainer]}>
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 20,
   },
-  textInputSearchContainer: {
+  textInputSearchWrapper: {
     flex: 1,
   },
 });

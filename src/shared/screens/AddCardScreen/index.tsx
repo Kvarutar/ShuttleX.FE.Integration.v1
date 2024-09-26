@@ -108,7 +108,7 @@ const AddCardScreenWithoutI18n = ({ onCardSave }: AddCardScreenProps): JSX.Eleme
               value={cardData.number}
               placeholder={t('AddCard_inputCardNumber')}
               onChangeText={onNumberChange}
-              style={styles.numberInput}
+              containerStyle={styles.numberInput}
               error={{
                 isError: validCardLength > 1 && validCardLength < 14,
                 message: t('AddCard_inputErrorMessage1'),

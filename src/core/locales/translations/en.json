@@ -75,5 +75,11 @@
   "SignIn_secondPartHeader": "to Receive\nCode",
   "SignIn_nextButton": "Next",
   "SignIn_dontHaveAccount": "Don’t have an account?",
-  "SignIn_signUpLabel": "Sign Up"
+  "SignIn_signUpLabel": "Sign Up",
+  "CodeVerification_bannedTitle": "Banned",
+  "CodeVerification_bannedFirstText": "You Have Been Banned For {{time}} min",
+  "CodeVerification_bannedSecondText": "You temporally locked to login.\nPlease wait until you will be unlocked\nor contact support",
+  "CodeVerification_againButton": "Again",
+  "CodeVerification_supportButton": "Contact support",
+  "CodeVerification_title": "Sign in code"
 }

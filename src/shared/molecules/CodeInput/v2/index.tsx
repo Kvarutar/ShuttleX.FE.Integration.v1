@@ -1,46 +1,58 @@
 import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { StyleSheet, type TextInputProps, View } from 'react-native';
+import { useTheme } from 'shuttlex-integration';
 
 import TextInput from '../../../atoms/TextInput/v2';
 import { TextInputInputMode, type TextInputRef } from '../../../atoms/TextInput/v2/props';
 import { type CodeInputProps, type CodeNumberProps } from '../props';
 
-const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(({ input, setInput, onBackspaceKeyPress }, ref) => {
-  const [lastKeyEventTimestamp, setLastKeyEventTimestamp] = useState(0);
+const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(
+  ({ input, setInput, onBackspaceKeyPress, isError = false }, ref) => {
+    const { colors } = useTheme();
+    const [lastKeyEventTimestamp, setLastKeyEventTimestamp] = useState(0);
 
-  const onKeyPress: TextInputProps['onKeyPress'] = e => {
-    if (onBackspaceKeyPress) {
-      // fix for issue https://github.com/facebook/react-native/issues/37967
-      // older version same issue https://github.com/facebook/react-native/issues/18374
-      if (e.nativeEvent.key === 'Backspace') {
-        if (Math.abs(lastKeyEventTimestamp - e.timeStamp) < 20) {
-          return;
+    const onKeyPress: TextInputProps['onKeyPress'] = e => {
+      if (onBackspaceKeyPress) {
+        // fix for issue https://github.com/facebook/react-native/issues/37967
+        // older version same issue https://github.com/facebook/react-native/issues/18374
+        if (e.nativeEvent.key === 'Backspace') {
+          if (Math.abs(lastKeyEventTimestamp - e.timeStamp) < 20) {
+            return;
+          }
+          onBackspaceKeyPress();
+        } else {
+          setLastKeyEventTimestamp(e.timeStamp);
         }
-        onBackspaceKeyPress();
-      } else {
-        setLastKeyEventTimestamp(e.timeStamp);
       }
-    }
-  };
+    };
 
-  return (
-    <TextInput
-      ref={ref}
-      value={input}
-      onChangeText={text => {
-        if (text === '' || /\d/.test(text)) {
-          setInput(text);
-        }
-      }}
-      onKeyPress={onKeyPress}
-      inputMode={TextInputInputMode.Numeric}
-      style={styles.codeInput}
-      maxLength={1}
-    />
-  );
-});
+    const computedStyles = StyleSheet.create({
+      codeInputContainer: {
+        backgroundColor: input ? colors.borderColor : colors.backgroundPrimaryColor,
+      },
+    });
 
-const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
+    return (
+      <TextInput
+        ref={ref}
+        value={input}
+        onChangeText={text => {
+          if (text === '' || /\d/.test(text)) {
+            setInput(text);
+          }
+        }}
+        onKeyPress={onKeyPress}
+        inputMode={TextInputInputMode.Numeric}
+        containerStyle={[styles.codeInputContainer, computedStyles.codeInputContainer]}
+        inputStyle={styles.codeInput}
+        error={{ isError: isError }}
+        maxLength={1}
+      />
+    );
+  },
+);
+
+const CodeInput = ({ style, onCodeChange, isError }: CodeInputProps): JSX.Element => {
   //TODO: Refactor code by using dictionary
   const isFirstRender = useRef(true);
   const firstCodeNumberRef = useRef<TextInputRef>(null);
@@ -110,24 +122,32 @@ const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
 
   return (
     <View style={[styles.container, style]}>
-      <CodeNumber ref={firstCodeNumberRef} input={firstCodeNumberInput} setInput={setFirstCodeNumberInput} />
+      <CodeNumber
+        ref={firstCodeNumberRef}
+        input={firstCodeNumberInput}
+        setInput={setFirstCodeNumberInput}
+        isError={isError}
+      />
       <CodeNumber
         ref={secondCodeNumberRef}
         input={secondCodeNumberInput}
         setInput={setSecondCodeNumberInput}
         onBackspaceKeyPress={() => firstCodeNumberRef.current?.focus()}
+        isError={isError}
       />
       <CodeNumber
         ref={thirdCodeNumberRef}
         input={thirdCodeNumberInput}
         setInput={setThirdCodeNumberInput}
         onBackspaceKeyPress={() => secondCodeNumberRef.current?.focus()}
+        isError={isError}
       />
       <CodeNumber
         ref={fourthCodeNumberRef}
         input={fourthCodeNumberInput}
         setInput={setFourthCodeNumberInput}
         onBackspaceKeyPress={() => thirdCodeNumberRef.current?.focus()}
+        isError={isError}
       />
     </View>
   );
@@ -136,16 +156,19 @@ const CodeInput = ({ style, onCodeChange }: CodeInputProps): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    gap: 20,
+    gap: 40,
   },
-  codeInput: {
-    textAlign: 'center',
+  codeInputContainer: {
     height: 72,
     width: 64,
     paddingHorizontal: 0,
     paddingVertical: 0,
-    fontSize: 34,
+  },
+  codeInput: {
+    height: '100%',
     fontFamily: 'Inter Bold',
+    fontSize: 34,
+    textAlign: 'center',
   },
 });
 

@@ -33,10 +33,18 @@ export enum ButtonSizes {
   L = 'l',
 }
 
-export type ButtonAnimationrProps = {
+export type ButtonAnimationProps = {
   time: number;
   children: React.ReactNode;
   onAnimationEnd: () => void;
+};
+
+export type ButtonAnimationRef = {
+  restartAnimation: () => void;
+};
+
+export type ButtonRef = {
+  restartMode6Animation: () => void;
 };
 
 export type ButtonProps = {

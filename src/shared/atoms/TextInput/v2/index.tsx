@@ -7,7 +7,9 @@ import TextInputBase from './TextInputBase';
 const TextInput = forwardRef<TextInputRef, TextInputProps>(
   (
     {
-      style,
+      inputStyle,
+      containerStyle,
+      wrapperStyle,
       placeholder,
       onChangeText,
       value,
@@ -19,7 +21,6 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
       maxLength,
       onlyDigits,
       editable,
-      containerStyle,
       error = { isError: false },
       multiline,
       withClearButton = false,
@@ -27,7 +28,9 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
     ref,
   ) => {
     const props = {
-      style,
+      inputStyle,
+      containerStyle,
+      wrapperStyle,
       placeholder,
       onChangeText,
       value,
@@ -38,7 +41,6 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
       maxLength,
       onlyDigits,
       editable,
-      containerStyle,
       error,
       multiline,
       ref,

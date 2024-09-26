@@ -199,6 +199,8 @@ import Timer from './shared/molecules/timerAndStopwatch/Timer/V2';
 import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/V2/props';
 import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
+import CodeVerificationScreen from './shared/screens/CodeVerificationScreen';
+import TitleWithCloseButton from './shared/screens/CodeVerificationScreen/TitleWithCloseButton';
 import FeedbackScreen from './shared/screens/FeedbackScreen';
 import { type FeedbackRating, type FeedbackType } from './shared/screens/FeedbackScreen/props';
 import LockOutScreen from './shared/screens/LockOutScreen';
@@ -285,6 +287,7 @@ export {
   CloseIconMini,
   CodeInput,
   CodeInputV1,
+  CodeVerificationScreen,
   ComfortXImage,
   CountingComponent,
   CountingComponentV1,
@@ -463,6 +466,7 @@ export {
   TimerSizesModes,
   TimerV1,
   TimerV1Modes,
+  TitleWithCloseButton,
   UnknownCardIcon,
   useCompass,
   useDebounce,

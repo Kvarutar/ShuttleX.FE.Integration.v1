@@ -9,7 +9,9 @@ import { type TextInputBaseProps, type TextInputRef } from './props';
 const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
   (
     {
-      style,
+      inputStyle,
+      containerStyle,
+      wrapperStyle,
       placeholder,
       onChangeText,
       value,
@@ -21,7 +23,6 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
       maxLength,
       onlyDigits,
       editable,
-      containerStyle,
       error = { isError: false },
       multiline,
       withClearButton,
@@ -80,12 +81,17 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
     });
 
     return (
-      <View style={containerStyle}>
+      <View style={wrapperStyle}>
         <View
-          style={[styles.inputContainer, computedStyles.inputContainer, isFocused ? computedStyles.focused : {}, style]}
+          style={[
+            styles.inputContainer,
+            computedStyles.inputContainer,
+            isFocused ? computedStyles.focused : {},
+            containerStyle,
+          ]}
         >
           <TextInputNative
-            style={[styles.input, computedStyles.input, style]}
+            style={[styles.input, computedStyles.input, inputStyle]}
             placeholderTextColor={colors.textSecondaryColor}
             cursorColor={colors.textPrimaryColor}
             placeholder={placeholder}

@@ -146,10 +146,10 @@ const PhoneInput = ({
         </Pressable>
         <TextInput
           error={{ isError: error.isError }}
-          style={[styles.input]}
+          containerStyle={styles.input}
           inputMode={TextInputInputMode.Numeric}
           value={inputValue}
-          containerStyle={styles.inputContainerStyle}
+          wrapperStyle={styles.inputWrapperStyle}
           onChangeText={onInputChangeText}
           onFocus={() => setIsInputFocused(true)}
           onBlur={() => setIsInputFocused(false)}
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
     paddingLeft: 20,
   },
-  inputContainerStyle: {
+  inputWrapperStyle: {
     flex: 1,
   },
   dropdownWrapper: {

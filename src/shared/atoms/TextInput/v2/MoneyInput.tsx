@@ -14,7 +14,9 @@ const USDollar = new Intl.NumberFormat('en-US', {
 const MoneyInput = forwardRef<TextInputRef, TextInputProps>(
   (
     {
-      style,
+      inputStyle,
+      containerStyle,
+      wrapperStyle,
       placeholder,
       onChangeText,
       value = '',
@@ -24,7 +26,6 @@ const MoneyInput = forwardRef<TextInputRef, TextInputProps>(
       onKeyPress,
       maxLength,
       editable,
-      containerStyle,
       error = { isError: false },
       multiline,
     },
@@ -79,8 +80,9 @@ const MoneyInput = forwardRef<TextInputRef, TextInputProps>(
       maxLength,
       editable,
       error,
-      style,
+      inputStyle,
       containerStyle,
+      wrapperStyle,
       multiline,
       ref,
     };

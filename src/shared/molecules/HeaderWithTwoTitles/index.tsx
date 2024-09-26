@@ -4,7 +4,12 @@ import { useTheme } from '../../../core/themes/v2/themeContext';
 import Text from '../../atoms/Text';
 import { type HeaderWithTwoTitlesProps } from './props';
 
-const HeaderWithTwoTitles = ({ firstTitle, secondTitle, textStyle }: HeaderWithTwoTitlesProps): JSX.Element => {
+const HeaderWithTwoTitles = ({
+  firstTitle,
+  secondTitle,
+  firstTextStyle,
+  secondTextStyle,
+}: HeaderWithTwoTitlesProps): JSX.Element => {
   const { colors } = useTheme();
 
   const computedStyles = StyleSheet.create({
@@ -18,8 +23,8 @@ const HeaderWithTwoTitles = ({ firstTitle, secondTitle, textStyle }: HeaderWithT
 
   return (
     <View>
-      <Text style={[styles.headerTextLabels, computedStyles.headerFirstTitle, textStyle]}>{firstTitle}</Text>
-      <Text style={[styles.headerTextLabels, computedStyles.headerSecondTitle, textStyle]}>{secondTitle}</Text>
+      <Text style={[styles.headerTextLabels, computedStyles.headerFirstTitle, firstTextStyle]}>{firstTitle}</Text>
+      <Text style={[styles.headerTextLabels, computedStyles.headerSecondTitle, secondTextStyle]}>{secondTitle}</Text>
     </View>
   );
 };

@@ -15,7 +15,7 @@ export enum TextInputInputMode {
 export type TextInputBaseInputMode = Exclude<TextInputInputMode, TextInputInputMode.Money>;
 
 export type TextInputBaseProps = {
-  style?: TextInputPropsNative['style'];
+  inputStyle?: TextInputPropsNative['style'];
   placeholder?: TextInputPropsNative['placeholder'];
   onChangeText?: TextInputPropsNative['onChangeText'];
   value?: TextInputPropsNative['value'];
@@ -28,6 +28,7 @@ export type TextInputBaseProps = {
   onFocus?: () => void;
   onBlur?: () => void;
   containerStyle?: StyleProp<ViewStyle>;
+  wrapperStyle?: StyleProp<ViewStyle>;
   error?: { isError: boolean; message?: string };
   multiline?: TextInputPropsNative['multiline'];
   withClearButton?: boolean;

@@ -11,6 +11,7 @@ const SlidingPanel = ({ flagState, onFlagSelect, isPanelOpen, setIsPanelOpen }: 
       visiblePartStyle={styles.visiblePart}
       setIsOpened={setIsPanelOpen}
       opened={isPanelOpen}
+      maxHeight={0.85}
       hiddenPart={
         <PhoneSelect onFlagSelect={onFlagSelect} flagState={flagState} hidePanel={() => setIsPanelOpen(false)} />
       }
