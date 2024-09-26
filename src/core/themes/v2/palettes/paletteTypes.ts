@@ -22,6 +22,7 @@ export type PaletteTimerModes = { [key in TimerColorModes]: PaletteTimerMode };
 
 export type Palette = {
   primaryColor: string;
+  primaryColorWithOpacity: string;
   primaryGradientStartColor: string;
   secondaryGradientStartColor: string;
   secondaryGradientEndColor: string;
@@ -37,6 +38,7 @@ export type Palette = {
   iconPrimaryColor: string;
   iconSecondaryColor: string;
   iconTertiaryColor: string;
+  iconSuccessColor: string;
   outlineColor: string; // mainly used for the outline of avatar or arrow of the current position
   strokeColor: string;
   textPrimaryColor: string;

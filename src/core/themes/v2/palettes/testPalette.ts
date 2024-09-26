@@ -7,6 +7,7 @@ import {
 
 const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerColorModes'> = {
   primaryColor: '#008D0A',
+  primaryColorWithOpacity: '#CEFC2829',
   primaryGradientStartColor: '#EEF5FF',
   secondaryGradientStartColor: '#EAEAEA',
   secondaryGradientEndColor: '#010101',
@@ -22,6 +23,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerCo
   iconPrimaryColor: '#000000',
   iconSecondaryColor: '#B4B4B4',
   iconTertiaryColor: '#FFFFFF',
+  iconSuccessColor: '#799124',
   outlineColor: '#FF8C00',
   strokeColor: '#FF0000',
   textPrimaryColor: '#000000',
