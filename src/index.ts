@@ -132,22 +132,22 @@ import StatisticsIcon from './shared/icons/StatisticsIcon';
 import SteeringWheelIcon from './shared/icons/SteeringWheelIcon';
 import SubscriptionIcon from './shared/icons/SubscriptionIcon';
 import SuccessIcon from './shared/icons/SuccessIcon';
+import BasicImage from './shared/icons/Tariffs/BasicImage';
+import BasicXLImage from './shared/icons/Tariffs/BasicXLImage';
+import BusinessImage from './shared/icons/Tariffs/Business';
+import ComfortPlusImage from './shared/icons/Tariffs/ComfortPlusImage';
+import EcoImage from './shared/icons/Tariffs/EcoImage';
+import { type TariffIconData, type TariffType, useTariffsIcons } from './shared/icons/Tariffs/TariffsCarImage';
 import TimeIcon from './shared/icons/TimeIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
 import VisaIcon from './shared/icons/VisaIcon';
 import WalletIcon from './shared/icons/WalletIcon';
 import WarningIcon from './shared/icons/WarningIcon';
-import BasicImage from './shared/images/BasicImage';
-import BasicXLImage from './shared/images/BasicXLImage';
-import BusinessImage from './shared/images/Business';
-import ComfortPlusImage from './shared/images/ComfortPlusImage';
-import EcoImage from './shared/images/EcoImage';
 import LocationArrowImage from './shared/images/LocationArrowImage';
 import LocationArrowImage2 from './shared/images/LocationArrowImage2';
 import MenuUserImage from './shared/images/MenuUserImage';
 import MenuUserImage2 from './shared/images/MenuUserImage2';
 import PassengerDefaultCarImage from './shared/images/PassengerDefaultCarImage';
-import TariffsCarImage, { type TariffType } from './shared/images/TariffsCarImage';
 import { type AlertDescendantProps } from './shared/molecules/alerts/Alert/props';
 import DriverArrivedAlert from './shared/molecules/alerts/DriverArrivedAlert';
 import FreeTimeAlert from './shared/molecules/alerts/FreeTimeAlert';
@@ -451,7 +451,7 @@ export {
   SwipeButton,
   SwipeButtonModes,
   SwipeButtonV1,
-  TariffsCarImage,
+  type TariffIconData,
   type TariffType,
   Text,
   TextElipsizeMode,
@@ -478,6 +478,7 @@ export {
   useDebounce,
   useGeolocationStartWatch,
   useNetworkConnectionStartWatch,
+  useTariffsIcons,
   useTheme,
   useThemeV1,
   VisaIcon,

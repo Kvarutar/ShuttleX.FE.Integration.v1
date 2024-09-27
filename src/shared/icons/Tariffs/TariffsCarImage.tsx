@@ -1,0 +1,44 @@
+import { useTranslation } from 'react-i18next';
+import { type ImageStyle } from 'react-native';
+
+import i18nIntegration from '../../../core/locales/i18n';
+import BasicImage from './BasicImage';
+import BasicXLImage from './BasicXLImage';
+import BusinessImage from './Business';
+import ComfortPlusImage from './ComfortPlusImage';
+import EcoImage from './EcoImage';
+
+// TODO: Change tariffs names to the frontend keys
+export type TariffType = 'Basic' | 'BasicXL' | 'ComfortPlus' | 'Business' | 'Eco';
+
+export type TariffIconData = {
+  icon: ({ style }: { style?: ImageStyle }) => JSX.Element;
+  text: string;
+};
+
+export const useTariffsIcons = (): Record<TariffType, TariffIconData> => {
+  const { t } = useTranslation(undefined, { i18n: i18nIntegration });
+  const icons: Record<TariffType, TariffIconData> = {
+    Basic: {
+      icon: BasicImage,
+      text: t('Tariffs_basic'),
+    },
+    BasicXL: {
+      icon: BasicXLImage,
+      text: t('Tariffs_basicXL'),
+    },
+    ComfortPlus: {
+      icon: ComfortPlusImage,
+      text: t('Tariffs_comfortPlus'),
+    },
+    Business: {
+      icon: BusinessImage,
+      text: t('Tariffs_business'),
+    },
+    Eco: {
+      icon: EcoImage,
+      text: t('Tariffs_eco'),
+    },
+  };
+  return icons;
+};

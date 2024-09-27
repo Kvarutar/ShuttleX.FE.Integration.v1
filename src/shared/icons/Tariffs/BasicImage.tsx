@@ -1,7 +1,7 @@
 import { Image, type ImageStyle, StyleSheet } from 'react-native';
 
 const BasicXImage = ({ style }: { style?: ImageStyle }) => (
-  <Image style={[styles.img, style]} source={require('../../assets/img/Basic.png')} />
+  <Image style={[styles.img, style]} source={require('../../../assets/img/Basic.png')} />
 );
 
 const styles = StyleSheet.create({

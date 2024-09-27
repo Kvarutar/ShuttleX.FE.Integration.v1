@@ -1,7 +1,7 @@
 import { Image, type ImageStyle, StyleSheet } from 'react-native';
 
 const EcoImage = ({ style }: { style?: ImageStyle }) => (
-  <Image style={[styles.img, style]} source={require('../../assets/img/Eco.png')} />
+  <Image style={[styles.img, style]} source={require('../../../assets/img/Eco.png')} />
 );
 
 const styles = StyleSheet.create({
