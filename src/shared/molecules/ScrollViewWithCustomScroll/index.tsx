@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Animated, ScrollView, StyleSheet, View } from 'react-native';
 
 import sizes from '../../../core/themes/sizes';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../core/themes/v2/themeContext';
 import { type ScrollViewWithCustomScrollProps } from './props';
 
 const ScrollViewWithCustomScroll = ({
@@ -15,13 +15,20 @@ const ScrollViewWithCustomScroll = ({
   contentContainerStyle,
   wrapperStyle,
 }: ScrollViewWithCustomScrollProps) => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
 
   const [isScrollBarVisible, setIsScrollBarVisible] = useState(withScroll);
+  const [scrollEnabled, setScrollEnabled] = useState(false);
 
   const scrollIndicator = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const shouldEnableScroll = completeScrollBarHeight > visibleScrollBarHeight;
+    setScrollEnabled(shouldEnableScroll);
+    setIsScrollBarVisible(shouldEnableScroll && withScroll);
+  }, [completeScrollBarHeight, visibleScrollBarHeight, withScroll]);
 
   let scrollIndicatorSize = visibleScrollBarHeight;
   if (completeScrollBarHeight > visibleScrollBarHeight) {
@@ -59,14 +66,12 @@ const ScrollViewWithCustomScroll = ({
 
   const onContentSizeChange = (height: number) => {
     setCompleteScrollBarHeight(height);
-    if (completeScrollBarHeight >= visibleScrollBarHeight) {
-      setIsScrollBarVisible(false);
-    }
   };
 
   return (
     <View style={[styles.container, wrapperStyle]}>
       <ScrollView
+        scrollEnabled={scrollEnabled}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}
         contentContainerStyle={[

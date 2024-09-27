@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { Dimensions, Platform, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Dimensions, type LayoutChangeEvent, Platform, Pressable, StatusBar, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
@@ -10,6 +10,7 @@ import { type MenuNavigationBlocks } from '../../../utils/menu/type';
 import Text from '../../atoms/Text';
 import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini/V2';
 import MenuUserImage from '../../images/MenuUserImage';
+import SafeAreaView from '../SafeAreaView';
 import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type MenuBaseProps } from './props';
 
@@ -29,13 +30,23 @@ const MenuBase = ({
   userName,
   userSurname,
   additionalContent,
-  additionalButton,
   menuNavigation,
+  additionalButton,
+  label,
   style,
   currentRoute,
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
+
+  const topOffset = Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0;
+
+  const [imageHeight, setImageHeight] = useState(0);
+
+  const handleImageLayout = (event: LayoutChangeEvent) => {
+    const { height } = event.nativeEvent.layout;
+    setImageHeight(height);
+  };
 
   useEffect(() => {
     translateX.value = withTiming(0, { duration: constants.animationDurations.menu });
@@ -50,19 +61,29 @@ const MenuBase = ({
       runOnJS(onClose)(),
     );
   };
-
+  const goToSite = () => {
+    //TODO send user to our website
+  };
   const computedStyles = StyleSheet.create({
-    safeAreaStyle: {
+    wrapper: {
       backgroundColor: colors.backgroundPrimaryColor,
       width: constants.menuWidth,
       height: windowSizes.height,
-      paddingBottom: Platform.OS === 'android' ? sizes.paddingVertical : 0,
+      paddingBottom: Platform.OS === 'android' ? sizes.paddingVertical : 16,
     },
     gameButton: {
       backgroundColor: colors.backgroundSecondaryColor,
     },
     primaryColorBackground: {
       backgroundColor: colors.primaryColor,
+      justifyContent: 'flex-end',
+    },
+    container: {
+      paddingTop: 96 + imageHeight / 2 + 22 - topOffset,
+    },
+
+    profileImage: {
+      bottom: -imageHeight / 2,
     },
   });
 
@@ -97,33 +118,34 @@ const MenuBase = ({
   return (
     <GestureDetector gesture={pan}>
       <Animated.View style={[styles.window, animatedStyles, style]}>
-        <SafeAreaView style={computedStyles.safeAreaStyle}>
-          <ScrollViewWithCustomScroll
-            contentContainerStyle={styles.scrollViewContent}
-            wrapperStyle={styles.wrapper}
-            barStyle={styles.scrollBarStyle}
-          >
-            <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]} />
-            <View style={styles.container}>
-              <View style={styles.content}>
-                <View style={styles.gapAdditionalContent}>
-                  <View style={styles.profile}>
-                    <MenuUserImage url={userImageUri} style={styles.profileImage} />
-                    <View style={styles.nameContainer}>
-                      <Text style={styles.name}>{userName ?? ''}</Text>
-                      <Text style={styles.name}>{userSurname ?? ''}</Text>
-                    </View>
-                  </View>
-                  {additionalContent}
-                </View>
-                <View style={styles.navigation}>{navigationContent}</View>
-              </View>
-              <View style={styles.bottomButtons}>
-                {additionalButton}
-                <GroupedBrandIconMini style={styles.brandIconsStyle} />
-              </View>
+        <SafeAreaView containerStyle={[styles.wrapper, computedStyles.wrapper]}>
+          <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]}>
+            <View style={[styles.profileImage, computedStyles.profileImage]} onLayout={handleImageLayout}>
+              <MenuUserImage url={userImageUri} />
+              {label}
             </View>
-          </ScrollViewWithCustomScroll>
+          </View>
+
+          <View style={[styles.container, computedStyles.container]}>
+            <View style={styles.gapAdditionalContent}>
+              <View style={styles.profile}>
+                <View style={styles.nameContainer}>
+                  <Text style={styles.name}>{userName ?? ''}</Text>
+                  <Text style={styles.name}>{userSurname ?? ''}</Text>
+                </View>
+              </View>
+              {additionalContent}
+            </View>
+            <ScrollViewWithCustomScroll barStyle={styles.scrollBarStyle}>
+              {navigationContent}
+            </ScrollViewWithCustomScroll>
+            <View style={styles.bottomButtons}>
+              {additionalButton}
+              <Pressable onPress={goToSite}>
+                <GroupedBrandIconMini style={styles.brandIconsStyle} />
+              </Pressable>
+            </View>
+          </View>
         </SafeAreaView>
         <Pressable style={styles.outsider} onPress={closeMenu} />
       </Animated.View>
@@ -132,45 +154,50 @@ const MenuBase = ({
 };
 
 const styles = StyleSheet.create({
-  scrollViewContent: {
-    paddingBottom: 16,
-    flexGrow: 1,
-  },
   window: {
     position: 'absolute',
     top: 0,
     left: 0,
     flexDirection: 'row',
   },
+  wrapper: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
   outsider: {
     flex: 1,
-  },
-  wrapper: {
-    flexGrow: 1,
+    height: windowSizes.height,
   },
   primaryColorBackground: {
     height: 96,
-  },
-  profileImage: {
-    borderRadius: 1000,
     position: 'absolute',
-    top: -40,
-    left: 16,
+    left: 0,
+    right: 0,
+    top: 0,
+    zIndex: -1,
+  },
+
+  profileImage: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingRight: 16,
+    justifyContent: 'space-between',
+    paddingLeft: 32,
+    position: 'relative',
   },
 
   container: {
-    flexGrow: 1,
+    flex: 1,
     justifyContent: 'space-between',
-    paddingHorizontal: sizes.paddingHorizontal,
-  },
-  content: {
     gap: 26,
+    paddingBottom: 16,
   },
+
   profile: {
     paddingHorizontal: sizes.paddingHorizontal,
   },
   nameContainer: {
-    marginTop: sizes.paddingVertical + 22,
     flexDirection: 'row',
     gap: 2,
   },
@@ -180,6 +207,9 @@ const styles = StyleSheet.create({
   },
   navigation: {
     gap: 4,
+  },
+  gapAdditionalContent: {
+    gap: 15,
   },
   navigationItem: {
     paddingHorizontal: sizes.paddingHorizontal,
@@ -195,9 +225,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#DEE3E4',
   },
-  gapAdditionalContent: {
-    gap: 15,
-  },
+
   navigationItemTitle: {
     fontFamily: 'Inter Medium',
     fontSize: 17,
@@ -208,6 +236,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
+  },
+  gameButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: sizes.paddingHorizontal,
+    paddingVertical: 12,
+    borderRadius: 12,
+    justifyContent: 'space-between',
   },
   bottomButtons: {
     gap: 17,
