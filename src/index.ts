@@ -145,6 +145,7 @@ import LocationArrowImage from './shared/images/LocationArrowImage';
 import LocationArrowImage2 from './shared/images/LocationArrowImage2';
 import MenuUserImage from './shared/images/MenuUserImage';
 import MenuUserImage2 from './shared/images/MenuUserImage2';
+import PassengerDefaultCarImage from './shared/images/PassengerDefaultCarImage';
 import TariffsCarImage, { type TariffType } from './shared/images/TariffsCarImage';
 import { type AlertDescendantProps } from './shared/molecules/alerts/Alert/props';
 import DriverArrivedAlert from './shared/molecules/alerts/DriverArrivedAlert';
@@ -386,6 +387,7 @@ export {
   PaidTimeAlert,
   type PaidTimeAlertProps,
   palettes,
+  PassengerDefaultCarImage,
   PassengerIcon,
   PassengerIcon2,
   PaymentBar,
