@@ -6,8 +6,8 @@ const EcoImage = ({ style }: { style?: ImageStyle }) => (
 
 const styles = StyleSheet.create({
   img: {
-    width: 132,
-    height: 42,
+    width: 1305,
+    height: 429,
   },
 });
 

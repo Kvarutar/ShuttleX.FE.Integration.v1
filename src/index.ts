@@ -63,6 +63,7 @@ import CloseIcon from './shared/icons/CloseIcon';
 import CloseIconMini from './shared/icons/CloseIconMini';
 import CreditCardIcon from './shared/icons/CreditCardIcon';
 import CreditCheckIcon from './shared/icons/CreditCheckIcon';
+import CrownIcon from './shared/icons/CrownIcon';
 import CryptoIcon from './shared/icons/CryptoIcon';
 import CurrencyIcon from './shared/icons/CurrencyIcon';
 import DislikeIcon from './shared/icons/DislikeIcon';
@@ -301,6 +302,7 @@ export {
   createAxiosInstance,
   CreditCardIcon,
   CreditCheckIcon,
+  CrownIcon,
   CryptoIcon,
   CurrencyIcon,
   CustomKeyboardAvoidingView,

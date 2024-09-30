@@ -6,7 +6,7 @@ import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import { type SliderWithCustomGestureProps } from './types';
 
-const buttonPercentage = 0.3;
+const buttonPercentage = 0.2;
 const padding = 8;
 
 const SliderWithCustomGesture = ({
@@ -35,7 +35,7 @@ const SliderWithCustomGesture = ({
       padding: padding,
       backgroundColor: colors.backgroundPrimaryColor,
       width: '100%',
-      borderRadius: rightToLeftSwipe ? 13 : 25,
+      borderRadius: rightToLeftSwipe ? 13 : 100,
     },
 
     textInSlider: {

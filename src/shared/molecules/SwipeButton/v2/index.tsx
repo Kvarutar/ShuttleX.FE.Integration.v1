@@ -71,18 +71,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 48,
     paddingHorizontal: 38,
-    borderRadius: 24,
+    borderRadius: 36,
   },
   text: {
-    marginLeft: 62,
-    fontSize: 17,
+    alignSelf: 'center',
     fontFamily: 'Inter Bold',
-  },
-  slider: {
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 28,
+    fontSize: 17,
   },
 });
 

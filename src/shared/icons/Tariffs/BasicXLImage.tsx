@@ -6,8 +6,8 @@ const BasicXLImage = ({ style }: { style?: ImageStyle }) => (
 
 const styles = StyleSheet.create({
   img: {
-    width: 132,
-    height: 47,
+    width: 552,
+    height: 175,
   },
 });
 

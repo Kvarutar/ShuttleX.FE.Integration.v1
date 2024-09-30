@@ -171,23 +171,50 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
 
     return (
       <View style={containerStyle}>
-        <Shadow stretch {...shadowProps}>
-          <Pressable
-            style={[styles.button, computedStyles[shape].button, style]}
-            disabled={isButtonDisabled}
-            onPress={onPress}
-            onPressIn={() => setIsPressed(true)}
-            onPressOut={() => setIsPressed(false)}
-          >
-            {containers[shape]}
-          </Pressable>
-        </Shadow>
+        {shadow && shape === ButtonShapes.Circle ? (
+          <View style={styles.shadowContainer}>
+            <Shadow stretch {...shadowProps} style={styles.shadowStyle}>
+              <Pressable
+                style={[styles.button, computedStyles[shape].button, style]}
+                disabled={isButtonDisabled}
+                onPress={onPress}
+                onPressIn={() => setIsPressed(true)}
+                onPressOut={() => setIsPressed(false)}
+              >
+                {containers[shape]}
+              </Pressable>
+            </Shadow>
+          </View>
+        ) : (
+          <Shadow stretch {...shadowProps}>
+            <Pressable
+              style={[styles.button, computedStyles[shape].button, style]}
+              disabled={isButtonDisabled}
+              onPress={onPress}
+              onPressIn={() => setIsPressed(true)}
+              onPressOut={() => setIsPressed(false)}
+            >
+              {containers[shape]}
+            </Pressable>
+          </Shadow>
+        )}
       </View>
     );
   },
 );
 
 const styles = StyleSheet.create({
+  shadowContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  shadowStyle: {
+    padding: 4,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+  },
   subContainerCircleButton: {
     alignItems: 'center',
     justifyContent: 'center',

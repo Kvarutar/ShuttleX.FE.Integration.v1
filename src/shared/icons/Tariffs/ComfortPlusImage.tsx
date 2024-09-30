@@ -6,8 +6,8 @@ const ComfortPlusImage = ({ style }: { style?: ImageStyle }) => (
 
 const styles = StyleSheet.create({
   img: {
-    width: 132,
-    height: 43,
+    width: 612,
+    height: 199,
   },
 });
 
