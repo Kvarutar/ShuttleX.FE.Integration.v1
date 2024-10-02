@@ -28,7 +28,6 @@ const MenuBase = ({
   onClose,
   userImageUri,
   userName,
-  userSurname,
   additionalContent,
   menuNavigation,
   additionalButton,
@@ -129,10 +128,7 @@ const MenuBase = ({
           <View style={[styles.container, computedStyles.container]}>
             <View style={styles.gapAdditionalContent}>
               <View style={styles.profile}>
-                <View style={styles.nameContainer}>
-                  <Text style={styles.name}>{userName ?? ''}</Text>
-                  <Text style={styles.name}>{userSurname ?? ''}</Text>
-                </View>
+                <Text style={styles.name}>{userName ?? ''}</Text>
               </View>
               {additionalContent}
             </View>
@@ -167,6 +163,7 @@ const styles = StyleSheet.create({
   },
   outsider: {
     flex: 1,
+    zIndex: -1,
     height: windowSizes.height,
   },
   primaryColorBackground: {
@@ -197,10 +194,7 @@ const styles = StyleSheet.create({
   profile: {
     paddingHorizontal: sizes.paddingHorizontal,
   },
-  nameContainer: {
-    flexDirection: 'row',
-    gap: 2,
-  },
+
   name: {
     fontFamily: 'Inter Medium',
     fontSize: 21,

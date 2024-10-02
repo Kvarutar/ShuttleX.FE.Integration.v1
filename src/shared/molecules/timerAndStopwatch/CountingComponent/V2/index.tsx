@@ -85,7 +85,7 @@ const CountingComponentWithoutI18n: React.FC<CountingComponentProps> = ({
         <Text style={style?.timerMainText}>{text}</Text>
       ) : (
         <View style={styles.timeUnitContainer}>
-          <Text style={style?.timerNumText}>{content}</Text>
+          <Text style={[style?.timerNumText, styles.timerNumText]}>{content}</Text>
           <Text style={[style?.timerSecondaryText, styles.timerSecondaryText]}>{label}</Text>
         </View>
       )}
@@ -104,13 +104,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
+  timerNumText: {
+    fontFamily: 'Inter Medium',
+  },
   timeUnitContainer: {
     alignItems: 'center',
-    marginHorizontal: 4,
+    verticalAlign: 'middle',
   },
   timerSecondaryText: {
     opacity: 0.31,
+    fontFamily: 'Inter Medium',
   },
 });
 

@@ -14,7 +14,7 @@ export type DatePickerPropsV1 = {
   maximumDate?: Date;
   minimumDate?: Date;
   formatDate: (date: Date) => string;
-  error?: { isError: boolean; message: string };
+  error?: { isError: boolean; message?: string };
 };
 
 export type DatePickerProps = {

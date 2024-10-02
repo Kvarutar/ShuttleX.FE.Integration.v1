@@ -141,6 +141,7 @@ import EcoImage from './shared/icons/Tariffs/EcoImage';
 import { type TariffIconData, type TariffType, useTariffsIcons } from './shared/icons/Tariffs/TariffsCarImage';
 import TimeIcon from './shared/icons/TimeIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
+import UploadPhotoIcon from './shared/icons/UploadPhotoIcon';
 import VisaIcon from './shared/icons/VisaIcon';
 import WalletIcon from './shared/icons/WalletIcon';
 import WarningIcon from './shared/icons/WarningIcon';
@@ -201,6 +202,9 @@ import { TimerV1Modes } from './shared/molecules/timerAndStopwatch/Timer/V1/prop
 import Timer from './shared/molecules/timerAndStopwatch/Timer/V2';
 import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/V2/props';
 import UnclosablePopup from './shared/molecules/UnclosablePopup';
+import AccountSettingsScreen from './shared/screens/AccountSettingsScreen';
+import ChangeNamePopUp from './shared/screens/AccountSettingsScreen/ChangeNamePopUp';
+import { type Profile } from './shared/screens/AccountSettingsScreen/props';
 import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
 import CodeVerificationScreen from './shared/screens/CodeVerificationScreen';
@@ -238,8 +242,10 @@ import {
   requestGalleryUsagePermission,
   requestGeolocationPermission,
 } from './utils/permissions';
+import { isAllFieldsFilled, isEmailValid, isNameValid, isPhoneValid } from './utils/validation';
 
 export {
+  AccountSettingsScreen,
   ActivityIcon,
   AddCardScreen,
   type AlertDescendantProps,
@@ -278,6 +284,7 @@ export {
   calculateExtendedHeading,
   CalendarIcon,
   type Card,
+  ChangeNamePopUp,
   ChatIcon,
   CheckBox,
   checkCameraUsagePermission,
@@ -353,6 +360,10 @@ export {
   InputXIcon,
   IntegrationModule,
   InternetDisconnectedAlert,
+  isAllFieldsFilled,
+  isEmailValid,
+  isNameValid,
+  isPhoneValid,
   LevelIcon,
   lightMapStyle,
   LightningIcon,
@@ -411,6 +422,7 @@ export {
   PointIcon2,
   Popup,
   PreferencesIcon,
+  type Profile,
   ProfileIcon,
   ProfileIconMini,
   PromocodesIcon,
@@ -476,6 +488,7 @@ export {
   TitleWithCloseButton,
   UnclosablePopup,
   UnknownCardIcon,
+  UploadPhotoIcon,
   useCompass,
   useDebounce,
   useGeolocationStartWatch,

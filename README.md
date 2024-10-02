@@ -61,6 +61,7 @@ yarn example start
 - [react-redux](https://www.npmjs.com/package/react-redux)
 - [react-native-firebase/app](https://www.npmjs.com/package/@react-native-firebase/app)
 - [react-native-firebase/messaging](https://www.npmjs.com/package/@react-native-firebase/messaging)
+- [react-native-localize](https://classic.yarnpkg.com/en/package/react-native-localize)
 
 ### Install from GitHub
 

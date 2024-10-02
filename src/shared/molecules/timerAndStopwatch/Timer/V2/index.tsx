@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 
 import { lightPalette } from '../../../../../core/themes/v2/palettes/lightPalette';
 import { useTheme } from '../../../../../core/themes/v2/themeContext';
@@ -52,6 +52,7 @@ const Timer = ({
 }: TimerProps) => {
   const { colors } = useTheme();
   const [isCountingForward, setIsCountingForward] = useState(false); // To manage forward counting state
+  const [timerHeight, setTimerHeight] = useState(0);
 
   const { iconStrokeWidth, timerSize, numFontSize, textFontSize, marksHeight, marksWidth, padding, lineHeight } =
     timerSizes[sizeMode];
@@ -63,7 +64,10 @@ const Timer = ({
       setIsCountingForward(true);
     }
   };
-
+  const handleTimerLayout = (event: LayoutChangeEvent) => {
+    const { height } = event.nativeEvent.layout;
+    setTimerHeight(height);
+  };
   const computedStyles = StyleSheet.create({
     timerWrapper: {
       width: timerSize,
@@ -74,6 +78,7 @@ const Timer = ({
     timerNumText: {
       fontSize: numFontSize,
       color: textColor,
+      lineHeight: timerHeight < 100 ? 26 : 0,
     },
     timerMainText: {
       fontSize: textFontSize,
@@ -82,11 +87,12 @@ const Timer = ({
     timerSecondaryText: {
       color: textColor,
       fontSize: textFontSize,
+      lineHeight: timerHeight < 100 ? 16 : 32,
     },
   });
 
   return (
-    <View style={[computedStyles.timerWrapper, styles.timerWrapper, style?.timerWrapper]}>
+    <View style={[computedStyles.timerWrapper, styles.timerWrapper, style?.timerWrapper]} onLayout={handleTimerLayout}>
       <CircularTimerIcon
         initTime={time}
         size={timerSize}

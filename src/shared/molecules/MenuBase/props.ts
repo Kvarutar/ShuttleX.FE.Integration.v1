@@ -16,7 +16,6 @@ export type MenuBaseProps = {
   menuNavigation: MenuNavigation;
   userImageUri?: string;
   userName?: string;
-  userSurname?: string;
   additionalContent?: ReactNode;
   additionalButton?: ReactNode;
   label?: ReactNode;

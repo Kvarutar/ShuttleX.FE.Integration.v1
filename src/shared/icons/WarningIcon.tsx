@@ -1,26 +1,35 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 
-import sizes from '../../core/themes/sizes';
-import { useThemeV1 } from '../../core/themes/v1/themeContext';
+import { useTheme } from '../../core/themes/v2/themeContext';
 
-const WarningIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
-  const { colors } = useThemeV1();
+const WarningIcon = ({
+  style,
+  color,
+  lineColor,
+}: {
+  style?: StyleProp<ViewStyle>;
+  color?: string;
+  lineColor?: string;
+}): JSX.Element => {
+  const { colors } = useTheme();
   const svgColor = color ?? colors.errorColor;
+  const defaultLineColor = lineColor ?? colors.iconTertiaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="none">
-      <Circle cx={15} cy={15} r={9.25} stroke={svgColor} strokeWidth={1.5} />
-      <Path d="M15 10V16" stroke={svgColor} stroke-width={1.5} stroke-linecap="round" />
-      <Circle cx={15} cy={19} r={1} fill={svgColor} />
+    <Svg style={[styles.icon, style]} viewBox="0 0 32 32" fill="none">
+      <Circle cx={15} cy={15} r={15} fill={svgColor} />
+      <Circle cx={15} cy={15} r={10} stroke={defaultLineColor} strokeWidth={2} />
+      <Path d="M15 16V10" stroke={defaultLineColor} strokeWidth={2} strokeLinecap="round" />
+      <Circle cx={15} cy={20} r={1.5} fill={defaultLineColor} />
     </Svg>
   );
 };
 
 const styles = StyleSheet.create({
   icon: {
-    width: sizes.iconSize,
-    height: sizes.iconSize,
+    width: 32,
+    height: 32,
   },
 });
 
