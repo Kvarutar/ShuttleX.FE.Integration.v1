@@ -8,10 +8,11 @@ const SlidingPanel = ({ flagState, onFlagSelect, isPanelOpen, setIsPanelOpen }: 
   return (
     <BottomWindowWithGesture
       hiddenPartStyle={styles.hiddenPart}
-      visiblePartStyle={styles.visiblePart}
       setIsOpened={setIsPanelOpen}
       opened={isPanelOpen}
       maxHeight={0.85}
+      withHiddenPartScroll={false}
+      withShade
       hiddenPart={
         <PhoneSelect onFlagSelect={onFlagSelect} flagState={flagState} hidePanel={() => setIsPanelOpen(false)} />
       }
@@ -22,10 +23,6 @@ const SlidingPanel = ({ flagState, onFlagSelect, isPanelOpen, setIsPanelOpen }: 
 const styles = StyleSheet.create({
   hiddenPart: {
     height: '100%',
-  },
-  visiblePart: {
-    marginTop: 4,
-    marginBottom: 4,
   },
 });
 

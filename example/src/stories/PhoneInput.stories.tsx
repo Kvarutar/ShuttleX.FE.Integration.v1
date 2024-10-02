@@ -40,14 +40,9 @@ const PhoneInputWithHooks = ({ themeName }: { themeName: ThemeContextTypeV1['the
       onFlagPress={() => {}}
       flagState={{
         countryCode: 'AD',
-        countryCodeIso: '',
         countryName: '',
-        currency: '',
         phoneMask: '',
-        icc: 0,
-        iccPrefix: undefined,
-        prefix: undefined,
-        size: 0,
+        icc: '0',
       }}
     />
   );

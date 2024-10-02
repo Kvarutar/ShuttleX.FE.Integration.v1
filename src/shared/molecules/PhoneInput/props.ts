@@ -1,11 +1,11 @@
 import { type StyleProp, type ViewStyle } from 'react-native';
 
-import { type countryDtosProps } from '../../../core/countries/props';
+import { type CountryPhoneMaskDto } from '../../../core/countries/types';
 
 export type PhoneInputProps = {
   style?: StyleProp<ViewStyle>;
   getPhoneNumber: (phoneNumber: string) => void;
   onFlagPress: () => void;
-  flagState: countryDtosProps;
+  flagState: CountryPhoneMaskDto;
   error?: { isError: boolean; message?: string };
 };

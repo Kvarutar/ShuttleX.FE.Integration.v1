@@ -5,7 +5,7 @@ import sizes from '../../../core/themes/sizes';
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import { type FlatListWithCustomScrollProps } from './props';
 
-const FlatListWithCustomScroll = ({
+const FlatListWithCustomScroll = <ItemT = any,>({
   items,
   renderItem,
   style,
@@ -15,7 +15,11 @@ const FlatListWithCustomScroll = ({
   offsetForShadow = 10,
   withShadow,
   wrapperStyle,
-}: FlatListWithCustomScrollProps) => {
+  getItemLayout,
+  windowSize,
+  initialNumToRender,
+  keyExtractor,
+}: FlatListWithCustomScrollProps<ItemT>) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
   const [isScrollBarVisible, setIsScrollBarVisible] = useState(withScroll);
@@ -87,6 +91,10 @@ const FlatListWithCustomScroll = ({
           useNativeDriver: false,
           listener: scrollBarListener,
         })}
+        getItemLayout={getItemLayout}
+        windowSize={windowSize}
+        initialNumToRender={initialNumToRender}
+        keyExtractor={keyExtractor}
       />
       {isScrollBarVisible && <Animated.View style={[styles.scrollBar, computedStyles.scrollBar, barStyle]} />}
     </View>

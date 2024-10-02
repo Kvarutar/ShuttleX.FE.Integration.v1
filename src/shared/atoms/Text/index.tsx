@@ -1,11 +1,10 @@
-import { type TextStyle } from 'react-native';
-import { StyleSheet, Text as TextNative } from 'react-native';
+import { StyleSheet, Text as TextNative, type TextStyle } from 'react-native';
 
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../core/themes/v2/themeContext';
 import { TextElipsizeMode, type TextProps } from './props';
 
 const Text = ({ children, style, numberOfLines, elipsizeMode = TextElipsizeMode.Tail }: TextProps): JSX.Element => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
 
   const computedStyles: TextStyle = {
     color: colors.textPrimaryColor,

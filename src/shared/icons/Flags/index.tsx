@@ -1,5 +1,6 @@
 import { type ViewStyle } from 'react-native';
 
+import Ac from './svg/ac.svg';
 import Ad from './svg/ad.svg';
 import Ae from './svg/ae.svg';
 import Af from './svg/af.svg';
@@ -244,6 +245,7 @@ import Vn from './svg/vn.svg';
 import Vu from './svg/vu.svg';
 import Wf from './svg/wf.svg';
 import Ws from './svg/ws.svg';
+import Xk from './svg/xk.svg';
 import Ye from './svg/ye.svg';
 import Yt from './svg/yt.svg';
 import Za from './svg/za.svg';
@@ -253,6 +255,7 @@ import Zw from './svg/zw.svg';
 const style: ViewStyle = { width: 24, height: 18 };
 
 export const countryFlags = {
+  AC: <Ac style={style} />,
   AD: <Ad style={style} />,
   AE: <Ae style={style} />,
   AF: <Af style={style} />,
@@ -497,6 +500,7 @@ export const countryFlags = {
   VU: <Vu style={style} />,
   WF: <Wf style={style} />,
   WS: <Ws style={style} />,
+  XK: <Xk style={style} />,
   YE: <Ye style={style} />,
   YT: <Yt style={style} />,
   ZA: <Za style={style} />,

@@ -1,8 +1,8 @@
-import { type countryDtosProps } from '../../../core/countries/props';
+import { type CountryPhoneMaskDto } from '../../../core/countries/types';
 
 export type SlidingPanelProps = {
-  flagState: countryDtosProps;
-  onFlagSelect: (flag: countryDtosProps) => void;
+  flagState: CountryPhoneMaskDto;
+  onFlagSelect: (flag: CountryPhoneMaskDto) => void;
   isPanelOpen: boolean;
   setIsPanelOpen: (isPanelOpen: boolean) => void;
 };

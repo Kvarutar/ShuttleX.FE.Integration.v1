@@ -3,8 +3,8 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { emailRegex } from '../../../core/consts/regex.consts';
-import { countryDtos } from '../../../core/countries/countryDtos';
-import { type countryDtosProps } from '../../../core/countries/props';
+import { getCountryPhoneMaskByCountryName } from '../../../core/countries/countryDtos';
+import { type CountryPhoneMaskDto } from '../../../core/countries/types';
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import Button from '../../atoms/Button/v2';
@@ -42,7 +42,9 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
     const [isButtonEnabled, setIsButtonEnabled] = useState(false);
     const [emailErrorMessage, setEmailErrorMessage] = useState<string | null>(null);
     const [isPanelPhoneSelectVisible, setIsPanelPhoneSelectVisible] = useState<boolean>(false);
-    const [flagState, setFlagState] = useState<countryDtosProps>(countryDtos[0] ?? ({} as countryDtosProps));
+    const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(
+      getCountryPhoneMaskByCountryName('Ukraine') ?? ({} as CountryPhoneMaskDto),
+    );
 
     useImperativeHandle(ref, () => ({
       showErrors: errorMessages => {

@@ -3,7 +3,7 @@ import defaultAxiosRetryConfig from './core/client/helpers/defaultRetryConfig';
 import getAxiosErrorInfo from './core/client/helpers/getAxiosErrorInfo';
 import { emailRegex } from './core/consts/regex.consts';
 import { countryDtos } from './core/countries/countryDtos';
-import { type countryDtosProps } from './core/countries/props';
+import { type CountryPhoneMaskDto } from './core/countries/types';
 import i18nIntegration from './core/locales/i18n';
 import { AnimatedMarker } from './core/map/hooks';
 import lightMapStyle from './core/map/lightMapStyle.json';
@@ -307,8 +307,8 @@ export {
   CountingComponent,
   CountingComponentV1,
   countryDtos,
-  type countryDtosProps,
   countryFlags,
+  type CountryPhoneMaskDto,
   createAxiosInstance,
   CreditCardIcon,
   CreditCheckIcon,

@@ -1,6 +1,8 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { sizes, useTheme } from 'shuttlex-integration';
+
+import sizes from '../../core/themes/sizes';
+import { useTheme } from '../../core/themes/v2/themeContext';
 
 const SettingsIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
   const { colors } = useTheme();

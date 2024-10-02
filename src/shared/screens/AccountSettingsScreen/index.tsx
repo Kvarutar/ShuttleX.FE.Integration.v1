@@ -1,29 +1,27 @@
 import { useCallback, useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Dimensions, type LayoutChangeEvent, Platform, Pressable, StyleSheet, Switch, View } from 'react-native';
-import {
-  ArrowInPrimaryColorIcon,
-  Bar,
-  BarModes,
-  BottomWindowWithGesture,
-  Button,
-  ChangeNamePopUp,
-  i18nIntegration,
-  PhoneInput,
-  PhoneSlidingPanel,
-  SafeAreaView,
-  Text,
-  TextInput,
-  TextInputInputMode,
-  useTheme,
-  WarningIcon,
-} from 'shuttlex-integration';
 
 import { countryDtos } from '../../../core/countries/countryDtos';
-import { type countryDtosProps } from '../../../core/countries/props';
+import { type CountryPhoneMaskDto } from '../../../core/countries/types';
+import i18nIntegration from '../../../core/locales/i18n';
+import { useTheme } from '../../../core/themes/v2/themeContext';
 import { isAllFieldsFilled } from '../../../utils/validation';
+import { BarModes } from '../../atoms/Bar/types';
+import Bar from '../../atoms/Bar/v2';
+import Button from '../../atoms/Button/v2';
+import Text from '../../atoms/Text';
+import TextInput from '../../atoms/TextInput/v2';
+import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
+import ArrowInPrimaryColorIcon from '../../icons/ArrowInPrimaryColorIcon';
 import UploadPhotoIcon from '../../icons/UploadPhotoIcon';
+import WarningIcon from '../../icons/WarningIcon';
 import MenuUserImage2 from '../../images/MenuUserImage2';
+import BottomWindowWithGesture from '../../molecules/BottomWindowWithGesture';
+import PhoneInput from '../../molecules/PhoneInput';
+import PhoneSlidingPanel from '../../molecules/PhoneSlidingPanel';
+import SafeAreaView from '../../molecules/SafeAreaView';
+import ChangeNamePopUp from './ChangeNamePopUp';
 import { useSignUpValidation } from './profileValidationUtils';
 import { type AccountSettingsProps, type Profile } from './props';
 
@@ -51,7 +49,7 @@ const AccountSettingsScreenWithoutI18n = ({ userImageUri, onProfileDataSave, pro
   const [isUpdateIcon, setIsUpdateIcon] = useState<boolean>(false);
 
   //flag logic
-  const [flagState, setFlagState] = useState<countryDtosProps>(countryDtos[0] ?? ({} as countryDtosProps));
+  const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(countryDtos[0] ?? ({} as CountryPhoneMaskDto));
   const [isPanelPhoneSelectVisible, setIsPanelPhoneSelectVisible] = useState<boolean>(false);
 
   //switch theme logic

@@ -1,6 +1,8 @@
 import { StyleSheet, View } from 'react-native';
-import { BottomWindow, Text, useTheme } from 'shuttlex-integration';
 
+import { useTheme } from '../../../core/themes/v2/themeContext';
+import Text from '../../atoms/Text';
+import BottomWindow from '../BottomWindow';
 import { type UnclosablePopupProps } from './props';
 
 const UnclosablePopup = ({

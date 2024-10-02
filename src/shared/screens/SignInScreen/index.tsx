@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { i18nIntegration } from 'shuttlex-integration';
 
-import { countryDtos } from '../../../core/countries/countryDtos';
-import { type countryDtosProps } from '../../../core/countries/props';
+import { getCountryPhoneMaskByCountryName } from '../../../core/countries/countryDtos';
+import { type CountryPhoneMaskDto } from '../../../core/countries/types';
+import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import Button from '../../atoms/Button/v2';
 import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
@@ -19,7 +19,9 @@ const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenPro
   const { colors } = useTheme();
   const { t } = useTranslation();
 
-  const [flagState, setFlagState] = useState<countryDtosProps>(countryDtos[0] ?? ({} as countryDtosProps));
+  const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(
+    getCountryPhoneMaskByCountryName('Ukraine') ?? ({} as CountryPhoneMaskDto),
+  );
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [isPanelPhoneSelectVisible, setIsPanelPhoneSelectVisible] = useState<boolean>(false);
   const [isValid, setIsValid] = useState(true);

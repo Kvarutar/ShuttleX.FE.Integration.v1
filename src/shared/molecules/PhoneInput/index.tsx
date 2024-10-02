@@ -25,13 +25,15 @@ const PhoneInput = ({
 
   const { colors } = useTheme();
 
+  const fullPhoneMask = flagState.icc + '' + flagState.phoneMask;
+
   useEffect(() => {
     if (flagState) {
       setIsInputDone(false);
-      setInputValue(formatNumbersToMask('', flagState.phoneMask));
+      setInputValue(formatNumbersToMask('', fullPhoneMask));
       setOnlyNumbersInputValue('');
     }
-  }, [flagState]);
+  }, [flagState, fullPhoneMask]);
 
   useEffect(() => {
     if (onlyNumbersInputValue !== '') {
@@ -44,13 +46,13 @@ const PhoneInput = ({
 
   useEffect(() => {
     if (flagState) {
-      setInputValue(formatNumbersToMask(onlyNumbersInputValue, flagState.phoneMask));
+      setInputValue(formatNumbersToMask(onlyNumbersInputValue, fullPhoneMask));
     }
-  }, [onlyNumbersInputValue, flagState]);
+  }, [onlyNumbersInputValue, flagState, fullPhoneMask]);
 
   const onInputChangeText: TextInputV1Props['onChangeText'] = text => {
     // Checks is phone is fully entered
-    if (flagState && text.length >= flagState.phoneMask.length) {
+    if (flagState && text.length >= fullPhoneMask.length) {
       setIsInputDone(true);
       Keyboard.dismiss();
     } else {
@@ -62,7 +64,7 @@ const PhoneInput = ({
       return;
     }
     // Controls add text in input
-    if (flagState && text.length <= flagState.phoneMask.length) {
+    if (flagState && text.length <= fullPhoneMask.length) {
       const lastChar = text[text.length - 1];
       if (lastChar && /\d/.test(lastChar)) {
         setOnlyNumbersInputValue(prev => prev + lastChar);

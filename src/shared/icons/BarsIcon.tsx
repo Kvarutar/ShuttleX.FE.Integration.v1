@@ -1,6 +1,7 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Rect } from 'react-native-svg';
-import { useTheme } from 'shuttlex-integration';
+
+import { useTheme } from '../../core/themes/v2/themeContext';
 
 const BarsIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
   const { colors } = useTheme();

@@ -1,6 +1,12 @@
 import { StyleSheet, View } from 'react-native';
-import { Bar, BarModes, getPaymentIcon, PlusInCircleIcon, RoundCheckIcon4, Text, useTheme } from 'shuttlex-integration';
 
+import { useTheme } from '../../../core/themes/v2/themeContext';
+import { getPaymentIcon } from '../../../utils/payment/cardIcons';
+import { BarModes } from '../../atoms/Bar/types';
+import Bar from '../../atoms/Bar/v2';
+import Text from '../../atoms/Text';
+import PlusInCircleIcon from '../../icons/PlusInCircleIcon';
+import RoundCheckIcon4 from '../../icons/RoundCheckIcon4';
 import { type PaymentBarProps } from './props';
 
 const PaymentBar = ({

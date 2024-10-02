@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { StyleSheet, type TextInputProps, View } from 'react-native';
-import { useTheme } from 'shuttlex-integration';
 
+import { useTheme } from '../../../../core/themes/v2/themeContext';
 import TextInput from '../../../atoms/TextInput/v2';
 import { TextInputInputMode, type TextInputRef } from '../../../atoms/TextInput/v2/props';
 import { type CodeInputProps, type CodeNumberProps } from '../props';
