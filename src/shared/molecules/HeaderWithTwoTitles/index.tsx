@@ -17,7 +17,7 @@ const HeaderWithTwoTitles = ({
       color: colors.textPrimaryColor,
     },
     headerSecondTitle: {
-      color: colors.textSecondaryColor,
+      color: colors.textQuadraticColor,
     },
   });
 

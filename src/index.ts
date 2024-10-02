@@ -55,6 +55,7 @@ import BookMarkIcon from './shared/icons/BookMarkIcon';
 import BrandFavIcon from './shared/icons/BrandFavIcon';
 import BrandTextIcon from './shared/icons/BrandTextIcon';
 import CalendarIcon from './shared/icons/CalendarIcon';
+import CameraIcon from './shared/icons/CameraIcon';
 import ChatIcon from './shared/icons/ChatIcon';
 import CheckIcon2 from './shared/icons/CheckIcon2';
 import ClockIcon from './shared/icons/ClockIcon';
@@ -81,6 +82,7 @@ import FeedbackThumbDownIcon from './shared/icons/FeedbackThumbDownIcon';
 import FeedbackThumbUpIcon from './shared/icons/FeedbackThumbUpIcon';
 import FeedbackWheelIcon from './shared/icons/FeedbackWheelIcon';
 import { countryFlags } from './shared/icons/Flags';
+import GalleryIcon from './shared/icons/GalleryIcon';
 import GameIcon from './shared/icons/GameIcon';
 import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
 import GroupedBrandIconMiniV1 from './shared/icons/GroupedBrandIconMini/V1';
@@ -283,6 +285,7 @@ export {
   ButtonV1Shapes,
   calculateExtendedHeading,
   CalendarIcon,
+  CameraIcon,
   type Card,
   ChangeNamePopUp,
   ChatIcon,
@@ -342,6 +345,7 @@ export {
   Fog,
   FreeTimeAlert,
   type FreeTimeAlertProps,
+  GalleryIcon,
   GameIcon,
   getAngleBetweenPoints,
   getAxiosErrorInfo,
