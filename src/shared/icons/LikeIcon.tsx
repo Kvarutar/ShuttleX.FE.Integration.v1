@@ -1,16 +1,16 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-import { useThemeV1 } from '../../core/themes/v1/themeContext';
+import { useTheme } from '../../core/themes/v2/themeContext';
 
 const LikeIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
-  const { colors } = useThemeV1();
-  const svgColor = color ?? colors.primaryColor;
+  const { colors } = useTheme();
+  const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.LikeIcon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="none">
+    <Svg style={[styles.LikeIcon, style]} viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <Path
-        d="M21.4936 4.00058C18.9911 3.98712 16.612 5.09341 15 7.02021C13.398 5.08024 11.0123 3.97081 8.50628 4.00058C3.80838 4.00058 0 7.83392 0 12.5626C0 20.666 14.0506 28.5782 14.6203 28.8841C14.8501 29.0386 15.1498 29.0386 15.3797 28.8841C15.9494 28.5782 30 20.7807 30 12.5626C30 7.83392 26.1916 4.00058 21.4936 4.00058Z"
+        d="M18.7544 0.000517495C16.5705 -0.0116931 14.4947 0.952945 13.0882 2.63365C11.6903 0.941607 9.60845 -0.0256481 7.42185 0.000517495C3.32265 0.000517495 0 3.34361 0 7.46818C0 14.5355 12.2601 21.4362 12.7566 21.7031C12.9573 21.8383 13.219 21.8383 13.4197 21.7031C13.9162 21.4362 26.1763 14.6358 26.1763 7.46818C26.1763 3.34361 22.8537 0.000517495 18.7544 0.000517495Z"
         fill={svgColor}
       />
     </Svg>
@@ -19,8 +19,8 @@ const LikeIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: stri
 
 const styles = StyleSheet.create({
   LikeIcon: {
-    width: 30,
-    height: 30,
+    width: 27,
+    height: 22,
   },
 });
 
