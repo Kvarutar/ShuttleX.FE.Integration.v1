@@ -34,7 +34,7 @@ const AccountSettingsScreenWithoutI18n = ({ onProfileDataSave, profile }: Accoun
     fullName: profile.fullName,
     email: profile.email,
     phone: profile.phone,
-    userImageUri: profile.userImageUri,
+    imageUri: profile.imageUri,
   });
 
   //theme logic
@@ -120,7 +120,7 @@ const AccountSettingsScreenWithoutI18n = ({ onProfileDataSave, profile }: Accoun
               <UploadPhotoIcon style={[computedStyles.icon, styles.icon]} />
             </Pressable>
             <View onLayout={handleImageLayout}>
-              <MenuUserImage2 url={profileDataForm.userImageUri} />
+              <MenuUserImage2 url={profileDataForm.imageUri} />
             </View>
           </View>
 

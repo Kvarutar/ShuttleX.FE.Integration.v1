@@ -2,7 +2,7 @@ export type Profile = {
   fullName: string;
   email: string;
   phone: string;
-  userImageUri?: string;
+  imageUri: string;
 };
 
 export type AccountSettingsProps = {
