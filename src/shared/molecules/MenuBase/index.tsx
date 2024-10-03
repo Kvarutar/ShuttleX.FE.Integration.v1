@@ -21,7 +21,7 @@ const constants = {
     menu: 200,
     blur: 80,
   },
-  menuWidth: windowSizes.width * 0.7,
+  menuWidth: windowSizes.width * 0.75,
 };
 
 const MenuBase = ({
@@ -69,6 +69,7 @@ const MenuBase = ({
       width: constants.menuWidth,
       height: windowSizes.height,
       paddingBottom: Platform.OS === 'android' ? sizes.paddingVertical : 16,
+      shadowColor: colors.iconPrimaryColor,
     },
     gameButton: {
       backgroundColor: colors.backgroundSecondaryColor,
@@ -160,6 +161,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 52.7,
+    elevation: 10,
   },
   outsider: {
     flex: 1,
