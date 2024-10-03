@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter Medium',
     fontSize: 17,
     marginTop: 3,
+    marginRight: 3,
   },
   detailsContainer: {
     flexDirection: 'row',

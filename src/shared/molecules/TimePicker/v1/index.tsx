@@ -11,7 +11,13 @@ import TextInputV1 from '../../../atoms/TextInput/v1';
 import TimeIcon from '../../../icons/TimeIcon';
 import { type TimePickerPropsV1 } from '../props';
 
-const TimePickerV1 = ({ style, placeholder, onTimeSelect, formatTime }: TimePickerPropsV1): JSX.Element => {
+const TimePickerV1 = ({
+  style,
+  placeholder,
+  onTimeSelect,
+  formatTime,
+  minimumTime,
+}: TimePickerPropsV1): JSX.Element => {
   const [time, setTime] = useState<Date | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isTimeSelected, setIsTimeSelected] = useState(false);
@@ -23,7 +29,7 @@ const TimePickerV1 = ({ style, placeholder, onTimeSelect, formatTime }: TimePick
     }
     setIsTimeSelected(true);
 
-    const currentTime: Date = selectedTime;
+    const currentTime: Date = minimumTime && selectedTime < minimumTime ? minimumTime : selectedTime;
 
     setIsVisible(false);
 

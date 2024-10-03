@@ -5,8 +5,10 @@ export type TimePickerPropsV1 = {
   placeholder: string;
   onTimeSelect: (time: Date) => void;
   formatTime: (time: Date) => string;
+  minimumTime?: Date;
 };
 
 export type TimePickerProps = {
   onTimeSelect: (time: Date) => void;
+  minimumTime?: Date;
 };

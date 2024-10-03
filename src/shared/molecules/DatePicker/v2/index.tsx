@@ -7,28 +7,15 @@ import { useState } from 'react';
 import { Platform } from 'react-native';
 
 import { useTheme } from '../../../../core/themes/v2/themeContext';
-import { DatePickerDisplay, type DatePickerProps } from '../props';
+import { type DatePickerProps } from '../props';
 
-const DatePicker = ({
-  display = DatePickerDisplay.Calendar,
-  onDateSelect,
-  maximumDate,
-  minimumDate,
-}: DatePickerProps): JSX.Element => {
+const DatePicker = ({ onDateSelect, maximumDate, minimumDate }: DatePickerProps): JSX.Element => {
   const { colors, themeMode } = useTheme();
 
   const [date, setDate] = useState<Date | null>(null);
-  const [isDateSelected, setIsDateSelected] = useState(false);
 
   const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
-    if (!selectedDate) {
-      setIsDateSelected(false);
-      return;
-    }
-
-    setIsDateSelected(true);
-
-    if (event.type === 'set') {
+    if (event.type === 'set' && selectedDate) {
       setDate(selectedDate);
       onDateSelect(selectedDate);
     }
@@ -37,9 +24,8 @@ const DatePicker = ({
   const props: IOSNativeProps | AndroidNativeProps = {
     maximumDate: maximumDate,
     minimumDate: minimumDate,
-    value: isDateSelected && date ? date : new Date(),
+    value: date ? date : new Date(),
     onChange: onChange,
-    display: display,
   };
 
   let iosTheme: Omit<IOSNativeProps, 'value'> = {};
@@ -56,7 +42,7 @@ const DatePicker = ({
   return Platform.OS === 'ios' ? (
     <DateTimePicker {...props} {...iosTheme} display="spinner" />
   ) : (
-    <DateTimePicker {...props} />
+    <DateTimePicker {...props} display="spinner" />
   );
 };
 
