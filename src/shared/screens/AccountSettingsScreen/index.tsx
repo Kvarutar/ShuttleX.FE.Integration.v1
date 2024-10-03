@@ -27,13 +27,14 @@ import { type AccountSettingsProps, type Profile } from './props';
 
 const windowSizes = Dimensions.get('window');
 
-const AccountSettingsScreenWithoutI18n = ({ userImageUri, onProfileDataSave, profile }: AccountSettingsProps) => {
+const AccountSettingsScreenWithoutI18n = ({ onProfileDataSave, profile }: AccountSettingsProps) => {
   const { t } = useTranslation();
 
   const [profileDataForm, setProfileDataForm] = useState<Profile>({
     fullName: profile.fullName,
     email: profile.email,
     phone: profile.phone,
+    userImageUri: profile.userImageUri,
   });
 
   //theme logic
@@ -119,7 +120,7 @@ const AccountSettingsScreenWithoutI18n = ({ userImageUri, onProfileDataSave, pro
               <UploadPhotoIcon style={[computedStyles.icon, styles.icon]} />
             </Pressable>
             <View onLayout={handleImageLayout}>
-              <MenuUserImage2 url={userImageUri} />
+              <MenuUserImage2 url={profileDataForm.userImageUri} />
             </View>
           </View>
 

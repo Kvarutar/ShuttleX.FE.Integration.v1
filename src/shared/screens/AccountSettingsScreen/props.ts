@@ -2,11 +2,11 @@ export type Profile = {
   fullName: string;
   email: string;
   phone: string;
+  userImageUri?: string;
 };
 
 export type AccountSettingsProps = {
   onProfileDataSave: (profileData: Profile) => void;
-  userImageUri?: string;
   profile: Profile;
 };
 
