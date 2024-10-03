@@ -1,44 +1,65 @@
-import { I18nextProvider, useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import { I18nextProvider } from 'react-i18next';
 import { Pressable, StyleSheet } from 'react-native';
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { Shadow } from 'react-native-shadow-2';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import { defaultShadow } from '../../../../core/themes/shadows';
 import { useTheme } from '../../../../core/themes/v2/themeContext';
-import Text from '../../../atoms/Text';
 import ArrowIcon from '../../../icons/ArrowIcon';
+import SpinnerIcon from '../../../icons/SpinnerIcon';
 import SliderWithCustomGesture from '../../SliderWithCustomGesture';
-import { type SwipeButtonProps } from '../props';
+import { type SwipeButtonColors, type SwipeButtonProps } from '../props';
 
-const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text, containerStyle }: SwipeButtonProps): JSX.Element => {
+const SwipeButtonWithoutI18n = ({
+  onSwipeEnd,
+  mode,
+  text,
+  containerStyle,
+  textStyle,
+}: SwipeButtonProps): JSX.Element => {
   const { colors, themeMode } = useTheme();
-
   const shadowProps = defaultShadow(colors.weakShadowColor);
-  const { t } = useTranslation();
 
-  const backgroundColors = {
-    confirm: colors.primaryColor,
-    decline: colors.errorColorWithOpacity,
-    finish: colors.errorColor,
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
-  // TODO: Remove conditions when we know how to change colors by theme
-  // There're conditionaly colors while not known how to change button colors by theme
-  const textColors = {
-    confirm: themeMode === 'dark' ? colors.textTertiaryColor : colors.textPrimaryColor,
-    decline: colors.errorColor,
-    finish: themeMode === 'light' ? colors.textTertiaryColor : colors.textPrimaryColor,
+  const rotate = useSharedValue(0);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: `${rotate.value}deg` }],
+  }));
+
+  if (isLoading) {
+    rotate.value = withRepeat(
+      withTiming(360, { duration: 1000, easing: Easing.linear }),
+      -1, // infinity
+    );
+  } else {
+    rotate.value = 0;
+  }
+
+  const swipeButtonColors: Record<typeof themeMode, SwipeButtonColors> = {
+    light: {
+      startColor: colors.iconSecondaryColor,
+      endColor: colors.iconTertiaryColor,
+      buttonBgColor: isLoading ? colors.backgroundSecondaryColor : colors.backgroundPrimaryColor,
+    },
+    dark: {
+      startColor: colors.iconTertiaryColor,
+      endColor: colors.iconSecondaryColor,
+      buttonBgColor: isLoading ? colors.backgroundSecondaryColor : colors.backgroundPrimaryColor,
+    },
+    test: {
+      startColor: colors.iconTertiaryColor,
+      endColor: colors.iconSecondaryColor,
+      buttonBgColor: isLoading ? colors.backgroundSecondaryColor : colors.backgroundPrimaryColor,
+    },
   };
 
   const computedStyles = StyleSheet.create({
-    text: {
-      color: textColors[mode],
-    },
-    slider: {
-      backgroundColor: backgroundColors[mode],
-    },
     button: {
-      backgroundColor: colors.backgroundPrimaryColor,
+      backgroundColor: swipeButtonColors[themeMode].buttonBgColor,
     },
   });
 
@@ -46,22 +67,41 @@ const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text, containerStyle }: Swip
     <Shadow stretch {...shadowProps}>
       <SliderWithCustomGesture
         onSwipeEnd={onSwipeEnd}
-        containerStyle={[computedStyles.slider, containerStyle]}
+        containerStyle={containerStyle}
+        text={text}
+        mode={mode}
+        textStyle={textStyle}
+        setIsLoading={setIsLoading}
         sliderElement={
           <Pressable style={[styles.button, computedStyles.button]}>
-            <ArrowIcon />
+            {isLoading ? (
+              <Animated.View style={animatedStyle}>
+                <SpinnerIcon
+                  size={16}
+                  startColor={swipeButtonColors[themeMode].startColor}
+                  endColor={swipeButtonColors[themeMode].endColor}
+                  strokeWidth={2}
+                />
+              </Animated.View>
+            ) : (
+              <ArrowIcon />
+            )}
           </Pressable>
         }
-      >
-        <Text style={[computedStyles.text, styles.text]}>{text ?? t('SwipeButton_buttonHint')}</Text>
-      </SliderWithCustomGesture>
+      />
     </Shadow>
   );
 };
 
-const SwipeButton = ({ onSwipeEnd, mode, text }: SwipeButtonProps) => (
+const SwipeButton = ({ onSwipeEnd, mode, text, containerStyle, textStyle }: SwipeButtonProps) => (
   <I18nextProvider i18n={i18nIntegration}>
-    <SwipeButtonWithoutI18n onSwipeEnd={onSwipeEnd} mode={mode} text={text} />
+    <SwipeButtonWithoutI18n
+      onSwipeEnd={onSwipeEnd}
+      mode={mode}
+      text={text}
+      containerStyle={containerStyle}
+      textStyle={textStyle}
+    />
   </I18nextProvider>
 );
 
@@ -70,13 +110,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 48,
-    paddingHorizontal: 38,
-    borderRadius: 36,
-  },
-  text: {
-    alignSelf: 'center',
-    fontFamily: 'Inter Bold',
-    fontSize: 17,
+    borderRadius: 100,
   },
 });
 
