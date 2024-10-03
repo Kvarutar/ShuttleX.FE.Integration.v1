@@ -127,6 +127,7 @@ import RoundCheckIcon4 from './shared/icons/RoundCheckIcon4';
 import SearchIcon from './shared/icons/SearchIcon';
 import SelectOnMapIcon from './shared/icons/SelectOnMapIcon';
 import SettingsIcon from './shared/icons/SettingsIcon';
+import ShareIcon from './shared/icons/ShareIcon';
 import ShortArrowIcon from './shared/icons/ShortArrowIcon';
 import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/icons/SpinnerIcon';
@@ -448,6 +449,7 @@ export {
   Separator,
   SettingsIcon,
   Shade,
+  ShareIcon,
   ShortArrowIcon,
   ShortArrowSmallIcon,
   SignalR,
