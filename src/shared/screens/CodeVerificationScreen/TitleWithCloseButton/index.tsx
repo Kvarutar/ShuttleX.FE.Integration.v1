@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import i18nIntegration from '../../../../core/locales/i18n';
 import { useTheme } from '../../../../core/themes/v2/themeContext';
 import Button from '../../../atoms/Button/v2';
-import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../../atoms/Button/v2/props';
+import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../../atoms/Button/v2/props';
 import Text from '../../../atoms/Text';
 import InputXIcon from '../../../icons/InputXIcon';
 import { type TitleWithCloseButtonProps } from './types';
@@ -14,7 +14,7 @@ const TitleWithCloseButtonWithoutI118n = ({ title, onBackButtonPress }: TitleWit
 
   const computedStyles = StyleSheet.create({
     title: {
-      color: colors.textSecondaryColor,
+      color: colors.textTitleColor,
     },
   });
 
@@ -22,7 +22,6 @@ const TitleWithCloseButtonWithoutI118n = ({ title, onBackButtonPress }: TitleWit
     <View style={styles.container}>
       <Text style={[styles.title, computedStyles.title]}>{title}</Text>
       <Button
-        shadow={ButtonShadows.Weak}
         shape={ButtonShapes.Circle}
         mode={CircleButtonModes.Mode2}
         size={ButtonSizes.S}
@@ -49,6 +48,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Inter Bold',
     fontSize: 14,
+    lineHeight: 14,
   },
 });
 

@@ -130,6 +130,13 @@ const PhoneInput = ({
     flagAndInputContainer: {
       marginBottom: error.isError && error.message ? 12 : 0,
     },
+    shortArrowIcon: {
+      color: colors.strokeColor,
+    },
+    inputText: {
+      color: onlyNumbersInputValue ? colors.textPrimaryColor : colors.textSecondaryColor,
+      fontFamily: onlyNumbersInputValue ? 'Inter Medium' : 'Inter Regular',
+    },
   });
 
   return (
@@ -144,9 +151,10 @@ const PhoneInput = ({
           onPress={() => onInputFlagPress()}
         >
           {flagState && countryFlags[flagState.countryCode]}
-          <ShortArrowIcon style={styles.shortArrowIcon} />
+          <ShortArrowIcon color={computedStyles.shortArrowIcon.color} style={styles.shortArrowIcon} />
         </Pressable>
         <TextInput
+          inputStyle={computedStyles.inputText}
           error={{ isError: error.isError }}
           containerStyle={styles.input}
           inputMode={TextInputInputMode.Numeric}
@@ -178,8 +186,8 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     gap: 8,
     borderRightWidth: 1,
-    borderTopLeftRadius: 16,
-    borderBottomLeftRadius: 16,
+    borderTopLeftRadius: 12,
+    borderBottomLeftRadius: 12,
   },
   input: {
     borderTopLeftRadius: 0,

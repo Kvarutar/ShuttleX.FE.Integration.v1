@@ -67,10 +67,10 @@ const TextInputBase = forwardRef<TextInputRef, TextInputBaseProps>(
         borderColor: error.isError ? colors.errorColor : colors.borderColor,
         color: colors.textPrimaryColor,
         marginBottom: error.isError && error.message ? 12 : 0,
-        fontFamily: isInputFilled ? 'Inter Medium' : 'Inter Regular',
       },
       input: {
         color: colors.textPrimaryColor,
+        fontFamily: isInputFilled ? 'Inter Medium' : 'Inter Regular',
       },
       focused: {
         borderColor: colors.primaryColor,
@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     height: 60,
     fontSize: 16,
-    fontFamily: 'Inter Regular',
     letterSpacing: 0.64,
   },
   errorText: {

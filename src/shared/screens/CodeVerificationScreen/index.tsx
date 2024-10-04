@@ -9,6 +9,7 @@ import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button
 import Text from '../../atoms/Text';
 import BottomWindow from '../../molecules/BottomWindow';
 import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';
+import CustomKeyboardAvoidingView from '../../molecules/KeyboardAvoidingView';
 import Content from './Content';
 import TitleWithCloseButton from './TitleWithCloseButton';
 import { type CodeVerificationScreenProps } from './types';
@@ -31,7 +32,7 @@ const CodeVerificationScreenWithoutI18n = ({
 
   const computedStyles = StyleSheet.create({
     bannedTitle: {
-      color: colors.textSecondaryColor,
+      color: colors.textTitleColor,
     },
     supportButton: {
       color: colors.textPrimaryColor,
@@ -66,17 +67,19 @@ const CodeVerificationScreenWithoutI18n = ({
 
   return (
     <>
-      <View style={styles.container} pointerEvents={isBlocked ? 'none' : undefined}>
-        <TitleWithCloseButton title={t('CodeVerification_title')} onBackButtonPress={onBackButtonPress} />
-        <Content
-          time={minToMilSec(3)}
-          headerFirstText={headerFirstText}
-          headerSecondText={headerSecondText}
-          onButtonPress={onAgainButtonPress}
-          onCodeChange={onCodeChange}
-          isError={isError}
-        />
-      </View>
+      <CustomKeyboardAvoidingView>
+        <View style={styles.container} pointerEvents={isBlocked ? 'none' : undefined}>
+          <TitleWithCloseButton title={t('CodeVerification_title')} onBackButtonPress={onBackButtonPress} />
+          <Content
+            time={minToMilSec(3)}
+            headerFirstText={headerFirstText}
+            headerSecondText={headerSecondText}
+            onButtonPress={onAgainButtonPress}
+            onCodeChange={onCodeChange}
+            isError={isError}
+          />
+        </View>
+      </CustomKeyboardAvoidingView>
       {isBlocked && <BottomWindow children={bannedElement} withShade />}
     </>
   );
@@ -94,14 +97,14 @@ const styles = StyleSheet.create({
   },
   bannedTitle: {
     fontFamily: 'Inter Bold',
-    fontSize: 12,
+    fontSize: 14,
     marginBottom: 14,
   },
   firstBannedHeaderText: {
-    marginBottom: 12,
+    marginBottom: 8,
   },
   secondBannedHeaderText: {
-    fontFamily: 'Inter Regular',
+    fontFamily: 'Inter Medium',
     fontSize: 14,
     lineHeight: 20,
     marginBottom: 32,

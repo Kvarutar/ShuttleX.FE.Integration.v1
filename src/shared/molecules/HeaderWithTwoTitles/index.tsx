@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter Bold',
     fontSize: 34,
     lineHeight: 34,
+    letterSpacing: -1.53,
   },
 });
 

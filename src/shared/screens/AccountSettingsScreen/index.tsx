@@ -85,7 +85,6 @@ const AccountSettingsScreenWithoutI18n = ({ onProfileDataSave, profile }: Accoun
     setWasValidated(true);
     if (!validateForm()) {
       setIsButtonVisible(false);
-      return;
     }
     if (profile.fullName !== profileDataForm.fullName) {
       setIsPopUp(true);

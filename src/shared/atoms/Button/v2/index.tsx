@@ -30,6 +30,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
       mode = SquareButtonModes.Mode1,
       shape = ButtonShapes.Square,
       size = mode === CircleButtonModes.Mode2 ? ButtonSizes.S : ButtonSizes.M,
+      withBorder = true,
       text,
       textStyle,
       style,
@@ -42,11 +43,11 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
       onPress,
       circleMode6Time,
       innerSpacing,
+      withCircleMode1Border = false,
     },
     ref,
   ): JSX.Element => {
     const { colors } = useTheme();
-
     const buttonAnimationRef = useRef<ButtonAnimationRef>(null);
 
     const [isPressed, setIsPressed] = useState(false);
@@ -130,6 +131,12 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
       },
     }));
 
+    const borderWidth = withBorder ? 1 : 0;
+    const circleMode1BorderStyle: StyleProp<ViewStyle> = {
+      borderWidth: 4,
+      borderColor: colors.backgroundPrimaryColor,
+    };
+
     const containers = {
       circle:
         mode === CircleButtonModes.Mode6 ? (
@@ -151,6 +158,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
                     : (size && circleButtonSizes[size]) || 48,
                 borderColor: borderColor,
                 backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+                borderWidth: borderWidth,
               },
               circleSubContainerStyle,
             ]}
@@ -172,19 +180,21 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
     return (
       <View style={containerStyle}>
         {shadow && shape === ButtonShapes.Circle ? (
-          <View style={styles.shadowContainer}>
-            <Shadow stretch {...shadowProps} style={styles.shadowStyle}>
-              <Pressable
-                style={[styles.button, computedStyles[shape].button, style]}
-                disabled={isButtonDisabled}
-                onPress={onPress}
-                onPressIn={() => setIsPressed(true)}
-                onPressOut={() => setIsPressed(false)}
-              >
-                {containers[shape]}
-              </Pressable>
-            </Shadow>
-          </View>
+          <Shadow
+            stretch
+            {...shadowProps}
+            style={mode === CircleButtonModes.Mode1 && withCircleMode1Border ? circleMode1BorderStyle : undefined}
+          >
+            <Pressable
+              style={[styles.button, computedStyles[shape].button, style]}
+              disabled={isButtonDisabled}
+              onPress={onPress}
+              onPressIn={() => setIsPressed(true)}
+              onPressOut={() => setIsPressed(false)}
+            >
+              {containers[shape]}
+            </Pressable>
+          </Shadow>
         ) : (
           <Shadow stretch {...shadowProps}>
             <Pressable
@@ -204,22 +214,10 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
 );
 
 const styles = StyleSheet.create({
-  shadowContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  shadowStyle: {
-    padding: 4,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 100,
-  },
   subContainerCircleButton: {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 1000,
-    borderWidth: 1,
   },
   button: {
     paddingHorizontal: 24,

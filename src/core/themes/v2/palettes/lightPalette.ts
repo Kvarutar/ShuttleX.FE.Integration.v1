@@ -71,6 +71,7 @@ const circleButtonModes: PaletteCircleButtonModes = {
     backgroundColor: colors.primaryColor,
     backgroundColorOnPress: '#D5FF3BFF', // random color
     textColor: colors.textPrimaryColor,
+    shadowColor: colors.strongShadowColor,
   },
   mode2: {
     backgroundColor: colors.backgroundPrimaryColor,

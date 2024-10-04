@@ -7,9 +7,10 @@ import { type CountryPhoneMaskDto } from '../../../core/countries/types';
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import Button from '../../atoms/Button/v2';
-import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
+import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
 import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';
+import CustomKeyboardAvoidingView from '../../molecules/KeyboardAvoidingView';
 import PhoneInput from '../../molecules/PhoneInput';
 import PhoneSlidingPanel from '../../molecules/PhoneSlidingPanel';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
@@ -48,7 +49,7 @@ const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenPro
     },
   });
 
-  return (
+  const content = (
     <>
       <ScrollViewWithCustomScroll contentContainerStyle={[styles.formSignInContainer]}>
         <HeaderWithTwoTitles firstTitle={t('SignIn_firstPartHeader')} secondTitle={t('SignIn_secondPartHeader')} />
@@ -61,13 +62,14 @@ const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenPro
       </ScrollViewWithCustomScroll>
       <View style={styles.buttonsContainer}>
         <Button
-          style={styles.nextButton}
+          containerStyle={styles.nextButton}
           shape={ButtonShapes.Circle}
           mode={trimmedPhoneNumber ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
           disabled={!trimmedPhoneNumber}
           size={ButtonSizes.L}
           text={t('SignIn_nextButton')}
           innerSpacing={5}
+          shadow={trimmedPhoneNumber ? ButtonShadows.Strong : undefined}
           onPress={handleSubmit}
         />
         <Pressable style={styles.dontHaveAccountContainer} onPress={navigateToSignUp} hitSlop={20}>
@@ -77,6 +79,12 @@ const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenPro
           </Text>
         </Pressable>
       </View>
+    </>
+  );
+
+  return (
+    <>
+      {!isPanelPhoneSelectVisible ? <CustomKeyboardAvoidingView>{content}</CustomKeyboardAvoidingView> : content}
       {isPanelPhoneSelectVisible && (
         <PhoneSlidingPanel
           flagState={flagState}

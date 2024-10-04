@@ -13,7 +13,7 @@ const RoundCheckIcon2 = ({ style, color }: { style?: StyleProp<ViewStyle>; color
       <Path
         d="M13.5 18.6431L16.2854 21.0304C16.573 21.277 17.004 21.253 17.2625 20.976L23.4 14.4004"
         stroke="black"
-        strokeWidth={2.12139}
+        strokeWidth={2.5}
         strokeLinecap="round"
       />
     </Svg>

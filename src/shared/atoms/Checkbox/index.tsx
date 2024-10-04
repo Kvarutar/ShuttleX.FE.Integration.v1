@@ -83,9 +83,7 @@ const styles = StyleSheet.create({
   },
   checkBoxText: {
     fontSize: 12,
-  },
-  checkBoxLinkText: {
-    textDecorationLine: 'underline',
+    lineHeight: 14,
   },
   errorText: {
     fontSize: 12,

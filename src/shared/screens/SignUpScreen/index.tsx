@@ -8,11 +8,12 @@ import { type CountryPhoneMaskDto } from '../../../core/countries/types';
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import Button from '../../atoms/Button/v2';
-import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
+import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import CheckBox from '../../atoms/Checkbox';
 import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
 import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';
+import CustomKeyboardAvoidingView from '../../molecules/KeyboardAvoidingView';
 import PhoneInput from '../../molecules/PhoneInput';
 import SlidingPanel from '../../molecules/PhoneSlidingPanel';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
@@ -133,36 +134,40 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
       },
     });
 
-    return (
+    const content = (
       <>
         <ScrollViewWithCustomScroll contentContainerStyle={[styles.formSignUpContainer]}>
           <HeaderWithTwoTitles firstTitle={t('SignUp_firstPartHeader')} secondTitle={t('SignUp_secondPartHeader')} />
-          <TextInput
-            error={{
-              isError: !isFormCorrect.correctFirstName && wasValidated,
-              message: t('SignUp_incorrectName'),
-            }}
-            placeholder={t('SignUp_nameInputPlaceholder')}
-            value={userDataForm.firstName}
-            onChangeText={(value: string) => handleInputChange('firstName', value)}
-          />
-          <TextInput
-            error={{
-              isError: !isFormCorrect.correctEmail && wasValidated,
-              message: emailErrorMessage ?? t('SignUp_incorrectEmail'),
-            }}
-            placeholder={t('SignUp_emailInputPlaceholder')}
-            value={userDataForm.email}
-            onChangeText={(value: string) => handleInputChange('email', value)}
-          />
-          <PhoneInput
-            error={{
-              isError: !isFormCorrect.correctPhone && wasValidated,
-            }}
-            flagState={flagState}
-            onFlagPress={() => setIsPanelPhoneSelectVisible(true)}
-            getPhoneNumber={(value: string) => handleInputChange('phone', value)}
-          />
+
+          <View style={styles.inputContainer}>
+            <TextInput
+              error={{
+                isError: !isFormCorrect.correctFirstName && wasValidated,
+                message: t('SignUp_incorrectName'),
+              }}
+              placeholder={t('SignUp_nameInputPlaceholder')}
+              value={userDataForm.firstName}
+              onChangeText={(value: string) => handleInputChange('firstName', value)}
+            />
+            <TextInput
+              error={{
+                isError: !isFormCorrect.correctEmail && wasValidated,
+                message: emailErrorMessage ?? t('SignUp_incorrectEmail'),
+              }}
+              placeholder={t('SignUp_emailInputPlaceholder')}
+              value={userDataForm.email}
+              onChangeText={(value: string) => handleInputChange('email', value)}
+            />
+            <PhoneInput
+              error={{
+                isError: !isFormCorrect.correctPhone && wasValidated,
+              }}
+              flagState={flagState}
+              onFlagPress={() => setIsPanelPhoneSelectVisible(true)}
+              getPhoneNumber={(value: string) => handleInputChange('phone', value)}
+            />
+          </View>
+
           <CheckBox
             error={{
               isError: !isFormCorrect.correctIsFamiliarWithTermsAndConditions && wasValidated,
@@ -189,15 +194,17 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
             </Pressable>
           </CheckBox>
         </ScrollViewWithCustomScroll>
+
         <View style={styles.buttonsContainer}>
           <Button
-            style={styles.nextButton}
+            containerStyle={styles.nextButton}
             shape={ButtonShapes.Circle}
             mode={isButtonEnabled ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
             disabled={!isButtonEnabled}
             size={ButtonSizes.L}
             text={t('SignUp_nextButton')}
             innerSpacing={5}
+            shadow={isButtonEnabled ? ButtonShadows.Strong : undefined}
             onPress={handleSubmit}
           />
           <Pressable style={styles.alreadyHaveAccountContainer} onPress={navigateToSignIn} hitSlop={20}>
@@ -207,7 +214,12 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
             </Text>
           </Pressable>
         </View>
+      </>
+    );
 
+    return (
+      <>
+        {!isPanelPhoneSelectVisible ? <CustomKeyboardAvoidingView>{content}</CustomKeyboardAvoidingView> : content}
         {isPanelPhoneSelectVisible && (
           <SlidingPanel
             flagState={flagState}
@@ -232,6 +244,9 @@ const styles = StyleSheet.create({
     gap: 24,
     paddingBottom: 24,
   },
+  inputContainer: {
+    gap: 16,
+  },
   buttonsContainer: {
     marginTop: 12,
     gap: 12,
@@ -252,6 +267,7 @@ const styles = StyleSheet.create({
   },
   checkBoxText: {
     fontSize: 12,
+    lineHeight: 14,
     textDecorationLine: 'underline',
   },
 });

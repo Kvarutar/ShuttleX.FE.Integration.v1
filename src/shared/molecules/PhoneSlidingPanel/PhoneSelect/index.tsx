@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 
 import { countryDtos } from '../../../../core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from '../../../../core/countries/types';
+import { useTheme } from '../../../../core/themes/v2/themeContext';
 import { useDebounce } from '../../../../utils/debounce';
 import Text from '../../../atoms/Text';
 import TextInput from '../../../atoms/TextInput/v2';
@@ -14,6 +15,8 @@ import { type PhoneSelectProps } from './props';
 const itemHeight = 50;
 
 const PhoneSelect = ({ flagState, onFlagSelect, hidePanel }: PhoneSelectProps): JSX.Element => {
+  const { colors } = useTheme();
+
   const [filteredCountryDtos, setFilteredCountryDtos] = useState<CountryPhoneMaskDto[]>(countryDtos);
   const [inputValue, setInputValue] = useState('');
   const debouncedValue = useDebounce(inputValue, 300);
@@ -47,17 +50,22 @@ const PhoneSelect = ({ flagState, onFlagSelect, hidePanel }: PhoneSelectProps): 
     };
   };
 
+  const computedStyles = StyleSheet.create({
+    listItemCountryName: {
+      color: colors.textSecondaryColor,
+    },
+  });
+
   const renderItem = ({ item }: { item: CountryPhoneMaskDto }) => (
     <Pressable
       style={styles.listItemContainer}
       onPress={() => {
         handleFlagSelect(item);
-        console.log(item.countryCode);
       }}
     >
       <View style={styles.listItemFlagContainer}>{countryFlags[item.countryCode]}</View>
       <Text style={styles.listItemIcc}>{item.icc}</Text>
-      <Text style={styles.listItemCountryName}>{item.countryName}</Text>
+      <Text style={[styles.listItemCountryName, computedStyles.listItemCountryName]}>{item.countryName}</Text>
       {item.countryCode === flagState.countryCode && <CheckIcon2 />}
     </Pressable>
   );
@@ -100,6 +108,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
     alignItems: 'center',
+    fontFamily: 'Inter Medium',
   },
   listItemIcc: {
     width: 70,
@@ -108,6 +117,7 @@ const styles = StyleSheet.create({
   listItemCountryName: {
     flex: 1,
     lineHeight: 19,
+    letterSpacing: 0.64,
   },
 });
 
