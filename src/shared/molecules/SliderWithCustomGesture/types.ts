@@ -11,5 +11,5 @@ export type SliderWithCustomGestureProps = {
   text?: string;
   textStyle?: StyleProp<TextStyle>;
   mode: SwipeButtonModes;
-  setIsLoading: (newState: boolean) => void;
+  setIsLoading?: (newState: boolean) => void;
 };

@@ -40,6 +40,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       withHiddenPartScroll = true,
       withShade = false,
       maxHeight = 0.93,
+      withDraggable = true,
     },
     ref,
   ) => {
@@ -146,9 +147,11 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
           >
             <GestureDetector gesture={gesture}>
               <Animated.View onLayout={onVisiblePartLayout}>
-                <View style={styles.draggableZone}>
-                  <View style={[styles.draggableElement, computedStyles.draggableElement]} />
-                </View>
+                {withDraggable && (
+                  <View style={styles.draggableZone}>
+                    <View style={[styles.draggableElement, computedStyles.draggableElement]} />
+                  </View>
+                )}
                 <View style={[styles.visiblePart, computedStyles.visiblePart, visiblePartStyle]}>{visiblePart}</View>
               </Animated.View>
             </GestureDetector>

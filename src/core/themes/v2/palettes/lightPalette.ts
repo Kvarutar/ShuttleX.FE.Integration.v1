@@ -12,7 +12,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerCo
   secondaryGradientStartColor: '#EAEAEA',
   secondaryGradientEndColor: '#010101',
   errorColor: '#FF4A00',
-  errorColorWithOpacity: '#FF4A001A',
+  errorColorWithOpacity: '#FFECE5',
   warningColor: '#FFE54E',
   successColor: '#d5ff3b',
   borderColor: '#DEE3E4',

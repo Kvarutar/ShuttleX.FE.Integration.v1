@@ -19,7 +19,7 @@ const SliderWithCustomGesture = ({
   mode,
   containerStyle,
   rightToLeftSwipe,
-  setIsLoading,
+  setIsLoading, // State for async requests, makes animation in SwipeButton component
 }: SliderWithCustomGestureProps) => {
   const { t } = useTranslation();
   const { colors, themeMode } = useTheme();
@@ -77,10 +77,10 @@ const SliderWithCustomGesture = ({
   });
 
   const handleSwipeEnd = async () => {
-    setIsLoading(true);
+    setIsLoading?.(true);
     await onSwipeEnd();
     translateX.value = withTiming(0);
-    setIsLoading(false);
+    setIsLoading?.(false);
   };
 
   //TODO: Refactor this methods

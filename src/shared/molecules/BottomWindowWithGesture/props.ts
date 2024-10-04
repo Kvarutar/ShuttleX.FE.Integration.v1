@@ -16,6 +16,7 @@ export type BottomWindowWithGestureProps = {
   withHiddenPartScroll?: boolean;
   withShade?: boolean;
   maxHeight?: number;
+  withDraggable?: boolean;
 };
 
 export type BottomWindowWithGestureRef = {

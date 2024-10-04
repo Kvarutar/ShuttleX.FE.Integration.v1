@@ -10,7 +10,7 @@ import { useTheme } from '../../../../core/themes/v2/themeContext';
 import ArrowIcon from '../../../icons/ArrowIcon';
 import SpinnerIcon from '../../../icons/SpinnerIcon';
 import SliderWithCustomGesture from '../../SliderWithCustomGesture';
-import { type SwipeButtonColors, type SwipeButtonProps } from '../props';
+import { type SwipeButtonColors, SwipeButtonModes, type SwipeButtonProps } from '../props';
 
 const SwipeButtonWithoutI18n = ({
   onSwipeEnd,
@@ -93,7 +93,13 @@ const SwipeButtonWithoutI18n = ({
   );
 };
 
-const SwipeButton = ({ onSwipeEnd, mode, text, containerStyle, textStyle }: SwipeButtonProps) => (
+const SwipeButton = ({
+  onSwipeEnd,
+  mode = SwipeButtonModes.Confirm,
+  text,
+  containerStyle,
+  textStyle,
+}: SwipeButtonProps) => (
   <I18nextProvider i18n={i18nIntegration}>
     <SwipeButtonWithoutI18n
       onSwipeEnd={onSwipeEnd}
