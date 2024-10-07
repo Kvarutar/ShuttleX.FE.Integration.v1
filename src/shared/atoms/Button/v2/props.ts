@@ -63,6 +63,6 @@ export type ButtonProps = {
   circleMode6Time?: number;
   innerSpacing?: number;
   size?: ButtonSizes;
-  withCircleMode1Border?: boolean;
+  withCircleModeBorder?: boolean;
   withBorder?: boolean;
 };

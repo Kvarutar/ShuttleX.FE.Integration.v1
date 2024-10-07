@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, type StyleProp, StyleSheet, type TextStyle, View, type ViewStyle } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
@@ -24,6 +24,8 @@ type ButtonStyle = {
   text: StyleProp<TextStyle>;
 };
 
+const withCircleModeBorderPadding = 4;
+
 const Button = forwardRef<ButtonRef, ButtonProps>(
   (
     {
@@ -43,7 +45,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
       onPress,
       circleMode6Time,
       innerSpacing,
-      withCircleMode1Border = false,
+      withCircleModeBorder = false,
     },
     ref,
   ): JSX.Element => {
@@ -98,6 +100,8 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
         button: {
           height: 52,
           backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+          paddingHorizontal: 24,
+          borderRadius: 12,
         },
         text: { color: textColor },
       },
@@ -132,9 +136,16 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
     }));
 
     const borderWidth = withBorder ? 1 : 0;
-    const circleMode1BorderStyle: StyleProp<ViewStyle> = {
-      borderWidth: 4,
-      borderColor: colors.backgroundPrimaryColor,
+    const withCircleModeBorderContainer = (children: React.ReactNode) => {
+      if (withCircleModeBorder) {
+        const style: ViewStyle = {
+          padding: withCircleModeBorderPadding,
+          backgroundColor: colors.backgroundPrimaryColor,
+          borderRadius: 1000,
+        };
+        return <View style={style}>{children}</View>;
+      }
+      return children;
     };
 
     const containers = {
@@ -180,20 +191,19 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
     return (
       <View style={containerStyle}>
         {shadow && shape === ButtonShapes.Circle ? (
-          <Shadow
-            stretch
-            {...shadowProps}
-            style={mode === CircleButtonModes.Mode1 && withCircleMode1Border ? circleMode1BorderStyle : undefined}
-          >
-            <Pressable
-              style={[styles.button, computedStyles[shape].button, style]}
-              disabled={isButtonDisabled}
-              onPress={onPress}
-              onPressIn={() => setIsPressed(true)}
-              onPressOut={() => setIsPressed(false)}
-            >
-              {containers[shape]}
-            </Pressable>
+          <Shadow stretch {...shadowProps}>
+            {withCircleModeBorderContainer(
+              <Pressable
+                hitSlop={withCircleModeBorderPadding}
+                style={[styles.button, computedStyles[shape].button, style]}
+                disabled={isButtonDisabled}
+                onPress={onPress}
+                onPressIn={() => setIsPressed(true)}
+                onPressOut={() => setIsPressed(false)}
+              >
+                {containers[shape]}
+              </Pressable>,
+            )}
           </Shadow>
         ) : (
           <Shadow stretch {...shadowProps}>
@@ -220,8 +230,6 @@ const styles = StyleSheet.create({
     borderRadius: 1000,
   },
   button: {
-    paddingHorizontal: 24,
-    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
