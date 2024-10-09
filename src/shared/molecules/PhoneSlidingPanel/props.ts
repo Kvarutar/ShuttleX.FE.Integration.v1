@@ -5,4 +5,5 @@ export type SlidingPanelProps = {
   onFlagSelect: (flag: CountryPhoneMaskDto) => void;
   isPanelOpen: boolean;
   setIsPanelOpen: (isPanelOpen: boolean) => void;
+  withShade?: boolean;
 };

@@ -102,7 +102,7 @@ const MenuBase = ({
   const navigationContent = Object.entries(menuNavigation).map(([key, menuitem]) => (
     <Pressable
       key={key}
-      style={[styles.navigationItem, currentRoute.toLowerCase() === key && styles.selectedNavigationItem]}
+      style={[styles.navigationItem, currentRoute.toLowerCase() === key.toLowerCase() && styles.selectedNavigationItem]}
       onPress={() => {
         menuitem.navFunc();
       }}

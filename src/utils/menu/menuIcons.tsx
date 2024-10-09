@@ -22,7 +22,7 @@ export const getMenuIcons = (type: MenuNavigationBlocks) => {
       return <ActivityIcon />;
     case 'promocodes':
       return <PromocodesIcon />;
-    case 'settings':
+    case 'accountSettings':
       return <SettingsIcon />;
     case 'wallet':
       return <WalletIcon />;

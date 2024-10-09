@@ -10,13 +10,13 @@ import { type ChangeNamePopUpProps } from './props';
 
 const windowSizes = Dimensions.get('window');
 
-const ChangePopUpWithoutI18n = ({ setIsAnswerYes, setIsPopUp }: ChangeNamePopUpProps) => {
+const ChangePopUpWithoutI18n = () => {
   const { t } = useTranslation();
   const { colors } = useTheme();
 
   const computedStyles = StyleSheet.create({
     wrapper: {
-      height: windowSizes.height / 2 - 20,
+      height: windowSizes.height / 2,
     },
     changeText: {
       color: colors.textTitleColor,
@@ -26,47 +26,53 @@ const ChangePopUpWithoutI18n = ({ setIsAnswerYes, setIsPopUp }: ChangeNamePopUpP
     },
   });
   return (
-    <View style={[styles.wrapper, computedStyles.wrapper]}>
+    <View style={computedStyles.wrapper}>
       <View style={styles.textsStyle}>
         <Text style={[styles.changeText, computedStyles.changeText]}>{t('AccountChangePopUp_change')}</Text>
         <Text style={styles.descriptText}>{t('AccountChangePopUp_question')}</Text>
         <Text style={[styles.explainText, computedStyles.explainText]}>{t('AccountChangePopUp_explanation')}</Text>
       </View>
-
-      <View style={styles.buttonsStyle}>
-        <Button
-          text={t('AccountChangePopUp_yes')}
-          containerStyle={styles.button}
-          onPress={() => {
-            setIsAnswerYes(true);
-            setIsPopUp(false);
-          }}
-        />
-        <Button
-          mode={SquareButtonModes.Mode2}
-          text={t('AccountChangePopUp_no')}
-          containerStyle={styles.button}
-          onPress={() => {
-            setIsAnswerYes(false);
-            setIsPopUp(false);
-          }}
-        />
-      </View>
     </View>
   );
 };
 
-const ChangeNamePopUp = (props: ChangeNamePopUpProps) => (
+const ChangePopUpButtonsWithoutI18n = ({ setAnswer, setIsPopUpVisible }: ChangeNamePopUpProps) => {
+  const { t } = useTranslation();
+
+  const handleButtonPress = (answer: boolean) => {
+    setAnswer(answer);
+    setIsPopUpVisible(false);
+  };
+
+  return (
+    <View style={styles.buttonsStyle}>
+      <Button
+        text={t('AccountChangePopUp_yes')}
+        containerStyle={styles.button}
+        onPress={() => handleButtonPress(true)}
+      />
+      <Button
+        mode={SquareButtonModes.Mode2}
+        text={t('AccountChangePopUp_no')}
+        containerStyle={styles.button}
+        onPress={() => handleButtonPress(false)}
+      />
+    </View>
+  );
+};
+const ChangeNamePopUp = () => (
   <I18nextProvider i18n={i18nIntegration}>
-    <ChangePopUpWithoutI18n {...props} />
+    <ChangePopUpWithoutI18n />
+  </I18nextProvider>
+);
+
+const ChangeNamePopUpButtons = (props: ChangeNamePopUpProps) => (
+  <I18nextProvider i18n={i18nIntegration}>
+    <ChangePopUpButtonsWithoutI18n {...props} />
   </I18nextProvider>
 );
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
   button: {
     alignSelf: 'stretch',
     flex: 1,
@@ -95,4 +101,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 });
-export default ChangeNamePopUp;
+export { ChangeNamePopUp, ChangeNamePopUpButtons };

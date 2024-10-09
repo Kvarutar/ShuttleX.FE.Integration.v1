@@ -4,7 +4,7 @@ export type MenuNavigationBlocks =
   | 'wallet'
   | 'promocodes'
   | 'becomeDriver'
-  | 'settings'
+  | 'accountSettings'
   | 'help'
   | 'profile'
   | 'statistics'

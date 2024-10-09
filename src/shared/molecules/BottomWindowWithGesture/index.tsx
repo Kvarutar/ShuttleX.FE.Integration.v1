@@ -39,6 +39,8 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       bottomWindowStyle,
       withHiddenPartScroll = true,
       withShade = false,
+      shadeStyle,
+      hiddenPartWrapperStyle,
       maxHeight = 0.93,
       withDraggable = true,
     },
@@ -133,7 +135,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
 
     return (
       <>
-        {isShadeVisible && withShade && <Shade />}
+        {isShadeVisible && withShade && <Shade style={shadeStyle} />}
         <Animated.View
           style={[styles.animatedWrapper, bottomWindowAnimatedStyle, containerStyle]}
           exiting={FadeOut}
@@ -155,7 +157,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
                 <View style={[styles.visiblePart, computedStyles.visiblePart, visiblePartStyle]}>{visiblePart}</View>
               </Animated.View>
             </GestureDetector>
-            <Animated.View onLayout={onHiddenPartLayout} style={styles.hiddenWrapper}>
+            <Animated.View onLayout={onHiddenPartLayout} style={[styles.hiddenWrapper, hiddenPartWrapperStyle]}>
               <View style={styles.hiddenScrollWrapper}>
                 {withHiddenPartScroll ? (
                   <ScrollViewWithCustomScroll
@@ -217,8 +219,8 @@ const styles = StyleSheet.create({
     right: -sizes.paddingHorizontal / 2,
   },
   hiddenWrapper: {
-    paddingBottom: sizes.paddingVertical,
     flexShrink: 1,
+    paddingBottom: sizes.paddingVertical,
   },
   scrollViewWrapper: {
     flex: 0,

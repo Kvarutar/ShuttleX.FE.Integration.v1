@@ -207,7 +207,6 @@ import Timer from './shared/molecules/timerAndStopwatch/Timer/V2';
 import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/V2/props';
 import UnclosablePopup from './shared/molecules/UnclosablePopup';
 import AccountSettingsScreen from './shared/screens/AccountSettingsScreen';
-import ChangeNamePopUp from './shared/screens/AccountSettingsScreen/ChangeNamePopUp';
 import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
 import CodeVerificationScreen from './shared/screens/CodeVerificationScreen';
@@ -288,7 +287,6 @@ export {
   CalendarIcon,
   CameraIcon,
   type Card,
-  ChangeNamePopUp,
   ChatIcon,
   CheckBox,
   checkCameraUsagePermission,

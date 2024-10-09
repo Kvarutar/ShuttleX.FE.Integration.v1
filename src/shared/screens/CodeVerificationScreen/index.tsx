@@ -25,6 +25,7 @@ const CodeVerificationScreenWithoutI18n = ({
   lockOutTime,
   lockOutTimeForText,
   onBannedAgainButtonPress,
+  titleText,
   onSupportButtonPress,
 }: CodeVerificationScreenProps): JSX.Element => {
   const { t } = useTranslation();
@@ -69,7 +70,10 @@ const CodeVerificationScreenWithoutI18n = ({
     <>
       <CustomKeyboardAvoidingView>
         <View style={styles.container} pointerEvents={isBlocked ? 'none' : undefined}>
-          <TitleWithCloseButton title={t('CodeVerification_title')} onBackButtonPress={onBackButtonPress} />
+          <TitleWithCloseButton
+            title={titleText ?? t('CodeVerification_title')}
+            onBackButtonPress={onBackButtonPress}
+          />
           <Content
             time={minToMilSec(3)}
             headerFirstText={headerFirstText}

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { isEmailValid, isNameValid, isPhoneValid } from '../../../utils/validation';
+import { isEmailValid, isNameValid, isPhoneValid } from './validation';
 
 // One type for different results
 type ValidationResult<T> = Record<keyof T, boolean>;

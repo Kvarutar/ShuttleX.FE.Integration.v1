@@ -15,6 +15,8 @@ export type BottomWindowWithGestureProps = {
   bottomWindowStyle?: StyleProp<ViewStyle>;
   withHiddenPartScroll?: boolean;
   withShade?: boolean;
+  shadeStyle?: StyleProp<ViewStyle>;
+  hiddenPartWrapperStyle?: StyleProp<ViewStyle>;
   maxHeight?: number;
   withDraggable?: boolean;
 };

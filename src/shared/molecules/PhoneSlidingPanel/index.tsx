@@ -4,7 +4,13 @@ import BottomWindowWithGesture from '../BottomWindowWithGesture';
 import PhoneSelect from './PhoneSelect';
 import { type SlidingPanelProps } from './props';
 
-const SlidingPanel = ({ flagState, onFlagSelect, isPanelOpen, setIsPanelOpen }: SlidingPanelProps): JSX.Element => {
+const SlidingPanel = ({
+  flagState,
+  onFlagSelect,
+  isPanelOpen,
+  setIsPanelOpen,
+  withShade = true,
+}: SlidingPanelProps): JSX.Element => {
   return (
     <BottomWindowWithGesture
       hiddenPartStyle={styles.hiddenPart}
@@ -12,7 +18,7 @@ const SlidingPanel = ({ flagState, onFlagSelect, isPanelOpen, setIsPanelOpen }: 
       opened={isPanelOpen}
       maxHeight={0.85}
       withHiddenPartScroll={false}
-      withShade
+      withShade={withShade}
       hiddenPart={
         <PhoneSelect onFlagSelect={onFlagSelect} flagState={flagState} hidePanel={() => setIsPanelOpen(false)} />
       }

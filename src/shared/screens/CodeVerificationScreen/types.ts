@@ -8,6 +8,7 @@ export type CodeVerificationScreenProps = {
   isBlocked: boolean;
   lockOutTime: number;
   lockOutTimeForText: string;
+  titleText?: string;
   onBannedAgainButtonPress: () => void;
   onSupportButtonPress: () => void;
 };
