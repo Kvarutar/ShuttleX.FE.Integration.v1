@@ -22,7 +22,7 @@ const Fog = (): JSX.Element => {
         <Svg>
           <Defs>
             <RadialGradient id="gradient">
-              <Stop offset="80%" stopOpacity={0} />
+              <Stop offset="80%" stopColor={colors.backgroundPrimaryColor} stopOpacity={0} />
               <Stop offset="100%" stopColor={colors.backgroundPrimaryColor} />
             </RadialGradient>
           </Defs>
