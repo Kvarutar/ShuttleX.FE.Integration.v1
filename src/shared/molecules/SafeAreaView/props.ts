@@ -5,4 +5,5 @@ export type SafeAreaViewProps = {
   children?: ReactNode;
   containerStyle?: StyleProp<ViewStyle>;
   wrapperStyle?: StyleProp<ViewStyle>;
+  withTransparentBackground?: boolean;
 };

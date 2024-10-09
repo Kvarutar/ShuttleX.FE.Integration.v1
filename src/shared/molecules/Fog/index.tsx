@@ -2,15 +2,16 @@ import { Dimensions, StyleSheet, View } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { useTheme } from '../../../core/themes/v2/themeContext';
+import { type FogProps } from './types';
 
 const windowWidth = Dimensions.get('window').width;
 
-const Fog = (): JSX.Element => {
+const Fog = ({ widthInPercents = '100%' }: FogProps): JSX.Element => {
   const { colors } = useTheme();
 
   const computedStyles = StyleSheet.create({
     sidePart: {
-      backgroundColor: colors.backgroundPrimaryColor,
+      backgroundColor: colors.backgroundSecondaryColor,
       flex: 1,
     },
   });
@@ -22,8 +23,12 @@ const Fog = (): JSX.Element => {
         <Svg>
           <Defs>
             <RadialGradient id="gradient">
-              <Stop offset="80%" stopColor={colors.backgroundPrimaryColor} stopOpacity={0} />
-              <Stop offset="100%" stopColor={colors.backgroundPrimaryColor} />
+              <Stop
+                offset={`${Number(widthInPercents.slice(0, -1)) - 20}%`}
+                stopColor={colors.backgroundSecondaryColor}
+                stopOpacity={0}
+              />
+              <Stop offset={widthInPercents} stopColor={colors.backgroundSecondaryColor} />
             </RadialGradient>
           </Defs>
           <Rect width="100%" height="100%" fill="url(#gradient)" />

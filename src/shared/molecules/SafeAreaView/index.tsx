@@ -4,12 +4,12 @@ import sizes from '../../../core/themes/sizes';
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import { type SafeAreaViewProps } from './props';
 
-const SafeAreaView = ({ children, containerStyle, wrapperStyle }: SafeAreaViewProps) => {
+const SafeAreaView = ({ children, containerStyle, wrapperStyle, withTransparentBackground }: SafeAreaViewProps) => {
   const { colors } = useThemeV1();
 
   const computedStyles = StyleSheet.create({
     wrapper: {
-      backgroundColor: colors.backgroundPrimaryColor,
+      backgroundColor: withTransparentBackground ? 'transparent' : colors.backgroundPrimaryColor,
     },
     container: {
       paddingVertical: Platform.OS === 'android' ? sizes.paddingVertical : 0,
