@@ -1,3 +1,3 @@
 export type FogProps = {
-  widthInPercents: string;
+  widthInPercents?: string;
 };
