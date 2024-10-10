@@ -1,14 +1,17 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Dimensions, Platform, StyleSheet, Switch, View } from 'react-native';
+import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 
+// import { Switch } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+// TODO Uncomment all code whe we need it
+// import { useTheme } from '../../../core/themes/v2/themeContext';
+// import { Switch } from 'react-native';
 import { isNameValid } from '../../../utils/validation';
-import { BarModes } from '../../atoms/Bar/types';
-import Bar from '../../atoms/Bar/v2';
+// import { BarModes } from '../../atoms/Bar/types';
+// import Bar from '../../atoms/Bar/v2';
 import Button from '../../atoms/Button/v2';
-import Text from '../../atoms/Text';
+// import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
 import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
 // import ArrowInPrimaryColorIcon from '../../icons/ArrowInPrimaryColorIcon';
@@ -45,7 +48,8 @@ const AccountSettingsScreenWithoutI18n = ({
   } = useChangeData();
 
   //theme logic
-  const { themeMode, setThemeMode } = useTheme();
+  // TODO Uncomment all code whe we need it
+  // const { themeMode, setThemeMode } = useTheme();
 
   //validate logic
   const [wasValidated, setWasValidated] = useState<boolean>(false);
@@ -57,11 +61,13 @@ const AccountSettingsScreenWithoutI18n = ({
   const [isVerificationScreenVisible, setIsVerificationScreenVisible] = useState(false);
 
   //switch theme logic
-  const isThemeSwitchActive = themeMode === 'dark';
+  // TODO Uncomment all code whe we need it
+  // const isThemeSwitchActive = themeMode === 'dark';
 
-  const toggleSwitch = useCallback(() => {
-    setThemeMode(isThemeSwitchActive ? 'light' : 'dark');
-  }, [isThemeSwitchActive, setThemeMode]);
+  // const toggleSwitch = useCallback(() => {
+  //   setThemeMode(isThemeSwitchActive ? 'light' : 'dark');
+  // }, [isThemeSwitchActive, setThemeMode]);
+  // }, [isThemeSwitchActive, setThemeMode]);
 
   useEffect(() => {
     if (isVerificationDone) {
@@ -143,11 +149,15 @@ const AccountSettingsScreenWithoutI18n = ({
             {/* <Bar style={styles.bar} mode={BarModes.Default}>
               <Text style={styles.barText}>{t('AccountSettings_barUpdate')}</Text>
               {!isUpdateIcon ? <ArrowInPrimaryColorIcon /> : <WarningIcon />}
-            </Bar> */}
-            <Bar style={styles.bar} mode={BarModes.Default}>
+            </Bar>
+
+            {/* // TODO Uncomment all code whe we need it */}
+
+            {/*  <Bar style={styles.bar} mode={BarModes.Default}>
               <Text style={styles.barText}>{t('AccountSettings_barDarkMode')}</Text>
               <Switch onValueChange={toggleSwitch} value={isThemeSwitchActive} style={computedStyles.switch} />
-            </Bar>
+            </Bar>*/}
+
             {hasProfileChanged && (
               <Button onPress={onDataSave} textStyle={styles.button} text={t('AccountSettings_saveButton')} />
             )}

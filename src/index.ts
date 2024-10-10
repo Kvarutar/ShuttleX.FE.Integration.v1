@@ -90,7 +90,6 @@ import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
 import HelpIcon from './shared/icons/HelpIcon';
 import InfoIcon from './shared/icons/InfoIcon';
 import InputXIcon from './shared/icons/InputXIcon';
-import LevelIcon from './shared/icons/LevelIcon';
 import LightningIcon from './shared/icons/LightningIcon';
 import Like2Icon from './shared/icons/Like2Icon';
 import LikeIcon from './shared/icons/LikeIcon';
@@ -367,7 +366,6 @@ export {
   isEmailValid,
   isNameValid,
   isPhoneValid,
-  LevelIcon,
   lightMapStyle,
   LightningIcon,
   Like2Icon,
