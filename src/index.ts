@@ -204,6 +204,8 @@ import TimerV1 from './shared/molecules/timerAndStopwatch/Timer/V1';
 import { TimerV1Modes } from './shared/molecules/timerAndStopwatch/Timer/V1/props';
 import Timer from './shared/molecules/timerAndStopwatch/Timer/V2';
 import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/V2/props';
+import TrafficIndicator from './shared/molecules/TrafficIndicator';
+import { TrafficLevel } from './shared/molecules/TrafficIndicator/types';
 import UnclosablePopup from './shared/molecules/UnclosablePopup';
 import AccountSettingsScreen from './shared/screens/AccountSettingsScreen';
 import AddCardScreen from './shared/screens/AddCardScreen';
@@ -488,6 +490,8 @@ export {
   TimerV1,
   TimerV1Modes,
   TitleWithCloseButton,
+  TrafficIndicator,
+  TrafficLevel,
   UnclosablePopup,
   UnknownCardIcon,
   UploadPhotoIcon,

@@ -19858,6 +19858,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-linear-gradient@npm:^2.8.3":
+  version: 2.8.3
+  resolution: "react-native-linear-gradient@npm:2.8.3"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: cd41bf28e9f468173f1e5e768685128ebf8bbf9077710e43b63482c1a76f37bff8ab3d1d6adfd7b4d54e648672356c02bea46c47cdbdb1844ebe5c5caf720114
+  languageName: node
+  linkType: hard
+
 "react-native-localize@npm:^3.0.2":
   version: 3.2.1
   resolution: "react-native-localize@npm:3.2.1"
@@ -21500,6 +21510,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native: "npm:0.72.10"
     react-native-geolocation-service: "npm:^5.3.1"
     react-native-gesture-handler: "npm:~2.12.0"
+    react-native-linear-gradient: "npm:^2.8.3"
     react-native-localize: "npm:^3.0.2"
     react-native-maps: "npm:1.7.1"
     react-native-reanimated: "npm:~3.3.0"
@@ -21560,6 +21571,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-device-info: "npm:^10.13.1"
     react-native-geolocation-service: "npm:^5.3.1"
     react-native-gesture-handler: "npm:^2.14.0"
+    react-native-linear-gradient: "npm:^2.8.3"
     react-native-localize: "npm:^3.0.2"
     react-native-maps: "npm:^1.10.3"
     react-native-permissions: "npm:^4.1.4"
@@ -21586,6 +21598,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-device-info: "*"
     react-native-geolocation-service: "*"
     react-native-gesture-handler: "*"
+    react-native-linear-gradient: "*"
     react-native-localize: "*"
     react-native-maps: "*"
     react-native-permissions: "*"

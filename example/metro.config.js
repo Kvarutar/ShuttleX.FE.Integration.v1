@@ -55,7 +55,8 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     moduleName === 'react-native-sensors' ||
     moduleName === '@react-navigation/native' ||
     moduleName === '@react-native-firebase/app' ||
-    moduleName === '@react-native-firebase/messaging'
+    moduleName === '@react-native-firebase/messaging' ||
+    moduleName === 'react-native-linear-gradient'
   ) {
     return { type: 'empty' };
   }
