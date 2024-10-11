@@ -5,8 +5,8 @@ import i18nIntegration from '../../../core/locales/i18n';
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Text from '../../atoms/Text';
 import LowSignalIcon from '../../icons/LowSignalIcon';
-import Alert from './Alert';
-import { type AlertDescendantProps } from './Alert/props';
+import AlertV1 from './Alert/V1';
+import { type AlertDescendantProps } from './Alert/V1/props';
 
 const InternetDisconnectedAlertWithoutI18n = ({ style, ...props }: AlertDescendantProps) => {
   const { colors } = useThemeV1();
@@ -22,12 +22,12 @@ const InternetDisconnectedAlertWithoutI18n = ({ style, ...props }: AlertDescenda
   });
 
   return (
-    <Alert style={[computedStyles.alertContainer, style]} {...props}>
+    <AlertV1 style={[computedStyles.alertContainer, style]} {...props}>
       <View style={styles.container}>
         <LowSignalIcon style={styles.icon} />
         <Text style={[styles.text, computedStyles.text]}>{t('InternetDisconnectedAlert_description')}</Text>
       </View>
-    </Alert>
+    </AlertV1>
   );
 };
 

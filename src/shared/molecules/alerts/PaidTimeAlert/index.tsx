@@ -4,20 +4,20 @@ import { StyleSheet } from 'react-native';
 import i18nIntegration from '../../../../core/locales/i18n';
 import Text from '../../../atoms/Text';
 import WarningIcon from '../../../icons/WarningIcon';
-import Alert from '../Alert';
-import { type AlertDescendantProps } from '../Alert/props';
+import AlertV1 from '../Alert/V1';
+import { type AlertDescendantProps } from '../Alert/V1/props';
 import { type PaidTimeAlertProps } from './props';
 
 const PaidTimeAlertWithoutI18n = ({ currency, style, ...props }: PaidTimeAlertProps & AlertDescendantProps) => {
   const { t } = useTranslation();
 
   return (
-    <Alert style={[styles.container, style]} {...props}>
+    <AlertV1 style={[styles.container, style]} {...props}>
       <WarningIcon style={styles.icon} />
       <Text numberOfLines={1} style={styles.text}>
         {t('PaidTimeAlert_description', { currency })}
       </Text>
-    </Alert>
+    </AlertV1>
   );
 };
 

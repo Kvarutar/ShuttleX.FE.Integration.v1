@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { type StyleProp, type ViewStyle } from 'react-native';
 
-export type AlertProps = {
+export type AlertV1Props = {
   children: ReactNode;
   style?: StyleProp<ViewStyle>;
   isClosable?: boolean;
@@ -9,4 +9,4 @@ export type AlertProps = {
   onClose?: () => void;
 };
 
-export type AlertDescendantProps = Omit<AlertProps, 'children'>;
+export type AlertDescendantProps = Omit<AlertV1Props, 'children'>;

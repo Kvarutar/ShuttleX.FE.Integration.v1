@@ -152,7 +152,8 @@ import LocationArrowImage2 from './shared/images/LocationArrowImage2';
 import MenuUserImage from './shared/images/MenuUserImage';
 import MenuUserImage2 from './shared/images/MenuUserImage2';
 import PassengerDefaultCarImage from './shared/images/PassengerDefaultCarImage';
-import { type AlertDescendantProps } from './shared/molecules/alerts/Alert/props';
+import { type AlertDescendantProps } from './shared/molecules/alerts/Alert/V1/props';
+import Alert from './shared/molecules/alerts/Alert/V2';
 import DriverArrivedAlert from './shared/molecules/alerts/DriverArrivedAlert';
 import FreeTimeAlert from './shared/molecules/alerts/FreeTimeAlert';
 import { type FreeTimeAlertProps } from './shared/molecules/alerts/FreeTimeAlert/props';
@@ -251,6 +252,7 @@ export {
   AccountSettingsScreen,
   ActivityIcon,
   AddCardScreen,
+  Alert,
   type AlertDescendantProps,
   AnimatedMarker,
   ApplePayIcon,

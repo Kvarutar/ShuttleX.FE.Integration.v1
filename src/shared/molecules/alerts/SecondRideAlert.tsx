@@ -5,18 +5,18 @@ import i18nIntegration from '../../../core/locales/i18n';
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Text from '../../atoms/Text';
 import WarningIcon from '../../icons/WarningIcon';
-import Alert from './Alert';
-import { type AlertDescendantProps } from './Alert/props';
+import AlertV1 from './Alert/V1';
+import { type AlertDescendantProps } from './Alert/V1/props';
 
 const SecondRideAlertWithoutI18n = ({ style, ...props }: AlertDescendantProps) => {
   const { t } = useTranslation();
   const { colors } = useThemeV1();
 
   return (
-    <Alert style={[styles.container, style]} {...props}>
+    <AlertV1 style={[styles.container, style]} {...props}>
       <WarningIcon style={styles.icon} color={colors.warningColor} />
       <Text style={styles.text}>{t('SecondRideAlert_description')}</Text>
-    </Alert>
+    </AlertV1>
   );
 };
 

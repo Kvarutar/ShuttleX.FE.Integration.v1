@@ -4,14 +4,14 @@ import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
 
-import Alert from '../../../src/shared/molecules/alerts/Alert';
-import { type AlertProps } from '../../../src/shared/molecules/alerts/Alert/props';
+import AlertV1 from '../../../src/shared/molecules/alerts/Alert/V1';
+import { type AlertV1Props } from '../../../src/shared/molecules/alerts/Alert/V1/props';
 
-type AlertStorybookProps = AlertProps & { theme: ThemeContextTypeV1['themeMode'] };
+type AlertStorybookProps = AlertV1Props & { theme: ThemeContextTypeV1['themeMode'] };
 
 const AlertMeta: Meta<AlertStorybookProps> = {
   title: 'Alert',
-  component: Alert,
+  component: AlertV1,
   args: {
     theme: 'light',
     isClosable: true,
@@ -33,10 +33,10 @@ const AlertWithHooks = ({ theme, ...args }: AlertStorybookProps) => {
     setThemeMode(theme);
   }, [theme, setThemeMode]);
 
-  return <Alert {...args}>{args.children}</Alert>;
+  return <AlertV1 {...args}>{args.children}</AlertV1>;
 };
 
-type Story = StoryObj<typeof Alert>;
+type Story = StoryObj<typeof AlertV1>;
 
 export const BasicExample: Story = {
   render: function Render(args) {

@@ -7,8 +7,8 @@ import ButtonV1 from '../../../atoms/Button/v1/index';
 import { ButtonV1Modes } from '../../../atoms/Button/v1/props';
 import Text from '../../../atoms/Text';
 import ClockIcon2 from '../../../icons/ClockIcon2';
-import Alert from '../Alert';
-import { type AlertDescendantProps } from '../Alert/props';
+import AlertV1 from '../Alert/V1';
+import { type AlertDescendantProps } from '../Alert/V1/props';
 import { type PlannedTripAlertProps } from './props';
 
 const PlannedTripAlertWithoutI18n = ({
@@ -22,7 +22,7 @@ const PlannedTripAlertWithoutI18n = ({
   const { t } = useTranslation();
 
   return (
-    <Alert style={[styles.container, style]} {...props}>
+    <AlertV1 style={[styles.container, style]} {...props}>
       <View style={styles.titleContainer}>
         <ClockIcon2 color={colors.iconSecondaryColor} />
         <Text>
@@ -32,7 +32,7 @@ const PlannedTripAlertWithoutI18n = ({
         </Text>
       </View>
       <ButtonV1 mode={ButtonV1Modes.Mode4} text={t('PlannedTripAlert_cancelButton')} onPress={onCancelPress} />
-    </Alert>
+    </AlertV1>
   );
 };
 

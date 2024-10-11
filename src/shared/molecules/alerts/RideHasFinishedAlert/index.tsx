@@ -4,8 +4,8 @@ import { StyleSheet } from 'react-native';
 import i18nIntegration from '../../../../core/locales/i18n';
 import Text from '../../../atoms/Text';
 import RoundCheckIcon1 from '../../../icons/RoundCheckIcon1';
-import Alert from '../Alert';
-import { type AlertDescendantProps } from '../Alert/props';
+import AlertV1 from '../Alert/V1';
+import { type AlertDescendantProps } from '../Alert/V1/props';
 import { type RideHasFinishedAlertProps } from './props';
 
 const RideHasFinishedAlertWithoutI18n = ({
@@ -16,10 +16,10 @@ const RideHasFinishedAlertWithoutI18n = ({
   const { t } = useTranslation();
 
   return (
-    <Alert style={[styles.container, style]} {...props}>
+    <AlertV1 style={[styles.container, style]} {...props}>
       <RoundCheckIcon1 />
       <Text style={styles.text}>{t('RideHasFinishedAlert_description', { name })}</Text>
-    </Alert>
+    </AlertV1>
   );
 };
 

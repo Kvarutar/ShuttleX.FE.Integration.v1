@@ -3,17 +3,17 @@ import { Image, StyleSheet } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import Text from '../../atoms/Text';
-import Alert from './Alert';
-import { type AlertDescendantProps } from './Alert/props';
+import AlertV1 from './Alert/V1';
+import { type AlertDescendantProps } from './Alert/V1/props';
 
 const DriverArrivedAlertWithoutI18n = ({ style, ...props }: AlertDescendantProps) => {
   const { t } = useTranslation();
 
   return (
-    <Alert style={[styles.container, style]} {...props}>
+    <AlertV1 style={[styles.container, style]} {...props}>
       <Image source={require('../../../assets/img/TeslaModelS.png')} style={styles.img} />
       <Text style={styles.text}>{t('DriverArrivedAlert_description')}</Text>
-    </Alert>
+    </AlertV1>
   );
 };
 
