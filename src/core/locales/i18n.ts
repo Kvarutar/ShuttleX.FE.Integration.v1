@@ -5,7 +5,7 @@ import resources from './i18n.config';
 const i18nIntegration = createInstance({
   compatibilityJSON: 'v3',
   resources,
-  supportedLngs: ['en', 'ru'],
+  supportedLngs: ['en', 'ru', 'uk'],
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false,

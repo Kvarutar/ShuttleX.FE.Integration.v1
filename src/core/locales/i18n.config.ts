@@ -1,5 +1,5 @@
 import tariffsEn from '../../shared/icons/Tariffs/translations/en.json';
-import { en, ru } from './translations';
+import { en, ru, uk } from './translations';
 
 const resources = {
   en: {
@@ -7,6 +7,9 @@ const resources = {
   },
   ru: {
     translation: ru,
+  },
+  uk: {
+    translation: uk,
   },
 };
 

@@ -1,0 +1,23 @@
+{
+  "SignIn_firstPartHeader": "Введіть Свій\nНомер Телефону",
+  "SignIn_secondPartHeader": "для Отримання\nКоду",
+  "SignIn_nextButton": "Далі",
+  "SignIn_dontHaveAccount": "Вже маєте аккаунт?",
+  "SignIn_signUpLabel": "Увійти",
+  "SignUp_firstPartHeader": "Найбільш",
+  "SignUp_secondPartHeader": "Інноваційні Поїздки",
+  "SignUp_nameInputPlaceholder": "Бажане ім’я",
+  "SignUp_incorrectName": "Ім'я має містити від 2 до 30 символів",
+  "SignUp_incorrectEmail": "Введіть правильний Email",
+  "SignUp_agreeCheckBox": "Я погоджуюсь з",
+  "SignUp_allowProcessCheckBox": "Я погоджуюсь на обробку",
+  "SignUp_termsAndConditionsCheckBox": "Умови & Положення компані...",
+  "SignUp_personalDataCheckBox": "моїх персональних даних",
+  "SignUp_nextButton": "Далі",
+  "SignUp_haveAccount": "Вже маєте аккаунт?",
+  "SignUp_signInLabel": "Увійти",
+  "CodeVerification_bannedFirstText": "Вас заблоковано на {{time}} хвилин",
+  "CodeVerification_bannedSecondText": "Ви тимчасово заблоковані для входу.\nБудь ласка, зачекайте, поки вас розблокують\nабо зверніться до служби підтримки",
+  "CodeVerification_againButton": "Знову",
+  "CodeVerification_supportButton": "Служба підтримки"
+}
