@@ -62,6 +62,7 @@ import ClockIcon from './shared/icons/ClockIcon';
 import ClockIcon2 from './shared/icons/ClockIcon2';
 import CloseIcon from './shared/icons/CloseIcon';
 import CloseIconMini from './shared/icons/CloseIconMini';
+import CoinIcon from './shared/icons/CoinIcon';
 import CreditCardIcon from './shared/icons/CreditCardIcon';
 import CreditCheckIcon from './shared/icons/CreditCheckIcon';
 import CrownIcon from './shared/icons/CrownIcon';
@@ -305,6 +306,7 @@ export {
   CodeInput,
   CodeInputV1,
   CodeVerificationScreen,
+  CoinIcon,
   ComfortPlusImage,
   CountingComponent,
   CountingComponentV1,

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
 import { useTheme } from '../../../core/themes/v2/themeContext';
@@ -26,8 +27,9 @@ const StatsTextBlock = ({ amount, text }: StatsTextBlockProps) => {
   );
 };
 
-const StatsBlock = ({ textLikes, amountLikes, textRides, amountRides, style }: StatsBlockProps) => {
+const StatsBlock = ({ amountLikes, amountRides, style }: StatsBlockProps) => {
   const { colors } = useTheme();
+  const { t } = useTranslation();
 
   const computedStyles = StyleSheet.create({
     separateCircle: {
@@ -50,12 +52,12 @@ const StatsBlock = ({ textLikes, amountLikes, textRides, amountRides, style }: S
   return (
     <View style={[styles.container, style]}>
       <Like2Icon color={colors.iconSecondaryColor} />
-      <StatsTextBlock amount={formatStats(amountLikes)} text={textLikes} />
-      {textRides && amountRides && (
+      <StatsTextBlock amount={formatStats(amountLikes)} text={t('StatsBlock_likes')} />
+      {amountRides && (
         <>
           <View style={[styles.separateCircle, computedStyles.separateCircle]} />
           <SteeringWheelIcon color={colors.iconSecondaryColor} />
-          <StatsTextBlock amount={formatStats(amountRides)} text={textRides} />
+          <StatsTextBlock amount={formatStats(amountRides)} text={'StatsBlock_rides'} />
         </>
       )}
     </View>

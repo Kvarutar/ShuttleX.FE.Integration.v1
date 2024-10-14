@@ -6,6 +6,8 @@
   "minute_plural": "{{count}} minutes",
   "second": "{{count}} second",
   "second_plural": "{{count}} seconds",
+  "StatsBlock_likes": "likes",
+  "StatsBlock_rides": "rides",
   "AccountSettings_fullName_placeholder": "Enter your full name",
   "AccountSettings_phoneError": "Phone number must be at least 10 digits",
   "AccountSettings_isEqualEmailError": "Enter your current email",

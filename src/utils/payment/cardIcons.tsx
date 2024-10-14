@@ -6,27 +6,26 @@ import MaestroIcon from '../../shared/icons/MaestroIcon';
 import MasterCardIcon from '../../shared/icons/MasterCardIcon';
 import PayPalIcon from '../../shared/icons/PayPalIcon';
 import VisaIcon from '../../shared/icons/VisaIcon';
-import { type PaymentMethod } from './types';
+import { type IconProps, type PaymentMethod } from './types';
 
-export const getPaymentIcon = (type: PaymentMethod['method']) => {
-  switch (type) {
-    case 'paypal':
-      return <PayPalIcon />;
-    case 'visa':
-      return <VisaIcon />;
-    case 'mastercard':
-      return <MasterCardIcon />;
-    case 'applepay':
-      return <ApplePayIcon />;
-    case 'maestro':
-      return <MaestroIcon />;
-    case 'cash':
-      return <CashIcon />;
-    case 'card':
-      return <CreditCardIcon />;
-    case 'crypto':
-      return <CryptoIcon />;
-    default:
-      return <CreditCardIcon />;
+const iconMap: Record<PaymentMethod['method'], React.FC<IconProps>> = {
+  paypal: PayPalIcon,
+  visa: VisaIcon,
+  mastercard: MasterCardIcon,
+  applepay: ApplePayIcon,
+  maestro: MaestroIcon,
+  cash: CashIcon,
+  card: CreditCardIcon,
+  crypto: CryptoIcon,
+};
+
+export const getPaymentIcon = (type: PaymentMethod['method'], props: IconProps = {}): React.ReactNode => {
+  const IconComponent = iconMap[type];
+
+  if (!IconComponent) {
+    console.error('Icon for payment method not found');
+    return <></>;
   }
+
+  return <IconComponent {...props} />;
 };
