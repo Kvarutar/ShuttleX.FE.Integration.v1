@@ -11,9 +11,11 @@ export type Profile = {
 export type AccountSettingsProps = {
   onProfileDataSave: (profileData: Profile) => void;
   profile: Profile;
-  setIsVerificationVisible: (value: boolean) => void;
+  handleOpenVerification: () => void;
   isVerificationDone: boolean;
+  setIsUpdateIcon?: (value: boolean) => void;
   photoBlock?: ReactNode;
+  barBlock?: ReactNode;
 };
 
 export type ChangeNamePopUpProps = {
@@ -23,14 +25,14 @@ export type ChangeNamePopUpProps = {
 
 export type ChangeDataPopUpMode = 'email' | 'phone';
 
-export const inputsValidation = {
+export const inputsValidation: Record<ChangeDataPopUpMode, (value: string) => boolean> = {
   email: isEmailValid,
   phone: isPhoneValid,
 };
 
 export type ChangeDataPopUpProps = {
   currentValue: string;
-  setIsVerificationScreen: (value: boolean) => void;
+  handleOpenVerification: () => void;
   setNewValue: (value: string) => void;
   mode: ChangeDataPopUpMode;
 };

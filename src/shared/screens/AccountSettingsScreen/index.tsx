@@ -14,9 +14,7 @@ import Button from '../../atoms/Button/v2';
 // import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
 import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
-// import ArrowInPrimaryColorIcon from '../../icons/ArrowInPrimaryColorIcon';
 import { countryFlags } from '../../icons/Flags';
-// import WarningIcon from '../../icons/WarningIcon';
 import BottomWindowWithGesture from '../../molecules/BottomWindowWithGesture';
 import SafeAreaView from '../../molecules/SafeAreaView';
 import ChangeDataPopUp from './ChangeDataPopUp';
@@ -30,8 +28,10 @@ const windowSizes = Dimensions.get('window');
 const AccountSettingsScreenWithoutI18n = ({
   onProfileDataSave,
   profile,
-  setIsVerificationVisible,
+  handleOpenVerification,
   isVerificationDone,
+  setIsUpdateIcon,
+  barBlock,
   photoBlock,
 }: AccountSettingsProps) => {
   const { t } = useTranslation();
@@ -55,10 +55,6 @@ const AccountSettingsScreenWithoutI18n = ({
   const [wasValidated, setWasValidated] = useState<boolean>(false);
   const [isChangeNamePopupVisible, setIsChangeNamePopupVisible] = useState<boolean>(false);
   const [isAnswer, setAnswer] = useState<boolean>(false);
-  // const [isUpdateIcon, setIsUpdateIcon] = useState<boolean>(false);
-
-  //verification logic
-  const [isVerificationScreenVisible, setIsVerificationScreenVisible] = useState(false);
 
   //switch theme logic
   // TODO Uncomment all code whe we need it
@@ -71,26 +67,18 @@ const AccountSettingsScreenWithoutI18n = ({
 
   useEffect(() => {
     if (isVerificationDone) {
-      setIsVerificationVisible(false);
-      setIsVerificationScreenVisible(false);
-      handleInputChange(mode === 'email' ? 'email' : 'phone', changedValue);
+      handleInputChange(mode, changedValue);
       handleChangeDataClose();
     }
-  }, [isVerificationDone, handleChangeDataClose, handleInputChange, changedValue, mode, setIsVerificationVisible]);
-
-  useEffect(() => {
-    if (isVerificationScreenVisible) {
-      setIsVerificationVisible(true);
-    }
-  }, [isVerificationScreenVisible, setIsVerificationVisible]);
+  }, [isVerificationDone, handleChangeDataClose, handleInputChange, changedValue, mode]);
 
   useEffect(() => {
     if (isAnswer) {
       onProfileDataSave(profileDataForm);
-      // setIsUpdateIcon(true);
+      setIsUpdateIcon?.(true);
       setAnswer(false);
     }
-  }, [profileDataForm, isAnswer, onProfileDataSave]);
+  }, [profileDataForm, isAnswer, onProfileDataSave, setIsUpdateIcon]);
 
   const onDataSave = () => {
     setWasValidated(true);
@@ -145,14 +133,8 @@ const AccountSettingsScreenWithoutI18n = ({
                 wrapperStyle={styles.inputWrapperStyle}
               />
             </View>
-            {/* TODO uncomment after release */}
-            {/* <Bar style={styles.bar} mode={BarModes.Default}>
-              <Text style={styles.barText}>{t('AccountSettings_barUpdate')}</Text>
-              {!isUpdateIcon ? <ArrowInPrimaryColorIcon /> : <WarningIcon />}
-            </Bar>
-
             {/* // TODO Uncomment all code whe we need it */}
-
+            {barBlock}
             {/*  <Bar style={styles.bar} mode={BarModes.Default}>
               <Text style={styles.barText}>{t('AccountSettings_barDarkMode')}</Text>
               <Switch onValueChange={toggleSwitch} value={isThemeSwitchActive} style={computedStyles.switch} />
@@ -192,7 +174,7 @@ const AccountSettingsScreenWithoutI18n = ({
             <ChangeDataPopUp
               currentValue={profileDataForm[mode]}
               mode={mode}
-              setIsVerificationScreen={setIsVerificationScreenVisible}
+              handleOpenVerification={handleOpenVerification}
               setNewValue={handleValueChange}
             />
           }
@@ -261,9 +243,6 @@ const styles = StyleSheet.create({
 
   inputsStyle: {
     gap: 16,
-  },
-  shortArrowIcon: {
-    transform: [{ rotate: '270deg' }],
   },
 });
 

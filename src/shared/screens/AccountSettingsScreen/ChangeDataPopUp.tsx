@@ -16,31 +16,32 @@ import PhoneSlidingPanel from '../../molecules/PhoneSlidingPanel';
 import { getRenderText } from './getRenderText';
 import { type newData } from './hooks/useChangeDataForm';
 import { useChangeDataForm } from './hooks/useChangeDataForm';
-import { type ChangeDataPopUpProps, inputsValidation } from './props';
+import { type ChangeDataPopUpProps } from './props';
 
 const ChangeDataPopUpWithoutI18n = ({
   currentValue,
-  setIsVerificationScreen,
+  handleOpenVerification,
   setNewValue,
   mode,
 }: ChangeDataPopUpProps) => {
   const { t } = useTranslation();
   const { colors } = useTheme();
-  const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(countryDtos[0] ?? ({} as CountryPhoneMaskDto));
-  const [newflagState, setNewFlagState] = useState<CountryPhoneMaskDto>(countryDtos[0] ?? ({} as CountryPhoneMaskDto));
-  const [isPhoneSelectPanelVisible, setIsPhoneSelectPanelVisible] = useState<boolean>(false);
-  const [isNewPhoneSelectPanelVisible, setIsNewPhoneSelectPanelVisible] = useState<boolean>(false);
+  const [flagStates, setFlagStates] = useState<{ [key: string]: CountryPhoneMaskDto }>({
+    currentValue: countryDtos[0] ?? ({} as CountryPhoneMaskDto),
+    newValue: countryDtos[0] ?? ({} as CountryPhoneMaskDto),
+  });
+  const [phonePanelVisibility, setPhonePanelVisibility] = useState<{ currentValue: boolean; newValue: boolean }>({
+    currentValue: false,
+    newValue: false,
+  });
 
-  const { data, wasValidated, isEqual, isValid, isFilled, onValueChange, setWasValidated } = useChangeDataForm(
-    mode,
-    currentValue,
-  );
+  const { data, isValid, isFilled, isError, onValueChange, setWasValidated } = useChangeDataForm(mode, currentValue);
   const renderText = getRenderText(t, mode);
 
   const onSave = () => {
     setWasValidated(true);
     if (isValid) {
-      setIsVerificationScreen(true);
+      handleOpenVerification();
       setNewValue(data.newValue);
     }
   };
@@ -62,13 +63,10 @@ const ChangeDataPopUpWithoutI18n = ({
       return (
         <PhoneInput
           getPhoneNumber={(value: string) => onValueChange(fieldName, value)}
-          onFlagPress={() =>
-            fieldName === 'currentValue' ? setIsPhoneSelectPanelVisible(true) : setIsNewPhoneSelectPanelVisible(true)
-          }
-          flagState={fieldName === 'currentValue' ? flagState : newflagState}
+          onFlagPress={() => setPhonePanelVisibility(prev => ({ ...prev, [fieldName]: true }))}
+          flagState={flagStates[fieldName] ?? ({} as CountryPhoneMaskDto)}
           error={{
-            isError:
-              (fieldName === 'currentValue' ? !isEqual : !inputsValidation[mode](data[fieldName])) && wasValidated,
+            isError: isError(fieldName),
             message: errorMessage,
           }}
         />
@@ -83,8 +81,7 @@ const ChangeDataPopUpWithoutI18n = ({
           withClearButton
           onChangeText={(value: string) => onValueChange(fieldName, value)}
           error={{
-            isError:
-              (fieldName === 'currentValue' ? !isEqual : !inputsValidation[mode](data[fieldName])) && wasValidated,
+            isError: isError(fieldName),
             message: errorMessage,
           }}
         />
@@ -107,7 +104,7 @@ const ChangeDataPopUpWithoutI18n = ({
             {['currentValue', 'newValue'].map((field, index) => (
               <View key={field} style={styles.inputWrapper}>
                 <Text style={[computedStyles.inputHeader, styles.inputHeader]}>
-                  {index === 0 ? renderText?.descriptCurr : renderText?.descriptNew}
+                  {index === 0 ? renderText?.descriptionCurr : renderText?.descriptionNew}
                 </Text>
                 {renderInput(
                   field as keyof newData,
@@ -127,23 +124,18 @@ const ChangeDataPopUpWithoutI18n = ({
           />
         </View>
       </View>
-      {isPhoneSelectPanelVisible && (
-        <PhoneSlidingPanel
-          flagState={flagState}
-          onFlagSelect={setFlagState}
-          isPanelOpen={isPhoneSelectPanelVisible}
-          setIsPanelOpen={setIsPhoneSelectPanelVisible}
-          withShade={false}
-        />
-      )}
-      {isNewPhoneSelectPanelVisible && (
-        <PhoneSlidingPanel
-          flagState={newflagState}
-          onFlagSelect={setNewFlagState}
-          isPanelOpen={isNewPhoneSelectPanelVisible}
-          setIsPanelOpen={setIsNewPhoneSelectPanelVisible}
-          withShade={false}
-        />
+      {Object.entries(phonePanelVisibility).map(
+        ([field, isVisible]) =>
+          isVisible && (
+            <PhoneSlidingPanel
+              key={field}
+              flagState={flagStates[field] ?? ({} as CountryPhoneMaskDto)}
+              onFlagSelect={newFlag => setFlagStates(prev => ({ ...prev, [field]: newFlag }))}
+              isPanelOpen={isVisible}
+              setIsPanelOpen={value => setPhonePanelVisibility(prev => ({ ...prev, [field]: value }))}
+              withShade={false}
+            />
+          ),
       )}
     </>
   );

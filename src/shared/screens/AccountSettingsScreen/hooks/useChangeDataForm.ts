@@ -21,6 +21,15 @@ export const useChangeDataForm = (mode: ChangeDataPopUpMode, profileCurrentValue
 
   const isFilled = data.currentValue.length > 2 && data.newValue.length > 2;
 
+  const isError = (fieldName: keyof newData) => {
+    if (fieldName === 'currentValue') {
+      return !isEqual && wasValidated;
+    } else if (fieldName === 'newValue') {
+      return !inputsValidation[mode](data.newValue) && wasValidated;
+    }
+    return false;
+  };
+
   const onValueChange = (field: keyof typeof data, value: string) => {
     setData(prevState => ({
       ...prevState,
@@ -34,6 +43,7 @@ export const useChangeDataForm = (mode: ChangeDataPopUpMode, profileCurrentValue
     isEqual,
     isValid,
     isFilled,
+    isError,
     onValueChange,
     setWasValidated,
   };
