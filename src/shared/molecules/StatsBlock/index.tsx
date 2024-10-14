@@ -1,6 +1,7 @@
-import { useTranslation } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
+import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import Text from '../../atoms/Text';
 import Like2Icon from '../../icons/Like2Icon';
@@ -27,7 +28,7 @@ const StatsTextBlock = ({ amount, text }: StatsTextBlockProps) => {
   );
 };
 
-const StatsBlock = ({ amountLikes, amountRides, style }: StatsBlockProps) => {
+const StatsBlockWithoutI18n = ({ amountLikes, amountRides, style }: StatsBlockProps) => {
   const { colors } = useTheme();
   const { t } = useTranslation();
 
@@ -50,19 +51,27 @@ const StatsBlock = ({ amountLikes, amountRides, style }: StatsBlockProps) => {
   };
 
   return (
-    <View style={[styles.container, style]}>
-      <Like2Icon color={colors.iconSecondaryColor} />
-      <StatsTextBlock amount={formatStats(amountLikes)} text={t('StatsBlock_likes')} />
-      {amountRides && (
-        <>
-          <View style={[styles.separateCircle, computedStyles.separateCircle]} />
-          <SteeringWheelIcon color={colors.iconSecondaryColor} />
-          <StatsTextBlock amount={formatStats(amountRides)} text={'StatsBlock_rides'} />
-        </>
-      )}
-    </View>
+    <I18nextProvider i18n={i18nIntegration}>
+      <View style={[styles.container, style]}>
+        <Like2Icon color={colors.iconSecondaryColor} />
+        <StatsTextBlock amount={formatStats(amountLikes)} text={t('StatsBlock_likes')} />
+        {amountRides && (
+          <>
+            <View style={[styles.separateCircle, computedStyles.separateCircle]} />
+            <SteeringWheelIcon color={colors.iconSecondaryColor} />
+            <StatsTextBlock amount={formatStats(amountRides)} text={t('StatsBlock_rides')} />
+          </>
+        )}
+      </View>
+    </I18nextProvider>
   );
 };
+
+const StatsBlock = (props: StatsBlockProps) => (
+  <I18nextProvider i18n={i18nIntegration}>
+    <StatsBlockWithoutI18n {...props} />
+  </I18nextProvider>
+);
 
 const styles = StyleSheet.create({
   text: {
