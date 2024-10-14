@@ -28,7 +28,13 @@ const convertSecondsToTime = (seconds: number): string => {
 
 const parsePercents = (percent: string) => Number(percent.slice(0, -1));
 
-const TrafficIndicator = ({ currentPercent, segments, startTime, endTime }: TrafficIndicatorProps): JSX.Element => {
+const TrafficIndicator = ({
+  currentPercent,
+  segments,
+  startTime,
+  endTime,
+  containerStyle,
+}: TrafficIndicatorProps): JSX.Element => {
   const { colors } = useTheme();
 
   const [availableWidth, setAvailableWidth] = useState(0);
@@ -68,7 +74,7 @@ const TrafficIndicator = ({ currentPercent, segments, startTime, endTime }: Traf
   });
 
   return (
-    <View style={styles.container}>
+    <View style={containerStyle}>
       <View style={styles.trackWrapper} onLayout={event => setAvailableWidth(event.nativeEvent.layout.width)}>
         <Animated.View style={animatedTriangleStyle}>
           <TriangleIcon onLayout={event => setTriangleWidth(event.nativeEvent.layout.width)} />
@@ -99,19 +105,17 @@ const TrafficIndicator = ({ currentPercent, segments, startTime, endTime }: Traf
           </View>
         </View>
       </View>
-
-      <View style={styles.timeLabels}>
-        <Text style={[styles.label, computedStyles.label]}>{convertSecondsToTime(startTime)}</Text>
-        <Text style={[styles.label, computedStyles.label]}>{convertSecondsToTime(endTime)}</Text>
-      </View>
+      {startTime && endTime && (
+        <View style={styles.timeLabels}>
+          <Text style={[styles.label, computedStyles.label]}>{convertSecondsToTime(startTime)}</Text>
+          <Text style={[styles.label, computedStyles.label]}>{convertSecondsToTime(endTime)}</Text>
+        </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 14,
-  },
   trackWrapper: {
     alignSelf: 'stretch',
     gap: 4,

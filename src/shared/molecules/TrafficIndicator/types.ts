@@ -1,3 +1,5 @@
+import { type ViewStyle } from 'react-native';
+
 export enum TrafficLevel {
   Low = 'Low',
   Average = 'Average',
@@ -12,6 +14,7 @@ export type SegmentData = {
 export type TrafficIndicatorProps = {
   currentPercent: string;
   segments: SegmentData[];
-  startTime: number;
-  endTime: number;
+  startTime?: number;
+  endTime?: number;
+  containerStyle?: ViewStyle;
 };
