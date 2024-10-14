@@ -9,5 +9,9 @@ export type Card = {
 
 export type AddCardScreenProps = {
   onCardSave: (cardData: Card) => void;
-  onBackButtonPress: () => void;
+  onBackButtonPress?: () => void;
+  withExpireAndCVV?: boolean;
+  subTitle?: string;
+  firstTitle?: string;
+  secondTitle?: string;
 };

@@ -1,15 +1,23 @@
 import { StyleSheet, View } from 'react-native';
 
 import Button from '../../atoms/Button/v2';
-import { ButtonShapes, CircleButtonModes } from '../../atoms/Button/v2/props';
+import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import MenuIcon from '../../icons/MenuIcon';
 import NotificationIcon from '../../icons/NotificationIcon';
 import { type MenuHeaderTypes } from './props';
 
-const MenuHeader = ({ onMenuPress, onNotificationPress, children }: MenuHeaderTypes) => {
+const MenuHeader = ({
+  onMenuPress,
+  onNotificationPress,
+  children,
+  leftButtonProps = {
+    mode: CircleButtonModes.Mode2,
+    size: ButtonSizes.S,
+  },
+}: MenuHeaderTypes) => {
   return (
     <View style={styles.header}>
-      <Button mode={CircleButtonModes.Mode2} shape={ButtonShapes.Circle} onPress={onMenuPress}>
+      <Button {...leftButtonProps} shape={ButtonShapes.Circle} onPress={onMenuPress}>
         <MenuIcon />
       </Button>
       {children}

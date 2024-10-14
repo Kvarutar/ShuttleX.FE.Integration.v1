@@ -13,6 +13,7 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
       placeholder,
       onChangeText,
       value,
+      currencySymbol, // for money input
       onEndEditing,
       onFocus,
       onBlur,
@@ -34,6 +35,7 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
       placeholder,
       onChangeText,
       value,
+      currencySymbol,
       onEndEditing,
       onFocus,
       onBlur,

@@ -3,6 +3,14 @@ import { type CreditCardType } from 'credit-card-type/dist/types';
 import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
+import Animated, {
+  KeyboardState,
+  useAnimatedKeyboard,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/v2/themeContext';
@@ -15,9 +23,35 @@ import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
 import CreditCardIcon from '../../icons/CreditCardIcon';
 import { type AddCardScreenProps, type Card } from './props';
 
-const AddCardScreenWithoutI18n = ({ onCardSave }: AddCardScreenProps): JSX.Element => {
+const keyboardOpeningAnimationDuration = 25;
+const keyboardClosingAnimationDuration = 300;
+
+const AddCardScreenWithoutI18n = ({
+  onCardSave,
+  withExpireAndCVV = true,
+  subTitle,
+  firstTitle,
+  secondTitle,
+}: AddCardScreenProps): JSX.Element => {
   const { colors } = useTheme();
   const { t } = useTranslation();
+
+  const keyboard = useAnimatedKeyboard();
+
+  const saveButtonMargin = useSharedValue(0);
+
+  useDerivedValue(() => {
+    if (keyboard.state.value === KeyboardState.OPENING) {
+      saveButtonMargin.value = withTiming(keyboard.height.value - 20, { duration: keyboardOpeningAnimationDuration });
+    }
+    if (keyboard.state.value === KeyboardState.CLOSING) {
+      saveButtonMargin.value = withTiming(0, { duration: keyboardClosingAnimationDuration });
+    }
+  }, [keyboard.state.value]);
+
+  const saveButtonAnimtaedStyle = useAnimatedStyle(() => ({
+    marginBottom: saveButtonMargin.value,
+  }));
 
   const computedStyles = StyleSheet.create({
     headerPayBillText: {
@@ -86,17 +120,22 @@ const AddCardScreenWithoutI18n = ({ onCardSave }: AddCardScreenProps): JSX.Eleme
     onCardSave(dataToSave);
   };
 
-  const isValid = Boolean(cardData.number) && Boolean(cardData.code) && Boolean(cardData.expiresAt);
+  //TODO: Reconsider the logic when we know how a payment system is working here
+  const isValid = withExpireAndCVV
+    ? Boolean(cardData.number) && Boolean(cardData.code) && Boolean(cardData.expiresAt)
+    : Boolean(cardData.number);
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.mainInfo}>
         <View style={styles.header}>
-          <Text style={[styles.headerTitle, { color: colors.textTitleColor }]}>{t('AddPayment_headerTitle')}</Text>
+          <Text style={[styles.headerTitle, { color: colors.textTitleColor }]}>
+            {subTitle ?? t('AddPayment_headerTitle')}
+          </Text>
           <View>
-            <Text style={styles.headerPayBillText}>{t('AddCard_payBill')}</Text>
+            <Text style={styles.headerPayBillText}>{firstTitle ?? t('AddCard_payBill')}</Text>
             <Text style={[styles.headerPayBillText, computedStyles.headerPayBillText]}>
-              {t('AddCard_automatically')}
+              {secondTitle ?? t('AddCard_automatically')}
             </Text>
           </View>
         </View>
@@ -118,46 +157,50 @@ const AddCardScreenWithoutI18n = ({ onCardSave }: AddCardScreenProps): JSX.Eleme
               {cardType ? getPaymentIcon(cardType.type) : <CreditCardIcon style={styles.paymentIconStyle} />}
             </View>
           </View>
-          <View style={styles.creditionals}>
-            <View style={styles.creditionalsItemWrapper}>
-              <TextInput
-                inputMode={TextInputInputMode.Numeric}
-                value={cardData.expiresAt}
-                placeholder={t('AddCard_inputExpire')}
-                onChangeText={onDateChange}
-                maxLength={5}
-                error={{
-                  isError: cardData.expiresAt.length > 1 && cardData.expiresAt.length < 3,
-                  message: t('AddCard_inputErrorMessage2'),
-                }}
-              />
+          {withExpireAndCVV && (
+            <View style={styles.creditionals}>
+              <View style={styles.creditionalsItemWrapper}>
+                <TextInput
+                  inputMode={TextInputInputMode.Numeric}
+                  value={cardData.expiresAt}
+                  placeholder={t('AddCard_inputExpire')}
+                  onChangeText={onDateChange}
+                  maxLength={5}
+                  error={{
+                    isError: cardData.expiresAt.length > 1 && cardData.expiresAt.length < 3,
+                    message: t('AddCard_inputErrorMessage2'),
+                  }}
+                />
+              </View>
+              <View style={styles.creditionalsItemWrapper}>
+                <TextInput
+                  inputMode={TextInputInputMode.Numeric}
+                  placeholder={cardType ? cardType.code.name : t('AddCard_inputCVV')}
+                  onChangeText={onCodeChange}
+                  maxLength={4}
+                  error={{
+                    isError: cardData.code.length > 1 && cardData.code.length < 3,
+                    message: t('AddCard_inputErrorMessage3'),
+                  }}
+                />
+              </View>
             </View>
-            <View style={styles.creditionalsItemWrapper}>
-              <TextInput
-                inputMode={TextInputInputMode.Numeric}
-                placeholder={cardType ? cardType.code.name : t('AddCard_inputCVV')}
-                onChangeText={onCodeChange}
-                maxLength={4}
-                error={{
-                  isError: cardData.code.length > 1 && cardData.code.length < 3,
-                  message: t('AddCard_inputErrorMessage3'),
-                }}
-              />
-            </View>
-          </View>
+          )}
         </View>
       </View>
 
-      <Button
-        text={t('AddCard_saveButton')}
-        mode={isValid ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
-        shape={ButtonShapes.Circle}
-        size={ButtonSizes.L}
-        containerStyle={styles.saveButton}
-        disabled={!isValid}
-        onPress={onSaveCard}
-        innerSpacing={8}
-      />
+      <Animated.View style={saveButtonAnimtaedStyle}>
+        <Button
+          text={t('AddCard_saveButton')}
+          mode={isValid ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
+          shape={ButtonShapes.Circle}
+          size={ButtonSizes.L}
+          containerStyle={styles.saveButton}
+          disabled={!isValid}
+          onPress={onSaveCard}
+          innerSpacing={8}
+        />
+      </Animated.View>
     </View>
   );
 };
@@ -186,6 +229,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   headerTitle: {
+    paddingTop: 15,
     fontFamily: 'Inter Bold',
     fontSize: 14,
   },
@@ -214,7 +258,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   numberInput: {
-    paddingLeft: 26,
+    paddingLeft: 50,
   },
 });
 

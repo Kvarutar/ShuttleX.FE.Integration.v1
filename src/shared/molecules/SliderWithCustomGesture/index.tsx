@@ -86,6 +86,7 @@ const SliderWithCustomGesture = ({
   //TODO: Refactor this methods
   const gestureHandler = rightToLeftSwipe
     ? Gesture.Pan()
+        .failOffsetY([-5, 5])
         .onUpdate(event => {
           translateX.value = Math.max(Math.min(event.translationX, 0), -(innerSliderWidth - buttonWidth));
         })
@@ -97,6 +98,7 @@ const SliderWithCustomGesture = ({
           }
         })
     : Gesture.Pan()
+        .failOffsetY([-5, 5])
         .onUpdate(event => {
           translateX.value = Math.min(Math.max(event.translationX, 0), innerSliderWidth - buttonWidth);
         })

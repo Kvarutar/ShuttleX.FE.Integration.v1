@@ -19,6 +19,7 @@ export type TextInputBaseProps = {
   placeholder?: TextInputPropsNative['placeholder'];
   onChangeText?: TextInputPropsNative['onChangeText'];
   value?: TextInputPropsNative['value'];
+  currencySymbol?: string;
   maxLength?: TextInputPropsNative['maxLength'];
   onlyDigits?: boolean;
   inputMode?: TextInputBaseInputMode;
