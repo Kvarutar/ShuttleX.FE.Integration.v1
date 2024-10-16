@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, type ReactNode, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, type StyleProp, StyleSheet, type TextStyle, View, type ViewStyle } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
@@ -136,16 +136,16 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
     }));
 
     const borderWidth = withBorder ? 1 : 0;
-    const withCircleModeBorderContainer = (children: React.ReactNode) => {
+    const withCircleModeBorderContainer = (localChildren: ReactNode) => {
       if (withCircleModeBorder) {
-        const style: ViewStyle = {
+        const localStyle: ViewStyle = {
           padding: withCircleModeBorderPadding,
           backgroundColor: colors.backgroundPrimaryColor,
           borderRadius: 1000,
         };
-        return <View style={style}>{children}</View>;
+        return <View style={localStyle}>{localChildren}</View>;
       }
-      return children;
+      return localChildren;
     };
 
     const containers = {
