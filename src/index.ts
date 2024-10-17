@@ -104,6 +104,7 @@ import MasterCardIcon from './shared/icons/MasterCardIcon';
 import MenuIcon from './shared/icons/MenuIcon';
 import MinusIcon from './shared/icons/MinusIcon';
 import MyRideIcon from './shared/icons/MyRideIcon';
+import MysteryBoxIcon from './shared/icons/MysteryBoxIcon';
 import NotificationIcon from './shared/icons/NotificationIcon';
 import PassengerIcon from './shared/icons/PassengerIcon';
 import PassengerIcon2 from './shared/icons/PassengerIcon2';
@@ -404,6 +405,7 @@ export {
   minToMilSec,
   MinusIcon,
   MyRideIcon,
+  MysteryBoxIcon,
   nameof,
   type Notification,
   NotificationIcon,
