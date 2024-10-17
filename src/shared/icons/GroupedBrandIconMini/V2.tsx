@@ -8,16 +8,24 @@ const GroupedBrandIconMini = ({
   favIconColor,
   favIconInnerColor,
   textIconColor,
+  isContractorIcon,
 }: {
   style?: StyleProp<ViewStyle>;
   favIconColor?: string;
   favIconInnerColor?: string;
   textIconColor?: string;
+  isContractorIcon?: boolean;
 }): JSX.Element => {
   const { colors } = useTheme();
+
+  const computedColors = {
+    favIconColor: isContractorIcon ? colors.iconPrimaryColor : colors.primaryColor,
+    favIconInnerColor: isContractorIcon ? colors.primaryColor : colors.iconPrimaryColor,
+  };
+
   const svgColor = {
-    favIconColor: favIconColor ?? colors.primaryColor,
-    favIconInnerColor: favIconInnerColor ?? colors.iconPrimaryColor,
+    favIconColor: favIconColor ?? computedColors.favIconColor,
+    favIconInnerColor: favIconInnerColor ?? computedColors.favIconInnerColor,
     textIconColor: textIconColor ?? colors.iconPrimaryColor,
   };
 

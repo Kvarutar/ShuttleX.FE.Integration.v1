@@ -21,4 +21,5 @@ export type MenuBaseProps = {
   label?: ReactNode;
   style?: StyleProp<ViewStyle>;
   currentRoute: string;
+  isContractorMenu?: boolean;
 };

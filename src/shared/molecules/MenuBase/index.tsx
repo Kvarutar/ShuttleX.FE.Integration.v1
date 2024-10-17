@@ -34,6 +34,7 @@ const MenuBase = ({
   label,
   style,
   currentRoute,
+  isContractorMenu,
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
@@ -139,7 +140,7 @@ const MenuBase = ({
             <View style={styles.bottomButtons}>
               {additionalButton}
               <Pressable onPress={goToSite}>
-                <GroupedBrandIconMini style={styles.brandIconsStyle} />
+                <GroupedBrandIconMini style={styles.brandIconsStyle} isContractorIcon={isContractorMenu} />
               </Pressable>
             </View>
           </View>
