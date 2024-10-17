@@ -226,6 +226,7 @@ import SignUpScreen from './shared/screens/SignUpScreen';
 import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
 import { minToMilSec } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
+import { getCurrencySign } from './utils/currency';
 import { useDebounce } from './utils/debounce';
 import {
   degToRad,
@@ -354,6 +355,7 @@ export {
   GameIcon,
   getAngleBetweenPoints,
   getAxiosErrorInfo,
+  getCurrencySign,
   getDistanceBetweenPoints,
   getMenuIcons,
   getNotificationToken,
