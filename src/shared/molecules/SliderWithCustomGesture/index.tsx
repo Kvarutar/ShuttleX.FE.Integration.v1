@@ -19,6 +19,7 @@ const SliderWithCustomGesture = ({
   mode,
   containerStyle,
   rightToLeftSwipe,
+  withWipeBlock = true,
   setIsLoading, // State for async requests, makes animation in SwipeButton component
 }: SliderWithCustomGestureProps) => {
   const { t } = useTranslation();
@@ -67,7 +68,6 @@ const SliderWithCustomGesture = ({
       padding: padding,
       width: '100%',
       borderRadius: rightToLeftSwipe ? 13 : 100,
-      backgroundColor: backgroundColors[mode],
     },
     wipeBlock: {
       left: -sliderWidth + buttonWidth,
@@ -86,7 +86,8 @@ const SliderWithCustomGesture = ({
   //TODO: Refactor this methods
   const gestureHandler = rightToLeftSwipe
     ? Gesture.Pan()
-        .failOffsetY([-5, 5])
+        .activeOffsetX([-10, 10]) // Ignoring small horizontal moves for correct working on ScrollView
+        .failOffsetY([-10, 10]) // Accept small vertical moves for correct working on ScrollView
         .onUpdate(event => {
           translateX.value = Math.max(Math.min(event.translationX, 0), -(innerSliderWidth - buttonWidth));
         })
@@ -98,7 +99,8 @@ const SliderWithCustomGesture = ({
           }
         })
     : Gesture.Pan()
-        .failOffsetY([-5, 5])
+        .activeOffsetX([-10, 10]) // Ignoring small horizontal moves for correct working on ScrollView
+        .failOffsetY([-10, 10]) // Accept small vertical moves for correct working on ScrollView
         .onUpdate(event => {
           translateX.value = Math.min(Math.max(event.translationX, 0), innerSliderWidth - buttonWidth);
         })
@@ -109,6 +111,9 @@ const SliderWithCustomGesture = ({
             translateX.value = withTiming(0);
           }
         });
+  const animatedSliderStyle = useAnimatedStyle(() => ({
+    backgroundColor: rightToLeftSwipe && translateX.value < 0 ? backgroundColors[mode] : colors.backgroundPrimaryColor,
+  }));
 
   const animatedButtonStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
@@ -117,15 +122,18 @@ const SliderWithCustomGesture = ({
 
   return (
     <View style={styles.container}>
-      <View style={[styles.slider, computedStyles.slider, containerStyle]} onLayout={handleLayout}>
+      <Animated.View
+        style={[styles.slider, computedStyles.slider, animatedSliderStyle, containerStyle]}
+        onLayout={handleLayout}
+      >
         <Text style={[computedStyles.text, styles.text, textStyle]}>{text ?? t('SwipeButton_buttonHint')}</Text>
         <GestureDetector gesture={gestureHandler}>
           <Animated.View style={animatedButtonStyle}>
-            <View style={[styles.wipeBlock, computedStyles.wipeBlock]} />
+            {withWipeBlock && <View style={[styles.wipeBlock, computedStyles.wipeBlock]} />}
             {sliderElement}
           </Animated.View>
         </GestureDetector>
-      </View>
+      </Animated.View>
     </View>
   );
 };

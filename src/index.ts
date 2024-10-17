@@ -96,6 +96,7 @@ import Like2Icon from './shared/icons/Like2Icon';
 import LikeIcon from './shared/icons/LikeIcon';
 import LocationIcon from './shared/icons/LocationIcon';
 import LockIcon from './shared/icons/LockIcon';
+import LotteryIcon from './shared/icons/LotteryIcon';
 import MaestroIcon from './shared/icons/MaestroIcon';
 import MapNavigationPlaneIcon from './shared/icons/MapNavigationPlaneIcon';
 import MapPinIcon from './shared/icons/MapPinIcon';
@@ -383,6 +384,7 @@ export {
   type LocationUnavailableProps,
   LockIcon,
   LockOutScreen,
+  LotteryIcon,
   MaestroIcon,
   type MapCameraMode,
   MapCameraModeButton,
