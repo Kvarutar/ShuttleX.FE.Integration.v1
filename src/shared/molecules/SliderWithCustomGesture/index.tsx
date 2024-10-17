@@ -112,7 +112,10 @@ const SliderWithCustomGesture = ({
           }
         });
   const animatedSliderStyle = useAnimatedStyle(() => ({
-    backgroundColor: rightToLeftSwipe && translateX.value < 0 ? backgroundColors[mode] : colors.backgroundPrimaryColor,
+    backgroundColor:
+      (rightToLeftSwipe && translateX.value < 0) || !rightToLeftSwipe
+        ? backgroundColors[mode]
+        : colors.backgroundPrimaryColor,
   }));
 
   const animatedButtonStyle = useAnimatedStyle(() => ({
