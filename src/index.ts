@@ -118,6 +118,7 @@ import PlusRoundIcon from './shared/icons/PlusRoundIcon';
 import PointIcon from './shared/icons/PointIcon';
 import PointIcon2 from './shared/icons/PointIcon2';
 import PreferencesIcon from './shared/icons/PreferencesIcon';
+import PrizePodiumIcon from './shared/icons/PrizePodiumIcon';
 import ProfileIcon from './shared/icons/ProfileIcon';
 import ProfileIconMini from './shared/icons/ProfileIconMini';
 import PromocodesIcon from './shared/icons/PromocodesIcon';
@@ -146,6 +147,7 @@ import EcoImage from './shared/icons/Tariffs/EcoImage';
 import { type TariffIconData, type TariffType, useTariffsIcons } from './shared/icons/Tariffs/TariffsCarImage';
 import TimeIcon from './shared/icons/TimeIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
+import UploadIcon from './shared/icons/UploadIcon';
 import UploadPhotoIcon from './shared/icons/UploadPhotoIcon';
 import VisaIcon from './shared/icons/VisaIcon';
 import WalletIcon from './shared/icons/WalletIcon';
@@ -180,7 +182,9 @@ import DatePickerV1 from './shared/molecules/DatePicker/v1';
 import DatePicker from './shared/molecules/DatePicker/v2';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
 import Fog from './shared/molecules/Fog';
-import GroupedButtons from './shared/molecules/GroupedButtons';
+import GroupedButtonsV1 from './shared/molecules/GroupedButtons/V1';
+import GroupedButtons from './shared/molecules/GroupedButtons/V2';
+import { GroupedButtonsMode } from './shared/molecules/GroupedButtons/V2/props';
 import HeaderWithTwoTitles from './shared/molecules/HeaderWithTwoTitles';
 import CustomKeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
 import LocationUnavailable from './shared/molecules/LocationUnavailable';
@@ -365,6 +369,8 @@ export {
   GroupedBrandIconMini,
   GroupedBrandIconMiniV1,
   GroupedButtons,
+  GroupedButtonsMode,
+  GroupedButtonsV1,
   HeaderWithTwoTitles,
   HelpIcon,
   i18nIntegration,
@@ -435,6 +441,7 @@ export {
   PointIcon2,
   Popup,
   PreferencesIcon,
+  PrizePodiumIcon,
   ProfileIcon,
   ProfileIconMini,
   PromocodesIcon,
@@ -504,6 +511,7 @@ export {
   TrafficLevel,
   UnclosablePopup,
   UnknownCardIcon,
+  UploadIcon,
   UploadPhotoIcon,
   useCompass,
   useDebounce,

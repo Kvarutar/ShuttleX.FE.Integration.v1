@@ -3,25 +3,25 @@ import { StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { Shadow } from 'react-native-shadow-2';
 
-import { defaultShadow } from '../../../core/themes/shadows';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
-import ButtonV1 from '../../atoms/Button/v1/index';
-import { ButtonV1Modes, type ButtonV1Props } from '../../atoms/Button/v1/props';
-import { type GroupedButtonsProps } from './props';
+import { defaultShadow } from '../../../../core/themes/shadows';
+import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
+import ButtonV1 from '../../../atoms/Button/v1';
+import { ButtonV1Modes, type ButtonV1Props } from '../../../atoms/Button/v1/props';
+import { type GroupedButtonsV1Props } from './props';
 
 const constants = {
   paddingGroupedButton: 5,
   animationDuration: 200,
 };
 
-const GroupedButtons = ({
+const GroupedButtonsV1 = ({
   width,
   isFirstButtonSelected,
   setIsFirstButtonSelected,
   firstButtonText,
   secondButtonText,
   style,
-}: GroupedButtonsProps): JSX.Element => {
+}: GroupedButtonsV1Props): JSX.Element => {
   const { colors, themeMode } = useThemeV1();
 
   const [endButtonPosition, setEndButtonPosition] = useState(0);
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GroupedButtons;
+export default GroupedButtonsV1;
