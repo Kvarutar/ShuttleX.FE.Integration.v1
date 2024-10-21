@@ -18,7 +18,7 @@
   "AccountSettings_barDarkMode": "Dark mode",
   "AccountSettings_saveButton": "Save edits",
   "AccountChangePopUp_change": "Change",
-  "AccountChangePopUp_question": "Do you really want to change your name?",
+  "AccountChangePopUp_question": "Do you really\nwant to change\nyour name?",
   "AccountChangePopUp_explanation": "If you choose “Yes”, you will have to upload new documents",
   "AccountChangePopUp_yes": "Yes",
   "AccountChangePopUp_no": "No",

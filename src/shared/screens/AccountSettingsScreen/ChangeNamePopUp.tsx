@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter Bold',
     lineHeight: 34,
     letterSpacing: -1.53,
-    width: '70%',
   },
   explainText: {
     fontSize: 14,
