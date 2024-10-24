@@ -11,6 +11,7 @@ import MapCameraModeButton from './core/map/MapCameraModeButton';
 import MapView from './core/map/MapView';
 import { type MapCameraMode, type MapViewProps } from './core/map/types';
 import { nameof } from './core/monkey-patch/ts.helper';
+import { initCreateAppAsyncThunk, type InitCreateAppAsyncThunkDispatch } from './core/redux/initCreateAppAsyncThunk';
 import { SignalR } from './core/signalR/middleware';
 import { defaultShadow } from './core/themes/shadows';
 import sizes from './core/themes/sizes';
@@ -375,6 +376,8 @@ export {
   HelpIcon,
   i18nIntegration,
   InfoIcon,
+  initCreateAppAsyncThunk,
+  type InitCreateAppAsyncThunkDispatch,
   InputXIcon,
   IntegrationModule,
   InternetDisconnectedAlert,
