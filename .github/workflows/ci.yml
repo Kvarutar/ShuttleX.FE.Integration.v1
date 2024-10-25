@@ -26,3 +26,5 @@ jobs:
         run: yarn run lint
       - name: Run prettier check
         run: yarn run prettier
+      - name: Build
+        run: yarn run pack
