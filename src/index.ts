@@ -171,6 +171,7 @@ import { type PlannedTripAlertProps } from './shared/molecules/alerts/PlannedTri
 import RideHasFinishedAlert from './shared/molecules/alerts/RideHasFinishedAlert';
 import { type RideHasFinishedAlertProps } from './shared/molecules/alerts/RideHasFinishedAlert/props';
 import SecondRideAlert from './shared/molecules/alerts/SecondRideAlert';
+import BigHeader from './shared/molecules/BigHeader';
 import BottomWindow from './shared/molecules/BottomWindow';
 import BottomWindowWithGesture from './shared/molecules/BottomWindowWithGesture';
 import {
@@ -179,6 +180,7 @@ import {
 } from './shared/molecules/BottomWindowWithGesture/props';
 import CodeInputV1 from './shared/molecules/CodeInput/v1';
 import CodeInput from './shared/molecules/CodeInput/v2';
+import Confetti from './shared/molecules/Confetti';
 import DatePickerV1 from './shared/molecules/DatePicker/v1';
 import DatePicker from './shared/molecules/DatePicker/v2';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
@@ -276,6 +278,7 @@ export {
   BasicXLImage,
   BecomeDriverIcon,
   BigCameraIcon,
+  BigHeader,
   Blur,
   BookMarkIcon,
   BottomWindow,
@@ -316,6 +319,7 @@ export {
   CodeVerificationScreen,
   CoinIcon,
   ComfortPlusImage,
+  Confetti,
   CountingComponent,
   CountingComponentV1,
   countryDtos,

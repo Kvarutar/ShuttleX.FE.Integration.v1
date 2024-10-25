@@ -19810,6 +19810,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-confetti-cannon@npm:^1.5.2":
+  version: 1.5.2
+  resolution: "react-native-confetti-cannon@npm:1.5.2"
+  checksum: da7655ed1ace6c63fb38efe21dd44f42cd7e9112a1d26875d17047f6301c3654765e8a779ad68fbf1b1404fc89d2dbeae80322a9be8ea2f54acf021acf794417
+  languageName: node
+  linkType: hard
+
 "react-native-device-info@npm:^10.13.1":
   version: 10.13.1
   resolution: "react-native-device-info@npm:10.13.1"
@@ -21568,6 +21575,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-i18next: "npm:^13.3.1"
     react-native: "npm:0.72.12"
     react-native-builder-bob: "npm:^0.23.2"
+    react-native-confetti-cannon: "npm:^1.5.2"
     react-native-device-info: "npm:^10.13.1"
     react-native-geolocation-service: "npm:^5.3.1"
     react-native-gesture-handler: "npm:^2.14.0"

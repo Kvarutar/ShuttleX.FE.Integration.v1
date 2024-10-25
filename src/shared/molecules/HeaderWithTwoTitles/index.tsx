@@ -9,6 +9,7 @@ const HeaderWithTwoTitles = ({
   secondTitle,
   firstTextStyle,
   secondTextStyle,
+  inOneLine = false,
 }: HeaderWithTwoTitlesProps): JSX.Element => {
   const { colors } = useTheme();
 
@@ -23,8 +24,21 @@ const HeaderWithTwoTitles = ({
 
   return (
     <View>
-      <Text style={[styles.headerTextLabels, computedStyles.headerFirstTitle, firstTextStyle]}>{firstTitle}</Text>
-      <Text style={[styles.headerTextLabels, computedStyles.headerSecondTitle, secondTextStyle]}>{secondTitle}</Text>
+      {inOneLine ? (
+        <Text style={[styles.headerTextLabels, computedStyles.headerFirstTitle, firstTextStyle]}>
+          {firstTitle}{' '}
+          <Text style={[styles.headerTextLabels, computedStyles.headerSecondTitle, secondTextStyle]}>
+            {secondTitle}
+          </Text>
+        </Text>
+      ) : (
+        <>
+          <Text style={[styles.headerTextLabels, computedStyles.headerFirstTitle, firstTextStyle]}>{firstTitle}</Text>
+          <Text style={[styles.headerTextLabels, computedStyles.headerSecondTitle, secondTextStyle]}>
+            {secondTitle}
+          </Text>
+        </>
+      )}
     </View>
   );
 };

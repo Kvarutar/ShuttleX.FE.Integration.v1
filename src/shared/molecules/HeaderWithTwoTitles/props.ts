@@ -5,4 +5,5 @@ export type HeaderWithTwoTitlesProps = {
   secondTextStyle?: StyleProp<TextStyle>;
   firstTitle: string;
   secondTitle: string;
+  inOneLine?: boolean;
 };
