@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
+import Animated, {
+  KeyboardState,
+  useAnimatedKeyboard,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 import { getCountryPhoneMaskByCountryName } from '../../../core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from '../../../core/countries/types';
@@ -10,15 +18,26 @@ import Button from '../../atoms/Button/v2';
 import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
 import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';
-import CustomKeyboardAvoidingView from '../../molecules/KeyboardAvoidingView';
 import PhoneInput from '../../molecules/PhoneInput';
 import PhoneSlidingPanel from '../../molecules/PhoneSlidingPanel';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
 import { type SignInScreenProps } from './types';
 
+const keyboardAnimationDuration = {
+  opening: 25,
+  closing: 300,
+};
+
 const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenProps): JSX.Element => {
   const { colors } = useTheme();
   const { t } = useTranslation();
+  const keyboard = useAnimatedKeyboard();
+
+  const bottomButtonsMargin = useSharedValue(0);
+
+  const bottomButtonsAnimatedStyle = useAnimatedStyle(() => ({
+    marginBottom: bottomButtonsMargin.value,
+  }));
 
   const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(
     getCountryPhoneMaskByCountryName('Ukraine') ?? ({} as CountryPhoneMaskDto),
@@ -28,6 +47,22 @@ const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenPro
   const [isValid, setIsValid] = useState(true);
   const [wasValidated, setWasValidated] = useState(false);
   const trimmedPhoneNumber = phoneNumber.trim();
+
+  useDerivedValue(() => {
+    if (!isPanelPhoneSelectVisible) {
+      switch (keyboard.state.value) {
+        case KeyboardState.OPENING:
+          bottomButtonsMargin.value = withTiming(keyboard.height.value, {
+            duration: keyboardAnimationDuration.opening,
+          });
+          break;
+        case KeyboardState.CLOSING:
+          bottomButtonsMargin.value = withTiming(0, { duration: keyboardAnimationDuration.closing });
+          break;
+        default:
+      }
+    }
+  });
 
   useEffect(() => {
     setIsValid(!wasValidated || Boolean(phoneNumber));
@@ -60,7 +95,7 @@ const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenPro
           onFlagPress={() => setIsPanelPhoneSelectVisible(true)}
         />
       </ScrollViewWithCustomScroll>
-      <View style={styles.buttonsContainer}>
+      <Animated.View style={[styles.buttonsContainer, bottomButtonsAnimatedStyle]}>
         <Button
           containerStyle={styles.nextButton}
           shape={ButtonShapes.Circle}
@@ -78,13 +113,13 @@ const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenPro
             <Text style={[styles.signUpLabel, computedStyles.signUpLabel]}>{t('SignIn_signUpLabel')}</Text>
           </Text>
         </Pressable>
-      </View>
+      </Animated.View>
     </>
   );
 
   return (
     <>
-      {!isPanelPhoneSelectVisible ? <CustomKeyboardAvoidingView>{content}</CustomKeyboardAvoidingView> : content}
+      {content}
       {isPanelPhoneSelectVisible && (
         <PhoneSlidingPanel
           flagState={flagState}
