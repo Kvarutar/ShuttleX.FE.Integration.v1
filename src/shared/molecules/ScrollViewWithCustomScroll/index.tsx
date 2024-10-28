@@ -8,6 +8,8 @@ import { type ScrollViewWithCustomScrollProps } from './props';
 const ScrollViewWithCustomScroll = ({
   children,
   withScroll = false,
+  scrollable = true,
+  withScrollToTop = false,
   barStyle,
   style,
   withShadow = false,
@@ -24,11 +26,20 @@ const ScrollViewWithCustomScroll = ({
 
   const scrollIndicator = useRef(new Animated.Value(0)).current;
 
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  // Means moving scroll to top when elements update (f.e. when BottomWindow have scroll only when it's opened. When it's closed, we have problem with elements on display, which we can't scroll on this state)
+  useEffect(() => {
+    if (scrollViewRef.current && withScrollToTop) {
+      scrollViewRef.current.scrollTo({ y: 0, animated: true });
+    }
+  }, [children, withScrollToTop]);
+
   useEffect(() => {
     const shouldEnableScroll = completeScrollBarHeight > visibleScrollBarHeight;
-    setScrollEnabled(shouldEnableScroll);
-    setIsScrollBarVisible(shouldEnableScroll && withScroll);
-  }, [completeScrollBarHeight, visibleScrollBarHeight, withScroll]);
+    setScrollEnabled(shouldEnableScroll && scrollable);
+    setIsScrollBarVisible(shouldEnableScroll && withScroll && scrollable);
+  }, [completeScrollBarHeight, visibleScrollBarHeight, withScroll, scrollable]);
 
   let scrollIndicatorSize = visibleScrollBarHeight;
   if (completeScrollBarHeight > visibleScrollBarHeight) {
@@ -71,6 +82,7 @@ const ScrollViewWithCustomScroll = ({
   return (
     <View style={[styles.container, wrapperStyle]}>
       <ScrollView
+        ref={scrollViewRef}
         scrollEnabled={scrollEnabled}
         showsVerticalScrollIndicator={false}
         scrollEventThrottle={16}

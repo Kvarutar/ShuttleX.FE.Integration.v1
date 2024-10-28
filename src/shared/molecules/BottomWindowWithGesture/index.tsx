@@ -2,6 +2,7 @@ import { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
 import { Dimensions, type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+  Easing,
   Extrapolation,
   FadeIn,
   FadeOut,
@@ -20,8 +21,8 @@ import BottomWindow from '../BottomWindow';
 import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type BottomWindowWithGestureProps, type BottomWindowWithGestureRef } from './props';
 
-const { height } = Dimensions.get('window');
-const duration = 200;
+const windowHeight = Dimensions.get('window').height;
+const animationDuration = 200;
 
 const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWindowWithGestureProps>(
   (
@@ -38,11 +39,15 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       hiddenPartButton,
       bottomWindowStyle,
       withHiddenPartScroll = true,
+      withVisiblePartScroll = false,
+      withAllPartsScroll = false,
       withShade = false,
       shadeStyle,
       hiddenPartWrapperStyle,
       maxHeight = 0.93,
+      minHeight,
       withDraggable = true,
+      headerElement,
     },
     ref,
   ) => {
@@ -53,6 +58,9 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
 
     const hiddenAnimatedHeight = useSharedValue(0);
     const visibleAnimatedHeight = useSharedValue(0);
+    const currentHiddenAnimatedHeight = useSharedValue(0);
+
+    const isContentWillScroll = useSharedValue(false);
 
     const translateY = useDerivedValue(() => progress.value * hiddenAnimatedHeight.value);
     const bottomWindowAnimatedStyle = useAnimatedStyle(() => ({
@@ -78,8 +86,17 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     const onWindowStateChange = useCallback(
       ({ isOpened, isCurrentShade }: { isOpened: boolean; isCurrentShade: boolean }) => {
         setIsShadeVisible(isCurrentShade);
-        setIsOpened?.(isOpened);
-        progress.value = withTiming(isOpened ? 0 : 1, { duration });
+        if (isOpened) {
+          setIsOpened?.(isOpened);
+        } else {
+          setTimeout(() => {
+            setIsOpened?.(isOpened);
+          }, animationDuration);
+        }
+        progress.value = withTiming(isOpened ? 0 : 1, {
+          duration: animationDuration,
+          easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+        });
         isCurrentOpen.value = isOpened;
       },
       [setIsOpened, isCurrentOpen, progress],
@@ -114,9 +131,19 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
         }
       });
 
+    const [isScrollable, setIsScrollable] = useState(false);
+
+    useDerivedValue(() => {
+      runOnJS(setIsScrollable)(isCurrentOpen.value && withAllPartsScroll);
+    });
+
     const computedStyles = StyleSheet.create({
       bottom: {
-        maxHeight: height * maxHeight,
+        maxHeight: windowHeight * maxHeight,
+        minHeight: hiddenPart ? 'auto' : windowHeight * maxHeight,
+      },
+      headerWrapper: {
+        backgroundColor: colors.backgroundPrimaryColor,
       },
       draggableElement: {
         backgroundColor: colors.draggableColor,
@@ -124,14 +151,82 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       visiblePart: {
         marginTop: visiblePart ? 14 : 6,
       },
+      scrollAllPartsContaierStyle: {
+        flexShrink: isScrollable ? 0 : 1,
+      },
     });
+
+    const visiblePartAnimatedStyle = useAnimatedStyle(() => ({
+      maxHeight: !isCurrentOpen.value && minHeight ? minHeight * windowHeight : maxHeight * windowHeight,
+    }));
+
+    const onContentPartLayout = (e: LayoutChangeEvent) => {
+      isContentWillScroll.value = withAllPartsScroll && e.nativeEvent.layout.height > windowHeight * maxHeight;
+    };
+
+    useDerivedValue(() => {
+      if (isContentWillScroll.value && withAllPartsScroll) {
+        hiddenAnimatedHeight.value = windowHeight * maxHeight - visibleAnimatedHeight.value;
+      } else if (!isContentWillScroll.value && withAllPartsScroll) {
+        hiddenAnimatedHeight.value = currentHiddenAnimatedHeight.value;
+      }
+    }, [isContentWillScroll]);
+
     const onHiddenPartLayout = (e: LayoutChangeEvent) => {
-      hiddenAnimatedHeight.value = e.nativeEvent.layout.height;
+      currentHiddenAnimatedHeight.value = e.nativeEvent.layout.height;
+      if (hiddenPart && (!withAllPartsScroll || !isContentWillScroll.value)) {
+        hiddenAnimatedHeight.value = e.nativeEvent.layout.height;
+      }
     };
 
     const onVisiblePartLayout = (e: LayoutChangeEvent) => {
       visibleAnimatedHeight.value = e.nativeEvent.layout.height;
+      if ((!hiddenPart || withAllPartsScroll) && !isCurrentOpen.value) {
+        hiddenAnimatedHeight.value = windowHeight * maxHeight - e.nativeEvent.layout.height;
+      }
     };
+
+    const content = (
+      <View onLayout={onContentPartLayout} style={styles.contentWrapper}>
+        <Animated.View onLayout={onVisiblePartLayout} style={visiblePartAnimatedStyle}>
+          <Animated.View style={[styles.visiblePart, computedStyles.visiblePart, visiblePartStyle]}>
+            {withVisiblePartScroll ? (
+              <ScrollViewWithCustomScroll
+                withScrollToTop
+                withShadow
+                style={hiddenPartStyle}
+                barStyle={styles.scrollBar}
+                wrapperStyle={styles.scrollViewWrapper}
+                contentContainerStyle={hiddenPartContainerStyle}
+              >
+                {visiblePart}
+              </ScrollViewWithCustomScroll>
+            ) : (
+              visiblePart
+            )}
+          </Animated.View>
+        </Animated.View>
+        <Animated.View onLayout={onHiddenPartLayout} style={[styles.hiddenWrapper, hiddenPartWrapperStyle]}>
+          <View style={styles.hiddenScrollWrapper}>
+            {withHiddenPartScroll ? (
+              <ScrollViewWithCustomScroll
+                withScrollToTop
+                withShadow
+                style={hiddenPartStyle}
+                barStyle={styles.scrollBar}
+                wrapperStyle={styles.scrollViewWrapper}
+                contentContainerStyle={hiddenPartContainerStyle}
+              >
+                {hiddenPart}
+              </ScrollViewWithCustomScroll>
+            ) : (
+              <View style={hiddenPartStyle}>{hiddenPart}</View>
+            )}
+          </View>
+          {hiddenPartButton && <>{hiddenPartButton}</>}
+        </Animated.View>
+      </View>
+    );
 
     return (
       <>
@@ -148,33 +243,28 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
             windowStyle={[styles.window, computedStyles.bottom, bottomWindowStyle]}
           >
             <GestureDetector gesture={gesture}>
-              <Animated.View onLayout={onVisiblePartLayout}>
+              <View style={[styles.headerWrapper, computedStyles.headerWrapper]}>
+                {headerElement}
                 {withDraggable && (
                   <View style={styles.draggableZone}>
                     <View style={[styles.draggableElement, computedStyles.draggableElement]} />
                   </View>
                 )}
-                <View style={[styles.visiblePart, computedStyles.visiblePart, visiblePartStyle]}>{visiblePart}</View>
-              </Animated.View>
-            </GestureDetector>
-            <Animated.View onLayout={onHiddenPartLayout} style={[styles.hiddenWrapper, hiddenPartWrapperStyle]}>
-              <View style={styles.hiddenScrollWrapper}>
-                {withHiddenPartScroll ? (
-                  <ScrollViewWithCustomScroll
-                    withShadow
-                    style={hiddenPartStyle}
-                    barStyle={styles.scrollBar}
-                    wrapperStyle={styles.scrollViewWrapper}
-                    contentContainerStyle={hiddenPartContainerStyle}
-                  >
-                    {hiddenPart}
-                  </ScrollViewWithCustomScroll>
-                ) : (
-                  <View style={hiddenPartStyle}>{hiddenPart}</View>
-                )}
               </View>
-              {hiddenPartButton && <>{hiddenPartButton}</>}
-            </Animated.View>
+            </GestureDetector>
+            {withAllPartsScroll ? (
+              <ScrollViewWithCustomScroll
+                scrollable={isScrollable}
+                withScrollToTop
+                barStyle={styles.scrollBar}
+                wrapperStyle={styles.scrollViewWrapper}
+                contentContainerStyle={computedStyles.scrollAllPartsContaierStyle}
+              >
+                {content}
+              </ScrollViewWithCustomScroll>
+            ) : (
+              content
+            )}
           </BottomWindow>
         </Animated.View>
       </>
@@ -194,6 +284,13 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
+  headerWrapper: {
+    position: 'absolute',
+    right: 0,
+    left: 0,
+    height: 30,
+    zIndex: 2,
+  },
   draggableZone: {
     left: 0,
     right: 0,
@@ -211,9 +308,15 @@ const styles = StyleSheet.create({
   },
   window: {
     paddingVertical: 0,
+    paddingTop: 10, // for headerElement's correct spacing
+  },
+  contentWrapper: {
+    flexShrink: 1,
   },
   visiblePart: {
+    position: 'relative',
     paddingBottom: 8,
+    zIndex: 1,
   },
   scrollBar: {
     right: -sizes.paddingHorizontal / 2,
