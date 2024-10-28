@@ -56,7 +56,9 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     moduleName === '@react-navigation/native' ||
     moduleName === '@react-native-firebase/app' ||
     moduleName === '@react-native-firebase/messaging' ||
-    moduleName === 'react-native-linear-gradient'
+    moduleName === 'react-native-linear-gradient' ||
+    moduleName === '@reduxjs/toolkit' ||
+    moduleName === 'react-native-localize'
   ) {
     return { type: 'empty' };
   }
