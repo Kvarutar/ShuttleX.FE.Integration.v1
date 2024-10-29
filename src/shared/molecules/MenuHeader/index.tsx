@@ -10,13 +10,14 @@ const MenuHeader = ({
   onMenuPress,
   onNotificationPress,
   children,
+  style,
   leftButtonProps = {
     mode: CircleButtonModes.Mode2,
     size: ButtonSizes.S,
   },
 }: MenuHeaderTypes) => {
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, style]}>
       <Button {...leftButtonProps} shape={ButtonShapes.Circle} onPress={onMenuPress}>
         <MenuIcon />
       </Button>

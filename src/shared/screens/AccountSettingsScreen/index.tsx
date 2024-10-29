@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { Dimensions, Modal, Platform, StyleSheet, View } from 'react-native';
 
 // import { Switch } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
@@ -16,7 +16,6 @@ import TextInput from '../../atoms/TextInput/v2';
 import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
 import { countryFlags } from '../../icons/Flags';
 import BottomWindowWithGesture from '../../molecules/BottomWindowWithGesture';
-import SafeAreaView from '../../molecules/SafeAreaView';
 import ChangeDataPopUp from './ChangeDataPopUp';
 import { ChangeNamePopUp, ChangeNamePopUpButtons } from './ChangeNamePopUp';
 import { useChangeData } from './hooks/useChangeData';
@@ -36,7 +35,7 @@ const AccountSettingsScreenWithoutI18n = ({
 }: AccountSettingsProps) => {
   const { t } = useTranslation();
 
-  const { profileDataForm, handleInputChange, hasProfileChanged, flag } = useProfileForm(profile);
+  const { profileDataForm, setProfileDataForm, handleInputChange, hasProfileChanged, flag } = useProfileForm(profile);
 
   const {
     isChangeDataPopUpVisible,
@@ -80,6 +79,14 @@ const AccountSettingsScreenWithoutI18n = ({
     }
   }, [profileDataForm, isAnswer, onProfileDataSave, setIsUpdateIcon]);
 
+  const onChangeNamePopupClose = () => {
+    setIsChangeNamePopupVisible(false);
+
+    setProfileDataForm(prevState => ({
+      ...prevState,
+      fullName: profile.fullName,
+    }));
+  };
   const onDataSave = () => {
     setWasValidated(true);
     if (profile.fullName !== profileDataForm.fullName) {
@@ -91,9 +98,6 @@ const AccountSettingsScreenWithoutI18n = ({
     switch: {
       transform: Platform.OS === 'android' ? [{ scaleX: 1 }, { scaleY: 1 }] : '',
     },
-    hiddenPart: {
-      height: windowSizes.height / 2,
-    },
     hiddenPartChange: {
       height: windowSizes.height * 0.83,
     },
@@ -101,84 +105,82 @@ const AccountSettingsScreenWithoutI18n = ({
 
   return (
     <>
-      <SafeAreaView>
-        <View style={styles.wrapper}>
-          {photoBlock}
-          <View style={styles.inputsStyle}>
-            <TextInput
-              inputMode={TextInputInputMode.Text}
-              value={profileDataForm.fullName}
-              placeholder={t('AccountSettings_fullName_placeholder')}
-              withClearButton
-              onChangeText={(value: string) => handleInputChange('fullName', value)}
-              error={{
-                isError: !isNameValid(profileDataForm.fullName) && wasValidated,
-                message: t('AccountSettings_nameError'),
-              }}
-            />
+      <View style={styles.wrapper}>
+        {photoBlock}
+        <View style={styles.inputsStyle}>
+          <TextInput
+            inputMode={TextInputInputMode.Text}
+            value={profileDataForm.fullName}
+            placeholder={t('AccountSettings_fullName_placeholder')}
+            withClearButton
+            onChangeText={(value: string) => handleInputChange('fullName', value)}
+            error={{
+              isError: !isNameValid(profileDataForm.fullName) && wasValidated,
+              message: t('AccountSettings_nameError'),
+            }}
+          />
 
-            <TextInput
-              inputMode={TextInputInputMode.Email}
-              value={profileDataForm.email}
-              onFocus={() => handleOpenChangeWindow('email')}
-            />
+          <TextInput
+            inputMode={TextInputInputMode.Email}
+            value={profileDataForm.email}
+            onFocus={() => handleOpenChangeWindow('email')}
+          />
 
-            <View style={styles.flagAndInputContainer}>
-              <View style={styles.flagContainer}>{flag && countryFlags[flag.countryCode]}</View>
-              <TextInput
-                inputMode={TextInputInputMode.Numeric}
-                value={profileDataForm.phone}
-                onFocus={() => handleOpenChangeWindow('phone')}
-                containerStyle={styles.input}
-                wrapperStyle={styles.inputWrapperStyle}
-              />
-            </View>
-            {/* // TODO Uncomment all code whe we need it */}
-            {barBlock}
-            {/*  <Bar style={styles.bar} mode={BarModes.Default}>
+          <View style={styles.flagAndInputContainer}>
+            <View style={styles.flagContainer}>{flag && countryFlags[flag.countryCode]}</View>
+            <TextInput
+              inputMode={TextInputInputMode.Numeric}
+              value={profileDataForm.phone}
+              onFocus={() => handleOpenChangeWindow('phone')}
+              containerStyle={styles.input}
+              wrapperStyle={styles.inputWrapperStyle}
+            />
+          </View>
+          {/* // TODO Uncomment all code whe we need it */}
+          {barBlock}
+          {/*  <Bar style={styles.bar} mode={BarModes.Default}>
               <Text style={styles.barText}>{t('AccountSettings_barDarkMode')}</Text>
               <Switch onValueChange={toggleSwitch} value={isThemeSwitchActive} style={computedStyles.switch} />
             </Bar>*/}
 
-            {hasProfileChanged && (
-              <Button onPress={onDataSave} textStyle={styles.button} text={t('AccountSettings_saveButton')} />
-            )}
-          </View>
+          {hasProfileChanged && (
+            <Button onPress={onDataSave} textStyle={styles.button} text={t('AccountSettings_saveButton')} />
+          )}
         </View>
-      </SafeAreaView>
+      </View>
 
       {isChangeNamePopupVisible && (
-        <BottomWindowWithGesture
-          withShade
-          shadeStyle={styles.shade}
-          hiddenPartWrapperStyle={styles.hidenPartStyle}
-          hiddenPartButton={
-            <ChangeNamePopUpButtons setAnswer={setAnswer} setIsPopUpVisible={setIsChangeNamePopupVisible} />
-          }
-          hiddenPartStyle={computedStyles.hiddenPart}
-          opened
-          hiddenPart={<ChangeNamePopUp />}
-        />
+        <Modal transparent>
+          <BottomWindowWithGesture
+            withShade
+            setIsOpened={onChangeNamePopupClose}
+            hiddenPartButton={
+              <ChangeNamePopUpButtons setAnswer={setAnswer} setIsPopUpVisible={setIsChangeNamePopupVisible} />
+            }
+            opened
+            hiddenPart={<ChangeNamePopUp />}
+          />
+        </Modal>
       )}
 
       {isChangeDataPopUpVisible && (
-        <BottomWindowWithGesture
-          shadeStyle={styles.shade}
-          withShade
-          hiddenPartWrapperStyle={styles.hidenPartStyle}
-          setIsOpened={handleChangeDataClose}
-          hiddenPartStyle={computedStyles.hiddenPartChange}
-          opened
-          withHiddenPartScroll={false}
-          hiddenPart={
-            <ChangeDataPopUp
-              currentValue={profileDataForm[mode]}
-              mode={mode}
-              handleOpenVerification={handleOpenVerification}
-              setNewValue={handleValueChange}
-            />
-          }
-        />
+        <Modal transparent>
+          <BottomWindowWithGesture
+            withShade
+            setIsOpened={handleChangeDataClose}
+            hiddenPartStyle={computedStyles.hiddenPartChange}
+            opened
+            withHiddenPartScroll={false}
+            hiddenPart={
+              <ChangeDataPopUp
+                currentValue={profileDataForm[mode]}
+                mode={mode}
+                handleOpenVerification={handleOpenVerification}
+                setNewValue={handleValueChange}
+              />
+            }
+          />
+        </Modal>
       )}
     </>
   );
@@ -215,12 +217,7 @@ const styles = StyleSheet.create({
   inputWrapperStyle: {
     flex: 1,
   },
-  shade: {
-    marginTop: -100,
-  },
-  hidenPartStyle: {
-    paddingBottom: 0,
-  },
+
   button: {
     fontSize: 17,
   },

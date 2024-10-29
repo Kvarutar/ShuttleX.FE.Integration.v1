@@ -1,5 +1,5 @@
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { Modal, StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/v2/themeContext';
@@ -84,7 +84,11 @@ const CodeVerificationScreenWithoutI18n = ({
           />
         </View>
       </CustomKeyboardAvoidingView>
-      {isBlocked && <BottomWindow children={bannedElement} withShade />}
+      {isBlocked && (
+        <Modal transparent>
+          <BottomWindow children={bannedElement} withShade />
+        </Modal>
+      )}
     </>
   );
 };

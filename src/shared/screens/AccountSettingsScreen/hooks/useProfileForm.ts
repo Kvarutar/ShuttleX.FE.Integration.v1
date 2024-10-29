@@ -37,6 +37,7 @@ export const useProfileForm = (initialProfile: Profile) => {
   return {
     profileDataForm,
     handleInputChange,
+    setProfileDataForm,
     hasProfileChanged: hasProfileChanged(),
     flag,
   };
