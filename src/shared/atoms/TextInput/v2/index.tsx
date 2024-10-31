@@ -14,6 +14,7 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
       onChangeText,
       value,
       currencySymbol, // for money input
+      maxSymbolsAfterComma, // for money input
       onEndEditing,
       onFocus,
       onBlur,
@@ -36,6 +37,7 @@ const TextInput = forwardRef<TextInputRef, TextInputProps>(
       onChangeText,
       value,
       currencySymbol,
+      maxSymbolsAfterComma,
       onEndEditing,
       onFocus,
       onBlur,

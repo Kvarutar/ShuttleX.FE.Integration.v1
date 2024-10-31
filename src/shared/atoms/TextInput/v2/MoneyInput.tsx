@@ -15,6 +15,7 @@ const MoneyInput = forwardRef<TextInputRef, TextInputProps>(
       onChangeText,
       value = '',
       currencySymbol = '',
+      maxSymbolsAfterComma = 2,
       onEndEditing,
       onFocus,
       onBlur,
@@ -44,45 +45,45 @@ const MoneyInput = forwardRef<TextInputRef, TextInputProps>(
 
         if (text.includes(currencySymbol) && text.length > 0) {
           setQuantity(prevQuantity => {
-            // Если удаляют символы
+            // If symbols are removed
             if (text.length < prevQuantity.length) {
-              // Если все стерли, обнуляем значение
+              // If all symbols is removed, reset the value
               if (text.length === 0) {
                 onChangeText?.('');
                 return '';
               }
-              // Обновляем текст без форматирования
+              // Updating text without formatting
               onChangeText?.(text);
               return text;
             }
 
-            // Получаем последний введенный символ
+            // Getting the last symbol entered
             const lastSymbol = text[text.length - 1];
 
-            // Проверяем, не пытается ли пользователь ввести вторую точку
+            // Checking if the user is trying to enter a second dot
             if (lastSymbol === '.' && prevQuantity.includes('.')) {
               onChangeText?.(prevQuantity);
               return prevQuantity;
             }
 
-            // Разрешаем ввод до двух знаков после точки
+            // Allow input up to maxSymbolsAfterComma symbols after the dot
             const decimalIndex = text.indexOf('.');
             if (decimalIndex !== -1) {
               const decimals = text.substring(decimalIndex + 1);
-              // Если введено больше двух знаков после точки
-              if (decimals.length > 2) {
+              // If more than maxSymbolsAfterComma symbols are entered after the dot, then we return the previous value
+              if (decimals.length > maxSymbolsAfterComma) {
                 onChangeText?.(prevQuantity);
                 return prevQuantity;
               }
             }
 
-            // Обновляем значение поля
+            // Update the field value
             onChangeText?.(text);
             return text;
           });
         }
       },
-      [currencySymbol, formatNumber, onChangeText],
+      [currencySymbol, formatNumber, onChangeText, maxSymbolsAfterComma],
     );
 
     useEffect(() => {
