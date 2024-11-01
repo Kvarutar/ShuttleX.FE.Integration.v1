@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Dimensions, Modal, Platform, StyleSheet, View } from 'react-native';
+import { Dimensions, Modal, Platform, Pressable, StyleSheet, View } from 'react-native';
 
 // import { Switch } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
@@ -13,7 +13,7 @@ import { isNameValid } from '../../../utils/validation';
 import Button from '../../atoms/Button/v2';
 // import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
-import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
+import { TextInputInputMode, type TextInputRef } from '../../atoms/TextInput/v2/props';
 import { countryFlags } from '../../icons/Flags';
 import BottomWindowWithGesture from '../../molecules/BottomWindowWithGesture';
 import ChangeDataPopUp from './ChangeDataPopUp';
@@ -29,11 +29,13 @@ const AccountSettingsScreenWithoutI18n = ({
   profile,
   handleOpenVerification,
   isVerificationDone,
-  setIsUpdateIcon,
+  onNameChanged,
   barBlock,
   photoBlock,
+  isContractor = false,
 }: AccountSettingsProps) => {
   const { t } = useTranslation();
+  const fullNameInputRef = useRef<TextInputRef>(null);
 
   const { profileDataForm, setProfileDataForm, handleInputChange, hasProfileChanged, flag } = useProfileForm(profile);
 
@@ -42,7 +44,7 @@ const AccountSettingsScreenWithoutI18n = ({
     mode,
     changedValue,
     handleOpenChangeWindow,
-    handleChangeDataClose,
+    onChangeDataPopupClose,
     handleValueChange,
   } = useChangeData();
 
@@ -67,17 +69,18 @@ const AccountSettingsScreenWithoutI18n = ({
   useEffect(() => {
     if (isVerificationDone) {
       handleInputChange(mode, changedValue);
-      handleChangeDataClose();
     }
-  }, [isVerificationDone, handleChangeDataClose, handleInputChange, changedValue, mode]);
+  }, [isVerificationDone, handleInputChange, changedValue, mode]);
 
   useEffect(() => {
     if (isAnswer) {
+      if (isContractor) {
+        onNameChanged?.();
+      }
       onProfileDataSave(profileDataForm);
-      setIsUpdateIcon?.(true);
       setAnswer(false);
     }
-  }, [profileDataForm, isAnswer, onProfileDataSave, setIsUpdateIcon]);
+  }, [profileDataForm, isAnswer, onProfileDataSave, onNameChanged, isContractor]);
 
   const onChangeNamePopupClose = () => {
     setIsChangeNamePopupVisible(false);
@@ -87,7 +90,10 @@ const AccountSettingsScreenWithoutI18n = ({
       fullName: profile.fullName,
     }));
   };
+
   const onDataSave = () => {
+    fullNameInputRef.current?.blur();
+
     setWasValidated(true);
     if (profile.fullName !== profileDataForm.fullName) {
       setIsChangeNamePopupVisible(true);
@@ -109,6 +115,7 @@ const AccountSettingsScreenWithoutI18n = ({
         {photoBlock}
         <View style={styles.inputsStyle}>
           <TextInput
+            ref={fullNameInputRef}
             inputMode={TextInputInputMode.Text}
             value={profileDataForm.fullName}
             placeholder={t('AccountSettings_fullName_placeholder')}
@@ -120,24 +127,26 @@ const AccountSettingsScreenWithoutI18n = ({
             }}
           />
 
-          <TextInput
-            inputMode={TextInputInputMode.Email}
-            value={profileDataForm.email}
-            onFocus={() => handleOpenChangeWindow('email')}
-          />
+          <Pressable onPress={() => handleOpenChangeWindow('email')}>
+            <View pointerEvents="none">
+              <TextInput value={profileDataForm.email} />
+            </View>
+          </Pressable>
 
-          <View style={styles.flagAndInputContainer}>
-            <View style={styles.flagContainer}>{flag && countryFlags[flag.countryCode]}</View>
-            <TextInput
-              inputMode={TextInputInputMode.Numeric}
-              value={profileDataForm.phone}
-              onFocus={() => handleOpenChangeWindow('phone')}
-              containerStyle={styles.input}
-              wrapperStyle={styles.inputWrapperStyle}
-            />
-          </View>
-          {/* // TODO Uncomment all code whe we need it */}
+          <Pressable onPress={() => handleOpenChangeWindow('phone')}>
+            <View style={styles.flagAndInputContainer} pointerEvents="none">
+              <View style={styles.flagContainer}>{flag && countryFlags[flag.countryCode]}</View>
+              <TextInput
+                value={profileDataForm.phone}
+                containerStyle={styles.input}
+                wrapperStyle={styles.inputWrapperStyle}
+              />
+            </View>
+          </Pressable>
           {barBlock}
+
+          {/* // TODO Uncomment all code whe we need it */}
+
           {/*  <Bar style={styles.bar} mode={BarModes.Default}>
               <Text style={styles.barText}>{t('AccountSettings_barDarkMode')}</Text>
               <Switch onValueChange={toggleSwitch} value={isThemeSwitchActive} style={computedStyles.switch} />
@@ -158,7 +167,7 @@ const AccountSettingsScreenWithoutI18n = ({
               <ChangeNamePopUpButtons setAnswer={setAnswer} setIsPopUpVisible={setIsChangeNamePopupVisible} />
             }
             opened
-            hiddenPart={<ChangeNamePopUp />}
+            hiddenPart={<ChangeNamePopUp isContractor={isContractor} />}
           />
         </Modal>
       )}
@@ -167,7 +176,7 @@ const AccountSettingsScreenWithoutI18n = ({
         <Modal transparent>
           <BottomWindowWithGesture
             withShade
-            setIsOpened={handleChangeDataClose}
+            setIsOpened={onChangeDataPopupClose}
             hiddenPartStyle={computedStyles.hiddenPartChange}
             opened
             withHiddenPartScroll={false}
@@ -177,6 +186,7 @@ const AccountSettingsScreenWithoutI18n = ({
                 mode={mode}
                 handleOpenVerification={handleOpenVerification}
                 setNewValue={handleValueChange}
+                onChangeDataPopupClose={onChangeDataPopupClose}
               />
             }
           />

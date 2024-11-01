@@ -23,6 +23,7 @@ const ChangeDataPopUpWithoutI18n = ({
   handleOpenVerification,
   setNewValue,
   mode,
+  onChangeDataPopupClose,
 }: ChangeDataPopUpProps) => {
   const { t } = useTranslation();
   const { colors } = useTheme();
@@ -41,6 +42,7 @@ const ChangeDataPopUpWithoutI18n = ({
   const onSave = () => {
     setWasValidated(true);
     if (isValid) {
+      onChangeDataPopupClose();
       handleOpenVerification();
       setNewValue(data.newValue);
     }

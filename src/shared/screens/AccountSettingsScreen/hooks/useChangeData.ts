@@ -3,29 +3,40 @@ import { useCallback, useState } from 'react';
 import { type ChangeDataPopUpMode } from '../props';
 
 export const useChangeData = () => {
-  const [isChangeDataPopUpVisible, setIsChangeDataPopUpVisible] = useState<boolean>(false);
-  const [mode, setMode] = useState<ChangeDataPopUpMode>('email');
-  const [changedValue, setChangedValue] = useState<string>('');
+  const [modalState, setModalState] = useState({
+    isVisible: false,
+    mode: 'email' as ChangeDataPopUpMode,
+    changedValue: '',
+  });
 
   const handleOpenChangeWindow = useCallback((selectedMode: ChangeDataPopUpMode) => {
-    setMode(selectedMode);
-    setIsChangeDataPopUpVisible(true);
+    setModalState(prev => ({
+      ...prev,
+      isVisible: true,
+      mode: selectedMode,
+    }));
   }, []);
 
-  const handleChangeDataClose = useCallback(() => {
-    setIsChangeDataPopUpVisible(false);
+  const onChangeDataPopupClose = useCallback(() => {
+    setModalState(prev => ({
+      ...prev,
+      isVisible: false,
+    }));
   }, []);
 
   const handleValueChange = useCallback((newValue: string) => {
-    setChangedValue(newValue);
+    setModalState(prev => ({
+      ...prev,
+      changedValue: newValue,
+    }));
   }, []);
 
   return {
-    isChangeDataPopUpVisible,
-    mode,
-    changedValue,
+    isChangeDataPopUpVisible: modalState.isVisible,
+    mode: modalState.mode,
+    changedValue: modalState.changedValue,
     handleOpenChangeWindow,
-    handleChangeDataClose,
+    onChangeDataPopupClose,
     handleValueChange,
   };
 };

@@ -8,5 +8,5 @@ export type MenuHeaderTypes = {
   onNotificationPress: () => void;
   children?: ReactNode;
   leftButtonProps?: ButtonProps;
-  style: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
 };

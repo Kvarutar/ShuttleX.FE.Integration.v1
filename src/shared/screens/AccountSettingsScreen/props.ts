@@ -13,12 +13,16 @@ export type AccountSettingsProps = {
   profile: Profile;
   handleOpenVerification: () => void;
   isVerificationDone: boolean;
-  setIsUpdateIcon?: (value: boolean) => void;
   photoBlock?: ReactNode;
   barBlock?: ReactNode;
+  onNameChanged?: () => void;
+  isContractor?: boolean;
 };
 
 export type ChangeNamePopUpProps = {
+  isContractor: boolean;
+};
+export type ChangeNamePopUpButtonsProps = {
   setAnswer: (value: boolean) => void;
   setIsPopUpVisible: (value: boolean) => void;
 };
@@ -35,4 +39,5 @@ export type ChangeDataPopUpProps = {
   handleOpenVerification: () => void;
   setNewValue: (value: string) => void;
   mode: ChangeDataPopUpMode;
+  onChangeDataPopupClose: () => void;
 };

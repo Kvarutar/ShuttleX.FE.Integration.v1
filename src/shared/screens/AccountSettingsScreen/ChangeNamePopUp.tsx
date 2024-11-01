@@ -6,11 +6,11 @@ import { useTheme } from '../../../core/themes/v2/themeContext';
 import Button from '../../atoms/Button/v2';
 import { SquareButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
-import { type ChangeNamePopUpProps } from './props';
+import { type ChangeNamePopUpButtonsProps, type ChangeNamePopUpProps } from './props';
 
 const windowSizes = Dimensions.get('window');
 
-const ChangePopUpWithoutI18n = () => {
+const ChangePopUpWithoutI18n = ({ isContractor }: ChangeNamePopUpProps) => {
   const { t } = useTranslation();
   const { colors } = useTheme();
 
@@ -30,13 +30,15 @@ const ChangePopUpWithoutI18n = () => {
       <View style={styles.textsStyle}>
         <Text style={[styles.changeText, computedStyles.changeText]}>{t('AccountChangePopUp_change')}</Text>
         <Text style={styles.descriptText}>{t('AccountChangePopUp_question')}</Text>
-        <Text style={[styles.explainText, computedStyles.explainText]}>{t('AccountChangePopUp_explanation')}</Text>
+        {isContractor && (
+          <Text style={[styles.explainText, computedStyles.explainText]}>{t('AccountChangePopUp_explanation')}</Text>
+        )}
       </View>
     </View>
   );
 };
 
-const ChangePopUpButtonsWithoutI18n = ({ setAnswer, setIsPopUpVisible }: ChangeNamePopUpProps) => {
+const ChangePopUpButtonsWithoutI18n = ({ setAnswer, setIsPopUpVisible }: ChangeNamePopUpButtonsProps) => {
   const { t } = useTranslation();
 
   const handleButtonPress = (answer: boolean) => {
@@ -60,13 +62,13 @@ const ChangePopUpButtonsWithoutI18n = ({ setAnswer, setIsPopUpVisible }: ChangeN
     </View>
   );
 };
-const ChangeNamePopUp = () => (
+const ChangeNamePopUp = (props: ChangeNamePopUpProps) => (
   <I18nextProvider i18n={i18nIntegration}>
-    <ChangePopUpWithoutI18n />
+    <ChangePopUpWithoutI18n {...props} />
   </I18nextProvider>
 );
 
-const ChangeNamePopUpButtons = (props: ChangeNamePopUpProps) => (
+const ChangeNamePopUpButtons = (props: ChangeNamePopUpButtonsProps) => (
   <I18nextProvider i18n={i18nIntegration}>
     <ChangePopUpButtonsWithoutI18n {...props} />
   </I18nextProvider>
