@@ -35,7 +35,7 @@
   "AddCard_saveButton": "Save",
   "AddCard_modalCardAdded": "The card is added",
   "AddCard_modalCardAddedDescription": "You have successfully added a new card",
-  "AddCard_modalButonContinue": "Continue",
+  "AddCard_modalButtonContinue": "Continue",
   "AddCard_inputCardNumber": "Card number",
   "AddCard_inputExpire": "Expire",
   "AddCard_inputCVV": "CVV",

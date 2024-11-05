@@ -39,5 +39,10 @@
   "AccountChangeEmailPopUp_currEmail": "Введіть поточний Email",
   "AccountChangePhonePopUp_currPhone": "Введіть поточний номер",
   "AccountChangeEmailPopUp_newEmail": "Введіть новий Email",
-  "AccountChangePhonePopUp_newPhone": "Введіть новий номер"
+  "AccountChangePhonePopUp_newPhone": "Введіть новий номер",
+  "AddCard_saveButton": "Готово",
+  "AddCard_inputCardNumber": "Номер картки",
+  "AddCard_inputErrorMessage1": "Має містити від 14 до 19 символів",
+  "AddCard_inputErrorMessage2": "Будь ласка, введіть коректні дані",
+  "AddCard_inputErrorMessage3": "Має містити мінімум 3 символи"
 }

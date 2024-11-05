@@ -236,11 +236,12 @@ const styles = StyleSheet.create({
   paymentIconStyle: {
     width: 18,
     height: 16,
-    marginTop: 4,
   },
   paymentIcon: {
     position: 'absolute',
-    top: 18,
+    top: 1,
+    height: 60,
+    justifyContent: 'center',
     left: 16,
   },
   creditionals: {
