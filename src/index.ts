@@ -119,7 +119,7 @@ import PlusRoundIcon from './shared/icons/PlusRoundIcon';
 import PointIcon from './shared/icons/PointIcon';
 import PointIcon2 from './shared/icons/PointIcon2';
 import PreferencesIcon from './shared/icons/PreferencesIcon';
-import PrizePodiumIcon from './shared/icons/PrizePodiumIcon';
+import PrizePedestalIcon from './shared/icons/PrizePedestalIcon';
 import ProfileIcon from './shared/icons/ProfileIcon';
 import ProfileIconMini from './shared/icons/ProfileIconMini';
 import PromocodesIcon from './shared/icons/PromocodesIcon';
@@ -448,7 +448,7 @@ export {
   PointIcon2,
   Popup,
   PreferencesIcon,
-  PrizePodiumIcon,
+  PrizePedestalIcon,
   ProfileIcon,
   ProfileIconMini,
   PromocodesIcon,

@@ -23,6 +23,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerCo
   iconPrimaryColor: '#000000',
   iconSecondaryColor: '#C5CACD',
   iconTertiaryColor: '#FFFFFF',
+  iconQuadraticColor: '#ECECEC',
   iconSuccessColor: '#799124',
   outlineColor: '#FFFFFF',
   strokeColor: '#B4B4B466',

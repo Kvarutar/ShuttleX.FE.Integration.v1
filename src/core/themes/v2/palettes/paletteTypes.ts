@@ -38,6 +38,7 @@ export type Palette = {
   iconPrimaryColor: string;
   iconSecondaryColor: string;
   iconTertiaryColor: string;
+  iconQuadraticColor: string;
   iconSuccessColor: string;
   outlineColor: string; // mainly used for the outline of avatar or arrow of the current position
   strokeColor: string;
