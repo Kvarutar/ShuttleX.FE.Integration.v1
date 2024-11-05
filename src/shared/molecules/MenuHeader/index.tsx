@@ -4,13 +4,14 @@ import Button from '../../atoms/Button/v2';
 import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import MenuIcon from '../../icons/MenuIcon';
 import NotificationIcon from '../../icons/NotificationIcon';
-import { type MenuHeaderTypes } from './props';
+import { type MenuHeaderTypes } from './types';
 
 const MenuHeader = ({
   onMenuPress,
   onNotificationPress,
   children,
   style,
+  rightButton,
   leftButtonProps = {
     mode: CircleButtonModes.Mode2,
     size: ButtonSizes.S,
@@ -22,14 +23,18 @@ const MenuHeader = ({
         <MenuIcon />
       </Button>
       {children}
-      <Button
-        mode={CircleButtonModes.Mode2}
-        containerStyle={styles.notifButtonStyle}
-        shape={ButtonShapes.Circle}
-        onPress={onNotificationPress}
-      >
-        <NotificationIcon />
-      </Button>
+      {rightButton ? (
+        rightButton
+      ) : (
+        <Button
+          mode={CircleButtonModes.Mode2}
+          containerStyle={styles.notifButtonStyle}
+          shape={ButtonShapes.Circle}
+          onPress={onNotificationPress}
+        >
+          <NotificationIcon />
+        </Button>
+      )}
     </View>
   );
 };
