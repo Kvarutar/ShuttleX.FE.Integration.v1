@@ -12,7 +12,7 @@ import MapView from './core/map/MapView';
 import { type MapCameraMode, type MapViewProps } from './core/map/types';
 import { nameof } from './core/monkey-patch/ts.helper';
 import { initCreateAppAsyncThunk, type InitCreateAppAsyncThunkDispatch } from './core/redux/initCreateAppAsyncThunk';
-import { SignalR } from './core/signalR/middleware';
+import { createSignalRSlice } from './core/signalR/slice';
 import { defaultShadow } from './core/themes/shadows';
 import sizes from './core/themes/sizes';
 import palettes from './core/themes/v1/palettes';
@@ -326,6 +326,7 @@ export {
   countryFlags,
   type CountryPhoneMaskDto,
   createAxiosInstance,
+  createSignalRSlice,
   CreditCardIcon,
   CreditCheckIcon,
   CrownIcon,
@@ -474,7 +475,6 @@ export {
   ShareIcon,
   ShortArrowIcon,
   ShortArrowSmallIcon,
-  SignalR,
   SignInScreen,
   type SignUpForm,
   SignUpScreen,
