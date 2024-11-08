@@ -8,10 +8,25 @@ const boolToSign = (flag: boolean) => (flag ? 1 : -1);
 
 /**
  * Converts minutes to milliseconds
- * @param time value in seconds
+ * @param time value in minutes
  * @returns milliseconds
  */
-const minToMilSec = (time: number) => time * 60 * 1000;
+const minToMilSec = (minutes: number) => minutes * 60 * 1000;
+
+/**
+ * Converts milliseconds to minutes or hours if minutes > 60
+ * @param time value in milliseconds
+ * @returns minutes or hours
+ */
+const milSecToTime = (milliseconds: number): number => {
+  const minutes = milliseconds / 60000;
+
+  if (minutes > 60) {
+    return minutes / 60;
+  }
+
+  return minutes;
+};
 
 /**
  * Converts date to normal format
@@ -28,4 +43,4 @@ const formatDate = (date: Date): string => {
   });
 };
 
-export { boolToSign, formatDate, minToMilSec };
+export { boolToSign, formatDate, milSecToTime, minToMilSec };

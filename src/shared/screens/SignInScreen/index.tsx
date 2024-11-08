@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet } from 'react-native';
 import Animated, {
+  FadeIn,
   KeyboardState,
   useAnimatedKeyboard,
   useAnimatedStyle,
@@ -9,6 +10,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { TextInput } from 'shuttlex-integration';
 
 import { getCountryPhoneMaskByCountryName } from '../../../core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from '../../../core/countries/types';
@@ -21,14 +23,22 @@ import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';
 import PhoneInput from '../../molecules/PhoneInput';
 import PhoneSlidingPanel from '../../molecules/PhoneSlidingPanel';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
-import { type SignInScreenProps } from './types';
+import { SignInMethod, type SignInScreenProps } from './types';
 
-const keyboardAnimationDuration = {
-  opening: 25,
-  closing: 300,
+const animationsDurations = {
+  fading: 200,
+  keyboard: {
+    opening: 25,
+    closing: 300,
+  },
 };
 
-const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenProps): JSX.Element => {
+const SignInScreenWithoutI18n = ({
+  navigateToSignUp,
+  onSubmit,
+  signMethod = SignInMethod.Phone,
+  setSignMethod,
+}: SignInScreenProps): JSX.Element => {
   const { colors } = useTheme();
   const { t } = useTranslation();
   const keyboard = useAnimatedKeyboard();
@@ -42,22 +52,22 @@ const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenPro
   const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(
     getCountryPhoneMaskByCountryName('Ukraine') ?? ({} as CountryPhoneMaskDto),
   );
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [data, setData] = useState<string>('');
   const [isPanelPhoneSelectVisible, setIsPanelPhoneSelectVisible] = useState<boolean>(false);
   const [isValid, setIsValid] = useState(true);
   const [wasValidated, setWasValidated] = useState(false);
-  const trimmedPhoneNumber = phoneNumber.trim();
+  const trimmedSignData = data.trim();
 
   useDerivedValue(() => {
     if (!isPanelPhoneSelectVisible) {
       switch (keyboard.state.value) {
         case KeyboardState.OPENING:
           bottomButtonsMargin.value = withTiming(keyboard.height.value, {
-            duration: keyboardAnimationDuration.opening,
+            duration: animationsDurations.keyboard.opening,
           });
           break;
         case KeyboardState.CLOSING:
-          bottomButtonsMargin.value = withTiming(0, { duration: keyboardAnimationDuration.closing });
+          bottomButtonsMargin.value = withTiming(0, { duration: animationsDurations.keyboard.closing });
           break;
         default:
       }
@@ -65,13 +75,13 @@ const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenPro
   });
 
   useEffect(() => {
-    setIsValid(!wasValidated || Boolean(phoneNumber));
-  }, [phoneNumber, wasValidated]);
+    setIsValid(!wasValidated || Boolean(data));
+  }, [data, wasValidated]);
 
   const handleSubmit = () => {
     setWasValidated(true);
-    if (phoneNumber) {
-      onSubmit(phoneNumber);
+    if (data) {
+      onSubmit(data);
     }
   };
 
@@ -84,30 +94,90 @@ const SignInScreenWithoutI18n = ({ navigateToSignUp, onSubmit }: SignInScreenPro
     },
   });
 
+  const signElements: Record<
+    SignInMethod,
+    { input: ReactNode; changeMethod: () => void; labelText: string; title: ReactNode }
+  > = {
+    email: {
+      input: (
+        <Animated.View entering={FadeIn.duration(animationsDurations.fading)} key={'email'}>
+          <TextInput
+            error={{
+              isError: !isValid,
+              message: t('SignUp_incorrectEmail'),
+            }}
+            placeholder={t('SignUp_emailInputPlaceholder')}
+            value={data}
+            onChangeText={setData}
+          />
+        </Animated.View>
+      ),
+      changeMethod: () => setSignMethod?.(SignInMethod.Phone),
+      labelText: t('SignIn_signInMethodChangeToPhoneLabel'),
+      title: (
+        <Animated.View entering={FadeIn.duration(animationsDurations.fading)} key={'email-title'}>
+          <HeaderWithTwoTitles
+            firstTitle={t('SignIn_firstPartHeaderEmail')}
+            secondTitle={t('SignIn_secondPartHeader')}
+          />
+        </Animated.View>
+      ),
+    },
+    phone: {
+      input: (
+        <Animated.View entering={FadeIn.duration(animationsDurations.fading)} key={'phone'}>
+          <PhoneInput
+            error={{ isError: !isValid }}
+            flagState={flagState}
+            getPhoneNumber={setData}
+            onFlagPress={() => setIsPanelPhoneSelectVisible(true)}
+          />
+        </Animated.View>
+      ),
+      changeMethod: () => setSignMethod?.(SignInMethod.Email),
+      labelText: t('SignIn_signInMethodChangeToEmailLabel'),
+      title: (
+        <Animated.View entering={FadeIn.duration(animationsDurations.fading)} key={'phone-title'}>
+          <HeaderWithTwoTitles
+            firstTitle={t('SignIn_firstPartHeaderPhone')}
+            secondTitle={t('SignIn_secondPartHeader')}
+          />
+        </Animated.View>
+      ),
+    },
+  };
+
+  const { input, changeMethod, labelText, title } = signElements[signMethod];
+
   const content = (
     <>
       <ScrollViewWithCustomScroll contentContainerStyle={[styles.formSignInContainer]}>
-        <HeaderWithTwoTitles firstTitle={t('SignIn_firstPartHeader')} secondTitle={t('SignIn_secondPartHeader')} />
-        <PhoneInput
-          error={{ isError: !isValid }}
-          flagState={flagState}
-          getPhoneNumber={setPhoneNumber}
-          onFlagPress={() => setIsPanelPhoneSelectVisible(true)}
-        />
+        {title}
+        <Animated.View layout={FadeIn.duration(animationsDurations.fading)}>{input}</Animated.View>
       </ScrollViewWithCustomScroll>
       <Animated.View style={[styles.buttonsContainer, bottomButtonsAnimatedStyle]}>
         <Button
           containerStyle={styles.nextButton}
           shape={ButtonShapes.Circle}
-          mode={trimmedPhoneNumber ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
-          disabled={!trimmedPhoneNumber}
+          mode={trimmedSignData ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
+          disabled={!trimmedSignData}
           size={ButtonSizes.L}
           text={t('SignIn_nextButton')}
           innerSpacing={5}
-          shadow={trimmedPhoneNumber ? ButtonShadows.Strong : undefined}
+          shadow={trimmedSignData ? ButtonShadows.Strong : undefined}
           onPress={handleSubmit}
         />
-        <Pressable style={styles.dontHaveAccountContainer} onPress={navigateToSignUp} hitSlop={20}>
+        {setSignMethod && (
+          <Pressable style={styles.dontHaveAccountContainer} onPress={changeMethod} hitSlop={10}>
+            <Animated.View layout={FadeIn.duration(animationsDurations.fading)}>
+              <Text style={styles.dontHaveAccountText}>
+                {t('SignIn_signInMethodChange')}{' '}
+                <Text style={[styles.signUpLabel, computedStyles.signUpLabel]}>{labelText}</Text>
+              </Text>
+            </Animated.View>
+          </Pressable>
+        )}
+        <Pressable style={styles.dontHaveAccountContainer} onPress={navigateToSignUp} hitSlop={10}>
           <Text style={styles.dontHaveAccountText}>
             {t('SignIn_dontHaveAccount')}{' '}
             <Text style={[styles.signUpLabel, computedStyles.signUpLabel]}>{t('SignIn_signUpLabel')}</Text>

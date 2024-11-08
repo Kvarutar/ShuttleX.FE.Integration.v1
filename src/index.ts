@@ -1,6 +1,15 @@
 import createAxiosInstance from './core/client';
+import getNetworkErrorInfo from './core/client/errors/getNetworkErrorInfo';
+import { isNoExistingsError, isTokenExpiredError } from './core/client/errors/typeGuards';
+import {
+  type NetworkErrorDetails,
+  type NetworkErrorDetailsWithBody,
+  type NetworkErrorsBodies,
+  NetworkErrorsStatuses,
+} from './core/client/errors/types';
 import defaultAxiosRetryConfig from './core/client/helpers/defaultRetryConfig';
-import getAxiosErrorInfo from './core/client/helpers/getAxiosErrorInfo';
+import getTokens from './core/client/utils/getTokens';
+import saveTokens from './core/client/utils/saveTokens';
 import { emailRegex } from './core/consts/regex.consts';
 import { countryDtos } from './core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from './core/countries/types';
@@ -230,9 +239,10 @@ import { type Notification, NotificationType } from './shared/screens/Notificati
 import NotificationsScreenV1 from './shared/screens/NotificationsScreen/v1';
 import NotificationsScreen from './shared/screens/NotificationsScreen/v2';
 import SignInScreen from './shared/screens/SignInScreen';
+import { SignInMethod } from './shared/screens/SignInScreen/types';
 import SignUpScreen from './shared/screens/SignUpScreen';
 import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
-import { minToMilSec } from './utils';
+import { milSecToTime, minToMilSec } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { getCurrencySign } from './utils/currency';
 import { useDebounce } from './utils/debounce';
@@ -365,12 +375,13 @@ export {
   GalleryIcon,
   GameIcon,
   getAngleBetweenPoints,
-  getAxiosErrorInfo,
   getCurrencySign,
   getDistanceBetweenPoints,
   getMenuIcons,
+  getNetworkErrorInfo,
   getNotificationToken,
   getPaymentIcon,
+  getTokens,
   GroupedBrandIcon,
   GroupedBrandIconMini,
   GroupedBrandIconMiniV1,
@@ -389,7 +400,9 @@ export {
   isAllFieldsFilled,
   isEmailValid,
   isNameValid,
+  isNoExistingsError,
   isPhoneValid,
+  isTokenExpiredError,
   lightMapStyle,
   LightningIcon,
   Like2Icon,
@@ -416,11 +429,16 @@ export {
   type MenuNavigation,
   MenuUserImage,
   MenuUserImage2,
+  milSecToTime,
   minToMilSec,
   MinusIcon,
   MyRideIcon,
   MysteryBoxIcon,
   nameof,
+  type NetworkErrorDetails,
+  type NetworkErrorDetailsWithBody,
+  type NetworkErrorsBodies,
+  NetworkErrorsStatuses,
   type Notification,
   NotificationIcon,
   NotificationsScreen,
@@ -465,6 +483,7 @@ export {
   RoundCheckIcon3,
   RoundCheckIcon4,
   SafeAreaView,
+  saveTokens,
   ScrollViewWithCustomScroll,
   SearchIcon,
   SecondRideAlert,
@@ -475,6 +494,7 @@ export {
   ShareIcon,
   ShortArrowIcon,
   ShortArrowSmallIcon,
+  SignInMethod,
   SignInScreen,
   type SignUpForm,
   SignUpScreen,
