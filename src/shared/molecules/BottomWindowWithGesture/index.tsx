@@ -14,7 +14,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { type AnimatedScrollView } from 'react-native-reanimated/lib/typescript/reanimated2/component/ScrollView';
+import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/reanimated2/component/ScrollView';
 
 import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/v2/themeContext';
