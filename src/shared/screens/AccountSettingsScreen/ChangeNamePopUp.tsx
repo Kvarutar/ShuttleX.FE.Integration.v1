@@ -6,7 +6,7 @@ import { useTheme } from '../../../core/themes/v2/themeContext';
 import Button from '../../atoms/Button/v2';
 import { SquareButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
-import { type ChangeNamePopUpButtonsProps, type ChangeNamePopUpProps } from './props';
+import { type ChangeNamePopUpButtonsProps, type ChangeNamePopUpProps } from './types';
 
 const windowSizes = Dimensions.get('window');
 

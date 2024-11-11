@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-import { type ChangeDataPopUpMode, inputsValidation } from '../props';
+import { type ChangeDataPopUpMode, inputsValidation } from '../types';
 
-export type newData = {
-  currentValue: '';
-  newValue: '';
+export type NewData = {
+  currentValue: string;
+  newValue: string;
 };
 
 export const useChangeDataForm = (mode: ChangeDataPopUpMode, profileCurrentValue: string) => {
-  const [data, setData] = useState<newData>({
+  const [data, setData] = useState<NewData>({
     currentValue: '',
     newValue: '',
   });
@@ -21,7 +21,7 @@ export const useChangeDataForm = (mode: ChangeDataPopUpMode, profileCurrentValue
 
   const isFilled = data.currentValue.length > 2 && data.newValue.length > 2;
 
-  const isError = (fieldName: keyof newData) => {
+  const isError = (fieldName: keyof NewData) => {
     if (fieldName === 'currentValue') {
       return !isEqual && wasValidated;
     } else if (fieldName === 'newValue') {

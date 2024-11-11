@@ -43,4 +43,13 @@ const formatDate = (date: Date): string => {
   });
 };
 
-export { boolToSign, formatDate, milSecToTime, minToMilSec };
+/**
+ * Converts phone number to only format
+ * @param phone value
+ * @returns +12345678900 format
+ */
+const formatPhone = (phone: string) => {
+  return phone.replace(/[^+\d]/g, '');
+};
+
+export { boolToSign, formatDate, formatPhone, milSecToTime, minToMilSec };

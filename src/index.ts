@@ -242,7 +242,7 @@ import SignInScreen from './shared/screens/SignInScreen';
 import { SignInMethod } from './shared/screens/SignInScreen/types';
 import SignUpScreen from './shared/screens/SignUpScreen';
 import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
-import { milSecToTime, minToMilSec } from './utils';
+import { formatPhone, milSecToTime, minToMilSec } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { getCurrencySign } from './utils/currency';
 import { useDebounce } from './utils/debounce';
@@ -370,6 +370,7 @@ export {
   FeedbackWheelIcon,
   FlatListWithCustomScroll,
   Fog,
+  formatPhone,
   FreeTimeAlert,
   type FreeTimeAlertProps,
   GalleryIcon,

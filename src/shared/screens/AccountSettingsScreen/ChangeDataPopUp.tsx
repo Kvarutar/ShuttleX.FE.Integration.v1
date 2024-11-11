@@ -14,9 +14,9 @@ import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
 import PhoneInput from '../../molecules/PhoneInput';
 import PhoneSlidingPanel from '../../molecules/PhoneSlidingPanel';
 import { getRenderText } from './getRenderText';
-import { type newData } from './hooks/useChangeDataForm';
+import { type NewData } from './hooks/useChangeDataForm';
 import { useChangeDataForm } from './hooks/useChangeDataForm';
-import { type ChangeDataPopUpProps } from './props';
+import { type ChangeDataPopUpProps } from './types';
 
 const ChangeDataPopUpWithoutI18n = ({
   currentValue,
@@ -43,7 +43,7 @@ const ChangeDataPopUpWithoutI18n = ({
     setWasValidated(true);
     if (isValid) {
       onChangeDataPopupClose();
-      handleOpenVerification();
+      handleOpenVerification(mode, data.newValue);
       setNewValue(data.newValue);
     }
   };
@@ -60,7 +60,7 @@ const ChangeDataPopUpWithoutI18n = ({
     },
   });
 
-  const renderInput = (fieldName: keyof newData, placeholder: string, errorMessage: string) => {
+  const renderInput = (fieldName: keyof NewData, placeholder: string, errorMessage: string) => {
     if (mode === 'phone') {
       return (
         <PhoneInput
@@ -109,7 +109,7 @@ const ChangeDataPopUpWithoutI18n = ({
                   {index === 0 ? renderText?.descriptionCurr : renderText?.descriptionNew}
                 </Text>
                 {renderInput(
-                  field as keyof newData,
+                  field as keyof NewData,
                   renderText?.placeholder,
 
                   index === 0 ? renderText?.error1 : renderText?.error2,

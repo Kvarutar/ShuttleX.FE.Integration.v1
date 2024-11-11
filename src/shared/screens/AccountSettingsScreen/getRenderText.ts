@@ -1,4 +1,4 @@
-import { type ChangeDataPopUpMode } from './props';
+import { type ChangeDataPopUpMode } from './types';
 
 export const getRenderText = (t: any, mode: ChangeDataPopUpMode) => {
   return {

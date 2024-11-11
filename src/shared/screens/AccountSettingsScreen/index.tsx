@@ -20,7 +20,7 @@ import ChangeDataPopUp from './ChangeDataPopUp';
 import { ChangeNamePopUp, ChangeNamePopUpButtons } from './ChangeNamePopUp';
 import { useChangeData } from './hooks/useChangeData';
 import { useProfileForm } from './hooks/useProfileForm';
-import { type AccountSettingsProps } from './props';
+import { type AccountSettingsProps } from './types';
 
 const windowSizes = Dimensions.get('window');
 

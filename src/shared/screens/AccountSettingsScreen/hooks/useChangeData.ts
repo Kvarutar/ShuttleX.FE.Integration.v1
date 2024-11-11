@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { type ChangeDataPopUpMode } from '../props';
+import { type ChangeDataPopUpMode } from '../types';
 
 export const useChangeData = () => {
   const [modalState, setModalState] = useState({

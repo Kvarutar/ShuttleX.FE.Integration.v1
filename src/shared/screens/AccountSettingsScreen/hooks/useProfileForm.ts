@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { countryDtos } from '../../../../core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from '../../../../core/countries/types';
-import { type Profile } from '../props';
+import { type Profile } from '../types';
 
 export const useProfileForm = (initialProfile: Profile) => {
   const [profileDataForm, setProfileDataForm] = useState<Profile>(initialProfile);

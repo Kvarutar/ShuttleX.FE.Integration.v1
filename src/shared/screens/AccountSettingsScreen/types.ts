@@ -11,7 +11,7 @@ export type Profile = {
 export type AccountSettingsProps = {
   onProfileDataSave: (profileData: Profile) => void;
   profile: Profile;
-  handleOpenVerification: () => void;
+  handleOpenVerification: (mode: ChangeDataPopUpMode, newValue: string) => void;
   isVerificationDone: boolean;
   photoBlock?: ReactNode;
   barBlock?: ReactNode;
@@ -36,7 +36,7 @@ export const inputsValidation: Record<ChangeDataPopUpMode, (value: string) => bo
 
 export type ChangeDataPopUpProps = {
   currentValue: string;
-  handleOpenVerification: () => void;
+  handleOpenVerification: (mode: ChangeDataPopUpMode, newValue: string) => void;
   setNewValue: (value: string) => void;
   mode: ChangeDataPopUpMode;
   onChangeDataPopupClose: () => void;
