@@ -14,7 +14,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/reanimated2/component/ScrollView';
 
 import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/v2/themeContext';
@@ -57,8 +56,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
   ) => {
     const { colors } = useTheme();
 
-    const animatedScrollViewRef = useRef<AnimatedScrollView>(null);
-    null;
+    const animatedScrollViewRef = useRef<Animated.ScrollView>(null);
 
     const progress = useSharedValue(opened ? 0 : 1); // 0 - opened, 1 - closed
     const threshold = useSharedValue(0);
