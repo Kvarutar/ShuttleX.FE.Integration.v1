@@ -268,6 +268,7 @@ import {
   requestGalleryUsagePermission,
   requestGeolocationPermission,
 } from './utils/permissions';
+import { type Nullable } from './utils/typescript';
 import { isAllFieldsFilled, isEmailValid, isNameValid, isPhoneValid } from './utils/validation';
 
 export {
@@ -447,6 +448,7 @@ export {
   NotificationsScreen,
   NotificationsScreenV1,
   NotificationType,
+  type Nullable,
   PaidTimeAlert,
   type PaidTimeAlertProps,
   palettes,
