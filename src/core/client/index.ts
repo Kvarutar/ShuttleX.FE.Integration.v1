@@ -1,22 +1,19 @@
 import axios, { type AxiosInstance } from 'axios';
-import { type IAxiosRetryConfig } from 'axios-retry';
 import axiosRetry from 'axios-retry';
 import Keychain from 'react-native-keychain';
 
+import { type AxiosInstanceConfig } from './types';
 import getTokens from './utils/getTokens';
 import saveTokens from './utils/saveTokens';
 
 const createAxiosInstance = ({
   url,
   retryConfig,
-  withAuth = true,
   onSignOut,
+  refreshTokenUrl,
 }: {
   url: string;
-  retryConfig?: IAxiosRetryConfig;
-  withAuth?: boolean;
-  onSignOut?: (refreshToken: string | null) => void;
-}): AxiosInstance => {
+} & AxiosInstanceConfig): AxiosInstance => {
   const instance = axios.create({
     baseURL: url,
   });
@@ -25,7 +22,7 @@ const createAxiosInstance = ({
     axiosRetry(instance, retryConfig);
   }
 
-  if (withAuth) {
+  if (refreshTokenUrl) {
     instance.interceptors.request.use(
       async config => {
         const token = (await getTokens()).accessToken;
@@ -48,7 +45,7 @@ const createAxiosInstance = ({
           const refreshToken = (await getTokens()).refreshToken;
           try {
             //TODO: add device id
-            const response = await axios.post(`${url}/auth/refresh`, {
+            const response = await axios.post(refreshTokenUrl, {
               refreshToken,
               deviceId: 'string',
             });

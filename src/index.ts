@@ -8,6 +8,7 @@ import {
   NetworkErrorsStatuses,
 } from './core/client/errors/types';
 import defaultAxiosRetryConfig from './core/client/helpers/defaultRetryConfig';
+import { type AxiosInstanceConfig } from './core/client/types';
 import getTokens from './core/client/utils/getTokens';
 import saveTokens from './core/client/utils/saveTokens';
 import { emailRegex } from './core/consts/regex.consts';
@@ -279,6 +280,7 @@ export {
   ApplePayIcon,
   ArrowIcon,
   ArrowInPrimaryColorIcon,
+  type AxiosInstanceConfig,
   BaggageIcon,
   Bar,
   BarModes,
