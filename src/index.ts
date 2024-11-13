@@ -243,7 +243,7 @@ import SignInScreen from './shared/screens/SignInScreen';
 import { SignInMethod } from './shared/screens/SignInScreen/types';
 import SignUpScreen from './shared/screens/SignUpScreen';
 import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
-import { formatPhone, milSecToTime, minToMilSec } from './utils';
+import { formatPhone, milSecToMin, milSecToTime, minToMilSec, secToMilSec } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { getCurrencySign } from './utils/currency';
 import { useDebounce } from './utils/debounce';
@@ -433,6 +433,7 @@ export {
   type MenuNavigation,
   MenuUserImage,
   MenuUserImage2,
+  milSecToMin,
   milSecToTime,
   minToMilSec,
   MinusIcon,
@@ -492,6 +493,7 @@ export {
   ScrollViewWithCustomScroll,
   SearchIcon,
   SecondRideAlert,
+  secToMilSec,
   SelectOnMapIcon,
   Separator,
   SettingsIcon,

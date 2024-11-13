@@ -14,6 +14,13 @@ const boolToSign = (flag: boolean) => (flag ? 1 : -1);
 const minToMilSec = (minutes: number) => minutes * 60 * 1000;
 
 /**
+ * Converts seconds to milliseconds
+ * @param time value in seconds
+ * @returns milliseconds
+ */
+const secToMilSec = (seconds: number) => seconds * 1000;
+
+/**
  * Converts milliseconds to minutes or hours if minutes > 60
  * @param time value in milliseconds
  * @returns minutes or hours
@@ -24,6 +31,17 @@ const milSecToTime = (milliseconds: number): number => {
   if (minutes > 60) {
     return minutes / 60;
   }
+
+  return minutes;
+};
+
+/**
+ * Converts milliseconds to minutes
+ * @param milliseconds value in milliseconds
+ * @returns minutes
+ */
+const milSecToMin = (milliseconds: number): number => {
+  const minutes = Math.floor((milliseconds / 1000 / 60) % 60);
 
   return minutes;
 };
@@ -52,4 +70,4 @@ const formatPhone = (phone: string) => {
   return phone.replace(/[^+\d]/g, '');
 };
 
-export { boolToSign, formatDate, formatPhone, milSecToTime, minToMilSec };
+export { boolToSign, formatDate, formatPhone, milSecToMin, milSecToTime, minToMilSec, secToMilSec };
