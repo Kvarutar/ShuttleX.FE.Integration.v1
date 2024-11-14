@@ -2,6 +2,7 @@ export type SignUpProps = {
   navigateToSignIn: () => void;
   navigateToTerms: () => void;
   onSubmit: (dataForm: SignUpForm) => void;
+  isLoading: boolean;
 };
 
 export type SignUpScreenRef = {

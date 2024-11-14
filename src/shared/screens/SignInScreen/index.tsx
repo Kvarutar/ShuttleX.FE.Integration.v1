@@ -12,6 +12,7 @@ import Button from '../../atoms/Button/v2';
 import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
 import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';
+import LoadingSpinner from '../../molecules/LoadingSpinner';
 import PhoneInput from '../../molecules/PhoneInput';
 import PhoneSlidingPanel from '../../molecules/PhoneSlidingPanel';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
@@ -30,6 +31,7 @@ const SignInScreenWithoutI18n = ({
   onSubmit,
   signMethod = SignInMethod.Phone,
   setSignMethod,
+  isLoading,
 }: SignInScreenProps): JSX.Element => {
   const { colors } = useTheme();
   const { t } = useTranslation();
@@ -42,6 +44,7 @@ const SignInScreenWithoutI18n = ({
   const [isValid, setIsValid] = useState(true);
   const [wasValidated, setWasValidated] = useState(false);
   const trimmedSignData = data.trim();
+  const isButtonEnabled = trimmedSignData && !isLoading;
 
   useEffect(() => {
     setIsValid(!wasValidated || Boolean(data));
@@ -128,14 +131,16 @@ const SignInScreenWithoutI18n = ({
         <Button
           containerStyle={styles.nextButton}
           shape={ButtonShapes.Circle}
-          mode={trimmedSignData ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
-          disabled={!trimmedSignData}
+          mode={isButtonEnabled ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
+          disabled={!trimmedSignData || isLoading}
           size={ButtonSizes.L}
           text={t('SignIn_nextButton')}
           innerSpacing={5}
-          shadow={trimmedSignData ? ButtonShadows.Strong : undefined}
+          shadow={isButtonEnabled ? ButtonShadows.Strong : undefined}
           onPress={handleSubmit}
-        />
+        >
+          {isLoading && <LoadingSpinner />}
+        </Button>
         {setSignMethod && (
           <Pressable style={styles.dontHaveAccountContainer} onPress={changeMethod} hitSlop={10}>
             <Animated.View layout={FadeIn.duration(animationsDurations.fading)}>

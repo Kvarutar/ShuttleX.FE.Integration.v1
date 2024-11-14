@@ -13,13 +13,14 @@ import CheckBox from '../../atoms/Checkbox';
 import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
 import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';
+import LoadingSpinner from '../../molecules/LoadingSpinner';
 import PhoneInput from '../../molecules/PhoneInput';
 import SlidingPanel from '../../molecules/PhoneSlidingPanel';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
 import { type SignUpForm, type SignUpFormValidation, type SignUpProps, type SignUpScreenRef } from './types';
 
 const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
-  ({ navigateToSignIn, navigateToTerms, onSubmit }, ref): JSX.Element => {
+  ({ navigateToSignIn, navigateToTerms, onSubmit, isLoading }, ref): JSX.Element => {
     const { colors } = useTheme();
     const { t } = useTranslation();
 
@@ -198,14 +199,16 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
           <Button
             containerStyle={styles.nextButton}
             shape={ButtonShapes.Circle}
-            mode={isButtonEnabled ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
-            disabled={!isButtonEnabled}
+            mode={isButtonEnabled && !isLoading ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
+            disabled={!isButtonEnabled || isLoading}
             size={ButtonSizes.L}
             text={t('SignUp_nextButton')}
             innerSpacing={5}
-            shadow={isButtonEnabled ? ButtonShadows.Strong : undefined}
+            shadow={isButtonEnabled && !isLoading ? ButtonShadows.Strong : undefined}
             onPress={handleSubmit}
-          />
+          >
+            {isLoading && <LoadingSpinner />}
+          </Button>
           <Pressable style={styles.alreadyHaveAccountContainer} onPress={navigateToSignIn} hitSlop={20}>
             <Text style={styles.alreadyHaveAccountText}>
               {t('SignUp_haveAccount')}{' '}

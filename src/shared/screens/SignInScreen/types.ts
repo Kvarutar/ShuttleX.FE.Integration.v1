@@ -5,7 +5,8 @@ export enum SignInMethod {
 
 export type SignInScreenProps = {
   navigateToSignUp: () => void;
-  onSubmit: (body: string) => void;
+  onSubmit: (phone: string) => void;
+  isLoading: boolean;
   signMethod?: SignInMethod;
   setSignMethod?: (newMethod: SignInMethod) => void;
 };
