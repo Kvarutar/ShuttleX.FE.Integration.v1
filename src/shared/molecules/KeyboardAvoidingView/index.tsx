@@ -1,7 +1,10 @@
 import { useIsFocused } from '@react-navigation/native';
 import { useEffect } from 'react';
-import { KeyboardAvoidingView, NativeModules, Platform, StyleSheet, View } from 'react-native';
+import { InteractionManager, KeyboardAvoidingView, NativeModules, Platform, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import sizes from '../../../core/themes/sizes';
+import { useTheme } from '../../../core/themes/v2/themeContext';
 import { type AndroidKeyboardAvoidingViewProps, type KeyboardAvoidingViewProps } from './props';
 
 const { IntegrationModule } = NativeModules;
@@ -11,11 +14,21 @@ const CustomKeyboardAvoidingView = ({
   style,
   iosOptions = { behavior: 'padding' },
 }: KeyboardAvoidingViewProps) => {
+  const insets = useSafeAreaInsets();
+  const { colors } = useTheme();
+
+  const computedStyles = StyleSheet.create({
+    keyboardAvoidingView: {
+      backgroundColor: colors.backgroundPrimaryColor,
+    },
+  });
+
   if (Platform.OS === 'ios') {
     return (
       <KeyboardAvoidingView
         children={children}
-        style={[styles.keyboardAvoidingView, style]}
+        keyboardVerticalOffset={insets.bottom ? sizes.paddingVertical / 2 : 0}
+        style={[styles.keyboardAvoidingView, computedStyles.keyboardAvoidingView, style]}
         behavior={iosOptions.behavior}
       />
     );
@@ -34,7 +47,10 @@ const AndroidKeyboardAvoidingView = ({ children, style }: AndroidKeyboardAvoidin
 
   useEffect(() => {
     if (isFocused) {
-      IntegrationModule.setSoftInputMode('adjustResize');
+      // Delay softInputMode until navigation animations complete, preventing conflicts
+      InteractionManager.runAfterInteractions(() => {
+        IntegrationModule.setSoftInputMode('adjustResize');
+      });
     } else {
       IntegrationModule.setSoftInputMode('adjustPan');
     }

@@ -10,6 +10,7 @@ import Text from '../../atoms/Text';
 import BottomWindow from '../../molecules/BottomWindow';
 import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';
 import CustomKeyboardAvoidingView from '../../molecules/KeyboardAvoidingView';
+import SafeAreaView from '../../molecules/SafeAreaView';
 import Content from './Content';
 import TitleWithCloseButton from './TitleWithCloseButton';
 import { type CodeVerificationScreenProps } from './types';
@@ -69,20 +70,22 @@ const CodeVerificationScreenWithoutI18n = ({
   return (
     <>
       <CustomKeyboardAvoidingView>
-        <View style={styles.container} pointerEvents={isBlocked ? 'none' : undefined}>
-          <TitleWithCloseButton
-            title={titleText ?? t('CodeVerification_title')}
-            onBackButtonPress={onBackButtonPress}
-          />
-          <Content
-            time={minToMilSec(3)}
-            headerFirstText={headerFirstText}
-            headerSecondText={headerSecondText}
-            onButtonPress={onAgainButtonPress}
-            onCodeChange={onCodeChange}
-            isError={isError}
-          />
-        </View>
+        <SafeAreaView>
+          <View style={styles.container} pointerEvents={isBlocked ? 'none' : undefined}>
+            <TitleWithCloseButton
+              title={titleText ?? t('CodeVerification_title')}
+              onBackButtonPress={onBackButtonPress}
+            />
+            <Content
+              time={minToMilSec(3)}
+              headerFirstText={headerFirstText}
+              headerSecondText={headerSecondText}
+              onButtonPress={onAgainButtonPress}
+              onCodeChange={onCodeChange}
+              isError={isError}
+            />
+          </View>
+        </SafeAreaView>
       </CustomKeyboardAvoidingView>
       {isBlocked && (
         <Modal transparent>

@@ -55,7 +55,7 @@ const StatsBlockWithoutI18n = ({ amountLikes, amountRides, style }: StatsBlockPr
       <View style={[styles.container, style]}>
         <Like2Icon color={colors.iconSecondaryColor} />
         <StatsTextBlock amount={formatStats(amountLikes)} text={t('StatsBlock_likes')} />
-        {amountRides && (
+        {amountRides !== undefined && (
           <>
             <View style={[styles.separateCircle, computedStyles.separateCircle]} />
             <SteeringWheelIcon color={colors.iconSecondaryColor} />

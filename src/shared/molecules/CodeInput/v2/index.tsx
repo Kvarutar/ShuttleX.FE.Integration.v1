@@ -1,3 +1,5 @@
+import { useNavigation } from '@react-navigation/native';
+import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { StyleSheet, type TextInputProps, View } from 'react-native';
 
@@ -54,6 +56,8 @@ const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(
 
 const CodeInput = ({ style, onCodeChange, isError }: CodeInputProps): JSX.Element => {
   //TODO: Refactor code by using dictionary
+  const navigation = useNavigation<NativeStackNavigationProp<{}>>();
+
   const isFirstRender = useRef(true);
   const firstCodeNumberRef = useRef<TextInputRef>(null);
   const secondCodeNumberRef = useRef<TextInputRef>(null);
@@ -66,11 +70,13 @@ const CodeInput = ({ style, onCodeChange, isError }: CodeInputProps): JSX.Elemen
   const [fourthCodeNumberInput, setFourthCodeNumberInput] = useState('');
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      firstCodeNumberRef.current?.focus();
-    }
-  }, []);
+    navigation.addListener('transitionEnd', () => {
+      if (isFirstRender.current) {
+        isFirstRender.current = false;
+        firstCodeNumberRef.current?.focus();
+      }
+    });
+  }, [navigation]);
 
   useEffect(() => {
     onCodeChange(firstCodeNumberInput + secondCodeNumberInput + thirdCodeNumberInput + fourthCodeNumberInput);

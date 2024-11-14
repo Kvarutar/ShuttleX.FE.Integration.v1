@@ -36,7 +36,7 @@ const Content = ({
       <CodeInput style={styles.codeInput} onCodeChange={onCodeChange} isError={isError} />
       <Button
         ref={buttonRef}
-        style={styles.againButton}
+        containerStyle={styles.againButton}
         shape={ButtonShapes.Circle}
         circleMode6Time={time}
         mode={CircleButtonModes.Mode6}

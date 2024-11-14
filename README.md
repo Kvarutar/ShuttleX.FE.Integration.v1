@@ -43,6 +43,7 @@ yarn example start
 - [@react-native-community/datetimepicker](https://www.npmjs.com/package/@react-native-community/datetimepicker)
 - [@react-native-community/netinfo](https://www.npmjs.com/package/@react-native-community/netinfo)
 - [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native)
+- [@react-navigation/native-stack](https://www.npmjs.com/package/@react-navigation/native-stack)
 - [@reduxjs/toolkit](https://www.npmjs.com/package/@reduxjs/toolkit)
 - [date-fns](https://www.npmjs.com/package/date-fns)
 - [react](https://www.npmjs.com/package/react)

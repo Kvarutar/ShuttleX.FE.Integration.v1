@@ -1,15 +1,7 @@
 import { type ReactNode, useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Pressable, StyleSheet } from 'react-native';
-import Animated, {
-  FadeIn,
-  KeyboardState,
-  useAnimatedKeyboard,
-  useAnimatedStyle,
-  useDerivedValue,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import { Pressable, StyleSheet, View } from 'react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import { TextInput } from 'shuttlex-integration';
 
 import { getCountryPhoneMaskByCountryName } from '../../../core/countries/countryDtos';
@@ -41,13 +33,6 @@ const SignInScreenWithoutI18n = ({
 }: SignInScreenProps): JSX.Element => {
   const { colors } = useTheme();
   const { t } = useTranslation();
-  const keyboard = useAnimatedKeyboard();
-
-  const bottomButtonsMargin = useSharedValue(0);
-
-  const bottomButtonsAnimatedStyle = useAnimatedStyle(() => ({
-    marginBottom: bottomButtonsMargin.value,
-  }));
 
   const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(
     getCountryPhoneMaskByCountryName('Ukraine') ?? ({} as CountryPhoneMaskDto),
@@ -57,22 +42,6 @@ const SignInScreenWithoutI18n = ({
   const [isValid, setIsValid] = useState(true);
   const [wasValidated, setWasValidated] = useState(false);
   const trimmedSignData = data.trim();
-
-  useDerivedValue(() => {
-    if (!isPanelPhoneSelectVisible) {
-      switch (keyboard.state.value) {
-        case KeyboardState.OPENING:
-          bottomButtonsMargin.value = withTiming(keyboard.height.value, {
-            duration: animationsDurations.keyboard.opening,
-          });
-          break;
-        case KeyboardState.CLOSING:
-          bottomButtonsMargin.value = withTiming(0, { duration: animationsDurations.keyboard.closing });
-          break;
-        default:
-      }
-    }
-  });
 
   useEffect(() => {
     setIsValid(!wasValidated || Boolean(data));
@@ -155,7 +124,7 @@ const SignInScreenWithoutI18n = ({
         {title}
         <Animated.View layout={FadeIn.duration(animationsDurations.fading)}>{input}</Animated.View>
       </ScrollViewWithCustomScroll>
-      <Animated.View style={[styles.buttonsContainer, bottomButtonsAnimatedStyle]}>
+      <View style={styles.buttonsContainer}>
         <Button
           containerStyle={styles.nextButton}
           shape={ButtonShapes.Circle}
@@ -183,7 +152,7 @@ const SignInScreenWithoutI18n = ({
             <Text style={[styles.signUpLabel, computedStyles.signUpLabel]}>{t('SignIn_signUpLabel')}</Text>
           </Text>
         </Pressable>
-      </Animated.View>
+      </View>
     </>
   );
 

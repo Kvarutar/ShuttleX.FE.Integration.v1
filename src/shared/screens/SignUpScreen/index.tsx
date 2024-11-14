@@ -1,14 +1,6 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
-import Animated, {
-  KeyboardState,
-  useAnimatedKeyboard,
-  useAnimatedStyle,
-  useDerivedValue,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
 
 import { emailRegex } from '../../../core/consts/regex.consts';
 import { getCountryPhoneMaskByCountryName } from '../../../core/countries/countryDtos';
@@ -26,22 +18,10 @@ import SlidingPanel from '../../molecules/PhoneSlidingPanel';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
 import { type SignUpForm, type SignUpFormValidation, type SignUpProps, type SignUpScreenRef } from './types';
 
-const keyboardAnimationDuration = {
-  opening: 25,
-  closing: 300,
-};
-
 const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
   ({ navigateToSignIn, navigateToTerms, onSubmit }, ref): JSX.Element => {
     const { colors } = useTheme();
     const { t } = useTranslation();
-    const keyboard = useAnimatedKeyboard();
-
-    const bottomButtonsMargin = useSharedValue(0);
-
-    const bottomButtonsAnimatedStyle = useAnimatedStyle(() => ({
-      marginBottom: bottomButtonsMargin.value,
-    }));
 
     const [userDataForm, setUserDataForm] = useState<SignUpForm>({
       firstName: '',
@@ -65,22 +45,6 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
     const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(
       getCountryPhoneMaskByCountryName('Ukraine') ?? ({} as CountryPhoneMaskDto),
     );
-
-    useDerivedValue(() => {
-      if (!isPanelPhoneSelectVisible) {
-        switch (keyboard.state.value) {
-          case KeyboardState.OPENING:
-            bottomButtonsMargin.value = withTiming(keyboard.height.value, {
-              duration: keyboardAnimationDuration.opening,
-            });
-            break;
-          case KeyboardState.CLOSING:
-            bottomButtonsMargin.value = withTiming(0, { duration: keyboardAnimationDuration.closing });
-            break;
-          default:
-        }
-      }
-    });
 
     useImperativeHandle(ref, () => ({
       showErrors: errorMessages => {
@@ -230,7 +194,7 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
           </CheckBox>
         </ScrollViewWithCustomScroll>
 
-        <Animated.View style={[styles.buttonsContainer, bottomButtonsAnimatedStyle]}>
+        <View style={styles.buttonsContainer}>
           <Button
             containerStyle={styles.nextButton}
             shape={ButtonShapes.Circle}
@@ -248,7 +212,7 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
               <Text style={[styles.signInLabel, computedStyles.signInLabel]}>{t('SignUp_signInLabel')}</Text>
             </Text>
           </Pressable>
-        </Animated.View>
+        </View>
       </>
     );
 
