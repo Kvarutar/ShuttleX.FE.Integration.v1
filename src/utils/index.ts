@@ -47,6 +47,21 @@ const milSecToMin = (milliseconds: number): number => {
 };
 
 /**
+ * Converts milliseconds to hours
+ * @param milliseconds value in milliseconds
+ * @returns hours
+ */
+const milSecToHours = (milliseconds: number): number => {
+  const minutes = milliseconds / 60000;
+
+  if (minutes > 60) {
+    return minutes / 60;
+  } else {
+    return 0;
+  }
+};
+
+/**
  * Converts date to normal format
  * @param date value
  * @returns d/m/y format
@@ -70,4 +85,4 @@ const formatPhone = (phone: string) => {
   return phone.replace(/[^+\d]/g, '');
 };
 
-export { boolToSign, formatDate, formatPhone, milSecToMin, milSecToTime, minToMilSec, secToMilSec };
+export { boolToSign, formatDate, formatPhone, milSecToHours, milSecToMin, milSecToTime, minToMilSec, secToMilSec };
