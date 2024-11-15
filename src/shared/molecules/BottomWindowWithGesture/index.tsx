@@ -286,9 +286,16 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       },
     });
 
-    const visiblePartAnimatedStyle = useAnimatedStyle(() => ({
-      maxHeight: !isCurrentOpen.value && minHeight ? minHeight * windowHeight : maxHeight * windowHeight,
-    }));
+    const visiblePartAnimatedStyle = useAnimatedStyle(() => {
+      const minHeightValue = minHeight
+        ? (typeof minHeight === 'number' ? minHeight : minHeight.value) * windowHeight
+        : null;
+
+      return {
+        maxHeight: !isCurrentOpen.value && minHeightValue ? minHeightValue : maxHeight * windowHeight,
+        minHeight: minHeightValue ? minHeightValue : 'auto',
+      };
+    });
 
     const onContentPartLayout = (_: number, height: number) => {
       contentAnimatedHeight.value = height;

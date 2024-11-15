@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 import { type StyleProp, type ViewStyle } from 'react-native';
+import { type SharedValue } from 'react-native-reanimated';
 
 export type BottomWindowWithGestureProps = {
   visiblePart?: React.ReactNode;
@@ -22,7 +23,7 @@ export type BottomWindowWithGestureProps = {
   shadeStyle?: StyleProp<ViewStyle>;
   hiddenPartWrapperStyle?: StyleProp<ViewStyle>;
   maxHeight?: number;
-  minHeight?: number;
+  minHeight?: number | SharedValue<number>;
   withDraggable?: boolean;
 };
 
