@@ -1,6 +1,13 @@
 import createAxiosInstance from './core/client';
 import getNetworkErrorInfo from './core/client/errors/getNetworkErrorInfo';
-import { isNoExistingsError, isTokenExpiredError } from './core/client/errors/typeGuards';
+import {
+  isIncorrectFieldsError,
+  isLockedError,
+  isNoExistingsError,
+  isServerError,
+  isTokenExpiredError,
+  isTooManyRequestsError,
+} from './core/client/errors/typeGuards';
 import {
   type NetworkErrorDetails,
   type NetworkErrorDetailsWithBody,
@@ -405,10 +412,14 @@ export {
   InternetDisconnectedAlert,
   isAllFieldsFilled,
   isEmailValid,
+  isIncorrectFieldsError,
+  isLockedError,
   isNameValid,
   isNoExistingsError,
   isPhoneValid,
+  isServerError,
   isTokenExpiredError,
+  isTooManyRequestsError,
   lightMapStyle,
   LightningIcon,
   Like2Icon,
