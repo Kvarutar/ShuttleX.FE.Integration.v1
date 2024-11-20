@@ -38,6 +38,12 @@ const getNetworkErrorInfo = (error: any): NetworkErrorDetails & { body: NetworkE
           code,
           body: '',
         };
+      case 402:
+        return {
+          status: NetworkErrorsStatuses.PaymentRequired,
+          code,
+          body: error.response?.data.Message as string,
+        };
       case 423:
         return {
           status: NetworkErrorsStatuses.Locked,
