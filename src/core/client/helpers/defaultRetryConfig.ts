@@ -6,7 +6,7 @@ const defaultAxiosRetryConfig = {
   retryCondition(error: AxiosError) {
     switch (error.status) {
       case 404:
-      case 429:
+      case 500:
         return true; // Retry
       default:
         return false; // Do not retry

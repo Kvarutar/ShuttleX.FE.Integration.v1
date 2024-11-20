@@ -49,7 +49,7 @@ const getNetworkErrorInfo = (error: any): NetworkErrorDetails & { body: NetworkE
         };
       case 429:
         return {
-          status: NetworkErrorsStatuses.Locked,
+          status: NetworkErrorsStatuses.TooManyRequests,
           code,
           body: '',
         };
