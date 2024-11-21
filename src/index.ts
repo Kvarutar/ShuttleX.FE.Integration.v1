@@ -265,6 +265,7 @@ import {
   radToDeg,
   useGeolocationStartWatch,
 } from './utils/geolocation';
+import { convertBlobToImgUri } from './utils/imageProcessing';
 import { IntegrationModule } from './utils/integrationModule';
 import { getMenuIcons } from './utils/menu/menuIcons';
 import { useNetworkConnectionStartWatch } from './utils/network';
@@ -344,6 +345,7 @@ export {
   CoinIcon,
   ComfortPlusImage,
   Confetti,
+  convertBlobToImgUri,
   CountingComponent,
   CountingComponentV1,
   countryDtos,
