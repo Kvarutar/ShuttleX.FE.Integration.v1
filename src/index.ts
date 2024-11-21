@@ -254,7 +254,7 @@ import SignUpScreen from './shared/screens/SignUpScreen';
 import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
 import { formatPhone, formatTime, milSecToHours, milSecToMin, milSecToTime, minToMilSec, secToMilSec } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
-import { getCurrencySign } from './utils/currency';
+import { formatCurrency, getCurrencySign } from './utils/currency';
 import { useDebounce } from './utils/debounce';
 import {
   degToRad,
@@ -382,6 +382,7 @@ export {
   FeedbackWheelIcon,
   FlatListWithCustomScroll,
   Fog,
+  formatCurrency,
   formatPhone,
   formatTime,
   FreeTimeAlert,
