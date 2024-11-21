@@ -48,5 +48,11 @@
   "AddCard_inputCardNumber": "Номер картки",
   "AddCard_inputErrorMessage1": "Має містити від 14 до 19 символів",
   "AddCard_inputErrorMessage2": "Будь ласка, введіть коректні дані",
-  "AddCard_inputErrorMessage3": "Має містити мінімум 3 символи"
+  "AddCard_inputErrorMessage3": "Має містити мінімум 3 символи",
+  "MediaCore_saveButton": "Зберегти",
+  "MediaCore_selectPhotoButton": "Обрати фото",
+  "MediaCore_titleAlertSelectDocument": "Помилка",
+  "MediaCore_messageAlertSelectDocument": "Не вдалося обрати документ. Спробуйте ще раз",
+  "MediaCore_titleAlertDuplicateFile": "Файл вже завантажено",
+  "MediaCore_messageAlertDuplicateFile": "Цей файл вже було додано"
 }

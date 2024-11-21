@@ -109,5 +109,11 @@
   "CodeVerification_bannedSecondText": "You temporally locked to login.\nPlease wait until you will be unlocked\nor contact support",
   "CodeVerification_againButton": "Again",
   "CodeVerification_supportButton": "Contact support",
-  "CodeVerification_title": "Sign in code"
+  "CodeVerification_title": "Sign in code",
+  "MediaCore_saveButton": "Save",
+  "MediaCore_selectPhotoButton": "Choose a photo",
+  "MediaCore_titleAlertSelectDocument": "Error",
+  "MediaCore_messageAlertSelectDocument": "Unable to select document. Please try again",
+  "MediaCore_titleAlertDuplicateFile": "The file has already been uploaded",
+  "MediaCore_messageAlertDuplicateFile": "This file has already been added"
 }

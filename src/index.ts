@@ -245,6 +245,8 @@ import TitleWithCloseButton from './shared/screens/CodeVerificationScreen/TitleW
 import FeedbackScreen from './shared/screens/FeedbackScreen';
 import { type FeedbackRating, type FeedbackType } from './shared/screens/FeedbackScreen/props';
 import LockOutScreen from './shared/screens/LockOutScreen';
+import MediaCore from './shared/screens/MediaCore';
+import { type FileInfo, MediaAmount, MediaFileType } from './shared/screens/MediaCore/types';
 import { type Notification, NotificationType } from './shared/screens/NotificationsScreen/props';
 import NotificationsScreenV1 from './shared/screens/NotificationsScreen/v1';
 import NotificationsScreen from './shared/screens/NotificationsScreen/v2';
@@ -380,6 +382,7 @@ export {
   FeedbackThumbUpIcon,
   type FeedbackType,
   FeedbackWheelIcon,
+  type FileInfo,
   FlatListWithCustomScroll,
   Fog,
   formatCurrency,
@@ -444,6 +447,9 @@ export {
   MapView,
   type MapViewProps,
   MasterCardIcon,
+  MediaAmount,
+  MediaCore,
+  MediaFileType,
   MenuBase,
   MenuHeader,
   MenuIcon,

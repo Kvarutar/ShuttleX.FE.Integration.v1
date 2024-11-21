@@ -19854,6 +19854,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-document-picker@npm:9.1.1":
+  version: 9.1.1
+  resolution: "react-native-document-picker@npm:9.1.1"
+  dependencies:
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-windows: "*"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: b675722ae0ecba93bd9623666553f897ddb57bb5d9712698176098a5099102d65b072dafec1591d9f4acccfa14c915237d6510efa25c0732b44e50e73b05e2f9
+  languageName: node
+  linkType: hard
+
 "react-native-geolocation-service@npm:^5.3.1":
   version: 5.3.1
   resolution: "react-native-geolocation-service@npm:5.3.1"
@@ -19890,6 +19906,25 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 4d4271d26d8a9f799987c05652793baf3e57cf71debb3940e8f37d84f026ee38b7d0d3a3d26774b9f111d033ffedc8db4303c6b1f52155b6bee33774e83592f1
+  languageName: node
+  linkType: hard
+
+"react-native-image-crop-picker@npm:^0.41.4":
+  version: 0.41.5
+  resolution: "react-native-image-crop-picker@npm:0.41.5"
+  peerDependencies:
+    react-native: ">=0.40.0"
+  checksum: bc559da2d0b7c06b1cdce372b35e0af5b56b3075b3b3b0509f3e2c46c634d676cd72bc81948e1155ee0a2692e440fb81e91084db54f873b9645aece43e399041
+  languageName: node
+  linkType: hard
+
+"react-native-image-picker@npm:7.1.0":
+  version: 7.1.0
+  resolution: "react-native-image-picker@npm:7.1.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: ac44fca648bbc1475d8b64365d179dfe78600329f0702d802a004009c3fb20cf41bd11c59c24736fc7bcea831a76ab3d454cc1502b05dd2e987ce14d12bf4508
   languageName: node
   linkType: hard
 
@@ -21613,8 +21648,11 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-builder-bob: "npm:^0.23.2"
     react-native-confetti-cannon: "npm:^1.5.2"
     react-native-device-info: "npm:^10.13.1"
+    react-native-document-picker: "npm:9.1.1"
     react-native-geolocation-service: "npm:^5.3.1"
     react-native-gesture-handler: "npm:^2.14.0"
+    react-native-image-crop-picker: "npm:^0.41.4"
+    react-native-image-picker: "npm:7.1.0"
     react-native-keychain: "npm:^9.0.0"
     react-native-linear-gradient: "npm:^2.8.3"
     react-native-localize: "npm:^3.0.2"

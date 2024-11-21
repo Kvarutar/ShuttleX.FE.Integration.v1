@@ -8,6 +8,8 @@ import {
   RESULTS,
 } from 'react-native-permissions';
 
+const platformVersion = Platform.Version;
+
 const requestGeolocationPermission = async (): Promise<void> => {
   if (Platform.OS === 'ios') {
     await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
@@ -57,18 +59,28 @@ const requestGalleryUsagePermission = async (): Promise<void> => {
   if (Platform.OS === 'ios') {
     await request(PERMISSIONS.IOS.PHOTO_LIBRARY);
   } else {
-    await request(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES);
+    if (Number(platformVersion) > 32) {
+      await request(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES);
+    } else {
+      await request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE);
+    }
   }
 };
 
 const checkGalleryUsagePermission = async (): Promise<boolean> => {
+  let result: string;
+
   if (Platform.OS === 'ios') {
-    const result = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);
-    return result === RESULTS.GRANTED || result === RESULTS.LIMITED;
+    result = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);
   } else {
-    const result = await check(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES);
-    return result === RESULTS.GRANTED;
+    if (Number(platformVersion) > 32) {
+      result = await check(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES);
+    } else {
+      result = await check(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE);
+    }
   }
+
+  return result === RESULTS.GRANTED;
 };
 
 export {
