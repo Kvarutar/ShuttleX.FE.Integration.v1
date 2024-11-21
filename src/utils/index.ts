@@ -76,6 +76,15 @@ const formatDate = (date: Date): string => {
   });
 };
 
+const formatTime = (time: Date): string =>
+  time
+    .toLocaleTimeString(getLocales()[0]?.languageTag, {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: false,
+    })
+    .replace(/^0/, '');
+
 /**
  * Converts phone number to only format
  * @param phone value
@@ -85,4 +94,14 @@ const formatPhone = (phone: string) => {
   return phone.replace(/[^+\d]/g, '');
 };
 
-export { boolToSign, formatDate, formatPhone, milSecToHours, milSecToMin, milSecToTime, minToMilSec, secToMilSec };
+export {
+  boolToSign,
+  formatDate,
+  formatPhone,
+  formatTime,
+  milSecToHours,
+  milSecToMin,
+  milSecToTime,
+  minToMilSec,
+  secToMilSec,
+};

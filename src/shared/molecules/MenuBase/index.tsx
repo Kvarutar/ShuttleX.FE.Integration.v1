@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Dimensions, type LayoutChangeEvent, Platform, Pressable, StatusBar, StyleSheet, View } from 'react-native';
+import {
+  Dimensions,
+  type LayoutChangeEvent,
+  Linking,
+  Platform,
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
@@ -62,7 +71,7 @@ const MenuBase = ({
     );
   };
   const goToSite = () => {
-    //TODO send user to our website
+    Linking.openURL('https://www.shuttlex.com').catch(err => console.error(err));
   };
   const computedStyles = StyleSheet.create({
     wrapper: {
