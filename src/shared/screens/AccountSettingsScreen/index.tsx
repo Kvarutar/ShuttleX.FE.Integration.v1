@@ -173,24 +173,25 @@ const AccountSettingsScreenWithoutI18n = ({
       )}
 
       {isChangeDataPopUpVisible && (
-        <Modal transparent>
-          <BottomWindowWithGesture
-            withShade
-            setIsOpened={onChangeDataPopupClose}
-            hiddenPartStyle={computedStyles.hiddenPartChange}
-            opened
-            withHiddenPartScroll={false}
-            hiddenPart={
-              <ChangeDataPopUp
-                currentValue={profileDataForm[mode]}
-                mode={mode}
-                handleOpenVerification={handleOpenVerification}
-                setNewValue={handleValueChange}
-                onChangeDataPopupClose={onChangeDataPopupClose}
-              />
-            }
-          />
-        </Modal>
+        //TODO modal does not work properly on android devices, resolve problem after demo
+        // <Modal transparent>
+        <BottomWindowWithGesture
+          withShade
+          setIsOpened={onChangeDataPopupClose}
+          hiddenPartStyle={computedStyles.hiddenPartChange}
+          opened
+          withHiddenPartScroll={false}
+          hiddenPart={
+            <ChangeDataPopUp
+              currentValue={profileDataForm[mode]}
+              mode={mode}
+              handleOpenVerification={handleOpenVerification}
+              setNewValue={handleValueChange}
+              onChangeDataPopupClose={onChangeDataPopupClose}
+            />
+          }
+        />
+        // </Modal>
       )}
     </>
   );
