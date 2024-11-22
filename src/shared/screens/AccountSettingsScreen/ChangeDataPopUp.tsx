@@ -21,7 +21,7 @@ import { type ChangeDataPopUpProps } from './types';
 const ChangeDataPopUpWithoutI18n = ({
   currentValue,
   handleOpenVerification,
-  setNewValue,
+  // setNewValue,
   mode,
   onChangeDataPopupClose,
 }: ChangeDataPopUpProps) => {
@@ -44,7 +44,7 @@ const ChangeDataPopUpWithoutI18n = ({
     if (isValid) {
       onChangeDataPopupClose();
       handleOpenVerification(mode, data.newValue);
-      setNewValue(data.newValue);
+      // setNewValue(data.newValue);
     }
   };
 

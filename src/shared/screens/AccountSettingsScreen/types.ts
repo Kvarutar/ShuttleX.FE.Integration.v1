@@ -9,14 +9,15 @@ export type Profile = {
 };
 
 export type AccountSettingsProps = {
-  onProfileDataSave: (profileData: Profile) => void;
+  //TODO uncoment when we need changeName popup
+  // onProfileDataSave: (profileData: Profile) => void;
   profile: Profile;
   handleOpenVerification: (mode: ChangeDataPopUpMode, newValue: string) => void;
   isVerificationDone: boolean;
   photoBlock?: ReactNode;
   barBlock?: ReactNode;
-  onNameChanged?: () => void;
-  isContractor?: boolean;
+  // onNameChanged?: () => void;
+  // isContractor?: boolean;
 };
 
 export type ChangeNamePopUpProps = {
@@ -37,7 +38,7 @@ export const inputsValidation: Record<ChangeDataPopUpMode, (value: string) => bo
 export type ChangeDataPopUpProps = {
   currentValue: string;
   handleOpenVerification: (mode: ChangeDataPopUpMode, newValue: string) => void;
-  setNewValue: (value: string) => void;
+  // setNewValue: (value: string) => void;
   mode: ChangeDataPopUpMode;
   onChangeDataPopupClose: () => void;
 };

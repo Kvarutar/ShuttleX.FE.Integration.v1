@@ -116,6 +116,7 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
       setIsButtonEnabled(isValid && !emailErrorMessage);
     }, [userDataForm, validateForm, wasValidated, emailErrorMessage]);
 
+    //TODO add code for checking if user was werificated by phone or by email
     const handleSubmit = () => {
       setWasValidated(true);
       if (!validateForm()) {

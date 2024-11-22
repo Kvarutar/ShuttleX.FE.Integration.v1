@@ -1,61 +1,57 @@
-import { useEffect, useRef, useState } from 'react';
-import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Dimensions, Modal, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { useEffect } from 'react';
+import { I18nextProvider } from 'react-i18next';
+import { Dimensions, Platform, Pressable, StyleSheet, View } from 'react-native';
 
 // import { Switch } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
 // TODO Uncomment all code whe we need it
 // import { useTheme } from '../../../core/themes/v2/themeContext';
 // import { Switch } from 'react-native';
-import { isNameValid } from '../../../utils/validation';
+// import { isNameValid } from '../../../utils/validation';
 // import { BarModes } from '../../atoms/Bar/types';
 // import Bar from '../../atoms/Bar/v2';
-import Button from '../../atoms/Button/v2';
+// import Button from '../../atoms/Button/v2';
 // import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
-import { TextInputInputMode, type TextInputRef } from '../../atoms/TextInput/v2/props';
+// import { type TextInputRef } from '../../atoms/TextInput/v2/props';
 import { countryFlags } from '../../icons/Flags';
 import BottomWindowWithGesture from '../../molecules/BottomWindowWithGesture';
 import ChangeDataPopUp from './ChangeDataPopUp';
-import { ChangeNamePopUp, ChangeNamePopUpButtons } from './ChangeNamePopUp';
+// import { ChangeNamePopUp, ChangeNamePopUpButtons } from './ChangeNamePopUp';
 import { useChangeData } from './hooks/useChangeData';
 import { useProfileForm } from './hooks/useProfileForm';
 import { type AccountSettingsProps } from './types';
 
 const windowSizes = Dimensions.get('window');
 
+//////TODO uncoment all changeName related code when we need changeName popup///////
+
 const AccountSettingsScreenWithoutI18n = ({
-  onProfileDataSave,
+  // onProfileDataSave,
   profile,
   handleOpenVerification,
   isVerificationDone,
-  onNameChanged,
+  // onNameChanged,
   barBlock,
   photoBlock,
-  isContractor = false,
+  // isContractor = false,
 }: AccountSettingsProps) => {
-  const { t } = useTranslation();
-  const fullNameInputRef = useRef<TextInputRef>(null);
+  // const { t } = useTranslation();
+  // const fullNameInputRef = useRef<TextInputRef>(null);
 
-  const { profileDataForm, setProfileDataForm, handleInputChange, hasProfileChanged, flag } = useProfileForm(profile);
+  const { profileDataForm, handleInputChange, flag } = useProfileForm(profile);
 
-  const {
-    isChangeDataPopUpVisible,
-    mode,
-    changedValue,
-    handleOpenChangeWindow,
-    onChangeDataPopupClose,
-    handleValueChange,
-  } = useChangeData();
+  const { isChangeDataPopUpVisible, mode, changedValue, handleOpenChangeWindow, onChangeDataPopupClose } =
+    useChangeData();
 
   //theme logic
   // TODO Uncomment all code whe we need it
   // const { themeMode, setThemeMode } = useTheme();
 
   //validate logic
-  const [wasValidated, setWasValidated] = useState<boolean>(false);
-  const [isChangeNamePopupVisible, setIsChangeNamePopupVisible] = useState<boolean>(false);
-  const [isAnswer, setAnswer] = useState<boolean>(false);
+  // const [wasValidated, setWasValidated] = useState<boolean>(false);
+  // const [isChangeNamePopupVisible, setIsChangeNamePopupVisible] = useState<boolean>(false);
+  // const [isAnswer, setAnswer] = useState<boolean>(false);
 
   //switch theme logic
   // TODO Uncomment all code whe we need it
@@ -72,33 +68,33 @@ const AccountSettingsScreenWithoutI18n = ({
     }
   }, [isVerificationDone, handleInputChange, changedValue, mode]);
 
-  useEffect(() => {
-    if (isAnswer) {
-      if (isContractor) {
-        onNameChanged?.();
-      }
-      onProfileDataSave(profileDataForm);
-      setAnswer(false);
-    }
-  }, [profileDataForm, isAnswer, onProfileDataSave, onNameChanged, isContractor]);
+  // useEffect(() => {
+  //   if (isAnswer) {
+  //     if (isContractor) {
+  //       onNameChanged?.();
+  //     }
+  //     onProfileDataSave(profileDataForm);
+  //     setAnswer(false);
+  //   }
+  // }, [profileDataForm, isAnswer, onProfileDataSave, onNameChanged, isContractor]);
 
-  const onChangeNamePopupClose = () => {
-    setIsChangeNamePopupVisible(false);
+  // const onChangeNamePopupClose = () => {
+  //   setIsChangeNamePopupVisible(false);
 
-    setProfileDataForm(prevState => ({
-      ...prevState,
-      fullName: profile.fullName,
-    }));
-  };
+  //   setProfileDataForm(prevState => ({
+  //     ...prevState,
+  //     fullName: profile.fullName,
+  //   }));
+  // };
 
-  const onDataSave = () => {
-    fullNameInputRef.current?.blur();
+  // const onDataSave = () => {
+  //   fullNameInputRef.current?.blur();
 
-    setWasValidated(true);
-    if (profile.fullName !== profileDataForm.fullName) {
-      setIsChangeNamePopupVisible(true);
-    }
-  };
+  //   setWasValidated(true);
+  //   if (profile.fullName !== profileDataForm.fullName) {
+  //     setIsChangeNamePopupVisible(true);
+  //   }
+  // };
 
   const computedStyles = StyleSheet.create({
     switch: {
@@ -114,18 +110,20 @@ const AccountSettingsScreenWithoutI18n = ({
       <View style={styles.wrapper}>
         {photoBlock}
         <View style={styles.inputsStyle}>
-          <TextInput
-            ref={fullNameInputRef}
-            inputMode={TextInputInputMode.Text}
-            value={profileDataForm.fullName}
-            placeholder={t('AccountSettings_fullName_placeholder')}
-            withClearButton
-            onChangeText={(value: string) => handleInputChange('fullName', value)}
-            error={{
-              isError: !isNameValid(profileDataForm.fullName) && wasValidated,
-              message: t('AccountSettings_nameError'),
-            }}
-          />
+          <View pointerEvents="none">
+            <TextInput
+              // ref={fullNameInputRef}
+              // inputMode={TextInputInputMode.Text}
+              value={profileDataForm.fullName}
+              // placeholder={t('AccountSettings_fullName_placeholder')}
+              // withClearButton
+              // onChangeText={(value: string) => handleInputChange('fullName', value)}
+              // error={{
+              //   isError: !isNameValid(profileDataForm.fullName) && wasValidated,
+              //   message: t('AccountSettings_nameError'),
+              // }}
+            />
+          </View>
 
           <Pressable onPress={() => handleOpenChangeWindow('email')}>
             <View pointerEvents="none">
@@ -152,13 +150,13 @@ const AccountSettingsScreenWithoutI18n = ({
               <Switch onValueChange={toggleSwitch} value={isThemeSwitchActive} style={computedStyles.switch} />
             </Bar>*/}
 
-          {hasProfileChanged && (
+          {/* {hasProfileChanged && (
             <Button onPress={onDataSave} textStyle={styles.button} text={t('AccountSettings_saveButton')} />
-          )}
+          )} */}
         </View>
       </View>
 
-      {isChangeNamePopupVisible && (
+      {/* {isChangeNamePopupVisible && (
         <Modal transparent>
           <BottomWindowWithGesture
             withShade
@@ -170,7 +168,7 @@ const AccountSettingsScreenWithoutI18n = ({
             hiddenPart={<ChangeNamePopUp isContractor={isContractor} />}
           />
         </Modal>
-      )}
+      )} */}
 
       {isChangeDataPopUpVisible && (
         //TODO modal does not work properly on android devices, resolve problem after demo
@@ -186,7 +184,7 @@ const AccountSettingsScreenWithoutI18n = ({
               currentValue={profileDataForm[mode]}
               mode={mode}
               handleOpenVerification={handleOpenVerification}
-              setNewValue={handleValueChange}
+              // setNewValue={handleValueChange}
               onChangeDataPopupClose={onChangeDataPopupClose}
             />
           }
