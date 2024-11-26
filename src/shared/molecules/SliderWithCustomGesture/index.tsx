@@ -6,6 +6,7 @@ import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 
 
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import Text from '../../atoms/Text';
+import { SwipeButtonModes } from '../SwipeButton/types';
 import { type SliderWithCustomGestureProps } from './types';
 
 const buttonPercentage = 0.2;
@@ -49,12 +50,14 @@ const SliderWithCustomGesture = ({
     confirm: themeMode === 'dark' ? colors.textTertiaryColor : colors.textPrimaryColor,
     decline: colors.errorColor,
     finish: themeMode === 'light' ? colors.textTertiaryColor : colors.textPrimaryColor,
+    disabled: colors.textSecondaryColor,
   };
 
   const backgroundColors = {
     confirm: colors.primaryColor,
     decline: colors.errorColorWithOpacity,
     finish: colors.errorColor,
+    disabled: colors.backgroundSecondaryColor,
   };
 
   const flatContainerStyle = StyleSheet.flatten(containerStyle);
@@ -89,7 +92,9 @@ const SliderWithCustomGesture = ({
         .activeOffsetX([-10, 10]) // Ignoring small horizontal moves for correct working on ScrollView
         .failOffsetY([-10, 10]) // Accept small vertical moves for correct working on ScrollView
         .onUpdate(event => {
-          translateX.value = Math.max(Math.min(event.translationX, 0), -(innerSliderWidth - buttonWidth));
+          if (mode !== SwipeButtonModes.Disabled) {
+            translateX.value = Math.max(Math.min(event.translationX, 0), -(innerSliderWidth - buttonWidth));
+          }
         })
         .onEnd(() => {
           if (translateX.value <= -(innerSliderWidth - buttonWidth)) {
@@ -102,7 +107,9 @@ const SliderWithCustomGesture = ({
         .activeOffsetX([-10, 10]) // Ignoring small horizontal moves for correct working on ScrollView
         .failOffsetY([-10, 10]) // Accept small vertical moves for correct working on ScrollView
         .onUpdate(event => {
-          translateX.value = Math.min(Math.max(event.translationX, 0), innerSliderWidth - buttonWidth);
+          if (mode !== SwipeButtonModes.Disabled) {
+            translateX.value = Math.min(Math.max(event.translationX, 0), innerSliderWidth - buttonWidth);
+          }
         })
         .onEnd(() => {
           if (translateX.value >= innerSliderWidth - buttonWidth) {

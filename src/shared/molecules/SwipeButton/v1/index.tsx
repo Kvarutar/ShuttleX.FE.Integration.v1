@@ -10,7 +10,7 @@ import ButtonV1 from '../../../atoms/Button/v1/index';
 import { ButtonV1Modes } from '../../../atoms/Button/v1/props';
 import Text from '../../../atoms/Text';
 import ArrowIcon from '../../../icons/ArrowIcon';
-import { SwipeButtonModes, type SwipeButtonProps } from '../props';
+import { SwipeButtonModes, type SwipeButtonProps } from '../types';
 
 const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): JSX.Element => {
   const { colors, themeMode } = useThemeV1();

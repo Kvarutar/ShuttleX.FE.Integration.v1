@@ -222,7 +222,7 @@ import SafeAreaView from './shared/molecules/SafeAreaView';
 import ScrollViewWithCustomScroll from './shared/molecules/ScrollViewWithCustomScroll';
 import SliderWithCustomGesture from './shared/molecules/SliderWithCustomGesture';
 import StatsBlock from './shared/molecules/StatsBlock';
-import { SwipeButtonModes } from './shared/molecules/SwipeButton/props';
+import { SwipeButtonModes } from './shared/molecules/SwipeButton/types';
 import SwipeButtonV1 from './shared/molecules/SwipeButton/v1';
 import SwipeButton from './shared/molecules/SwipeButton/v2';
 import TimePickerV1 from './shared/molecules/TimePicker/v1';

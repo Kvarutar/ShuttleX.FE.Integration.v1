@@ -1,6 +1,6 @@
 import { type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
 
-import { type SwipeButtonModes } from '../SwipeButton/props';
+import { type SwipeButtonModes } from '../SwipeButton/types';
 
 export type SliderWithCustomGestureProps = {
   onSwipeEnd: () => Promise<void> | void;

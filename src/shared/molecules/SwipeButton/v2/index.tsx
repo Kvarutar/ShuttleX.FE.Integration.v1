@@ -10,7 +10,7 @@ import { useTheme } from '../../../../core/themes/v2/themeContext';
 import ArrowIcon from '../../../icons/ArrowIcon';
 import SpinnerIcon from '../../../icons/SpinnerIcon';
 import SliderWithCustomGesture from '../../SliderWithCustomGesture';
-import { type SwipeButtonColors, SwipeButtonModes, type SwipeButtonProps } from '../props';
+import { type SwipeButtonColors, SwipeButtonModes, type SwipeButtonProps } from '../types';
 
 const SwipeButtonWithoutI18n = ({
   onSwipeEnd,
@@ -30,6 +30,8 @@ const SwipeButtonWithoutI18n = ({
     transform: [{ rotate: `${rotate.value}deg` }],
   }));
 
+  const isDisabledMode = mode === SwipeButtonModes.Disabled;
+
   if (isLoading) {
     rotate.value = withRepeat(
       withTiming(360, { duration: 1000, easing: Easing.linear }),
@@ -43,23 +45,25 @@ const SwipeButtonWithoutI18n = ({
     light: {
       startColor: colors.iconSecondaryColor,
       endColor: colors.iconTertiaryColor,
-      buttonBgColor: isLoading ? colors.backgroundSecondaryColor : colors.backgroundPrimaryColor,
+      buttonBgColor: isLoading || isDisabledMode ? colors.backgroundSecondaryColor : colors.backgroundPrimaryColor,
     },
     dark: {
       startColor: colors.iconTertiaryColor,
       endColor: colors.iconSecondaryColor,
-      buttonBgColor: isLoading ? colors.backgroundSecondaryColor : colors.backgroundPrimaryColor,
+      buttonBgColor: isLoading || isDisabledMode ? colors.backgroundSecondaryColor : colors.backgroundPrimaryColor,
     },
     test: {
       startColor: colors.iconTertiaryColor,
       endColor: colors.iconSecondaryColor,
-      buttonBgColor: isLoading ? colors.backgroundSecondaryColor : colors.backgroundPrimaryColor,
+      buttonBgColor: isLoading || isDisabledMode ? colors.backgroundSecondaryColor : colors.backgroundPrimaryColor,
     },
   };
 
   const computedStyles = StyleSheet.create({
     button: {
       backgroundColor: swipeButtonColors[themeMode].buttonBgColor,
+      borderColor: isDisabledMode ? colors.borderColor : undefined,
+      borderWidth: isDisabledMode ? 1 : 0,
     },
   });
 
@@ -84,7 +88,7 @@ const SwipeButtonWithoutI18n = ({
                 />
               </Animated.View>
             ) : (
-              <ArrowIcon />
+              <ArrowIcon color={isDisabledMode ? colors.iconSecondaryColor : undefined} />
             )}
           </Pressable>
         }

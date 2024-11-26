@@ -4,6 +4,7 @@ export enum SwipeButtonModes {
   Confirm = 'confirm',
   Decline = 'decline',
   Finish = 'finish',
+  Disabled = 'disabled',
 }
 
 export type SwipeButtonProps = {
