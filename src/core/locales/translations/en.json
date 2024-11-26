@@ -115,5 +115,6 @@
   "MediaCore_titleAlertSelectDocument": "Error",
   "MediaCore_messageAlertSelectDocument": "Unable to select document. Please try again",
   "MediaCore_titleAlertDuplicateFile": "The file has already been uploaded",
-  "MediaCore_messageAlertDuplicateFile": "This file has already been added"
+  "MediaCore_messageAlertDuplicateFile": "This file has already been added",
+  "PrizePedestalIcon_firstPlaceTitle": "Main Present"
 }

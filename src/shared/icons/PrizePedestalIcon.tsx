@@ -1,24 +1,31 @@
 import { useEffect } from 'react';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Svg, { Defs, LinearGradient, Path, Rect, Stop, Text } from 'react-native-svg';
+
+import i18nIntegration from '../../core/locales/i18n';
 
 const numberColor = '#00000029'; //with opacity
 const stringColor = '#00000066'; //with opacity
 
 const animationDuration = 500;
 
-const PrizePedestalIcon = ({
-  containerStyle,
-  firstPlaceColored,
-  secondPlaceColored,
-  thirdPlaceColored,
-}: {
+type PrizePedestalIconProps = {
   containerStyle?: StyleProp<ViewStyle>;
   firstPlaceColored: boolean;
   secondPlaceColored: boolean;
   thirdPlaceColored: boolean;
-}) => {
+};
+
+const PrizePedestalIconWithoutI18n = ({
+  containerStyle,
+  firstPlaceColored,
+  secondPlaceColored,
+  thirdPlaceColored,
+}: PrizePedestalIconProps) => {
+  const { t } = useTranslation();
+
   const useOpacityAnimation = (placeColored: boolean) => {
     const alternateOpacity = useSharedValue(placeColored ? 1 : 0);
     const defaultOpacity = useSharedValue(placeColored ? 0 : 1);
@@ -62,7 +69,7 @@ const PrizePedestalIcon = ({
           1
         </Text>
         <Text x="68.5" y="155" fontSize="11" fill={stringColor} fontWeight="bold" textAnchor="middle">
-          Main Present
+          {t('PrizePedestalIcon_firstPlaceTitle')}
         </Text>
 
         <Defs>
@@ -85,7 +92,7 @@ const PrizePedestalIcon = ({
           1
         </Text>
         <Text x="68.5" y="155" fontSize="11" fill={stringColor} fontWeight="bold" textAnchor="middle">
-          Main Present
+          {t('PrizePedestalIcon_firstPlaceTitle')}
         </Text>
 
         <Defs>
@@ -191,6 +198,12 @@ const PrizePedestalIcon = ({
     </View>
   );
 };
+
+const PrizePedestalIcon = (props: PrizePedestalIconProps) => (
+  <I18nextProvider i18n={i18nIntegration}>
+    <PrizePedestalIconWithoutI18n {...props} />
+  </I18nextProvider>
+);
 
 const styles = StyleSheet.create({
   container: {

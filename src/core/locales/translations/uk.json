@@ -54,5 +54,6 @@
   "MediaCore_titleAlertSelectDocument": "Помилка",
   "MediaCore_messageAlertSelectDocument": "Не вдалося обрати документ. Спробуйте ще раз",
   "MediaCore_titleAlertDuplicateFile": "Файл вже завантажено",
-  "MediaCore_messageAlertDuplicateFile": "Цей файл вже було додано"
+  "MediaCore_messageAlertDuplicateFile": "Цей файл вже було додано",
+  "PrizePedestalIcon_firstPlaceTitle": "Головний приз"
 }
