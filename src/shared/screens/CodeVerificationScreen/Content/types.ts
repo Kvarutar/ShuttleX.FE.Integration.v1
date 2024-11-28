@@ -5,4 +5,11 @@ export type ContentProps = {
   onCodeChange: (code: string) => void;
   onButtonPress: () => void;
   isError?: boolean;
+  underButtonText?: string;
+  underButtonPressableText?: string;
+  onPressUnderButtonText?: () => void;
+};
+
+export type ContentRef = {
+  refresh: () => void;
 };

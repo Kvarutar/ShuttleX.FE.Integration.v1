@@ -1,12 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 import { StyleSheet, type TextInputProps, View } from 'react-native';
 
 import { useTheme } from '../../../../core/themes/v2/themeContext';
 import TextInput from '../../../atoms/TextInput/v2';
 import { TextInputInputMode, type TextInputRef } from '../../../atoms/TextInput/v2/props';
-import { type CodeInputProps, type CodeNumberProps } from '../props';
+import { type CodeInputProps, type CodeInputRef, type CodeNumberProps } from '../props';
 
 const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(
   ({ input, setInput, onBackspaceKeyPress, isError = false }, ref) => {
@@ -54,7 +54,7 @@ const CodeNumber = forwardRef<TextInputRef, CodeNumberProps>(
   },
 );
 
-const CodeInput = ({ style, onCodeChange, isError }: CodeInputProps): JSX.Element => {
+const CodeInput = forwardRef<CodeInputRef, CodeInputProps>(({ style, onCodeChange, isError }, ref): JSX.Element => {
   //TODO: Refactor code by using dictionary
   const navigation = useNavigation<NativeStackNavigationProp<{}>>();
 
@@ -68,6 +68,15 @@ const CodeInput = ({ style, onCodeChange, isError }: CodeInputProps): JSX.Elemen
   const [secondCodeNumberInput, setSecondCodeNumberInput] = useState('');
   const [thirdCodeNumberInput, setThirdCodeNumberInput] = useState('');
   const [fourthCodeNumberInput, setFourthCodeNumberInput] = useState('');
+
+  useImperativeHandle(ref, () => ({
+    cleanFields: () => {
+      setFirstCodeNumberInput('');
+      setSecondCodeNumberInput('');
+      setThirdCodeNumberInput('');
+      setFourthCodeNumberInput('');
+    },
+  }));
 
   useEffect(() => {
     navigation.addListener('transitionEnd', () => {
@@ -157,7 +166,7 @@ const CodeInput = ({ style, onCodeChange, isError }: CodeInputProps): JSX.Elemen
       />
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

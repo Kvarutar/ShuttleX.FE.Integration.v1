@@ -195,6 +195,9 @@ import {
   type BottomWindowWithGestureProps,
   type BottomWindowWithGestureRef,
 } from './shared/molecules/BottomWindowWithGesture/props';
+import ChangeDataPopUp from './shared/molecules/changePopUps/ChangeDataPopUp';
+import { useChangeData } from './shared/molecules/changePopUps/hooks/useChangeData';
+import { useProfileForm } from './shared/molecules/changePopUps/hooks/useProfileForm';
 import CodeInputV1 from './shared/molecules/CodeInput/v1';
 import CodeInput from './shared/molecules/CodeInput/v2';
 import Confetti from './shared/molecules/Confetti';
@@ -242,6 +245,7 @@ import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
 import CodeVerificationScreen from './shared/screens/CodeVerificationScreen';
 import TitleWithCloseButton from './shared/screens/CodeVerificationScreen/TitleWithCloseButton';
+import { type CodeVerificationScreenRef } from './shared/screens/CodeVerificationScreen/types';
 import FeedbackScreen from './shared/screens/FeedbackScreen';
 import { type FeedbackRating, type FeedbackType } from './shared/screens/FeedbackScreen/props';
 import LockOutScreen from './shared/screens/LockOutScreen';
@@ -327,6 +331,7 @@ export {
   CalendarIcon,
   CameraIcon,
   type Card,
+  ChangeDataPopUp,
   ChatIcon,
   CheckBox,
   checkCameraUsagePermission,
@@ -342,6 +347,7 @@ export {
   CodeInput,
   CodeInputV1,
   CodeVerificationScreen,
+  type CodeVerificationScreenRef,
   CoinIcon,
   ComfortPlusImage,
   Confetti,
@@ -573,10 +579,12 @@ export {
   UnknownCardIcon,
   UploadIcon,
   UploadPhotoIcon,
+  useChangeData,
   useCompass,
   useDebounce,
   useGeolocationStartWatch,
   useNetworkConnectionStartWatch,
+  useProfileForm,
   useTariffsIcons,
   useTheme,
   useThemeV1,

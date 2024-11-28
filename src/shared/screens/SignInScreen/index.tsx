@@ -79,7 +79,7 @@ const SignInScreenWithoutI18n = ({
               message: t('SignUp_incorrectEmail'),
             }}
             placeholder={t('SignUp_emailInputPlaceholder')}
-            value={data}
+            value={data.trim()}
             onChangeText={setData}
           />
         </Animated.View>

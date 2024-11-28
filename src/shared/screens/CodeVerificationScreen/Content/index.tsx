@@ -1,7 +1,9 @@
-import { useRef } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
+import { useTheme } from '../../../../core/themes/v2/themeContext';
+import { type Nullable } from '../../../../utils/typescript';
 import Button from '../../../atoms/Button/v2';
 import {
   type ButtonRef,
@@ -10,46 +12,87 @@ import {
   ButtonSizes,
   CircleButtonModes,
 } from '../../../atoms/Button/v2/props';
+import Text from '../../../atoms/Text';
+import { type CodeInputRef } from '../../../molecules/CodeInput/props';
 import CodeInput from '../../../molecules/CodeInput/v2';
 import HeaderWithTwoTitles from '../../../molecules/HeaderWithTwoTitles';
-import { type ContentProps } from './types';
+import ScrollViewWithCustomScroll from '../../../molecules/ScrollViewWithCustomScroll';
+import { type ContentProps, type ContentRef } from './types';
 
-const Content = ({
-  time,
-  headerFirstText,
-  headerSecondText,
-  onCodeChange,
-  onButtonPress,
-  isError,
-}: ContentProps): JSX.Element => {
-  const { t } = useTranslation();
-  const buttonRef = useRef<ButtonRef>(null);
+const Content = forwardRef<ContentRef, ContentProps>(
+  (
+    {
+      time,
+      headerFirstText,
+      headerSecondText,
+      onCodeChange,
+      onButtonPress,
+      isError,
+      underButtonText,
+      underButtonPressableText,
+      onPressUnderButtonText,
+    },
+    ref,
+  ): JSX.Element => {
+    const { t } = useTranslation();
+    const buttonRef = useRef<ButtonRef>(null);
+    const codeInputRef = useRef<Nullable<CodeInputRef>>(null);
+    const { colors } = useTheme();
 
-  const handlePress = () => {
-    buttonRef.current?.restartMode6Animation();
-    onButtonPress();
-  };
+    const computedStyles = StyleSheet.create({
+      underButtonPressableText: {
+        color: colors.textLinkColor,
+      },
+    });
 
-  return (
-    <>
-      <HeaderWithTwoTitles firstTitle={headerFirstText} secondTitle={headerSecondText} />
-      <CodeInput style={styles.codeInput} onCodeChange={onCodeChange} isError={isError} />
-      <Button
-        ref={buttonRef}
-        containerStyle={styles.againButton}
-        shape={ButtonShapes.Circle}
-        circleMode6Time={time}
-        mode={CircleButtonModes.Mode6}
-        size={ButtonSizes.L}
-        shadow={ButtonShadows.Weak}
-        onPress={handlePress}
-        text={t('CodeVerification_againButton')}
-      />
-    </>
-  );
-};
+    useImperativeHandle(ref, () => ({
+      refresh: () => {
+        codeInputRef?.current?.cleanFields();
+        buttonRef.current?.restartMode6Animation();
+      },
+    }));
+
+    const handlePress = () => {
+      buttonRef.current?.restartMode6Animation();
+      onButtonPress();
+    };
+
+    return (
+      <>
+        <ScrollViewWithCustomScroll contentContainerStyle={[styles.inputWrapper]}>
+          <HeaderWithTwoTitles firstTitle={headerFirstText} secondTitle={headerSecondText} />
+          <CodeInput ref={codeInputRef} style={styles.codeInput} onCodeChange={onCodeChange} isError={isError} />
+        </ScrollViewWithCustomScroll>
+        <Button
+          ref={buttonRef}
+          containerStyle={styles.againButton}
+          shape={ButtonShapes.Circle}
+          circleMode6Time={time}
+          mode={CircleButtonModes.Mode6}
+          size={ButtonSizes.L}
+          shadow={ButtonShadows.Weak}
+          onPress={handlePress}
+          text={t('CodeVerification_againButton')}
+        />
+        {(underButtonText || underButtonPressableText) && (
+          <View style={styles.underButtonTextContainer}>
+            <Text style={styles.underButtonText}>{underButtonText} </Text>
+            <Pressable onPress={onPressUnderButtonText} hitSlop={20}>
+              <Text style={[styles.underButtonPressableText, computedStyles.underButtonPressableText]}>
+                {underButtonPressableText}
+              </Text>
+            </Pressable>
+          </View>
+        )}
+      </>
+    );
+  },
+);
 
 const styles = StyleSheet.create({
+  inputWrapper: {
+    paddingBottom: 24,
+  },
   codeInput: {
     flex: 1,
     gap: 30,
@@ -58,6 +101,19 @@ const styles = StyleSheet.create({
   },
   againButton: {
     alignSelf: 'center',
+  },
+  underButtonTextContainer: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+    marginTop: 12,
+  },
+  underButtonText: {
+    fontFamily: 'Inter Medium',
+    fontSize: 14,
+  },
+  underButtonPressableText: {
+    fontFamily: 'Inter Medium',
+    fontSize: 14,
   },
 });
 

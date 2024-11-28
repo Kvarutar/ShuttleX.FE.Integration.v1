@@ -1,5 +1,5 @@
 import { emailRegex } from '../core/consts/regex.consts';
-import { type Profile } from '../shared/screens/AccountSettingsScreen/types';
+import { type Profile } from '../shared/molecules/changePopUps/types';
 
 const isNameValid = (name: string) => name.length >= 2 && name.length <= 30;
 const isEmailValid = (email: string) => emailRegex.test(email);

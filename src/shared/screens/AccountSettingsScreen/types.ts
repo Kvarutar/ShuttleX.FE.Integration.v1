@@ -1,12 +1,6 @@
 import { type ReactNode } from 'react';
 
-import { isEmailValid, isPhoneValid } from '../../../utils/validation';
-
-export type Profile = {
-  fullName: string;
-  email: string;
-  phone: string;
-};
+import { type ChangeDataPopUpMode, type Profile } from '../../molecules/changePopUps/types';
 
 export type AccountSettingsProps = {
   //TODO uncoment when we need changeName popup
@@ -18,27 +12,4 @@ export type AccountSettingsProps = {
   barBlock?: ReactNode;
   // onNameChanged?: () => void;
   // isContractor?: boolean;
-};
-
-export type ChangeNamePopUpProps = {
-  isContractor: boolean;
-};
-export type ChangeNamePopUpButtonsProps = {
-  setAnswer: (value: boolean) => void;
-  setIsPopUpVisible: (value: boolean) => void;
-};
-
-export type ChangeDataPopUpMode = 'email' | 'phone';
-
-export const inputsValidation: Record<ChangeDataPopUpMode, (value: string) => boolean> = {
-  email: isEmailValid,
-  phone: isPhoneValid,
-};
-
-export type ChangeDataPopUpProps = {
-  currentValue: string;
-  handleOpenVerification: (mode: ChangeDataPopUpMode, newValue: string) => void;
-  // setNewValue: (value: string) => void;
-  mode: ChangeDataPopUpMode;
-  onChangeDataPopupClose: () => void;
 };

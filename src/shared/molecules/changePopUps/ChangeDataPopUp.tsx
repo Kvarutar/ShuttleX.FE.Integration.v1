@@ -11,17 +11,16 @@ import { SquareButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
 import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
-import PhoneInput from '../../molecules/PhoneInput';
-import PhoneSlidingPanel from '../../molecules/PhoneSlidingPanel';
+import PhoneInput from '../PhoneInput';
+import PhoneSlidingPanel from '../PhoneSlidingPanel';
 import { getRenderText } from './getRenderText';
-import { type NewData } from './hooks/useChangeDataForm';
 import { useChangeDataForm } from './hooks/useChangeDataForm';
-import { type ChangeDataPopUpProps } from './types';
+import { type ChangeDataPopUpProps, type NewData } from './types';
 
 const ChangeDataPopUpWithoutI18n = ({
   currentValue,
   handleOpenVerification,
-  // setNewValue,
+  setNewValue,
   mode,
   onChangeDataPopupClose,
 }: ChangeDataPopUpProps) => {
@@ -44,7 +43,7 @@ const ChangeDataPopUpWithoutI18n = ({
     if (isValid) {
       onChangeDataPopupClose();
       handleOpenVerification(mode, data.newValue);
-      // setNewValue(data.newValue);
+      setNewValue?.(data.newValue);
     }
   };
 

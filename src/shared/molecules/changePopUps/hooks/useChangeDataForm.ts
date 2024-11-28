@@ -1,11 +1,6 @@
 import { useState } from 'react';
 
-import { type ChangeDataPopUpMode, inputsValidation } from '../types';
-
-export type NewData = {
-  currentValue: string;
-  newValue: string;
-};
+import { type ChangeDataPopUpMode, inputsValidation, type NewData } from '../types';
 
 export const useChangeDataForm = (mode: ChangeDataPopUpMode, profileCurrentValue: string) => {
   const [data, setData] = useState<NewData>({

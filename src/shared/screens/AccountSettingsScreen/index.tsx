@@ -16,10 +16,9 @@ import TextInput from '../../atoms/TextInput/v2';
 // import { type TextInputRef } from '../../atoms/TextInput/v2/props';
 import { countryFlags } from '../../icons/Flags';
 import BottomWindowWithGesture from '../../molecules/BottomWindowWithGesture';
-import ChangeDataPopUp from './ChangeDataPopUp';
-// import { ChangeNamePopUp, ChangeNamePopUpButtons } from './ChangeNamePopUp';
-import { useChangeData } from './hooks/useChangeData';
-import { useProfileForm } from './hooks/useProfileForm';
+import ChangeDataPopUp from '../../molecules/changePopUps/ChangeDataPopUp';
+import { useChangeData } from '../../molecules/changePopUps/hooks/useChangeData';
+import { useProfileForm } from '../../molecules/changePopUps/hooks/useProfileForm';
 import { type AccountSettingsProps } from './types';
 
 const windowSizes = Dimensions.get('window');

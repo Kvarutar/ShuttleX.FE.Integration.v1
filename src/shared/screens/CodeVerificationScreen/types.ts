@@ -11,4 +11,11 @@ export type CodeVerificationScreenProps = {
   titleText?: string;
   onBannedAgainButtonPress: () => void;
   onSupportButtonPress: () => void;
+  underButtonText?: string;
+  underButtonPressableText?: string;
+  onPressUnderButtonText?: () => void;
+};
+
+export type CodeVerificationScreenRef = {
+  refresh: () => void;
 };
