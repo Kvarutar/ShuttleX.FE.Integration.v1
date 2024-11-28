@@ -55,5 +55,10 @@
   "MediaCore_messageAlertSelectDocument": "Не вдалося обрати документ. Спробуйте ще раз",
   "MediaCore_titleAlertDuplicateFile": "Файл вже завантажено",
   "MediaCore_messageAlertDuplicateFile": "Цей файл вже було додано",
-  "PrizePedestalIcon_firstPlaceTitle": "Головний приз"
+  "PrizePedestalIcon_firstPlaceTitle": "Головний приз",
+  "UnsupportedCityPopup_firstTitle": "Вибачте, ми поки",
+  "UnsupportedCityPopup_secondTitle": "не працюємо у\nцьому місті.",
+  "UnsupportedCityPopup_description": "Зверніться до служби\nпідтримки, якщо у вас виникли\nпроблеми.",
+  "UnsupportedCityPopup_supportButton": "Допомога",
+  "UnsupportedCityPopup_closeButton": "Закрити"
 }

@@ -240,6 +240,7 @@ import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndSto
 import TrafficIndicator from './shared/molecules/TrafficIndicator';
 import { TrafficLevel } from './shared/molecules/TrafficIndicator/types';
 import UnclosablePopup from './shared/molecules/UnclosablePopup';
+import UnsupportedCityPopup from './shared/molecules/UnsupportedCityPopup';
 import AccountSettingsScreen from './shared/screens/AccountSettingsScreen';
 import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
@@ -577,6 +578,7 @@ export {
   TrafficLevel,
   UnclosablePopup,
   UnknownCardIcon,
+  UnsupportedCityPopup,
   UploadIcon,
   UploadPhotoIcon,
   useChangeData,

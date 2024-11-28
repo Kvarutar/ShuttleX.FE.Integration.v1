@@ -116,5 +116,11 @@
   "MediaCore_messageAlertSelectDocument": "Unable to select document. Please try again",
   "MediaCore_titleAlertDuplicateFile": "The file has already been uploaded",
   "MediaCore_messageAlertDuplicateFile": "This file has already been added",
-  "PrizePedestalIcon_firstPlaceTitle": "Main Present"
+  "PrizePedestalIcon_firstPlaceTitle": "Main Present",
+  "UnsupportedCityPopup_subTitle": "Error",
+  "UnsupportedCityPopup_firstTitle": "Sorry, we don't",
+  "UnsupportedCityPopup_secondTitle": "work in this city\nyet.",
+  "UnsupportedCityPopup_description": "Please contact support if you have\na problem",
+  "UnsupportedCityPopup_supportButton": "Support",
+  "UnsupportedCityPopup_closeButton": "Close"
 }
