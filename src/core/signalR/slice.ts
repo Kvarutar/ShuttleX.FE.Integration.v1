@@ -1,47 +1,23 @@
 import { type HubConnection, HubConnectionBuilder, HubConnectionState, LogLevel } from '@microsoft/signalr';
-import { createAsyncThunk, createSlice, type Dispatch, type PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-const sliceName = 'signalr';
+import { minToMilSec, secToMilSec } from '../../utils';
+import { type Nullable } from '../../utils/typescript';
+import {
+  type createSignalRSliceArgs,
+  type OptionalOptions,
+  type SignalRReduxExternalState,
+  type SignalRState,
+} from './types';
+import { signalRconsoleError, signalRconsoleInfo } from './utils';
 
-type SignalRState = {
-  accessToken: string;
-};
+export const sliceName = 'signalr';
 
-type RequiredOptions = {
-  url: string;
-};
-
-type OptionalOptions = {
-  reconnectTimeout?: number;
-  serverTimeout?: number;
-  serverTimeoutWithoutReceivingMessages?: number;
-};
-
-type Listener<D> = {
-  /**
-   * @param methodName The name of the SignalR hub method to listen to
-   */
-  methodName: Parameters<HubConnection['on']>[0];
-  /**
-   * @param callback The function that will be called when the hub sends a message
-   */
-  callback: ({ readOnlyState, dispatch }: { readOnlyState: any; dispatch: D }, ...resultsArr: any[]) => void;
-};
-
-export const createSignalRSlice = ({
-  options,
-  listeners = [],
-}: {
-  options: RequiredOptions & OptionalOptions;
-  /**
-   * Listeners of SignalR hub methods.
-   */
-  listeners?: Listener<Dispatch>[];
-}) => {
+export const createSignalRSlice = ({ options, listeners = [] }: createSignalRSliceArgs) => {
   const opts: Required<OptionalOptions> = {
-    reconnectTimeout: 3 * 1000, // 3 seconds
-    serverTimeout: 5 * 1000, // 5 seconds
-    serverTimeoutWithoutReceivingMessages: 60 * 60 * 1000, // 1 hour
+    reconnectTimeout: secToMilSec(3),
+    serverTimeout: secToMilSec(5),
+    serverTimeoutWithoutReceivingMessages: minToMilSec(60),
   };
 
   if (options?.reconnectTimeout) {
@@ -54,10 +30,11 @@ export const createSignalRSlice = ({
     opts.serverTimeoutWithoutReceivingMessages = options.serverTimeoutWithoutReceivingMessages;
   }
 
-  let signalRConnection: HubConnection | null = null;
+  let signalRConnection: Nullable<HubConnection> = null;
 
   const initialState: SignalRState = {
     accessToken: '',
+    isConnected: false,
   };
 
   const slice = createSlice({
@@ -67,23 +44,26 @@ export const createSignalRSlice = ({
       updateSignalRAccessToken(state: SignalRState, action: PayloadAction<string>) {
         state.accessToken = action.payload;
       },
+      setIsSignalRConnected(state: SignalRState, action: PayloadAction<SignalRState['isConnected']>) {
+        state.isConnected = action.payload;
+      },
     },
   });
 
   // Thunks
   const createAppAsyncThunk = createAsyncThunk.withTypes<{
-    state: Record<typeof sliceName, SignalRState>;
+    state: SignalRReduxExternalState;
   }>();
 
   const connect = createAppAsyncThunk<void>(`${sliceName}/connect`, async (_, { getState, dispatch }) => {
     try {
       if (!(sliceName in getState())) {
-        console.error(`"${sliceName}" field was not found in redux state!`);
+        signalRconsoleError(`"${sliceName}" field was not found in redux state!`);
         return;
       }
 
       const start = async () => {
-        console.info('SignalR trying to connect...');
+        signalRconsoleInfo('trying to connect...');
         if (signalRConnection === null) {
           return;
         }
@@ -91,9 +71,10 @@ export const createSignalRSlice = ({
           if (signalRConnection.state === HubConnectionState.Disconnected) {
             await signalRConnection.start();
           }
-          console.info('SignalR connected');
+          dispatch(slice.actions.setIsSignalRConnected(true));
+          signalRconsoleInfo('connected');
         } catch (error) {
-          console.error('Error in SignalR.start():', error);
+          signalRconsoleError(`error in start(): ${error}`);
           setTimeout(start, opts.reconnectTimeout);
         }
       };
@@ -110,7 +91,8 @@ export const createSignalRSlice = ({
         .withServerTimeout(opts.serverTimeout)
         .withAutomaticReconnect({
           nextRetryDelayInMilliseconds: () => {
-            console.info('SignalR connection lost, reconnecting...');
+            dispatch(slice.actions.setIsSignalRConnected(false));
+            signalRconsoleInfo('connection lost, reconnecting...');
             return opts.reconnectTimeout;
           },
         })
@@ -119,7 +101,7 @@ export const createSignalRSlice = ({
       signalRConnection.serverTimeoutInMilliseconds = opts.serverTimeoutWithoutReceivingMessages;
 
       signalRConnection.onreconnected(() => {
-        console.info('SignalR connection restored');
+        signalRconsoleInfo('connection restored');
         start();
       });
 
@@ -131,7 +113,7 @@ export const createSignalRSlice = ({
 
       await start();
     } catch (error) {
-      console.error('Error in SignalR.connect():', error);
+      signalRconsoleError(`Error in connect(): ${error}`);
     }
   });
 
@@ -148,12 +130,14 @@ export const createSignalRSlice = ({
           const result = await signalRConnection?.invoke(methodName, ...(Array.isArray(payload) ? payload : [payload]));
           return result as ReturnValue;
         } catch (error) {
-          console.error(`SignalR ${methodName} method error:`, error);
+          signalRconsoleError(`${methodName} method error: ${error}`);
           return rejectWithValue(error);
         }
       },
     );
   };
+
+  const isSignalRConnectedSelector = (state: SignalRReduxExternalState) => state.signalr.isConnected;
 
   return {
     /**
@@ -167,5 +151,6 @@ export const createSignalRSlice = ({
     signalRThunks: {
       connect,
     },
+    isSignalRConnectedSelector,
   };
 };

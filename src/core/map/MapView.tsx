@@ -19,14 +19,15 @@ import Animated, {
 import { v4 as uuidv4 } from 'uuid';
 
 import Text from '../../shared/atoms/Text';
-import MapPinIcon from '../../shared/icons/MapPinIcon';
+import MapPinIcon2 from '../../shared/icons/MapPinIcon2';
 import PickUpIcon from '../../shared/icons/PickUpIcon';
 import LocationArrowImage from '../../shared/images/LocationArrowImage';
+import TopViewCarImage from '../../shared/images/TopViewCarImage';
 import { useCompass } from '../../utils/compass';
 import { drawArcPolyline } from '../../utils/geolocation/drawArcPolyline';
-import { useThemeV1 } from '../themes/v1/themeContext';
 import { AnimatedMarker } from './hooks';
 import lightMapStyle from './lightMapStyle.json';
+import MapCar from './MapCar';
 import { type MapViewProps } from './types';
 
 const constants = {
@@ -38,6 +39,7 @@ const MapView = ({
   style,
   geolocationCoordinates,
   geolocationCalculatedHeading,
+  cars,
   polylines,
   stopPoints,
   finalStopPoint,
@@ -56,7 +58,6 @@ const MapView = ({
   const currentLocationMarkerRef = useRef<MapMarker>(null);
 
   const { compassSharedValue } = useCompass();
-  const { colors } = useThemeV1();
 
   const [isMapLoaded, setIsMapLoaded] = useState(false);
 
@@ -167,7 +168,7 @@ const MapView = ({
           <Polyline
             key={i}
             coordinates={polylineOptions.coordinates}
-            strokeColor={polylineOptions.color ?? colors.primaryColor}
+            strokeColor={polylineOptions.color ?? '#000'}
             strokeWidth={6}
           />,
         );
@@ -193,7 +194,7 @@ const MapView = ({
             <Polyline
               key={uuidv4()}
               coordinates={coordinates.slice(j, j + 2)}
-              strokeColor={polylineOptions.color ?? colors.primaryColor}
+              strokeColor={polylineOptions.color ?? '#000'}
               strokeWidth={6}
             />,
           );
@@ -206,7 +207,7 @@ const MapView = ({
           <Polyline
             key={i}
             strokeWidth={3}
-            strokeColor="#000000"
+            strokeColor="#000"
             coordinates={drawArcPolyline(polylineOptions.startPont, polylineOptions.endPoint)}
           />,
           <Polyline
@@ -223,8 +224,9 @@ const MapView = ({
 
   return (
     <>
-      {/* Preloads map raster image (easiest way for fixing several bugs on android) */}
+      {/* Preloads map raster images (easiest way for fixing several bugs on android) */}
       {Platform.OS === 'android' && !isMapLoaded && <LocationArrowImage style={styles.preloadImage} />}
+      {Platform.OS === 'android' && !isMapLoaded && <TopViewCarImage style={styles.preloadImage} />}
 
       <MapViewNative
         provider="google"
@@ -254,6 +256,18 @@ const MapView = ({
           />
         )}
 
+        {cars &&
+          cars.data.map(carData => {
+            return (
+              <MapCar
+                key={carData.id}
+                coordinates={carData.coordinates}
+                heading={carData.heading}
+                animationDuration={cars.animationDuration}
+              />
+            );
+          })}
+
         {rendredPolylines.length > 0 && rendredPolylines}
 
         {stopPoints &&
@@ -270,8 +284,8 @@ const MapView = ({
           ))}
 
         {finalStopPoint && (
-          <Marker coordinate={finalStopPoint} anchor={{ x: 0.5, y: 0.91 }} tracksViewChanges={false}>
-            <MapPinIcon />
+          <Marker coordinate={finalStopPoint.coordinates} anchor={{ x: 0.5, y: 0.98 }} tracksViewChanges={true}>
+            <MapPinIcon2 title={finalStopPoint.title} subtitle={finalStopPoint.subtitle} />
           </Marker>
         )}
       </MapViewNative>
