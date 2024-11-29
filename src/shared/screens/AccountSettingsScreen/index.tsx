@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
-import { I18nextProvider } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Dimensions, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { SquareButtonModes } from 'shuttlex-integration';
 
 // import { Switch } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
+import Button from '../../atoms/Button/v2';
 // TODO Uncomment all code whe we need it
 // import { useTheme } from '../../../core/themes/v2/themeContext';
 // import { Switch } from 'react-native';
@@ -19,6 +21,8 @@ import BottomWindowWithGesture from '../../molecules/BottomWindowWithGesture';
 import ChangeDataPopUp from '../../molecules/changePopUps/ChangeDataPopUp';
 import { useChangeData } from '../../molecules/changePopUps/hooks/useChangeData';
 import { useProfileForm } from '../../molecules/changePopUps/hooks/useProfileForm';
+import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
+import SignOutPopup from './SignOutPopup';
 import { type AccountSettingsProps } from './types';
 
 const windowSizes = Dimensions.get('window');
@@ -33,15 +37,18 @@ const AccountSettingsScreenWithoutI18n = ({
   // onNameChanged,
   barBlock,
   photoBlock,
+  onSignOut,
   // isContractor = false,
 }: AccountSettingsProps) => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   // const fullNameInputRef = useRef<TextInputRef>(null);
 
   const { profileDataForm, handleInputChange, flag } = useProfileForm(profile);
 
   const { isChangeDataPopUpVisible, mode, changedValue, handleOpenChangeWindow, onChangeDataPopupClose } =
     useChangeData();
+
+  const [isSignOutPopupVisible, setIsSignOutPopupVisible] = useState(false);
 
   //theme logic
   // TODO Uncomment all code whe we need it
@@ -107,52 +114,60 @@ const AccountSettingsScreenWithoutI18n = ({
   return (
     <>
       <View style={styles.wrapper}>
-        {photoBlock}
-        <View style={styles.inputsStyle}>
-          <View pointerEvents="none">
-            <TextInput
-              // ref={fullNameInputRef}
-              // inputMode={TextInputInputMode.Text}
-              value={profileDataForm.fullName}
-              // placeholder={t('AccountSettings_fullName_placeholder')}
-              // withClearButton
-              // onChangeText={(value: string) => handleInputChange('fullName', value)}
-              // error={{
-              //   isError: !isNameValid(profileDataForm.fullName) && wasValidated,
-              //   message: t('AccountSettings_nameError'),
-              // }}
-            />
-          </View>
-
-          <Pressable onPress={() => handleOpenChangeWindow('email')}>
+        <ScrollViewWithCustomScroll contentContainerStyle={styles.container}>
+          {photoBlock}
+          <View style={styles.inputsStyle}>
             <View pointerEvents="none">
-              <TextInput value={profileDataForm.email} />
-            </View>
-          </Pressable>
-
-          <Pressable onPress={() => handleOpenChangeWindow('phone')}>
-            <View style={styles.flagAndInputContainer} pointerEvents="none">
-              <View style={styles.flagContainer}>{flag && countryFlags[flag.countryCode]}</View>
               <TextInput
-                value={profileDataForm.phone}
-                containerStyle={styles.input}
-                wrapperStyle={styles.inputWrapperStyle}
+                // ref={fullNameInputRef}
+                // inputMode={TextInputInputMode.Text}
+                value={profileDataForm.fullName}
+                // placeholder={t('AccountSettings_fullName_placeholder')}
+                // withClearButton
+                // onChangeText={(value: string) => handleInputChange('fullName', value)}
+                // error={{
+                //   isError: !isNameValid(profileDataForm.fullName) && wasValidated,
+                //   message: t('AccountSettings_nameError'),
+                // }}
               />
             </View>
-          </Pressable>
-          {barBlock}
 
-          {/* // TODO Uncomment all code whe we need it */}
+            <Pressable onPress={() => handleOpenChangeWindow('email')}>
+              <View pointerEvents="none">
+                <TextInput value={profileDataForm.email} />
+              </View>
+            </Pressable>
 
-          {/*  <Bar style={styles.bar} mode={BarModes.Default}>
+            <Pressable onPress={() => handleOpenChangeWindow('phone')}>
+              <View style={styles.flagAndInputContainer} pointerEvents="none">
+                <View style={styles.flagContainer}>{flag && countryFlags[flag.countryCode]}</View>
+                <TextInput
+                  value={profileDataForm.phone}
+                  containerStyle={styles.input}
+                  wrapperStyle={styles.inputWrapperStyle}
+                />
+              </View>
+            </Pressable>
+            {barBlock}
+
+            {/* // TODO Uncomment all code whe we need it */}
+
+            {/*  <Bar style={styles.bar} mode={BarModes.Default}>
               <Text style={styles.barText}>{t('AccountSettings_barDarkMode')}</Text>
               <Switch onValueChange={toggleSwitch} value={isThemeSwitchActive} style={computedStyles.switch} />
             </Bar>*/}
 
-          {/* {hasProfileChanged && (
+            {/* {hasProfileChanged && (
             <Button onPress={onDataSave} textStyle={styles.button} text={t('AccountSettings_saveButton')} />
           )} */}
-        </View>
+          </View>
+        </ScrollViewWithCustomScroll>
+        <Button
+          onPress={() => setIsSignOutPopupVisible(true)}
+          mode={SquareButtonModes.Mode4}
+          text={t('AccountSettings_logOutButton')}
+          textStyle={styles.logOutText}
+        />
       </View>
 
       {/* {isChangeNamePopupVisible && (
@@ -168,7 +183,9 @@ const AccountSettingsScreenWithoutI18n = ({
           />
         </Modal>
       )} */}
-
+      {isSignOutPopupVisible && (
+        <SignOutPopup setIsSignOutPopupVisible={setIsSignOutPopupVisible} onSignOut={onSignOut} />
+      )}
       {isChangeDataPopUpVisible && (
         //TODO modal does not work properly on android devices, resolve problem after demo
         // <Modal transparent>
@@ -242,12 +259,18 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter Medium',
   },
   wrapper: {
-    gap: 22,
     flex: 1,
+  },
+  container: {
+    gap: 22,
+    paddingBottom: 22,
   },
 
   inputsStyle: {
     gap: 16,
+  },
+  logOutText: {
+    fontSize: 17,
   },
 });
 

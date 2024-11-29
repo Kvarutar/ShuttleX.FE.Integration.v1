@@ -10,6 +10,12 @@ export type AccountSettingsProps = {
   isVerificationDone: boolean;
   photoBlock?: ReactNode;
   barBlock?: ReactNode;
+  onSignOut: () => void;
   // onNameChanged?: () => void;
   // isContractor?: boolean;
+};
+
+export type SignOutPopupProps = {
+  setIsSignOutPopupVisible: (state: boolean) => void;
+  onSignOut: () => void;
 };
