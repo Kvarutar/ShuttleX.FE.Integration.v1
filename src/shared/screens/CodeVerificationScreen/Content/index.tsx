@@ -72,7 +72,7 @@ const Content = forwardRef<ContentRef, ContentProps>(
           size={ButtonSizes.L}
           shadow={ButtonShadows.Weak}
           onPress={handlePress}
-          text={t('CodeVerification_againButton')}
+          text={t('CodeVerification_Content_againButton')}
         />
         {(underButtonText || underButtonPressableText) && (
           <View style={styles.underButtonTextContainer}>

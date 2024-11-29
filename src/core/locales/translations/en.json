@@ -116,6 +116,7 @@
   "TemporaryLockoutPopup_againButton": "Again",
   "TemporaryLockoutPopup_supportButton": "Contact support",
   "CodeVerification_title": "Sign in code",
+  "CodeVerification_Content_againButton": "Again",
   "MediaCore_saveButton": "Save",
   "MediaCore_selectPhotoButton": "Choose a photo",
   "MediaCore_titleAlertSelectDocument": "Error",

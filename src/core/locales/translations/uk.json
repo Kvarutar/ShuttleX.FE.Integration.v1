@@ -24,6 +24,7 @@
   "TemporaryLockoutPopup_description": "Ви тимчасово заблоковані для входу.\nБудь ласка, зачекайте, поки вас розблокують\nабо зверніться до служби підтримки",
   "TemporaryLockoutPopup_againButton": "Знову",
   "TemporaryLockoutPopup_supportButton": "Служба підтримки",
+  "CodeVerification_Content_againButton": "Знову",
   "AccountSettings_fullName_placeholder": "Введіть своє повне ім'я",
   "AccountSettings_phoneError": "Номер має містити не менше 10 цифр",
   "AccountSettings_isEqualEmailError": "Введіть поточний Email",
