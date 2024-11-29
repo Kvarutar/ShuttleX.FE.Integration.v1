@@ -1,6 +1,14 @@
-import { type StyleProp, type ViewStyle } from 'react-native';
+import { type ScrollViewProps, type StyleProp, type ViewStyle } from 'react-native';
 
-export type ScrollViewWithCustomScrollProps = {
+type ScrollViewExcludedProps =
+  | 'scrollEnabled'
+  | 'showsVerticalScrollIndicator'
+  | 'scrollEventThrottle'
+  | 'onContentSizeChange'
+  | 'onLayout'
+  | 'onScroll';
+
+type CustomScrollViewProps = {
   children: React.ReactNode;
   scrollable?: boolean;
   withScroll?: boolean;
@@ -12,3 +20,7 @@ export type ScrollViewWithCustomScrollProps = {
   contentContainerStyle?: StyleProp<ViewStyle>;
   wrapperStyle?: StyleProp<ViewStyle>;
 };
+
+type ScrollViewRemainingProps = Omit<ScrollViewProps, keyof CustomScrollViewProps | ScrollViewExcludedProps>;
+
+export type ScrollViewWithCustomScrollProps = CustomScrollViewProps & ScrollViewRemainingProps;

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Animated, ScrollView, StyleSheet, View } from 'react-native';
+import { Animated, StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/v2/themeContext';
@@ -16,6 +17,7 @@ const ScrollViewWithCustomScroll = ({
   offsetForShadow = 10,
   contentContainerStyle,
   wrapperStyle,
+  ...scrollViewRemainingProps
 }: ScrollViewWithCustomScrollProps) => {
   const { colors } = useTheme();
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
@@ -99,6 +101,7 @@ const ScrollViewWithCustomScroll = ({
           listener: () =>
             !isScrollBarVisible && visibleScrollBarHeight < completeScrollBarHeight && setIsScrollBarVisible(true),
         })}
+        {...scrollViewRemainingProps}
       >
         {children}
       </ScrollView>
