@@ -228,6 +228,7 @@ import StatsBlock from './shared/molecules/StatsBlock';
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/types';
 import SwipeButtonV1 from './shared/molecules/SwipeButton/v1';
 import SwipeButton from './shared/molecules/SwipeButton/v2';
+import TemporaryLockoutPopup from './shared/molecules/TemporaryLockoutPopup';
 import TimePickerV1 from './shared/molecules/TimePicker/v1';
 import TimePicker from './shared/molecules/TimePicker/v2';
 import CountingComponentV1 from './shared/molecules/timerAndStopwatch/CountingComponent/V1';
@@ -555,6 +556,7 @@ export {
   SwipeButtonV1,
   type TariffIconData,
   type TariffType,
+  TemporaryLockoutPopup,
   Text,
   TextElipsizeMode,
   TextInput,

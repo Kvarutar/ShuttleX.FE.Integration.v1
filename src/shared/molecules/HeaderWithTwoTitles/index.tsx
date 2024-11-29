@@ -27,16 +27,20 @@ const HeaderWithTwoTitles = ({
       {inOneLine ? (
         <Text style={[styles.headerTextLabels, computedStyles.headerFirstTitle, firstTextStyle]}>
           {firstTitle}{' '}
-          <Text style={[styles.headerTextLabels, computedStyles.headerSecondTitle, secondTextStyle]}>
-            {secondTitle}
-          </Text>
+          {secondTitle && (
+            <Text style={[styles.headerTextLabels, computedStyles.headerSecondTitle, secondTextStyle]}>
+              {secondTitle}
+            </Text>
+          )}
         </Text>
       ) : (
         <>
           <Text style={[styles.headerTextLabels, computedStyles.headerFirstTitle, firstTextStyle]}>{firstTitle}</Text>
-          <Text style={[styles.headerTextLabels, computedStyles.headerSecondTitle, secondTextStyle]}>
-            {secondTitle}
-          </Text>
+          {secondTitle && (
+            <Text style={[styles.headerTextLabels, computedStyles.headerSecondTitle, secondTextStyle]}>
+              {secondTitle}
+            </Text>
+          )}
         </>
       )}
     </View>
