@@ -1,6 +1,7 @@
 import { forwardRef, type ReactNode, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, type StyleProp, StyleSheet, type TextStyle, View, type ViewStyle } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
+import { LoadingSpinner, LoadingSpinnerIconModes } from 'shuttlex-integration';
 
 import { buttonShadow, DISABLED_SHADOW_COLOR } from '../../../../core/themes/shadows';
 import { type PaletteButtonMode } from '../../../../core/themes/v2/palettes/paletteTypes';
@@ -46,6 +47,8 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
       circleMode6Time,
       innerSpacing,
       withCircleModeBorder = false,
+      isLoading = false,
+      loadingSpinnerSize,
     },
     ref,
   ): JSX.Element => {
@@ -93,6 +96,12 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
       s: 44,
       m: 60,
       l: 92,
+    };
+
+    const loadingSizes: Record<ButtonSizes, LoadingSpinnerIconModes> = {
+      s: LoadingSpinnerIconModes.Mini,
+      m: LoadingSpinnerIconModes.Default,
+      l: LoadingSpinnerIconModes.Large,
     };
 
     const computedStyles: Record<ButtonShapes, ButtonStyle> = {
@@ -148,11 +157,18 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
       return localChildren;
     };
 
+    const renderedChildrenWithLoading = (loadingMode: LoadingSpinnerIconModes) =>
+      isLoading ? (
+        <LoadingSpinner iconMode={loadingSpinnerSize ? loadingSpinnerSize : loadingMode} startColor={backgroundColor} />
+      ) : (
+        renderedChildren
+      );
+
     const containers = {
       circle:
         mode === CircleButtonModes.Mode6 ? (
           <ButtonAnimation ref={buttonAnimationRef} time={circleMode6Time || 30000} onAnimationEnd={handleAnimationEnd}>
-            {renderedChildren}
+            {renderedChildrenWithLoading(loadingSizes[size])}
           </ButtonAnimation>
         ) : (
           <View
@@ -174,17 +190,17 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
               circleSubContainerStyle,
             ]}
           >
-            {renderedChildren}
+            {renderedChildrenWithLoading(loadingSizes[size])}
           </View>
         ),
       square:
         mode === SquareButtonModes.Mode3 ? (
           <>
             <Blur />
-            {renderedChildren}
+            {renderedChildrenWithLoading(LoadingSpinnerIconModes.Mini)}
           </>
         ) : (
-          renderedChildren
+          renderedChildrenWithLoading(LoadingSpinnerIconModes.Mini)
         ),
     };
 
@@ -196,7 +212,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
               <Pressable
                 hitSlop={withCircleModeBorderPadding}
                 style={[styles.button, computedStyles[shape].button, style]}
-                disabled={isButtonDisabled}
+                disabled={isButtonDisabled || isLoading}
                 onPress={onPress}
                 onPressIn={() => setIsPressed(true)}
                 onPressOut={() => setIsPressed(false)}
@@ -209,7 +225,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
           <Shadow stretch {...shadowProps}>
             <Pressable
               style={[styles.button, computedStyles[shape].button, style]}
-              disabled={isButtonDisabled}
+              disabled={isButtonDisabled || isLoading}
               onPress={onPress}
               onPressIn={() => setIsPressed(true)}
               onPressOut={() => setIsPressed(false)}

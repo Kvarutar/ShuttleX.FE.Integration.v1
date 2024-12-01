@@ -1,5 +1,7 @@
 import { type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
 
+import { type CustomLoadingSpinnerIconSize } from '../../../molecules/LoadingSpinner/types';
+
 export enum CircleButtonModes {
   Mode1 = 'mode1',
   Mode2 = 'mode2',
@@ -65,4 +67,6 @@ export type ButtonProps = {
   size?: ButtonSizes;
   withCircleModeBorder?: boolean;
   withBorder?: boolean;
+  isLoading?: boolean;
+  loadingSpinnerSize?: CustomLoadingSpinnerIconSize;
 };

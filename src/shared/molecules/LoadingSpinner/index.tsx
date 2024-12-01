@@ -4,12 +4,12 @@ import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTim
 
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import SpinnerIcon from '../../icons/SpinnerIcon';
-import { type CustomIconSize, LoadingSpinnerIconModes, type LoadingSpinnerProps } from './types';
+import { type CustomLoadingSpinnerIconSize, LoadingSpinnerIconModes, type LoadingSpinnerProps } from './types';
 
-const iconSizes: Record<LoadingSpinnerIconModes, CustomIconSize> = {
-  large: { size: 85, strokeWidth: 7 },
-  default: { size: 65, strokeWidth: 6 },
-  mini: { size: 30, strokeWidth: 4 },
+const iconSizes: Record<LoadingSpinnerIconModes, CustomLoadingSpinnerIconSize> = {
+  large: { size: 78, strokeWidth: 7 },
+  default: { size: 50, strokeWidth: 5 },
+  mini: { size: 34, strokeWidth: 4 },
 };
 
 const LoadingSpinner = ({

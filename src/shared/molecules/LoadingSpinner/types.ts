@@ -6,13 +6,13 @@ export enum LoadingSpinnerIconModes {
   Large = 'large',
 }
 
-export type CustomIconSize = {
+export type CustomLoadingSpinnerIconSize = {
   size: number;
   strokeWidth: number;
 };
 
 export type LoadingSpinnerProps = {
-  iconMode?: LoadingSpinnerIconModes | CustomIconSize;
+  iconMode?: LoadingSpinnerIconModes | CustomLoadingSpinnerIconSize;
   startColor?: string;
   endColor?: string;
   style?: StyleProp<ViewStyle>;

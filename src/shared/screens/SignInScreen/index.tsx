@@ -12,7 +12,6 @@ import Button from '../../atoms/Button/v2';
 import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
 import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';
-import LoadingSpinner from '../../molecules/LoadingSpinner';
 import PhoneInput from '../../molecules/PhoneInput';
 import PhoneSlidingPanel from '../../molecules/PhoneSlidingPanel';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
@@ -132,15 +131,14 @@ const SignInScreenWithoutI18n = ({
           containerStyle={styles.nextButton}
           shape={ButtonShapes.Circle}
           mode={isButtonEnabled ? CircleButtonModes.Mode1 : CircleButtonModes.Mode4}
-          disabled={!trimmedSignData || isLoading}
+          disabled={!trimmedSignData}
           size={ButtonSizes.L}
           text={t('SignIn_nextButton')}
           innerSpacing={5}
           shadow={isButtonEnabled ? ButtonShadows.Strong : undefined}
           onPress={handleSubmit}
-        >
-          {isLoading && <LoadingSpinner />}
-        </Button>
+          isLoading={isLoading}
+        />
         {setSignMethod && (
           <Pressable style={styles.dontHaveAccountContainer} onPress={changeMethod} hitSlop={10}>
             <Animated.View layout={FadeIn.duration(animationsDurations.fading)}>
