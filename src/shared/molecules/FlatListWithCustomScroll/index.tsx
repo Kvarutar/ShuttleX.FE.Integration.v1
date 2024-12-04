@@ -1,8 +1,9 @@
 import { useCallback, useRef, useState } from 'react';
-import { Animated, FlatList, StyleSheet, View } from 'react-native';
+import { Animated, StyleSheet, View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
 import sizes from '../../../core/themes/sizes';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../core/themes/v2/themeContext';
 import { type FlatListWithCustomScrollProps } from './props';
 
 const FlatListWithCustomScroll = <ItemT = any,>({
@@ -19,6 +20,7 @@ const FlatListWithCustomScroll = <ItemT = any,>({
   windowSize,
   initialNumToRender,
   keyExtractor,
+  ...flatListRemainingProps
 }: FlatListWithCustomScrollProps<ItemT>) => {
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
@@ -26,7 +28,7 @@ const FlatListWithCustomScroll = <ItemT = any,>({
 
   const scrollIndicator = useRef(new Animated.Value(0)).current;
 
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
 
   let scrollIndicatorSize = visibleScrollBarHeight;
   if (completeScrollBarHeight > visibleScrollBarHeight) {
@@ -95,6 +97,7 @@ const FlatListWithCustomScroll = <ItemT = any,>({
         windowSize={windowSize}
         initialNumToRender={initialNumToRender}
         keyExtractor={keyExtractor}
+        {...flatListRemainingProps}
       />
       {isScrollBarVisible && <Animated.View style={[styles.scrollBar, computedStyles.scrollBar, barStyle]} />}
     </View>

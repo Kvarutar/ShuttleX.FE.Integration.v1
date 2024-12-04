@@ -1,6 +1,13 @@
 import { type FlatListProps, type ListRenderItem, type StyleProp, type ViewStyle } from 'react-native';
 
-export type FlatListWithCustomScrollProps<ItemT> = {
+export type FlatListExcludedProps =
+  | 'onScroll'
+  | 'onLayout'
+  | 'onContentSizeChange'
+  | 'showsVerticalScrollIndicator'
+  | 'data';
+
+export type CustomFlatListProps<ItemT> = {
   renderItem: ListRenderItem<ItemT>;
   items: Array<ItemT>;
   style?: StyleProp<ViewStyle>;
@@ -16,3 +23,10 @@ export type FlatListWithCustomScrollProps<ItemT> = {
   initialNumToRender?: FlatListProps<ItemT>['initialNumToRender'];
   keyExtractor?: FlatListProps<ItemT>['keyExtractor'];
 };
+
+type FlatListRemainingProps<ItemT> = Omit<
+  FlatListProps<ItemT>,
+  keyof CustomFlatListProps<ItemT> | FlatListExcludedProps
+>;
+
+export type FlatListWithCustomScrollProps<ItemT> = CustomFlatListProps<ItemT> & FlatListRemainingProps<ItemT>;
