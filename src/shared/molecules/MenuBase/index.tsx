@@ -16,6 +16,7 @@ import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import { getMenuIcons } from '../../../utils/menu/menuIcons';
 import { type MenuNavigationBlocks } from '../../../utils/menu/type';
+import Skeleton from '../../atoms/Skeleton';
 import Text from '../../atoms/Text';
 import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini/V2';
 import MenuUserImage from '../../images/MenuUserImage';
@@ -44,6 +45,7 @@ const MenuBase = ({
   style,
   currentRoute,
   isContractorMenu,
+  isLoading,
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
@@ -131,15 +133,25 @@ const MenuBase = ({
         <SafeAreaView containerStyle={[styles.wrapper, computedStyles.wrapper]}>
           <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]}>
             <View style={[styles.profileImage, computedStyles.profileImage]} onLayout={handleImageLayout}>
-              <MenuUserImage url={userImageUri} />
-              {label}
+              {isLoading ? (
+                <Skeleton skeletonContainerStyle={styles.skeletonUserImageContainer} />
+              ) : (
+                <>
+                  <MenuUserImage url={userImageUri} />
+                  {label}
+                </>
+              )}
             </View>
           </View>
 
           <View style={[styles.container, computedStyles.container]}>
             <View style={styles.gapAdditionalContent}>
               <View style={styles.profile}>
-                <Text style={styles.name}>{userName ?? ''}</Text>
+                {isLoading ? (
+                  <Skeleton skeletonContainerStyle={styles.skeletonNameContainer} />
+                ) : (
+                  <Text style={styles.name}>{userName ?? ''}</Text>
+                )}
               </View>
               {additionalContent}
             </View>
@@ -161,6 +173,14 @@ const MenuBase = ({
 };
 
 const styles = StyleSheet.create({
+  skeletonUserImageContainer: {
+    width: 62,
+    height: 62,
+    borderRadius: 1000,
+  },
+  skeletonNameContainer: {
+    height: 24,
+  },
   window: {
     position: 'absolute',
     top: 0,

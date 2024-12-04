@@ -55,4 +55,6 @@ export type Palette = {
   squareButtonModes: PaletteSquareButtonModes;
   circleButtonModes: PaletteCircleButtonModes;
   timerColorModes: PaletteTimerModes;
+  skeletonBoneColor: string;
+  skeletonHighlightColor: string;
 };

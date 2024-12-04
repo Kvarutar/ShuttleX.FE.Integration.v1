@@ -20026,6 +20026,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-reanimated-skeleton@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "react-native-reanimated-skeleton@npm:1.5.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-linear-gradient: "*"
+    react-native-reanimated: "*"
+  checksum: 46941d06ccf2d1ce3c95ee9089844f0993d6982187efd6cbc60df0d3f079a08f234ca7e30d8ff79ce664ef590b4e08fc4d5fc47048f7dd0e560b70ff6bdc6b2b
+  languageName: node
+  linkType: hard
+
 "react-native-reanimated@npm:^3.6.1":
   version: 3.8.0
   resolution: "react-native-reanimated@npm:3.8.0"
@@ -21659,6 +21671,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-maps: "npm:^1.10.3"
     react-native-permissions: "npm:^4.1.4"
     react-native-reanimated: "npm:^3.6.1"
+    react-native-reanimated-skeleton: "npm:^1.5.1"
     react-native-safe-area-context: "npm:^4.7.4"
     react-native-sensors: "npm:^7.3.6"
     react-native-shadow-2: "npm:^7.0.8"

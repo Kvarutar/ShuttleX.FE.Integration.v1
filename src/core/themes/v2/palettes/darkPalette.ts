@@ -37,6 +37,9 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerCo
   textLinkColor: '#5295F7',
   weakShadowColor: 'rgba(0, 0, 0, 0.02)',
   strongShadowColor: 'rgba(0, 0, 0, 0.04)',
+  //TODO: Rewrite skeleton's colors for dark theme
+  skeletonBoneColor: '#EFEFEF',
+  skeletonHighlightColor: '#FFFFFF',
 };
 
 const squareButtonModes: PaletteSquareButtonModes = {

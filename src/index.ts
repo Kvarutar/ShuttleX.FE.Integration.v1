@@ -55,6 +55,7 @@ import CheckBox from './shared/atoms/Checkbox';
 import CircleAnimatedProgress from './shared/atoms/CircleProgress';
 import Separator from './shared/atoms/Separator';
 import Shade from './shared/atoms/Shade';
+import Skeleton from './shared/atoms/Skeleton';
 import Text from './shared/atoms/Text';
 import { TextElipsizeMode } from './shared/atoms/Text/props';
 import TextInputV1 from './shared/atoms/TextInput/v1';
@@ -541,6 +542,7 @@ export {
   SignUpScreen,
   type SignUpScreenRef,
   sizes,
+  Skeleton,
   SliderWithCustomGesture,
   SpinnerIcon,
   SquareButtonModes,
