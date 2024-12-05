@@ -15,6 +15,7 @@ import {
   NetworkErrorsStatuses,
 } from './core/client/errors/types';
 import defaultAxiosRetryConfig from './core/client/helpers/defaultRetryConfig';
+import axiosLongPollingRetryConfig from './core/client/helpers/longPollingRetryConfig';
 import { type AxiosInstanceConfig } from './core/client/types';
 import getTokens from './core/client/utils/getTokens';
 import saveTokens from './core/client/utils/saveTokens';
@@ -301,6 +302,7 @@ export {
   ArrowIcon,
   ArrowInPrimaryColorIcon,
   type AxiosInstanceConfig,
+  axiosLongPollingRetryConfig,
   BaggageIcon,
   Bar,
   BarModes,
