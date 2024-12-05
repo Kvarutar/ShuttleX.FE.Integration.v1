@@ -45,7 +45,7 @@ const MenuBase = ({
   style,
   currentRoute,
   isContractorMenu,
-  isLoading,
+  loading,
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
@@ -133,7 +133,7 @@ const MenuBase = ({
         <SafeAreaView containerStyle={[styles.wrapper, computedStyles.wrapper]}>
           <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]}>
             <View style={[styles.profileImage, computedStyles.profileImage]} onLayout={handleImageLayout}>
-              {isLoading ? (
+              {loading?.avatar ? (
                 <Skeleton skeletonContainerStyle={styles.skeletonUserImageContainer} />
               ) : (
                 <>
@@ -147,7 +147,7 @@ const MenuBase = ({
           <View style={[styles.container, computedStyles.container]}>
             <View style={styles.gapAdditionalContent}>
               <View style={styles.profile}>
-                {isLoading ? (
+                {loading?.username ? (
                   <Skeleton skeletonContainerStyle={styles.skeletonNameContainer} />
                 ) : (
                   <Text style={styles.name}>{userName ?? ''}</Text>
