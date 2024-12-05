@@ -19928,10 +19928,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-keychain@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "react-native-keychain@npm:9.0.0"
-  checksum: 4758bb41eb55bf90e134ce2610e1e06fdf7cec73859ccdb30f6ec9038881e410aea911c8b3abba59a31713ba341d3c929ae710346d23385a8ab309d9748d63e6
+"react-native-keychain@npm:8.2.0":
+  version: 8.2.0
+  resolution: "react-native-keychain@npm:8.2.0"
+  checksum: 7c32335f673c60bd64576bd21b087cdf601087f1588296367546b5fca15aa83be86723d5414ea90667ebc251237918853f65147de7f8df0707b228e6a13ab829
   languageName: node
   linkType: hard
 
@@ -21665,7 +21665,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-gesture-handler: "npm:^2.14.0"
     react-native-image-crop-picker: "npm:^0.41.4"
     react-native-image-picker: "npm:7.1.0"
-    react-native-keychain: "npm:^9.0.0"
+    react-native-keychain: "npm:8.2.0"
     react-native-linear-gradient: "npm:^2.8.3"
     react-native-localize: "npm:^3.0.2"
     react-native-maps: "npm:^1.10.3"
