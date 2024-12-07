@@ -27,7 +27,8 @@ import { AnimatedMarker } from './core/map/hooks';
 import lightMapStyle from './core/map/lightMapStyle.json';
 import MapCameraModeButton from './core/map/MapCameraModeButton';
 import MapView from './core/map/MapView';
-import { type MapCameraMode, type MapViewProps } from './core/map/types';
+import { type MapCameraMode, type MapPolyline, type MapViewProps } from './core/map/types';
+import { calculateNewMapRoute, decodeGooglePolyline } from './core/map/utils';
 import { nameof } from './core/monkey-patch/ts.helper';
 import { initCreateAppAsyncThunk, type InitCreateAppAsyncThunkDispatch } from './core/redux/initCreateAppAsyncThunk';
 import { createSignalRSlice } from './core/signalR/slice';
@@ -262,7 +263,16 @@ import SignInScreen from './shared/screens/SignInScreen';
 import { SignInMethod } from './shared/screens/SignInScreen/types';
 import SignUpScreen from './shared/screens/SignUpScreen';
 import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
-import { formatPhone, formatTime, milSecToHours, milSecToMin, milSecToTime, minToMilSec, secToMilSec } from './utils';
+import {
+  formatPhone,
+  formatTime,
+  getTimeWithAbbreviation,
+  milSecToHours,
+  milSecToMin,
+  milSecToTime,
+  minToMilSec,
+  secToMilSec,
+} from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { formatCurrency, getCurrencySign } from './utils/currency';
 import { useDebounce } from './utils/debounce';
@@ -333,6 +343,7 @@ export {
   ButtonV1Shadows,
   ButtonV1Shapes,
   calculateExtendedHeading,
+  calculateNewMapRoute,
   CalendarIcon,
   CameraIcon,
   type Card,
@@ -372,6 +383,7 @@ export {
   CustomKeyboardAvoidingView,
   DatePicker,
   DatePickerV1,
+  decodeGooglePolyline,
   defaultAxiosRetryConfig,
   defaultShadow,
   degToRad,
@@ -412,6 +424,7 @@ export {
   getNetworkErrorInfo,
   getNotificationToken,
   getPaymentIcon,
+  getTimeWithAbbreviation,
   getTokens,
   GroupedBrandIcon,
   GroupedBrandIconMini,
@@ -457,6 +470,7 @@ export {
   MapCameraModeButton,
   MapNavigationPlaneIcon,
   MapPinIcon,
+  type MapPolyline,
   MapView,
   type MapViewProps,
   MasterCardIcon,

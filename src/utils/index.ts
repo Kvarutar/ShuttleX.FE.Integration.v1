@@ -1,4 +1,6 @@
 import { getLocales } from 'react-native-localize';
+
+import i18nIntegration from '../core/locales/i18n';
 /**
  * Converts boolean to number 1 or -1
  * @param flag boolean value
@@ -8,21 +10,21 @@ const boolToSign = (flag: boolean) => (flag ? 1 : -1);
 
 /**
  * Converts minutes to milliseconds
- * @param time value in minutes
+ * @param minutes
  * @returns milliseconds
  */
 const minToMilSec = (minutes: number) => minutes * 60 * 1000;
 
 /**
  * Converts seconds to milliseconds
- * @param time value in seconds
+ * @param seconds
  * @returns milliseconds
  */
 const secToMilSec = (seconds: number) => seconds * 1000;
 
 /**
  * Converts milliseconds to minutes or hours if minutes > 60
- * @param time value in milliseconds
+ * @param milliseconds
  * @returns minutes or hours
  */
 const milSecToTime = (milliseconds: number): number => {
@@ -37,7 +39,7 @@ const milSecToTime = (milliseconds: number): number => {
 
 /**
  * Converts milliseconds to minutes
- * @param milliseconds value in milliseconds
+ * @param milliseconds
  * @returns minutes
  */
 const milSecToMin = (milliseconds: number): number => {
@@ -48,7 +50,7 @@ const milSecToMin = (milliseconds: number): number => {
 
 /**
  * Converts milliseconds to hours
- * @param milliseconds value in milliseconds
+ * @param milliseconds
  * @returns hours
  */
 const milSecToHours = (milliseconds: number): number => {
@@ -86,6 +88,24 @@ const formatTime = (time: Date): string =>
     .replace(/^0/, '');
 
 /**
+ * Converts total amount of seconds to seconds/hours/minutes with correlating label
+ * @param seconds
+ * @returns value in seconds/hours/minutes with correlating label
+ */
+const getTimeWithAbbreviation = (seconds: number): { value: string; label: string } => {
+  const t = i18nIntegration.t;
+  const minutes = Math.floor(seconds / 60);
+
+  if (seconds < 60) {
+    return { value: seconds.toString(), label: t('seconds_abbrev') };
+  }
+  if (minutes < 60) {
+    return { value: minutes.toString(), label: t('minutes_abbrev') };
+  }
+  return { value: Math.floor(minutes / 60).toString(), label: t('hours_abbrev') };
+};
+
+/**
  * Converts phone number to only format
  * @param phone value
  * @returns +12345678900 format
@@ -99,6 +119,7 @@ export {
   formatDate,
   formatPhone,
   formatTime,
+  getTimeWithAbbreviation,
   milSecToHours,
   milSecToMin,
   milSecToTime,

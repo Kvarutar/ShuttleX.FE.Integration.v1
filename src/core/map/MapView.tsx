@@ -169,7 +169,7 @@ const MapView = ({
             key={i}
             coordinates={polylineOptions.coordinates}
             strokeColor={polylineOptions.color ?? '#000'}
-            strokeWidth={6}
+            strokeWidth={4}
           />,
         );
         break;
@@ -195,7 +195,7 @@ const MapView = ({
               key={uuidv4()}
               coordinates={coordinates.slice(j, j + 2)}
               strokeColor={polylineOptions.color ?? '#000'}
-              strokeWidth={6}
+              strokeWidth={4}
             />,
           );
         }
@@ -257,16 +257,14 @@ const MapView = ({
         )}
 
         {cars &&
-          cars.data.map(carData => {
-            return (
-              <MapCar
-                key={carData.id}
-                coordinates={carData.coordinates}
-                heading={carData.heading}
-                animationDuration={cars.animationDuration}
-              />
-            );
-          })}
+          cars.data.map(carData => (
+            <MapCar
+              key={carData.id}
+              coordinates={carData.coordinates}
+              heading={carData.heading}
+              animationDuration={cars.animationDuration}
+            />
+          ))}
 
         {rendredPolylines.length > 0 && rendredPolylines}
 
@@ -285,7 +283,11 @@ const MapView = ({
 
         {finalStopPoint && (
           <Marker coordinate={finalStopPoint.coordinates} anchor={{ x: 0.5, y: 0.98 }} tracksViewChanges={true}>
-            <MapPinIcon2 title={finalStopPoint.title} subtitle={finalStopPoint.subtitle} />
+            <MapPinIcon2
+              colorMode={finalStopPoint.colorMode}
+              title={finalStopPoint.title}
+              subtitle={finalStopPoint.subtitle}
+            />
           </Marker>
         )}
       </MapViewNative>

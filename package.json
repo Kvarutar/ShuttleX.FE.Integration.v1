@@ -55,6 +55,7 @@
     "registry": "https://www.shuttlex.com/"
   },
   "dependencies": {
+    "@googlemaps/polyline-codec": "^1.0.28",
     "@react-native/eslint-config": "^0.72.2",
     "axios": "^1.7.2",
     "axios-retry": "^4.4.2",

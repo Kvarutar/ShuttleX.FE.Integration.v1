@@ -5,7 +5,7 @@ import { type MapPinIcon2Props } from '../../shared/icons/MapPinIcon2';
 
 export type MapCameraMode = 'free' | 'follow' | 'followWithCompass';
 
-type MapPolyline =
+export type MapPolyline =
   | { type: 'straight'; options: { coordinates: LatLng[]; color?: string } }
   | { type: 'dotted'; options: { coordinates: LatLng[]; color?: string } }
   | { type: 'arc'; options: { startPont: LatLng; endPoint: LatLng } };

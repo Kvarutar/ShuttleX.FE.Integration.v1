@@ -90,9 +90,9 @@ export const createSignalRSlice = ({ options, listeners = [] }: createSignalRSli
         .configureLogging(LogLevel.None)
         .withServerTimeout(opts.serverTimeout)
         .withAutomaticReconnect({
-          nextRetryDelayInMilliseconds: () => {
+          nextRetryDelayInMilliseconds: context => {
             dispatch(slice.actions.setIsSignalRConnected(false));
-            signalRconsoleInfo('connection lost, reconnecting...');
+            signalRconsoleInfo(`connection lost, reconnecting, reason: ${context.retryReason}`);
             return opts.reconnectTimeout;
           },
         })

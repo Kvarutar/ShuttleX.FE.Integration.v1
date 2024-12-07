@@ -3107,6 +3107,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@googlemaps/polyline-codec@npm:^1.0.28":
+  version: 1.0.28
+  resolution: "@googlemaps/polyline-codec@npm:1.0.28"
+  checksum: 5bab11624e64c67ad0669c4a62bf1b82e875407c8110acbbf3e338bdcdf04cfe032addcfffc11dc033d635f81f11acc7c0d0f5205732fc3d151c8d65ebe8b9dd
+  languageName: node
+  linkType: hard
+
 "@graphql-typed-document-node/core@npm:^3.1.0":
   version: 3.2.0
   resolution: "@graphql-typed-document-node/core@npm:3.2.0"
@@ -21624,6 +21631,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     "@babel/plugin-transform-shorthand-properties": "npm:^7.23.3"
     "@babel/plugin-transform-template-literals": "npm:^7.23.3"
     "@commitlint/config-conventional": "npm:^17.0.2"
+    "@googlemaps/polyline-codec": "npm:^1.0.28"
     "@microsoft/signalr": "npm:^8.0.0"
     "@react-native-community/blur": "npm:^4.3.2"
     "@react-native-community/datetimepicker": "npm:^7.6.1"
