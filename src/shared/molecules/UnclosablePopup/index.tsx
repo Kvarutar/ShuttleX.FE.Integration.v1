@@ -1,4 +1,5 @@
-import { StyleSheet, View } from 'react-native';
+import { useEffect } from 'react';
+import { Keyboard, StyleSheet, View } from 'react-native';
 
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import Text from '../../atoms/Text';
@@ -14,6 +15,10 @@ const UnclosablePopup = ({
   bottomAdditionalContent,
 }: UnclosablePopupProps) => {
   const { colors } = useTheme();
+
+  useEffect(() => {
+    Keyboard.dismiss();
+  }, []);
 
   const computedStyles = StyleSheet.create({
     subTitle: {
