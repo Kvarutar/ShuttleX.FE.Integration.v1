@@ -46,6 +46,7 @@ const MenuBase = ({
   currentRoute,
   isContractorMenu,
   loading,
+  isStatusBarTransparent = false,
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
@@ -79,7 +80,7 @@ const MenuBase = ({
     wrapper: {
       backgroundColor: colors.backgroundPrimaryColor,
       width: constants.menuWidth,
-      height: windowSizes.height,
+      height: isStatusBarTransparent ? windowSizes.height + topOffset : windowSizes.height,
       paddingBottom: Platform.OS === 'android' ? sizes.paddingVertical : 16,
       shadowColor: colors.iconPrimaryColor,
     },

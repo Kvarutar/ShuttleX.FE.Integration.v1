@@ -26,4 +26,5 @@ export type MenuBaseProps = {
     avatar?: boolean;
     username?: boolean;
   };
+  isStatusBarTransparent?: boolean;
 };
