@@ -1,5 +1,6 @@
 import axios, { type AxiosInstance } from 'axios';
 import axiosRetry from 'axios-retry';
+import DeviceInfo from 'react-native-device-info';
 import Keychain from 'react-native-keychain';
 
 import { type AxiosInstanceConfig } from './types';
@@ -44,10 +45,10 @@ const createAxiosInstance = ({
           originalRequest._retry = true;
           const refreshToken = (await getTokens()).refreshToken;
           try {
-            //TODO: add device id
+            const deviceId = await DeviceInfo.getUniqueId();
             const response = await axios.post(refreshTokenUrl, {
               refreshToken,
-              deviceId: 'string',
+              deviceId,
             });
             const { accessToken, refreshToken: newRefreshToken } = response.data;
 
