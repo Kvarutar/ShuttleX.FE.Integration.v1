@@ -239,7 +239,7 @@ import CountingComponent from './shared/molecules/timerAndStopwatch/CountingComp
 import StopWatch from './shared/molecules/timerAndStopwatch/StopWatch';
 import TimerV1 from './shared/molecules/timerAndStopwatch/Timer/V1';
 import { TimerV1Modes } from './shared/molecules/timerAndStopwatch/Timer/V1/props';
-import Timer from './shared/molecules/timerAndStopwatch/Timer/V2';
+import Timer, { timerSizes } from './shared/molecules/timerAndStopwatch/Timer/V2';
 import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/V2/props';
 import TrafficIndicator from './shared/molecules/TrafficIndicator';
 import { TrafficLevel } from './shared/molecules/TrafficIndicator/types';
@@ -590,6 +590,7 @@ export {
   TimePickerV1,
   Timer,
   TimerColorModes,
+  timerSizes,
   TimerSizesModes,
   TimerV1,
   TimerV1Modes,

@@ -7,7 +7,7 @@ import CircularTimerIcon from '../../../../icons/CircularTimerIcon';
 import CountingComponent from '../../CountingComponent/V2';
 import { TimerColorModes, type TimerProps, TimerSizesModes, type TimerSizesType } from './props';
 
-const timerSizes: TimerSizesType = {
+export const timerSizes: TimerSizesType = {
   s: {
     iconStrokeWidth: 6,
     timerSize: 92,
