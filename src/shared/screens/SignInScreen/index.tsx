@@ -49,6 +49,10 @@ const SignInScreenWithoutI18n = ({
     setIsValid(!wasValidated || Boolean(data));
   }, [data, wasValidated]);
 
+  useEffect(() => {
+    setData('');
+  }, [signMethod]);
+
   const handleSubmit = () => {
     setWasValidated(true);
     if (data) {
