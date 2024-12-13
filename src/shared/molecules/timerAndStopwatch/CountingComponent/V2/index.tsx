@@ -24,10 +24,11 @@ const CountingComponentWithoutI18n: React.FC<CountingComponentProps> = ({
   text,
   onAfterCountdownEnds,
   isWaiting,
+  countingForwardStartTime, // in seconds
   style,
 }) => {
   const [timeLeft, setTimeLeft] = useState(() => calculateTime(time));
-  const [elapsedTime, setElapsedTime] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(countingForwardStartTime ?? 0); // in seconds
   const [isCountingForward, setIsCountingForward] = useState(false);
   const { t } = useTranslation();
 
@@ -45,6 +46,12 @@ const CountingComponentWithoutI18n: React.FC<CountingComponentProps> = ({
       }
     }
   };
+
+  useEffect(() => {
+    if (countingForwardStartTime) {
+      setElapsedTime(countingForwardStartTime);
+    }
+  }, [countingForwardStartTime]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;

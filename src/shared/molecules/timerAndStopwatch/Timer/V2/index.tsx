@@ -40,6 +40,7 @@ export const timerSizes: TimerSizesType = {
  * @param {TimerSizesModes} sizeMode - The size of the timer, either `Normal` or `Big`.
  * @param {TimerColorModes} colorMode - Defines the color mode for the timer and its elements.
  * @param {boolean} [withCountdown=true] - Set to `true` to display a countdown timer.
+ * @param {number} [countingForwardStartTime] - The timer takes time in seconds when counting begins forward.
  */
 const Timer = ({
   time, // Date.now() + milliseconds
@@ -49,6 +50,7 @@ const Timer = ({
   sizeMode = TimerSizesModes.S,
   colorMode = TimerColorModes.Mode1,
   withCountdown = true,
+  countingForwardStartTime, // in seconds
 }: TimerProps) => {
   const { colors } = useTheme();
   const [isCountingForward, setIsCountingForward] = useState(false); // To manage forward counting state
@@ -112,6 +114,7 @@ const Timer = ({
             time={time}
             isWaiting={isWaiting}
             onAfterCountdownEnds={handleCountdownEnd}
+            countingForwardStartTime={countingForwardStartTime}
             style={{
               timerNumText: [computedStyles.timerNumText, style?.timerNumText],
               timerSecondaryText: [computedStyles.timerSecondaryText, style?.timerSecondaryText],

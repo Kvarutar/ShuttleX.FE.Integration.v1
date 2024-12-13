@@ -40,4 +40,5 @@ export type TimerProps = {
   sizeMode: TimerSizesModes;
   colorMode: TimerColorModes;
   withCountdown?: boolean;
+  countingForwardStartTime?: number;
 };

@@ -10,4 +10,5 @@ export type CountingComponentProps = {
     timerSecondaryText?: StyleProp<TextStyle>;
     timerMainText?: StyleProp<TextStyle>;
   };
+  countingForwardStartTime?: number;
 };
