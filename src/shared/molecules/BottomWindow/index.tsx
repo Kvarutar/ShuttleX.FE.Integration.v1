@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   bottomWindow: {
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
-    paddingHorizontal: 16,
+    paddingHorizontal: sizes.paddingHorizontal,
     paddingVertical: sizes.paddingVertical,
   },
   container: {

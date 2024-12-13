@@ -48,14 +48,12 @@ const UnsupportedCityPopupWithoutI18n = ({
   );
 
   return (
-    <>
-      <BottomWindowWithGesture
-        hiddenPart={hiddenPartContent}
-        setIsOpened={setIsUnsupportedCityPopupVisible}
-        withShade
-        opened
-      />
-    </>
+    <BottomWindowWithGesture
+      hiddenPart={hiddenPartContent}
+      setIsOpened={setIsUnsupportedCityPopupVisible}
+      withShade
+      opened
+    />
   );
 };
 

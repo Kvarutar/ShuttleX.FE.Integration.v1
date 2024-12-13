@@ -226,6 +226,7 @@ import PhoneSlidingPanel from './shared/molecules/PhoneSlidingPanel';
 import Popup from './shared/molecules/Popup';
 import SafeAreaView from './shared/molecules/SafeAreaView';
 import ScrollViewWithCustomScroll from './shared/molecules/ScrollViewWithCustomScroll';
+import ServerErrorModal from './shared/molecules/ServerErrorModal';
 import SliderWithCustomGesture from './shared/molecules/SliderWithCustomGesture';
 import StatsBlock from './shared/molecules/StatsBlock';
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/types';
@@ -547,6 +548,7 @@ export {
   secToMilSec,
   SelectOnMapIcon,
   Separator,
+  ServerErrorModal,
   SettingsIcon,
   Shade,
   ShareIcon,

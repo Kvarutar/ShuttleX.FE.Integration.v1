@@ -274,6 +274,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       },
       headerWrapper: {
         backgroundColor: colors.backgroundPrimaryColor,
+        marginHorizontal: (sizes.paddingHorizontal / 4) * 3, // margin 3/4
       },
       draggableElement: {
         backgroundColor: colors.draggableColor,
@@ -283,6 +284,15 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       },
       contentContainer: {
         flexShrink: isScrollable ? 0 : 1,
+      },
+      window: {
+        paddingHorizontal: sizes.paddingHorizontal / 4, // padding 1/4
+      },
+      contentWrapper: {
+        marginHorizontal: (sizes.paddingHorizontal / 4) * 3, // margin 3/4
+      },
+      scrollBar: {
+        right: -sizes.paddingHorizontal / 2,
       },
     });
 
@@ -333,7 +343,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     };
 
     const content = (
-      <View style={styles.contentWrapper}>
+      <View style={[styles.contentWrapper, computedStyles.contentWrapper]}>
         <Animated.View onLayout={onVisiblePartLayout} style={visiblePartAnimatedStyle}>
           <Animated.View style={[styles.visiblePart, computedStyles.visiblePart, visiblePartStyle]}>
             {withVisiblePartScroll ? (
@@ -341,7 +351,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
                 withScrollToTop
                 withShadow
                 style={hiddenPartStyle}
-                barStyle={styles.scrollBar}
+                barStyle={computedStyles.scrollBar}
                 wrapperStyle={styles.scrollViewWrapper}
                 contentContainerStyle={hiddenPartContainerStyle}
               >
@@ -359,7 +369,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
                 withScrollToTop
                 withShadow
                 style={hiddenPartStyle}
-                barStyle={styles.scrollBar}
+                barStyle={computedStyles.scrollBar}
                 wrapperStyle={styles.scrollViewWrapper}
                 contentContainerStyle={hiddenPartContainerStyle}
               >
@@ -386,7 +396,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
             alerts={alerts}
             showAlerts={isAlertsVisible}
             style={styles.bottom}
-            windowStyle={[styles.window, computedStyles.bottom, bottomWindowStyle]}
+            windowStyle={[styles.window, computedStyles.window, computedStyles.bottom, bottomWindowStyle]}
           >
             <GestureDetector gesture={gesture}>
               <View style={styles.contentAndHeaderWrapper}>
@@ -472,9 +482,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     paddingBottom: 8,
     zIndex: 1,
-  },
-  scrollBar: {
-    right: -sizes.paddingHorizontal / 2,
   },
   hiddenWrapper: {
     flexShrink: 1,
