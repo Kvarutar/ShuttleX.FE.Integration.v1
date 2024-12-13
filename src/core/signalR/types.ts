@@ -5,7 +5,6 @@ import { type sliceName } from './slice';
 
 export type SignalRState = {
   accessToken: string;
-  isConnected: boolean;
 };
 
 export type SignalRReduxExternalState = Record<typeof sliceName, SignalRState>;

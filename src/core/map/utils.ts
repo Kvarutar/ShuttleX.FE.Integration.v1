@@ -35,3 +35,6 @@ export const calculateNewMapRoute = (
 export const decodeGooglePolyline = (encodedGeometry: string): LatLng[] => {
   return decode(encodedGeometry).map(([latitude, longitude]) => ({ latitude, longitude }));
 };
+
+export const isCoordinatesEqualZero = (coordinates: LatLng) =>
+  coordinates.latitude === 0 && coordinates.longitude === 0;

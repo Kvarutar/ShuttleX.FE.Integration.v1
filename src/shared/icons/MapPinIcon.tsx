@@ -3,7 +3,7 @@ import Svg, { Circle, Rect } from 'react-native-svg';
 
 import { useTheme } from '../../core/themes/v2/themeContext';
 
-type MapPinIconProps = {
+export type MapPinIconProps = {
   style?: StyleProp<ViewStyle>;
   colorMode?: 'mode1' | 'mode2';
 };

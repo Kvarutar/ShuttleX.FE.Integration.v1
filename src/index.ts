@@ -26,9 +26,15 @@ import i18nIntegration from './core/locales/i18n';
 import { AnimatedMarker } from './core/map/hooks';
 import lightMapStyle from './core/map/lightMapStyle.json';
 import MapCameraModeButton from './core/map/MapCameraModeButton';
-import MapView from './core/map/MapView';
-import { type MapCameraMode, type MapPolyline, type MapViewProps } from './core/map/types';
-import { calculateNewMapRoute, decodeGooglePolyline } from './core/map/utils';
+import MapView, { mapConstants } from './core/map/MapView';
+import {
+  type MapCameraMode,
+  type MapMarker,
+  type MapPolyline,
+  type MapViewProps,
+  type MapViewRef,
+} from './core/map/types';
+import { calculateNewMapRoute, decodeGooglePolyline, isCoordinatesEqualZero } from './core/map/utils';
 import { nameof } from './core/monkey-patch/ts.helper';
 import { initCreateAppAsyncThunk, type InitCreateAppAsyncThunkDispatch } from './core/redux/initCreateAppAsyncThunk';
 import { createSignalRSlice } from './core/signalR/slice';
@@ -443,6 +449,7 @@ export {
   IntegrationModule,
   InternetDisconnectedAlert,
   isAllFieldsFilled,
+  isCoordinatesEqualZero,
   isEmailValid,
   isIncorrectFieldsError,
   isLockedError,
@@ -469,11 +476,14 @@ export {
   MaestroIcon,
   type MapCameraMode,
   MapCameraModeButton,
+  mapConstants,
+  type MapMarker,
   MapNavigationPlaneIcon,
   MapPinIcon,
   type MapPolyline,
   MapView,
   type MapViewProps,
+  type MapViewRef,
   MasterCardIcon,
   MediaAmount,
   MediaCore,

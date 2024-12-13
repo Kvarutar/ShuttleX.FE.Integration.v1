@@ -1,6 +1,7 @@
 import { type StyleProp, type ViewStyle } from 'react-native';
-import { type LatLng } from 'react-native-maps';
+import { type Camera, type LatLng } from 'react-native-maps';
 
+import { type MapPinIconProps } from '../../shared/icons/MapPinIcon';
 import { type MapPinIcon2Props } from '../../shared/icons/MapPinIcon2';
 
 export type MapCameraMode = 'free' | 'follow' | 'followWithCompass';
@@ -9,6 +10,12 @@ export type MapPolyline =
   | { type: 'straight'; options: { coordinates: LatLng[]; color?: string } }
   | { type: 'dotted'; options: { coordinates: LatLng[]; color?: string } }
   | { type: 'arc'; options: { startPont: LatLng; endPoint: LatLng } };
+
+export type MapMarker = {
+  colorMode: MapPinIconProps['colorMode'];
+  coordinates: LatLng;
+  zIndex?: number;
+};
 
 type MapCars = {
   data: {
@@ -22,14 +29,21 @@ type MapCars = {
   animationDuration: number;
 };
 
+export type MapViewRef = {
+  animateCamera: (camera: Partial<Omit<Camera, 'altitude'>>, opts: { duration: number }) => void;
+  setCamera: (camera: Partial<Omit<Camera, 'altitude'>>) => void;
+};
+
 export type MapViewProps = {
   style?: StyleProp<ViewStyle>;
   geolocationCoordinates?: LatLng;
   geolocationCalculatedHeading?: number;
+  disableSetCameraOnGeolocationAvailable?: boolean;
   cars?: MapCars;
   polylines?: MapPolyline[];
   stopPoints?: LatLng[];
   finalStopPoint?: { coordinates: LatLng } & Omit<MapPinIcon2Props, 'style'>;
+  markers?: MapMarker[];
   cameraMode?: MapCameraMode;
   setCameraModeOnDrag?: (cameraMode: MapCameraMode) => void;
   onDragComplete?: (coordinates: LatLng) => void;

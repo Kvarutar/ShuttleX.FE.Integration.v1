@@ -34,7 +34,6 @@ export const createSignalRSlice = ({ options, listeners = [] }: createSignalRSli
 
   const initialState: SignalRState = {
     accessToken: '',
-    isConnected: false,
   };
 
   const slice = createSlice({
@@ -43,9 +42,6 @@ export const createSignalRSlice = ({ options, listeners = [] }: createSignalRSli
     reducers: {
       updateSignalRAccessToken(state: SignalRState, action: PayloadAction<string>) {
         state.accessToken = action.payload;
-      },
-      setIsSignalRConnected(state: SignalRState, action: PayloadAction<SignalRState['isConnected']>) {
-        state.isConnected = action.payload;
       },
     },
   });
@@ -71,7 +67,6 @@ export const createSignalRSlice = ({ options, listeners = [] }: createSignalRSli
           if (signalRConnection.state === HubConnectionState.Disconnected) {
             await signalRConnection.start();
           }
-          dispatch(slice.actions.setIsSignalRConnected(true));
           signalRconsoleInfo('connected');
         } catch (error) {
           signalRconsoleError(`error in start(): ${error}`);
@@ -91,7 +86,6 @@ export const createSignalRSlice = ({ options, listeners = [] }: createSignalRSli
         .withServerTimeout(opts.serverTimeout)
         .withAutomaticReconnect({
           nextRetryDelayInMilliseconds: context => {
-            dispatch(slice.actions.setIsSignalRConnected(false));
             signalRconsoleInfo(`connection lost, reconnecting, reason: ${context.retryReason}`);
             return opts.reconnectTimeout;
           },
@@ -123,11 +117,15 @@ export const createSignalRSlice = ({ options, listeners = [] }: createSignalRSli
    * @returns
    */
   const createSignalRMethodThunk = <ReturnValue, Payload>(methodName: string) => {
-    return createAppAsyncThunk<ReturnValue, Payload>(
+    return createAppAsyncThunk<ReturnValue | undefined, Payload>(
       `${sliceName}/${methodName}`,
       async (payload, { rejectWithValue }) => {
+        if (signalRConnection === null || signalRConnection.state !== HubConnectionState.Connected) {
+          return undefined;
+        }
+
         try {
-          const result = await signalRConnection?.invoke(methodName, ...(Array.isArray(payload) ? payload : [payload]));
+          const result = await signalRConnection.invoke(methodName, ...(Array.isArray(payload) ? payload : [payload]));
           return result as ReturnValue;
         } catch (error) {
           signalRconsoleError(`${methodName} method error: ${error}`);
@@ -136,8 +134,6 @@ export const createSignalRSlice = ({ options, listeners = [] }: createSignalRSli
       },
     );
   };
-
-  const isSignalRConnectedSelector = (state: SignalRReduxExternalState) => state.signalr.isConnected;
 
   return {
     /**
@@ -151,6 +147,5 @@ export const createSignalRSlice = ({ options, listeners = [] }: createSignalRSli
     signalRThunks: {
       connect,
     },
-    isSignalRConnectedSelector,
   };
 };
