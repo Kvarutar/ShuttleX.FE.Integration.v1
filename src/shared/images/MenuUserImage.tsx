@@ -1,12 +1,26 @@
 import { Image, type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 
-import EmojiIcon from '../icons/EmojiIcon';
+import { useTheme } from '../../core/themes/v2/themeContext';
 
-const MenuUserImage = ({ url, style }: { url?: string; style?: StyleProp<ViewStyle> }) => (
-  <View style={[styles.wrapper, style]}>
-    {url ? <Image style={styles.image} source={{ uri: url }} /> : <EmojiIcon />}
-  </View>
-);
+const MenuUserImage = ({ url, style }: { url?: string; style?: StyleProp<ViewStyle> }) => {
+  const { colors } = useTheme();
+
+  const computedStyles = StyleSheet.create({
+    image: {
+      backgroundColor: colors.backgroundPrimaryColor,
+    },
+  });
+
+  return (
+    <View style={[styles.wrapper, style]}>
+      {url ? (
+        <Image style={styles.image} source={{ uri: url }} />
+      ) : (
+        <Image style={[styles.image, computedStyles.image]} source={require('../../assets/img/DefaultAvatar.png')} />
+      )}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   wrapper: {
