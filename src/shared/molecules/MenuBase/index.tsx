@@ -1,14 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  Dimensions,
-  type LayoutChangeEvent,
-  Linking,
-  Platform,
-  Pressable,
-  StatusBar,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { Dimensions, type LayoutChangeEvent, Linking, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
@@ -46,12 +37,9 @@ const MenuBase = ({
   currentRoute,
   isContractorMenu,
   loading,
-  isStatusBarTransparent = false,
 }: MenuBaseProps) => {
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
-
-  const topOffset = Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0;
 
   const [imageHeight, setImageHeight] = useState(0);
 
@@ -76,11 +64,12 @@ const MenuBase = ({
   const goToSite = () => {
     Linking.openURL('https://www.shuttlex.com').catch(err => console.error(err));
   };
+
   const computedStyles = StyleSheet.create({
     wrapper: {
       backgroundColor: colors.backgroundPrimaryColor,
       width: constants.menuWidth,
-      height: isStatusBarTransparent ? windowSizes.height + topOffset : windowSizes.height,
+      gap: 22 + imageHeight / 2,
       paddingBottom: Platform.OS === 'android' ? sizes.paddingVertical : 16,
       shadowColor: colors.iconPrimaryColor,
     },
@@ -90,11 +79,9 @@ const MenuBase = ({
     primaryColorBackground: {
       backgroundColor: colors.primaryColor,
       justifyContent: 'flex-end',
+      marginTop: -sizes.paddingVertical,
+      marginHorizontal: -sizes.paddingHorizontal,
     },
-    container: {
-      paddingTop: 96 + imageHeight / 2 + 22 - topOffset,
-    },
-
     profileImage: {
       bottom: -imageHeight / 2,
     },
@@ -145,7 +132,7 @@ const MenuBase = ({
             </View>
           </View>
 
-          <View style={[styles.container, computedStyles.container]}>
+          <View style={styles.container}>
             <View style={styles.gapAdditionalContent}>
               <View style={styles.profile}>
                 {loading?.username ? (
@@ -186,12 +173,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+    bottom: 0,
     flexDirection: 'row',
   },
   wrapper: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
     shadowOffset: {
       width: 0,
       height: 0,
@@ -207,10 +192,6 @@ const styles = StyleSheet.create({
   },
   primaryColorBackground: {
     height: 96,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
     zIndex: -1,
   },
 
@@ -227,7 +208,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     gap: 26,
-    paddingBottom: 16,
   },
 
   profile: {
