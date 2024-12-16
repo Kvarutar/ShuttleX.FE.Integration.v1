@@ -6,10 +6,10 @@ import BasicImage from './BasicImage';
 import BasicXLImage from './BasicXLImage';
 import BusinessImage from './Business';
 import ComfortPlusImage from './ComfortPlusImage';
-import EcoImage from './EcoImage';
+import ElectricImage from './ElectricImage';
 
 // TODO: Change tariffs names to the frontend keys
-export type TariffType = 'Basic' | 'BasicXL' | 'ComfortPlus' | 'Business' | 'Eco';
+export type TariffType = 'Basic' | 'BasicXL' | 'ComfortPlus' | 'Business' | 'Electric';
 
 export type TariffIconData = {
   icon: ({ style }: { style?: ImageStyle }) => JSX.Element;
@@ -35,9 +35,9 @@ export const useTariffsIcons = (): Record<TariffType, TariffIconData> => {
       icon: BusinessImage,
       text: t('Tariffs_business'),
     },
-    Eco: {
-      icon: EcoImage,
-      text: t('Tariffs_eco'),
+    Electric: {
+      icon: ElectricImage,
+      text: t('Tariffs_electric'),
     },
   };
   return icons;

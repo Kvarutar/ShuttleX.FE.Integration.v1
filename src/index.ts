@@ -170,7 +170,7 @@ import BasicImage from './shared/icons/Tariffs/BasicImage';
 import BasicXLImage from './shared/icons/Tariffs/BasicXLImage';
 import BusinessImage from './shared/icons/Tariffs/Business';
 import ComfortPlusImage from './shared/icons/Tariffs/ComfortPlusImage';
-import EcoImage from './shared/icons/Tariffs/EcoImage';
+import ElectricImage from './shared/icons/Tariffs/ElectricImage';
 import { type TariffIconData, type TariffType, useTariffsIcons } from './shared/icons/Tariffs/TariffsCarImage';
 import TimeIcon from './shared/icons/TimeIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
@@ -400,7 +400,7 @@ export {
   DriverArrivedAlert,
   DropDownIcon,
   DropOffIcon,
-  EcoImage,
+  ElectricImage,
   emailRegex,
   EmergencyServiceIcon,
   EmojiIcon,
