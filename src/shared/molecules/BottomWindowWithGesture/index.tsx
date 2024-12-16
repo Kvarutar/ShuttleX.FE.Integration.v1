@@ -403,7 +403,10 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
           >
             <GestureDetector gesture={gesture}>
               <View style={styles.contentAndHeaderWrapper}>
-                <View onLayout={onHeaderElementLayout} style={[computedStyles.headerWrapper, headerWrapperStyle]}>
+                <View
+                  onLayout={onHeaderElementLayout}
+                  style={[styles.headerWrapper, computedStyles.headerWrapper, headerWrapperStyle]}
+                >
                   {headerElement}
                   {withDraggable && (
                     <View style={styles.draggableZone}>
@@ -466,6 +469,10 @@ const styles = StyleSheet.create({
   hiddenScrollWrapper: {
     flex: 0,
     flexShrink: 1,
+  },
+  headerWrapper: {
+    marginTop: 1,
+    borderRadius: 2,
   },
   draggableElement: {
     width: 36,
