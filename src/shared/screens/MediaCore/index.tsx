@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { ActivityIndicator, Alert, Platform, StyleSheet, View } from 'react-native';
+import { Alert, Platform, StyleSheet, View } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import { type ImagePickerResponse, launchCamera, launchImageLibrary } from 'react-native-image-picker';
@@ -147,12 +147,6 @@ const MediaCoreWithoutI18n = ({
     }
   };
 
-  const computedStyles = StyleSheet.create({
-    activityIndicator: {
-      color: colors.iconPrimaryColor,
-    },
-  });
-
   let bottomButton = (
     <>
       <Button
@@ -202,11 +196,7 @@ const MediaCoreWithoutI18n = ({
 
   if (!isFileLoaded) {
     if (mediaAmount === MediaAmount.Single) {
-      bottomButton = (
-        <Button containerStyle={styles.button}>
-          <ActivityIndicator color={computedStyles.activityIndicator.color} />
-        </Button>
-      );
+      bottomButton = <Button containerStyle={styles.button} isLoading={!isFileLoaded} />;
     } else {
       bottomButton = (
         <Button
@@ -216,9 +206,8 @@ const MediaCoreWithoutI18n = ({
           shadow={ButtonShadows.Strong}
           withCircleModeBorder
           onPress={() => handlePhotoAction('camera')}
-        >
-          <ActivityIndicator color={computedStyles.activityIndicator.color} />
-        </Button>
+          isLoading={!isFileLoaded}
+        />
       );
     }
   }
