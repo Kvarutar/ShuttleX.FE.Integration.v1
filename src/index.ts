@@ -271,6 +271,7 @@ import { SignInMethod } from './shared/screens/SignInScreen/types';
 import SignUpScreen from './shared/screens/SignUpScreen';
 import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
 import {
+  formatNumbersToMask,
   formatPhone,
   formatTime,
   getTimeWithAbbreviation,
@@ -418,6 +419,7 @@ export {
   FlatListWithCustomScroll,
   Fog,
   formatCurrency,
+  formatNumbersToMask,
   formatPhone,
   formatTime,
   FreeTimeAlert,

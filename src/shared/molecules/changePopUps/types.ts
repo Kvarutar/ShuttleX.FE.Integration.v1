@@ -28,7 +28,7 @@ export const inputsValidation: Record<ChangeDataPopUpMode, (value: string) => bo
 
 export type ChangeDataPopUpProps = {
   currentValue: string;
-  handleOpenVerification: (mode: ChangeDataPopUpMode, newValue: string) => void;
+  handleOpenVerification: (mode: ChangeDataPopUpMode, newValue: string, method: 'change' | 'verify') => void;
   setNewValue?: (value: string) => void;
   mode: ChangeDataPopUpMode;
   onChangeDataPopupClose: () => void;

@@ -36,6 +36,8 @@
   "AccountChangePhonePopUp_currPhone": "Enter your current phone number",
   "AccountChangeEmailPopUp_newEmail": "Enter new email",
   "AccountChangePhonePopUp_newPhone": "Enter new phone number",
+  "Account_VerifyDataPopUp_confirm": "Confirm",
+  "Account_VerifyDataPopUp_firstTitle": "Confirm Your\n{{mode}}",
   "AddCard_payBill": "Pay Bill",
   "AddCard_automatically": "Automatically",
   "AddCard_saveButton": "Save",

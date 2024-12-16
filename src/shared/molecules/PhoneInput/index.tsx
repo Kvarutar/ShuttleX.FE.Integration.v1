@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Keyboard, Pressable, StyleSheet, View } from 'react-native';
 
-import { indexOfNotFound } from '../../../core/monkey-patch/array.helper';
 import { useTheme } from '../../../core/themes/v2/themeContext';
+import { formatNumbersToMask } from '../../../utils';
 import Text from '../../atoms/Text';
 import { type TextInputV1Props } from '../../atoms/TextInput/v1/props';
 import TextInput from '../../atoms/TextInput/v2';
@@ -77,26 +77,6 @@ const PhoneInput = ({
       Keyboard.dismiss();
     }
     onFlagPress();
-  };
-
-  const formatNumbersToMask = (numbers: string, mask: string): string => {
-    const numbersArr = numbers.split('');
-    const maskArr = mask.split('');
-
-    for (const number of numbersArr) {
-      const hashPosition = maskArr.indexOf('#');
-      if (hashPosition === indexOfNotFound) {
-        break;
-      }
-      maskArr[hashPosition] = number;
-    }
-
-    const hashPosition = maskArr.indexOf('#');
-    // Check if there is hash sign left
-    if (hashPosition === -1) {
-      return maskArr.join('');
-    }
-    return maskArr.slice(0, hashPosition).join('');
   };
 
   const borderColor = error.isError ? colors.errorColor : colors.borderColor;

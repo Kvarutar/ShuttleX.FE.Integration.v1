@@ -4,18 +4,31 @@ import { type ChangeDataPopUpMode, type Profile } from '../../molecules/changePo
 
 export type AccountSettingsProps = {
   //TODO uncoment when we need changeName popup
-  // onProfileDataSave: (profileData: Profile) => void;
   profile: Profile;
-  handleOpenVerification: (mode: ChangeDataPopUpMode, newValue: string) => void;
-  isVerificationDone: boolean;
+  handleOpenVerification: (mode: ChangeDataPopUpMode, newValue: string, method: 'change' | 'verify') => void;
   photoBlock?: ReactNode;
   barBlock?: ReactNode;
+  verifiedStatus: VerifyStatusType;
   onSignOut: () => void;
   // onNameChanged?: () => void;
   // isContractor?: boolean;
 };
 
+export type VerifyStatusType = {
+  phoneInfo: string;
+  isPhoneVerified: boolean;
+  emailInfo: string;
+  isEmailVerified: boolean;
+};
+
 export type SignOutPopupProps = {
   setIsSignOutPopupVisible: (state: boolean) => void;
   onSignOut: () => void;
+};
+
+export type VerifyDataPopUpType = {
+  mode: 'email' | 'phone';
+  handleOpenVerification: (mode: 'email' | 'phone', value: string, method: 'change' | 'verify') => void;
+  data: string;
+  onVerifyPopupClose: () => void;
 };

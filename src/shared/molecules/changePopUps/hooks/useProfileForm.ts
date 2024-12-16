@@ -8,9 +8,10 @@ export const useProfileForm = (initialProfile: Profile) => {
   const [profileDataForm, setProfileDataForm] = useState<Profile>(initialProfile);
   const [flag, setFlag] = useState<CountryPhoneMaskDto>(countryDtos[0] ?? ({} as CountryPhoneMaskDto));
 
-  const handleInputChange = useCallback((field: keyof Profile, value: string | boolean) => {
-    setProfileDataForm(prev => ({ ...prev, [field]: value }));
-  }, []);
+  //TODO uncoment when we need change name popup
+  // const handleInputChange = useCallback((field: keyof Profile, value: string | boolean) => {
+  //   setProfileDataForm(prev => ({ ...prev, [field]: value }));
+  // }, []);
 
   const hasProfileChanged = useCallback(() => {
     return (
@@ -35,8 +36,7 @@ export const useProfileForm = (initialProfile: Profile) => {
   }, [profileDataForm.phone]);
 
   return {
-    profileDataForm,
-    handleInputChange,
+    // handleInputChange,
     setProfileDataForm,
     hasProfileChanged: hasProfileChanged(),
     flag,

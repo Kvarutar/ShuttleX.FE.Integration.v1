@@ -1,22 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Dimensions, Platform, Pressable, StyleSheet, View } from 'react-native';
-import { SquareButtonModes } from 'shuttlex-integration';
+import { Dimensions, Modal, Pressable, StyleSheet, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Button, SquareButtonModes } from 'shuttlex-integration';
 
-// import { Switch } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
-import Button from '../../atoms/Button/v2';
-// TODO Uncomment all code whe we need it
-// import { useTheme } from '../../../core/themes/v2/themeContext';
-// import { Switch } from 'react-native';
-// import { isNameValid } from '../../../utils/validation';
-// import { BarModes } from '../../atoms/Bar/types';
-// import Bar from '../../atoms/Bar/v2';
-// import Button from '../../atoms/Button/v2';
-// import Text from '../../atoms/Text';
+import { formatNumbersToMask } from '../../../utils';
 import TextInput from '../../atoms/TextInput/v2';
-// import { type TextInputRef } from '../../atoms/TextInput/v2/props';
 import { countryFlags } from '../../icons/Flags';
+import WarningIcon from '../../icons/WarningIcon';
 import BottomWindowWithGesture from '../../molecules/BottomWindowWithGesture';
 import ChangeDataPopUp from '../../molecules/changePopUps/ChangeDataPopUp';
 import { useChangeData } from '../../molecules/changePopUps/hooks/useChangeData';
@@ -24,88 +16,36 @@ import { useProfileForm } from '../../molecules/changePopUps/hooks/useProfileFor
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
 import SignOutPopup from './SignOutPopup';
 import { type AccountSettingsProps } from './types';
+import VerifyDataPopUp from './VerifyDataPopUp';
 
 const windowSizes = Dimensions.get('window');
 
-//////TODO uncoment all changeName related code when we need changeName popup///////
-
 const AccountSettingsScreenWithoutI18n = ({
-  // onProfileDataSave,
   profile,
   handleOpenVerification,
-  isVerificationDone,
-  // onNameChanged,
   barBlock,
   photoBlock,
   onSignOut,
-  // isContractor = false,
+  verifiedStatus,
 }: AccountSettingsProps) => {
   const { t } = useTranslation();
-  // const fullNameInputRef = useRef<TextInputRef>(null);
 
-  const { profileDataForm, handleInputChange, flag } = useProfileForm(profile);
+  const { flag } = useProfileForm(profile);
 
-  const { isChangeDataPopUpVisible, mode, changedValue, handleOpenChangeWindow, onChangeDataPopupClose } =
-    useChangeData();
+  const {
+    isChangeDataPopUpVisible,
+    onVerifyPopupClose,
+    isVerifyPopUpVisible,
+    handleOpenVerifyWindow,
+    mode,
+    handleOpenChangeWindow,
+    onChangeDataPopupClose,
+  } = useChangeData();
 
   const [isSignOutPopupVisible, setIsSignOutPopupVisible] = useState(false);
-
-  //theme logic
-  // TODO Uncomment all code whe we need it
-  // const { themeMode, setThemeMode } = useTheme();
-
-  //validate logic
-  // const [wasValidated, setWasValidated] = useState<boolean>(false);
-  // const [isChangeNamePopupVisible, setIsChangeNamePopupVisible] = useState<boolean>(false);
-  // const [isAnswer, setAnswer] = useState<boolean>(false);
-
-  //switch theme logic
-  // TODO Uncomment all code whe we need it
-  // const isThemeSwitchActive = themeMode === 'dark';
-
-  // const toggleSwitch = useCallback(() => {
-  //   setThemeMode(isThemeSwitchActive ? 'light' : 'dark');
-  // }, [isThemeSwitchActive, setThemeMode]);
-  // }, [isThemeSwitchActive, setThemeMode]);
-
-  useEffect(() => {
-    if (isVerificationDone) {
-      handleInputChange(mode, changedValue);
-    }
-  }, [isVerificationDone, handleInputChange, changedValue, mode]);
-
-  // useEffect(() => {
-  //   if (isAnswer) {
-  //     if (isContractor) {
-  //       onNameChanged?.();
-  //     }
-  //     onProfileDataSave(profileDataForm);
-  //     setAnswer(false);
-  //   }
-  // }, [profileDataForm, isAnswer, onProfileDataSave, onNameChanged, isContractor]);
-
-  // const onChangeNamePopupClose = () => {
-  //   setIsChangeNamePopupVisible(false);
-
-  //   setProfileDataForm(prevState => ({
-  //     ...prevState,
-  //     fullName: profile.fullName,
-  //   }));
-  // };
-
-  // const onDataSave = () => {
-  //   fullNameInputRef.current?.blur();
-
-  //   setWasValidated(true);
-  //   if (profile.fullName !== profileDataForm.fullName) {
-  //     setIsChangeNamePopupVisible(true);
-  //   }
-  // };
+  const fullPhoneMask = flag.icc + flag.phoneMask;
 
   const computedStyles = StyleSheet.create({
-    switch: {
-      transform: Platform.OS === 'android' ? [{ scaleX: 1 }, { scaleY: 1 }] : '',
-    },
     hiddenPartChange: {
       height: windowSizes.height * 0.83,
     },
@@ -118,48 +58,45 @@ const AccountSettingsScreenWithoutI18n = ({
           {photoBlock}
           <View style={styles.inputsStyle}>
             <View pointerEvents="none">
-              <TextInput
-                // ref={fullNameInputRef}
-                // inputMode={TextInputInputMode.Text}
-                value={profileDataForm.fullName}
-                // placeholder={t('AccountSettings_fullName_placeholder')}
-                // withClearButton
-                // onChangeText={(value: string) => handleInputChange('fullName', value)}
-                // error={{
-                //   isError: !isNameValid(profileDataForm.fullName) && wasValidated,
-                //   message: t('AccountSettings_nameError'),
-                // }}
-              />
+              <TextInput value={profile.fullName} />
             </View>
 
-            <Pressable onPress={() => handleOpenChangeWindow('email')}>
-              <View pointerEvents="none">
-                <TextInput value={profileDataForm.email} />
-              </View>
-            </Pressable>
+            <View style={styles.inputWithIcon}>
+              <Pressable onPress={() => handleOpenChangeWindow('email')}>
+                <View pointerEvents="none">
+                  {/*TODO just for test, change it when back will synchronize profile & user */}
+                  <TextInput value={verifiedStatus.emailInfo} />
+                </View>
+              </Pressable>
+              {!verifiedStatus.isEmailVerified && (
+                <Pressable onPress={() => handleOpenVerifyWindow('email')}>
+                  <WarningIcon style={styles.warningIcon} />
+                </Pressable>
+              )}
+            </View>
 
-            <Pressable onPress={() => handleOpenChangeWindow('phone')}>
-              <View style={styles.flagAndInputContainer} pointerEvents="none">
-                <View style={styles.flagContainer}>{flag && countryFlags[flag.countryCode]}</View>
-                <TextInput
-                  value={profileDataForm.phone}
-                  containerStyle={styles.input}
-                  wrapperStyle={styles.inputWrapperStyle}
-                />
-              </View>
-            </Pressable>
+            <View style={styles.inputWithIcon}>
+              <Pressable onPress={() => handleOpenChangeWindow('phone')}>
+                <View style={styles.flagAndInputContainer} pointerEvents="none">
+                  <View style={styles.flagContainer}>{flag && countryFlags[flag.countryCode]}</View>
+                  <TextInput
+                    // {/*TODO just for test, change it when back will synchronize profile & user */}
+                    value={formatNumbersToMask(
+                      verifiedStatus.phoneInfo.replace(new RegExp(`^\\+${flag.icc}`, ''), ''),
+                      fullPhoneMask,
+                    )}
+                    containerStyle={styles.input}
+                    wrapperStyle={styles.inputWrapperStyle}
+                  />
+                </View>
+              </Pressable>
+              {!verifiedStatus.isPhoneVerified && (
+                <Pressable onPress={() => handleOpenVerifyWindow('phone')}>
+                  <WarningIcon style={styles.warningIcon} />
+                </Pressable>
+              )}
+            </View>
             {barBlock}
-
-            {/* // TODO Uncomment all code whe we need it */}
-
-            {/*  <Bar style={styles.bar} mode={BarModes.Default}>
-              <Text style={styles.barText}>{t('AccountSettings_barDarkMode')}</Text>
-              <Switch onValueChange={toggleSwitch} value={isThemeSwitchActive} style={computedStyles.switch} />
-            </Bar>*/}
-
-            {/* {hasProfileChanged && (
-            <Button onPress={onDataSave} textStyle={styles.button} text={t('AccountSettings_saveButton')} />
-          )} */}
           </View>
         </ScrollViewWithCustomScroll>
         <Button
@@ -170,42 +107,46 @@ const AccountSettingsScreenWithoutI18n = ({
         />
       </View>
 
-      {/* {isChangeNamePopupVisible && (
-        <Modal transparent>
-          <BottomWindowWithGesture
-            withShade
-            setIsOpened={onChangeNamePopupClose}
-            hiddenPartButton={
-              <ChangeNamePopUpButtons setAnswer={setAnswer} setIsPopUpVisible={setIsChangeNamePopupVisible} />
-            }
-            opened
-            hiddenPart={<ChangeNamePopUp isContractor={isContractor} />}
-          />
-        </Modal>
-      )} */}
       {isSignOutPopupVisible && (
         <SignOutPopup setIsSignOutPopupVisible={setIsSignOutPopupVisible} onSignOut={onSignOut} />
       )}
       {isChangeDataPopUpVisible && (
-        //TODO modal does not work properly on android devices, resolve problem after demo
-        // <Modal transparent>
+        <Modal transparent>
+          <GestureHandlerRootView>
+            <BottomWindowWithGesture
+              withShade
+              setIsOpened={onChangeDataPopupClose}
+              hiddenPartStyle={computedStyles.hiddenPartChange}
+              opened
+              withHiddenPartScroll={false}
+              hiddenPart={
+                <ChangeDataPopUp
+                  currentValue={profile[mode]}
+                  mode={mode}
+                  handleOpenVerification={handleOpenVerification}
+                  // setNewValue={handleValueChange}
+                  onChangeDataPopupClose={onChangeDataPopupClose}
+                />
+              }
+            />
+          </GestureHandlerRootView>
+        </Modal>
+      )}
+
+      {isVerifyPopUpVisible && (
         <BottomWindowWithGesture
           withShade
-          setIsOpened={onChangeDataPopupClose}
-          hiddenPartStyle={computedStyles.hiddenPartChange}
+          setIsOpened={onVerifyPopupClose}
           opened
-          withHiddenPartScroll={false}
           hiddenPart={
-            <ChangeDataPopUp
-              currentValue={profileDataForm[mode]}
+            <VerifyDataPopUp
               mode={mode}
               handleOpenVerification={handleOpenVerification}
-              // setNewValue={handleValueChange}
-              onChangeDataPopupClose={onChangeDataPopupClose}
+              data={profile[mode]}
+              onVerifyPopupClose={onVerifyPopupClose}
             />
           }
         />
-        // </Modal>
       )}
     </>
   );
@@ -242,10 +183,6 @@ const styles = StyleSheet.create({
   inputWrapperStyle: {
     flex: 1,
   },
-
-  button: {
-    fontSize: 17,
-  },
   bar: {
     paddingHorizontal: 16,
     paddingVertical: 16,
@@ -253,19 +190,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-
-  barText: {
-    fontSize: 17,
-    fontFamily: 'Inter Medium',
-  },
   wrapper: {
     flex: 1,
+  },
+  warningIcon: {
+    position: 'absolute',
+    right: 18,
+    bottom: 15,
+    alignItems: 'center',
+    alignContent: 'center',
+  },
+  inputWithIcon: {
+    position: 'relative',
   },
   container: {
     gap: 22,
     paddingBottom: 22,
   },
-
   inputsStyle: {
     gap: 16,
   },

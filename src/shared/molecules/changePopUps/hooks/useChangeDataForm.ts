@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { formatPhone } from '../../../../utils';
 import { type ChangeDataPopUpMode, inputsValidation, type NewData } from '../types';
 
 export const useChangeDataForm = (mode: ChangeDataPopUpMode, profileCurrentValue: string) => {
@@ -10,7 +11,10 @@ export const useChangeDataForm = (mode: ChangeDataPopUpMode, profileCurrentValue
 
   const [wasValidated, setWasValidated] = useState<boolean>(false);
 
-  const isEqual = data.currentValue.toLowerCase() === profileCurrentValue;
+  const isEqual =
+    mode === 'phone'
+      ? formatPhone(data.currentValue) === profileCurrentValue
+      : data.currentValue.toLowerCase() === profileCurrentValue;
 
   const isValid = isEqual && inputsValidation[mode] && inputsValidation[mode](data.newValue);
 

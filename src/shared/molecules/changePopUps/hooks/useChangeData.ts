@@ -4,7 +4,8 @@ import { type ChangeDataPopUpMode } from '../types';
 
 export const useChangeData = () => {
   const [modalState, setModalState] = useState({
-    isVisible: false,
+    isChangeVisible: false,
+    isVerifyVisible: false,
     mode: 'email' as ChangeDataPopUpMode,
     changedValue: '',
   });
@@ -12,7 +13,15 @@ export const useChangeData = () => {
   const handleOpenChangeWindow = useCallback((selectedMode: ChangeDataPopUpMode) => {
     setModalState(prev => ({
       ...prev,
-      isVisible: true,
+      isChangeVisible: true,
+      mode: selectedMode,
+    }));
+  }, []);
+
+  const handleOpenVerifyWindow = useCallback((selectedMode: ChangeDataPopUpMode) => {
+    setModalState(prev => ({
+      ...prev,
+      isVerifyVisible: true,
       mode: selectedMode,
     }));
   }, []);
@@ -20,7 +29,14 @@ export const useChangeData = () => {
   const onChangeDataPopupClose = useCallback(() => {
     setModalState(prev => ({
       ...prev,
-      isVisible: false,
+      isChangeVisible: false,
+    }));
+  }, []);
+
+  const onVerifyPopupClose = useCallback(() => {
+    setModalState(prev => ({
+      ...prev,
+      isVerifyVisible: false,
     }));
   }, []);
 
@@ -32,11 +48,14 @@ export const useChangeData = () => {
   }, []);
 
   return {
-    isChangeDataPopUpVisible: modalState.isVisible,
+    isChangeDataPopUpVisible: modalState.isChangeVisible,
+    isVerifyPopUpVisible: modalState.isVerifyVisible,
     mode: modalState.mode,
     changedValue: modalState.changedValue,
     handleOpenChangeWindow,
+    handleOpenVerifyWindow,
     onChangeDataPopupClose,
+    onVerifyPopupClose,
     handleValueChange,
   };
 };

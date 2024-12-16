@@ -1,6 +1,7 @@
 import { getLocales } from 'react-native-localize';
 
 import i18nIntegration from '../core/locales/i18n';
+import { indexOfNotFound } from '../core/monkey-patch/array.helper';
 /**
  * Converts boolean to number 1 or -1
  * @param flag boolean value
@@ -114,9 +115,37 @@ const formatPhone = (phone: string) => {
   return phone.replace(/[^+\d]/g, '');
 };
 
+/**
+ * Converts phone number to format with brackets
+ * @param numbers value
+ * @param mask value
+ * @returns +123(45)678-90-06 format
+ */
+
+const formatNumbersToMask = (numbers: string, mask: string): string => {
+  const numbersArr = numbers.split('');
+  const maskArr = mask.split('');
+
+  for (const number of numbersArr) {
+    const hashPosition = maskArr.indexOf('#');
+    if (hashPosition === indexOfNotFound) {
+      break;
+    }
+    maskArr[hashPosition] = number;
+  }
+
+  const hashPosition = maskArr.indexOf('#');
+  // Check if there is hash sign left
+  if (hashPosition === -1) {
+    return maskArr.join('');
+  }
+  return maskArr.slice(0, hashPosition).join('');
+};
+
 export {
   boolToSign,
   formatDate,
+  formatNumbersToMask,
   formatPhone,
   formatTime,
   getTimeWithAbbreviation,
