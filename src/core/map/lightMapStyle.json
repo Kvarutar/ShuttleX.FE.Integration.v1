@@ -32,6 +32,15 @@
     ]
   },
   {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#b8b8b8"
+      }
+    ]
+  },
+  {
     "featureType": "administrative.land_parcel",
     "elementType": "labels.text.fill",
     "stylers": [

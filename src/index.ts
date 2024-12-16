@@ -279,6 +279,7 @@ import {
   milSecToMin,
   milSecToTime,
   minToMilSec,
+  openRouteOnGoogleMaps,
   secToMilSec,
 } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
@@ -514,6 +515,7 @@ export {
   NotificationsScreenV1,
   NotificationType,
   type Nullable,
+  openRouteOnGoogleMaps,
   PaidTimeAlert,
   type PaidTimeAlertProps,
   palettes,

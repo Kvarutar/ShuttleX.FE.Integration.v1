@@ -1,4 +1,6 @@
+import { Linking } from 'react-native';
 import { getLocales } from 'react-native-localize';
+import { type LatLng } from 'react-native-maps';
 
 import i18nIntegration from '../core/locales/i18n';
 import { indexOfNotFound } from '../core/monkey-patch/array.helper';
@@ -142,6 +144,12 @@ const formatNumbersToMask = (numbers: string, mask: string): string => {
   return maskArr.slice(0, hashPosition).join('');
 };
 
+const openRouteOnGoogleMaps = (startPoint: LatLng, endPoint: LatLng) => {
+  Linking.openURL(
+    `https://www.google.com/maps/dir/?api=1&travelmode=driving&dir_action=navigate&origin=${startPoint.latitude},${startPoint.longitude}&destination=${endPoint.latitude},${endPoint.longitude}`,
+  );
+};
+
 export {
   boolToSign,
   formatDate,
@@ -153,5 +161,6 @@ export {
   milSecToMin,
   milSecToTime,
   minToMilSec,
+  openRouteOnGoogleMaps,
   secToMilSec,
 };
