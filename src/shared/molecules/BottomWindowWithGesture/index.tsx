@@ -211,28 +211,31 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
 
     const panScroll = Gesture.Pan()
       .onUpdate(event => {
+        //TODO: Check this logic on different real devices
+        // Works strange on some devices
+
         // If animation starts from position "opened"
-        if (isCurrentOpen.value) {
-          const percent = (Math.abs(event.translationY - scrollBegin.value) * 100) / hiddenAnimatedHeight.value;
+        // if (isCurrentOpen.value) {
+        // const percent = (Math.abs(event.translationY - scrollBegin.value) * 100) / hiddenAnimatedHeight.value;
 
-          // If moving occurs to bottom position and scroll is in position 0 (because it's animation for ScrollView)
-          if (event.translationY > 0 && scrollY.value === 0) {
-            progress.value = interpolateDown(Math.min(percent, 100));
+        // // If moving occurs to bottom position and scroll is in position 0 (because it's animation for ScrollView)
+        // if (event.translationY > 0 && scrollY.value === 0) {
+        //   progress.value = interpolateDown(Math.min(percent, 100));
 
-            // If animation to bottom position is completed
-            if (progress.value === 1) {
-              // In this case, when progress.value === 1, percent is always bigger than 100, that's why we calculating percent - 100 here
-              threshold.value = Math.min(percent - 100, maxThreshold);
-            }
-          }
-          // Else, if gesture started to bottom, but moved to top (for correct animation on special gestures) and scroll in position 0 (because it's animation for ScrollView)
-          else if (event.translationY < 0 && scrollY.value === 0) {
-            progress.value = interpolateUp(Math.max(percent, 100));
-            threshold.value = Math.max(-percent, -maxThreshold);
-          }
-        }
+        //   // If animation to bottom position is completed
+        //   if (progress.value === 1) {
+        //     // In this case, when progress.value === 1, percent is always bigger than 100, that's why we calculating percent - 100 here
+        //     threshold.value = Math.min(percent - 100, maxThreshold);
+        //   }
+        // }
+        // if gesture started to bottom, but moved to top (for correct animation on special gestures) and scroll in position 0 (because it's animation for ScrollView)
+        // if (event.translationY < 0 && scrollY.value === 0) {
+        //   progress.value = interpolateUp(Math.max(percent, 100));
+        //   threshold.value = Math.max(-percent, -maxThreshold);
+        // }
+        // }
         // Else, if animation starts from position "closed"
-        else {
+        if (!isCurrentOpen.value) {
           const percent = (-event.translationY * 100) / hiddenAnimatedHeight.value;
 
           // If moving occurs to top position
