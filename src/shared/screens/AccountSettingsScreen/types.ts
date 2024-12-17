@@ -8,6 +8,7 @@ export type AccountSettingsProps = {
   handleOpenVerification: (mode: ChangeDataPopUpMode, newValue: string, method: 'change' | 'verify') => void;
   photoBlock?: ReactNode;
   barBlock?: ReactNode;
+  isChangeDataLoading: boolean;
   verifiedStatus: VerifyStatusType;
   onSignOut: () => void;
   // onNameChanged?: () => void;

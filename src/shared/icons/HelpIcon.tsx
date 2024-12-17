@@ -9,7 +9,7 @@ const HelpIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: stri
   const svgColor = color ?? colors.textSecondaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="2 0 24 24" fill="none">
       <Circle cx="12" cy="12" r="9.5" stroke={svgColor} strokeWidth={2} />
       <Circle cx="12" cy="12" r="3.66667" stroke={svgColor} strokeWidth={2} />
       <Path d="M18.071 5.929L14.121 9.879" stroke={svgColor} strokeWidth={2} />

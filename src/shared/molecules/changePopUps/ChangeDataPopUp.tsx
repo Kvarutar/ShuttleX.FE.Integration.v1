@@ -22,6 +22,7 @@ const ChangeDataPopUpWithoutI18n = ({
   handleOpenVerification,
   setNewValue,
   mode,
+  isChangeDataLoading,
   onChangeDataPopupClose,
 }: ChangeDataPopUpProps) => {
   const { t } = useTranslation();
@@ -122,6 +123,7 @@ const ChangeDataPopUpWithoutI18n = ({
             onPress={onSave}
             disabled={!isFilled}
             mode={!isFilled ? SquareButtonModes.Mode5 : SquareButtonModes.Mode1}
+            isLoading={isChangeDataLoading}
           />
         </View>
       </View>

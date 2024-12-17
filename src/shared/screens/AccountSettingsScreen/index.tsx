@@ -23,6 +23,8 @@ const windowSizes = Dimensions.get('window');
 const AccountSettingsScreenWithoutI18n = ({
   profile,
   handleOpenVerification,
+  isChangeDataLoading,
+  // onNameChanged,
   barBlock,
   photoBlock,
   onSignOut,
@@ -122,6 +124,7 @@ const AccountSettingsScreenWithoutI18n = ({
                   currentValue={profile[mode]}
                   mode={mode}
                   handleOpenVerification={handleOpenVerification}
+                  isChangeDataLoading={isChangeDataLoading}
                   // setNewValue={handleValueChange}
                   onChangeDataPopupClose={onChangeDataPopupClose}
                 />
