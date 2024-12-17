@@ -44,6 +44,7 @@ const AccountSettingsScreenWithoutI18n = ({
 
   const [isSignOutPopupVisible, setIsSignOutPopupVisible] = useState(false);
   const fullPhoneMask = flag.icc + flag.phoneMask;
+  const outputNumber = verifiedStatus.phoneInfo.replace(new RegExp(`^\\+${flag.icc}`, ''), '');
 
   const computedStyles = StyleSheet.create({
     hiddenPartChange: {
@@ -81,10 +82,7 @@ const AccountSettingsScreenWithoutI18n = ({
                   <View style={styles.flagContainer}>{flag && countryFlags[flag.countryCode]}</View>
                   <TextInput
                     // {/*TODO just for test, change it when back will synchronize profile & user */}
-                    value={formatNumbersToMask(
-                      verifiedStatus.phoneInfo.replace(new RegExp(`^\\+${flag.icc}`, ''), ''),
-                      fullPhoneMask,
-                    )}
+                    value={formatNumbersToMask(outputNumber, fullPhoneMask)}
                     containerStyle={styles.input}
                     wrapperStyle={styles.inputWrapperStyle}
                   />

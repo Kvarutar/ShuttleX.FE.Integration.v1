@@ -1,6 +1,15 @@
-import { useEffect, useState } from 'react';
-import { Dimensions, type LayoutChangeEvent, Linking, Platform, Pressable, StyleSheet, View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { useCallback, useEffect, useState } from 'react';
+import {
+  Dimensions,
+  type LayoutChangeEvent,
+  Linking,
+  Modal,
+  Platform,
+  Pressable,
+  StyleSheet,
+  View,
+} from 'react-native';
+import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import sizes from '../../../core/themes/sizes';
@@ -11,7 +20,6 @@ import Skeleton from '../../atoms/Skeleton';
 import Text from '../../atoms/Text';
 import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini/V2';
 import MenuUserImage from '../../images/MenuUserImage';
-import SafeAreaView from '../SafeAreaView';
 import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type MenuBaseProps } from './props';
 
@@ -41,12 +49,17 @@ const MenuBase = ({
   const { colors } = useTheme();
   const translateX = useSharedValue(-constants.menuWidth);
 
-  const [imageHeight, setImageHeight] = useState(0);
+  const [imageHeight, setImageHeight] = useState(62);
 
-  const handleImageLayout = (event: LayoutChangeEvent) => {
-    const { height } = event.nativeEvent.layout;
-    setImageHeight(height);
-  };
+  const handleImageLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      const { height } = event.nativeEvent.layout;
+      if (height !== imageHeight) {
+        setImageHeight(height);
+      }
+    },
+    [imageHeight],
+  );
 
   useEffect(() => {
     translateX.value = withTiming(0, { duration: constants.animationDurations.menu });
@@ -76,11 +89,9 @@ const MenuBase = ({
     gameButton: {
       backgroundColor: colors.backgroundSecondaryColor,
     },
-    primaryColorBackground: {
+    primaryColorBackgroundWithImage: {
       backgroundColor: colors.primaryColor,
       justifyContent: 'flex-end',
-      marginTop: -sizes.paddingVertical,
-      marginHorizontal: -sizes.paddingHorizontal,
     },
     profileImage: {
       bottom: -imageHeight / 2,
@@ -116,47 +127,51 @@ const MenuBase = ({
   ));
 
   return (
-    <GestureDetector gesture={pan}>
-      <Animated.View style={[styles.window, animatedStyles, style]}>
-        <SafeAreaView containerStyle={[styles.wrapper, computedStyles.wrapper]}>
-          <View style={[styles.primaryColorBackground, computedStyles.primaryColorBackground]}>
-            <View style={[styles.profileImage, computedStyles.profileImage]} onLayout={handleImageLayout}>
-              {loading?.avatar ? (
-                <Skeleton skeletonContainerStyle={styles.skeletonUserImageContainer} />
-              ) : (
-                <>
-                  <MenuUserImage url={userImageUri} />
-                  {label}
-                </>
-              )}
-            </View>
-          </View>
-
-          <View style={styles.container}>
-            <View style={styles.gapAdditionalContent}>
-              <View style={styles.profile}>
-                {loading?.username ? (
-                  <Skeleton skeletonContainerStyle={styles.skeletonNameContainer} />
-                ) : (
-                  <Text style={styles.name}>{userName ?? ''}</Text>
-                )}
+    <Modal transparent statusBarTranslucent animationType="none">
+      <GestureHandlerRootView>
+        <GestureDetector gesture={pan}>
+          <Animated.View style={[styles.window, animatedStyles, style]}>
+            <View style={[styles.wrapper, computedStyles.wrapper]}>
+              <View style={[styles.primaryColorBackgroundWithImage, computedStyles.primaryColorBackgroundWithImage]}>
+                <View style={[styles.profileImage, computedStyles.profileImage]} onLayout={handleImageLayout}>
+                  {loading?.avatar ? (
+                    <Skeleton skeletonContainerStyle={styles.skeletonUserImageContainer} />
+                  ) : (
+                    <>
+                      <MenuUserImage url={userImageUri} />
+                      {label}
+                    </>
+                  )}
+                </View>
               </View>
-              {additionalContent}
+
+              <View style={styles.container}>
+                <View style={styles.gapAdditionalContent}>
+                  <View style={styles.profile}>
+                    {loading?.username ? (
+                      <Skeleton skeletonContainerStyle={styles.skeletonNameContainer} />
+                    ) : (
+                      <Text style={styles.name}>{userName ?? ''}</Text>
+                    )}
+                  </View>
+                  {additionalContent}
+                </View>
+                <ScrollViewWithCustomScroll barStyle={styles.scrollBarStyle}>
+                  {navigationContent}
+                </ScrollViewWithCustomScroll>
+                <View style={styles.bottomButtons}>
+                  {additionalButton}
+                  <Pressable onPress={goToSite}>
+                    <GroupedBrandIconMini style={styles.brandIconsStyle} isContractorIcon={isContractorMenu} />
+                  </Pressable>
+                </View>
+              </View>
             </View>
-            <ScrollViewWithCustomScroll barStyle={styles.scrollBarStyle}>
-              {navigationContent}
-            </ScrollViewWithCustomScroll>
-            <View style={styles.bottomButtons}>
-              {additionalButton}
-              <Pressable onPress={goToSite}>
-                <GroupedBrandIconMini style={styles.brandIconsStyle} isContractorIcon={isContractorMenu} />
-              </Pressable>
-            </View>
-          </View>
-        </SafeAreaView>
-        <Pressable style={styles.outsider} onPress={closeMenu} />
-      </Animated.View>
-    </GestureDetector>
+            <Pressable style={styles.outsider} onPress={closeMenu} />
+          </Animated.View>
+        </GestureDetector>
+      </GestureHandlerRootView>
+    </Modal>
   );
 };
 
@@ -186,11 +201,11 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   outsider: {
-    flex: 1,
+    width: '100%',
     zIndex: -1,
     height: windowSizes.height,
   },
-  primaryColorBackground: {
+  primaryColorBackgroundWithImage: {
     height: 96,
     zIndex: -1,
   },
@@ -208,6 +223,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     gap: 26,
+    paddingHorizontal: sizes.paddingHorizontal,
   },
 
   profile: {
