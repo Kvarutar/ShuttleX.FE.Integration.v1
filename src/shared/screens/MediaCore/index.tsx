@@ -86,9 +86,7 @@ const MediaCoreWithoutI18n = ({
             height: croppedResult.height,
           },
         });
-      } catch {
-        addSelectedFile({ type: MediaFileType.Photo, body: asset });
-      }
+      } catch {}
     }
     setIsFileLoaded(true);
   };
