@@ -19,7 +19,7 @@ import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScro
 import { type SignUpForm, type SignUpFormValidation, type SignUpProps, type SignUpScreenRef } from './types';
 
 const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
-  ({ navigateToSignIn, navigateToTerms, onSubmit, isLoading }, ref): JSX.Element => {
+  ({ navigateToSignIn, navigateToTerms, onSubmit, isLoading, setPanelPhoneVisible }, ref): JSX.Element => {
     const { colors } = useTheme();
     const { t } = useTranslation();
 
@@ -45,6 +45,10 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
     const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(
       getCountryPhoneMaskByCountryName('Ukraine') ?? ({} as CountryPhoneMaskDto),
     );
+
+    useEffect(() => {
+      setPanelPhoneVisible(isPanelPhoneSelectVisible);
+    }, [isPanelPhoneSelectVisible, setPanelPhoneVisible]);
 
     useImperativeHandle(ref, () => ({
       showErrors: errorMessages => {

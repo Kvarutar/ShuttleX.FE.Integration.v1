@@ -29,6 +29,7 @@ const SignInScreenWithoutI18n = ({
   navigateToSignUp,
   onSubmit,
   signMethod = SignInMethod.Phone,
+  setPanelPhoneVisible,
   setSignMethod,
   isLoading,
 }: SignInScreenProps): JSX.Element => {
@@ -48,6 +49,10 @@ const SignInScreenWithoutI18n = ({
   useEffect(() => {
     setIsValid(!wasValidated || Boolean(data));
   }, [data, wasValidated]);
+
+  useEffect(() => {
+    setPanelPhoneVisible(isPanelPhoneSelectVisible);
+  }, [isPanelPhoneSelectVisible, setPanelPhoneVisible]);
 
   useEffect(() => {
     setData('');

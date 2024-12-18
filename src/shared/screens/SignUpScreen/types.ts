@@ -3,6 +3,7 @@ export type SignUpProps = {
   navigateToTerms: () => void;
   onSubmit: (dataForm: SignUpForm) => void;
   isLoading: boolean;
+  setPanelPhoneVisible: (value: boolean) => void;
 };
 
 export type SignUpScreenRef = {

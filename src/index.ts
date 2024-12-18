@@ -219,6 +219,7 @@ import GroupedButtons from './shared/molecules/GroupedButtons/V2';
 import { GroupedButtonsMode } from './shared/molecules/GroupedButtons/V2/props';
 import HeaderWithTwoTitles from './shared/molecules/HeaderWithTwoTitles';
 import CustomKeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
+import { type KeyboardAvoidingViewMode } from './shared/molecules/KeyboardAvoidingView/types';
 import LoadingSpinner from './shared/molecules/LoadingSpinner';
 import { LoadingSpinnerIconModes } from './shared/molecules/LoadingSpinner/types';
 import LocationUnavailable from './shared/molecules/LocationUnavailable';
@@ -462,6 +463,7 @@ export {
   isServerError,
   isTokenExpiredError,
   isTooManyRequestsError,
+  type KeyboardAvoidingViewMode,
   lightMapStyle,
   LightningIcon,
   Like2Icon,

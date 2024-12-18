@@ -11,6 +11,7 @@ import { SquareButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
 import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
+import CustomKeyboardAvoidingView from '../KeyboardAvoidingView';
 import PhoneInput from '../PhoneInput';
 import PhoneSlidingPanel from '../PhoneSlidingPanel';
 import { getRenderText } from './getRenderText';
@@ -92,7 +93,7 @@ const ChangeDataPopUpWithoutI18n = ({
   };
 
   return (
-    <>
+    <CustomKeyboardAvoidingView mode={'inverted'}>
       <View style={styles.wrapper}>
         <View style={styles.textsStyle}>
           <Text style={[styles.changeText, computedStyles.changeText]}>{t('AccountChangePopUp_change')}</Text>
@@ -140,7 +141,7 @@ const ChangeDataPopUpWithoutI18n = ({
             />
           ),
       )}
-    </>
+    </CustomKeyboardAvoidingView>
   );
 };
 

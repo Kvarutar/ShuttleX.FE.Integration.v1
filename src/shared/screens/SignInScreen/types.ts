@@ -7,6 +7,7 @@ export type SignInScreenProps = {
   navigateToSignUp: () => void;
   onSubmit: (phone: string) => void;
   isLoading: boolean;
+  setPanelPhoneVisible: (value: boolean) => void;
   signMethod?: SignInMethod;
   setSignMethod?: (newMethod: SignInMethod) => void;
 };
