@@ -128,7 +128,7 @@ const MenuBase = ({
 
   return (
     <Modal transparent statusBarTranslucent animationType="none">
-      <GestureHandlerRootView>
+      <GestureHandlerRootView style={styles.gestureView}>
         <GestureDetector gesture={pan}>
           <Animated.View style={[styles.window, animatedStyles, style]}>
             <View style={[styles.wrapper, computedStyles.wrapper]}>
@@ -181,14 +181,14 @@ const styles = StyleSheet.create({
     height: 62,
     borderRadius: 1000,
   },
+  gestureView: {
+    flex: 1,
+  },
   skeletonNameContainer: {
     height: 24,
   },
   window: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
+    flex: 1,
     flexDirection: 'row',
   },
   wrapper: {
@@ -201,9 +201,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   outsider: {
-    width: '100%',
-    zIndex: -1,
-    height: windowSizes.height,
+    flex: 1,
   },
   primaryColorBackgroundWithImage: {
     height: 96,
