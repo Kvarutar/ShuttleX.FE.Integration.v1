@@ -70,5 +70,9 @@
   "UnsupportedCityPopup_secondTitle": "не працюємо у\nцьому місті.",
   "UnsupportedCityPopup_description": "Зверніться до служби\nпідтримки, якщо у вас виникли\nпроблеми.",
   "UnsupportedCityPopup_supportButton": "Допомога",
-  "UnsupportedCityPopup_closeButton": "Закрити"
+  "UnsupportedCityPopup_closeButton": "Закрити",
+  "AppBlockPage_firstTitle": "Сервіс працює в\nобмеженому режимі.\nМи дбаємо про ваш\nкомфорт",
+  "AppBlockPage_secondTitle": "і\nповідомимо, як тільки\nвсе буде готово.\nДякуємо за\nрозуміння!",
+  "AppBlockPage_description": "Ви можете познайомитись з\nнами ближче на нашому сайті.\nЧекаємо на тебе!",
+  "AppBlockPage_thanksButton": "Дякуємо!"
 }

@@ -197,6 +197,7 @@ import { type PlannedTripAlertProps } from './shared/molecules/alerts/PlannedTri
 import RideHasFinishedAlert from './shared/molecules/alerts/RideHasFinishedAlert';
 import { type RideHasFinishedAlertProps } from './shared/molecules/alerts/RideHasFinishedAlert/props';
 import SecondRideAlert from './shared/molecules/alerts/SecondRideAlert';
+import AppBlockPage from './shared/molecules/AppBlockPage';
 import BigHeader from './shared/molecules/BigHeader';
 import BottomWindow from './shared/molecules/BottomWindow';
 import BottomWindowWithGesture from './shared/molecules/BottomWindowWithGesture';
@@ -318,6 +319,7 @@ export {
   Alert,
   type AlertDescendantProps,
   AnimatedMarker,
+  AppBlockPage,
   ApplePayIcon,
   ArrowIcon,
   ArrowInPrimaryColorIcon,
