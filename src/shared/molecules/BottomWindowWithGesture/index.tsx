@@ -183,11 +183,29 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       .onEnd(() => {
         runOnJS(scrollToTop)();
         threshold.value = withTiming(0, { duration: animationDuration });
-        if (progress.value > 0.5) {
-          runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
-          runOnJS(setIsAlertsVisible)(true);
-        } else if (progress.value < 0.5) {
-          runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
+        // If animation ends and current state is "opened"
+        if (isCurrentOpen.value) {
+          // Close window
+          if (progress.value > 0.2) {
+            runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
+            runOnJS(setIsAlertsVisible)(true);
+          }
+          // Open window
+          else if (progress.value < 0.2) {
+            runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
+          }
+        }
+        // If animation ends and current state is "closed"
+        else {
+          // Close window
+          if (progress.value > 0.8) {
+            runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
+            runOnJS(setIsAlertsVisible)(true);
+          }
+          // Open window
+          else if (progress.value < 0.8) {
+            runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
+          }
         }
       });
 
@@ -255,11 +273,29 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       })
       .onEnd(() => {
         threshold.value = withTiming(0, { duration: animationDuration });
-        if (progress.value > 0.5) {
-          runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
-          runOnJS(setIsAlertsVisible)(true);
-        } else if (progress.value < 0.5) {
-          runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
+        // If animation ends and current state is "opened"
+        if (isCurrentOpen.value) {
+          // Close window
+          if (progress.value > 0.2) {
+            runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
+            runOnJS(setIsAlertsVisible)(true);
+          }
+          // Open window
+          else if (progress.value < 0.2) {
+            runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
+          }
+        }
+        // If animation ends and current state is "closed"
+        else {
+          // Close window
+          if (progress.value > 0.8) {
+            runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
+            runOnJS(setIsAlertsVisible)(true);
+          }
+          // Open window
+          else if (progress.value < 0.8) {
+            runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
+          }
         }
       });
 
