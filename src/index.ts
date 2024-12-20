@@ -281,6 +281,7 @@ import {
   milSecToMin,
   milSecToTime,
   minToMilSec,
+  mtrToKm,
   openRouteOnGoogleMaps,
   secToMilSec,
 } from './utils';
@@ -506,6 +507,7 @@ export {
   milSecToTime,
   minToMilSec,
   MinusIcon,
+  mtrToKm,
   MyRideIcon,
   MysteryBoxIcon,
   nameof,

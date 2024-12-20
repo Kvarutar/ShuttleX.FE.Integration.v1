@@ -123,7 +123,6 @@ const formatPhone = (phone: string) => {
  * @param mask value
  * @returns +123(45)678-90-06 format
  */
-
 const formatNumbersToMask = (numbers: string, mask: string): string => {
   const numbersArr = numbers.split('');
   const maskArr = mask.split('');
@@ -144,6 +143,15 @@ const formatNumbersToMask = (numbers: string, mask: string): string => {
   return maskArr.slice(0, hashPosition).join('');
 };
 
+/**
+ * Converts metres to kilometres
+ * @param distance value
+ * @returns 10.7 format
+ */
+const mtrToKm = (distance: number) => {
+  return parseFloat((distance / 1000).toFixed(1));
+};
+
 const openRouteOnGoogleMaps = (startPoint: LatLng, endPoint: LatLng) => {
   Linking.openURL(
     `https://www.google.com/maps/dir/?api=1&travelmode=driving&dir_action=navigate&origin=${startPoint.latitude},${startPoint.longitude}&destination=${endPoint.latitude},${endPoint.longitude}`,
@@ -161,6 +169,7 @@ export {
   milSecToMin,
   milSecToTime,
   minToMilSec,
+  mtrToKm,
   openRouteOnGoogleMaps,
   secToMilSec,
 };
