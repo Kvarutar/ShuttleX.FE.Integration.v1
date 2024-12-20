@@ -40,6 +40,7 @@ const MenuBase = ({
   additionalContent,
   menuNavigation,
   additionalButton,
+  isStatusBarTranslucent = false,
   label,
   style,
   currentRoute,
@@ -127,7 +128,7 @@ const MenuBase = ({
   ));
 
   return (
-    <Modal transparent statusBarTranslucent animationType="none">
+    <Modal transparent statusBarTranslucent={isStatusBarTranslucent} animationType="none">
       <GestureHandlerRootView style={styles.gestureView}>
         <GestureDetector gesture={pan}>
           <Animated.View style={[styles.window, animatedStyles, style]}>
