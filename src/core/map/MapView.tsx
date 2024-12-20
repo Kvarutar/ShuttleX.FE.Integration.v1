@@ -40,6 +40,7 @@ export const mapConstants = {
 const MapView = forwardRef<MapViewRef, MapViewProps>(
   (
     {
+      onLayout,
       style,
       geolocationCoordinates,
       geolocationCalculatedHeading,
@@ -77,6 +78,9 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       },
       setCamera: arg => {
         mapRef.current?.setCamera(arg);
+      },
+      animateToRegion: (...args) => {
+        mapRef.current?.animateToRegion(...args);
       },
     }));
 
@@ -235,13 +239,13 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
               key={i}
               strokeWidth={3}
               strokeColor="#000"
-              coordinates={drawArcPolyline(polylineOptions.startPont, polylineOptions.endPoint)}
+              coordinates={drawArcPolyline(polylineOptions.startPoint, polylineOptions.endPoint)}
             />,
             <Polyline
               key={uuidv4()}
               strokeWidth={3}
               strokeColor="#00000033"
-              coordinates={[polylineOptions.startPont, polylineOptions.endPoint]}
+              coordinates={[polylineOptions.startPoint, polylineOptions.endPoint]}
             />,
           );
           break;
@@ -256,8 +260,10 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
         {Platform.OS === 'android' && !isMapLoaded && <TopViewCarImage style={styles.preloadImage} />}
 
         <MapViewNative
-          provider="google"
           ref={mapRef}
+          onLayout={onLayout}
+          provider="google"
+          googleRenderer="LEGACY"
           style={style}
           showsCompass={false}
           customMapStyle={lightMapStyle}
@@ -298,7 +304,12 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           {stopPoints &&
             stopPoints.length !== 0 &&
             stopPoints.map((elem, i) => (
-              <Marker key={i + elem.latitude} coordinate={elem} anchor={{ x: 0.5, y: 0.5 }} tracksViewChanges={false}>
+              <Marker
+                key={`${i} ${elem.latitude} ${elem.longitude}`}
+                coordinate={elem}
+                anchor={{ x: 0.5, y: 0.5 }}
+                tracksViewChanges={false}
+              >
                 <View style={styles.stopPointContainer}>
                   <PickUpIcon style={styles.stopPointIcon} />
                   <View style={styles.stopPointLabelContainer}>
@@ -319,8 +330,9 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           )}
 
           {markers &&
-            markers.map(marker => (
+            markers.map((marker, i) => (
               <Marker
+                key={`${i} ${marker.coordinates}`}
                 coordinate={marker.coordinates}
                 anchor={{ x: 0.5, y: 0.98 }}
                 tracksViewChanges={false}

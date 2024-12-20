@@ -19966,6 +19966,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-maps@npm:1.14.0":
+  version: 1.14.0
+  resolution: "react-native-maps@npm:1.14.0"
+  dependencies:
+    "@types/geojson": "npm:^7946.0.13"
+  peerDependencies:
+    react: ">= 17.0.1"
+    react-native: ">= 0.64.3"
+    react-native-web: ">= 0.11"
+  peerDependenciesMeta:
+    react-native-web:
+      optional: true
+  checksum: 67529b9b11d1dc42a698eb027c6fb0d27aaf2004b380ad3c72453aa2d13b5bde085b10328369381fd30b5afdf8ff1f211fab6138af522523548df64443874e81
+  languageName: node
+  linkType: hard
+
 "react-native-maps@npm:1.7.1":
   version: 1.7.1
   resolution: "react-native-maps@npm:1.7.1"
@@ -19979,22 +19995,6 @@ __metadata:
     react-native-web:
       optional: true
   checksum: 479f528febbcfe64ec3c8ea1bd659f42831168848dbb30685e4987b09d7d280f51d6ef2819a8810ff7e7caa1cf17f6dda1fe18dd0a949aea435cab6fd7b57a56
-  languageName: node
-  linkType: hard
-
-"react-native-maps@npm:^1.10.3":
-  version: 1.10.3
-  resolution: "react-native-maps@npm:1.10.3"
-  dependencies:
-    "@types/geojson": "npm:^7946.0.13"
-  peerDependencies:
-    react: ">= 17.0.1"
-    react-native: ">= 0.64.3"
-    react-native-web: ">= 0.11"
-  peerDependenciesMeta:
-    react-native-web:
-      optional: true
-  checksum: e51a2231cb9e58ff33bd826bd9dc571957ee5adf29a2076048b316cebed673923b2703deca5c3894e2f7e02fe5773c8fa783e89a4cc5a827cd2548fe4c722b2c
   languageName: node
   linkType: hard
 
@@ -21676,7 +21676,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-keychain: "npm:8.2.0"
     react-native-linear-gradient: "npm:^2.8.3"
     react-native-localize: "npm:^3.0.2"
-    react-native-maps: "npm:^1.10.3"
+    react-native-maps: "npm:1.14.0"
     react-native-permissions: "npm:^4.1.4"
     react-native-reanimated: "npm:^3.6.1"
     react-native-reanimated-skeleton: "npm:^1.5.1"
@@ -21706,7 +21706,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-keychain: "*"
     react-native-linear-gradient: "*"
     react-native-localize: "*"
-    react-native-maps: "*"
+    react-native-maps: 1.14.0
     react-native-permissions: "*"
     react-native-reanimated: "*"
     react-native-safe-area-context: "*"

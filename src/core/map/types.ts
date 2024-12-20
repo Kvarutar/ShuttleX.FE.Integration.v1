@@ -1,5 +1,5 @@
 import { type StyleProp, type ViewStyle } from 'react-native';
-import { type Camera, type LatLng } from 'react-native-maps';
+import MapView, { type Camera, type LatLng, type MapViewProps as NativeMapViewProps } from 'react-native-maps';
 
 import { type MapPinIconProps } from '../../shared/icons/MapPinIcon';
 import { type MapPinIcon2Props } from '../../shared/icons/MapPinIcon2';
@@ -9,7 +9,7 @@ export type MapCameraMode = 'free' | 'follow' | 'followWithCompass';
 export type MapPolyline =
   | { type: 'straight'; options: { coordinates: LatLng[]; color?: string } }
   | { type: 'dotted'; options: { coordinates: LatLng[]; color?: string } }
-  | { type: 'arc'; options: { startPont: LatLng; endPoint: LatLng } };
+  | { type: 'arc'; options: { startPoint: LatLng; endPoint: LatLng } };
 
 export type MapMarker = {
   colorMode: MapPinIconProps['colorMode'];
@@ -32,9 +32,11 @@ type MapCars = {
 export type MapViewRef = {
   animateCamera: (camera: Partial<Omit<Camera, 'altitude'>>, opts: { duration: number }) => void;
   setCamera: (camera: Partial<Omit<Camera, 'altitude'>>) => void;
+  animateToRegion: MapView['animateToRegion'];
 };
 
 export type MapViewProps = {
+  onLayout?: NativeMapViewProps['onLayout'];
   style?: StyleProp<ViewStyle>;
   geolocationCoordinates?: LatLng;
   geolocationCalculatedHeading?: number;
