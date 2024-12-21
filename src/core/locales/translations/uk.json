@@ -74,5 +74,8 @@
   "AppBlockPage_firstTitle": "Сервіс працює в\nобмеженому режимі.\nМи дбаємо про ваш\nкомфорт",
   "AppBlockPage_secondTitle": "і\nповідомимо, як тільки\nвсе буде готово.\nДякуємо за\nрозуміння!",
   "AppBlockPage_description": "Ви можете познайомитись з\nнами ближче на нашому сайті.\nЧекаємо на тебе!",
-  "AppBlockPage_thanksButton": "Дякуємо!"
+  "AppBlockPage_thanksButton": "Дякуємо!",
+  "VerifyDataPopUp_firstTitle": "Підтвердіть Ваш\n{{mode}}",
+  "VerifyDataPopUp_firstTitlePhoneMode": "номер",
+  "VerifyDataPopUp_button": "Підтвердити"
 }

@@ -44,7 +44,7 @@ const ChangeDataPopUpWithoutI18n = ({
     setWasValidated(true);
     if (isValid) {
       onChangeDataPopupClose();
-      handleOpenVerification(mode, data.newValue, 'change');
+      handleOpenVerification?.(mode, data.newValue, 'change');
       setNewValue?.(data.newValue);
     }
   };

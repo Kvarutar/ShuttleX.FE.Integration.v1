@@ -36,8 +36,6 @@
   "AccountChangePhonePopUp_currPhone": "Enter your current phone number",
   "AccountChangeEmailPopUp_newEmail": "Enter new email",
   "AccountChangePhonePopUp_newPhone": "Enter new phone number",
-  "Account_VerifyDataPopUp_confirm": "Confirm",
-  "Account_VerifyDataPopUp_firstTitle": "Confirm Your\n{{mode}}",
   "AddCard_payBill": "Pay Bill",
   "AddCard_automatically": "Automatically",
   "AddCard_saveButton": "Save",
@@ -140,5 +138,10 @@
   "AppBlockPage_secondTitle": "you as soon as\neverything is ready.\nThank you for your\nunderstanding!",
   "AppBlockPage_description": "You can get to know us better on\nour website. We are waiting for\nyou! ",
   "AppBlockPage_shuttleXButton": "ShuttleX",
-  "AppBlockPage_thanksButton": "Thanks!"
+  "AppBlockPage_thanksButton": "Thanks!",
+  "VerifyDataPopUp_subTitle": "Confirm",
+  "VerifyDataPopUp_firstTitle": "Confirm Your\n{{mode}}",
+  "VerifyDataPopUp_firstTitleEmailMode": "Email",
+  "VerifyDataPopUp_firstTitlePhoneMode": "Phone Number",
+  "VerifyDataPopUp_button": "Confirm"
 }

@@ -14,9 +14,9 @@ import ChangeDataPopUp from '../../molecules/changePopUps/ChangeDataPopUp';
 import { useChangeData } from '../../molecules/changePopUps/hooks/useChangeData';
 import { useProfileForm } from '../../molecules/changePopUps/hooks/useProfileForm';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
+import VerifyDataPopUp from '../../molecules/VerifyDataPopUp';
 import SignOutPopup from './SignOutPopup';
 import { type AccountSettingsProps } from './types';
-import VerifyDataPopUp from './VerifyDataPopUp';
 
 const windowSizes = Dimensions.get('window');
 
@@ -135,18 +135,11 @@ const AccountSettingsScreenWithoutI18n = ({
       )}
 
       {isVerifyPopUpVisible && (
-        <BottomWindowWithGesture
-          withShade
-          setIsOpened={onVerifyPopupClose}
-          opened
-          hiddenPart={
-            <VerifyDataPopUp
-              mode={mode}
-              handleOpenVerification={handleOpenVerification}
-              data={profile[mode]}
-              onVerifyPopupClose={onVerifyPopupClose}
-            />
-          }
+        <VerifyDataPopUp
+          mode={mode}
+          handleOpenVerification={handleOpenVerification}
+          data={profile[mode]}
+          onVerifyPopupClose={onVerifyPopupClose}
         />
       )}
     </>
