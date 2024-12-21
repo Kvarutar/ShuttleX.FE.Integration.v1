@@ -121,6 +121,7 @@ import InputXIcon from './shared/icons/InputXIcon';
 import LightningIcon from './shared/icons/LightningIcon';
 import Like2Icon from './shared/icons/Like2Icon';
 import LikeIcon from './shared/icons/LikeIcon';
+import LoadingBrandIcon, { LoadingBrandIconModes } from './shared/icons/LoadingBrandIcon';
 import LocationIcon from './shared/icons/LocationIcon';
 import LockIcon from './shared/icons/LockIcon';
 import LotteryIcon from './shared/icons/LotteryIcon';
@@ -472,6 +473,8 @@ export {
   LightningIcon,
   Like2Icon,
   LikeIcon,
+  LoadingBrandIcon,
+  LoadingBrandIconModes,
   LoadingSpinner,
   LoadingSpinnerIconModes,
   LocationArrowImage,

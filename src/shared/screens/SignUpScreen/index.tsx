@@ -186,7 +186,7 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
             </Pressable>
           </CheckBox>
 
-          <CheckBox
+          {/* <CheckBox
             error={{
               isError: !isFormCorrect.correctIsAllowedProcessPersonalData && wasValidated,
             }}
@@ -196,7 +196,7 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
             <Pressable onPress={navigateToTerms} hitSlop={20}>
               <Text style={[styles.checkBoxText, computedStyles.checkBoxText]}>{t('SignUp_personalDataCheckBox')}</Text>
             </Pressable>
-          </CheckBox>
+          </CheckBox> */}
         </ScrollViewWithCustomScroll>
 
         <View style={styles.buttonsContainer}>
