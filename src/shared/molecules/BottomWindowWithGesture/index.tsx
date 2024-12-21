@@ -186,24 +186,24 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
         // If animation ends and current state is "opened"
         if (isCurrentOpen.value) {
           // Close window
-          if (progress.value > 0.2) {
+          if (progress.value > 0.1) {
             runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
             runOnJS(setIsAlertsVisible)(true);
           }
           // Open window
-          else if (progress.value < 0.2) {
+          else if (progress.value < 0.1) {
             runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
           }
         }
         // If animation ends and current state is "closed"
         else {
           // Close window
-          if (progress.value > 0.8) {
+          if (progress.value > 0.9) {
             runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
             runOnJS(setIsAlertsVisible)(true);
           }
           // Open window
-          else if (progress.value < 0.8) {
+          else if (progress.value < 0.9) {
             runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
           }
         }
@@ -276,24 +276,24 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
         // If animation ends and current state is "opened"
         if (isCurrentOpen.value) {
           // Close window
-          if (progress.value > 0.2) {
+          if (progress.value > 0.1) {
             runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
             runOnJS(setIsAlertsVisible)(true);
           }
           // Open window
-          else if (progress.value < 0.2) {
+          else if (progress.value < 0.1) {
             runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
           }
         }
         // If animation ends and current state is "closed"
         else {
           // Close window
-          if (progress.value > 0.8) {
+          if (progress.value > 0.9) {
             runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
             runOnJS(setIsAlertsVisible)(true);
           }
           // Open window
-          else if (progress.value < 0.8) {
+          else if (progress.value < 0.9) {
             runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
           }
         }
