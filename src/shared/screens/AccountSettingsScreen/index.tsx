@@ -111,8 +111,8 @@ const AccountSettingsScreenWithoutI18n = ({
         <SignOutPopup setIsSignOutPopupVisible={setIsSignOutPopupVisible} onSignOut={onSignOut} />
       )}
       {isChangeDataPopUpVisible && (
-        <Modal transparent>
-          <GestureHandlerRootView>
+        <Modal transparent statusBarTranslucent>
+          <GestureHandlerRootView style={styles.gestureView}>
             <BottomWindowWithGesture
               withShade
               setIsOpened={onChangeDataPopupClose}
@@ -158,6 +158,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     position: 'relative',
+  },
+  gestureView: {
+    flex: 1,
   },
   flagContainer: {
     flexDirection: 'row',
