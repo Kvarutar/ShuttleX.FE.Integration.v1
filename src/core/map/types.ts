@@ -8,7 +8,8 @@ export type MapCameraMode = 'free' | 'follow' | 'followWithCompass';
 
 export type MapPolyline =
   | { type: 'straight'; options: { coordinates: LatLng[]; color?: string } }
-  | { type: 'dotted'; options: { coordinates: LatLng[]; color?: string } }
+  | { type: 'dotted'; options: { coordinates: LatLng[]; color?: string } } // TODO: delete or refactor, works bad
+  | { type: 'dashed'; options: { coordinates: LatLng[]; color?: string } }
   | { type: 'arc'; options: { startPoint: LatLng; endPoint: LatLng } };
 
 export type MapMarker = {

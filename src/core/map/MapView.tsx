@@ -194,25 +194,23 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
     polylines?.map((polyline, i) => {
       switch (polyline.type) {
         case 'straight': {
-          const polylineOptions = polyline.options;
           rendredPolylines.push(
             <Polyline
               key={i}
-              coordinates={polylineOptions.coordinates}
-              strokeColor={polylineOptions.color ?? '#000'}
+              coordinates={polyline.options.coordinates}
+              strokeColor={polyline.options.color ?? '#000'}
               strokeWidth={4}
             />,
           );
           break;
         }
         case 'dotted': {
-          const polylineOptions = polyline.options;
           const coordinates: LatLng[] = [];
 
-          for (let j = 0; j < polylineOptions.coordinates.length; j++) {
-            const latlng = polylineOptions.coordinates[j]!;
+          for (let j = 0; j < polyline.options.coordinates.length; j++) {
+            const latlng = polyline.options.coordinates[j]!;
             if (j > 0) {
-              const prevLatlng = polylineOptions.coordinates[j - 1]!;
+              const prevLatlng = polyline.options.coordinates[j - 1]!;
               const latitude = (prevLatlng.latitude + latlng.latitude) / 2;
               const longitude = (prevLatlng.longitude + latlng.longitude) / 2;
               coordinates.push({ latitude, longitude });
@@ -225,27 +223,38 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
               <Polyline
                 key={uuidv4()}
                 coordinates={coordinates.slice(j, j + 2)}
-                strokeColor={polylineOptions.color ?? '#000'}
+                strokeColor={polyline.options.color ?? '#000'}
                 strokeWidth={4}
               />,
             );
           }
           break;
         }
+        case 'dashed': {
+          rendredPolylines.push(
+            <Polyline
+              key={i}
+              lineDashPattern={[50, 30]}
+              coordinates={polyline.options.coordinates}
+              strokeColor={polyline.options.color ?? '#000'}
+              strokeWidth={4}
+            />,
+          );
+          break;
+        }
         case 'arc': {
-          const polylineOptions = polyline.options;
           rendredPolylines.push(
             <Polyline
               key={i}
               strokeWidth={3}
               strokeColor="#000"
-              coordinates={drawArcPolyline(polylineOptions.startPoint, polylineOptions.endPoint)}
+              coordinates={drawArcPolyline(polyline.options.startPoint, polyline.options.endPoint)}
             />,
             <Polyline
               key={uuidv4()}
               strokeWidth={3}
               strokeColor="#00000033"
-              coordinates={[polylineOptions.startPoint, polylineOptions.endPoint]}
+              coordinates={[polyline.options.startPoint, polyline.options.endPoint]}
             />,
           );
           break;
