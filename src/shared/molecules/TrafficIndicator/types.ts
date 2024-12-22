@@ -14,7 +14,7 @@ export type SegmentData = {
 export type TrafficIndicatorProps = {
   currentPercent: string;
   segments: SegmentData[];
-  startTime?: number;
-  endTime?: number;
+  startDate?: Date;
+  endDate?: Date;
   containerStyle?: ViewStyle;
 };

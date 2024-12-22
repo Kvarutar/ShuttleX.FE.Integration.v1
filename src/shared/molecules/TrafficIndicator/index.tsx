@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { useTheme } from '../../../core/themes/v2/themeContext';
+import { formatTime } from '../../../utils';
 import Text from '../../atoms/Text';
 import { TriangleIcon } from '../../icons/TriangleIcon';
 import { type TrafficIndicatorProps, TrafficLevel } from './types';
@@ -16,23 +17,13 @@ const trafficColor: Record<TrafficLevel, string> = {
   [TrafficLevel.High]: '#FF0000',
 };
 
-const convertSecondsToTime = (seconds: number): string => {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-
-  const formattedHours = String(hours).padStart(2, '0');
-  const formattedMinutes = String(minutes).padStart(2, '0');
-
-  return `${formattedHours}:${formattedMinutes}`;
-};
-
 const parsePercents = (percent: string) => Number(percent.slice(0, -1));
 
 const TrafficIndicator = ({
   currentPercent,
   segments,
-  startTime,
-  endTime,
+  startDate,
+  endDate,
   containerStyle,
 }: TrafficIndicatorProps): JSX.Element => {
   const { colors } = useTheme();
@@ -105,10 +96,10 @@ const TrafficIndicator = ({
           </View>
         </View>
       </View>
-      {startTime && endTime && (
+      {startDate && endDate && (
         <View style={styles.timeLabels}>
-          <Text style={[styles.label, computedStyles.label]}>{convertSecondsToTime(startTime)}</Text>
-          <Text style={[styles.label, computedStyles.label]}>{convertSecondsToTime(endTime)}</Text>
+          <Text style={[styles.label, computedStyles.label]}>{formatTime(startDate)}</Text>
+          <Text style={[styles.label, computedStyles.label]}>{formatTime(endDate)}</Text>
         </View>
       )}
     </View>

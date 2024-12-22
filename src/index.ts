@@ -252,7 +252,7 @@ import { TimerV1Modes } from './shared/molecules/timerAndStopwatch/Timer/V1/prop
 import Timer, { timerSizes } from './shared/molecules/timerAndStopwatch/Timer/V2';
 import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/V2/props';
 import TrafficIndicator from './shared/molecules/TrafficIndicator';
-import { TrafficLevel } from './shared/molecules/TrafficIndicator/types';
+import { type TrafficIndicatorProps, TrafficLevel } from './shared/molecules/TrafficIndicator/types';
 import UnclosablePopup from './shared/molecules/UnclosablePopup';
 import UnsupportedCityPopup from './shared/molecules/UnsupportedCityPopup';
 import VerifyDataPopUp from './shared/molecules/VerifyDataPopUp';
@@ -622,6 +622,7 @@ export {
   TimerV1Modes,
   TitleWithCloseButton,
   TrafficIndicator,
+  type TrafficIndicatorProps,
   TrafficLevel,
   UnclosablePopup,
   UnknownCardIcon,
