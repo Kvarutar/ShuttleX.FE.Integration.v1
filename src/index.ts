@@ -209,8 +209,7 @@ import {
 import ChangeDataPopUp from './shared/molecules/changePopUps/ChangeDataPopUp';
 import { useChangeData } from './shared/molecules/changePopUps/hooks/useChangeData';
 import { useProfileForm } from './shared/molecules/changePopUps/hooks/useProfileForm';
-import CodeInputV1 from './shared/molecules/CodeInput/v1';
-import CodeInput from './shared/molecules/CodeInput/v2';
+import CodeInput from './shared/molecules/CodeInput';
 import Confetti from './shared/molecules/Confetti';
 import DatePickerV1 from './shared/molecules/DatePicker/v1';
 import DatePicker from './shared/molecules/DatePicker/v2';
@@ -376,7 +375,6 @@ export {
   CloseIcon,
   CloseIconMini,
   CodeInput,
-  CodeInputV1,
   CodeVerificationScreen,
   type CodeVerificationScreenRef,
   CoinIcon,

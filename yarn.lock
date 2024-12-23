@@ -20019,6 +20019,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-otp-entry@npm:^1.8.2":
+  version: 1.8.2
+  resolution: "react-native-otp-entry@npm:1.8.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 5e752d4aebafa046e778298bf08a9298b936d7b81df2196da820cb9fe40f10f7442c216ca723be5dc23e663682482adc0dc6878e67e7aa2dac37d1ac2ca1fb26
+  languageName: node
+  linkType: hard
+
 "react-native-permissions@npm:^4.1.4":
   version: 4.1.4
   resolution: "react-native-permissions@npm:4.1.4"
@@ -21677,6 +21687,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-linear-gradient: "npm:^2.8.3"
     react-native-localize: "npm:^3.0.2"
     react-native-maps: "npm:1.14.0"
+    react-native-otp-entry: "npm:^1.8.2"
     react-native-permissions: "npm:^4.1.4"
     react-native-reanimated: "npm:^3.6.1"
     react-native-reanimated-skeleton: "npm:^1.5.1"

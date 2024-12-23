@@ -4,7 +4,6 @@ import { Modal, StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { minToMilSec } from '../../../utils';
-import { type Nullable } from '../../../utils/typescript';
 import CustomKeyboardAvoidingView from '../../molecules/KeyboardAvoidingView';
 import SafeAreaView from '../../molecules/SafeAreaView';
 import TemporaryLockoutPopup from '../../molecules/TemporaryLockoutPopup';
@@ -35,7 +34,7 @@ const CodeVerificationScreenWithoutI18n = forwardRef<CodeVerificationScreenRef, 
     ref,
   ): JSX.Element => {
     const { t } = useTranslation();
-    const contentRef = useRef<Nullable<ContentRef>>(null);
+    const contentRef = useRef<ContentRef>(null);
 
     useImperativeHandle(ref, () => ({
       refresh: () => {

@@ -13,8 +13,8 @@ import {
   CircleButtonModes,
 } from '../../../atoms/Button/v2/props';
 import Text from '../../../atoms/Text';
-import { type CodeInputRef } from '../../../molecules/CodeInput/props';
-import CodeInput from '../../../molecules/CodeInput/v2';
+import CodeInput from '../../../molecules/CodeInput';
+import { type CodeInputRef } from '../../../molecules/CodeInput/types';
 import HeaderWithTwoTitles from '../../../molecules/HeaderWithTwoTitles';
 import ScrollViewWithCustomScroll from '../../../molecules/ScrollViewWithCustomScroll';
 import { type ContentProps, type ContentRef } from './types';
@@ -61,7 +61,7 @@ const Content = forwardRef<ContentRef, ContentProps>(
       <>
         <ScrollViewWithCustomScroll contentContainerStyle={[styles.inputWrapper]}>
           <HeaderWithTwoTitles firstTitle={headerFirstText} secondTitle={headerSecondText} />
-          <CodeInput ref={codeInputRef} style={styles.codeInput} onCodeChange={onCodeChange} isError={isError} />
+          <CodeInput ref={codeInputRef} onCodeChange={onCodeChange} isError={isError} />
         </ScrollViewWithCustomScroll>
         <Button
           ref={buttonRef}
@@ -92,12 +92,6 @@ const Content = forwardRef<ContentRef, ContentProps>(
 const styles = StyleSheet.create({
   inputWrapper: {
     paddingBottom: 24,
-  },
-  codeInput: {
-    flex: 1,
-    gap: 30,
-    marginTop: 40,
-    alignSelf: 'center',
   },
   againButton: {
     alignSelf: 'center',
