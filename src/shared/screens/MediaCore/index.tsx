@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Alert, Platform, StyleSheet, View } from 'react-native';
+import { Alert, Linking, Platform, StyleSheet, View } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import { type ImagePickerResponse, launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { type PermissionStatus, RESULTS } from 'react-native-permissions';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/v2/themeContext';
@@ -91,17 +92,30 @@ const MediaCoreWithoutI18n = ({
     setIsFileLoaded(true);
   };
 
+  const showPermissionAlert = (messageKey: string, titleKey: string) => {
+    Alert.alert(t(titleKey), t(messageKey), [
+      {
+        text: t('MediaCore_permissionDeniedCancel'),
+        style: 'cancel',
+      },
+      {
+        text: t('MediaCore_permissionDeniedGoToSettings'),
+        onPress: () => Linking.openSettings(),
+      },
+    ]);
+  };
+
   const handlePhotoAction = async (action: 'camera' | 'gallery') => {
     const permissionCheck = action === 'camera' ? checkCameraUsagePermission : checkGalleryUsagePermission;
     const requestPermission = action === 'camera' ? requestCameraUsagePermission : requestGalleryUsagePermission;
-    let isGranted = await permissionCheck();
+    let permissionStatus: PermissionStatus = await permissionCheck();
 
-    if (!isGranted) {
+    if (permissionStatus === RESULTS.DENIED) {
       await requestPermission();
-      isGranted = await permissionCheck();
+      permissionStatus = await permissionCheck();
     }
 
-    if (isGranted) {
+    if (permissionStatus === RESULTS.GRANTED) {
       const result =
         action === 'camera'
           ? await launchCamera({ mediaType: MediaFileType.Photo })
@@ -111,6 +125,19 @@ const MediaCoreWithoutI18n = ({
         setIsFileLoaded(false);
         setTimeout(() => cropPhoto(result), mediaConsts.cropTimeOut);
       }
+      return;
+    }
+
+    if (permissionStatus === RESULTS.DENIED || permissionStatus === RESULTS.BLOCKED) {
+      showPermissionAlert(
+        action === 'camera' ? 'MediaCore_permissionDeniedCameraMessage' : 'MediaCore_permissionDeniedGalleryMessage',
+        'MediaCore_permissionDeniedTitle',
+      );
+      return;
+    }
+
+    if (permissionStatus === RESULTS.LIMITED && action === 'gallery') {
+      showPermissionAlert('MediaCore_limitedAccessMessage', 'MediaCore_limitedAccessTitle');
     }
   };
 

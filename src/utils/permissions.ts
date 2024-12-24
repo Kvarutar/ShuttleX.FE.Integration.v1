@@ -4,6 +4,7 @@ import {
   checkLocationAccuracy,
   type LocationAccuracy,
   PERMISSIONS,
+  type PermissionStatus,
   request,
   RESULTS,
 } from 'react-native-permissions';
@@ -47,11 +48,11 @@ const requestCameraUsagePermission = async (): Promise<void> => {
   }
 };
 
-const checkCameraUsagePermission = async (): Promise<boolean> => {
+const checkCameraUsagePermission = async (): Promise<PermissionStatus> => {
   if (Platform.OS === 'ios') {
-    return (await check(PERMISSIONS.IOS.CAMERA)) === RESULTS.GRANTED;
+    return await check(PERMISSIONS.IOS.CAMERA);
   } else {
-    return (await check(PERMISSIONS.ANDROID.CAMERA)) === RESULTS.GRANTED;
+    return await check(PERMISSIONS.ANDROID.CAMERA);
   }
 };
 
@@ -67,8 +68,8 @@ const requestGalleryUsagePermission = async (): Promise<void> => {
   }
 };
 
-const checkGalleryUsagePermission = async (): Promise<boolean> => {
-  let result: string;
+const checkGalleryUsagePermission = async (): Promise<PermissionStatus> => {
+  let result: PermissionStatus;
 
   if (Platform.OS === 'ios') {
     result = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);
@@ -80,7 +81,7 @@ const checkGalleryUsagePermission = async (): Promise<boolean> => {
     }
   }
 
-  return result === RESULTS.GRANTED;
+  return result;
 };
 
 export {
