@@ -110,12 +110,12 @@ const MediaCoreWithoutI18n = ({
     const requestPermission = action === 'camera' ? requestCameraUsagePermission : requestGalleryUsagePermission;
     let permissionStatus: PermissionStatus = await permissionCheck();
 
-    if (permissionStatus === RESULTS.DENIED) {
+    if (permissionStatus === RESULTS.DENIED || permissionStatus === RESULTS.LIMITED) {
       await requestPermission();
       permissionStatus = await permissionCheck();
     }
 
-    if (permissionStatus === RESULTS.GRANTED) {
+    if (permissionStatus === RESULTS.GRANTED || (permissionStatus === RESULTS.LIMITED && action === 'gallery')) {
       const result =
         action === 'camera'
           ? await launchCamera({ mediaType: MediaFileType.Photo })
@@ -134,10 +134,6 @@ const MediaCoreWithoutI18n = ({
         'MediaCore_permissionDeniedTitle',
       );
       return;
-    }
-
-    if (permissionStatus === RESULTS.LIMITED && action === 'gallery') {
-      showPermissionAlert('MediaCore_limitedAccessMessage', 'MediaCore_limitedAccessTitle');
     }
   };
 
