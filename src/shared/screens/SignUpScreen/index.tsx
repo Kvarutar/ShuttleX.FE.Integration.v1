@@ -23,12 +23,13 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
     const { colors } = useTheme();
     const { t } = useTranslation();
 
+    //TODO: all fields should be false. Currently isAllowedProcessPersonalData is true because we temporary hide it
     const [userDataForm, setUserDataForm] = useState<SignUpForm>({
       firstName: '',
       email: '',
       phone: '',
       isFamiliarWithTermsAndConditions: false,
-      isAllowedProcessPersonalData: false,
+      isAllowedProcessPersonalData: true,
     });
     const getInitialCorrectForm = (): SignUpFormValidation => ({
       correctFirstName: true,
