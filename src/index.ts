@@ -23,6 +23,7 @@ import { emailRegex } from './core/consts/regex.consts';
 import { countryDtos } from './core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from './core/countries/types';
 import i18nIntegration from './core/locales/i18n';
+import createLogger from './core/logger';
 import { AnimatedMarker } from './core/map/hooks';
 import lightMapStyle from './core/map/lightMapStyle.json';
 import MapCameraModeButton from './core/map/MapCameraModeButton';
@@ -312,6 +313,7 @@ import {
   requestGalleryUsagePermission,
   requestGeolocationPermission,
 } from './utils/permissions';
+import { getDefaultDevSentryConfig, getDefaultProdSentryConfig } from './utils/sentryConfig';
 import { type Nullable } from './utils/typescript';
 import { isAllFieldsFilled, isEmailValid, isNameValid, isPhoneValid } from './utils/validation';
 
@@ -388,6 +390,7 @@ export {
   countryFlags,
   type CountryPhoneMaskDto,
   createAxiosInstance,
+  createLogger,
   createSignalRSlice,
   CreditCardIcon,
   CreditCheckIcon,
@@ -434,6 +437,8 @@ export {
   GameIcon,
   getAngleBetweenPoints,
   getCurrencySign,
+  getDefaultDevSentryConfig,
+  getDefaultProdSentryConfig,
   getDistanceBetweenPoints,
   getMenuIcons,
   getNetworkErrorInfo,
