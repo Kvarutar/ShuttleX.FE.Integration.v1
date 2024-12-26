@@ -1,4 +1,4 @@
-import Sentry from '@sentry/react-native';
+import * as Sentry from '@sentry/react-native';
 
 import { type LoggerConfig } from './types';
 
