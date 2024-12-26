@@ -67,6 +67,7 @@ export type ButtonProps = {
   size?: ButtonSizes;
   withCircleModeBorder?: boolean;
   withBorder?: boolean;
+  withBackgroundColorOnPress?: boolean;
   isLoading?: boolean;
   loadingSpinnerSize?: CustomLoadingSpinnerIconSize;
 };

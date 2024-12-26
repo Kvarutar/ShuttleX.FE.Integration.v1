@@ -3,9 +3,10 @@ import { type StyleProp, type ViewStyle } from 'react-native';
 import { type SharedValue } from 'react-native-reanimated';
 
 export type BottomWindowWithGestureProps = {
-  visiblePart?: React.ReactNode;
-  hiddenPart?: React.ReactNode;
-  headerElement?: React.ReactNode;
+  visiblePart?: ReactNode;
+  hiddenPart?: ReactNode;
+  headerElement?: ReactNode;
+  additionalTopContent?: ReactNode;
   alerts?: ReactNode;
   containerStyle?: StyleProp<ViewStyle>;
   visiblePartStyle?: StyleProp<ViewStyle>;

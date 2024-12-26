@@ -34,6 +34,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
       shape = ButtonShapes.Square,
       size = mode === CircleButtonModes.Mode2 ? ButtonSizes.S : ButtonSizes.M,
       withBorder = true,
+      withBackgroundColorOnPress = true,
       text,
       textStyle,
       style,
@@ -108,7 +109,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
       square: {
         button: {
           height: 52,
-          backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+          backgroundColor: withBackgroundColorOnPress && isPressed ? backgroundColorOnPress : backgroundColor,
           paddingHorizontal: 24,
           borderRadius: 12,
         },
@@ -120,7 +121,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
           width: size ? circleButtonSizes[size] : circleButtonSizes.m,
           paddingHorizontal: 0,
           borderRadius: 1000,
-          backgroundColor: isPressed ? backgroundColorOnPress : mode6BackgroundColor,
+          backgroundColor: withBackgroundColorOnPress && isPressed ? backgroundColorOnPress : mode6BackgroundColor,
           padding: innerSpacing,
         },
         text: { color: isMode6 && isAnimationEnded ? colors.textTertiaryColor : textColor },
@@ -184,7 +185,7 @@ const Button = forwardRef<ButtonRef, ButtonProps>(
                     ? circleButtonSizes[size] - innerSpacing
                     : (size && circleButtonSizes[size]) || 48,
                 borderColor: borderColor,
-                backgroundColor: isPressed ? backgroundColorOnPress : backgroundColor,
+                backgroundColor: withBackgroundColorOnPress && isPressed ? backgroundColorOnPress : backgroundColor,
                 borderWidth: borderWidth,
               },
               circleSubContainerStyle,

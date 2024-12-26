@@ -1,19 +1,20 @@
+import { StyleSheet } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import ButtonV1 from '../../shared/atoms/Button/v1';
-import { ButtonV1Shapes } from '../../shared/atoms/Button/v1/props';
+import Button from '../../shared/atoms/Button/v2';
+import { ButtonShapes, CircleButtonModes } from '../../shared/atoms/Button/v2/props';
 import LocationArrowImage2 from '../../shared/images/LocationArrowImage2';
 import { type MapCameraModeButtonProps } from './types';
 
 const constants = {
   rotationAnimationDuration: 300,
-  defaultIconAngle: '31deg',
+  defaultIconAngle: '45deg',
 };
 
 const MapCameraModeButton = ({ mode, onPress, style }: MapCameraModeButtonProps) => {
   const iconAngle = useSharedValue(constants.defaultIconAngle);
 
-  const rotationAnimatedStyle = useAnimatedStyle(() => ({
+  const iconAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: iconAngle.value }],
   }));
 
@@ -31,20 +32,33 @@ const MapCameraModeButton = ({ mode, onPress, style }: MapCameraModeButtonProps)
       }
       case 'follow': {
         changeIconAngle(constants.defaultIconAngle);
-        return <LocationArrowImage2 type="filled" />;
+        return <LocationArrowImage2 colorMode="second" />;
       }
       case 'followWithCompass': {
         changeIconAngle('0deg');
-        return <LocationArrowImage2 type="filled" />;
+        return <LocationArrowImage2 colorMode="second" />;
       }
     }
   };
 
   return (
-    <ButtonV1 shape={ButtonV1Shapes.Circle} style={style} onPress={onPress}>
-      <Animated.View style={rotationAnimatedStyle}>{getIcon()}</Animated.View>
-    </ButtonV1>
+    <Button
+      style={style}
+      onPress={onPress}
+      mode={CircleButtonModes.Mode2}
+      shape={ButtonShapes.Circle}
+      withBorder={false}
+      withBackgroundColorOnPress={false}
+    >
+      <Animated.View style={[iconAnimatedStyle, styles.icon]}>{getIcon()}</Animated.View>
+    </Button>
   );
 };
+
+const styles = StyleSheet.create({
+  icon: {
+    paddingBottom: 2,
+  },
+});
 
 export default MapCameraModeButton;

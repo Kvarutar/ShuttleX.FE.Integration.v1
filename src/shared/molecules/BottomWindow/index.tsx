@@ -18,6 +18,7 @@ const animationsDurations = {
 
 const BottomWindow = ({
   children,
+  additionalTopContent,
   alerts,
   showAlerts = true,
   style,
@@ -54,7 +55,10 @@ const BottomWindow = ({
         entering={FadeIn.duration(animationsDurations.viewFade)}
         exiting={FadeOut.duration(animationsDurations.viewFade)}
       >
-        {alerts && <Animated.View style={[styles.alerts, alertsAnimatedStyles]}>{alerts}</Animated.View>}
+        <View style={styles.additionalTopContentContainer}>
+          <View style={styles.additionalTopContent}>{additionalTopContent}</View>
+          {alerts && <Animated.View style={[styles.alerts, alertsAnimatedStyles]}>{alerts}</Animated.View>}
+        </View>
         <Shadow stretch {...shadowProps}>
           <View style={[computedStyles.bottomWindow, styles.bottomWindow, windowStyle]}>{children}</View>
         </Shadow>
@@ -64,8 +68,16 @@ const BottomWindow = ({
 };
 
 const styles = StyleSheet.create({
+  additionalTopContentContainer: {
+    margin: sizes.paddingHorizontal,
+  },
+  additionalTopContent: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
   alerts: {
-    padding: 16,
     gap: 12,
   },
   bottomWindow: {

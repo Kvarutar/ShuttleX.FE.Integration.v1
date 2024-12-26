@@ -31,6 +31,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     {
       visiblePart,
       hiddenPart,
+      additionalTopContent,
       alerts,
       containerStyle,
       visiblePartStyle,
@@ -432,6 +433,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
           entering={FadeIn}
         >
           <BottomWindow
+            additionalTopContent={additionalTopContent}
             alerts={alerts}
             showAlerts={isAlertsVisible}
             style={styles.bottom}
