@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Dimensions, Modal, Pressable, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -15,7 +14,6 @@ import { useChangeData } from '../../molecules/changePopUps/hooks/useChangeData'
 import { useProfileForm } from '../../molecules/changePopUps/hooks/useProfileForm';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
 import VerifyDataPopUp from '../../molecules/VerifyDataPopUp';
-import SignOutPopup from './SignOutPopup';
 import { type AccountSettingsProps } from './types';
 
 const windowSizes = Dimensions.get('window');
@@ -27,8 +25,8 @@ const AccountSettingsScreenWithoutI18n = ({
   // onNameChanged,
   barBlock,
   photoBlock,
-  onSignOut,
   verifiedStatus,
+  setIsSignOutPopupVisible,
 }: AccountSettingsProps) => {
   const { t } = useTranslation();
 
@@ -44,7 +42,6 @@ const AccountSettingsScreenWithoutI18n = ({
     onChangeDataPopupClose,
   } = useChangeData();
 
-  const [isSignOutPopupVisible, setIsSignOutPopupVisible] = useState(false);
   const fullPhoneMask = flag.icc + flag.phoneMask;
   const outputNumber = verifiedStatus.phoneInfo.replace(new RegExp(`^\\+${flag.icc}`, ''), '');
 
@@ -106,10 +103,6 @@ const AccountSettingsScreenWithoutI18n = ({
           textStyle={styles.logOutText}
         />
       </View>
-
-      {isSignOutPopupVisible && (
-        <SignOutPopup setIsSignOutPopupVisible={setIsSignOutPopupVisible} onSignOut={onSignOut} />
-      )}
       {isChangeDataPopUpVisible && (
         <Modal transparent statusBarTranslucent>
           <GestureHandlerRootView style={styles.gestureView}>
@@ -189,6 +182,7 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flex: 1,
+    zIndex: -1,
   },
   warningIcon: {
     position: 'absolute',

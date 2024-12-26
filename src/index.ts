@@ -256,6 +256,7 @@ import UnclosablePopup from './shared/molecules/UnclosablePopup';
 import UnsupportedCityPopup from './shared/molecules/UnsupportedCityPopup';
 import VerifyDataPopUp from './shared/molecules/VerifyDataPopUp';
 import AccountSettingsScreen from './shared/screens/AccountSettingsScreen';
+import SignOutPopup from './shared/screens/AccountSettingsScreen/SignOutPopup';
 import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
 import CodeVerificationScreen from './shared/screens/CodeVerificationScreen';
@@ -578,6 +579,7 @@ export {
   ShortArrowSmallIcon,
   SignInMethod,
   SignInScreen,
+  SignOutPopup,
   type SignUpForm,
   SignUpScreen,
   type SignUpScreenRef,

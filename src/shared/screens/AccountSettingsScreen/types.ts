@@ -10,7 +10,7 @@ export type AccountSettingsProps = {
   barBlock?: ReactNode;
   isChangeDataLoading: boolean;
   verifiedStatus: VerifyStatusType;
-  onSignOut: () => void;
+  setIsSignOutPopupVisible: (newState: boolean) => void;
   // onNameChanged?: () => void;
   // isContractor?: boolean;
 };
