@@ -53,6 +53,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       cameraMode,
       setCameraModeOnDrag,
       onDragComplete,
+      onFirstCameraAnimationComplete,
     },
     ref,
   ): JSX.Element => {
@@ -118,6 +119,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
         if (!disableSetCameraOnGeolocationAvailable && isMapLoaded && isCameraAnimatingFirstTime.current) {
           mapRef.current.setCamera({ center: geolocationCoordinates, zoom: mapConstants.cameraZoom });
           isCameraAnimatingFirstTime.current = false;
+          onFirstCameraAnimationComplete?.();
         }
 
         // Animates currentLocationMarker coordinates
@@ -141,6 +143,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       disableSetCameraOnGeolocationAvailable,
       currentLocationMarkerCoordinates,
       cameraMode,
+      onFirstCameraAnimationComplete,
     ]);
 
     const animateCameraWithHeading = (heading: number) => {
@@ -288,7 +291,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           }}
           onMapLoaded={() => setIsMapLoaded(true)}
         >
-          {geolocationCoordinates && !isCoordinatesEqualZero(currentLocationMarkerCoordinates.value) && (
+          {geolocationCoordinates && (
             <AnimatedMarker
               ref={currentLocationMarkerRef}
               coordinate={{ latitude: 0, longitude: 0 }}

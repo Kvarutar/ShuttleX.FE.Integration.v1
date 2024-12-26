@@ -50,6 +50,7 @@ export type MapViewProps = {
   cameraMode?: MapCameraMode;
   setCameraModeOnDrag?: (cameraMode: MapCameraMode) => void;
   onDragComplete?: (coordinates: LatLng) => void;
+  onFirstCameraAnimationComplete?: () => void;
 };
 
 export type MapCameraModeButtonProps = {
