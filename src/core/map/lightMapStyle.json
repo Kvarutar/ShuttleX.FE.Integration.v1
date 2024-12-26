@@ -76,6 +76,14 @@
     ]
   },
   {
+    "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "on"
+      }
+    ]
+  },
+  {
     "featureType": "poi.medical",
     "stylers": [
       {
