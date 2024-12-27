@@ -27,7 +27,7 @@ const Bar = ({
         borderWidth: 1,
         borderStyle: 'dashed',
       },
-      backgroundColor: backgroundPrimaryColor,
+      backgroundColor: 'transparent',
     },
     disabled: {
       strokeProps: {
