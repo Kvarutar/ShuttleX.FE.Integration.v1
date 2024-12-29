@@ -41,11 +41,15 @@ export const initCreateAppAsyncThunk = <
     typePrefix: TypePrefix<ReturnValue, Payload>,
     payloadCreator: (
       payload: Payload,
-      thunkAPI: ThunkAPI<ReturnValue, Payload> & Record<keyof AxiosInstancesInitializers, AxiosInstance>,
+      thunkAPI: ThunkAPI<ReturnValue, Payload> &
+        Record<keyof AxiosInstancesInitializers, AxiosInstance> & { abortAllSignal: AbortController['signal'] },
     ) => AsyncThunkPayloadCreatorReturnValue<ReturnValue, ExtractedThunkConfig<ReturnValue, Payload>>,
     options?: Options<ReturnValue, Payload>,
-  ): ReturnType<typeof createAppAsyncThunk<ReturnValue, Payload>> => {
-    return createAppAsyncThunk<ReturnValue, Payload>(
+  ): ReturnType<typeof createAppAsyncThunk<ReturnValue, Payload>> & {
+    abortAll: AbortController['abort'];
+  } => {
+    let abortController = new AbortController();
+    const thunk = createAppAsyncThunk<ReturnValue, Payload>(
       typePrefix,
       (payload, thunkAPI) => {
         const convertedAxiosInstances: Record<string, AxiosInstance> = {};
@@ -57,10 +61,19 @@ export const initCreateAppAsyncThunk = <
         return payloadCreator(payload, {
           ...thunkAPI,
           ...(convertedAxiosInstances as Record<keyof AxiosInstancesInitializers, AxiosInstance>),
+          abortAllSignal: abortController.signal,
         });
       },
       options,
     );
+
+    const enhancedThunk = thunk as typeof thunk & { abortAll: AbortController['abort'] };
+    enhancedThunk.abortAll = () => {
+      abortController.abort();
+      abortController = new AbortController();
+    };
+
+    return enhancedThunk;
   };
 
   return wrapper;
