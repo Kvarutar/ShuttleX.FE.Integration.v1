@@ -12,11 +12,20 @@ export type MapPolyline =
   | { type: 'dashed'; options: { coordinates: LatLng[]; color?: string } }
   | { type: 'arc'; options: { startPoint: LatLng; endPoint: LatLng } };
 
-export type MapMarker = {
+export type MarkerTypeSimple = {
+  type: 'simple';
   colorMode: MapPinIconProps['colorMode'];
   coordinates: LatLng;
   zIndex?: number;
 };
+
+export type MarkerTypeWithLabel = {
+  type: 'withLabel';
+  coordinates: LatLng;
+  zIndex?: number;
+} & Omit<MapPinIcon2Props, 'style'>;
+
+export type MapMarker = MarkerTypeSimple | MarkerTypeWithLabel;
 
 type MapCars = {
   data: {
@@ -45,7 +54,6 @@ export type MapViewProps = {
   cars?: MapCars;
   polylines?: MapPolyline[];
   stopPoints?: LatLng[];
-  finalStopPoint?: { coordinates: LatLng } & Omit<MapPinIcon2Props, 'style'>;
   markers?: MapMarker[];
   cameraMode?: MapCameraMode;
   setCameraModeOnDrag?: (cameraMode: MapCameraMode) => void;

@@ -66,6 +66,8 @@ const milSecToHours = (milliseconds: number): number => {
   }
 };
 
+const getTimezoneOffsetInMilSec = () => -new Date().getTimezoneOffset() * 60000;
+
 /**
  * Converts date to normal format
  * @param date value
@@ -165,6 +167,7 @@ export {
   formatPhone,
   formatTime,
   getTimeWithAbbreviation,
+  getTimezoneOffsetInMilSec,
   milSecToHours,
   milSecToMin,
   milSecToTime,

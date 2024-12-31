@@ -34,6 +34,8 @@ import {
   type MapPolyline,
   type MapViewProps,
   type MapViewRef,
+  type MarkerTypeSimple,
+  type MarkerTypeWithLabel,
 } from './core/map/types';
 import { calculateNewMapRoute, decodeGooglePolyline, isCoordinatesEqualZero } from './core/map/utils';
 import { nameof } from './core/monkey-patch/ts.helper';
@@ -280,6 +282,7 @@ import {
   formatPhone,
   formatTime,
   getTimeWithAbbreviation,
+  getTimezoneOffsetInMilSec,
   milSecToHours,
   milSecToMin,
   milSecToTime,
@@ -445,6 +448,7 @@ export {
   getNotificationToken,
   getPaymentIcon,
   getTimeWithAbbreviation,
+  getTimezoneOffsetInMilSec,
   getTokens,
   GroupedBrandIcon,
   GroupedBrandIconMini,
@@ -500,6 +504,8 @@ export {
   MapView,
   type MapViewProps,
   type MapViewRef,
+  type MarkerTypeSimple,
+  type MarkerTypeWithLabel,
   MasterCardIcon,
   MediaAmount,
   MediaCore,

@@ -34,6 +34,11 @@ const TrafficIndicator = ({
 
   const animatedProgress = useSharedValue(0);
 
+  const localSegments = segments.slice(0);
+  if (localSegments.length === 1 && localSegments[0]) {
+    localSegments.push({ level: localSegments[0].level, percent: '100%' });
+  }
+
   useEffect(() => {
     const newProgress = (parsePercents(currentPercent) / totalPercents) * availableWidth;
     //TODO: Need test and maybe fix time duration
@@ -73,7 +78,7 @@ const TrafficIndicator = ({
 
         <View style={styles.track}>
           <View style={styles.backgroundTrack}>
-            {segments.reduce<ReactNode[]>((acc, segment, index) => {
+            {localSegments.reduce<ReactNode[]>((acc, segment, index) => {
               const segmentWidth = (parsePercents(segment.percent) / totalPercents) * availableWidth;
               const nextSegment = segments[index + 1];
               const endColor = nextSegment ? trafficColor[nextSegment.level] : trafficColor[segment.level];

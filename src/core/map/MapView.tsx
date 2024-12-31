@@ -48,7 +48,6 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       cars,
       polylines,
       stopPoints,
-      finalStopPoint,
       markers,
       cameraMode,
       setCameraModeOnDrag,
@@ -331,28 +330,35 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
               </Marker>
             ))}
 
-          {finalStopPoint && (
-            <Marker coordinate={finalStopPoint.coordinates} anchor={{ x: 0.5, y: 0.98 }} tracksViewChanges={true}>
-              <MapPinIcon2
-                colorMode={finalStopPoint.colorMode}
-                title={finalStopPoint.title}
-                subtitle={finalStopPoint.subtitle}
-              />
-            </Marker>
-          )}
-
           {markers &&
-            markers.map((marker, i) => (
-              <Marker
-                key={`${i} ${marker.coordinates}`}
-                coordinate={marker.coordinates}
-                anchor={{ x: 0.5, y: 0.98 }}
-                tracksViewChanges={false}
-                zIndex={marker.zIndex}
-              >
-                <MapPinIcon colorMode={marker.colorMode} />
-              </Marker>
-            ))}
+            markers.map((marker, i) => {
+              switch (marker.type) {
+                case 'simple':
+                  return (
+                    <Marker
+                      key={`${i} ${marker.coordinates}`}
+                      coordinate={marker.coordinates}
+                      anchor={{ x: 0.5, y: 0.98 }}
+                      zIndex={marker.zIndex}
+                      tracksViewChanges={false}
+                    >
+                      <MapPinIcon colorMode={marker.colorMode} />
+                    </Marker>
+                  );
+                case 'withLabel':
+                  return (
+                    <Marker
+                      key={`${i} ${marker.coordinates}`}
+                      coordinate={marker.coordinates}
+                      anchor={{ x: 0.5, y: 0.98 }}
+                      zIndex={marker.zIndex}
+                      tracksViewChanges={true}
+                    >
+                      <MapPinIcon2 colorMode={marker.colorMode} title={marker.title} subtitle={marker.subtitle} />
+                    </Marker>
+                  );
+              }
+            })}
         </MapViewNative>
       </>
     );
