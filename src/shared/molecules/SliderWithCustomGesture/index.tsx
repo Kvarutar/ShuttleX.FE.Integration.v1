@@ -74,8 +74,10 @@ const SliderWithCustomGesture = ({
     },
     wipeBlock: {
       left: -sliderWidth + buttonWidth,
-      width: sliderWidth,
       backgroundColor: backgroundColor ?? backgroundColors[mode],
+      top: -padding,
+      bottom: -padding,
+      right: -padding,
     },
   });
 
@@ -158,8 +160,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   wipeBlock: {
-    backgroundColor: 'green',
-    height: 48,
     position: 'absolute',
   },
   text: {
