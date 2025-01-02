@@ -86,6 +86,7 @@ import BrandFavIcon from './shared/icons/BrandFavIcon';
 import BrandTextIcon from './shared/icons/BrandTextIcon';
 import CalendarIcon from './shared/icons/CalendarIcon';
 import CameraIcon from './shared/icons/CameraIcon';
+import AnimatedCarImage from './shared/icons/CarsWithSeparatedWheels/AnimatedCarImage';
 import ChatIcon from './shared/icons/ChatIcon';
 import CheckIcon2 from './shared/icons/CheckIcon2';
 import ClockIcon from './shared/icons/ClockIcon';
@@ -326,6 +327,7 @@ export {
   AddCardScreen,
   Alert,
   type AlertDescendantProps,
+  AnimatedCarImage,
   AnimatedMarker,
   AppBlockPage,
   ApplePayIcon,

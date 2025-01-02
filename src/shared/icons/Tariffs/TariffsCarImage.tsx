@@ -4,12 +4,13 @@ import { type ImageStyle } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
 import BasicImage from './BasicImage';
 import BasicXLImage from './BasicXLImage';
-import BusinessImage from './Business';
+// import BusinessImage from './Business';
 import ComfortPlusImage from './ComfortPlusImage';
 import ElectricImage from './ElectricImage';
 
 // TODO: Change tariffs names to the frontend keys
-export type TariffType = 'Basic' | 'BasicXL' | 'ComfortPlus' | 'Business' | 'Electric';
+//TODO: Add 'Business' when work with it
+export type TariffType = 'Basic' | 'BasicXL' | 'ComfortPlus' | 'Electric';
 
 export type TariffIconData = {
   icon: ({ style }: { style?: ImageStyle }) => JSX.Element;
@@ -31,10 +32,11 @@ export const useTariffsIcons = (): Record<TariffType, TariffIconData> => {
       icon: ComfortPlusImage,
       text: t('Tariffs_comfortPlus'),
     },
-    Business: {
-      icon: BusinessImage,
-      text: t('Tariffs_business'),
-    },
+    //TODO: Add 'Business' when work with it
+    // Business: {
+    //   icon: BusinessImage,
+    //   text: t('Tariffs_business'),
+    // },
     Electric: {
       icon: ElectricImage,
       text: t('Tariffs_electric'),
