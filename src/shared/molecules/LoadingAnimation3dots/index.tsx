@@ -97,12 +97,12 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 6,
     borderRadius: 8,
+    gap: 3,
   },
   dot: {
     width: 5,
     height: 5,
     borderRadius: 16,
-    marginHorizontal: 3,
   },
 });
 

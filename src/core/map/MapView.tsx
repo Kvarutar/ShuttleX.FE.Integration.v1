@@ -46,6 +46,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       geolocationCalculatedHeading,
       disableSetCameraOnGeolocationAvailable = false,
       cars,
+      withCarsThinkingAnimation = false,
       polylines,
       stopPoints,
       markers,
@@ -307,6 +308,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
                 coordinates={carData.coordinates}
                 heading={carData.heading}
                 animationDuration={cars.animationDuration}
+                withThinkingAnimation={withCarsThinkingAnimation}
               />
             ))}
 

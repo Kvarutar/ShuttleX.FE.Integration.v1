@@ -52,6 +52,7 @@ export type MapViewProps = {
   geolocationCalculatedHeading?: number;
   disableSetCameraOnGeolocationAvailable?: boolean;
   cars?: MapCars;
+  withCarsThinkingAnimation?: boolean;
   polylines?: MapPolyline[];
   stopPoints?: LatLng[];
   markers?: MapMarker[];
@@ -71,4 +72,5 @@ export type MapCarProps = {
   coordinates: LatLng;
   heading: number;
   animationDuration: number;
+  withThinkingAnimation?: boolean;
 };

@@ -6,8 +6,8 @@ const TopViewCarImage = ({ style }: { style?: ImageProps['style'] }) => (
 
 const styles = StyleSheet.create({
   img: {
-    width: 27.3,
-    height: 61.35,
+    width: 21.84,
+    height: 49.08,
   },
 });
 

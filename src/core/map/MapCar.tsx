@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { type LatLng, type MapMarker } from 'react-native-maps';
 import Animated, {
   Easing,
@@ -9,16 +9,43 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { Shadow } from 'react-native-shadow-2';
 
 import TopViewCarImage from '../../shared/images/TopViewCarImage';
+import LoadingAnimation3dots from '../../shared/molecules/LoadingAnimation3dots';
+import { useTheme } from '../themes/v2/themeContext';
 import { AnimatedMarker } from './hooks';
 import { type MapCarProps } from './types';
 
 const rotationAnimationDuration = 600;
+const thinkingAnimationConsts = {
+  shadowDistance: 20,
+  paddingLeft: 45,
+  paddingBottom: 70,
+};
 
-const MapCar = ({ coordinates, heading, animationDuration }: MapCarProps) => {
+const MapCar = ({ coordinates, heading, animationDuration, withThinkingAnimation = false }: MapCarProps) => {
+  const { colors } = useTheme();
+
   const markerRef = useRef<MapMarker>(null);
-  const markerCoordinates = useSharedValue<LatLng>({ latitude: 0, longitude: 0 });
+  const thinkingAnimationMarkerRef = useRef<MapMarker>(null);
+  const markerCoordinates = useSharedValue<LatLng>(coordinates);
+
+  const setCurrentCarMarkerPosition = (latlng: LatLng) => {
+    markerRef.current?.setNativeProps({ coordinate: latlng });
+    thinkingAnimationMarkerRef.current?.setNativeProps({ coordinate: latlng });
+  };
+
+  useDerivedValue(() => {
+    runOnJS(setCurrentCarMarkerPosition)(markerCoordinates.value);
+  }, [markerCoordinates]);
+
+  useEffect(() => {
+    markerCoordinates.value = withTiming(coordinates, {
+      easing: Easing.linear,
+      duration: animationDuration,
+    });
+  }, [markerCoordinates, coordinates, animationDuration]);
 
   const carMarkerAnimatedStyle = useAnimatedStyle(() => ({
     transform: [
@@ -31,40 +58,50 @@ const MapCar = ({ coordinates, heading, animationDuration }: MapCarProps) => {
     ],
   }));
 
-  const setCurrentCarMarkerPosition = (latlng: LatLng) => {
-    markerRef.current?.setNativeProps({ coordinate: latlng });
-  };
-
-  useDerivedValue(() => {
-    const latlng = markerCoordinates.value;
-    runOnJS(setCurrentCarMarkerPosition)(latlng);
-  }, [markerCoordinates]);
-
-  useEffect(() => {
-    markerCoordinates.value = withTiming(coordinates, {
-      easing: Easing.linear,
-      duration: animationDuration,
-    });
-  }, [markerCoordinates, coordinates, animationDuration]);
-
   return (
-    <AnimatedMarker
-      ref={markerRef}
-      coordinate={{ latitude: 0, longitude: 0 }}
-      anchor={{ x: 0.5, y: 0.5 }} // centers icon
-      flat
-      tracksViewChanges
-    >
-      <Animated.View style={[styles.container, carMarkerAnimatedStyle]}>
-        <TopViewCarImage />
-      </Animated.View>
-    </AnimatedMarker>
+    <>
+      <AnimatedMarker
+        ref={markerRef}
+        coordinate={coordinates}
+        anchor={{ x: 0.5, y: 0.5 }} // centers icon
+        flat
+        tracksViewChanges
+        style={styles.marker}
+      >
+        <Animated.View style={carMarkerAnimatedStyle}>
+          <TopViewCarImage />
+        </Animated.View>
+      </AnimatedMarker>
+      {withThinkingAnimation && (
+        <AnimatedMarker ref={thinkingAnimationMarkerRef} coordinate={coordinates} anchor={{ x: 0.5, y: 0.5 }}>
+          <View style={styles.thinkingAnimationContainer}>
+            <Shadow
+              distance={thinkingAnimationConsts.shadowDistance}
+              startColor={colors.strongShadowColor}
+              stretch
+              paintInside
+            >
+              <LoadingAnimation3dots />
+            </Shadow>
+          </View>
+        </AnimatedMarker>
+      )}
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 30, // fixing bug image cuts off when rotating
+  marker: {
+    width: 90,
+    height: 90,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  thinkingAnimationContainer: {
+    paddingLeft: thinkingAnimationConsts.shadowDistance + thinkingAnimationConsts.paddingLeft,
+    paddingRight: thinkingAnimationConsts.shadowDistance,
+    paddingTop: thinkingAnimationConsts.shadowDistance,
+    paddingBottom: thinkingAnimationConsts.shadowDistance + thinkingAnimationConsts.paddingBottom,
   },
 });
 
