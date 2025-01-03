@@ -8,6 +8,7 @@ import Animated, {
   FadeOut,
   interpolate,
   runOnJS,
+  useAnimatedReaction,
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useDerivedValue,
@@ -19,6 +20,7 @@ import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import Shade from '../../atoms/Shade';
 import BottomWindow from '../BottomWindow';
+import { type BottomWindowRef } from '../BottomWindow/props';
 import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type BottomWindowWithGestureProps, type BottomWindowWithGestureRef } from './props';
 
@@ -52,12 +54,14 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       minHeight,
       withDraggable = true,
       headerElement,
+      onGestureUpdate,
     },
     ref,
   ) => {
     const { colors } = useTheme();
 
     const animatedScrollViewRef = useRef<Animated.ScrollView>(null);
+    const bottomWindowRef = useRef<BottomWindowRef>(null);
 
     const progress = useSharedValue(opened ? 0 : 1); // 0 - opened, 1 - closed
     const threshold = useSharedValue(0);
@@ -84,6 +88,19 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     const [isShadeVisible, setIsShadeVisible] = useState<boolean>(opened);
     const [isAlertsVisible, setIsAlertsVisible] = useState(true);
     const [isScrollable, setIsScrollable] = useState(false);
+
+    const gestureOnUpdate = () => {
+      bottomWindowRef.current?.measure((_, __, ___, ____, _____, pageY) => {
+        onGestureUpdate?.({ y: pageY });
+      });
+    };
+
+    useAnimatedReaction(
+      () => translateY.value,
+      () => {
+        runOnJS(gestureOnUpdate)();
+      },
+    );
 
     useImperativeHandle(ref, () => ({
       closeWindow: () => {
@@ -433,6 +450,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
           entering={FadeIn}
         >
           <BottomWindow
+            ref={bottomWindowRef}
             additionalTopContent={additionalTopContent}
             alerts={alerts}
             showAlerts={isAlertsVisible}

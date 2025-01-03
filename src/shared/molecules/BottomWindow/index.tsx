@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { Shadow } from 'react-native-shadow-2';
@@ -7,7 +7,7 @@ import { defaultShadow } from '../../../core/themes/shadows';
 import sizes from '../../../core/themes/sizes';
 import { useThemeV1 } from '../../../core/themes/v1/themeContext';
 import Shade from '../../atoms/Shade';
-import { type BottomWindowProps } from './props';
+import { type BottomWindowProps, type BottomWindowRef } from './props';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -16,56 +16,57 @@ const animationsDurations = {
   alerts: 200,
 };
 
-const BottomWindow = ({
-  children,
-  additionalTopContent,
-  alerts,
-  showAlerts = true,
-  style,
-  windowStyle,
-  withShade = false,
-}: BottomWindowProps): JSX.Element => {
-  const { colors } = useThemeV1();
-  const { backgroundPrimaryColor, weakShadowColor } = colors;
-  const shadowProps = defaultShadow(weakShadowColor);
+const BottomWindow = forwardRef<BottomWindowRef, BottomWindowProps>(
+  ({ children, additionalTopContent, alerts, showAlerts = true, style, windowStyle, withShade = false }, ref) => {
+    const viewRef = useRef<View>(null);
+    const { colors } = useThemeV1();
+    const { backgroundPrimaryColor, weakShadowColor } = colors;
+    const shadowProps = defaultShadow(weakShadowColor);
 
-  const computedStyles = StyleSheet.create({
-    bottomWindow: {
-      backgroundColor: backgroundPrimaryColor,
-    },
-  });
+    useImperativeHandle(ref, () => ({
+      measure: callback => viewRef.current?.measure(callback),
+    }));
 
-  const alertsTranslateX = useSharedValue(0);
+    const computedStyles = StyleSheet.create({
+      bottomWindow: {
+        backgroundColor: backgroundPrimaryColor,
+      },
+    });
 
-  useEffect(() => {
-    if (showAlerts) {
-      alertsTranslateX.value = withTiming(0, { duration: animationsDurations.alerts });
-    } else {
-      alertsTranslateX.value = withTiming(-windowWidth, { duration: animationsDurations.alerts });
-    }
-  }, [showAlerts, alertsTranslateX]);
+    const alertsTranslateX = useSharedValue(0);
 
-  const alertsAnimatedStyles = useAnimatedStyle(() => ({ transform: [{ translateX: alertsTranslateX.value }] }));
+    useEffect(() => {
+      if (showAlerts) {
+        alertsTranslateX.value = withTiming(0, { duration: animationsDurations.alerts });
+      } else {
+        alertsTranslateX.value = withTiming(-windowWidth, { duration: animationsDurations.alerts });
+      }
+    }, [showAlerts, alertsTranslateX]);
 
-  return (
-    <>
-      {withShade && <Shade />}
-      <Animated.View
-        style={[styles.container, style]}
-        entering={FadeIn.duration(animationsDurations.viewFade)}
-        exiting={FadeOut.duration(animationsDurations.viewFade)}
-      >
-        <View style={styles.additionalTopContentContainer}>
-          <View style={styles.additionalTopContent}>{additionalTopContent}</View>
-          {alerts && <Animated.View style={[styles.alerts, alertsAnimatedStyles]}>{alerts}</Animated.View>}
-        </View>
-        <Shadow stretch {...shadowProps}>
-          <View style={[computedStyles.bottomWindow, styles.bottomWindow, windowStyle]}>{children}</View>
-        </Shadow>
-      </Animated.View>
-    </>
-  );
-};
+    const alertsAnimatedStyles = useAnimatedStyle(() => ({ transform: [{ translateX: alertsTranslateX.value }] }));
+
+    return (
+      <>
+        {withShade && <Shade />}
+        <Animated.View
+          style={[styles.container, style]}
+          entering={FadeIn.duration(animationsDurations.viewFade)}
+          exiting={FadeOut.duration(animationsDurations.viewFade)}
+        >
+          <View style={styles.additionalTopContentContainer}>
+            <View style={styles.additionalTopContent}>{additionalTopContent}</View>
+            {alerts && <Animated.View style={[styles.alerts, alertsAnimatedStyles]}>{alerts}</Animated.View>}
+          </View>
+          <Shadow stretch {...shadowProps}>
+            <View ref={viewRef} style={[computedStyles.bottomWindow, styles.bottomWindow, windowStyle]}>
+              {children}
+            </View>
+          </Shadow>
+        </Animated.View>
+      </>
+    );
+  },
+);
 
 const styles = StyleSheet.create({
   additionalTopContentContainer: {

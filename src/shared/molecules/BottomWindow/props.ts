@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { type StyleProp, type ViewStyle } from 'react-native';
+import { type NativeMethods, type StyleProp, type ViewStyle } from 'react-native';
 
 export type BottomWindowProps = {
   children: ReactNode;
@@ -9,4 +9,8 @@ export type BottomWindowProps = {
   style?: StyleProp<ViewStyle>;
   windowStyle?: StyleProp<ViewStyle>;
   withShade?: boolean;
+};
+
+export type BottomWindowRef = {
+  measure: NativeMethods['measure'];
 };

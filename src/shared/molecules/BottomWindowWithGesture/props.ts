@@ -26,6 +26,7 @@ export type BottomWindowWithGestureProps = {
   maxHeight?: number;
   minHeight?: number | SharedValue<number>;
   withDraggable?: boolean;
+  onGestureUpdate?: (callback: { y: number }) => void;
 };
 
 export type BottomWindowWithGestureRef = {
