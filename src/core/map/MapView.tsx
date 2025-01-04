@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
 import MapViewNative, {
   type Camera,
@@ -193,77 +193,83 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
             ),
           };
 
-    const rendredPolylines: React.ReactNode[] = [];
-    polylines?.map((polyline, i) => {
-      switch (polyline.type) {
-        case 'straight': {
-          rendredPolylines.push(
-            <Polyline
-              key={i}
-              coordinates={polyline.options.coordinates}
-              strokeColor={polyline.options.color ?? '#000'}
-              strokeWidth={4}
-            />,
-          );
-          break;
-        }
-        case 'dotted': {
-          const coordinates: LatLng[] = [];
+    const memoizedPolylines: React.ReactNode[] = useMemo(() => {
+      const localPolylines: React.ReactNode[] = [];
 
-          for (let j = 0; j < polyline.options.coordinates.length; j++) {
-            const latlng = polyline.options.coordinates[j]!;
-            if (j > 0) {
-              const prevLatlng = polyline.options.coordinates[j - 1]!;
-              const latitude = (prevLatlng.latitude + latlng.latitude) / 2;
-              const longitude = (prevLatlng.longitude + latlng.longitude) / 2;
-              coordinates.push({ latitude, longitude });
-            }
-            coordinates.push(latlng);
-          }
-
-          for (let j = 0; j < coordinates.length - 1; j += 2) {
-            rendredPolylines.push(
+      polylines?.forEach((polyline, i) => {
+        switch (polyline.type) {
+          case 'straight': {
+            localPolylines.push(
               <Polyline
-                key={uuidv4()}
-                coordinates={coordinates.slice(j, j + 2)}
+                key={i}
+                coordinates={polyline.options.coordinates}
                 strokeColor={polyline.options.color ?? '#000'}
                 strokeWidth={4}
               />,
             );
+            break;
           }
-          break;
+          case 'dotted': {
+            const coordinates: LatLng[] = [];
+
+            for (let j = 0; j < polyline.options.coordinates.length; j++) {
+              const latlng = polyline.options.coordinates[j]!;
+              if (j > 0) {
+                const prevLatlng = polyline.options.coordinates[j - 1]!;
+                const latitude = (prevLatlng.latitude + latlng.latitude) / 2;
+                const longitude = (prevLatlng.longitude + latlng.longitude) / 2;
+                coordinates.push({ latitude, longitude });
+              }
+              coordinates.push(latlng);
+            }
+
+            for (let j = 0; j < coordinates.length - 1; j += 2) {
+              localPolylines.push(
+                <Polyline
+                  key={uuidv4()}
+                  coordinates={coordinates.slice(j, j + 2)}
+                  strokeColor={polyline.options.color ?? '#000'}
+                  strokeWidth={4}
+                />,
+              );
+            }
+            break;
+          }
+          case 'dashed':
+            localPolylines.push(
+              <Polyline
+                key={i}
+                lineDashPattern={[50, 30]}
+                coordinates={polyline.options.coordinates}
+                strokeColor={polyline.options.color ?? '#000'}
+                strokeWidth={4}
+              />,
+            );
+            break;
+          case 'arc': {
+            localPolylines.push(
+              <>
+                <Polyline
+                  key={i}
+                  strokeWidth={3}
+                  strokeColor="#000"
+                  coordinates={drawArcPolyline(polyline.options.startPoint, polyline.options.endPoint)}
+                />
+                <Polyline
+                  key={uuidv4()}
+                  strokeWidth={3}
+                  strokeColor="#00000033"
+                  coordinates={[polyline.options.startPoint, polyline.options.endPoint]}
+                />
+              </>,
+            );
+            break;
+          }
         }
-        case 'dashed': {
-          rendredPolylines.push(
-            <Polyline
-              key={i}
-              lineDashPattern={[50, 30]}
-              coordinates={polyline.options.coordinates}
-              strokeColor={polyline.options.color ?? '#000'}
-              strokeWidth={4}
-            />,
-          );
-          break;
-        }
-        case 'arc': {
-          rendredPolylines.push(
-            <Polyline
-              key={i}
-              strokeWidth={3}
-              strokeColor="#000"
-              coordinates={drawArcPolyline(polyline.options.startPoint, polyline.options.endPoint)}
-            />,
-            <Polyline
-              key={uuidv4()}
-              strokeWidth={3}
-              strokeColor="#00000033"
-              coordinates={[polyline.options.startPoint, polyline.options.endPoint]}
-            />,
-          );
-          break;
-        }
-      }
-    });
+      });
+
+      return localPolylines;
+    }, [polylines]);
 
     return (
       <>
@@ -312,7 +318,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
               />
             ))}
 
-          {rendredPolylines.length > 0 && rendredPolylines}
+          {memoizedPolylines.length > 0 && memoizedPolylines}
 
           {stopPoints &&
             stopPoints.length !== 0 &&
