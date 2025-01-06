@@ -15,6 +15,11 @@ export type PaletteTimerMode = {
   lineColor?: string;
 };
 
+export type LotteryColors = {
+  backgroundColor: string;
+  textColorWithOpacity: string;
+};
+
 export type PaletteCircleButtonModes = { [key in CircleButtonModes]: PaletteButtonMode };
 export type PaletteSquareButtonModes = { [key in SquareButtonModes]: PaletteButtonMode };
 
@@ -55,6 +60,7 @@ export type Palette = {
   squareButtonModes: PaletteSquareButtonModes;
   circleButtonModes: PaletteCircleButtonModes;
   timerColorModes: PaletteTimerModes;
+  lottery: LotteryColors;
   skeletonBoneColor: string;
   skeletonHighlightColor: string;
 };

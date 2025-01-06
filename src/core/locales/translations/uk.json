@@ -94,5 +94,16 @@
   "AppBlockPage_thanksButton": "Дякуємо!",
   "VerifyDataPopUp_firstTitle": "Підтвердіть Ваш\n{{mode}}",
   "VerifyDataPopUp_firstTitlePhoneMode": "номер",
-  "VerifyDataPopUp_button": "Підтвердити"
+  "VerifyDataPopUp_button": "Підтвердити",
+  "ReceiptScreen_check": "Чек",
+  "ReceiptScreen_pickUpTitle": "Початок",
+  "ReceiptScreen_dropOffTitle": "Кінець",
+  "ReceiptScreen_cash": "Готівка",
+  "ReceiptScreen_card": "Картка",
+  "ReceiptScreen_paymentTitle": "Оплата",
+  "ReceiptScreen_ticketToLottery": "Білет лотереї",
+  "ReceiptScreen_start": "Початок",
+  "ReceiptScreen_finish": "Кінець",
+  "ReceiptScreen_time": "Час",
+  "ReceiptScreen_cancelledTrip": "Скасована поїздка"
 }

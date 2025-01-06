@@ -1,11 +1,12 @@
 import {
+  type LotteryColors,
   type Palette,
   type PaletteCircleButtonModes,
   type PaletteSquareButtonModes,
   type PaletteTimerModes,
 } from './paletteTypes';
 
-const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerColorModes'> = {
+const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerColorModes' | 'lottery'> = {
   primaryColor: '#008D0A',
   primaryColorWithOpacity: '#CEFC2829',
   primaryGradientStartColor: '#EEF5FF',
@@ -136,9 +137,15 @@ const timerColorModes: PaletteTimerModes = {
   },
 };
 
+const lottery: LotteryColors = {
+  backgroundColor: '#0133FC',
+  textColorWithOpacity: '#FFFFFF99',
+};
+
 export const testPalette: Palette = {
   ...colors,
   squareButtonModes,
   circleButtonModes,
   timerColorModes,
+  lottery,
 };

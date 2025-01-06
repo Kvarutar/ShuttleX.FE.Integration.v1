@@ -154,5 +154,19 @@
   "VerifyDataPopUp_firstTitle": "Confirm Your\n{{mode}}",
   "VerifyDataPopUp_firstTitleEmailMode": "Email",
   "VerifyDataPopUp_firstTitlePhoneMode": "Phone Number",
-  "VerifyDataPopUp_button": "Confirm"
+  "VerifyDataPopUp_button": "Confirm",
+  "ReceiptScreen_check": "Check",
+  "ReceiptScreen_pickUpTitle": "Start",
+  "ReceiptScreen_dropOffTitle": "Finish",
+  "ReceiptScreen_cash": "Cash",
+  "ReceiptScreen_paymentTitle": "Payment",
+  "ReceiptScreen_ticketToLottery": "Ticket to Lottery",
+  "ReceiptScreen_start": "Start",
+  "ReceiptScreen_finish": "Finish",
+  "ReceiptScreen_time": "Time",
+  "ReceiptScreen_hours": "{{count}}h",
+  "ReceiptScreen_minutes": "{{count}}min",
+  "ReceiptScreen_meters": "m",
+  "ReceiptScreen_kilometers": "km",
+  "ReceiptScreen_cancelledTrip": "Cancelled trip"
 }

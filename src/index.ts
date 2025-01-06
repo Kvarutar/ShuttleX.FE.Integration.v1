@@ -171,6 +171,7 @@ import StatisticsIcon from './shared/icons/StatisticsIcon';
 import SteeringWheelIcon from './shared/icons/SteeringWheelIcon';
 import SubscriptionIcon from './shared/icons/SubscriptionIcon';
 import SuccessIcon from './shared/icons/SuccessIcon';
+import SupportIcon from './shared/icons/SupportIcon';
 import BasicImage from './shared/icons/Tariffs/BasicImage';
 import BasicXLImage from './shared/icons/Tariffs/BasicXLImage';
 import BusinessImage from './shared/icons/Tariffs/Business';
@@ -275,6 +276,7 @@ import { type FileInfo, MediaAmount, MediaFileType } from './shared/screens/Medi
 import { type Notification, NotificationType } from './shared/screens/NotificationsScreen/props';
 import NotificationsScreenV1 from './shared/screens/NotificationsScreen/v1';
 import NotificationsScreen from './shared/screens/NotificationsScreen/v2';
+import ReceiptScreen from './shared/screens/ReceiptScreen';
 import SignInScreen from './shared/screens/SignInScreen';
 import { SignInMethod } from './shared/screens/SignInScreen/types';
 import SignUpScreen from './shared/screens/SignUpScreen';
@@ -568,6 +570,7 @@ export {
   ProfileIconMini,
   PromocodesIcon,
   radToDeg,
+  ReceiptScreen,
   ReportIcon,
   requestCameraUsagePermission,
   requestGalleryUsagePermission,
@@ -610,6 +613,7 @@ export {
   StopWatch,
   SubscriptionIcon,
   SuccessIcon,
+  SupportIcon,
   SwipeButton,
   SwipeButtonModes,
   SwipeButtonV1,
