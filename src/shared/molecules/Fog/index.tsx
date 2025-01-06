@@ -2,11 +2,12 @@ import { Dimensions, StyleSheet, View } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { useTheme } from '../../../core/themes/v2/themeContext';
+import LoadingCircularAnimation from './LoadingCircularAnimation';
 import { type FogProps } from './types';
 
 const windowWidth = Dimensions.get('window').width;
 
-const Fog = ({ widthInPercents = '100%' }: FogProps): JSX.Element => {
+const Fog = ({ widthInPercents = '100%', withAnimation = false }: FogProps): JSX.Element => {
   const { colors } = useTheme();
 
   const computedStyles = StyleSheet.create({
@@ -19,7 +20,7 @@ const Fog = ({ widthInPercents = '100%' }: FogProps): JSX.Element => {
   return (
     <View style={StyleSheet.absoluteFill}>
       <View style={computedStyles.sidePart} />
-      <View style={{ width: windowWidth, height: windowWidth }}>
+      <View style={[styles.container, { width: windowWidth, height: windowWidth }]}>
         <Svg>
           <Defs>
             <RadialGradient id="gradient">
@@ -33,10 +34,18 @@ const Fog = ({ widthInPercents = '100%' }: FogProps): JSX.Element => {
           </Defs>
           <Rect width="100%" height="100%" fill="url(#gradient)" />
         </Svg>
+        {withAnimation && <LoadingCircularAnimation widthInPercents={widthInPercents} />}
       </View>
       <View style={computedStyles.sidePart} />
     </View>
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    zIndex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 export default Fog;
