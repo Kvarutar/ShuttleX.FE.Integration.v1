@@ -252,7 +252,7 @@ const ReceiptScreenWithoutI18n = ({
         polylines={[{ type: 'straight', options: { coordinates: decodeGooglePolyline(geometry) } }]}
       />
       <Fog widthInPercents={`${windowHeight / 9.5}%`} />
-      <SafeAreaView containerStyle={styles.container} withTransparentBackground>
+      <SafeAreaView wrapperStyle={styles.safeAreaWrapper} containerStyle={styles.container} withTransparentBackground>
         <View>
           {header}
           <View style={styles.roadPointContainer}>
@@ -334,6 +334,9 @@ const ReceiptScreen = (props: ReceiptScreenProps) => (
 );
 
 const styles = StyleSheet.create({
+  safeAreaWrapper: {
+    zIndex: 2,
+  },
   container: {
     flex: 1,
     justifyContent: 'space-between',
