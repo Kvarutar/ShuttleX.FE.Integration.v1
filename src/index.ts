@@ -229,6 +229,7 @@ import { type KeyboardAvoidingViewMode } from './shared/molecules/KeyboardAvoidi
 import LoadingAnimation3dots from './shared/molecules/LoadingAnimation3dots';
 import LoadingSpinner from './shared/molecules/LoadingSpinner';
 import { LoadingSpinnerIconModes } from './shared/molecules/LoadingSpinner/types';
+import LoadingStub from './shared/molecules/LoadingStub';
 import LocationUnavailable from './shared/molecules/LocationUnavailable';
 import { type LocationUnavailableProps } from './shared/molecules/LocationUnavailable/props';
 import MenuBase from './shared/molecules/MenuBase';
@@ -491,6 +492,7 @@ export {
   LoadingBrandIconModes,
   LoadingSpinner,
   LoadingSpinnerIconModes,
+  LoadingStub,
   LocationArrowImage,
   LocationArrowImage2,
   LocationIcon,
