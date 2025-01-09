@@ -1,12 +1,12 @@
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
-import i18nIntegration from '../../../core/locales/i18n';
-import Button from '../../atoms/Button/v2';
-import { SquareButtonModes } from '../../atoms/Button/v2/props';
-import BigHeader from '../../molecules/BigHeader';
-import BottomWindowWithGesture from '../../molecules/BottomWindowWithGesture';
-import { type SignOutPopupProps } from './types';
+import i18nIntegration from '../../../../core/locales/i18n';
+import Button from '../../../atoms/Button/v2';
+import { SquareButtonModes } from '../../../atoms/Button/v2/props';
+import BigHeader from '../../../molecules/BigHeader';
+import BottomWindowWithGesture from '../../../molecules/BottomWindowWithGesture';
+import { type SignOutPopupProps } from '../types';
 
 const SignOutPopupWithoutI18n = ({ setIsSignOutPopupVisible, onSignOut }: SignOutPopupProps) => {
   const { t } = useTranslation();

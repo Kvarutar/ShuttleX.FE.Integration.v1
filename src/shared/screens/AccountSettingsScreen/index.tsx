@@ -27,6 +27,7 @@ const AccountSettingsScreenWithoutI18n = ({
   photoBlock,
   verifiedStatus,
   setIsSignOutPopupVisible,
+  setIsDeleteAccountPopupVisible,
 }: AccountSettingsProps) => {
   const { t } = useTranslation();
 
@@ -96,12 +97,20 @@ const AccountSettingsScreenWithoutI18n = ({
             {barBlock}
           </View>
         </ScrollViewWithCustomScroll>
-        <Button
-          onPress={() => setIsSignOutPopupVisible(true)}
-          mode={SquareButtonModes.Mode4}
-          text={t('AccountSettings_logOutButton')}
-          textStyle={styles.logOutText}
-        />
+        <View style={styles.bottomButtonsContainer}>
+          <Button
+            onPress={() => setIsSignOutPopupVisible(true)}
+            mode={SquareButtonModes.Mode4}
+            text={t('AccountSettings_logOutButton')}
+            textStyle={styles.bottomButtonText}
+          />
+          <Button
+            onPress={() => setIsDeleteAccountPopupVisible(true)}
+            mode={SquareButtonModes.Mode5}
+            text={t('AccountSettings_deleteAccountButton')}
+            textStyle={styles.bottomButtonText}
+          />
+        </View>
       </View>
       {isChangeDataPopUpVisible && (
         <Modal transparent statusBarTranslucent>
@@ -201,7 +210,10 @@ const styles = StyleSheet.create({
   inputsStyle: {
     gap: 16,
   },
-  logOutText: {
+  bottomButtonsContainer: {
+    gap: 10,
+  },
+  bottomButtonText: {
     fontSize: 17,
   },
 });

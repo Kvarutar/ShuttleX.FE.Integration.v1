@@ -263,7 +263,10 @@ import UnclosablePopup from './shared/molecules/UnclosablePopup';
 import UnsupportedCityPopup from './shared/molecules/UnsupportedCityPopup';
 import VerifyDataPopUp from './shared/molecules/VerifyDataPopUp';
 import AccountSettingsScreen from './shared/screens/AccountSettingsScreen';
-import SignOutPopup from './shared/screens/AccountSettingsScreen/SignOutPopup';
+import ConfirmDeleteAccountPopup from './shared/screens/AccountSettingsScreen/popups/ConfirmDeleteAccountPopup';
+import DeleteAccountPopup from './shared/screens/AccountSettingsScreen/popups/DeleteAccountPopup';
+import SignOutPopup from './shared/screens/AccountSettingsScreen/popups/SignOutPopup';
+import { type AccountSettingsVerificationMethod } from './shared/screens/AccountSettingsScreen/types';
 import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
 import CodeVerificationScreen from './shared/screens/CodeVerificationScreen';
@@ -327,6 +330,7 @@ import { isAllFieldsFilled, isEmailValid, isNameValid, isPhoneValid } from './ut
 
 export {
   AccountSettingsScreen,
+  type AccountSettingsVerificationMethod,
   ActivityIcon,
   AddCardScreen,
   Alert,
@@ -392,6 +396,7 @@ export {
   CoinIcon,
   ComfortPlusImage,
   Confetti,
+  ConfirmDeleteAccountPopup,
   convertBlobToImgUri,
   CountingComponent,
   CountingComponentV1,
@@ -413,6 +418,7 @@ export {
   defaultAxiosRetryConfig,
   defaultShadow,
   degToRad,
+  DeleteAccountPopup,
   DislikeIcon,
   DocumentIcon,
   DriverArrivedAlert,
