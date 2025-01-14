@@ -1,13 +1,23 @@
-const foamEmojiIcon = require('./foamEmojiIcon.png');
-const oopsEmojiIcon = require('./oopsIcon.png');
-const shockedEmojiIcon = require('./shockedIcon.png');
-const surprisedEmojiIcon = require('./surprisedIcon.png');
-const yawnEmojiIcon = require('./yawnIcon.png');
+const angryEmojiIcon = require('./angryEmojiIcon.png');
+const calmEmojiIcon = require('./calmEmojiIcon.png');
+const coolEmojiIcon = require('./coolEmojiIcon.png');
+const cryingEmogiIcon = require('./cryingEmogiIcon.png');
+const freezedEmojiIcon = require('./freezedEmojiIcon.png');
+const hiEmojiIcon = require('./hiEmojiIcon.png');
+const hurryEmojiIcon = require('./hurryEmojiIcon.png');
+const questinonaryEmojiIcon = require('./questinonaryEmojiIcon.png');
+const sadEmojiIcon = require('./sadEmojiIcon.png');
+const starEmojiIcon = require('./starEmojiIcon.png');
 
 export default {
-  foamEmojiIcon,
-  oopsEmojiIcon,
-  shockedEmojiIcon,
-  surprisedEmojiIcon,
-  yawnEmojiIcon,
+  angryEmojiIcon,
+  calmEmojiIcon,
+  coolEmojiIcon,
+  cryingEmogiIcon,
+  freezedEmojiIcon,
+  hiEmojiIcon,
+  hurryEmojiIcon,
+  questinonaryEmojiIcon,
+  sadEmojiIcon,
+  starEmojiIcon,
 };
