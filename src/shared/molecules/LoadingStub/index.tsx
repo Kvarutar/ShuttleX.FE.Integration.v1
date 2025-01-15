@@ -1,9 +1,25 @@
+import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeOut } from 'react-native-reanimated';
-import { LoadingBrandIcon, LoadingBrandIconModes, useTheme } from 'shuttlex-integration';
 
-const LoadingStub = ({ mode }: { mode: LoadingBrandIconModes }) => {
+import { useTheme } from '../../../core/themes/v2/themeContext';
+import LoadingBrandIcon from '../../icons/LoadingBrandIcon';
+import { type LoadingStubProps } from './types';
+
+const timeoutMilSec = 7000;
+
+const LoadingStub = ({ mode, onTimeout }: LoadingStubProps) => {
   const { colors } = useTheme();
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout | undefined;
+
+    if (onTimeout) {
+      timeout = setTimeout(onTimeout, timeoutMilSec);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [onTimeout]);
 
   const computedStyles = StyleSheet.create({
     wrapper: {
