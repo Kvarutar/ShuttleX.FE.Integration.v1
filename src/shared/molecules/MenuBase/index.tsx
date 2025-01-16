@@ -120,7 +120,7 @@ const MenuBase = ({
       }}
     >
       <View style={styles.itemsWrapper}>
-        {getMenuIcons(key as MenuNavigationBlocks)}
+        <View style={styles.menuIconWrapper}>{getMenuIcons(key as MenuNavigationBlocks)}</View>
         <Text style={styles.navigationItemTitle}>{menuitem.title}</Text>
       </View>
       {menuitem.content}
@@ -282,6 +282,9 @@ const styles = StyleSheet.create({
   },
   scrollBarStyle: {
     backgroundColor: 'transparent',
+  },
+  menuIconWrapper: {
+    width: 20,
   },
 });
 
