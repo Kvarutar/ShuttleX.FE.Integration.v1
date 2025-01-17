@@ -154,6 +154,7 @@ import PrizePedestalIcon from './shared/icons/PrizePedestalIcon';
 import ProfileIcon from './shared/icons/ProfileIcon';
 import ProfileIconMini from './shared/icons/ProfileIconMini';
 import PromocodesIcon from './shared/icons/PromocodesIcon';
+import QuestionRoundIcon from './shared/icons/QuestionRoundIcon';
 import ReportIcon from './shared/icons/ReportIcon';
 import RoundCheckIcon1 from './shared/icons/RoundCheckIcon1';
 import RoundCheckIcon2 from './shared/icons/RoundCheckIcon2';
@@ -266,6 +267,7 @@ import AccountSettingsScreen from './shared/screens/AccountSettingsScreen';
 import ConfirmDeleteAccountPopup from './shared/screens/AccountSettingsScreen/popups/ConfirmDeleteAccountPopup';
 import DeleteAccountPopup from './shared/screens/AccountSettingsScreen/popups/DeleteAccountPopup';
 import SignOutPopup from './shared/screens/AccountSettingsScreen/popups/SignOutPopup';
+import SubscriptionHelpPopup from './shared/screens/AccountSettingsScreen/popups/SubscriptionHelpPopup';
 import { type AccountSettingsVerificationMethod } from './shared/screens/AccountSettingsScreen/types';
 import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
@@ -577,6 +579,7 @@ export {
   ProfileIcon,
   ProfileIconMini,
   PromocodesIcon,
+  QuestionRoundIcon,
   radToDeg,
   ReceiptScreen,
   ReportIcon,
@@ -619,6 +622,7 @@ export {
   StatsBlock,
   SteeringWheelIcon,
   StopWatch,
+  SubscriptionHelpPopup,
   SubscriptionIcon,
   SuccessIcon,
   SupportIcon,

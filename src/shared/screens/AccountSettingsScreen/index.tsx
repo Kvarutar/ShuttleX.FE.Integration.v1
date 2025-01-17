@@ -1,12 +1,16 @@
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Dimensions, Modal, Pressable, StyleSheet, View } from 'react-native';
+import { Dimensions, Modal, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Button, SquareButtonModes } from 'shuttlex-integration';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { formatNumbersToMask } from '../../../utils';
+import Bar from '../../atoms/Bar/v2';
+import Button from '../../atoms/Button/v2';
+import { SquareButtonModes } from '../../atoms/Button/v2/props';
+import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
 import { countryFlags } from '../../icons/Flags';
+import QuestionRoundIcon from '../../icons/QuestionRoundIcon';
 import WarningIcon from '../../icons/WarningIcon';
 import BottomWindowWithGesture from '../../molecules/BottomWindowWithGesture';
 import ChangeDataPopUp from '../../molecules/changePopUps/ChangeDataPopUp';
@@ -14,9 +18,15 @@ import { useChangeData } from '../../molecules/changePopUps/hooks/useChangeData'
 import { useProfileForm } from '../../molecules/changePopUps/hooks/useProfileForm';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
 import VerifyDataPopUp from '../../molecules/VerifyDataPopUp';
-import { type AccountSettingsProps } from './types';
+import { type AccountSettingsProps, type SubscriptionType } from './types';
 
 const windowSizes = Dimensions.get('window');
+
+const subscriptionStatusTextData: Record<SubscriptionType, string> = {
+  Daily: 'AccountSettings_subscriptionDailyAccess',
+  Debt: 'AccountSettings_subscriptionDebtAccess',
+  Monthly: 'AccountSettings_subscriptionMonthlyAccess',
+};
 
 const AccountSettingsScreenWithoutI18n = ({
   profile,
@@ -28,6 +38,8 @@ const AccountSettingsScreenWithoutI18n = ({
   verifiedStatus,
   setIsSignOutPopupVisible,
   setIsDeleteAccountPopupVisible,
+  setIsSubscriptionHelpPopupVisible,
+  subscriptionStatus,
 }: AccountSettingsProps) => {
   const { t } = useTranslation();
 
@@ -94,6 +106,20 @@ const AccountSettingsScreenWithoutI18n = ({
                 </Pressable>
               )}
             </View>
+            {subscriptionStatus && Platform.OS === 'ios' && (
+              <Bar style={styles.subscriptionContainer}>
+                <View style={styles.subscriptionTextContainer}>
+                  <Text style={styles.subscriptionText}>
+                    {t('AccountSettings_currentStatus', {
+                      subscriptionStatus: t(subscriptionStatusTextData[subscriptionStatus]),
+                    })}
+                  </Text>
+                </View>
+                <Bar onPress={() => setIsSubscriptionHelpPopupVisible?.(true)} style={styles.subscriptionIconContainer}>
+                  <QuestionRoundIcon />
+                </Bar>
+              </Bar>
+            )}
             {barBlock}
           </View>
         </ScrollViewWithCustomScroll>
@@ -112,6 +138,7 @@ const AccountSettingsScreenWithoutI18n = ({
           />
         </View>
       </View>
+
       {isChangeDataPopUpVisible && (
         <Modal transparent statusBarTranslucent>
           <GestureHandlerRootView style={styles.gestureView}>
@@ -215,6 +242,27 @@ const styles = StyleSheet.create({
   },
   bottomButtonText: {
     fontSize: 17,
+  },
+  subscriptionContainer: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  subscriptionTextContainer: {
+    flex: 1,
+    alignItems: 'flex-start',
+  },
+  subscriptionText: {
+    fontFamily: 'Inter SemiBold',
+    lineHeight: 19,
+    flexShrink: 1,
+    textAlign: 'center',
+  },
+  subscriptionIconContainer: {
+    borderRadius: 1000,
+    marginLeft: 8,
   },
 });
 
