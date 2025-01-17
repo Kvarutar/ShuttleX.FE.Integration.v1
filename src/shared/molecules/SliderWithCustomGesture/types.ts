@@ -10,6 +10,7 @@ export type SliderWithCustomGestureProps = {
   rightToLeftSwipe?: boolean;
   text?: string;
   textStyle?: StyleProp<TextStyle>;
+  wipeBlockStyle?: StyleProp<ViewStyle>;
   mode: SwipeButtonModes;
   setIsLoading?: (newState: boolean) => void;
   withWipeBlock?: boolean;

@@ -19,6 +19,7 @@ const SliderWithCustomGesture = ({
   textStyle,
   mode,
   containerStyle,
+  wipeBlockStyle,
   rightToLeftSwipe,
   withWipeBlock = true,
   setIsLoading, // State for async requests, makes animation in SwipeButton component
@@ -141,7 +142,7 @@ const SliderWithCustomGesture = ({
         <Text style={[computedStyles.text, styles.text, textStyle]}>{text ?? t('SwipeButton_buttonHint')}</Text>
         <GestureDetector gesture={gestureHandler}>
           <Animated.View style={animatedButtonStyle}>
-            {withWipeBlock && <View style={[styles.wipeBlock, computedStyles.wipeBlock]} />}
+            {withWipeBlock && <View style={[styles.wipeBlock, computedStyles.wipeBlock, wipeBlockStyle]} />}
             {sliderElement}
           </Animated.View>
         </GestureDetector>
