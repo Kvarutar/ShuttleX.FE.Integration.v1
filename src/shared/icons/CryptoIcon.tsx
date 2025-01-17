@@ -5,7 +5,7 @@ import { useTheme } from '../../core/themes/v2/themeContext';
 
 const CryptoIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
   const { colors } = useTheme();
-  const svgColor = color ?? colors.textSecondaryColor;
+  const svgColor = color ?? colors.textPrimaryColor;
 
   return (
     <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" fill="none">
