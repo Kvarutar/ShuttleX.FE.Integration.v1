@@ -1,9 +1,13 @@
 import { useState } from 'react';
 
-import { formatPhone } from '../../../../utils';
+import { formatPhone } from '../../../../../../utils';
 import { type ChangeDataPopUpMode, inputsValidation, type NewData } from '../types';
 
-export const useChangeDataForm = (mode: ChangeDataPopUpMode, profileCurrentValue: string) => {
+export const useChangeDataForm = (
+  mode: ChangeDataPopUpMode,
+  profileCurrentValue: string,
+  setNewValueError: (value: boolean) => void,
+) => {
   const [data, setData] = useState<NewData>({
     currentValue: '',
     newValue: '',
@@ -24,7 +28,7 @@ export const useChangeDataForm = (mode: ChangeDataPopUpMode, profileCurrentValue
     if (fieldName === 'currentValue') {
       return !isEqual && wasValidated;
     } else if (fieldName === 'newValue') {
-      return !inputsValidation[mode](data.newValue) && wasValidated;
+      return wasValidated && !inputsValidation[mode](data.newValue);
     }
     return false;
   };
@@ -34,6 +38,7 @@ export const useChangeDataForm = (mode: ChangeDataPopUpMode, profileCurrentValue
       ...prevState,
       [field]: value,
     }));
+    setNewValueError(false);
   };
 
   return {

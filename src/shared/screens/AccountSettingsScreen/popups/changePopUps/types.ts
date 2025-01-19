@@ -1,4 +1,5 @@
-import { isEmailValid, isPhoneValid } from '../../../utils/validation';
+import { type Nullable } from '../../../../../utils/typescript';
+import { isEmailValid, isPhoneValid } from '../../../../../utils/validation';
 
 export type Profile = {
   fullName: string;
@@ -9,6 +10,15 @@ export type Profile = {
 export type NewData = {
   currentValue: string;
   newValue: string;
+};
+
+export type AccountSettingsErrorData = {
+  newphone: string;
+  newemail: string;
+};
+
+export type AccountSettingsRef = {
+  showErrors: (errorMessages: Partial<Record<keyof AccountSettingsErrorData, string>>) => void;
 };
 
 export type ChangeNamePopUpProps = {
@@ -27,9 +37,14 @@ export const inputsValidation: Record<ChangeDataPopUpMode, (value: string) => bo
 };
 
 export type ChangeDataPopUpProps = {
+  newValueErrorMessage?: Nullable<string>;
   currentValue: string;
   isChangeDataLoading: boolean;
-  handleOpenVerification?: (mode: ChangeDataPopUpMode, newValue: string, method: 'change' | 'verify') => void;
+  handleOpenVerification: (
+    mode: ChangeDataPopUpMode,
+    newValue: string,
+    method: 'change' | 'verify',
+  ) => Promise<boolean | void>;
   setNewValue?: (value: string) => void;
   mode: ChangeDataPopUpMode;
   onChangeDataPopupClose: () => void;

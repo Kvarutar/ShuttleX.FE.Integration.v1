@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 
 import { type Nullable } from '../../../utils/typescript';
-import { type ChangeDataPopUpMode, type Profile } from '../../molecules/changePopUps/types';
+import { type ChangeDataPopUpMode, type Profile } from './popups/changePopUps/types';
 
 export type AccountSettingsVerificationMethod = 'change' | 'verify' | 'delete';
 
@@ -15,7 +15,7 @@ export type AccountSettingsProps = {
     mode: ChangeDataPopUpMode,
     newValue: string,
     method: AccountSettingsVerificationMethod,
-  ) => void;
+  ) => Promise<boolean | void>;
   isChangeDataLoading: boolean;
   verifiedStatus: VerifyStatusType;
   setIsSignOutPopupVisible: (newState: boolean) => void;

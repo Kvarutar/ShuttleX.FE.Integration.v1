@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import { type ChangeDataPopUpMode } from '../types';
 
-export const useChangeData = () => {
+export const useChangeData = (setNewValueErrorMessage: (value: null) => void) => {
   const [modalState, setModalState] = useState({
     isChangeVisible: false,
     isVerifyVisible: false,
@@ -10,13 +10,17 @@ export const useChangeData = () => {
     changedValue: '',
   });
 
-  const handleOpenChangeWindow = useCallback((selectedMode: ChangeDataPopUpMode) => {
-    setModalState(prev => ({
-      ...prev,
-      isChangeVisible: true,
-      mode: selectedMode,
-    }));
-  }, []);
+  const handleOpenChangeWindow = useCallback(
+    (selectedMode: ChangeDataPopUpMode) => {
+      setNewValueErrorMessage(null);
+      setModalState(prev => ({
+        ...prev,
+        isChangeVisible: true,
+        mode: selectedMode,
+      }));
+    },
+    [setNewValueErrorMessage],
+  );
 
   const handleOpenVerifyWindow = useCallback((selectedMode: ChangeDataPopUpMode) => {
     setModalState(prev => ({
@@ -27,11 +31,12 @@ export const useChangeData = () => {
   }, []);
 
   const onChangeDataPopupClose = useCallback(() => {
+    setNewValueErrorMessage(null);
     setModalState(prev => ({
       ...prev,
       isChangeVisible: false,
     }));
-  }, []);
+  }, [setNewValueErrorMessage]);
 
   const onVerifyPopupClose = useCallback(() => {
     setModalState(prev => ({

@@ -7,8 +7,8 @@ import Button from '../../../atoms/Button/v2';
 import Text from '../../../atoms/Text';
 import BigHeader from '../../../molecules/BigHeader';
 import BottomWindowWithGesture from '../../../molecules/BottomWindowWithGesture';
-import { type ChangeDataPopUpMode } from '../../../molecules/changePopUps/types';
 import { type ConfirmDeleteAccountPopupProps } from '../types';
+import { type ChangeDataPopUpMode } from './changePopUps/types';
 
 const ConfirmDeleteAccountPopupWithoutI18n = ({
   setIsConfirmDeleteAccountPopupVisible,

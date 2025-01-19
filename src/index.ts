@@ -212,9 +212,6 @@ import {
   type BottomWindowWithGestureProps,
   type BottomWindowWithGestureRef,
 } from './shared/molecules/BottomWindowWithGesture/props';
-import ChangeDataPopUp from './shared/molecules/changePopUps/ChangeDataPopUp';
-import { useChangeData } from './shared/molecules/changePopUps/hooks/useChangeData';
-import { useProfileForm } from './shared/molecules/changePopUps/hooks/useProfileForm';
 import CodeInput from './shared/molecules/CodeInput';
 import Confetti from './shared/molecules/Confetti';
 import DatePickerV1 from './shared/molecules/DatePicker/v1';
@@ -264,6 +261,10 @@ import UnclosablePopup from './shared/molecules/UnclosablePopup';
 import UnsupportedCityPopup from './shared/molecules/UnsupportedCityPopup';
 import VerifyDataPopUp from './shared/molecules/VerifyDataPopUp';
 import AccountSettingsScreen from './shared/screens/AccountSettingsScreen';
+import ChangeDataPopUp from './shared/screens/AccountSettingsScreen/popups/changePopUps/ChangeDataPopUp';
+import { useChangeData } from './shared/screens/AccountSettingsScreen/popups/changePopUps/hooks/useChangeData';
+import { useProfileForm } from './shared/screens/AccountSettingsScreen/popups/changePopUps/hooks/useProfileForm';
+import { type AccountSettingsRef } from './shared/screens/AccountSettingsScreen/popups/changePopUps/types';
 import ConfirmDeleteAccountPopup from './shared/screens/AccountSettingsScreen/popups/ConfirmDeleteAccountPopup';
 import DeleteAccountPopup from './shared/screens/AccountSettingsScreen/popups/DeleteAccountPopup';
 import SignOutPopup from './shared/screens/AccountSettingsScreen/popups/SignOutPopup';
@@ -331,6 +332,7 @@ import { type Nullable } from './utils/typescript';
 import { isAllFieldsFilled, isEmailValid, isNameValid, isPhoneValid } from './utils/validation';
 
 export {
+  type AccountSettingsRef,
   AccountSettingsScreen,
   type AccountSettingsVerificationMethod,
   ActivityIcon,

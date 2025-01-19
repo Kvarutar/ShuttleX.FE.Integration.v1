@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
+import { PhoneSlidingPanel } from 'shuttlex-integration';
 
-import { countryDtos } from '../../../core/countries/countryDtos';
-import { type CountryPhoneMaskDto } from '../../../core/countries/types';
-import i18nIntegration from '../../../core/locales/i18n';
-import { useTheme } from '../../../core/themes/v2/themeContext';
-import Button from '../../atoms/Button/v2';
-import { SquareButtonModes } from '../../atoms/Button/v2/props';
-import Text from '../../atoms/Text';
-import TextInput from '../../atoms/TextInput/v2';
-import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
-import CustomKeyboardAvoidingView from '../KeyboardAvoidingView';
-import PhoneInput from '../PhoneInput';
-import PhoneSlidingPanel from '../PhoneSlidingPanel';
+import { countryDtos } from '../../../../../core/countries/countryDtos';
+import { type CountryPhoneMaskDto } from '../../../../../core/countries/types';
+import i18nIntegration from '../../../../../core/locales/i18n';
+import { useTheme } from '../../../../../core/themes/v2/themeContext';
+import Button from '../../../../atoms/Button/v2';
+import { SquareButtonModes } from '../../../../atoms/Button/v2/props';
+import Text from '../../../../atoms/Text';
+import TextInput from '../../../../atoms/TextInput/v2';
+import { TextInputInputMode } from '../../../../atoms/TextInput/v2/props';
+import CustomKeyboardAvoidingView from '../../../../molecules/KeyboardAvoidingView';
+import PhoneInput from '../../../../molecules/PhoneInput';
 import { getRenderText } from './getRenderText';
 import { useChangeDataForm } from './hooks/useChangeDataForm';
 import { type ChangeDataPopUpProps, type NewData } from './types';
@@ -25,6 +25,7 @@ const ChangeDataPopUpWithoutI18n = ({
   mode,
   isChangeDataLoading,
   onChangeDataPopupClose,
+  newValueErrorMessage,
 }: ChangeDataPopUpProps) => {
   const { t } = useTranslation();
   const { colors } = useTheme();
@@ -37,15 +38,24 @@ const ChangeDataPopUpWithoutI18n = ({
     newValue: false,
   });
 
-  const { data, isValid, isFilled, isError, onValueChange, setWasValidated } = useChangeDataForm(mode, currentValue);
+  const [newValueError, setNewValueError] = useState<boolean>(false);
+  const { data, isValid, isFilled, isError, onValueChange, setWasValidated } = useChangeDataForm(
+    mode,
+    currentValue,
+    setNewValueError,
+  );
   const renderText = getRenderText(t, mode);
 
-  const onSave = () => {
+  const onSave = async () => {
     setWasValidated(true);
     if (isValid) {
-      onChangeDataPopupClose();
-      handleOpenVerification?.(mode, data.newValue, 'change');
-      setNewValue?.(data.newValue);
+      const success = await handleOpenVerification(mode, data.newValue, 'change');
+      setNewValueError(!success);
+
+      if (success) {
+        onChangeDataPopupClose();
+        setNewValue?.(data.newValue);
+      }
     }
   };
 
@@ -69,7 +79,7 @@ const ChangeDataPopUpWithoutI18n = ({
           onFlagPress={() => setPhonePanelVisibility(prev => ({ ...prev, [fieldName]: true }))}
           flagState={flagStates[fieldName] ?? ({} as CountryPhoneMaskDto)}
           error={{
-            isError: isError(fieldName),
+            isError: isError(fieldName) || (fieldName === 'newValue' && newValueError),
             message: errorMessage,
           }}
         />
@@ -79,12 +89,12 @@ const ChangeDataPopUpWithoutI18n = ({
         <TextInput
           maxLength={50}
           inputMode={TextInputInputMode[mode as keyof typeof TextInputInputMode] ?? TextInputInputMode.Text}
-          value={data[fieldName]}
+          value={data[fieldName].trim()}
           placeholder={placeholder}
           withClearButton
           onChangeText={(value: string) => onValueChange(fieldName, value)}
           error={{
-            isError: isError(fieldName),
+            isError: isError(fieldName) || (fieldName === 'newValue' && newValueError),
             message: errorMessage,
           }}
         />
@@ -112,8 +122,7 @@ const ChangeDataPopUpWithoutI18n = ({
                 {renderInput(
                   field as keyof NewData,
                   renderText?.placeholder,
-
-                  index === 0 ? renderText?.error1 : renderText?.error2,
+                  index === 0 ? renderText?.error1 : newValueErrorMessage ?? renderText?.error2,
                 )}
               </View>
             ))}
