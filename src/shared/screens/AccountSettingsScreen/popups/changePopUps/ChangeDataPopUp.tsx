@@ -49,7 +49,7 @@ const ChangeDataPopUpWithoutI18n = ({
   const onSave = async () => {
     setWasValidated(true);
     if (isValid) {
-      const success = await handleOpenVerification(mode, data.newValue, 'change');
+      const success = (await handleOpenVerification?.(mode, data.newValue, 'change')) ?? false;
       setNewValueError(!success);
 
       if (success) {

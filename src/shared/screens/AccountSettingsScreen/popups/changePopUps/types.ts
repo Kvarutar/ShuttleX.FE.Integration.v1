@@ -40,7 +40,7 @@ export type ChangeDataPopUpProps = {
   newValueErrorMessage?: Nullable<string>;
   currentValue: string;
   isChangeDataLoading: boolean;
-  handleOpenVerification: (
+  handleOpenVerification?: (
     mode: ChangeDataPopUpMode,
     newValue: string,
     method: 'change' | 'verify',
