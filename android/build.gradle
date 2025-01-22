@@ -7,11 +7,11 @@ def safeExtGet(prop, fallback) {
 android {
   namespace "com.shuttlex.integration"
 
-  compileSdkVersion safeExtGet("compileSdkVersion", 33)
+  compileSdkVersion safeExtGet("compileSdkVersion", 34)
 
   defaultConfig {
     minSdkVersion safeExtGet("minSdkVersion", 21)
-    targetSdkVersion safeExtGet("targetSdkVersion", 33)
+    targetSdkVersion safeExtGet("targetSdkVersion", 34)
   }
 }
 

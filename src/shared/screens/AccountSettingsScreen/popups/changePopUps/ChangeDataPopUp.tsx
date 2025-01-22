@@ -122,7 +122,7 @@ const ChangeDataPopUpWithoutI18n = ({
                 {renderInput(
                   field as keyof NewData,
                   renderText?.placeholder,
-                  index === 0 ? renderText?.error1 : newValueErrorMessage ?? renderText?.error2,
+                  index === 0 ? renderText?.error1 : (newValueErrorMessage ?? renderText?.error2),
                 )}
               </View>
             ))}
