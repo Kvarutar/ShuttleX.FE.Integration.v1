@@ -73,7 +73,7 @@ const AccountSettingsScreenWithoutI18n = forwardRef<AccountSettingsRef, AccountS
     } = useChangeData(setNewValueErrorMessage);
 
     const fullPhoneMask = flag.icc + flag.phoneMask;
-    const outputNumber = verifiedStatus.phoneInfo.replace(new RegExp(`^\\+${flag.icc}`, ''), '');
+    const outputNumber = verifiedStatus.phone.replace(new RegExp(`^\\+${flag.icc}`, ''), '');
 
     const computedStyles = StyleSheet.create({
       hiddenPartChange: {
@@ -95,7 +95,7 @@ const AccountSettingsScreenWithoutI18n = forwardRef<AccountSettingsRef, AccountS
                 <Pressable onPress={() => handleOpenChangeWindow('email')}>
                   <View pointerEvents="none">
                     {/*TODO just for test, change it when back will synchronize profile & user */}
-                    <TextInput value={verifiedStatus.emailInfo} />
+                    <TextInput value={verifiedStatus.email} />
                   </View>
                 </Pressable>
                 {!verifiedStatus.isEmailVerified && (

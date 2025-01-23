@@ -29,9 +29,9 @@ export type AccountSettingsProps = {
 };
 
 export type VerifyStatusType = {
-  phoneInfo: string;
+  phone: string;
   isPhoneVerified: boolean;
-  emailInfo: string;
+  email: string;
   isEmailVerified: boolean;
 };
 
