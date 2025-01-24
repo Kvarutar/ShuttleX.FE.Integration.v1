@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import Button from '../../shared/atoms/Button/v2';
 import { ButtonShapes, CircleButtonModes } from '../../shared/atoms/Button/v2/props';
@@ -15,7 +15,7 @@ const MapCameraModeButton = ({ mode, onPress, style }: MapCameraModeButtonProps)
   const iconAngle = useSharedValue(constants.defaultIconAngle);
 
   const iconAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ rotate: iconAngle.value }],
+    transform: [{ rotate: iconAngle.get() }],
   }));
 
   const changeIconAngle = (angle: string) => {
@@ -27,15 +27,15 @@ const MapCameraModeButton = ({ mode, onPress, style }: MapCameraModeButtonProps)
   const getIcon = (): JSX.Element => {
     switch (mode) {
       case 'free': {
-        changeIconAngle(constants.defaultIconAngle);
+        runOnJS(changeIconAngle)(constants.defaultIconAngle);
         return <LocationArrowImage2 />;
       }
       case 'follow': {
-        changeIconAngle(constants.defaultIconAngle);
+        runOnJS(changeIconAngle)(constants.defaultIconAngle);
         return <LocationArrowImage2 colorMode="second" />;
       }
       case 'followWithCompass': {
-        changeIconAngle('0deg');
+        runOnJS(changeIconAngle)('0deg');
         return <LocationArrowImage2 colorMode="second" />;
       }
     }
