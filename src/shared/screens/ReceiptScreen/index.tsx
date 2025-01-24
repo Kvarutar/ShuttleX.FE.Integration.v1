@@ -312,7 +312,11 @@ const ReceiptScreenWithoutI18n = ({
                       <Text style={[styles.paymentTitleText, computedStyles.ticketLotteryTitleText]}>{ticket}</Text>
                       <View style={styles.priceContainer}>
                         <Text style={[styles.headerAndPaymentText, computedStyles.ticketLotteryText]}>
-                          {t('ReceiptScreen_ticketToLottery')}
+                          {t(
+                            contractorName && carNumber
+                              ? 'ReceiptScreen_ticketToLottery'
+                              : 'ReceiptScreen_newTicketToLottery',
+                          )}
                         </Text>
                       </View>
                     </View>
