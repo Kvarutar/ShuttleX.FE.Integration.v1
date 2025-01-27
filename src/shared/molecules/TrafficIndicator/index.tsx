@@ -1,7 +1,7 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import { formatTime } from '../../../utils';
@@ -17,7 +17,10 @@ const trafficColor: Record<TrafficLevel, string> = {
   [TrafficLevel.High]: '#FF0000',
 };
 
-const parsePercents = (percent: string) => Number(percent.slice(0, -1));
+const parsePercents = (percent: string): number => {
+  'worklet';
+  return Number(percent.slice(0, -1));
+};
 
 const TrafficIndicator = ({
   currentPercent,
@@ -39,11 +42,11 @@ const TrafficIndicator = ({
     localSegments.push({ level: localSegments[0].level, percent: '100%' });
   }
 
-  useEffect(() => {
+  useDerivedValue(() => {
     const newProgress = (parsePercents(currentPercent) / totalPercents) * availableWidth;
     //TODO: Need test and maybe fix time duration
     animatedProgress.value = withTiming(Math.min(newProgress, availableWidth), { duration: 300 });
-  }, [animatedProgress, availableWidth, currentPercent]);
+  });
 
   const animatedTriangleStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: animatedProgress.value - triangleWidth / 2 }],
