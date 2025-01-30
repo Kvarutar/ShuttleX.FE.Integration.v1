@@ -80,6 +80,9 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       setCamera: arg => {
         mapRef.current?.setCamera(arg);
       },
+      getCamera: () => {
+        return mapRef.current?.getCamera();
+      },
       animateToRegion: (...args) => {
         mapRef.current?.animateToRegion(...args);
       },

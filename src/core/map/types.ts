@@ -42,6 +42,7 @@ type MapCars = {
 export type MapViewRef = {
   animateCamera: (camera: Partial<Omit<Camera, 'altitude'>>, opts: { duration: number }) => void;
   setCamera: (camera: Partial<Omit<Camera, 'altitude'>>) => void;
+  getCamera: () => Promise<Camera> | undefined;
   animateToRegion: MapView['animateToRegion'];
 };
 
