@@ -275,7 +275,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
     }, [polylines]);
 
     return (
-      <>
+      <Animated.View style={style}>
         {/* Preloads map raster images (easiest way for fixing several bugs on android) */}
         {Platform.OS === 'android' && !isMapLoaded && <LocationArrowImage style={styles.preloadImage} />}
         {Platform.OS === 'android' && !isMapLoaded && <TopViewCarImage style={styles.preloadImage} />}
@@ -285,8 +285,9 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           onLayout={onLayout}
           provider="google"
           googleRenderer="LEGACY"
-          style={style}
+          style={styles.map}
           showsCompass={false}
+          toolbarEnabled={false}
           customMapStyle={lightMapStyle}
           rotateEnabled={cameraMode === 'free'}
           onPanDrag={onDrag}
@@ -371,12 +372,15 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
               }
             })}
         </MapViewNative>
-      </>
+      </Animated.View>
     );
   },
 );
 
 const styles = StyleSheet.create({
+  map: {
+    flex: 1,
+  },
   preloadImage: {
     width: 0,
     height: 0,

@@ -32,7 +32,7 @@
     "clean": "del-cli lib",
     "prepare": "bob build",
     "prepack": "bob build",
-    "pack": "npm pack",
+    "pack": "yarn pack --out %s-%v.tgz",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "lint:fix": "eslint \"**/*.{js,ts,tsx}\" --fix",

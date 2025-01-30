@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react';
 import { type StyleProp, type ViewStyle } from 'react-native';
+import { type GestureStateChangeEvent, type PanGestureHandlerEventPayload } from 'react-native-gesture-handler';
 import { type SharedValue } from 'react-native-reanimated';
 
 export type BottomWindowWithGestureProps = {
@@ -26,7 +27,9 @@ export type BottomWindowWithGestureProps = {
   maxHeight?: number;
   minHeight?: number | SharedValue<number>;
   withDraggable?: boolean;
-  onGestureUpdate?: (callback: { y: number }) => void;
+  onGestureStart?: (event: GestureStateChangeEvent<PanGestureHandlerEventPayload>) => void;
+  onAnimationEnd?: (values: { isOpened: boolean; pageY: number }) => void;
+  onHiddenOrVisibleHeightChange?: (values: { isOpened: boolean; isWindowAnimating: boolean; pageY: number }) => void;
 };
 
 export type BottomWindowWithGestureRef = {

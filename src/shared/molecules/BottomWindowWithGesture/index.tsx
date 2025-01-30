@@ -33,6 +33,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     {
       visiblePart,
       hiddenPart,
+      headerElement,
       additionalTopContent,
       alerts,
       containerStyle,
@@ -53,8 +54,9 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       maxHeight = 0.93,
       minHeight,
       withDraggable = true,
-      headerElement,
-      onGestureUpdate,
+      onGestureStart,
+      onAnimationEnd,
+      onHiddenOrVisibleHeightChange,
     },
     ref,
   ) => {
@@ -66,16 +68,38 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     const progress = useSharedValue(opened ? 0 : 1); // 0 - opened, 1 - closed
     const threshold = useSharedValue(0);
     const isCurrentOpen = useSharedValue(opened);
+    const isWindowAnimating = useSharedValue(false);
 
     const hiddenAnimatedHeight = useSharedValue(0);
     const visibleAnimatedHeight = useSharedValue(0);
     const headerElementAnimatedHeight = useSharedValue(0);
     const currentHiddenAnimatedHeight = useSharedValue(0);
     const contentAnimatedHeight = useSharedValue(0);
+
     const scrollBegin = useSharedValue(0);
     const scrollY = useSharedValue(0);
-
     const isContentWillScroll = useSharedValue(false);
+
+    const onHiddenOrVisibleHeightChangeCallback = () => {
+      if (onHiddenOrVisibleHeightChange && bottomWindowRef.current) {
+        bottomWindowRef.current.measure((_, __, ___, ____, _____, pageY) => {
+          onHiddenOrVisibleHeightChange({
+            isOpened: isCurrentOpen.value,
+            isWindowAnimating: isWindowAnimating.value,
+            pageY,
+          });
+        });
+      }
+    };
+
+    useAnimatedReaction(
+      () => hiddenAnimatedHeight.value,
+      () => runOnJS(onHiddenOrVisibleHeightChangeCallback)(),
+    );
+    useAnimatedReaction(
+      () => visibleAnimatedHeight.value,
+      () => runOnJS(onHiddenOrVisibleHeightChangeCallback)(),
+    );
 
     const translateY = useDerivedValue(() => progress.value * hiddenAnimatedHeight.value + threshold.value);
     const bottomWindowAnimatedStyle = useAnimatedStyle(() => ({
@@ -88,19 +112,6 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     const [isShadeVisible, setIsShadeVisible] = useState<boolean>(opened);
     const [isAlertsVisible, setIsAlertsVisible] = useState(true);
     const [isScrollable, setIsScrollable] = useState(false);
-
-    const gestureOnUpdate = () => {
-      bottomWindowRef.current?.measure((_, __, ___, ____, _____, pageY) => {
-        onGestureUpdate?.({ y: pageY });
-      });
-    };
-
-    useAnimatedReaction(
-      () => translateY.value,
-      () => {
-        runOnJS(gestureOnUpdate)();
-      },
-    );
 
     useImperativeHandle(ref, () => ({
       closeWindow: () => {
@@ -122,23 +133,42 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       },
     });
 
+    const onAnimationEndCallback = useCallback(
+      (isOpened: boolean) => {
+        if (onAnimationEnd) {
+          bottomWindowRef.current?.measure((_, __, ___, ____, _____, pageY) => {
+            onAnimationEnd({ isOpened, pageY });
+          });
+        }
+      },
+      [onAnimationEnd],
+    );
+
     const onWindowStateChange = useCallback(
       ({ isOpened, isCurrentShade }: { isOpened: boolean; isCurrentShade: boolean }) => {
         setIsShadeVisible(isCurrentShade);
         if (isOpened) {
-          setIsOpened?.(isOpened);
+          setIsOpened && runOnJS(setIsOpened)(isOpened);
         } else {
           setTimeout(() => {
-            setIsOpened?.(isOpened);
+            setIsOpened && runOnJS(setIsOpened)(isOpened);
           }, animationDuration);
         }
-        progress.value = withTiming(isOpened ? 0 : 1, {
-          duration: animationDuration,
-          easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-        });
+        isWindowAnimating.value = true;
+        progress.value = withTiming(
+          isOpened ? 0 : 1,
+          {
+            duration: animationDuration,
+            easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+          },
+          () => {
+            isWindowAnimating.value = false;
+            runOnJS(onAnimationEndCallback)(isOpened);
+          },
+        );
         isCurrentOpen.value = isOpened;
       },
-      [setIsOpened, isCurrentOpen, progress],
+      [setIsOpened, onAnimationEndCallback, isCurrentOpen, isWindowAnimating, progress],
     );
 
     const scrollToTop = () => {
@@ -160,6 +190,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     };
 
     const gesture = Gesture.Pan()
+      .onStart(event => onGestureStart && runOnJS(onGestureStart)(event))
       .onUpdate(event => {
         // If animation starts from position "opened"
         if (isCurrentOpen.value) {
@@ -200,11 +231,12 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
       })
       .onEnd(() => {
         runOnJS(scrollToTop)();
-        threshold.value = withTiming(0, { duration: animationDuration });
+        let isStateWasChanged = false;
         // If animation ends and current state is "opened"
         if (isCurrentOpen.value) {
           // Close window
           if (progress.value > 0.1) {
+            isStateWasChanged = true;
             runOnJS(onWindowStateChange)({ isOpened: false, isCurrentShade: false });
             runOnJS(setIsAlertsVisible)(true);
           }
@@ -222,9 +254,15 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
           }
           // Open window
           else if (progress.value < 0.9) {
+            isStateWasChanged = true;
             runOnJS(onWindowStateChange)({ isOpened: true, isCurrentShade: true });
           }
         }
+        threshold.value = withTiming(0, { duration: animationDuration }, () => {
+          if (!isStateWasChanged) {
+            runOnJS(onAnimationEndCallback)(isCurrentOpen.value);
+          }
+        });
       });
 
     useDerivedValue(() => {
