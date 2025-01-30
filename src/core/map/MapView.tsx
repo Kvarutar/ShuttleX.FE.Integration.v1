@@ -199,12 +199,12 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
     const memoizedPolylines: React.ReactNode[] = useMemo(() => {
       const localPolylines: React.ReactNode[] = [];
 
-      polylines?.forEach((polyline, i) => {
+      polylines?.forEach(polyline => {
         switch (polyline.type) {
           case 'straight': {
             localPolylines.push(
               <Polyline
-                key={i}
+                key={uuidv4()}
                 coordinates={polyline.options.coordinates}
                 strokeColor={polyline.options.color ?? '#000'}
                 strokeWidth={4}
@@ -241,7 +241,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           case 'dashed':
             localPolylines.push(
               <Polyline
-                key={i}
+                key={uuidv4()}
                 lineDashPattern={[50, 30]}
                 coordinates={polyline.options.coordinates}
                 strokeColor={polyline.options.color ?? '#000'}
@@ -253,7 +253,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
             localPolylines.push(
               <>
                 <Polyline
-                  key={i}
+                  key={uuidv4()}
                   strokeWidth={3}
                   strokeColor="#000"
                   coordinates={drawArcPolyline(polyline.options.startPoint, polyline.options.endPoint)}
