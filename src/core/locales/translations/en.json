@@ -120,6 +120,7 @@
   "SignUp_emailInputPlaceholder": "Email",
   "SignUp_incorrectName": "Name must be between 2 and 30 characters",
   "SignUp_incorrectEmail": "Enter correct Email",
+  "SignUp_incorrectPhone": "Enter correct Phone",
   "SignUp_agreeCheckBox": "I agree with the",
   "SignUp_allowProcessCheckBox": "I allow to process",
   "SignUp_termsAndConditionsCheckBox": "Terms & Conditions....",

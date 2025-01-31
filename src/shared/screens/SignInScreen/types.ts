@@ -11,3 +11,8 @@ export type SignInScreenProps = {
   signMethod?: SignInMethod;
   setSignMethod?: (newMethod: SignInMethod) => void;
 };
+
+export type SignInScreenRef = {
+  resetErrors: () => void;
+  showErrors: (errorMessages: string) => void;
+};

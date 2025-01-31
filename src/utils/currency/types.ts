@@ -1,1 +1,1 @@
-export type CurrencyType = 'USD' | 'UAH';
+export type CurrencyType = 'USD' | 'UAH' | 'AED';

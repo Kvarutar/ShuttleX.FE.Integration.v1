@@ -5,6 +5,7 @@ import { type CurrencyType } from './types';
 const currencySignData: Record<CurrencyType, string> = {
   USD: '$',
   UAH: '₴',
+  AED: 'AED',
 };
 
 export const formatCurrency = (currencyCode: string, amount: number) => {

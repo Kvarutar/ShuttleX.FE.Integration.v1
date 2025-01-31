@@ -285,6 +285,7 @@ import NotificationsScreenV1 from './shared/screens/NotificationsScreen/v1';
 import NotificationsScreen from './shared/screens/NotificationsScreen/v2';
 import ReceiptScreen from './shared/screens/ReceiptScreen';
 import SignInScreen from './shared/screens/SignInScreen';
+import { type SignInScreenRef } from './shared/screens/SignInScreen/types';
 import { SignInMethod } from './shared/screens/SignInScreen/types';
 import SignUpScreen from './shared/screens/SignUpScreen';
 import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
@@ -610,6 +611,7 @@ export {
   ShortArrowSmallIcon,
   SignInMethod,
   SignInScreen,
+  type SignInScreenRef,
   SignOutPopup,
   type SignUpForm,
   SignUpScreen,

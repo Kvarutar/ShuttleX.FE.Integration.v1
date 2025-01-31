@@ -13,6 +13,7 @@
   "SignUp_nameInputPlaceholder": "Бажане ім’я",
   "SignUp_incorrectName": "Ім'я має містити від 2 до 30 символів",
   "SignUp_incorrectEmail": "Введіть правильний Email",
+  "SignUp_incorrectPhone": "Введіть правильний номер",
   "SignUp_agreeCheckBox": "Я погоджуюсь з",
   "SignUp_allowProcessCheckBox": "Я погоджуюсь на обробку",
   "SignUp_termsAndConditionsCheckBox": "Умови & Положення компані...",
