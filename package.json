@@ -57,7 +57,6 @@
   },
   "dependencies": {
     "@googlemaps/polyline-codec": "^1.0.28",
-    "@react-native-community/geolocation": "3.1.0",
     "@react-native/eslint-config": "0.73.2",
     "axios": "^1.7.2",
     "axios-retry": "^4.4.2",
@@ -86,6 +85,7 @@
     "@microsoft/signalr": "^8.0.0",
     "@react-native-community/blur": "^4.3.2",
     "@react-native-community/datetimepicker": "^7.6.1",
+    "@react-native-community/geolocation": "^3.4.0",
     "@react-native-community/netinfo": "^11.3.1",
     "@react-native-firebase/app": "^20.4.0",
     "@react-native-firebase/messaging": "^20.4.0",
@@ -130,6 +130,7 @@
     "@microsoft/signalr": "*",
     "@react-native-community/blur": "*",
     "@react-native-community/datetimepicker": "*",
+    "@react-native-community/geolocation": "^3.2.0",
     "@react-native-community/netinfo": "*",
     "@react-native-firebase/app": "*",
     "@react-native-firebase/messaging": "*",

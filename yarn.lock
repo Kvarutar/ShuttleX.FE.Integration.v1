@@ -4522,13 +4522,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-community/geolocation@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@react-native-community/geolocation@npm:3.1.0"
+"@react-native-community/geolocation@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "@react-native-community/geolocation@npm:3.4.0"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: c991f94dd580ee2acd4330261f3a2f5adb116449d76941be93e3f6c3b49068c672d1e27373c3a86544050cac565c8bfabad5b030e97369d7ee275f7b720c1b34
+  checksum: 3899ef9e88bcb139f724a140149311502f2d1e1d060d928886cfbe653d8245e76f39ac9a869ae3993d71840dfb0bd063102decc19510396a9a6aec0e1ba5fc57
   languageName: node
   linkType: hard
 
@@ -22502,7 +22502,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     "@microsoft/signalr": "npm:^8.0.0"
     "@react-native-community/blur": "npm:^4.3.2"
     "@react-native-community/datetimepicker": "npm:^7.6.1"
-    "@react-native-community/geolocation": "npm:3.1.0"
+    "@react-native-community/geolocation": "npm:^3.4.0"
     "@react-native-community/netinfo": "npm:^11.3.1"
     "@react-native-firebase/app": "npm:^20.4.0"
     "@react-native-firebase/messaging": "npm:^20.4.0"
@@ -22562,6 +22562,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     "@microsoft/signalr": "*"
     "@react-native-community/blur": "*"
     "@react-native-community/datetimepicker": "*"
+    "@react-native-community/geolocation": ^3.2.0
     "@react-native-community/netinfo": "*"
     "@react-native-firebase/app": "*"
     "@react-native-firebase/messaging": "*"
