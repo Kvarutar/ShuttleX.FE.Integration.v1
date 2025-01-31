@@ -11,30 +11,48 @@ import {
 
 const platformVersion = Platform.Version;
 
-const requestGeolocationPermission = async (): Promise<void> => {
+const requestGeolocationPermission = async (requestAlwaysStatus: boolean = false): Promise<boolean> => {
   if (Platform.OS === 'ios') {
-    await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+    const whenInUseStatus = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+
+    if (requestAlwaysStatus && whenInUseStatus === RESULTS.GRANTED) {
+      const alwaysStatus = await request(PERMISSIONS.IOS.LOCATION_ALWAYS);
+      return alwaysStatus === RESULTS.GRANTED;
+    }
+
+    return whenInUseStatus === RESULTS.GRANTED;
   } else {
-    await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+    const fineStatus = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+    return fineStatus === RESULTS.GRANTED;
   }
 };
 
-const checkGeolocationPermissionAndAccuracy = async (): Promise<{
+const checkGeolocationPermissionAndAccuracy = async (
+  requestAlwaysStatus: boolean = false,
+): Promise<{
   isGranted: boolean;
   accuracy: LocationAccuracy;
 }> => {
   if (Platform.OS === 'ios') {
-    const result = await check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
-    const accuracy: LocationAccuracy = result === RESULTS.GRANTED ? await checkLocationAccuracy() : 'reduced';
-    return { isGranted: result === RESULTS.GRANTED, accuracy };
+    const whenInUseStatus = await check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
+
+    const geoStatus =
+      requestAlwaysStatus && whenInUseStatus === RESULTS.GRANTED
+        ? await check(PERMISSIONS.IOS.LOCATION_ALWAYS)
+        : whenInUseStatus;
+
+    const isGranted = geoStatus === RESULTS.GRANTED;
+    const accuracy: LocationAccuracy = isGranted ? await checkLocationAccuracy() : 'reduced';
+
+    return { isGranted, accuracy };
   } else {
     const [resultFine, resultCoarse] = await Promise.all([
       check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION),
       check(PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION),
     ]);
+
     const isGranted = resultFine === RESULTS.GRANTED || resultCoarse === RESULTS.GRANTED;
-    const accuracy: LocationAccuracy =
-      resultFine === RESULTS.GRANTED && resultCoarse === RESULTS.GRANTED ? 'full' : 'reduced';
+    const accuracy: LocationAccuracy = isGranted ? 'full' : 'reduced';
 
     return { isGranted, accuracy };
   }

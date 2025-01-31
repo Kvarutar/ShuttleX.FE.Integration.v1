@@ -1,10 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import Geolocation from '@react-native-community/geolocation';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { AppState, type AppStateStatus, type NativeEventSubscription, Platform } from 'react-native';
+import BackgroundActions, { type BackgroundTaskOptions } from 'react-native-background-actions';
 import DeviceInfo from 'react-native-device-info';
-import Geolocation from 'react-native-geolocation-service';
 import { type LatLng } from 'react-native-maps';
 import { type LocationAccuracy } from 'react-native-permissions';
 
+import i18nIntegration from '../../core/locales/i18n';
+import { secToMilSec } from '..';
 import { checkGeolocationPermissionAndAccuracy, requestGeolocationPermission } from '../permissions';
+import { type Nullable } from '../typescript';
 import { geolocationConsts } from './consts';
 import { type useGeolocationStartWatchArgs } from './types';
 
@@ -58,12 +63,15 @@ const getAngleBetweenPoints = (p1: LatLng, p2: LatLng) => {
   return (radToDeg(Math.atan2(y, x)) + 360) % 360;
 };
 
+const t = i18nIntegration.t;
+
 const useGeolocationStartWatch = ({
   onLocationEnabledChange,
   onPermissionGrantedChange,
   onAccuracyChange,
   onCoordinatesChange,
   onError,
+  withAndroidTrackingInBackground = false,
 }: useGeolocationStartWatchArgs) => {
   // Black magic, dont touch (prevents useEffects react to callbacks changes)
   const onLocationEnabledChangeRef = useRef<useGeolocationStartWatchArgs['onLocationEnabledChange']>();
@@ -91,6 +99,7 @@ const useGeolocationStartWatch = ({
   const [isPermissionGranted, setIsPermissionGranted] = useState<boolean | null>(null);
   const [accuracy, setAccuracy] = useState<LocationAccuracy | null>(null);
 
+  const appState = useRef<AppStateStatus>(AppState.currentState);
   const watchId = useRef<null | number>(null);
 
   const changeIsLocationEnabled = (flag: boolean) => {
@@ -110,37 +119,135 @@ const useGeolocationStartWatch = ({
     const checks = async () => {
       const isLocationEnabledRes = await DeviceInfo.isLocationEnabled();
       changeIsLocationEnabled(isLocationEnabledRes);
+
       if (isLocationEnabledRes) {
-        const res = await checkGeolocationPermissionAndAccuracy();
+        const res = await checkGeolocationPermissionAndAccuracy(withAndroidTrackingInBackground);
         changeIsPermissionGranted(res.isGranted);
         changeAccuracy(res.accuracy);
       }
     };
 
     (async () => {
-      await requestGeolocationPermission();
+      await requestGeolocationPermission(withAndroidTrackingInBackground);
       await checks();
       setInterval(checks, geolocationConsts.checkInterval);
     })();
-  }, []);
+  }, [withAndroidTrackingInBackground]);
 
-  useEffect(() => {
-    if (isLocationEnabled && isPermissionGranted === true && accuracy === 'full') {
+  const startForegroundTracking = useCallback(() => {
+    if (watchId.current === null) {
       watchId.current = Geolocation.watchPosition(
         position => onCoordinatesChangeRef.current?.(position.coords),
         err => onErrorRef.current?.(err),
         {
-          accuracy: { android: 'high', ios: 'best' },
+          enableHighAccuracy: true,
           distanceFilter: 1,
           interval: geolocationConsts.updateInterval,
           fastestInterval: geolocationConsts.updateInterval,
         },
       );
-    } else if (watchId.current !== null) {
+    }
+  }, []);
+
+  const stopForegroundTracking = useCallback(() => {
+    if (watchId.current !== null) {
       Geolocation.clearWatch(watchId.current);
       watchId.current = null;
     }
-  }, [isLocationEnabled, isPermissionGranted, accuracy]);
+  }, []);
+
+  const startBackgroundTracking = useCallback(async () => {
+    const backgroundTask = async () => {
+      const getCurrentPosition = () =>
+        new Promise<void>((resolve, reject) => {
+          Geolocation.getCurrentPosition(
+            position => {
+              onCoordinatesChangeRef.current?.(position.coords);
+              resolve();
+            },
+            error => {
+              onErrorRef.current?.(error);
+              reject(error);
+            },
+            {
+              enableHighAccuracy: true,
+            },
+          );
+        });
+
+      await new Promise<void>(resolve => {
+        const intervalId = setInterval(async () => {
+          if (!BackgroundActions.isRunning()) {
+            clearInterval(intervalId);
+            resolve();
+            return;
+          }
+
+          await getCurrentPosition();
+        }, secToMilSec(5));
+      });
+    };
+
+    const options: BackgroundTaskOptions = {
+      taskName: 'location-tracking',
+      taskTitle: t('geolocation_backgroundTask_title'),
+      taskDesc: t('geolocation_backgroundTask_desc'),
+      taskIcon: { name: 'ic_launcher_round', type: 'drawable' },
+      color: 'lime',
+    };
+
+    await BackgroundActions.start(backgroundTask, options);
+  }, []);
+
+  const stopBackgroundTracking = useCallback(async () => {
+    await BackgroundActions.stop();
+  }, []);
+
+  useEffect(() => {
+    let subscription: Nullable<NativeEventSubscription> = null;
+
+    if (isLocationEnabled && isPermissionGranted && accuracy === 'full') {
+      if (Platform.OS === 'ios') {
+        startForegroundTracking();
+      } else {
+        const handleAppStateChange = (nextAppState: AppStateStatus) => {
+          switch (nextAppState) {
+            case 'active':
+              withAndroidTrackingInBackground && stopBackgroundTracking();
+              startForegroundTracking();
+              break;
+            case 'inactive':
+            case 'background':
+              withAndroidTrackingInBackground && startBackgroundTracking();
+              stopForegroundTracking();
+              break;
+            default:
+              break;
+          }
+
+          appState.current = nextAppState;
+        };
+
+        handleAppStateChange(AppState.currentState);
+        subscription = AppState.addEventListener('change', handleAppStateChange);
+      }
+    }
+
+    return () => {
+      subscription?.remove();
+      stopForegroundTracking();
+      Platform.OS === 'android' && withAndroidTrackingInBackground && stopBackgroundTracking();
+    };
+  }, [
+    accuracy,
+    isLocationEnabled,
+    isPermissionGranted,
+    startBackgroundTracking,
+    startForegroundTracking,
+    stopBackgroundTracking,
+    stopForegroundTracking,
+    withAndroidTrackingInBackground,
+  ]);
 };
 
 export {

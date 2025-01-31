@@ -4522,6 +4522,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/geolocation@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@react-native-community/geolocation@npm:3.1.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: c991f94dd580ee2acd4330261f3a2f5adb116449d76941be93e3f6c3b49068c672d1e27373c3a86544050cac565c8bfabad5b030e97369d7ee275f7b720c1b34
+  languageName: node
+  linkType: hard
+
 "@react-native-community/netinfo@npm:9.3.10":
   version: 9.3.10
   resolution: "@react-native-community/netinfo@npm:9.3.10"
@@ -12184,7 +12194,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventemitter3@npm:^4.0.0":
+"eventemitter3@npm:^4.0.0, eventemitter3@npm:^4.0.7":
   version: 4.0.7
   resolution: "eventemitter3@npm:4.0.7"
   checksum: 5f6d97cbcbac47be798e6355e3a7639a84ee1f7d9b199a07017f1d2f1e2fe236004d14fa5dfaeba661f94ea57805385e326236a6debbc7145c8877fbc0297c6b
@@ -20600,6 +20610,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-background-actions@npm:3.0.1":
+  version: 3.0.1
+  resolution: "react-native-background-actions@npm:3.0.1"
+  dependencies:
+    eventemitter3: "npm:^4.0.7"
+  peerDependencies:
+    react-native: ">=0.47.0"
+  checksum: df4d4fd234a449a1ee6148e88519a221be2b6217bb5e1d2d3a348febec6a0ef97d3b27774fea8b1199a1e180d8df8fe4a4ee6c44744756a00ce86ff30539cc36
+  languageName: node
+  linkType: hard
+
 "react-native-builder-bob@npm:^0.23.2":
   version: 0.23.2
   resolution: "react-native-builder-bob@npm:0.23.2"
@@ -20813,9 +20834,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-permissions@npm:^4.1.4":
-  version: 4.1.4
-  resolution: "react-native-permissions@npm:4.1.4"
+"react-native-permissions@npm:^5.2.3":
+  version: 5.2.4
+  resolution: "react-native-permissions@npm:5.2.4"
   peerDependencies:
     react: ">=18.1.0"
     react-native: ">=0.70.0"
@@ -20823,7 +20844,7 @@ __metadata:
   peerDependenciesMeta:
     react-native-windows:
       optional: true
-  checksum: 507bd3681ae094a294d1834c368d1b745e2c266ee4f024e25b574a4de609a6ac0f40f2abbef5b1c5416a608965b0a2f43fe67abc1b939baf847edc626fe6d2bc
+  checksum: 7cb58b4b4ecd8d4b56e26cfcc831217701dd99bb527fa7550364f895cc7b970e39c96d03121d910f612a5e76e06540fcceac62b8b480afe017439263750dc56a
   languageName: node
   linkType: hard
 
@@ -22481,6 +22502,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     "@microsoft/signalr": "npm:^8.0.0"
     "@react-native-community/blur": "npm:^4.3.2"
     "@react-native-community/datetimepicker": "npm:^7.6.1"
+    "@react-native-community/geolocation": "npm:3.1.0"
     "@react-native-community/netinfo": "npm:^11.3.1"
     "@react-native-firebase/app": "npm:^20.4.0"
     "@react-native-firebase/messaging": "npm:^20.4.0"
@@ -22512,11 +22534,11 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react: "npm:18.2.0"
     react-i18next: "npm:^13.3.1"
     react-native: "npm:0.73.11"
+    react-native-background-actions: "npm:3.0.1"
     react-native-builder-bob: "npm:^0.23.2"
     react-native-confetti-cannon: "npm:^1.5.2"
     react-native-device-info: "npm:^10.13.1"
     react-native-document-picker: "npm:9.1.1"
-    react-native-geolocation-service: "npm:^5.3.1"
     react-native-gesture-handler: "npm:^2.14.0"
     react-native-image-crop-picker: "npm:^0.41.4"
     react-native-image-picker: "npm:7.1.0"
@@ -22525,7 +22547,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-localize: "npm:^3.0.2"
     react-native-maps: "npm:1.14.0"
     react-native-otp-entry: "npm:^1.8.2"
-    react-native-permissions: "npm:^4.1.4"
+    react-native-permissions: "npm:^5.2.3"
     react-native-reanimated: "npm:3.16.7"
     react-native-reanimated-skeleton: "npm:^1.5.1"
     react-native-safe-area-context: "npm:^4.7.4"
@@ -22551,7 +22573,6 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react: "*"
     react-native: "*"
     react-native-device-info: "*"
-    react-native-geolocation-service: "*"
     react-native-gesture-handler: "*"
     react-native-keychain: "*"
     react-native-linear-gradient: "*"

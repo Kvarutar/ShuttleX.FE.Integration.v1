@@ -50,7 +50,7 @@ yarn example start
 - [react](https://www.npmjs.com/package/react)
 - [react-native](https://www.npmjs.com/package/react-native)
 - [react-native-device-info](https://www.npmjs.com/package/react-native-device-info)
-- [react-native-geolocation-service](https://www.npmjs.com/package/react-native-geolocation-service)
+- [react-native-community/geolocation](https://www.npmjs.com/package/@react-native-community/geolocation)
 - [react-native-gesture-handler](https://www.npmjs.com/package/react-native-gesture-handler)
 - [react-native-maps](https://www.npmjs.com/package/react-native-maps)
 - [react-native-permissions](https://www.npmjs.com/package/react-native-permissions)

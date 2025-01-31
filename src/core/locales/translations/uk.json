@@ -1,4 +1,6 @@
 {
+  "geolocation_backgroundTask_title": "Сервіси локації увімкнені",
+  "geolocation_backgroundTask_desc": "Ми використовуємо вашу локацію для побудови маршрутів та пошуку замовленнь",
   "SignIn_firstPartHeaderPhone": "Введіть Свій\nНомер Телефону",
   "SignIn_firstPartHeaderEmail": "Введіть Свою\nАдресу електронної пошти",
   "SignIn_secondPartHeader": "для Отримання\nКоду",
@@ -23,7 +25,7 @@
   "SignUp_signInLabel": "Увійти",
   "LocationUnavailable_permissionDeniedFirstTitle": "Доступ до\nгеолокації",
   "LocationUnavailable_permissionDeniedSecondTitle": "заборонений",
-  "LocationUnavailable_permissionDeniedDescription": "Для того, щоб продовжити\nкористуватись додатком, будь-\nласка, надайте доступ до геолокації\nв системних налаштуваннях",
+  "LocationUnavailable_permissionDeniedDescription": "Для того, щоб продовжити\nкористуватись додатком, будь-ласка,\nзмініть системні налаштування доступу\nдо локації на “Завжди”",
   "LocationUnavailable_locationDisabledFirstTitle": "Сервіси\nгеолокації",
   "LocationUnavailable_locationDisabledSecondTitle": "вимкнено",
   "LocationUnavailable_locationDisabledDescription": "Будь ласка, увімкніть сервіси\nгеолокації, щоб користуватися\nдодатком.",
