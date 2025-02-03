@@ -92,8 +92,8 @@ const MapCar = ({ coordinates, heading, animationDuration, withThinkingAnimation
 
 const styles = StyleSheet.create({
   marker: {
-    width: 90,
-    height: 90,
+    width: 150,
+    height: 150,
     alignItems: 'center',
     justifyContent: 'center',
   },
