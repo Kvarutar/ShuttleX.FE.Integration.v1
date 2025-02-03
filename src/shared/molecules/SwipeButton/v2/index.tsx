@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { Pressable, StyleSheet } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
@@ -32,14 +32,16 @@ const SwipeButtonWithoutI18n = ({
 
   const isDisabledMode = mode === SwipeButtonModes.Disabled;
 
-  if (isLoading) {
-    rotate.value = withRepeat(
-      withTiming(360, { duration: 1000, easing: Easing.linear }),
-      -1, // infinity
-    );
-  } else {
-    rotate.value = 0;
-  }
+  useEffect(() => {
+    if (isLoading) {
+      rotate.value = withRepeat(
+        withTiming(360, { duration: 1000, easing: Easing.linear }),
+        -1, // infinity
+      );
+    } else {
+      rotate.value = 0;
+    }
+  }, [isLoading, rotate]);
 
   const swipeButtonColors: Record<typeof themeMode, SwipeButtonColors> = {
     light: {
