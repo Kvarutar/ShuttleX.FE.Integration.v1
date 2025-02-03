@@ -86,15 +86,16 @@ const TrafficIndicator = ({
               const nextSegment = segments[index + 1];
               const endColor = nextSegment ? trafficColor[nextSegment.level] : trafficColor[segment.level];
 
-              acc.push(
-                <LinearGradient
-                  key={index}
-                  colors={[trafficColor[segment.level], endColor]}
-                  style={{ width: segmentWidth }}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                />,
-              );
+              segmentWidth &&
+                acc.push(
+                  <LinearGradient
+                    key={index}
+                    colors={[trafficColor[segment.level], endColor]}
+                    style={{ width: segmentWidth }}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                  />,
+                );
 
               return acc;
             }, [])}
