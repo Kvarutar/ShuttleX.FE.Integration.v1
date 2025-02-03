@@ -2,6 +2,9 @@
   "Tariffs_basic": "Базовий",
   "Tariffs_basicXL": "Базовий-XL",
   "Tariffs_comfortPlus": "Комфорт Плюс",
+  "Tariffs_comfortEco": "Комфорт Еко",
   "Tariffs_business": "Бізнес",
+  "Tariffs_businessX": "Бізнес-X",
+  "Tariffs_businessElite": "Бізнес Elite",
   "Tariffs_electric": "Електро"
 }

@@ -2,6 +2,9 @@
   "Tariffs_basic": "Basic",
   "Tariffs_basicXL": "Basic-XL",
   "Tariffs_comfortPlus": "Comfort Plus",
+  "Tariffs_comfortEco": "Comfort Eco",
   "Tariffs_business": "Business",
+  "Tariffs_businessX": "Business-X",
+  "Tariffs_businessElite": "Business Elite",
   "Tariffs_electric": "Electric"
 }

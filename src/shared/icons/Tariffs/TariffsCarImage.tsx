@@ -4,13 +4,23 @@ import { type ImageStyle } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
 import BasicImage from './BasicImage';
 import BasicXLImage from './BasicXLImage';
+import BusinessElite from './BusinessElite';
+import BusinessX from './BusinessX';
+import ComfortEco from './ComfortEco';
 // import BusinessImage from './Business';
 import ComfortPlusImage from './ComfortPlusImage';
 import ElectricImage from './ElectricImage';
 
 // TODO: Change tariffs names to the frontend keys
 //TODO: Add 'Business' when work with it
-export type TariffType = 'Basic' | 'BasicXL' | 'ComfortPlus' | 'Electric';
+export type TariffType =
+  | 'Basic'
+  | 'BasicXL'
+  | 'ComfortPlus'
+  | 'Electric'
+  | 'BusinessX'
+  | 'BusinessElite'
+  | 'ComfortEco';
 
 export type TariffIconData = {
   icon: ({ style }: { style?: ImageStyle }) => JSX.Element;
@@ -32,14 +42,21 @@ export const useTariffsIcons = (): Record<TariffType, TariffIconData> => {
       icon: ComfortPlusImage,
       text: t('Tariffs_comfortPlus'),
     },
-    //TODO: Add 'Business' when work with it
-    // Business: {
-    //   icon: BusinessImage,
-    //   text: t('Tariffs_business'),
-    // },
     Electric: {
       icon: ElectricImage,
       text: t('Tariffs_electric'),
+    },
+    BusinessElite: {
+      icon: BusinessElite,
+      text: t('Tariffs_businessElite'),
+    },
+    BusinessX: {
+      icon: BusinessX,
+      text: t('Tariffs_businessX'),
+    },
+    ComfortEco: {
+      icon: ComfortEco,
+      text: t('Tariffs_comfortEco'),
     },
   };
   return icons;

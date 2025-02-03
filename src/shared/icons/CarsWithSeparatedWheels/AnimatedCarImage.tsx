@@ -1,4 +1,4 @@
-import { type LayoutChangeEvent, StyleSheet, View, type ViewStyle } from 'react-native';
+import { type ImageStyle, type LayoutChangeEvent, StyleSheet, View, type ViewStyle } from 'react-native';
 import Animated, {
   Easing,
   ReduceMotion,
@@ -14,13 +14,18 @@ import BasicCar from './Basic/Car';
 import BasicWheel from './Basic/Wheel';
 import BasicXLCar from './BasicXL/Car';
 import BasicXLWheel from './BasicXL/Wheel';
+import BusinessEliteCar from './BusinessElite/Car';
+import BusinessEliteWheel from './BusinessElite/Wheel';
+import BusinessXCar from './BusinessX/Car';
+import BusinessXWheel from './BusinessX/Wheel';
+import ComfortEcoCar from './ComfortEco/Car';
+import ComfortEcoWheel from './ComfortEco/Wheel';
 import ComfortPlusCar from './ComfortPlus/Car';
 import ComfortPlusWheel from './ComfortPlus/Wheel';
 import DefaultCar from './Default/Car';
 import DefaultWheel from './Default/Wheel';
 import ElectricCar from './Electric/Car';
 import ElectricWheel from './Electric/Wheel';
-import DefaultCarShadow from './shadows/Default';
 import TariffsCarShadow from './shadows/Tariffs';
 import { type AnimatedCarImageProps, type CarAndWheelImages } from './types';
 
@@ -41,6 +46,18 @@ const tariffIconsByTariffType: Record<TariffType | 'Default', CarAndWheelImages>
   Electric: {
     car: ElectricCar,
     wheel: ElectricWheel,
+  },
+  BusinessX: {
+    car: BusinessXCar,
+    wheel: BusinessXWheel,
+  },
+  BusinessElite: {
+    car: BusinessEliteCar,
+    wheel: BusinessEliteWheel,
+  },
+  ComfortEco: {
+    car: ComfortEcoCar,
+    wheel: ComfortEcoWheel,
   },
   Default: {
     car: DefaultCar,
@@ -147,6 +164,27 @@ const AnimatedCarImage = ({
       top: '-10.5%',
       aspectRatio: 6.5,
     },
+    BusinessElite: {
+      justifyContent: 'space-between',
+      paddingLeft: '8%',
+      paddingRight: '14.4 %',
+      top: '-11.7%',
+      aspectRatio: 6.5,
+    },
+    BusinessX: {
+      justifyContent: 'space-between',
+      paddingLeft: '7%',
+      paddingRight: '16%',
+      top: '-11.4%',
+      aspectRatio: 6.5,
+    },
+    ComfortEco: {
+      justifyContent: 'space-between',
+      paddingLeft: '9.8%',
+      paddingRight: '11%',
+      top: '-9.5%',
+      aspectRatio: 6.4,
+    },
     Default: {
       justifyContent: 'space-between',
       paddingLeft: '10.5%',
@@ -155,6 +193,33 @@ const AnimatedCarImage = ({
       aspectRatio: 7,
     },
   };
+
+  const computedShadowStyles: Record<TariffType | 'Default', ImageStyle> = StyleSheet.create({
+    Basic: {
+      bottom: '11%',
+    },
+    BasicXL: {
+      bottom: '8%',
+    },
+    ComfortPlus: {
+      bottom: '10%',
+    },
+    Electric: {
+      bottom: '10%',
+    },
+    BusinessElite: {
+      bottom: '12%',
+    },
+    BusinessX: {
+      bottom: '12%',
+    },
+    ComfortEco: {
+      bottom: '7%',
+    },
+    Default: {
+      bottom: '13%',
+    },
+  });
 
   return (
     <View style={[styles.container, containerStyle]} onLayout={onLayout}>
@@ -168,11 +233,7 @@ const AnimatedCarImage = ({
             <WheelImage style={styles.wheel} />
           </Animated.View>
         </View>
-        {tariffType === 'Default' ? (
-          <DefaultCarShadow style={styles.defaultShadow} />
-        ) : (
-          <TariffsCarShadow style={styles.shadow} />
-        )}
+        <TariffsCarShadow style={StyleSheet.flatten([styles.shadow, computedShadowStyles[tariffType]])} />
       </Animated.View>
     </View>
   );
@@ -202,15 +263,6 @@ const styles = StyleSheet.create({
     height: undefined,
     aspectRatio: 5,
     zIndex: -1,
-    bottom: '5%',
-  },
-  defaultShadow: {
-    position: 'absolute',
-    width: '100%',
-    height: undefined,
-    aspectRatio: 6,
-    zIndex: -1,
-    bottom: '10%',
   },
 });
 

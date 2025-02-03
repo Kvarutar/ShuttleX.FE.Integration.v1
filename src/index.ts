@@ -175,7 +175,6 @@ import SuccessIcon from './shared/icons/SuccessIcon';
 import SupportIcon from './shared/icons/SupportIcon';
 import BasicImage from './shared/icons/Tariffs/BasicImage';
 import BasicXLImage from './shared/icons/Tariffs/BasicXLImage';
-import BusinessImage from './shared/icons/Tariffs/Business';
 import ComfortPlusImage from './shared/icons/Tariffs/ComfortPlusImage';
 import ElectricImage from './shared/icons/Tariffs/ElectricImage';
 import { type TariffIconData, type TariffType, useTariffsIcons } from './shared/icons/Tariffs/TariffsCarImage';
@@ -366,7 +365,6 @@ export {
   type BottomWindowWithGestureRef,
   BrandFavIcon,
   BrandTextIcon,
-  BusinessImage,
   Button,
   ButtonAnimation,
   type ButtonProps,
