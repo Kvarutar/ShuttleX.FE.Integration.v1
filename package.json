@@ -65,7 +65,7 @@
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "react-native-background-actions": "3.0.1",
+    "react-native-background-actions": "4.0.1",
     "react-native-confetti-cannon": "^1.5.2",
     "react-native-document-picker": "9.1.1",
     "react-native-image-crop-picker": "^0.41.4",

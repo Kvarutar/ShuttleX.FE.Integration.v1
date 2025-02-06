@@ -184,7 +184,7 @@ const useGeolocationStartWatch = ({
           }
 
           await getCurrentPosition();
-        }, secToMilSec(5));
+        }, secToMilSec(2));
       });
     };
 

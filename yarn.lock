@@ -20610,14 +20610,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-background-actions@npm:3.0.1":
-  version: 3.0.1
-  resolution: "react-native-background-actions@npm:3.0.1"
+"react-native-background-actions@npm:4.0.1":
+  version: 4.0.1
+  resolution: "react-native-background-actions@npm:4.0.1"
   dependencies:
     eventemitter3: "npm:^4.0.7"
   peerDependencies:
     react-native: ">=0.47.0"
-  checksum: df4d4fd234a449a1ee6148e88519a221be2b6217bb5e1d2d3a348febec6a0ef97d3b27774fea8b1199a1e180d8df8fe4a4ee6c44744756a00ce86ff30539cc36
+  checksum: be8589b67db310da638de02b62618d2019c0e957f76ecee3af9fc656834d837152501b3b27276a26e9be33ac8459f0015063ef245b5ee321cc3e33c4fc65b280
   languageName: node
   linkType: hard
 
@@ -22534,7 +22534,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react: "npm:18.2.0"
     react-i18next: "npm:^13.3.1"
     react-native: "npm:0.73.11"
-    react-native-background-actions: "npm:3.0.1"
+    react-native-background-actions: "npm:4.0.1"
     react-native-builder-bob: "npm:^0.23.2"
     react-native-confetti-cannon: "npm:^1.5.2"
     react-native-device-info: "npm:^10.13.1"
