@@ -30,7 +30,7 @@ export type NetworkErrorDetails = {
   code: number;
 };
 
-export type NetworkErrorDetailsWithBody<T> = Omit<NetworkErrorDetails, 'status'> & {
+export type NetworkErrorDetailsWithBody<T = { code: number; message: string }> = Omit<NetworkErrorDetails, 'status'> & {
   status: string | NetworkErrorsStatuses;
   body: T;
 };
