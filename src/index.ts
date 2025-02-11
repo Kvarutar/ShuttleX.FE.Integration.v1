@@ -91,6 +91,7 @@ import BrandFavIcon from './shared/icons/BrandFavIcon';
 import BrandTextIcon from './shared/icons/BrandTextIcon';
 import CalendarIcon from './shared/icons/CalendarIcon';
 import CameraIcon from './shared/icons/CameraIcon';
+import CarIcon from './shared/icons/CarIcon';
 import AnimatedCarImage from './shared/icons/CarsWithSeparatedWheels/AnimatedCarImage';
 import ChatIcon from './shared/icons/ChatIcon';
 import CheckIcon2 from './shared/icons/CheckIcon2';
@@ -108,6 +109,7 @@ import DislikeIcon from './shared/icons/DislikeIcon';
 import DocumentIcon from './shared/icons/DocumentIcon';
 import DropDownIcon from './shared/icons/DropDownArrowIcon';
 import DropOffIcon from './shared/icons/DropOffIcon';
+import EarthIcon from './shared/icons/EarthIcon';
 import EmergencyServiceIcon from './shared/icons/EmergencyServiceIcon';
 import EmojiIcon from './shared/icons/EmojiIcon';
 import ExternalMapIcon from './shared/icons/ExternalMapIcon';
@@ -149,6 +151,7 @@ import PayPalIcon from './shared/icons/PayPalIcon';
 import PhoneIcon from './shared/icons/PhoneIcon';
 import PickUpIcon from './shared/icons/PickUpIcon';
 import PlayIcon from './shared/icons/PlayIcon';
+import PlayVideoIcon from './shared/icons/PlayVideoIcon';
 import PlusIcon from './shared/icons/PlusIcon';
 import PlusInCircleIcon from './shared/icons/PlusInCircleIcon';
 import PlusRoundIcon from './shared/icons/PlusRoundIcon';
@@ -385,6 +388,7 @@ export {
   CalendarIcon,
   CameraIcon,
   type Card,
+  CarIcon,
   ChangeDataPopUp,
   ChatIcon,
   CheckBox,
@@ -433,6 +437,7 @@ export {
   DriverArrivedAlert,
   DropDownIcon,
   DropOffIcon,
+  EarthIcon,
   ElectricImage,
   emailRegex,
   EmergencyServiceIcon,
@@ -575,6 +580,7 @@ export {
   PlannedTripAlert,
   type PlannedTripAlertProps,
   PlayIcon,
+  PlayVideoIcon,
   PlusIcon,
   PlusInCircleIcon,
   PlusRoundIcon,
