@@ -1,15 +1,15 @@
 import { type LatLng } from 'react-native-maps';
 
 export type ReceiptScreenProps = {
-  onClose: () => void;
   totalDistanceMtr: number;
   pickUpAddress: string;
   dropOffAddress: string;
   isTripCanceled: boolean;
+  tripPrice: string;
   startPoint: LatLng;
   endPoint: LatLng;
-  geometry: string;
-  tripPrice: string;
+  geometries: string[];
+  onClose: () => void;
   contractorName?: string;
   carNumber?: string;
   pickUpDate?: string;

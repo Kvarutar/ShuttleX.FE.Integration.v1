@@ -1,6 +1,7 @@
 import { useCallback, useRef } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Dimensions, Linking, StyleSheet, View } from 'react-native';
+import { type LatLng } from 'react-native-maps';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import MapView from '../../../core/map/MapView';
@@ -27,20 +28,20 @@ import { type ReceiptScreenProps } from './types';
 const windowHeight = Dimensions.get('window').height;
 
 const ReceiptScreenWithoutI18n = ({
-  onClose,
-  startPoint,
-  endPoint,
-  isTripCanceled,
-  ticket,
   totalDistanceMtr,
-  pickUpDate,
-  finishedDate,
-  tripPrice,
   pickUpAddress,
   dropOffAddress,
+  isTripCanceled,
+  tripPrice,
+  startPoint,
+  endPoint,
+  geometries,
+  onClose,
   contractorName,
   carNumber,
-  geometry,
+  pickUpDate,
+  finishedDate,
+  ticket,
 }: ReceiptScreenProps) => {
   const mapRef = useRef<MapViewRef>(null);
 
@@ -239,6 +240,9 @@ const ReceiptScreenWithoutI18n = ({
     }
   }, [startPoint, endPoint]);
 
+  const coordinates: LatLng[] = [];
+  geometries.forEach(geometry => coordinates.push(...decodeGooglePolyline(geometry)));
+
   return (
     <>
       <MapView
@@ -249,7 +253,7 @@ const ReceiptScreenWithoutI18n = ({
           { type: 'simple', colorMode: 'mode1', coordinates: startPoint },
           { type: 'simple', colorMode: 'mode2', coordinates: endPoint },
         ]}
-        polylines={[{ type: 'straight', options: { coordinates: decodeGooglePolyline(geometry) } }]}
+        polylines={[{ type: 'straight', options: { coordinates } }]}
       />
       <Fog widthInPercents={`${windowHeight / 9.5}%`} />
       <SafeAreaView wrapperStyle={styles.safeAreaWrapper} containerStyle={styles.container} withTransparentBackground>

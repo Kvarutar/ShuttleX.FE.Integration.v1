@@ -33,7 +33,13 @@ export const calculateNewMapRoute = (
 };
 
 export const decodeGooglePolyline = (encodedGeometry: string): LatLng[] => {
-  return decode(encodedGeometry).map(([latitude, longitude]) => ({ latitude, longitude }));
+  return decode(encodedGeometry, 6).map(([latitude, longitude]) => ({ latitude, longitude }));
+};
+
+export const decodeGooglePolylineArr = (encodedGeometries: string[]): LatLng[] => {
+  const res: LatLng[] = [];
+  encodedGeometries.forEach(geometry => res.push(...decodeGooglePolyline(geometry)));
+  return res;
 };
 
 export const isCoordinatesEqualZero = (coordinates: LatLng) =>

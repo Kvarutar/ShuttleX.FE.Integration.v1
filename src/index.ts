@@ -37,7 +37,12 @@ import {
   type MarkerTypeSimple,
   type MarkerTypeWithLabel,
 } from './core/map/types';
-import { calculateNewMapRoute, decodeGooglePolyline, isCoordinatesEqualZero } from './core/map/utils';
+import {
+  calculateNewMapRoute,
+  decodeGooglePolyline,
+  decodeGooglePolylineArr,
+  isCoordinatesEqualZero,
+} from './core/map/utils';
 import { nameof } from './core/monkey-patch/ts.helper';
 import { initCreateAppAsyncThunk, type InitCreateAppAsyncThunkDispatch } from './core/redux/initCreateAppAsyncThunk';
 import { createSignalRSlice } from './core/signalR/slice';
@@ -418,6 +423,7 @@ export {
   DatePicker,
   DatePickerV1,
   decodeGooglePolyline,
+  decodeGooglePolylineArr,
   defaultAxiosRetryConfig,
   defaultShadow,
   degToRad,
