@@ -66,9 +66,8 @@ const MapCar = ({ coordinates, heading, animationDuration, withThinkingAnimation
         anchor={{ x: 0.5, y: 0.5 }} // centers icon
         flat
         tracksViewChanges
-        style={styles.marker}
       >
-        <Animated.View style={carMarkerAnimatedStyle}>
+        <Animated.View style={[styles.carImageContainer, carMarkerAnimatedStyle]}>
           <TopViewCarImage />
         </Animated.View>
       </AnimatedMarker>
@@ -91,9 +90,9 @@ const MapCar = ({ coordinates, heading, animationDuration, withThinkingAnimation
 };
 
 const styles = StyleSheet.create({
-  marker: {
-    width: 150,
-    height: 150,
+  carImageContainer: {
+    width: 100,
+    height: 100,
     alignItems: 'center',
     justifyContent: 'center',
   },
