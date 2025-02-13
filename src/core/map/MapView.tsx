@@ -287,6 +287,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           googleRenderer="LEGACY"
           style={styles.map}
           showsCompass={false}
+          showsIndoors={false}
           toolbarEnabled={false}
           customMapStyle={lightMapStyle}
           rotateEnabled={cameraMode === 'free'}
