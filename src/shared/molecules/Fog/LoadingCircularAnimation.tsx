@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { useCallback, useEffect } from 'react';
+import { AppState, Dimensions, StyleSheet, View } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -23,7 +23,7 @@ const reducedWidth = windowWidth * 0.96;
 const AnimatedDot = ({ index }: { index: number }) => {
   const rotation = useSharedValue(90);
 
-  useEffect(() => {
+  const startAnimation = useCallback(() => {
     const defaultAngle = (animationProperties.groupSize - 1 - index) * animationProperties.angleGap;
     const startAngle = 90 + defaultAngle;
     const endAngle = 270 + defaultAngle;
@@ -41,6 +41,21 @@ const AnimatedDot = ({ index }: { index: number }) => {
       ),
     );
   }, [index, rotation]);
+  useEffect(() => {
+    startAnimation();
+  }, [startAnimation]);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (nextAppState === 'active') {
+        startAnimation();
+      }
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, [startAnimation]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotation.value}deg` }],
