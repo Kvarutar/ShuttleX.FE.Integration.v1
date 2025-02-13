@@ -25,6 +25,7 @@ import PickUpIcon from '../../shared/icons/PickUpIcon';
 import LocationArrowImage from '../../shared/images/LocationArrowImage';
 import TopViewCarImage from '../../shared/images/TopViewCarImage';
 import { useCompass } from '../../utils/compass';
+import { getDistanceBetweenPoints } from '../../utils/geolocation';
 import { drawArcPolyline } from '../../utils/geolocation/drawArcPolyline';
 import { AnimatedMarker } from './hooks';
 import lightMapStyle from './lightMapStyle.json';
@@ -85,6 +86,20 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       },
       animateToRegion: (...args) => {
         mapRef.current?.animateToRegion(...args);
+      },
+      setCameraBetweenTwoPoints: (firstPoint, secondPoint, ratio = 35, animationDurationInMs = 700) => {
+        if (mapRef.current) {
+          const delta = getDistanceBetweenPoints(firstPoint, secondPoint) / (ratio * 1000);
+          return mapRef.current.animateToRegion(
+            {
+              latitude: (firstPoint.latitude + secondPoint.latitude) / 2,
+              longitude: (firstPoint.longitude + secondPoint.longitude) / 2,
+              latitudeDelta: delta,
+              longitudeDelta: delta,
+            },
+            animationDurationInMs,
+          );
+        }
       },
     }));
 

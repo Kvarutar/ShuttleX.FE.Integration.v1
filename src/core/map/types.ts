@@ -44,6 +44,12 @@ export type MapViewRef = {
   setCamera: (camera: Partial<Omit<Camera, 'altitude'>>) => void;
   getCamera: () => Promise<Camera> | undefined;
   animateToRegion: MapView['animateToRegion'];
+  setCameraBetweenTwoPoints: (
+    firstPoint: LatLng,
+    secondPoint: LatLng,
+    ratio?: number,
+    animationDurationInMs?: number,
+  ) => void;
 };
 
 export type MapViewProps = {
