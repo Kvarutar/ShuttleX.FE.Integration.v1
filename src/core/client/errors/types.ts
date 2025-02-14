@@ -6,6 +6,7 @@ export enum NetworkErrorsStatuses {
   Locked = 'locked',
   TooManyRequests = 'too_many_requests',
   PaymentRequired = 'payment_required',
+  BadRequest = 'bad_request',
 }
 
 export type IncorrectFieldsErrorBody = {

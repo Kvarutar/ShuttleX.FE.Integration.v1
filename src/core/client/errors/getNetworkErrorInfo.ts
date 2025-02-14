@@ -12,6 +12,7 @@ import {
 const getNetworkErrorInfo = (error: any): NetworkErrorDetails & { body: NetworkErrorsBodies } => {
   if (isAxiosError(error) && error.response) {
     const code = error.response.status;
+    //TODO: 400 error should have NetworkErrorsStatuses.BadRequest status by default. Incorrects fields should be to authorization and profile settings requests
     switch (code) {
       case 400:
         if (Array.isArray(error.response.data)) {
