@@ -1,5 +1,10 @@
 import { type StyleProp, type ViewStyle } from 'react-native';
-import MapView, { type Camera, type LatLng, type MapViewProps as NativeMapViewProps } from 'react-native-maps';
+import MapView, {
+  type Camera,
+  type EdgePadding,
+  type LatLng,
+  type MapViewProps as NativeMapViewProps,
+} from 'react-native-maps';
 
 import { type MapPinIconProps } from '../../shared/icons/MapPinIcon';
 import { type MapPinIcon2Props } from '../../shared/icons/MapPinIcon2';
@@ -44,12 +49,7 @@ export type MapViewRef = {
   setCamera: (camera: Partial<Omit<Camera, 'altitude'>>) => void;
   getCamera: () => Promise<Camera> | undefined;
   animateToRegion: MapView['animateToRegion'];
-  setCameraBetweenTwoPoints: (
-    firstPoint: LatLng,
-    secondPoint: LatLng,
-    ratio?: number,
-    animationDurationInMs?: number,
-  ) => void;
+  fitToCoordinates: (coordinates: LatLng[], options?: { edgePadding?: Partial<EdgePadding> }) => void;
 };
 
 export type MapViewProps = {
@@ -64,6 +64,7 @@ export type MapViewProps = {
   stopPoints?: LatLng[];
   markers?: MapMarker[];
   cameraMode?: MapCameraMode;
+  mapPadding?: Partial<NativeMapViewProps['mapPadding']>;
   setCameraModeOnDrag?: (cameraMode: MapCameraMode) => void;
   onDragComplete?: (coordinates: LatLng) => void;
   onFirstCameraAnimationComplete?: () => void;

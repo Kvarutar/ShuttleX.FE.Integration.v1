@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { countryDtos } from '../../../../core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from '../../../../core/countries/types';
 import { useTheme } from '../../../../core/themes/v2/themeContext';
-import { useDebounce } from '../../../../utils/debounce';
+import { useDebounce } from '../../../../utils/hooks/useDebounce';
 import Text from '../../../atoms/Text';
 import TextInput from '../../../atoms/TextInput/v2';
 import CheckIcon2 from '../../../icons/CheckIcon2';

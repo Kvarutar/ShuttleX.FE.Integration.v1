@@ -312,7 +312,6 @@ import {
 } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
 import { formatCurrency, getCurrencySign } from './utils/currency';
-import { useDebounce } from './utils/debounce';
 import {
   degToRad,
   getAngleBetweenPoints,
@@ -320,6 +319,8 @@ import {
   radToDeg,
   useGeolocationStartWatch,
 } from './utils/geolocation';
+import { useDebounce, useDebounceCallback } from './utils/hooks/useDebounce';
+import { useThrottleCallback } from './utils/hooks/useThrottleCallback';
 import { convertBlobToImgUri } from './utils/imageProcessing';
 import { IntegrationModule } from './utils/integrationModule';
 import { getMenuIcons } from './utils/menu/menuIcons';
@@ -677,12 +678,14 @@ export {
   useChangeData,
   useCompass,
   useDebounce,
+  useDebounceCallback,
   useGeolocationStartWatch,
   useNetworkConnectionStartWatch,
   useProfileForm,
   useTariffsIcons,
   useTheme,
   useThemeV1,
+  useThrottleCallback,
   VerifyDataPopUp,
   VisaIcon,
   WalletIcon,

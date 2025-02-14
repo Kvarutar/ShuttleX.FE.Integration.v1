@@ -2,9 +2,11 @@ import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState }
 import { Platform, StyleSheet, View } from 'react-native';
 import MapViewNative, {
   type Camera,
+  type EdgePadding,
   type LatLng,
   MapMarker,
   type MapMarkerProps,
+  type MapViewProps as NativeMapViewProps,
   Marker,
   Polyline,
 } from 'react-native-maps';
@@ -25,7 +27,6 @@ import PickUpIcon from '../../shared/icons/PickUpIcon';
 import LocationArrowImage from '../../shared/images/LocationArrowImage';
 import TopViewCarImage from '../../shared/images/TopViewCarImage';
 import { useCompass } from '../../utils/compass';
-import { getDistanceBetweenPoints } from '../../utils/geolocation';
 import { drawArcPolyline } from '../../utils/geolocation/drawArcPolyline';
 import { AnimatedMarker } from './hooks';
 import lightMapStyle from './lightMapStyle.json';
@@ -52,6 +53,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       stopPoints,
       markers,
       cameraMode,
+      mapPadding,
       setCameraModeOnDrag,
       onDragComplete,
       onFirstCameraAnimationComplete,
@@ -87,19 +89,14 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       animateToRegion: (...args) => {
         mapRef.current?.animateToRegion(...args);
       },
-      setCameraBetweenTwoPoints: (firstPoint, secondPoint, ratio = 35, animationDurationInMs = 700) => {
-        if (mapRef.current) {
-          const delta = getDistanceBetweenPoints(firstPoint, secondPoint) / (ratio * 1000);
-          return mapRef.current.animateToRegion(
-            {
-              latitude: (firstPoint.latitude + secondPoint.latitude) / 2,
-              longitude: (firstPoint.longitude + secondPoint.longitude) / 2,
-              latitudeDelta: delta,
-              longitudeDelta: delta,
-            },
-            animationDurationInMs,
-          );
-        }
+      fitToCoordinates: (coordinates, options) => {
+        const edgePadding: EdgePadding = {
+          top: 100 + (options?.edgePadding?.top ?? 0),
+          bottom: 50 + (options?.edgePadding?.bottom ?? 0),
+          left: 30 + (options?.edgePadding?.left ?? 0),
+          right: 30 + (options?.edgePadding?.right ?? 0),
+        };
+        mapRef.current?.fitToCoordinates(coordinates, { edgePadding, animated: true });
       },
     }));
 
@@ -289,6 +286,17 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       return localPolylines;
     }, [polylines]);
 
+    const mapPaddingProp: NativeMapViewProps['mapPadding'] = useMemo(
+      () => ({
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        ...mapPadding,
+      }),
+      [mapPadding],
+    );
+
     return (
       <Animated.View style={style}>
         {/* Preloads map raster images (easiest way for fixing several bugs on android) */}
@@ -305,6 +313,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           showsIndoors={false}
           toolbarEnabled={false}
           customMapStyle={lightMapStyle}
+          mapPadding={mapPaddingProp}
           rotateEnabled={cameraMode === 'free'}
           onPanDrag={onDrag}
           onRegionChangeComplete={async () => {
