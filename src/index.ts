@@ -150,6 +150,7 @@ import PassengerIcon2 from './shared/icons/PassengerIcon2';
 import PayPalIcon from './shared/icons/PayPalIcon';
 import PhoneIcon from './shared/icons/PhoneIcon';
 import PickUpIcon from './shared/icons/PickUpIcon';
+import PinIcon from './shared/icons/PinIcon';
 import PlayIcon from './shared/icons/PlayIcon';
 import PlayVideoIcon from './shared/icons/PlayVideoIcon';
 import PlusIcon from './shared/icons/PlusIcon';
@@ -579,6 +580,7 @@ export {
   PhoneInput,
   PhoneSlidingPanel,
   PickUpIcon,
+  PinIcon,
   PlannedTripAlert,
   type PlannedTripAlertProps,
   PlayIcon,
