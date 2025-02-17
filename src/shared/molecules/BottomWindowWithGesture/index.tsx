@@ -270,7 +270,7 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
         runOnJS(scrollToTop)();
       }
       runOnJS(setIsScrollable)(isCurrentOpen.value && withAllPartsScroll);
-    });
+    }, [isCurrentOpen]);
 
     useEffect(() => {
       if (withAllPartsScroll) {
