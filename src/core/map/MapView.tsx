@@ -312,6 +312,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           showsCompass={false}
           showsIndoors={false}
           toolbarEnabled={false}
+          pitchEnabled={false}
           customMapStyle={lightMapStyle}
           mapPadding={mapPaddingProp}
           rotateEnabled={cameraMode === 'free'}

@@ -48,7 +48,6 @@ const MapCameraModeButton = ({ mode, onPress, style }: MapCameraModeButtonProps)
       mode={CircleButtonModes.Mode2}
       shape={ButtonShapes.Circle}
       withBorder={false}
-      withBackgroundColorOnPress={false}
     >
       <Animated.View style={[iconAnimatedStyle, styles.icon]}>{getIcon()}</Animated.View>
     </Button>

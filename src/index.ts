@@ -168,6 +168,7 @@ import RoundCheckIcon1 from './shared/icons/RoundCheckIcon1';
 import RoundCheckIcon2 from './shared/icons/RoundCheckIcon2';
 import RoundCheckIcon3 from './shared/icons/RoundCheckIcon3';
 import RoundCheckIcon4 from './shared/icons/RoundCheckIcon4';
+import RouteIcon from './shared/icons/RouteIcon';
 import SearchIcon from './shared/icons/SearchIcon';
 import SelectOnMapIcon from './shared/icons/SelectOnMapIcon';
 import SettingsIcon from './shared/icons/SettingsIcon';
@@ -606,6 +607,7 @@ export {
   RoundCheckIcon2,
   RoundCheckIcon3,
   RoundCheckIcon4,
+  RouteIcon,
   SafeAreaView,
   saveTokens,
   ScrollViewWithCustomScroll,
