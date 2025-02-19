@@ -217,6 +217,24 @@ export const countryDtos: CountryPhoneMaskDto[] = [
     countryCode: 'US',
     phoneMask: '(###)###-####',
   },
+  {
+    countryName: 'Australia',
+    icc: '+61',
+    countryCode: 'AU',
+    phoneMask: '#-####-####',
+  },
+  {
+    countryName: 'Indonesia',
+    icc: '+62',
+    countryCode: 'ID',
+    phoneMask: '(8##)###-##-###',
+  },
+  {
+    countryName: 'Singapore',
+    icc: '+65',
+    countryCode: 'SG',
+    phoneMask: '####-####',
+  },
 ];
 
 export const getCountryPhoneMaskByCountryName = (countryName: string) => {
