@@ -8,7 +8,6 @@ import Animated, {
   FadeOut,
   interpolate,
   runOnJS,
-  useAnimatedReaction,
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useDerivedValue,
@@ -82,24 +81,25 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
 
     const onHiddenOrVisibleHeightChangeCallback = () => {
       if (onHiddenOrVisibleHeightChange && bottomWindowRef.current) {
-        bottomWindowRef.current.measure((_, __, ___, ____, _____, pageY) => {
-          onHiddenOrVisibleHeightChange({
-            isOpened: isCurrentOpen.value,
-            isWindowAnimating: isWindowAnimating.value,
-            pageY,
+        //Black magic, don't change timeout (for now)
+        //TODO: Maybe rewrite setTimeout with cleaner idea?
+        setTimeout(() => {
+          bottomWindowRef.current?.measure((_, __, ___, ____, _____, pageY) => {
+            onHiddenOrVisibleHeightChange({
+              isOpened: isCurrentOpen.value,
+              isWindowAnimating: isWindowAnimating.value,
+              pageY,
+            });
           });
-        });
+        }, 200); // Min 150 + 50 for safety
       }
     };
 
-    useAnimatedReaction(
-      () => hiddenAnimatedHeight.value,
-      () => runOnJS(onHiddenOrVisibleHeightChangeCallback)(),
-    );
-    useAnimatedReaction(
-      () => visibleAnimatedHeight.value,
-      () => runOnJS(onHiddenOrVisibleHeightChangeCallback)(),
-    );
+    useDerivedValue(() => {
+      if ((hiddenAnimatedHeight.value, visibleAnimatedHeight.value)) {
+        runOnJS(onHiddenOrVisibleHeightChangeCallback)();
+      }
+    }, [hiddenAnimatedHeight, visibleAnimatedHeight]);
 
     const translateY = useDerivedValue(() => progress.value * hiddenAnimatedHeight.value + threshold.value);
     const bottomWindowAnimatedStyle = useAnimatedStyle(() => ({
