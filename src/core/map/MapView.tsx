@@ -30,13 +30,20 @@ import { useCompass } from '../../utils/compass';
 import { drawArcPolyline } from '../../utils/geolocation/drawArcPolyline';
 import { AnimatedMarker } from './hooks';
 import lightMapStyle from './lightMapStyle.json';
-import MapCar from './MapCar';
+import MapCarMarker from './MapCarMarker';
 import { type MapViewProps, type MapViewRef } from './types';
 import { isCoordinatesEqualZero } from './utils';
 
 export const mapConstants = {
   cameraZoom: 15.8,
   cameraAndPositionAnimationDuration: 400, // must be more or equal geolocation update interval
+  zIndexes: {
+    polyline: 0,
+    car: 1,
+    carThinkingAnimation: 2,
+    marker: 3,
+    currentGeolocation: 4,
+  },
 };
 
 const MapView = forwardRef<MapViewRef, MapViewProps>(
@@ -220,6 +227,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
                 coordinates={polyline.options.coordinates}
                 strokeColor={polyline.options.color ?? '#000'}
                 strokeWidth={4}
+                zIndex={mapConstants.zIndexes.polyline}
               />,
             );
             break;
@@ -245,6 +253,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
                   coordinates={coordinates.slice(j, j + 2)}
                   strokeColor={polyline.options.color ?? '#000'}
                   strokeWidth={4}
+                  zIndex={mapConstants.zIndexes.polyline}
                 />,
               );
             }
@@ -258,6 +267,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
                 coordinates={polyline.options.coordinates}
                 strokeColor={polyline.options.color ?? '#000'}
                 strokeWidth={4}
+                zIndex={mapConstants.zIndexes.polyline}
               />,
             );
             break;
@@ -269,12 +279,14 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
                   strokeWidth={3}
                   strokeColor="#000"
                   coordinates={drawArcPolyline(polyline.options.startPoint, polyline.options.endPoint)}
+                  zIndex={mapConstants.zIndexes.polyline}
                 />
                 <Polyline
                   key={uuidv4()}
                   strokeWidth={3}
                   strokeColor="#00000033"
                   coordinates={[polyline.options.startPoint, polyline.options.endPoint]}
+                  zIndex={mapConstants.zIndexes.polyline}
                 />
               </>,
             );
@@ -333,17 +345,20 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
               coordinate={{ latitude: 0, longitude: 0 }}
               anchor={{ x: 0.5, y: 0.5 }} // centers icon
               flat
+              zIndex={mapConstants.zIndexes.currentGeolocation}
               {...currentLocationMarkerProps}
             />
           )}
 
           {cars &&
             cars.data.map(carData => (
-              <MapCar
+              <MapCarMarker
                 key={carData.id}
                 coordinates={carData.coordinates}
                 heading={carData.heading}
                 animationDuration={cars.animationDuration}
+                zIndex={mapConstants.zIndexes.car}
+                thinkingAnimationZIndex={mapConstants.zIndexes.carThinkingAnimation}
                 withThinkingAnimation={withCarsThinkingAnimation}
               />
             ))}
@@ -358,6 +373,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
                 coordinate={elem}
                 anchor={{ x: 0.5, y: 0.5 }}
                 tracksViewChanges={false}
+                zIndex={mapConstants.zIndexes.marker}
               >
                 <View style={styles.stopPointContainer}>
                   <PickUpIcon style={styles.stopPointIcon} />
@@ -377,8 +393,8 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
                       key={`${i} ${marker.coordinates}`}
                       coordinate={marker.coordinates}
                       anchor={{ x: 0.5, y: 0.98 }}
-                      zIndex={marker.zIndex}
                       tracksViewChanges={false}
+                      zIndex={marker.zIndex ?? mapConstants.zIndexes.marker}
                     >
                       <MapPinIcon colorMode={marker.colorMode} />
                     </Marker>
@@ -389,8 +405,8 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
                       key={`${i} ${marker.coordinates}`}
                       coordinate={marker.coordinates}
                       anchor={{ x: 0.5, y: 0.98 }}
-                      zIndex={marker.zIndex}
                       tracksViewChanges={true}
+                      zIndex={marker.zIndex ?? mapConstants.zIndexes.marker}
                     >
                       <MapPinIcon2 colorMode={marker.colorMode} title={marker.title} subtitle={marker.subtitle} />
                     </Marker>

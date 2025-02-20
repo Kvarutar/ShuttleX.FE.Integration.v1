@@ -15,7 +15,7 @@ import TopViewCarImage from '../../shared/images/TopViewCarImage';
 import LoadingAnimation3dots from '../../shared/molecules/LoadingAnimation3dots';
 import { useTheme } from '../themes/v2/themeContext';
 import { AnimatedMarker } from './hooks';
-import { type MapCarProps } from './types';
+import { type MapCarMarkerProps } from './types';
 
 const rotationAnimationDuration = 600;
 const thinkingAnimationConsts = {
@@ -24,7 +24,14 @@ const thinkingAnimationConsts = {
   paddingBottom: 70,
 };
 
-const MapCar = ({ coordinates, heading, animationDuration, withThinkingAnimation = false }: MapCarProps) => {
+const MapCarMarker = ({
+  coordinates,
+  heading,
+  animationDuration,
+  zIndex,
+  thinkingAnimationZIndex,
+  withThinkingAnimation = false,
+}: MapCarMarkerProps) => {
   const { colors } = useTheme();
 
   const markerRef = useRef<MapMarker>(null);
@@ -66,13 +73,19 @@ const MapCar = ({ coordinates, heading, animationDuration, withThinkingAnimation
         anchor={{ x: 0.5, y: 0.5 }} // centers icon
         flat
         tracksViewChanges
+        zIndex={zIndex}
       >
         <Animated.View style={[styles.carImageContainer, carMarkerAnimatedStyle]}>
           <TopViewCarImage />
         </Animated.View>
       </AnimatedMarker>
       {withThinkingAnimation && (
-        <AnimatedMarker ref={thinkingAnimationMarkerRef} coordinate={coordinates} anchor={{ x: 0.5, y: 0.5 }}>
+        <AnimatedMarker
+          ref={thinkingAnimationMarkerRef}
+          coordinate={coordinates}
+          anchor={{ x: 0.5, y: 0.5 }}
+          zIndex={thinkingAnimationZIndex}
+        >
           <View style={styles.thinkingAnimationContainer}>
             <Shadow
               distance={thinkingAnimationConsts.shadowDistance}
@@ -104,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MapCar;
+export default MapCarMarker;

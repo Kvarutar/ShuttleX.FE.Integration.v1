@@ -76,9 +76,11 @@ export type MapCameraModeButtonProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-export type MapCarProps = {
+export type MapCarMarkerProps = {
   coordinates: LatLng;
   heading: number;
   animationDuration: number;
+  zIndex: number;
+  thinkingAnimationZIndex: number;
   withThinkingAnimation?: boolean;
 };
