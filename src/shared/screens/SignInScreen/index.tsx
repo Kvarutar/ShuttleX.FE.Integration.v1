@@ -34,7 +34,7 @@ const SignInScreenWithoutI18n = forwardRef<SignInScreenRef, SignInScreenProps>(
     const { t } = useTranslation();
 
     const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(
-      getCountryPhoneMaskByCountryName('Ukraine') ?? ({} as CountryPhoneMaskDto),
+      getCountryPhoneMaskByCountryName('United States') ?? ({} as CountryPhoneMaskDto),
     );
     const [data, setData] = useState<string>('');
     const [isPanelPhoneSelectVisible, setIsPanelPhoneSelectVisible] = useState<boolean>(false);

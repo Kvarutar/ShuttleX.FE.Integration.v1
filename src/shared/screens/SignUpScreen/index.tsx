@@ -44,7 +44,7 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
     const [emailErrorMessage, setEmailErrorMessage] = useState<string | null>(null);
     const [isPanelPhoneSelectVisible, setIsPanelPhoneSelectVisible] = useState<boolean>(false);
     const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(
-      getCountryPhoneMaskByCountryName('Ukraine') ?? ({} as CountryPhoneMaskDto),
+      getCountryPhoneMaskByCountryName('United States') ?? ({} as CountryPhoneMaskDto),
     );
 
     useEffect(() => {
