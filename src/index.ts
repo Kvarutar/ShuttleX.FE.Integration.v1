@@ -94,6 +94,7 @@ import CameraIcon from './shared/icons/CameraIcon';
 import CarIcon from './shared/icons/CarIcon';
 import AnimatedCarImage from './shared/icons/CarsWithSeparatedWheels/AnimatedCarImage';
 import ChatIcon from './shared/icons/ChatIcon';
+import ChatIcon2 from './shared/icons/ChatIcon2';
 import CheckIcon2 from './shared/icons/CheckIcon2';
 import ClockIcon from './shared/icons/ClockIcon';
 import ClockIcon2 from './shared/icons/ClockIcon2';
@@ -144,6 +145,7 @@ import MenuIcon from './shared/icons/MenuIcon';
 import MinusIcon from './shared/icons/MinusIcon';
 import MyRideIcon from './shared/icons/MyRideIcon';
 import MysteryBoxIcon from './shared/icons/MysteryBoxIcon';
+import NoteIcon from './shared/icons/NoteIcon';
 import NotificationIcon from './shared/icons/NotificationIcon';
 import PassengerIcon from './shared/icons/PassengerIcon';
 import PassengerIcon2 from './shared/icons/PassengerIcon2';
@@ -189,6 +191,7 @@ import ComfortPlusImage from './shared/icons/Tariffs/ComfortPlusImage';
 import ElectricImage from './shared/icons/Tariffs/ElectricImage';
 import { type TariffIconData, type TariffType, useTariffsIcons } from './shared/icons/Tariffs/TariffsCarImage';
 import TimeIcon from './shared/icons/TimeIcon';
+import { TriangleIcon } from './shared/icons/TriangleIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
 import UploadIcon from './shared/icons/UploadIcon';
 import UploadPhotoIcon from './shared/icons/UploadPhotoIcon';
@@ -394,6 +397,7 @@ export {
   CarIcon,
   ChangeDataPopUp,
   ChatIcon,
+  ChatIcon2,
   CheckBox,
   checkCameraUsagePermission,
   checkGalleryUsagePermission,
@@ -560,6 +564,7 @@ export {
   type NetworkErrorDetailsWithBody,
   type NetworkErrorsBodies,
   NetworkErrorsStatuses,
+  NoteIcon,
   type Notification,
   NotificationIcon,
   NotificationsScreen,
@@ -674,6 +679,7 @@ export {
   TrafficIndicator,
   type TrafficIndicatorProps,
   TrafficLevel,
+  TriangleIcon,
   UnclosablePopup,
   UnknownCardIcon,
   UnsupportedCityPopup,
