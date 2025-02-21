@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import Text from '../../atoms/Text';
 import { SwipeButtonModes } from '../SwipeButton/types';
+import { useCreateRightToLeftGesture } from './hooks';
 import { type SliderWithCustomGestureProps } from './types';
 
 const buttonPercentage = 0.2;
@@ -22,11 +23,15 @@ const SliderWithCustomGesture = ({
   wipeBlockStyle,
   rightToLeftSwipe,
   withWipeBlock = true,
+  isActive,
+  onSwipeStart,
   setIsLoading, // State for async requests, makes animation in SwipeButton component
 }: SliderWithCustomGestureProps) => {
   const { t } = useTranslation();
   const { colors, themeMode } = useTheme();
   const translateX = useSharedValue(0);
+  const lastTranslateX = useSharedValue(0);
+  const isAtMiddle = useSharedValue(false);
 
   const [sliderWidth, setSliderWidth] = useState(0);
   const [innerSliderWidth, setInnerSliderWidth] = useState(0);
@@ -85,42 +90,40 @@ const SliderWithCustomGesture = ({
   const handleSwipeEnd = async () => {
     setIsLoading?.(true);
     await onSwipeEnd();
+    lastTranslateX.value = translateX.value;
     translateX.value = withTiming(0);
     setIsLoading?.(false);
   };
 
-  //TODO: Refactor this methods
-  const gestureHandler = rightToLeftSwipe
-    ? Gesture.Pan()
-        .activeOffsetX([-10, 10]) // Ignoring small horizontal moves for correct working on ScrollView
-        .failOffsetY([-10, 10]) // Accept small vertical moves for correct working on ScrollView
-        .onUpdate(event => {
-          if (mode !== SwipeButtonModes.Disabled) {
-            translateX.value = Math.max(Math.min(event.translationX, 0), -(innerSliderWidth - buttonWidth));
-          }
-        })
-        .onEnd(() => {
-          if (translateX.value <= -(innerSliderWidth - buttonWidth)) {
-            runOnJS(handleSwipeEnd)();
-          } else {
-            translateX.value = withTiming(0);
-          }
-        })
-    : Gesture.Pan()
-        .activeOffsetX([-10, 10]) // Ignoring small horizontal moves for correct working on ScrollView
-        .failOffsetY([-10, 10]) // Accept small vertical moves for correct working on ScrollView
-        .onUpdate(event => {
-          if (mode !== SwipeButtonModes.Disabled) {
-            translateX.value = Math.min(Math.max(event.translationX, 0), innerSliderWidth - buttonWidth);
-          }
-        })
-        .onEnd(() => {
-          if (translateX.value >= innerSliderWidth - buttonWidth) {
-            runOnJS(handleSwipeEnd)();
-          } else {
-            translateX.value = withTiming(0);
-          }
-        });
+  const rightToLeftGesture = useCreateRightToLeftGesture({
+    translateX,
+    lastTranslateX,
+    isAtMiddle,
+    innerSliderWidth,
+    buttonWidth,
+    mode,
+    onSwipeEnd: handleSwipeEnd,
+    onSwipeStart,
+  });
+
+  const defaultGesture = Gesture.Pan()
+    .activeOffsetX([-10, 10])
+    .failOffsetY([-10, 10])
+    .onUpdate(event => {
+      if (mode !== SwipeButtonModes.Disabled) {
+        translateX.value = Math.min(Math.max(event.translationX, 0), innerSliderWidth - buttonWidth);
+      }
+    })
+    .onEnd(() => {
+      if (translateX.value >= innerSliderWidth - buttonWidth) {
+        runOnJS(handleSwipeEnd)();
+      } else {
+        translateX.value = withTiming(0);
+      }
+    });
+
+  const gestureHandler = rightToLeftSwipe ? rightToLeftGesture : defaultGesture;
+
   const animatedSliderStyle = useAnimatedStyle(() => ({
     backgroundColor:
       (rightToLeftSwipe && translateX.value < 0) || !rightToLeftSwipe
@@ -128,10 +131,16 @@ const SliderWithCustomGesture = ({
         : colors.backgroundPrimaryColor,
   }));
 
-  const animatedButtonStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: translateX.value }],
-    width: rightToLeftSwipe ? '100%' : buttonWidth,
-  }));
+  const animatedButtonStyle = useAnimatedStyle(() => {
+    if (!isActive && translateX.value !== 0 && rightToLeftSwipe) {
+      translateX.value = withSpring(0);
+    }
+
+    return {
+      transform: [{ translateX: translateX.value }],
+      width: rightToLeftSwipe ? '100%' : buttonWidth,
+    };
+  });
 
   return (
     <View style={styles.container}>
