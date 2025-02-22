@@ -128,6 +128,7 @@ import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
 import GroupedBrandIconMiniV1 from './shared/icons/GroupedBrandIconMini/V1';
 import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
 import HelpIcon from './shared/icons/HelpIcon';
+import HomeIcon from './shared/icons/HomeIcon';
 import InfoIcon from './shared/icons/InfoIcon';
 import InputXIcon from './shared/icons/InputXIcon';
 import LightningIcon from './shared/icons/LightningIcon';
@@ -192,12 +193,15 @@ import ElectricImage from './shared/icons/Tariffs/ElectricImage';
 import { type TariffIconData, type TariffType, useTariffsIcons } from './shared/icons/Tariffs/TariffsCarImage';
 import TimeIcon from './shared/icons/TimeIcon';
 import { TriangleIcon } from './shared/icons/TriangleIcon';
+import TrueTypeIcon from './shared/icons/TrueTypeIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
 import UploadIcon from './shared/icons/UploadIcon';
 import UploadPhotoIcon from './shared/icons/UploadPhotoIcon';
 import VisaIcon from './shared/icons/VisaIcon';
+import VoiceChatIcon from './shared/icons/VoiceChatIcon';
 import WalletIcon from './shared/icons/WalletIcon';
 import WarningIcon from './shared/icons/WarningIcon';
+import WorkIcon from './shared/icons/WorkIcon';
 import LocationArrowImage from './shared/images/LocationArrowImage';
 import LocationArrowImage2 from './shared/images/LocationArrowImage2';
 import MenuUserImage from './shared/images/MenuUserImage';
@@ -491,6 +495,7 @@ export {
   GroupedButtonsV1,
   HeaderWithTwoTitles,
   HelpIcon,
+  HomeIcon,
   i18nIntegration,
   InfoIcon,
   initCreateAppAsyncThunk,
@@ -680,6 +685,7 @@ export {
   type TrafficIndicatorProps,
   TrafficLevel,
   TriangleIcon,
+  TrueTypeIcon,
   UnclosablePopup,
   UnknownCardIcon,
   UnsupportedCityPopup,
@@ -698,6 +704,8 @@ export {
   useThrottleCallback,
   VerifyDataPopUp,
   VisaIcon,
+  VoiceChatIcon,
   WalletIcon,
   WarningIcon,
+  WorkIcon,
 };
