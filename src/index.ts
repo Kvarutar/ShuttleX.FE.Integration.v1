@@ -150,11 +150,13 @@ import NoteIcon from './shared/icons/NoteIcon';
 import NotificationIcon from './shared/icons/NotificationIcon';
 import PassengerIcon from './shared/icons/PassengerIcon';
 import PassengerIcon2 from './shared/icons/PassengerIcon2';
+import PauseRoundIcon from './shared/icons/PauseRoundIcon';
 import PayPalIcon from './shared/icons/PayPalIcon';
 import PhoneIcon from './shared/icons/PhoneIcon';
 import PickUpIcon from './shared/icons/PickUpIcon';
 import PinIcon from './shared/icons/PinIcon';
 import PlayIcon from './shared/icons/PlayIcon';
+import PlayRoundIcon from './shared/icons/PlayRoundIcon';
 import PlayVideoIcon from './shared/icons/PlayVideoIcon';
 import PlusIcon from './shared/icons/PlusIcon';
 import PlusInCircleIcon from './shared/icons/PlusInCircleIcon';
@@ -583,6 +585,7 @@ export {
   PassengerDefaultCarImage,
   PassengerIcon,
   PassengerIcon2,
+  PauseRoundIcon,
   PaymentBar,
   type PaymentMethod,
   PayPalIcon,
@@ -594,6 +597,7 @@ export {
   PlannedTripAlert,
   type PlannedTripAlertProps,
   PlayIcon,
+  PlayRoundIcon,
   PlayVideoIcon,
   PlusIcon,
   PlusInCircleIcon,
