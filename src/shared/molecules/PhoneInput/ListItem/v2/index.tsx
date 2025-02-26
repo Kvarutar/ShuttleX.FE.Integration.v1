@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, View } from 'react-native';
-import { useTheme } from 'shuttlex-integration';
 
+import { useTheme } from '../../../../../core/themes/v2/themeContext';
 import Text from '../../../../atoms/Text';
 import ShortArrowIcon from '../../../../icons/ShortArrowIcon';
 import { type ListItemProps } from '../props';

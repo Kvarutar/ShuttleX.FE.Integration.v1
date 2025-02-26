@@ -1,5 +1,6 @@
 import { type GestureResponderEvent, type StyleProp, type ViewStyle } from 'react-native';
-import { type PaymentMethod } from 'shuttlex-integration';
+
+import { type PaymentMethod } from '../../../utils/payment/types';
 
 export type PaymentBarProps = {
   style?: StyleProp<ViewStyle>;

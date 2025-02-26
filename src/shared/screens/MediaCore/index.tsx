@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Alert, Linking, Platform, StyleSheet, View } from 'react-native';
+import { Alert, Platform, StyleSheet, View } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import { type ImagePickerResponse, launchCamera, launchImageLibrary } from 'react-native-image-picker';
@@ -24,6 +24,7 @@ import ShortArrowIcon from '../../icons/ShortArrowIcon';
 import BigHeader from '../../molecules/BigHeader';
 import SafeAreaView from '../../molecules/SafeAreaView';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
+import { useMediaPermissionAlert } from './mediaUtils';
 import { PhotoType } from './Photo/types';
 import SelectedFilePresentation from './SelectedFilePresentation';
 import {
@@ -50,6 +51,7 @@ const MediaCoreWithoutI18n = ({
 }: MediaCoreProps): JSX.Element => {
   const { t } = useTranslation();
   const { colors } = useTheme();
+  const { showPermissionAlert } = useMediaPermissionAlert();
 
   const [isFileLoaded, setIsFileLoaded] = useState(true);
   const [selectedFiles, setSelectedFiles] = useState<SelectedFile[]>([]);
@@ -92,19 +94,6 @@ const MediaCoreWithoutI18n = ({
     setIsFileLoaded(true);
   };
 
-  const showPermissionAlert = (messageKey: string, titleKey: string) => {
-    Alert.alert(t(titleKey), t(messageKey), [
-      {
-        text: t('MediaCore_permissionDeniedCancel'),
-        style: 'cancel',
-      },
-      {
-        text: t('MediaCore_permissionDeniedGoToSettings'),
-        onPress: () => Linking.openSettings(),
-      },
-    ]);
-  };
-
   const handlePhotoAction = async (action: 'camera' | 'gallery') => {
     const permissionCheck = action === 'camera' ? checkCameraUsagePermission : checkGalleryUsagePermission;
     const requestPermission = action === 'camera' ? requestCameraUsagePermission : requestGalleryUsagePermission;
@@ -129,10 +118,7 @@ const MediaCoreWithoutI18n = ({
     }
 
     if (permissionStatus === RESULTS.DENIED || permissionStatus === RESULTS.BLOCKED) {
-      showPermissionAlert(
-        action === 'camera' ? 'MediaCore_permissionDeniedCameraMessage' : 'MediaCore_permissionDeniedGalleryMessage',
-        'MediaCore_permissionDeniedTitle',
-      );
+      showPermissionAlert(action);
       return;
     }
   };

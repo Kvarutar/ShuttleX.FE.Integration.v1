@@ -290,6 +290,7 @@ import SubscriptionHelpPopup from './shared/screens/AccountSettingsScreen/popups
 import { type AccountSettingsVerificationMethod } from './shared/screens/AccountSettingsScreen/types';
 import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
+import ChatCore from './shared/screens/ChatCore';
 import CodeVerificationScreen from './shared/screens/CodeVerificationScreen';
 import TitleWithCloseButton from './shared/screens/CodeVerificationScreen/TitleWithCloseButton';
 import { type CodeVerificationScreenRef } from './shared/screens/CodeVerificationScreen/types';
@@ -402,6 +403,7 @@ export {
   type Card,
   CarIcon,
   ChangeDataPopUp,
+  ChatCore,
   ChatIcon,
   ChatIcon2,
   CheckBox,

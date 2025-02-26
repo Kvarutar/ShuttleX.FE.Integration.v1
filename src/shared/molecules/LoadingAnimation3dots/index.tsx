@@ -9,7 +9,8 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { useTheme } from 'shuttlex-integration';
+
+import { useTheme } from '../../../core/themes/v2/themeContext';
 
 const animationProperties = {
   numCards: 3,

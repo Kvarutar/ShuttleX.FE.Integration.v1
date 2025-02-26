@@ -58,7 +58,11 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     moduleName === '@react-native-firebase/messaging' ||
     moduleName === 'react-native-linear-gradient' ||
     moduleName === '@reduxjs/toolkit' ||
-    moduleName === 'react-native-localize'
+    moduleName === 'react-native-localize' ||
+    moduleName === 'react-native-keychain' ||
+    moduleName === '@sentry/react-native' ||
+    moduleName === 'react-native-document-picker' ||
+    moduleName === 'react-native-image-crop-picker'
   ) {
     return { type: 'empty' };
   }

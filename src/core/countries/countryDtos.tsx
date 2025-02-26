@@ -1,4 +1,4 @@
-import { type CountryPhoneMaskDto } from 'shuttlex-integration';
+import { type CountryPhoneMaskDto } from './types';
 
 export const countryDtos: CountryPhoneMaskDto[] = [
   {

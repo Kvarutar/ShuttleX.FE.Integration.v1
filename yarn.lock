@@ -2745,6 +2745,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@expo/react-native-action-sheet@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "@expo/react-native-action-sheet@npm:4.1.0"
+  dependencies:
+    "@types/hoist-non-react-statics": "npm:^3.3.1"
+    hoist-non-react-statics: "npm:^3.3.0"
+  peerDependencies:
+    react: ">=18.0.0"
+  checksum: df8b4ef0f8067a2cf324e2cf5f0aaaf87210ab7e0bb03da34a97c50b7b49062eef94550ed4b2ae7b25c04d4372291ef58f553e96c66679fba0c152f99b88caf5
+  languageName: node
+  linkType: hard
+
 "@expo/rudder-sdk-node@npm:1.1.1":
   version: 1.1.1
   resolution: "@expo/rudder-sdk-node@npm:1.1.1"
@@ -6526,6 +6538,22 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: 6bf5337bc447b706bb5b4431d37686aa2ea6d07cfd6f79cc31de80170d6ff9b1c7384a9c0ccbc45b3f512bae9e9f75c2e12109806a15331dc94e8a8db6dbb4ac
+  languageName: node
+  linkType: hard
+
+"@types/lodash.isequal@npm:^4.5.8":
+  version: 4.5.8
+  resolution: "@types/lodash.isequal@npm:4.5.8"
+  dependencies:
+    "@types/lodash": "npm:*"
+  checksum: 6db28cacf165d55421fbf2970ccfb1682a7b82b743bb7aba4398fa8ab98f1711fca2fe4afa1aa2b7b4afb3eff76c8aca13b22206f5efeb038d99e41300589bca
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*":
+  version: 4.17.15
+  resolution: "@types/lodash@npm:4.17.15"
+  checksum: 2eb2dc6d231f5fb4603d176c08c8d7af688f574d09af47466a179cd7812d9f64144ba74bb32ca014570ffdc544eedc51b7a5657212bad083b6eecbd72223f9bb
   languageName: node
   linkType: hard
 
@@ -10660,6 +10688,13 @@ __metadata:
   dependencies:
     "@babel/runtime": "npm:^7.21.0"
   checksum: e4b521fbf22bc8c3db332bbfb7b094fd3e7627de0259a9d17c7551e2d2702608a7307a449206065916538e384f37b181565447ce2637ae09828427aed9cb5581
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.13":
+  version: 1.11.13
+  resolution: "dayjs@npm:1.11.13"
+  checksum: a3caf6ac8363c7dade9d1ee797848ddcf25c1ace68d9fe8678ecf8ba0675825430de5d793672ec87b24a69bf04a1544b176547b2539982275d5542a7955f35b7
   languageName: node
   linkType: hard
 
@@ -16732,6 +16767,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: dfdb2356db19631a4b445d5f37868a095e2402292d59539a987f134a8778c62a2810c2452d11ae9e6dcac71fc9de40a6fedcb20e2952a15b431ad8b29e50e28f
+  languageName: node
+  linkType: hard
+
 "lodash.isfunction@npm:^3.0.9":
   version: 3.0.9
   resolution: "lodash.isfunction@npm:3.0.9"
@@ -20252,7 +20294,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.0.0, prop-types@npm:^15.5.10, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.0.0, prop-types@npm:^15.5.10, prop-types@npm:^15.7.2, prop-types@npm:^15.7.x, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -20650,6 +20692,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-communications@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "react-native-communications@npm:2.2.1"
+  checksum: 12224bcd0d895f5a0eb63106409ba8dbbd996bed40c2fcae983815031c064eae194016a1e6d4eed982d0cd7f95ab73602b71619255da3a4ff0c085b6fe62027c
+  languageName: node
+  linkType: hard
+
 "react-native-confetti-cannon@npm:^1.5.2":
   version: 1.5.2
   resolution: "react-native-confetti-cannon@npm:1.5.2"
@@ -20721,6 +20770,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-gifted-chat@npm:^2.6.5":
+  version: 2.7.3
+  resolution: "react-native-gifted-chat@npm:2.7.3"
+  dependencies:
+    "@expo/react-native-action-sheet": "npm:^4.1.0"
+    "@types/lodash.isequal": "npm:^4.5.8"
+    dayjs: "npm:^1.11.13"
+    lodash.isequal: "npm:^4.5.0"
+    react-native-communications: "npm:^2.2.1"
+    react-native-iphone-x-helper: "npm:^1.3.1"
+    react-native-lightbox-v2: "npm:^0.9.2"
+    react-native-parsed-text: "npm:^0.0.22"
+  peerDependencies:
+    "@shopify/flash-list": ">=1.0.0"
+    react: "*"
+    react-native: "*"
+    react-native-keyboard-controller: ">=1.0.0"
+    react-native-reanimated: ">=2.0.0"
+  checksum: 4e612bb7d421a4b5877aca5635a250fe277c0ee65f754b042648eff94a1b4ad0a0398cd166d05f9c82a19909fb2c14bc7cf996a285055974d58e45ea5d56b503
+  languageName: node
+  linkType: hard
+
 "react-native-image-crop-picker@npm:^0.41.4":
   version: 0.41.5
   resolution: "react-native-image-crop-picker@npm:0.41.5"
@@ -20740,10 +20811,39 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-image-viewing@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "react-native-image-viewing@npm:0.2.2"
+  peerDependencies:
+    react: ">=16.11.0"
+    react-native: ">=0.61.3"
+  checksum: b2a089b17e99008fa7f14a3a3a6776c343437742f1e48bc7a2639c429112e85448f288f81bb926c0d68c0ac1789faad89c2338be89f2dbb0b39d8192fb790eb2
+  languageName: node
+  linkType: hard
+
+"react-native-iphone-x-helper@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "react-native-iphone-x-helper@npm:1.3.1"
+  peerDependencies:
+    react-native: ">=0.42.0"
+  checksum: f2e01cb30ebdba54cbadc7bcb584ef7491c24aa2d221312f084c6e7b1031b77c2d538f7bf778ee16959245dbbe4f7784bbead02448368b7d0cbe8dd8c808693f
+  languageName: node
+  linkType: hard
+
 "react-native-keychain@npm:8.2.0":
   version: 8.2.0
   resolution: "react-native-keychain@npm:8.2.0"
   checksum: 7c32335f673c60bd64576bd21b087cdf601087f1588296367546b5fca15aa83be86723d5414ea90667ebc251237918853f65147de7f8df0707b228e6a13ab829
+  languageName: node
+  linkType: hard
+
+"react-native-lightbox-v2@npm:^0.9.2":
+  version: 0.9.2
+  resolution: "react-native-lightbox-v2@npm:0.9.2"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-native: ">=0.61.0"
+  checksum: 3791c3a191bab0427dfc631242c2ca434fb15bb22ef9b13e3ef20325e0b326335c371c5b02b782f28755fdad53e96ef6d01a4ffdd8f2430f4a8f153fb2b88385
   languageName: node
   linkType: hard
 
@@ -20831,6 +20931,18 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 5e752d4aebafa046e778298bf08a9298b936d7b81df2196da820cb9fe40f10f7442c216ca723be5dc23e663682482adc0dc6878e67e7aa2dac37d1ac2ca1fb26
+  languageName: node
+  linkType: hard
+
+"react-native-parsed-text@npm:^0.0.22":
+  version: 0.0.22
+  resolution: "react-native-parsed-text@npm:0.0.22"
+  dependencies:
+    prop-types: "npm:^15.7.x"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 34c1a4383d31dd1dd9e0f622b1b947b887cb24405329b802f1a4c0965bd0255bc32b569398f807de96bba220a0cd265cd49a99f005924d012770cdb2febcdb3f
   languageName: node
   linkType: hard
 
@@ -22540,8 +22652,10 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-device-info: "npm:^10.13.1"
     react-native-document-picker: "npm:9.1.1"
     react-native-gesture-handler: "npm:^2.14.0"
+    react-native-gifted-chat: "npm:^2.6.5"
     react-native-image-crop-picker: "npm:^0.41.4"
     react-native-image-picker: "npm:7.1.0"
+    react-native-image-viewing: "npm:^0.2.2"
     react-native-keychain: "npm:8.2.0"
     react-native-linear-gradient: "npm:^2.8.3"
     react-native-localize: "npm:^3.0.2"

@@ -194,5 +194,6 @@
   "ReceiptScreen_minutes": "{{count}}min",
   "ReceiptScreen_meters": "m",
   "ReceiptScreen_kilometers": "km",
-  "ReceiptScreen_cancelledTrip": "Cancelled trip"
+  "ReceiptScreen_cancelledTrip": "Cancelled trip",
+  "ChatCore_Header": "Chat"
 }

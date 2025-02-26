@@ -1,11 +1,12 @@
 import { forwardRef, type ReactNode, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, type StyleProp, StyleSheet, type TextStyle, View, type ViewStyle } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
-import { LoadingSpinner, LoadingSpinnerIconModes } from 'shuttlex-integration';
 
 import { buttonShadow, DISABLED_SHADOW_COLOR } from '../../../../core/themes/shadows';
 import { type PaletteButtonMode } from '../../../../core/themes/v2/palettes/paletteTypes';
 import { useTheme } from '../../../../core/themes/v2/themeContext';
+import LoadingSpinner from '../../../molecules/LoadingSpinner';
+import { LoadingSpinnerIconModes } from '../../../molecules/LoadingSpinner/types';
 import Blur from '../../Blur';
 import Text from '../../Text';
 import ButtonAnimation from './ButtonAnimation';

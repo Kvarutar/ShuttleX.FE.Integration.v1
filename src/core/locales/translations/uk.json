@@ -124,5 +124,6 @@
   "ReceiptScreen_start": "Початок",
   "ReceiptScreen_finish": "Кінець",
   "ReceiptScreen_time": "Час",
-  "ReceiptScreen_cancelledTrip": "Скасована поїздка"
+  "ReceiptScreen_cancelledTrip": "Скасована поїздка",
+  "ChatCore_Header": "Чат"
 }
