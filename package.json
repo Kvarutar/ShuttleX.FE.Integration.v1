@@ -58,6 +58,7 @@
   "dependencies": {
     "@googlemaps/polyline-codec": "^1.0.28",
     "@react-native/eslint-config": "0.73.2",
+    "@shopify/flash-list": "^1.7.3",
     "axios": "^1.7.2",
     "axios-retry": "^4.4.2",
     "color-interpolate": "^1.0.5",
@@ -72,6 +73,7 @@
     "react-native-image-crop-picker": "^0.41.4",
     "react-native-image-picker": "7.1.0",
     "react-native-image-viewing": "^0.2.2",
+    "react-native-keyboard-controller": "^1.16.6",
     "react-native-otp-entry": "^1.8.2",
     "react-native-reanimated-skeleton": "^1.5.1",
     "react-native-slide-to-unlock": "DevShuttleXInc/react-native-slide-to-unlock"
