@@ -1,3 +1,4 @@
+import { type SpeechVolumeChangeEvent } from '@react-native-voice/voice';
 import { type IMessage } from 'react-native-gifted-chat';
 
 export type ChatCoreProps = {
@@ -7,4 +8,15 @@ export type ChatCoreProps = {
   onBackButtonPress: () => void;
   errorLogger: (...messages: any[]) => void;
   chatName?: string;
+};
+
+export type AttachmentPopupState = {
+  onCameraPress: () => void;
+  onGalleryPress: () => void;
+  onDocumentPress: () => void;
+};
+
+export type ListeningAnimationState = {
+  iconWidth: number;
+  event?: SpeechVolumeChangeEvent;
 };

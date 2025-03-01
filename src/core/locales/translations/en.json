@@ -195,5 +195,12 @@
   "ReceiptScreen_meters": "m",
   "ReceiptScreen_kilometers": "km",
   "ReceiptScreen_cancelledTrip": "Cancelled trip",
-  "ChatCore_Header": "Chat"
+  "ChatCore_Header": "Chat",
+  "ChatCore_attachPhotos": "Attach Photos",
+  "ChatCore_takePhoto": "Take Photo",
+  "ChatCore_attachFile": "Attach Files",
+  "ChatCore_titleAlertSelectDocument": "Error",
+  "ChatCore_messageAlertSelectDocument": "Unable to select document. Please try again",
+  "ChatCore_titleAlertDuplicateFile": "The file has already been uploaded",
+  "ChatCore_messageAlertDuplicateFile": "This file has already been added"
 }

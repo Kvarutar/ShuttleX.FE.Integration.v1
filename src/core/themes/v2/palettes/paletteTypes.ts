@@ -20,6 +20,14 @@ export type LotteryColors = {
   textColorWithOpacity: string;
 };
 
+export type ChatColors = {
+  popupBackgroundColor: string;
+  cardsBackgroundColor: string;
+  tagColor: string;
+  starIconColor: string;
+  strokeColor: string;
+};
+
 export type PaletteCircleButtonModes = { [key in CircleButtonModes]: PaletteButtonMode };
 export type PaletteSquareButtonModes = { [key in SquareButtonModes]: PaletteButtonMode };
 
@@ -63,4 +71,5 @@ export type Palette = {
   lottery: LotteryColors;
   skeletonBoneColor: string;
   skeletonHighlightColor: string;
+  chat: ChatColors;
 };

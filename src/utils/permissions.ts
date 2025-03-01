@@ -58,11 +58,28 @@ const checkGeolocationPermissionAndAccuracy = async (
   }
 };
 
-const requestCameraUsagePermission = async (): Promise<void> => {
+//TODO use this permissions on ChatCore
+const requestMicrophonUsagePermission = async (): Promise<PermissionStatus> => {
   if (Platform.OS === 'ios') {
-    await request(PERMISSIONS.IOS.CAMERA);
+    return await request(PERMISSIONS.IOS.MICROPHONE);
   } else {
-    await request(PERMISSIONS.ANDROID.CAMERA);
+    return await request(PERMISSIONS.ANDROID.RECORD_AUDIO);
+  }
+};
+
+const checkMicrophonUsagePermission = async (): Promise<PermissionStatus> => {
+  if (Platform.OS === 'ios') {
+    return await check(PERMISSIONS.IOS.MICROPHONE);
+  } else {
+    return await check(PERMISSIONS.ANDROID.RECORD_AUDIO);
+  }
+};
+
+const requestCameraUsagePermission = async (): Promise<PermissionStatus> => {
+  if (Platform.OS === 'ios') {
+    return await request(PERMISSIONS.IOS.CAMERA);
+  } else {
+    return await request(PERMISSIONS.ANDROID.CAMERA);
   }
 };
 
@@ -74,14 +91,14 @@ const checkCameraUsagePermission = async (): Promise<PermissionStatus> => {
   }
 };
 
-const requestGalleryUsagePermission = async (): Promise<void> => {
+const requestGalleryUsagePermission = async (): Promise<PermissionStatus> => {
   if (Platform.OS === 'ios') {
-    await request(PERMISSIONS.IOS.PHOTO_LIBRARY);
+    return await request(PERMISSIONS.IOS.PHOTO_LIBRARY);
   } else {
     if (Number(platformVersion) > 32) {
-      await request(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES);
+      return await request(PERMISSIONS.ANDROID.READ_MEDIA_IMAGES);
     } else {
-      await request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE);
+      return await request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE);
     }
   }
 };
@@ -106,7 +123,9 @@ export {
   checkCameraUsagePermission,
   checkGalleryUsagePermission,
   checkGeolocationPermissionAndAccuracy,
+  checkMicrophonUsagePermission,
   requestCameraUsagePermission,
   requestGalleryUsagePermission,
   requestGeolocationPermission,
+  requestMicrophonUsagePermission,
 };

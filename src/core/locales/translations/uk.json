@@ -125,5 +125,10 @@
   "ReceiptScreen_finish": "Кінець",
   "ReceiptScreen_time": "Час",
   "ReceiptScreen_cancelledTrip": "Скасована поїздка",
-  "ChatCore_Header": "Чат"
+  "ChatCore_Header": "Чат",
+  "ChatCore_attachPhotos": "Прикріпити Фото",
+  "ChatCore_takePhoto": "Зробити Фото",
+  "ChatCore_attachFile": "Прикріпити Файли",
+  "ChatCore_titleAlertSelectDocument": "Помилка",
+  "ChatCore_messageAlertSelectDocument": "Не вдалося обрати документ. Спробуйте ще раз"
 }

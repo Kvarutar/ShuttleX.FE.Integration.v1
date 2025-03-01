@@ -1,4 +1,5 @@
 import {
+  type ChatColors,
   type LotteryColors,
   type Palette,
   type PaletteCircleButtonModes,
@@ -6,7 +7,7 @@ import {
   type PaletteTimerModes,
 } from './paletteTypes';
 
-const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerColorModes' | 'lottery'> = {
+const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerColorModes' | 'lottery' | 'chat'> = {
   primaryColor: '#CEFC28',
   primaryColorWithOpacity: '#CEFC2829',
   primaryGradientStartColor: '#EEF5FF',
@@ -142,10 +143,19 @@ const lottery: LotteryColors = {
   textColorWithOpacity: '#FFFFFF99',
 };
 
+const chat: ChatColors = {
+  popupBackgroundColor: '#F7F6F7',
+  cardsBackgroundColor: '#E6E6E6',
+  tagColor: '#B0C1D1',
+  starIconColor: '#FAD02C',
+  strokeColor: '#A0B84A',
+};
+
 export const lightPalette: Palette = {
   ...colors,
   squareButtonModes,
   circleButtonModes,
   timerColorModes,
   lottery,
+  chat,
 };

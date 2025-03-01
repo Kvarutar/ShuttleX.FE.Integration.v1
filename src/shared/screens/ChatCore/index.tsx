@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import Voice, { type SpeechVolumeChangeEvent } from '@react-native-voice/voice';
+import { useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Image, type ImageURISource, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, type ImageURISource, StyleSheet, TouchableOpacity, View } from 'react-native';
+import DocumentPicker from 'react-native-document-picker';
 import {
   Bubble,
   type BubbleProps,
@@ -17,6 +19,7 @@ import {
 import ImageCropPicker from 'react-native-image-crop-picker';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import ImageView from 'react-native-image-viewing';
+import { getLocales } from 'react-native-localize';
 import { type PermissionStatus, RESULTS } from 'react-native-permissions';
 
 import i18nIntegration from '../../../core/locales/i18n';
@@ -32,13 +35,23 @@ import { ButtonShapes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
 import ArrowSendMessageIcon from '../../icons/ArrowSendMessageIcon';
 import AttachImageIcon from '../../icons/AttachImageIcon';
-import CameraIcon from '../../icons/CameraIcon';
 import CloseIcon from '../../icons/CloseIcon';
 import VoiceChatIcon from '../../icons/VoiceChatIcon';
 import CustomKeyboardAvoidingView from '../../molecules/KeyboardAvoidingView';
 import SafeAreaView from '../../molecules/SafeAreaView';
 import { useMediaPermissionAlert } from '../MediaCore/mediaUtils';
+import AttachmentPopup from './AttachmentPopup';
+import ListeningAnimation from './ListeningAnimation';
 import { type ChatCoreProps } from './types';
+
+const getVoiceLanguage = (languageCode?: string) => {
+  const languageMap: Record<string, string> = {
+    en: 'en-US',
+    uk: 'uk-UA',
+    ar: 'ar-SA',
+  };
+  return languageCode ? languageMap[languageCode] : 'en-US';
+};
 
 const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chatName, errorLogger }: ChatCoreProps) => {
   const { colors } = useTheme();
@@ -48,6 +61,64 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedImages, setSelectedImages] = useState<ImageURISource[]>([]);
   const [inputText, setInputText] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  const [isAttachedPopupVisible, setIsAttachedPopupVisible] = useState(false);
+  const [iconWidth, setIconWidth] = useState(0);
+  const [volumeChangeEvent, setVolumeChangeEvent] = useState<SpeechVolumeChangeEvent>();
+  const [selectedFiles, setSelectedFiles] = useState<IMessage[]>([]);
+  const deviceLanguage = getVoiceLanguage(getLocales()[0]?.languageCode);
+
+  const addSelectedFile = (file: IMessage) => {
+    const fileExists = selectedFiles.some(selectedFile => selectedFile.image === file.image);
+
+    if (fileExists) {
+      Alert.alert(t('ChatCore_titleAlertDuplicateFile'), t('ChatCore_messageAlertDuplicateFile'));
+    } else {
+      setSelectedFiles(prevFiles => [...prevFiles, file]);
+    }
+  };
+
+  useEffect(() => {
+    Voice.onSpeechStart = () => setIsListening(true);
+    Voice.onSpeechError = event => {
+      errorLogger('Voice library error', event);
+    };
+    Voice.onSpeechEnd = () => setIsListening(false);
+
+    Voice.onSpeechResults = event => {
+      if (event.value && event.value.length > 0 && event.value[0]) {
+        setInputText(event.value[0]);
+      }
+    };
+
+    Voice.onSpeechVolumeChanged = e => {
+      setVolumeChangeEvent(e);
+    };
+
+    return () => {
+      Voice.destroy().then(Voice.removeAllListeners);
+    };
+  }, [errorLogger]);
+
+  const startListening = async () => {
+    try {
+      await Voice.start(deviceLanguage, {
+        RECOGNIZER_ENGINE: 'services',
+        EXTRA_PARTIAL_RESULTS: true,
+      });
+    } catch (error) {
+      errorLogger('Voice start error:', error);
+    }
+  };
+
+  const stopListening = async () => {
+    try {
+      await Voice.stop();
+      setIsListening(false);
+    } catch (error) {
+      errorLogger('Voice stop error:', error);
+    }
+  };
 
   const openImageModal = (imageUri: string) => {
     setSelectedImages([{ uri: imageUri }]);
@@ -76,6 +147,7 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
   };
 
   const handlePhotoAction = async (action: 'camera' | 'gallery') => {
+    setIsAttachedPopupVisible(false);
     const permissionCheck = action === 'camera' ? checkCameraUsagePermission : checkGalleryUsagePermission;
     const requestPermission = action === 'camera' ? requestCameraUsagePermission : requestGalleryUsagePermission;
 
@@ -100,7 +172,7 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
         ? await launchCamera({ mediaType: 'photo', quality: 0.8 })
         : await launchImageLibrary({ mediaType: 'photo', selectionLimit: 0, quality: 0.8 });
 
-    if (response.assets?.length !== 0) {
+    if (!response.assets || response.assets.length === 0) {
       return;
     }
 
@@ -139,6 +211,34 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
     onSend([{ _id: croppedUri, text: '', createdAt: new Date(), user: { _id: userId }, image: croppedUri }]);
   };
 
+  const onSelectDocument = async () => {
+    try {
+      const result = await DocumentPicker.pickSingle({ type: [DocumentPicker.types.allFiles] });
+      const newFile: IMessage = {
+        _id: result.uri,
+        text: '',
+        createdAt: new Date(),
+        user: { _id: userId },
+        image: result.uri,
+      };
+      addSelectedFile(newFile);
+      return newFile;
+    } catch {
+      Alert.alert(t('ChatCore_titleAlertSelectDocument'), t('ChatCore_messageAlertSelectDocument'));
+      return null;
+    }
+  };
+
+  const handleDocumentAction = async () => {
+    setIsAttachedPopupVisible(false);
+    const newFile = await onSelectDocument();
+
+    if (newFile) {
+      onSend([newFile]);
+      setSelectedFiles([]);
+    }
+  };
+
   const computedStyles = StyleSheet.create({
     headerText: {
       color: colors.textPrimaryColor,
@@ -160,6 +260,7 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
     },
     composer: {
       color: colors.textPrimaryColor,
+      opacity: isListening ? 0 : 1,
     },
     sendButton: {
       backgroundColor: colors.primaryColor,
@@ -199,33 +300,42 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
   );
 
   const renderActions = () => (
-    <TouchableOpacity style={styles.actionsContainer} onPress={() => handlePhotoAction('gallery')}>
-      <AttachImageIcon style={styles.icon} />
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity
+        style={styles.actionsContainer}
+        onPress={() => setIsAttachedPopupVisible(!isAttachedPopupVisible)}
+        onLayout={e => setIconWidth(e.nativeEvent.layout.width)}
+      >
+        <AttachImageIcon style={styles.icon} />
+      </TouchableOpacity>
+      {isAttachedPopupVisible && (
+        <AttachmentPopup
+          onCameraPress={() => handlePhotoAction('camera')}
+          onGalleryPress={() => handlePhotoAction('gallery')}
+          onDocumentPress={handleDocumentAction}
+        />
+      )}
+    </>
   );
 
   const renderComposer = (props: ComposerProps) => (
-    <Composer {...props} textInputStyle={[styles.composer, computedStyles.composer]} />
+    <>
+      {isListening && <ListeningAnimation iconWidth={iconWidth} event={volumeChangeEvent} />}
+
+      <Composer {...props} textInputStyle={[styles.composer, computedStyles.composer]} />
+    </>
   );
 
   const renderSend = (props: SendProps<IMessage>) => {
     if (inputText.trim() === '') {
       return (
-        <View style={styles.buttonWrapper}>
-          <TouchableOpacity
-            style={[styles.sendButton, computedStyles.sendButton]}
-            onPress={() => handlePhotoAction('camera')}
-          >
-            <CameraIcon style={styles.icon} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.sendButton, computedStyles.sendButton]}
-            //TODO launch voice input
-            // onPress={() => handlePhotoAction('camera')}
-          >
-            <VoiceChatIcon style={styles.voiceIcon} />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={[styles.sendButton, computedStyles.sendButton]}
+          onLongPress={startListening}
+          onPressOut={stopListening}
+        >
+          <VoiceChatIcon style={styles.voiceIcon} />
+        </TouchableOpacity>
       );
     }
 
@@ -254,6 +364,7 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
         </View>
 
         <GiftedChat
+          text={inputText}
           onInputTextChanged={setInputText}
           keyboardShouldPersistTaps="handled"
           user={{ _id: userId }}
@@ -270,6 +381,7 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
           renderDay={() => null}
           alwaysShowSend
           inverted={false}
+          renderAvatar={null}
         />
 
         <ImageView images={selectedImages} imageIndex={0} visible={isModalVisible} onRequestClose={closeImageModal} />
@@ -301,7 +413,7 @@ const styles = StyleSheet.create({
     left: 0,
   },
   bubbleWrapper: {
-    padding: 12,
+    padding: 10,
     borderRadius: 30,
   },
   bubbleText: {

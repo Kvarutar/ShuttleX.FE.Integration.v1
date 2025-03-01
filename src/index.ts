@@ -122,6 +122,7 @@ import FeedbackThumbDownIcon from './shared/icons/FeedbackThumbDownIcon';
 import FeedbackThumbUpIcon from './shared/icons/FeedbackThumbUpIcon';
 import FeedbackWheelIcon from './shared/icons/FeedbackWheelIcon';
 import { countryFlags } from './shared/icons/Flags';
+import FolderIcon from './shared/icons/FolderIcon';
 import GalleryIcon from './shared/icons/GalleryIcon';
 import GameIcon from './shared/icons/GameIcon';
 import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
@@ -471,6 +472,7 @@ export {
   type FileInfo,
   FlatListWithCustomScroll,
   Fog,
+  FolderIcon,
   formatCurrency,
   formatNumbersToMask,
   formatPhone,
