@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { type ImageStyle, Platform, type StyleProp, StyleSheet, View } from 'react-native';
 import { type LatLng, type MapMarker } from 'react-native-maps';
 import Animated, {
   Easing,
@@ -11,10 +11,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Shadow } from 'react-native-shadow-2';
 
-import TopViewCarImage from '../../shared/images/TopViewCarImage';
-import LoadingAnimation3dots from '../../shared/molecules/LoadingAnimation3dots';
-import { useTheme } from '../themes/v2/themeContext';
-import { AnimatedMarker } from './hooks';
+import TopViewCarImage from '../../../../shared/images/TopViewCarImage';
+import LoadingAnimation3dots from '../../../../shared/molecules/LoadingAnimation3dots';
+import { useTheme } from '../../../themes/v2/themeContext';
+import { AnimatedMarker } from '../../hooks';
 import { type MapCarMarkerProps } from './types';
 
 const rotationAnimationDuration = 600;
@@ -24,19 +24,29 @@ const thinkingAnimationConsts = {
   paddingBottom: 70,
 };
 
+export const constants = {
+  carImageContainer: {
+    width: 100,
+    height: 100,
+  },
+};
+
 const MapCarMarker = ({
-  coordinates,
+  coordinate,
   heading,
   animationDuration,
   zIndex,
   thinkingAnimationZIndex,
   withThinkingAnimation = false,
+  carStyles,
 }: MapCarMarkerProps) => {
   const { colors } = useTheme();
 
   const markerRef = useRef<MapMarker>(null);
+  const markerCoordinatesRef = useRef<LatLng>(coordinate);
   const thinkingAnimationMarkerRef = useRef<MapMarker>(null);
-  const markerCoordinates = useSharedValue<LatLng>(coordinates);
+  //This state fix problem with car animation on Android, coordinates need only on first render
+  const markerCoordinates = useSharedValue<LatLng>(coordinate);
 
   const setCurrentCarMarkerPosition = (latlng: LatLng) => {
     markerRef.current?.setNativeProps({ coordinate: latlng });
@@ -48,11 +58,11 @@ const MapCarMarker = ({
   }, [markerCoordinates]);
 
   useEffect(() => {
-    markerCoordinates.value = withTiming(coordinates, {
+    markerCoordinates.value = withTiming(coordinate, {
       easing: Easing.linear,
       duration: animationDuration,
     });
-  }, [markerCoordinates, coordinates, animationDuration]);
+  }, [markerCoordinates, coordinate, animationDuration]);
 
   const carMarkerAnimatedStyle = useAnimatedStyle(() => ({
     transform: [
@@ -65,24 +75,42 @@ const MapCarMarker = ({
     ],
   }));
 
+  const computedStyles = StyleSheet.create({
+    carImageContainer: {
+      width: carStyles?.carImageContainerWidthAndHeight ?? constants.carImageContainer.width,
+      height: carStyles?.carImageContainerWidthAndHeight ?? constants.carImageContainer.width,
+    },
+  });
+
+  const carStylesArr: StyleProp<ImageStyle>[] = [styles.carImage];
+
+  if (carStyles) {
+    carStylesArr.push({ height: carStyles.carImageHeight });
+  }
+
   return (
     <>
       <AnimatedMarker
         ref={markerRef}
-        coordinate={coordinates}
+        // coordinate={Platform.OS === 'android' ? currentCoordinate : coordinate}
+        coordinate={markerCoordinatesRef.current}
         anchor={{ x: 0.5, y: 0.5 }} // centers icon
         flat
         tracksViewChanges
         zIndex={zIndex}
       >
-        <Animated.View style={[styles.carImageContainer, carMarkerAnimatedStyle]}>
-          <TopViewCarImage />
+        <Animated.View style={[computedStyles.carImageContainer, styles.carImageContainer, carMarkerAnimatedStyle]}>
+          <TopViewCarImage
+            //Need for re-render this image and correct recalculating position of it on marker on android
+            key={Platform.OS === 'android' ? carStyles?.carImageContainerWidthAndHeight : undefined}
+            style={carStylesArr}
+          />
         </Animated.View>
       </AnimatedMarker>
       {withThinkingAnimation && (
         <AnimatedMarker
           ref={thinkingAnimationMarkerRef}
-          coordinate={coordinates}
+          coordinate={coordinate}
           anchor={{ x: 0.5, y: 0.5 }}
           zIndex={thinkingAnimationZIndex}
         >
@@ -108,6 +136,10 @@ const styles = StyleSheet.create({
     height: 100,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  carImage: {
+    //Because if we use the "width" style, the car image goes beyond dimensions of the marker
+    aspectRatio: 0.4,
   },
   thinkingAnimationContainer: {
     paddingLeft: thinkingAnimationConsts.shadowDistance + thinkingAnimationConsts.paddingLeft,

@@ -3949,6 +3949,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mapbox/geo-viewport@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "@mapbox/geo-viewport@npm:0.4.1"
+  dependencies:
+    "@mapbox/sphericalmercator": "npm:~1.1.0"
+  checksum: a2fc2cac2c35b4abcb1bf3d6fd4c11234d8c896267b1829d17856ccad246ed174be2230c6d4f8036b72e32438b181e749ee758f072ba2844ceac54c0e19c0148
+  languageName: node
+  linkType: hard
+
+"@mapbox/sphericalmercator@npm:~1.1.0":
+  version: 1.1.0
+  resolution: "@mapbox/sphericalmercator@npm:1.1.0"
+  bin:
+    bbox: bin/bbox.js
+    to4326: bin/to4326.js
+    to900913: bin/to900913.js
+    xyz: bin/xyz.js
+  checksum: 06b0a78efe81c33cc28254cc1c26a8a106bce6a997882a52749bf768a66e00ea8b263dea80c77daff22751ebcc7f190e486f23da94ca84a327f0e16c79d83dba
+  languageName: node
+  linkType: hard
+
 "@mdx-js/mdx@npm:^1.6.22":
   version: 1.6.22
   resolution: "@mdx-js/mdx@npm:1.6.22"
@@ -6469,6 +6490,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/geojson@npm:*":
+  version: 7946.0.16
+  resolution: "@types/geojson@npm:7946.0.16"
+  checksum: 1ff24a288bd5860b766b073ead337d31d73bdc715e5b50a2cee5cb0af57a1ed02cc04ef295f5fa68dc40fe3e4f104dd31282b2b818a5ba3231bc1001ba084e3c
+  languageName: node
+  linkType: hard
+
 "@types/geojson@npm:^7946.0.10, @types/geojson@npm:^7946.0.13":
   version: 7946.0.14
   resolution: "@types/geojson@npm:7946.0.14"
@@ -6884,6 +6912,15 @@ __metadata:
   version: 2.0.3
   resolution: "@types/stack-utils@npm:2.0.3"
   checksum: 1f4658385ae936330581bcb8aa3a066df03867d90281cdf89cc356d404bd6579be0f11902304e1f775d92df22c6dd761d4451c804b0a4fba973e06211e9bd77c
+  languageName: node
+  linkType: hard
+
+"@types/supercluster@npm:^7.1.3":
+  version: 7.1.3
+  resolution: "@types/supercluster@npm:7.1.3"
+  dependencies:
+    "@types/geojson": "npm:*"
+  checksum: 0d55dad98df0990fc38a7bb64dc23dda46014187c0d7638e6f2b6717ba8931b13e5b1d394789833a2ac822014c977ef64623dffd81a0bbf39e52c53c8183741f
   languageName: node
   linkType: hard
 
@@ -16529,6 +16566,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"kdbush@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "kdbush@npm:3.0.0"
+  checksum: 3fc8795870bd04f60627e7345b26fd0644beb91bc4164912c9d9378b39c674ba01c31db68ecaf6266d51c9ad81bf5b770b7effa51eeee37553d38293a094a686
+  languageName: node
+  linkType: hard
+
 "keyv@npm:^4.5.3":
   version: 4.5.4
   resolution: "keyv@npm:4.5.4"
@@ -20970,6 +21014,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-map-clustering@npm:^3.4.2":
+  version: 3.4.2
+  resolution: "react-native-map-clustering@npm:3.4.2"
+  dependencies:
+    "@mapbox/geo-viewport": "npm:^0.4.1"
+    supercluster: "npm:^7.1.0"
+  peerDependencies:
+    react-native: "*"
+    react-native-maps: "*"
+  checksum: 6142244c8bf00b4aa584597631e8e5e7e4a87ca03ad3ee1a575f0062df25b3889f9867d4a57597525c08fcf7ffaa4277a0a2c6cba47955cfdb54349ca3788301
+  languageName: node
+  linkType: hard
+
 "react-native-maps@npm:1.14.0":
   version: 1.14.0
   resolution: "react-native-maps@npm:1.14.0"
@@ -22742,6 +22799,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     "@types/jest": "npm:^28.1.2"
     "@types/prop-types": "npm:^15"
     "@types/react": "npm:^18.2.6"
+    "@types/supercluster": "npm:^7.1.3"
     "@types/uuid": "npm:^10.0.0"
     axios: "npm:^1.7.2"
     axios-retry: "npm:^4.4.2"
@@ -22775,6 +22833,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-keychain: "npm:8.2.0"
     react-native-linear-gradient: "npm:^2.8.3"
     react-native-localize: "npm:^3.0.2"
+    react-native-map-clustering: "npm:^3.4.2"
     react-native-maps: "npm:1.14.0"
     react-native-otp-entry: "npm:^1.8.2"
     react-native-permissions: "npm:^5.2.3"
@@ -23762,6 +23821,15 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
   version: 9.2.1
   resolution: "sudo-prompt@npm:9.2.1"
   checksum: e56793513a9c95f66367a3be2ec4c1adee84a2a62f1b7ff6453d610586dcd373d7d8f4df522a7dae03aea8b779ef7f7ba25d1130d24fb1e495cfbbc2c72c7486
+  languageName: node
+  linkType: hard
+
+"supercluster@npm:^7.1.0":
+  version: 7.1.5
+  resolution: "supercluster@npm:7.1.5"
+  dependencies:
+    kdbush: "npm:^3.0.0"
+  checksum: bbebf45927d0019831731c94b78d1c9a1f3e2da0be9875d7ea75c6f261487e0f15d3f1822a9a49256e3c1672bdfb9138f9a5e44e2de99edb06cd1e758083e12d
   languageName: node
   linkType: hard
 

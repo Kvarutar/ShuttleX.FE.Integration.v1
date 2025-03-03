@@ -2,6 +2,7 @@ import { decode } from '@googlemaps/polyline-codec';
 import { type LatLng } from 'react-native-maps';
 
 import { getDistanceBetweenPoints } from '../../utils/geolocation';
+import { mapConstants } from './MapView';
 
 /**
  * Calculates a new route by deleting points that exceed the thresholdDistance from the point to currentCoordinates
@@ -40,6 +41,16 @@ export const decodeGooglePolylineArr = (encodedGeometries: string[]): LatLng[] =
   const res: LatLng[] = [];
   encodedGeometries.forEach(geometry => res.push(...decodeGooglePolyline(geometry)));
   return res;
+};
+
+/**
+ * Converts number to number by zoom level
+ * @returns converted number by zoom level
+ */
+export const scaleNumberByZoomLevel = (zoomLevel: number, numberForScaling: number) => {
+  const scaleFactor = Math.pow(1.2, zoomLevel - mapConstants.cameraZoom);
+  const result = numberForScaling * scaleFactor;
+  return result > 250 ? 250 : result;
 };
 
 export const isCoordinatesEqualZero = (coordinates: LatLng) =>

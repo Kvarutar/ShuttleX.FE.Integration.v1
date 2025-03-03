@@ -154,6 +154,13 @@ const mtrToKm = (distance: number) => {
   return parseFloat((distance / 1000).toFixed(1));
 };
 
+/**
+ * Gives a random number includes "min" and "max"
+ */
+const getRandomNumberIncludesMinMax = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 const openRouteOnGoogleMaps = (startPoint: LatLng, endPoint: LatLng) => {
   Linking.openURL(
     `https://www.google.com/maps/dir/?api=1&travelmode=driving&dir_action=navigate&origin=${startPoint.latitude},${startPoint.longitude}&destination=${endPoint.latitude},${endPoint.longitude}`,
@@ -166,6 +173,7 @@ export {
   formatNumbersToMask,
   formatPhone,
   formatTime,
+  getRandomNumberIncludesMinMax,
   getTimeWithAbbreviation,
   getTimezoneOffsetInMilSec,
   milSecToHours,

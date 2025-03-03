@@ -8,6 +8,7 @@ import MapView, {
 
 import { type MapPinIconProps } from '../../shared/icons/MapPinIcon';
 import { type MapPinIcon2Props } from '../../shared/icons/MapPinIcon2';
+import { type MapInterestingPlace } from './markers/MapInterestingPlaceMarker/types';
 
 export type MapCameraMode = 'free' | 'follow' | 'followWithCompass';
 
@@ -32,7 +33,7 @@ export type MarkerTypeWithLabel = {
 
 export type MapMarker = MarkerTypeSimple | MarkerTypeWithLabel;
 
-type MapCars = {
+export type MapCars = {
   data: {
     id: string;
     coordinates: LatLng;
@@ -59,6 +60,7 @@ export type MapViewProps = {
   geolocationCalculatedHeading?: number;
   disableSetCameraOnGeolocationAvailable?: boolean;
   cars?: MapCars;
+  interestingPlaces?: MapInterestingPlace[];
   withCarsThinkingAnimation?: boolean;
   polylines?: MapPolyline[];
   stopPoints?: LatLng[];
@@ -74,13 +76,4 @@ export type MapCameraModeButtonProps = {
   mode: MapCameraMode;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
-};
-
-export type MapCarMarkerProps = {
-  coordinates: LatLng;
-  heading: number;
-  animationDuration: number;
-  zIndex: number;
-  thinkingAnimationZIndex: number;
-  withThinkingAnimation?: boolean;
 };

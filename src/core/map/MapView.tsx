@@ -1,5 +1,6 @@
-import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { Dimensions, Platform, StyleSheet } from 'react-native';
+import MapViewClustering from 'react-native-map-clustering';
 import MapViewNative, {
   type Camera,
   type EdgePadding,
@@ -7,7 +8,6 @@ import MapViewNative, {
   MapMarker,
   type MapMarkerProps,
   type MapViewProps as NativeMapViewProps,
-  Marker,
   Polyline,
 } from 'react-native-maps';
 import Animated, {
@@ -18,21 +18,26 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import type SuperCluster from 'supercluster';
 import { v4 as uuidv4 } from 'uuid';
 
-import Text from '../../shared/atoms/Text';
-import MapPinIcon from '../../shared/icons/MapPinIcon';
-import MapPinIcon2 from '../../shared/icons/MapPinIcon2';
-import PickUpIcon from '../../shared/icons/PickUpIcon';
 import LocationArrowImage from '../../shared/images/LocationArrowImage';
 import TopViewCarImage from '../../shared/images/TopViewCarImage';
 import { useCompass } from '../../utils/compass';
 import { drawArcPolyline } from '../../utils/geolocation/drawArcPolyline';
+import MapInterestingPlaceCluster from './clusters/MapInterestingPlaceCluster';
+import { type MapInterestingPlaceClusterType } from './clusters/types';
 import { AnimatedMarker } from './hooks';
 import lightMapStyle from './lightMapStyle.json';
-import MapCarMarker from './MapCarMarker';
+import MapCarsMarkersList from './makersLists/MapCarsMarkersList';
+import MapMarkersList from './makersLists/MapMarkersList';
+import MapStopPointsList from './makersLists/MapStopPointsList';
+import MapInterestingPlaceMarker, {
+  constants as MapInterestingPlaceMarkerConstants,
+} from './markers/MapInterestingPlaceMarker';
+import { type MapInterestingPlace } from './markers/MapInterestingPlaceMarker/types';
 import { type MapViewProps, type MapViewRef } from './types';
-import { isCoordinatesEqualZero } from './utils';
+import { isCoordinatesEqualZero, scaleNumberByZoomLevel } from './utils';
 
 export const mapConstants = {
   cameraZoom: 15.8,
@@ -43,6 +48,15 @@ export const mapConstants = {
     carThinkingAnimation: 2,
     marker: 3,
     currentGeolocation: 4,
+  },
+  clustering: {
+    initialRegion: {
+      latitude: 0,
+      longitude: 0,
+      latitudeDelta: 180,
+      longitudeDelta: 360,
+    },
+    radius: Dimensions.get('window').width * 0.2, // window width * 20%
   },
 };
 
@@ -55,6 +69,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       geolocationCalculatedHeading,
       disableSetCameraOnGeolocationAvailable = false,
       cars,
+      interestingPlaces,
       withCarsThinkingAnimation = false,
       polylines,
       stopPoints,
@@ -75,13 +90,33 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
 
     const isCameraAnimatingFirstTime = useRef(true);
     const mapRef = useRef<MapViewNative>(null);
+    const superClusterRef = useRef<SuperCluster<MapInterestingPlace>>(null);
     const currentLocationMarkerRef = useRef<MapMarker>(null);
 
     const { compassSharedValue } = useCompass();
 
     const [isMapLoaded, setIsMapLoaded] = useState(false);
+    // Don't use it for setting custom zoom level, this state only for handling changes
+    const [observedZoomLevel, setObservedZoomLevel] = useState(mapConstants.cameraZoom);
 
     const currentLocationMarkerCoordinates = useSharedValue<LatLng>({ latitude: 0, longitude: 0 });
+
+    const computedStyles = StyleSheet.create({
+      contentAndGradientContainerStyle: {
+        width: scaleNumberByZoomLevel(
+          observedZoomLevel,
+          MapInterestingPlaceMarkerConstants.contentAndGradientContainer.width,
+        ),
+        height: scaleNumberByZoomLevel(
+          observedZoomLevel,
+          MapInterestingPlaceMarkerConstants.contentAndGradientContainer.height,
+        ),
+      },
+      placesContainerStyle: {
+        width: scaleNumberByZoomLevel(observedZoomLevel, MapInterestingPlaceMarkerConstants.placeContainer.width),
+        height: scaleNumberByZoomLevel(observedZoomLevel, MapInterestingPlaceMarkerConstants.placeContainer.height),
+      },
+    });
 
     useImperativeHandle(ref, () => ({
       animateCamera: (...args) => {
@@ -199,6 +234,22 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       }
     };
 
+    const onRegionChange = async () => {
+      const camera = await mapRef.current?.getCamera();
+      if (camera?.zoom) {
+        setObservedZoomLevel(camera?.zoom);
+      }
+    };
+
+    const onRegionChangeComplete = async () => {
+      if (onDragComplete) {
+        const camera = await mapRef.current?.getCamera();
+        if (camera) {
+          onDragComplete(camera.center);
+        }
+      }
+    };
+
     const currentLocationMarkerProps: Pick<MapMarkerProps, 'style' | 'tracksViewChanges' | 'children'> =
       Platform.OS === 'android'
         ? {
@@ -309,14 +360,33 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       [mapPadding],
     );
 
+    const getClusterItems = useCallback((clusterId: number) => {
+      if (superClusterRef.current) {
+        return superClusterRef.current?.getLeaves(clusterId);
+      }
+      return [];
+    }, []);
+
     return (
       <Animated.View style={style}>
         {/* Preloads map raster images (easiest way for fixing several bugs on android) */}
         {Platform.OS === 'android' && !isMapLoaded && <LocationArrowImage style={styles.preloadImage} />}
         {Platform.OS === 'android' && !isMapLoaded && <TopViewCarImage style={styles.preloadImage} />}
 
-        <MapViewNative
+        {/* For custom marker's component use 'coordinate' instead of 'coordinates' */}
+        {/* Otherwise the marker will not be drawn!!! */}
+        {/* Example: <CustomMarkerComponent coordinate={marker.coordinates} /> */}
+
+        {/* If you want to prevent clusterization, add "cluster={false}" on marker here (not in child component!)
+        or move your markers to the separate child component (f.e. if you have a list) */}
+        <MapViewClustering
           ref={mapRef}
+          superClusterRef={superClusterRef}
+          renderCluster={(cluster: MapInterestingPlaceClusterType) => (
+            <MapInterestingPlaceCluster key={cluster.id} cluster={cluster} getClusterItems={getClusterItems} />
+          )}
+          radius={mapConstants.clustering.radius}
+          region={mapConstants.clustering.initialRegion}
           onLayout={onLayout}
           provider="google"
           googleRenderer="LEGACY"
@@ -329,14 +399,8 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           mapPadding={mapPaddingProp}
           rotateEnabled={cameraMode === 'free'}
           onPanDrag={onDrag}
-          onRegionChangeComplete={async () => {
-            if (onDragComplete) {
-              const camera = await mapRef.current?.getCamera();
-              if (camera) {
-                onDragComplete(camera.center);
-              }
-            }
-          }}
+          onRegionChange={onRegionChange}
+          onRegionChangeComplete={onRegionChangeComplete}
           onMapLoaded={() => setIsMapLoaded(true)}
         >
           {geolocationCoordinates && (
@@ -347,73 +411,48 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
               flat
               zIndex={mapConstants.zIndexes.currentGeolocation}
               {...currentLocationMarkerProps}
+              //Here we use '@ts-ignore' to ignore redundant prop 'cluster'
+              //cluster={false} - marker will not be clustered
+              //This fix is here: https://stackoverflow.com/questions/62888821/how-to-cluster-all-markers-except-one
+              // @ts-ignore
+              cluster={false}
             />
           )}
 
-          {cars &&
-            cars.data.map(carData => (
-              <MapCarMarker
-                key={carData.id}
-                coordinates={carData.coordinates}
-                heading={carData.heading}
-                animationDuration={cars.animationDuration}
-                zIndex={mapConstants.zIndexes.car}
-                thinkingAnimationZIndex={mapConstants.zIndexes.carThinkingAnimation}
-                withThinkingAnimation={withCarsThinkingAnimation}
+          {cars && (
+            <MapCarsMarkersList
+              zoomLevel={observedZoomLevel}
+              withCarsThinkingAnimation={withCarsThinkingAnimation}
+              cars={cars}
+            />
+          )}
+
+          {/* This markers can't be moved to a separate component because they need "coordinate" prop for correct clustering here */}
+          {interestingPlaces &&
+            interestingPlaces.map(place => (
+              <MapInterestingPlaceMarker
+                key={place.id}
+                id={place.id}
+                name={place.name}
+                coordinate={place.coordinate}
+                imageFirst={place.imageFirst}
+                imageSecond={place.imageSecond}
+                backgroundGradientColor={place.backgroundGradientColor}
+                placesStyles={{
+                  contentAndGradientContainerStyle: computedStyles.contentAndGradientContainerStyle,
+                  placesContainerStyle: computedStyles.placesContainerStyle,
+                  gradientWidthAndHeight: computedStyles.contentAndGradientContainerStyle.height,
+                }}
+                mode={place.mode}
               />
             ))}
 
           {memoizedPolylines.length > 0 && memoizedPolylines}
 
-          {stopPoints &&
-            stopPoints.length !== 0 &&
-            stopPoints.map((elem, i) => (
-              <Marker
-                key={`${i} ${elem.latitude} ${elem.longitude}`}
-                coordinate={elem}
-                anchor={{ x: 0.5, y: 0.5 }}
-                tracksViewChanges={false}
-                zIndex={mapConstants.zIndexes.marker}
-              >
-                <View style={styles.stopPointContainer}>
-                  <PickUpIcon style={styles.stopPointIcon} />
-                  <View style={styles.stopPointLabelContainer}>
-                    <Text style={styles.stopPointLabel}>{i + 1}</Text>
-                  </View>
-                </View>
-              </Marker>
-            ))}
+          {stopPoints && stopPoints.length !== 0 && <MapStopPointsList stopPoints={stopPoints} />}
 
-          {markers &&
-            markers.map((marker, i) => {
-              switch (marker.type) {
-                case 'simple':
-                  return (
-                    <Marker
-                      key={`${i} ${marker.coordinates}`}
-                      coordinate={marker.coordinates}
-                      anchor={{ x: 0.5, y: 0.98 }}
-                      tracksViewChanges={false}
-                      zIndex={marker.zIndex ?? mapConstants.zIndexes.marker}
-                    >
-                      <MapPinIcon colorMode={marker.colorMode} />
-                    </Marker>
-                  );
-                case 'withLabel':
-                  return (
-                    <Marker
-                      key={`${i} ${marker.coordinates}`}
-                      coordinate={marker.coordinates}
-                      anchor={{ x: 0.5, y: 0.98 }}
-                      tracksViewChanges={true}
-                      zIndex={marker.zIndex ?? mapConstants.zIndexes.marker}
-                    >
-                      <MapPinIcon2 colorMode={marker.colorMode} title={marker.title} subtitle={marker.subtitle} />
-                    </Marker>
-                  );
-              }
-            })}
-        </MapViewNative>
+          {markers && <MapMarkersList markers={markers} />}
+        </MapViewClustering>
       </Animated.View>
     );
   },
@@ -430,29 +469,6 @@ const styles = StyleSheet.create({
   },
   currentLocationMarkerIOS: {
     padding: 12, // fixing bug image cuts off when rotating
-  },
-  stopPointContainer: {
-    width: 150,
-    height: 150,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  stopPointIcon: {
-    width: 32,
-    height: 32,
-  },
-  stopPointLabelContainer: {
-    position: 'absolute',
-    left: 90,
-    width: 40,
-    height: 40,
-    backgroundColor: 'white',
-    borderRadius: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  stopPointLabel: {
-    fontSize: 18,
   },
 });
 

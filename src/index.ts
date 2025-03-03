@@ -29,6 +29,10 @@ import lightMapStyle from './core/map/lightMapStyle.json';
 import MapCameraModeButton from './core/map/MapCameraModeButton';
 import MapView, { mapConstants } from './core/map/MapView';
 import {
+  type MapInterestingPlace,
+  MapInterestingPlaceMarkerModes,
+} from './core/map/markers/MapInterestingPlaceMarker/types';
+import {
   type MapCameraMode,
   type MapMarker,
   type MapPolyline,
@@ -313,6 +317,7 @@ import {
   formatNumbersToMask,
   formatPhone,
   formatTime,
+  getRandomNumberIncludesMinMax,
   getTimeWithAbbreviation,
   getTimezoneOffsetInMilSec,
   milSecToHours,
@@ -490,6 +495,7 @@ export {
   getNetworkErrorInfo,
   getNotificationToken,
   getPaymentIcon,
+  getRandomNumberIncludesMinMax,
   getTimeWithAbbreviation,
   getTimezoneOffsetInMilSec,
   getTokens,
@@ -543,6 +549,8 @@ export {
   type MapCameraMode,
   MapCameraModeButton,
   mapConstants,
+  type MapInterestingPlace,
+  MapInterestingPlaceMarkerModes,
   type MapMarker,
   MapNavigationPlaneIcon,
   MapPinIcon,
