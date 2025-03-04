@@ -17,6 +17,12 @@ const animationProperties = {
   animationDuration: 200,
   delayBetween: 400,
 };
+
+export const constants = {
+  width: 5,
+  height: 5,
+};
+
 const AnimatedDot = ({ index, computedStyle }: { index: number; computedStyle: StyleProp<ViewStyle> }) => {
   const progress = useSharedValue(0);
 
@@ -72,6 +78,8 @@ export const LoadingAnimation3dots = ({ style }: { style?: StyleProp<ViewStyle> 
     },
     dot: {
       backgroundColor: colors.textPrimaryColor,
+      width: constants.width,
+      height: constants.height,
     },
   });
 
@@ -79,7 +87,7 @@ export const LoadingAnimation3dots = ({ style }: { style?: StyleProp<ViewStyle> 
     <View style={styles.mainContainer}>
       <View style={[styles.container, computedStyles.container]}>
         {Array.from({ length: animationProperties.numCards }).map((_, index) => (
-          <AnimatedDot key={index} index={index} computedStyle={[style, computedStyles.dot]} />
+          <AnimatedDot key={index} index={index} computedStyle={[computedStyles.dot, style]} />
         ))}
       </View>
     </View>
@@ -101,8 +109,6 @@ const styles = StyleSheet.create({
     gap: 3,
   },
   dot: {
-    width: 5,
-    height: 5,
     borderRadius: 16,
   },
 });

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { type ImageStyle, Platform, type StyleProp, StyleSheet, View } from 'react-native';
+import { type ImageStyle, Platform, type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 import { type LatLng, type MapMarker } from 'react-native-maps';
 import Animated, {
   Easing,
@@ -18,7 +18,7 @@ import { AnimatedMarker } from '../../hooks';
 import { type MapCarMarkerProps } from './types';
 
 const rotationAnimationDuration = 600;
-const thinkingAnimationConsts = {
+export const thinkingAnimationConsts = {
   shadowDistance: 20,
   paddingLeft: 45,
   paddingBottom: 70,
@@ -39,6 +39,7 @@ const MapCarMarker = ({
   thinkingAnimationZIndex,
   withThinkingAnimation = false,
   carStyles,
+  loadingAnimation3DotsStyles,
 }: MapCarMarkerProps) => {
   const { colors } = useTheme();
 
@@ -82,10 +83,25 @@ const MapCarMarker = ({
     },
   });
 
+  const getLoadingAnimation3DotsStyles = () => {
+    if (loadingAnimation3DotsStyles) {
+      return {
+        width: loadingAnimation3DotsStyles.thinkingDotWidthAndHeight,
+        height: loadingAnimation3DotsStyles.thinkingDotWidthAndHeight,
+      };
+    }
+    return undefined;
+  };
+
   const carStylesArr: StyleProp<ImageStyle>[] = [styles.carImage];
+  const thinkingAnimationContainerStylesArr: StyleProp<ViewStyle>[] = [styles.thinkingAnimationContainer];
 
   if (carStyles) {
     carStylesArr.push({ height: carStyles.carImageHeight });
+  }
+
+  if (loadingAnimation3DotsStyles) {
+    thinkingAnimationContainerStylesArr.push(loadingAnimation3DotsStyles.thinkingDotContainer);
   }
 
   return (
@@ -99,7 +115,7 @@ const MapCarMarker = ({
         tracksViewChanges
         zIndex={zIndex}
       >
-        <Animated.View style={[computedStyles.carImageContainer, styles.carImageContainer, carMarkerAnimatedStyle]}>
+        <Animated.View style={[styles.carImageContainer, computedStyles.carImageContainer, carMarkerAnimatedStyle]}>
           <TopViewCarImage
             //Need for re-render this image and correct recalculating position of it on marker on android
             key={Platform.OS === 'android' ? carStyles?.carImageContainerWidthAndHeight : undefined}
@@ -114,14 +130,14 @@ const MapCarMarker = ({
           anchor={{ x: 0.5, y: 0.5 }}
           zIndex={thinkingAnimationZIndex}
         >
-          <View style={styles.thinkingAnimationContainer}>
+          <View style={thinkingAnimationContainerStylesArr}>
             <Shadow
               distance={thinkingAnimationConsts.shadowDistance}
               startColor={colors.strongShadowColor}
               stretch
               paintInside
             >
-              <LoadingAnimation3dots />
+              <LoadingAnimation3dots style={getLoadingAnimation3DotsStyles()} />
             </Shadow>
           </View>
         </AnimatedMarker>

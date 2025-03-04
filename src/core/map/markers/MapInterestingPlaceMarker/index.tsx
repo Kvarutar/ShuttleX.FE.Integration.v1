@@ -146,7 +146,6 @@ const MapInterestingPlaceMarker = ({
   imageFirst,
   imageSecond,
   backgroundGradientColor,
-  placesStyles,
   mode = MapInterestingPlaceMarkerModes.Mode1,
 }: MapInterestingPlaceMarkerProps) => {
   const { colors } = useTheme();
@@ -244,19 +243,11 @@ const MapInterestingPlaceMarker = ({
         flat
         tracksViewChanges
       >
-        <View
-          style={[
-            styles.contentAndGradientContainer,
-            computedStyles.contentAndGradientContainer,
-            placesStyles.contentAndGradientContainerStyle,
-          ]}
-        >
+        <View style={[styles.contentAndGradientContainer, computedStyles.contentAndGradientContainer]}>
           <Svg
             style={StyleSheet.absoluteFill}
-            width={placesStyles.gradientWidthAndHeight}
-            height={placesStyles.gradientWidthAndHeight}
-            //Need for re-render this marker and correct recalculating size of it
-            key={placesStyles.gradientWidthAndHeight}
+            width={constants.contentAndGradientContainer.width}
+            height={constants.contentAndGradientContainer.height}
           >
             <Defs>
               <RadialGradient id="gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
@@ -266,9 +257,7 @@ const MapInterestingPlaceMarker = ({
             </Defs>
             <Rect width="100%" height="100%" fill="url(#gradient)" />
           </Svg>
-          <Animated.View
-            style={[styles.placeContainer, computedStyles.placeContainer, placesStyles.placesContainerStyle]}
-          >
+          <Animated.View style={[styles.placeContainer, computedStyles.placeContainer]}>
             {(mode === MapInterestingPlaceMarkerModes.Mode1 || mode === MapInterestingPlaceMarkerModes.Mode2) && (
               <MapInterestingPlaceMarkerTitle
                 name={name}

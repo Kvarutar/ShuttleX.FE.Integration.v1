@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 import { constants as topViewCarImageConstants } from '../../../shared/images/TopViewCarImage';
+import { constants as dotsConstants } from '../../../shared/molecules/LoadingAnimation3dots';
 import { mapConstants } from '../MapView';
-import MapCarMarker, { constants as carMarkerConstants } from '../markers/MapCarMarker';
+import MapCarMarker, { constants as carMarkerConstants, thinkingAnimationConsts } from '../markers/MapCarMarker';
 import { type MapCars } from '../types';
 import { scaleNumberByZoomLevel } from '../utils';
 
@@ -21,8 +22,22 @@ const MapCarsMarkersList = ({
       height: scaleNumberByZoomLevel(zoomLevel, topViewCarImageConstants.height),
     },
     carImageContainer: {
-      width: scaleNumberByZoomLevel(zoomLevel, carMarkerConstants.carImageContainer.width),
       height: scaleNumberByZoomLevel(zoomLevel, carMarkerConstants.carImageContainer.height),
+    },
+    thinkingDotContainer: {
+      paddingLeft: scaleNumberByZoomLevel(
+        zoomLevel,
+        thinkingAnimationConsts.shadowDistance + thinkingAnimationConsts.paddingLeft,
+      ),
+      paddingRight: scaleNumberByZoomLevel(zoomLevel, thinkingAnimationConsts.shadowDistance),
+      paddingTop: scaleNumberByZoomLevel(zoomLevel, thinkingAnimationConsts.shadowDistance),
+      paddingBottom: scaleNumberByZoomLevel(
+        zoomLevel,
+        thinkingAnimationConsts.shadowDistance + thinkingAnimationConsts.paddingBottom,
+      ),
+    },
+    thinkingDot: {
+      height: scaleNumberByZoomLevel(zoomLevel, dotsConstants.height),
     },
   });
 
@@ -38,6 +53,10 @@ const MapCarsMarkersList = ({
       carStyles={{
         carImageHeight: computedStyles.carImage.height,
         carImageContainerWidthAndHeight: computedStyles.carImageContainer.height,
+      }}
+      loadingAnimation3DotsStyles={{
+        thinkingDotWidthAndHeight: computedStyles.thinkingDot.height,
+        thinkingDotContainer: computedStyles.thinkingDotContainer,
       }}
     />
   ));

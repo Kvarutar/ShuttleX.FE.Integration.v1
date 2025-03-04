@@ -53,5 +53,12 @@ export const scaleNumberByZoomLevel = (zoomLevel: number, numberForScaling: numb
   return result > 250 ? 250 : result;
 };
 
+export const getDeltasFromZoomAndLatitude = (latitude: number, zoom: number) => {
+  const latitudeDelta = 360 / Math.pow(2, zoom);
+  const longitudeDelta = latitudeDelta / Math.cos((latitude * Math.PI) / 180);
+
+  return { latitudeDelta, longitudeDelta };
+};
+
 export const isCoordinatesEqualZero = (coordinates: LatLng) =>
   coordinates.latitude === 0 && coordinates.longitude === 0;

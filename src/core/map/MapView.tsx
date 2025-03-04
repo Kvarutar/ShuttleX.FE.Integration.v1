@@ -9,6 +9,7 @@ import MapViewNative, {
   type MapMarkerProps,
   type MapViewProps as NativeMapViewProps,
   Polyline,
+  type Region,
 } from 'react-native-maps';
 import Animated, {
   Easing,
@@ -32,12 +33,10 @@ import lightMapStyle from './lightMapStyle.json';
 import MapCarsMarkersList from './makersLists/MapCarsMarkersList';
 import MapMarkersList from './makersLists/MapMarkersList';
 import MapStopPointsList from './makersLists/MapStopPointsList';
-import MapInterestingPlaceMarker, {
-  constants as MapInterestingPlaceMarkerConstants,
-} from './markers/MapInterestingPlaceMarker';
+import MapInterestingPlaceMarker from './markers/MapInterestingPlaceMarker';
 import { type MapInterestingPlace } from './markers/MapInterestingPlaceMarker/types';
 import { type MapViewProps, type MapViewRef } from './types';
-import { isCoordinatesEqualZero, scaleNumberByZoomLevel } from './utils';
+import { getDeltasFromZoomAndLatitude, isCoordinatesEqualZero } from './utils';
 
 export const mapConstants = {
   cameraZoom: 15.8,
@@ -53,8 +52,8 @@ export const mapConstants = {
     initialRegion: {
       latitude: 0,
       longitude: 0,
-      latitudeDelta: 180,
-      longitudeDelta: 360,
+      latitudeDelta: 0,
+      longitudeDelta: 0,
     },
     radius: Dimensions.get('window').width * 0.2, // window width * 20%
   },
@@ -98,25 +97,21 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
     const [isMapLoaded, setIsMapLoaded] = useState(false);
     // Don't use it for setting custom zoom level, this state only for handling changes
     const [observedZoomLevel, setObservedZoomLevel] = useState(mapConstants.cameraZoom);
+    const [initialRegion, setInitialRegion] = useState<Region>(mapConstants.clustering.initialRegion);
+
+    useEffect(() => {
+      if (geolocationCoordinates) {
+        const deltas = getDeltasFromZoomAndLatitude(geolocationCoordinates.latitude, mapConstants.cameraZoom);
+        setInitialRegion({
+          latitude: geolocationCoordinates.latitude,
+          longitude: geolocationCoordinates.longitude,
+          latitudeDelta: deltas.latitudeDelta,
+          longitudeDelta: deltas.longitudeDelta,
+        });
+      }
+    }, [geolocationCoordinates]);
 
     const currentLocationMarkerCoordinates = useSharedValue<LatLng>({ latitude: 0, longitude: 0 });
-
-    const computedStyles = StyleSheet.create({
-      contentAndGradientContainerStyle: {
-        width: scaleNumberByZoomLevel(
-          observedZoomLevel,
-          MapInterestingPlaceMarkerConstants.contentAndGradientContainer.width,
-        ),
-        height: scaleNumberByZoomLevel(
-          observedZoomLevel,
-          MapInterestingPlaceMarkerConstants.contentAndGradientContainer.height,
-        ),
-      },
-      placesContainerStyle: {
-        width: scaleNumberByZoomLevel(observedZoomLevel, MapInterestingPlaceMarkerConstants.placeContainer.width),
-        height: scaleNumberByZoomLevel(observedZoomLevel, MapInterestingPlaceMarkerConstants.placeContainer.height),
-      },
-    });
 
     useImperativeHandle(ref, () => ({
       animateCamera: (...args) => {
@@ -386,7 +381,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
             <MapInterestingPlaceCluster key={cluster.id} cluster={cluster} getClusterItems={getClusterItems} />
           )}
           radius={mapConstants.clustering.radius}
-          region={mapConstants.clustering.initialRegion}
+          region={initialRegion}
           onLayout={onLayout}
           provider="google"
           googleRenderer="LEGACY"
@@ -438,11 +433,6 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
                 imageFirst={place.imageFirst}
                 imageSecond={place.imageSecond}
                 backgroundGradientColor={place.backgroundGradientColor}
-                placesStyles={{
-                  contentAndGradientContainerStyle: computedStyles.contentAndGradientContainerStyle,
-                  placesContainerStyle: computedStyles.placesContainerStyle,
-                  gradientWidthAndHeight: computedStyles.contentAndGradientContainerStyle.height,
-                }}
                 mode={place.mode}
               />
             ))}

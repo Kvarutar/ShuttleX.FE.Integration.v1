@@ -1,4 +1,3 @@
-import { type StyleProp, type ViewStyle } from 'react-native';
 import { type LatLng } from 'react-native-maps';
 
 export enum MapInterestingPlaceMarkerModes {
@@ -22,10 +21,4 @@ export type MapInterestingPlace = {
   mode?: MapInterestingPlaceMarkerModes;
 };
 
-export type MapInterestingPlaceMarkerProps = MapInterestingPlace & {
-  placesStyles: {
-    contentAndGradientContainerStyle: StyleProp<ViewStyle>;
-    placesContainerStyle: StyleProp<ViewStyle>;
-    gradientWidthAndHeight: number;
-  };
-};
+export type MapInterestingPlaceMarkerProps = MapInterestingPlace;

@@ -1,3 +1,4 @@
+import { type StyleProp, type ViewStyle } from 'react-native';
 import { type LatLng } from 'react-native-maps';
 
 export type MapCarMarkerProps = {
@@ -10,5 +11,9 @@ export type MapCarMarkerProps = {
   carStyles?: {
     carImageContainerWidthAndHeight: number;
     carImageHeight: number;
+  };
+  loadingAnimation3DotsStyles?: {
+    thinkingDotWidthAndHeight: number;
+    thinkingDotContainer: StyleProp<ViewStyle>;
   };
 };
