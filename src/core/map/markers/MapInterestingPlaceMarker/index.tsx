@@ -231,6 +231,7 @@ const MapInterestingPlaceMarker = ({
     },
     placeTitle: {
       backgroundColor: colors.backgroundSecondaryColor,
+      color: colors.textSecondaryColor,
     },
   });
 
@@ -240,7 +241,6 @@ const MapInterestingPlaceMarker = ({
         ref={markerRef}
         coordinate={coordinate}
         anchor={{ x: 0.5, y: 0.5 }} // centers icon
-        flat
         tracksViewChanges
       >
         <View style={[styles.contentAndGradientContainer, computedStyles.contentAndGradientContainer]}>
