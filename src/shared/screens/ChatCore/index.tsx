@@ -2,7 +2,6 @@ import Voice, { type SpeechVolumeChangeEvent } from '@react-native-voice/voice';
 import { useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Alert, Image, type ImageURISource, StyleSheet, TouchableOpacity, View } from 'react-native';
-import DocumentPicker from 'react-native-document-picker';
 import {
   Bubble,
   type BubbleProps,
@@ -16,20 +15,13 @@ import {
   Send,
   type SendProps,
 } from 'react-native-gifted-chat';
-import ImageCropPicker from 'react-native-image-crop-picker';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import ImageView from 'react-native-image-viewing';
 import { getLocales } from 'react-native-localize';
-import { type PermissionStatus, RESULTS } from 'react-native-permissions';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/v2/themeContext';
-import {
-  checkCameraUsagePermission,
-  checkGalleryUsagePermission,
-  requestCameraUsagePermission,
-  requestGalleryUsagePermission,
-} from '../../../utils/permissions';
+import { PermissionAction, usePermissionAlert } from '../../../utils/permissions';
 import Button from '../../atoms/Button/v2';
 import { ButtonShapes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
@@ -37,26 +29,26 @@ import ArrowSendMessageIcon from '../../icons/ArrowSendMessageIcon';
 import AttachImageIcon from '../../icons/AttachImageIcon';
 import CloseIcon from '../../icons/CloseIcon';
 import VoiceChatIcon from '../../icons/VoiceChatIcon';
-import CustomKeyboardAvoidingView from '../../molecules/KeyboardAvoidingView';
 import SafeAreaView from '../../molecules/SafeAreaView';
-import { useMediaPermissionAlert } from '../MediaCore/mediaUtils';
 import AttachmentPopup from './AttachmentPopup';
 import ListeningAnimation from './ListeningAnimation';
 import { type ChatCoreProps } from './types';
+import { cropPhoto, getVoiceLanguage, handlePermission, onSelectDocument } from './utils';
 
-const getVoiceLanguage = (languageCode?: string) => {
-  const languageMap: Record<string, string> = {
-    en: 'en-US',
-    uk: 'uk-UA',
-    ar: 'ar-SA',
-  };
-  return languageCode ? languageMap[languageCode] : 'en-US';
-};
-
-const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chatName, errorLogger }: ChatCoreProps) => {
+const ChatCoreWithoutI18n = ({
+  userId,
+  messages,
+  onSend,
+  onBackButtonPress,
+  chatName,
+  errorLogger,
+  loadEarlier,
+  onLoadEarlier,
+  isLoadingEarlier,
+}: ChatCoreProps) => {
   const { colors } = useTheme();
   const { t } = useTranslation();
-  const { showPermissionAlert } = useMediaPermissionAlert();
+  const { showPermissionAlert } = usePermissionAlert();
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedImages, setSelectedImages] = useState<ImageURISource[]>([]);
@@ -130,42 +122,9 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
     setSelectedImages([]);
   };
 
-  const cropPhoto = async (uri: string): Promise<string | void> => {
-    try {
-      const cropped = await ImageCropPicker.openCropper({
-        path: uri,
-        mediaType: 'photo',
-        cropping: true,
-        freeStyleCropEnabled: true,
-        showCropGuidelines: true,
-      });
-      return cropped.path;
-    } catch (error) {
-      errorLogger('Error while cropping photo', error);
-      return;
-    }
-  };
-
-  const handlePhotoAction = async (action: 'camera' | 'gallery') => {
+  const handlePhotoAction = async (action: PermissionAction) => {
     setIsAttachedPopupVisible(false);
-    const permissionCheck = action === 'camera' ? checkCameraUsagePermission : checkGalleryUsagePermission;
-    const requestPermission = action === 'camera' ? requestCameraUsagePermission : requestGalleryUsagePermission;
-
-    let permissionStatus: PermissionStatus = await permissionCheck();
-
-    if (permissionStatus === RESULTS.DENIED || permissionStatus === RESULTS.LIMITED) {
-      await requestPermission();
-      permissionStatus = await permissionCheck();
-    }
-
-    if (permissionStatus === RESULTS.DENIED || permissionStatus === RESULTS.BLOCKED) {
-      showPermissionAlert(action);
-      return;
-    }
-
-    if (permissionStatus !== RESULTS.GRANTED && !(permissionStatus === RESULTS.LIMITED && action === 'gallery')) {
-      return;
-    }
+    handlePermission(action, showPermissionAlert);
 
     const response =
       action === 'camera'
@@ -203,7 +162,7 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
       return;
     }
 
-    const croppedUri = await cropPhoto(uri);
+    const croppedUri = await cropPhoto(uri, errorLogger);
     if (!croppedUri) {
       return;
     }
@@ -211,27 +170,14 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
     onSend([{ _id: croppedUri, text: '', createdAt: new Date(), user: { _id: userId }, image: croppedUri }]);
   };
 
-  const onSelectDocument = async () => {
-    try {
-      const result = await DocumentPicker.pickSingle({ type: [DocumentPicker.types.allFiles] });
-      const newFile: IMessage = {
-        _id: result.uri,
-        text: '',
-        createdAt: new Date(),
-        user: { _id: userId },
-        image: result.uri,
-      };
-      addSelectedFile(newFile);
-      return newFile;
-    } catch {
-      Alert.alert(t('ChatCore_titleAlertSelectDocument'), t('ChatCore_messageAlertSelectDocument'));
-      return null;
-    }
-  };
-
   const handleDocumentAction = async () => {
     setIsAttachedPopupVisible(false);
-    const newFile = await onSelectDocument();
+    const newFile = await onSelectDocument(
+      userId,
+      addSelectedFile,
+      t('ChatCore_titleAlertSelectDocument'),
+      t('ChatCore_messageAlertSelectDocument'),
+    );
 
     if (newFile) {
       onSend([newFile]);
@@ -264,6 +210,9 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
     },
     sendButton: {
       backgroundColor: colors.primaryColor,
+    },
+    messageContainer: {
+      borderTopColor: colors.chat.cardsBackgroundColor,
     },
   });
 
@@ -310,8 +259,8 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
       </TouchableOpacity>
       {isAttachedPopupVisible && (
         <AttachmentPopup
-          onCameraPress={() => handlePhotoAction('camera')}
-          onGalleryPress={() => handlePhotoAction('gallery')}
+          onCameraPress={() => handlePhotoAction(PermissionAction.Camera)}
+          onGalleryPress={() => handlePhotoAction(PermissionAction.Gallery)}
           onDocumentPress={handleDocumentAction}
         />
       )}
@@ -331,6 +280,7 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
       return (
         <TouchableOpacity
           style={[styles.sendButton, computedStyles.sendButton]}
+          onPress={() => handlePermission(PermissionAction.Microphone, showPermissionAlert)}
           onLongPress={startListening}
           onPressOut={stopListening}
         >
@@ -347,46 +297,47 @@ const ChatCoreWithoutI18n = ({ userId, messages, onSend, onBackButtonPress, chat
   };
 
   return (
-    <CustomKeyboardAvoidingView>
-      <SafeAreaView>
-        <View style={styles.headerContainer}>
-          <Button
-            containerStyle={styles.backButton}
-            onPress={onBackButtonPress}
-            shape={ButtonShapes.Circle}
-            mode={CircleButtonModes.Mode2}
-          >
-            <CloseIcon />
-          </Button>
-          <Text style={[styles.headerText, computedStyles.headerText]}>
-            {chatName ? chatName : t('ChatCore_Header')}
-          </Text>
-        </View>
+    <SafeAreaView>
+      <View style={styles.headerContainer}>
+        <Button
+          containerStyle={styles.backButton}
+          onPress={onBackButtonPress}
+          shape={ButtonShapes.Circle}
+          mode={CircleButtonModes.Mode2}
+        >
+          <CloseIcon />
+        </Button>
+        <Text style={[styles.headerText, computedStyles.headerText]}>{chatName ? chatName : t('ChatCore_Header')}</Text>
+      </View>
 
-        <GiftedChat
-          text={inputText}
-          onInputTextChanged={setInputText}
-          keyboardShouldPersistTaps="handled"
-          user={{ _id: userId }}
-          messages={messages}
-          onSend={onSend}
-          renderBubble={renderBubble}
-          renderInputToolbar={renderInputToolbar}
-          renderMessageImage={renderMessageImage}
-          renderSend={renderSend}
-          renderActions={renderActions}
-          renderComposer={renderComposer}
-          maxComposerHeight={100}
-          renderTime={() => null}
-          renderDay={() => null}
-          alwaysShowSend
-          inverted={false}
-          renderAvatar={null}
-        />
+      <GiftedChat
+        messagesContainerStyle={[styles.messageContainer, computedStyles.messageContainer]}
+        text={inputText}
+        onInputTextChanged={setInputText}
+        keyboardShouldPersistTaps="never"
+        user={{ _id: userId }}
+        messages={messages}
+        onSend={onSend}
+        renderBubble={renderBubble}
+        renderInputToolbar={renderInputToolbar}
+        renderMessageImage={renderMessageImage}
+        renderSend={renderSend}
+        renderActions={renderActions}
+        renderComposer={renderComposer}
+        maxComposerHeight={100}
+        renderTime={() => null}
+        renderDay={() => null}
+        alwaysShowSend
+        renderAvatar={null}
+        loadEarlier={loadEarlier}
+        onLoadEarlier={onLoadEarlier}
+        isLoadingEarlier={isLoadingEarlier}
+        infiniteScroll
+        isScrollToBottomEnabled
+      />
 
-        <ImageView images={selectedImages} imageIndex={0} visible={isModalVisible} onRequestClose={closeImageModal} />
-      </SafeAreaView>
-    </CustomKeyboardAvoidingView>
+      <ImageView images={selectedImages} imageIndex={0} visible={isModalVisible} onRequestClose={closeImageModal} />
+    </SafeAreaView>
   );
 };
 
@@ -397,6 +348,10 @@ const ChatCore = (props: ChatCoreProps) => (
 );
 
 const styles = StyleSheet.create({
+  messageContainer: {
+    paddingBottom: 20,
+    borderTopWidth: 1,
+  },
   leftBubbleWrapper: {
     borderBottomLeftRadius: 0,
   },
@@ -406,7 +361,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 14,
+    marginBottom: 20,
   },
   backButton: {
     position: 'absolute',

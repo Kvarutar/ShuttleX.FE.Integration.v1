@@ -8,6 +8,9 @@ export type ChatCoreProps = {
   onBackButtonPress: () => void;
   errorLogger: (...messages: any[]) => void;
   chatName?: string;
+  onLoadEarlier?: () => void;
+  loadEarlier?: boolean;
+  isLoadingEarlier?: boolean;
 };
 
 export type AttachmentPopupState = {

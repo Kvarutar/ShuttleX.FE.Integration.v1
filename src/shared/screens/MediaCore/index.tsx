@@ -11,8 +11,10 @@ import { useTheme } from '../../../core/themes/v2/themeContext';
 import {
   checkCameraUsagePermission,
   checkGalleryUsagePermission,
+  PermissionAction,
   requestCameraUsagePermission,
   requestGalleryUsagePermission,
+  usePermissionAlert,
 } from '../../../utils/permissions';
 import Button from '../../atoms/Button/v2';
 import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
@@ -24,7 +26,6 @@ import ShortArrowIcon from '../../icons/ShortArrowIcon';
 import BigHeader from '../../molecules/BigHeader';
 import SafeAreaView from '../../molecules/SafeAreaView';
 import ScrollViewWithCustomScroll from '../../molecules/ScrollViewWithCustomScroll';
-import { useMediaPermissionAlert } from './mediaUtils';
 import { PhotoType } from './Photo/types';
 import SelectedFilePresentation from './SelectedFilePresentation';
 import {
@@ -51,7 +52,7 @@ const MediaCoreWithoutI18n = ({
 }: MediaCoreProps): JSX.Element => {
   const { t } = useTranslation();
   const { colors } = useTheme();
-  const { showPermissionAlert } = useMediaPermissionAlert();
+  const { showPermissionAlert } = usePermissionAlert();
 
   const [isFileLoaded, setIsFileLoaded] = useState(true);
   const [selectedFiles, setSelectedFiles] = useState<SelectedFile[]>([]);
@@ -94,9 +95,11 @@ const MediaCoreWithoutI18n = ({
     setIsFileLoaded(true);
   };
 
-  const handlePhotoAction = async (action: 'camera' | 'gallery') => {
-    const permissionCheck = action === 'camera' ? checkCameraUsagePermission : checkGalleryUsagePermission;
-    const requestPermission = action === 'camera' ? requestCameraUsagePermission : requestGalleryUsagePermission;
+  const handlePhotoAction = async (action: PermissionAction) => {
+    const permissionCheck =
+      action === PermissionAction.Camera ? checkCameraUsagePermission : checkGalleryUsagePermission;
+    const requestPermission =
+      action === PermissionAction.Camera ? requestCameraUsagePermission : requestGalleryUsagePermission;
     let permissionStatus: PermissionStatus = await permissionCheck();
 
     if (permissionStatus === RESULTS.DENIED || permissionStatus === RESULTS.LIMITED) {
@@ -106,7 +109,7 @@ const MediaCoreWithoutI18n = ({
 
     if (permissionStatus === RESULTS.GRANTED || (permissionStatus === RESULTS.LIMITED && action === 'gallery')) {
       const result =
-        action === 'camera'
+        action === PermissionAction.Camera
           ? await launchCamera({ mediaType: MediaFileType.Photo })
           : await launchImageLibrary({ mediaType: MediaFileType.Photo });
 
@@ -160,7 +163,7 @@ const MediaCoreWithoutI18n = ({
         shape={ButtonShapes.Circle}
         mode={CircleButtonModes.Mode2}
         size={ButtonSizes.M}
-        onPress={() => handlePhotoAction('gallery')}
+        onPress={() => handlePhotoAction(PermissionAction.Gallery)}
       >
         <GalleryIcon style={styles.buttonIcons} />
       </Button>
@@ -170,7 +173,7 @@ const MediaCoreWithoutI18n = ({
         size={ButtonSizes.L}
         innerSpacing={5}
         shadow={ButtonShadows.Strong}
-        onPress={() => handlePhotoAction('camera')}
+        onPress={() => handlePhotoAction(PermissionAction.Camera)}
         withCircleModeBorder
       >
         <CameraIcon style={styles.cameraIcon} />
@@ -195,7 +198,7 @@ const MediaCoreWithoutI18n = ({
         <Button
           containerStyle={styles.button}
           text={t('MediaCore_selectPhotoButton')}
-          onPress={() => handlePhotoAction('gallery')}
+          onPress={() => handlePhotoAction(PermissionAction.Gallery)}
         />
       );
     }
@@ -212,7 +215,7 @@ const MediaCoreWithoutI18n = ({
           innerSpacing={5}
           shadow={ButtonShadows.Strong}
           withCircleModeBorder
-          onPress={() => handlePhotoAction('camera')}
+          onPress={() => handlePhotoAction(PermissionAction.Camera)}
           isLoading={!isFileLoaded}
         />
       );
@@ -254,7 +257,7 @@ const MediaCoreWithoutI18n = ({
 
           <SelectedFilePresentation
             selectedFiles={selectedFiles}
-            onTakePhoto={() => handlePhotoAction('camera')}
+            onTakePhoto={() => handlePhotoAction(PermissionAction.Camera)}
             onCloseFile={fileUri => setSelectedFiles(selectedFiles.filter(file => file.body.uri !== fileUri))}
             photoType={mediaAmount === MediaAmount.Single ? PhotoType.Circle : PhotoType.Default}
           />

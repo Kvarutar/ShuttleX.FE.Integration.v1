@@ -5,7 +5,7 @@ import i18nIntegration from '../../../core/locales/i18n';
 import sizes from '../../../core/themes/sizes';
 import { useTheme } from '../../../core/themes/v2/themeContext';
 import Text from '../../atoms/Text';
-import CameraIcon from '../../icons/CameraIcon';
+import CameraOutlineIcon from '../../icons/CameraOutlineIcon';
 import FolderIcon from '../../icons/FolderIcon';
 import GalleryIcon from '../../icons/GalleryIcon';
 import { type AttachmentPopupState } from './types';
@@ -35,7 +35,7 @@ const AttachmentPopupWithoutI18n = ({ onCameraPress, onGalleryPress, onDocumentP
       <View style={[styles.divider, computedStyles.divider]} />
       <TouchableOpacity onPress={onCameraPress} style={[styles.container, computedStyles.container]}>
         <Text style={styles.text}>{t('ChatCore_takePhoto')}</Text>
-        <CameraIcon color="none" strokeColor={colors.iconPrimaryColor} style={styles.icon} />
+        <CameraOutlineIcon style={styles.icon} />
       </TouchableOpacity>
       <View style={[styles.divider, computedStyles.divider]} />
       <TouchableOpacity onPress={onDocumentPress} style={[styles.container, computedStyles.container]}>

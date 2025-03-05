@@ -95,6 +95,7 @@ import BrandFavIcon from './shared/icons/BrandFavIcon';
 import BrandTextIcon from './shared/icons/BrandTextIcon';
 import CalendarIcon from './shared/icons/CalendarIcon';
 import CameraIcon from './shared/icons/CameraIcon';
+import CameraOutlineIcon from './shared/icons/CameraOutlineIcon';
 import CarIcon from './shared/icons/CarIcon';
 import AnimatedCarImage from './shared/icons/CarsWithSeparatedWheels/AnimatedCarImage';
 import ChatIcon from './shared/icons/ChatIcon';
@@ -406,6 +407,7 @@ export {
   calculateNewMapRoute,
   CalendarIcon,
   CameraIcon,
+  CameraOutlineIcon,
   type Card,
   CarIcon,
   ChangeDataPopUp,

@@ -93,11 +93,8 @@
   "MediaCore_messageAlertSelectDocument": "Не вдалося обрати документ. Спробуйте ще раз",
   "MediaCore_titleAlertDuplicateFile": "Файл вже завантажено",
   "MediaCore_messageAlertDuplicateFile": "Цей файл вже було додано",
-  "MediaCore_permissionDeniedTitle": "Доступ заборонено",
   "MediaCore_permissionDeniedCameraMessage": "Ви заборонили доступ до камери. Увімкніть його в налаштуваннях застосунку, щоб використовувати камеру.",
   "MediaCore_permissionDeniedGalleryMessage": "Ви заборонили доступ до галереї. Увімкніть його в налаштуваннях застосунку, щоб використовувати галерею.",
-  "MediaCore_permissionDeniedCancel": "Скасувати",
-  "MediaCore_permissionDeniedGoToSettings": "Перейти до налаштувань",
   "MediaCore_limitedAccessTitle": "Обмежений доступ",
   "MediaCore_limitedAccessMessage": "Ви надали обмежений доступ до галереї. Щоб вибрати інші фотографії, змініть дозвіл у налаштуваннях.",
   "PrizePedestalIcon_firstPlaceTitle": "Головний приз",
@@ -130,5 +127,8 @@
   "ChatCore_takePhoto": "Зробити Фото",
   "ChatCore_attachFile": "Прикріпити Файли",
   "ChatCore_titleAlertSelectDocument": "Помилка",
-  "ChatCore_messageAlertSelectDocument": "Не вдалося обрати документ. Спробуйте ще раз"
+  "ChatCore_messageAlertSelectDocument": "Не вдалося обрати документ. Спробуйте ще раз",
+  "PermissionDeniedTitle": "Доступ заборонено",
+  "PermissionDeniedCancel": "Скасувати",
+  "PermissionDeniedGoToSettings": "Перейти до налаштувань"
 }

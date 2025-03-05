@@ -156,11 +156,8 @@
   "MediaCore_messageAlertSelectDocument": "Unable to select document. Please try again",
   "MediaCore_titleAlertDuplicateFile": "The file has already been uploaded",
   "MediaCore_messageAlertDuplicateFile": "This file has already been added",
-  "MediaCore_permissionDeniedTitle": "Permission Denied",
   "MediaCore_permissionDeniedCameraMessage": "You have denied camera access. Please enable it in the app settings to use the camera.",
   "MediaCore_permissionDeniedGalleryMessage": "You have denied gallery access. Please enable it in the app settings to use the gallery.",
-  "MediaCore_permissionDeniedCancel": "Cancel",
-  "MediaCore_permissionDeniedGoToSettings": "Go to Settings",
   "MediaCore_limitedAccessTitle": "Limited Access",
   "MediaCore_limitedAccessMessage": "You have granted limited access to the gallery. To select other photos, please change the permission in the settings.",
   "PrizePedestalIcon_firstPlaceTitle": "Main Present",
@@ -202,5 +199,9 @@
   "ChatCore_titleAlertSelectDocument": "Error",
   "ChatCore_messageAlertSelectDocument": "Unable to select document. Please try again",
   "ChatCore_titleAlertDuplicateFile": "The file has already been uploaded",
-  "ChatCore_messageAlertDuplicateFile": "This file has already been added"
+  "ChatCore_messageAlertDuplicateFile": "This file has already been added",
+  "ChatCore_permissionDeniedMicrophoneMessage": "You have denied microphone access. Please enable it in the app settings to use the microphone.",
+  "PermissionDeniedTitle": "Permission Denied",
+  "PermissionDeniedCancel": "Cancel",
+  "PermissionDeniedGoToSettings": "Go to Settings"
 }

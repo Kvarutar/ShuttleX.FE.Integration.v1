@@ -1,4 +1,5 @@
-import { Platform } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { Alert, Platform } from 'react-native';
 import {
   check,
   checkLocationAccuracy,
@@ -8,6 +9,7 @@ import {
   request,
   RESULTS,
 } from 'react-native-permissions';
+import { openSettings } from 'react-native-permissions';
 
 const platformVersion = Platform.Version;
 
@@ -119,6 +121,42 @@ const checkGalleryUsagePermission = async (): Promise<PermissionStatus> => {
   return result;
 };
 
+export enum PermissionAction {
+  Camera = 'camera',
+  Gallery = 'gallery',
+  Microphone = 'microphone',
+}
+
+const usePermissionAlert = () => {
+  const { t } = useTranslation();
+
+  const showPermissionAlert = (action: PermissionAction) => {
+    const title = t('PermissionDeniedTitle');
+
+    let message: string;
+    switch (action) {
+      case PermissionAction.Camera:
+        message = t('MediaCore_permissionDeniedCameraMessage');
+        break;
+      case PermissionAction.Gallery:
+        message = t('MediaCore_permissionDeniedGalleryMessage');
+        break;
+      case PermissionAction.Microphone:
+        message = t('ChatCore_permissionDeniedMicrophoneMessage');
+        break;
+      default:
+        message = t('PermissionDeniedTitle');
+    }
+
+    Alert.alert(title, message, [
+      { text: t('PermissionDeniedCancel'), style: 'cancel' },
+      { text: t('PermissionDeniedGoToSettings'), onPress: () => openSettings() },
+    ]);
+  };
+
+  return { showPermissionAlert };
+};
+
 export {
   checkCameraUsagePermission,
   checkGalleryUsagePermission,
@@ -128,4 +166,5 @@ export {
   requestGalleryUsagePermission,
   requestGeolocationPermission,
   requestMicrophonUsagePermission,
+  usePermissionAlert,
 };
