@@ -3942,6 +3942,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jsamr/counter-style@npm:2.0.2":
+  version: 2.0.2
+  resolution: "@jsamr/counter-style@npm:2.0.2"
+  checksum: 5d52e2d312dd753e2d54cd648e4dca7a7b3bdb4ca711db4301fe238e45d06a4bbde2cd60bbcc658684d1ed9dca44ab538629435816ee974d417b88f4f0fb32c3
+  languageName: node
+  linkType: hard
+
+"@jsamr/react-native-li@npm:2.3.1":
+  version: 2.3.1
+  resolution: "@jsamr/react-native-li@npm:2.3.1"
+  peerDependencies:
+    "@jsamr/counter-style": ^1.0.0 || ^2.0.0
+    react: "*"
+    react-native: "*"
+  checksum: 540ce7c50456e7d11062484343f193e18b1c7391510af65be511e7523ee9f39b6b2eca78ef2c0675e7227280e34dffa30d6fb679210a28d0abd386abf6933430
+  languageName: node
+  linkType: hard
+
 "@leichtgewicht/ip-codec@npm:^2.0.1":
   version: 2.0.4
   resolution: "@leichtgewicht/ip-codec@npm:2.0.4"
@@ -14288,7 +14306,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-entities@npm:^2.1.0, html-entities@npm:^2.3.2":
+"html-entities@npm:2.5.2, html-entities@npm:^2.1.0, html-entities@npm:^2.3.2":
   version: 2.5.2
   resolution: "html-entities@npm:2.5.2"
   checksum: f20ffb4326606245c439c231de40a7c560607f639bf40ffbfb36b4c70729fd95d7964209045f1a4e62fe17f2364cef3d6e49b02ea09016f207fde51c2211e481
@@ -17176,6 +17194,15 @@ __metadata:
   version: 1.0.4
   resolution: "markdown-escapes@npm:1.0.4"
   checksum: cf3f2231191d9df61cd1d02a50a55a5c89ab9cebfe75572950f4844b93a41d561eed2d82e42732d55f2c55fa0d426b51df3a7f378b4068ae1e2923bb758a9cc8
+  languageName: node
+  linkType: hard
+
+"marked@npm:5.0.5":
+  version: 5.0.5
+  resolution: "marked@npm:5.0.5"
+  bin:
+    marked: bin/marked.js
+  checksum: 009a101aa40996f1ae3938c665f67f3e44f8ea444973bcdb87537093a10a37e93c9061ef156ea4e1cdbbae7c1debc044b311833a1656b8738567a5a329be3fc5
   languageName: node
   linkType: hard
 
@@ -21059,6 +21086,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-marked@npm:^6.0.7":
+  version: 6.0.7
+  resolution: "react-native-marked@npm:6.0.7"
+  dependencies:
+    "@jsamr/counter-style": "npm:2.0.2"
+    "@jsamr/react-native-li": "npm:2.3.1"
+    html-entities: "npm:2.5.2"
+    marked: "npm:5.0.5"
+    react-native-table-component: "npm:1.2.2"
+    svg-parser: "npm:2.0.4"
+  peerDependencies:
+    react: ^16.8.6 || ^17.0.0 || ^18.0.0
+    react-native: ">=0.60.0"
+    react-native-svg: ">=12.3.0"
+  checksum: e2e29cff7dee59c3c994888f495d832c2aea0f7b838b49685a699590e6842b4d1b3202a05dc6466fdd28da62c081cd33f7d410b73cdcf3c7c734b0f47805fd57
+  languageName: node
+  linkType: hard
+
 "react-native-modal-datetime-picker@npm:^14.0.0":
   version: 14.0.1
   resolution: "react-native-modal-datetime-picker@npm:14.0.1"
@@ -21270,6 +21315,13 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
   version: 1.0.5
   resolution: "react-native-swipe-gestures@npm:1.0.5"
   checksum: 33bb8bd402de82ed751a8f1913fe7e02ddc533edb7178bf9e499387b93d0d14154cef120f273c554bb988ad1ba87165b80be213611cb92af8875f2380ec7878b
+  languageName: node
+  linkType: hard
+
+"react-native-table-component@npm:1.2.2":
+  version: 1.2.2
+  resolution: "react-native-table-component@npm:1.2.2"
+  checksum: 716fba970ede3f9d0b05dd1106e09e39824c208bdfe36b3ef5fe7ed0393be6069bfa641395db391c1db56c1bf49521c414095b0b72543a3a90702c0d510fb4d7
   languageName: node
   linkType: hard
 
@@ -22835,6 +22887,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-localize: "npm:^3.0.2"
     react-native-map-clustering: "npm:^3.4.2"
     react-native-maps: "npm:1.14.0"
+    react-native-marked: "npm:^6.0.7"
     react-native-otp-entry: "npm:^1.8.2"
     react-native-permissions: "npm:^5.2.3"
     react-native-reanimated: "npm:3.16.7"
@@ -23887,7 +23940,7 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
   languageName: node
   linkType: hard
 
-"svg-parser@npm:^2.0.4":
+"svg-parser@npm:2.0.4, svg-parser@npm:^2.0.4":
   version: 2.0.4
   resolution: "svg-parser@npm:2.0.4"
   checksum: 02f6cb155dd7b63ebc2f44f36365bc294543bebb81b614b7628f1af3c54ab64f7e1cec20f06e252bf95bdde78441ae295a412c68ad1678f16a6907d924512b7a

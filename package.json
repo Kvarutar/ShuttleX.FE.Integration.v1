@@ -77,6 +77,7 @@
     "react-native-image-viewing": "^0.2.2",
     "react-native-keyboard-controller": "^1.16.6",
     "react-native-map-clustering": "^3.4.2",
+    "react-native-marked": "^6.0.7",
     "react-native-otp-entry": "^1.8.2",
     "react-native-reanimated-skeleton": "^1.5.1",
     "react-native-slide-to-unlock": "DevShuttleXInc/react-native-slide-to-unlock"

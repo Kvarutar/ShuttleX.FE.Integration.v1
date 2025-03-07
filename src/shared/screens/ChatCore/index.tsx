@@ -1,7 +1,18 @@
 import Voice, { type SpeechVolumeChangeEvent } from '@react-native-voice/voice';
 import { useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { Alert, Image, type ImageURISource, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  Alert,
+  Image,
+  type ImageURISource,
+  Modal,
+  Platform,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { LongPressGestureHandler, State } from 'react-native-gesture-handler';
 import {
   Bubble,
   type BubbleProps,
@@ -12,16 +23,20 @@ import {
   InputToolbar,
   type InputToolbarProps,
   type MessageImageProps,
+  type RenderMessageTextProps,
   Send,
   type SendProps,
 } from 'react-native-gifted-chat';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import ImageView from 'react-native-image-viewing';
 import { getLocales } from 'react-native-localize';
+import Markdown from 'react-native-marked';
+import { RESULTS } from 'react-native-permissions';
+import { MediaFileType } from 'shuttlex-integration';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/v2/themeContext';
-import { PermissionAction, usePermissionAlert } from '../../../utils/permissions';
+import { checkMicrophonUsagePermission, PermissionAction, usePermissionAlert } from '../../../utils/permissions';
 import Button from '../../atoms/Button/v2';
 import { ButtonShapes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
@@ -74,6 +89,7 @@ const ChatCoreWithoutI18n = ({
     Voice.onSpeechStart = () => setIsListening(true);
     Voice.onSpeechError = event => {
       errorLogger('Voice library error', event);
+      setIsListening(false);
     };
     Voice.onSpeechEnd = () => setIsListening(false);
 
@@ -104,9 +120,9 @@ const ChatCoreWithoutI18n = ({
   };
 
   const stopListening = async () => {
+    setIsListening(false);
     try {
       await Voice.stop();
-      setIsListening(false);
     } catch (error) {
       errorLogger('Voice stop error:', error);
     }
@@ -128,8 +144,8 @@ const ChatCoreWithoutI18n = ({
 
     const response =
       action === 'camera'
-        ? await launchCamera({ mediaType: 'photo', quality: 0.8 })
-        : await launchImageLibrary({ mediaType: 'photo', selectionLimit: 0, quality: 0.8 });
+        ? await launchCamera({ mediaType: MediaFileType.Photo, quality: 0.8 })
+        : await launchImageLibrary({ mediaType: MediaFileType.Photo, selectionLimit: 0, quality: 0.8 });
 
     if (!response.assets || response.assets.length === 0) {
       return;
@@ -185,6 +201,14 @@ const ChatCoreWithoutI18n = ({
     }
   };
 
+  const handleVoiceRecord = async () => {
+    const permissionStatus = await checkMicrophonUsagePermission();
+    handlePermission(PermissionAction.Microphone, showPermissionAlert);
+    if (permissionStatus === RESULTS.GRANTED) {
+      startListening();
+    }
+  };
+
   const computedStyles = StyleSheet.create({
     headerText: {
       color: colors.textPrimaryColor,
@@ -207,14 +231,20 @@ const ChatCoreWithoutI18n = ({
     composer: {
       color: colors.textPrimaryColor,
       opacity: isListening ? 0 : 1,
+      alignSelf: Platform.OS === 'android' ? 'center' : 'flex-start',
     },
     sendButton: {
       backgroundColor: colors.primaryColor,
+      opacity: isListening ? 0.3 : 1,
     },
     messageContainer: {
       borderTopColor: colors.chat.cardsBackgroundColor,
     },
   });
+
+  const renderMessageText = (props: RenderMessageTextProps<IMessage>) => {
+    return <MarkdownComponent text={props.currentMessage?.text} />;
+  };
 
   const renderBubble = (props: BubbleProps<IMessage>) => (
     <Bubble
@@ -224,8 +254,8 @@ const ChatCoreWithoutI18n = ({
         right: [styles.rightBubbleWrapper, computedStyles.rightBubbleWrapper, styles.bubbleWrapper],
       }}
       textStyle={{
-        left: [computedStyles.leftBubbleText, styles.bubbleText],
-        right: [computedStyles.rightBubbleText, styles.bubbleText],
+        left: computedStyles.leftBubbleText,
+        right: computedStyles.rightBubbleText,
       }}
     />
   );
@@ -258,11 +288,19 @@ const ChatCoreWithoutI18n = ({
         <AttachImageIcon style={styles.icon} />
       </TouchableOpacity>
       {isAttachedPopupVisible && (
-        <AttachmentPopup
-          onCameraPress={() => handlePhotoAction(PermissionAction.Camera)}
-          onGalleryPress={() => handlePhotoAction(PermissionAction.Gallery)}
-          onDocumentPress={handleDocumentAction}
-        />
+        <Modal
+          transparent={true}
+          visible={isAttachedPopupVisible}
+          onRequestClose={() => setIsAttachedPopupVisible(false)}
+        >
+          <Pressable style={styles.modalOverlay} onPress={() => setIsAttachedPopupVisible(false)}>
+            <AttachmentPopup
+              onCameraPress={() => handlePhotoAction(PermissionAction.Camera)}
+              onGalleryPress={() => handlePhotoAction(PermissionAction.Gallery)}
+              onDocumentPress={handleDocumentAction}
+            />
+          </Pressable>
+        </Modal>
       )}
     </>
   );
@@ -276,38 +314,40 @@ const ChatCoreWithoutI18n = ({
   );
 
   const renderSend = (props: SendProps<IMessage>) => {
-    if (inputText.trim() === '') {
+    if (inputText.trim() !== '' && !isListening) {
       return (
-        <TouchableOpacity
-          style={[styles.sendButton, computedStyles.sendButton]}
-          onPress={() => handlePermission(PermissionAction.Microphone, showPermissionAlert)}
-          onLongPress={startListening}
-          onPressOut={stopListening}
-        >
-          <VoiceChatIcon style={styles.voiceIcon} />
-        </TouchableOpacity>
+        <Send {...props} containerStyle={[styles.sendButton, computedStyles.sendButton]}>
+          <ArrowSendMessageIcon />
+        </Send>
       );
     }
 
     return (
-      <Send {...props} containerStyle={[styles.sendButton, computedStyles.sendButton]}>
-        <ArrowSendMessageIcon />
-      </Send>
+      <LongPressGestureHandler
+        onHandlerStateChange={({ nativeEvent }) => {
+          if (nativeEvent.state === State.ACTIVE) {
+            handleVoiceRecord();
+          } else if (nativeEvent.state === State.END && isListening) {
+            stopListening();
+          }
+        }}
+        minDurationMs={500}
+      >
+        <View style={[styles.sendButton, computedStyles.sendButton]}>
+          <VoiceChatIcon style={styles.voiceIcon} />
+        </View>
+      </LongPressGestureHandler>
     );
   };
 
   return (
     <SafeAreaView>
       <View style={styles.headerContainer}>
-        <Button
-          containerStyle={styles.backButton}
-          onPress={onBackButtonPress}
-          shape={ButtonShapes.Circle}
-          mode={CircleButtonModes.Mode2}
-        >
+        <Button containerStyle={styles.leftButton} />
+        <Text style={[styles.headerText, computedStyles.headerText]}>{chatName ?? t('ChatCore_Header')}</Text>
+        <Button onPress={onBackButtonPress} shape={ButtonShapes.Circle} mode={CircleButtonModes.Mode2}>
           <CloseIcon />
         </Button>
-        <Text style={[styles.headerText, computedStyles.headerText]}>{chatName ? chatName : t('ChatCore_Header')}</Text>
       </View>
 
       <GiftedChat
@@ -324,6 +364,7 @@ const ChatCoreWithoutI18n = ({
         renderSend={renderSend}
         renderActions={renderActions}
         renderComposer={renderComposer}
+        renderMessageText={renderMessageText}
         maxComposerHeight={100}
         renderTime={() => null}
         renderDay={() => null}
@@ -341,6 +382,42 @@ const ChatCoreWithoutI18n = ({
   );
 };
 
+const MarkdownComponent = ({ text }: { text: string }) => {
+  const { colors } = useTheme();
+
+  const markdownStyles = {
+    text: {
+      fontSize: 14,
+      lineHeight: 20,
+      fontFamily: 'Inter Medium',
+      color: colors.textPrimaryColor,
+    },
+    paragraph: {
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      marginBottom: 0,
+    },
+    strong: {
+      color: colors.textPrimaryColor,
+    },
+    li: {
+      color: colors.textPrimaryColor,
+    },
+  };
+
+  return (
+    <Markdown
+      value={text}
+      styles={markdownStyles}
+      flatListProps={{
+        style: {
+          backgroundColor: 'transparent',
+        },
+      }}
+    />
+  );
+};
+
 const ChatCore = (props: ChatCoreProps) => (
   <I18nextProvider i18n={i18nIntegration}>
     <ChatCoreWithoutI18n {...props} />
@@ -348,8 +425,11 @@ const ChatCore = (props: ChatCoreProps) => (
 );
 
 const styles = StyleSheet.create({
+  modalOverlay: {
+    flex: 1,
+  },
   messageContainer: {
-    paddingBottom: 20,
+    paddingBottom: 10,
     borderTopWidth: 1,
   },
   leftBubbleWrapper: {
@@ -359,22 +439,18 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 0,
   },
   headerContainer: {
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 5,
+    flexDirection: 'row',
   },
-  backButton: {
-    position: 'absolute',
-    left: 0,
+  //TODO Change style when we will have multiply chats-add button for chats menu
+  leftButton: {
+    opacity: 0,
   },
   bubbleWrapper: {
     padding: 10,
     borderRadius: 30,
-  },
-  bubbleText: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontFamily: 'Inter Medium',
   },
   buttonWrapper: {
     flexDirection: 'row',
@@ -411,7 +487,6 @@ const styles = StyleSheet.create({
   },
   composer: {
     marginBottom: 0,
-    alignSelf: 'center',
   },
   sendButton: {
     marginLeft: 6,

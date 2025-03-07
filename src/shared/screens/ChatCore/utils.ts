@@ -1,4 +1,4 @@
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import { type IMessage } from 'react-native-gifted-chat';
 import ImageCropPicker from 'react-native-image-crop-picker';
@@ -58,6 +58,11 @@ export const handlePermission = async (
 };
 
 export const cropPhoto = async (uri: string, errorLogger: (...messages: any[]) => void): Promise<string | void> => {
+  //TODO temporary solution - ImageCropPicker library works strange on ios devices though android works fine. We need to check library version conflicts and resolve problem on ios
+  if (Platform.OS === 'ios') {
+    console.log('Skipping crop on iOS, returning original URI');
+    return uri;
+  }
   try {
     const cropped = await ImageCropPicker.openCropper({
       path: uri,
