@@ -50,36 +50,26 @@ const markerStylesByMode: Record<
   {
     placeImageFirst: StyleProp<ImageStyle>;
     placeImageSecond: StyleProp<ImageStyle>;
-    placeTitleWrapper: StyleProp<ViewStyle>;
   }
 > = {
   mode1: {
     placeImageFirst: {
       zIndex: 1,
       right: '-10%',
+      bottom: '-30%',
     },
     placeImageSecond: {
-      top: '-20%',
       left: '-10%',
-    },
-    placeTitleWrapper: {
-      alignSelf: 'stretch',
-      flexDirection: 'row',
     },
   },
   mode2: {
     placeImageFirst: {
       zIndex: 1,
       left: '-10%',
+      bottom: '-30%',
     },
     placeImageSecond: {
-      top: '-20%',
       right: '-10%',
-    },
-    placeTitleWrapper: {
-      alignSelf: 'stretch',
-      flexDirection: 'row',
-      justifyContent: 'flex-end',
     },
   },
   mode3: {
@@ -92,25 +82,14 @@ const markerStylesByMode: Record<
       top: '-10%',
       right: '-10%',
     },
-    placeTitleWrapper: {
-      top: '-15%',
-      alignSelf: 'stretch',
-      flexDirection: 'row',
-    },
   },
   mode4: {
     placeImageFirst: {
       zIndex: 1,
-      top: '40%',
+      bottom: '-20%',
     },
     placeImageSecond: {
-      top: '-40%',
-      left: '10%',
-    },
-    placeTitleWrapper: {
-      top: '-15%',
-      alignSelf: 'stretch',
-      flexDirection: 'row',
+      left: '20%',
     },
   },
 };
@@ -155,7 +134,7 @@ const MapInterestingPlaceMarker = ({
   const imageFirstRotationShared = useSharedValue(markerImagesDefaultRotation[mode].imageFirst);
   const imageSecondRotationShared = useSharedValue(markerImagesDefaultRotation[mode].imageSecond);
 
-  const { placeImageFirst, placeImageSecond, placeTitleWrapper } = markerStylesByMode[mode];
+  const { placeImageFirst, placeImageSecond } = markerStylesByMode[mode];
 
   const setCurrentMarkerPosition = (latlng: LatLng) => {
     markerRef.current?.setNativeProps({ coordinate: latlng });
@@ -258,15 +237,6 @@ const MapInterestingPlaceMarker = ({
             <Rect width="100%" height="100%" fill="url(#gradient)" />
           </Svg>
           <Animated.View style={[styles.placeContainer, computedStyles.placeContainer]}>
-            {(mode === MapInterestingPlaceMarkerModes.Mode1 || mode === MapInterestingPlaceMarkerModes.Mode2) && (
-              <MapInterestingPlaceMarkerTitle
-                name={name}
-                placeTitle={computedStyles.placeTitle}
-                placeTitleContainer={computedStyles.placeTitleContainer}
-                placeTitleWrapper={placeTitleWrapper}
-              />
-            )}
-
             <Animated.View style={[styles.placeImagesContainer]}>
               <Animated.Image
                 style={[styles.placeImage, computedStyles.placeImage, placeImageFirst, imageFirstAnimatedStyle]}
@@ -277,15 +247,11 @@ const MapInterestingPlaceMarker = ({
                 source={{ uri: imageSecond.uri }}
               />
             </Animated.View>
-
-            {(mode === MapInterestingPlaceMarkerModes.Mode3 || mode === MapInterestingPlaceMarkerModes.Mode4) && (
-              <MapInterestingPlaceMarkerTitle
-                name={name}
-                placeTitle={computedStyles.placeTitle}
-                placeTitleContainer={computedStyles.placeTitleContainer}
-                placeTitleWrapper={placeTitleWrapper}
-              />
-            )}
+            <MapInterestingPlaceMarkerTitle
+              name={name}
+              placeTitle={computedStyles.placeTitle}
+              placeTitleContainer={computedStyles.placeTitleContainer}
+            />
           </Animated.View>
         </View>
       </AnimatedMarker>
@@ -294,24 +260,30 @@ const MapInterestingPlaceMarker = ({
 };
 
 const MapInterestingPlaceMarkerTitle = ({
-  placeTitleWrapper,
   placeTitleContainer,
   placeTitle,
   name,
 }: {
-  placeTitleWrapper: StyleProp<ViewStyle>;
   placeTitleContainer: StyleProp<ViewStyle>;
   placeTitle: StyleProp<TextStyle>;
   name: string;
-}) => (
-  <View style={placeTitleWrapper}>
-    <Animated.View style={[styles.placeTitleContainer, placeTitleContainer]}>
-      <Text style={[styles.placeTitle, placeTitle]} numberOfLines={1} adjustsFontSizeToFit>
-        {name}
-      </Text>
-    </Animated.View>
-  </View>
-);
+}) => {
+  const computedStyles = StyleSheet.create({
+    placeTitleWrapper: {
+      width: constants.placeContainer.width,
+    },
+  });
+
+  return (
+    <View style={[styles.placeTitleWrapper, computedStyles.placeTitleWrapper]}>
+      <Animated.View style={[styles.placeTitleContainer, placeTitleContainer]}>
+        <Text style={[styles.placeTitle, placeTitle]} numberOfLines={2} adjustsFontSizeToFit>
+          {name}
+        </Text>
+      </Animated.View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   contentAndGradientContainer: {
@@ -329,10 +301,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   placeImage: {
-    height: '50%',
+    height: '40%',
     aspectRatio: 1,
     borderRadius: 12,
     borderWidth: 3,
+  },
+  placeTitleWrapper: {
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    bottom: '-10%',
   },
   placeTitleContainer: {
     paddingHorizontal: 12,
@@ -342,6 +320,7 @@ const styles = StyleSheet.create({
   placeTitle: {
     fontFamily: 'Inter SemiBold',
     fontSize: 14,
+    textAlign: 'center',
   },
 });
 

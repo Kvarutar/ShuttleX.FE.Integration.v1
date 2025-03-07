@@ -99,18 +99,6 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
     const [observedZoomLevel, setObservedZoomLevel] = useState(mapConstants.cameraZoom);
     const [initialRegion, setInitialRegion] = useState<Region>(mapConstants.clustering.initialRegion);
 
-    useEffect(() => {
-      if (geolocationCoordinates) {
-        const deltas = getDeltasFromZoomAndLatitude(geolocationCoordinates.latitude, mapConstants.cameraZoom);
-        setInitialRegion({
-          latitude: geolocationCoordinates.latitude,
-          longitude: geolocationCoordinates.longitude,
-          latitudeDelta: deltas.latitudeDelta,
-          longitudeDelta: deltas.longitudeDelta,
-        });
-      }
-    }, [geolocationCoordinates]);
-
     const currentLocationMarkerCoordinates = useSharedValue<LatLng>({ latitude: 0, longitude: 0 });
 
     useImperativeHandle(ref, () => ({
@@ -172,6 +160,14 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           mapRef.current.setCamera({ center: geolocationCoordinates, zoom: mapConstants.cameraZoom });
           isCameraAnimatingFirstTime.current = false;
           onFirstCameraAnimationComplete?.();
+
+          const deltas = getDeltasFromZoomAndLatitude(geolocationCoordinates.latitude, mapConstants.cameraZoom);
+          setInitialRegion({
+            latitude: geolocationCoordinates.latitude,
+            longitude: geolocationCoordinates.longitude,
+            latitudeDelta: deltas.latitudeDelta,
+            longitudeDelta: deltas.longitudeDelta,
+          });
         }
 
         // Animates currentLocationMarker coordinates
