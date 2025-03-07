@@ -11,8 +11,11 @@ export type BottomWindowWithGestureProps = {
   alerts?: ReactNode;
   containerStyle?: StyleProp<ViewStyle>;
   visiblePartStyle?: StyleProp<ViewStyle>;
+  visiblePartContainerStyle?: StyleProp<ViewStyle>;
+  visiblePartWrapperStyle?: StyleProp<ViewStyle>;
   hiddenPartStyle?: StyleProp<ViewStyle>;
   hiddenPartContainerStyle?: StyleProp<ViewStyle>;
+  hiddenPartWrapperStyle?: StyleProp<ViewStyle>;
   headerWrapperStyle?: StyleProp<ViewStyle>;
   hiddenPartButton?: ReactNode;
   opened?: boolean;
@@ -23,7 +26,6 @@ export type BottomWindowWithGestureProps = {
   withAllPartsScroll?: boolean;
   withShade?: boolean;
   shadeStyle?: StyleProp<ViewStyle>;
-  hiddenPartWrapperStyle?: StyleProp<ViewStyle>;
   maxHeight?: number;
   minHeight?: number | SharedValue<number>;
   withDraggable?: boolean;

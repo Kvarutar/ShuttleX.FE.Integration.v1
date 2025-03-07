@@ -30,32 +30,34 @@ const maxThreshold = 20;
 const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWindowWithGestureProps>(
   (
     {
-      visiblePart,
-      hiddenPart,
-      headerElement,
-      additionalTopContent,
       alerts,
-      containerStyle,
-      visiblePartStyle,
-      hiddenPartStyle,
       opened = false,
       setIsOpened,
-      hiddenPartContainerStyle,
-      headerWrapperStyle,
-      hiddenPartButton,
-      bottomWindowStyle,
       withHiddenPartScroll = true,
       withVisiblePartScroll = false,
       withAllPartsScroll = false,
       withShade = false,
       shadeStyle,
-      hiddenPartWrapperStyle,
       maxHeight = 0.93,
       minHeight,
       withDraggable = true,
       onGestureStart,
       onAnimationEnd,
       onHiddenOrVisibleHeightChange,
+      bottomWindowStyle,
+      containerStyle,
+      visiblePart,
+      visiblePartStyle,
+      visiblePartContainerStyle,
+      visiblePartWrapperStyle,
+      hiddenPart,
+      hiddenPartStyle,
+      hiddenPartContainerStyle,
+      hiddenPartWrapperStyle,
+      hiddenPartButton,
+      headerElement,
+      headerWrapperStyle,
+      additionalTopContent,
     },
     ref,
   ) => {
@@ -440,15 +442,15 @@ const BottomWindowWithGesture = forwardRef<BottomWindowWithGestureRef, BottomWin
     const content = (
       <View style={[styles.contentWrapper, computedStyles.contentWrapper]}>
         <Animated.View onLayout={onVisiblePartLayout} style={visiblePartAnimatedStyle}>
-          <Animated.View style={[styles.visiblePart, computedStyles.visiblePart, visiblePartStyle]}>
+          <Animated.View style={[styles.visiblePart, computedStyles.visiblePart, visiblePartWrapperStyle]}>
             {withVisiblePartScroll ? (
               <ScrollViewWithCustomScroll
                 withScrollToTop
                 withShadow
-                style={hiddenPartStyle}
+                style={visiblePartStyle}
                 barStyle={computedStyles.scrollBar}
                 wrapperStyle={styles.scrollViewWrapper}
-                contentContainerStyle={hiddenPartContainerStyle}
+                contentContainerStyle={visiblePartContainerStyle}
               >
                 {visiblePart}
               </ScrollViewWithCustomScroll>
