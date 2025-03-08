@@ -23,7 +23,6 @@ const AttachmentPopupWithoutI18n = ({ onCameraPress, onGalleryPress, onDocumentP
     },
     wrapper: {
       backgroundColor: colors.chat.cardsBackgroundColor,
-      left: sizes.paddingHorizontal,
     },
   });
 
@@ -57,8 +56,7 @@ const styles = StyleSheet.create({
   wrapper: {
     position: 'absolute',
     gap: 10,
-    bottom: 90,
-    flex: 1,
+    bottom: 40,
     borderRadius: 10,
     paddingVertical: 12,
     width: 180,

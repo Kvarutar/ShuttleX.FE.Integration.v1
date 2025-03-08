@@ -3,16 +3,15 @@ import { useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import {
   Alert,
+  Dimensions,
   Image,
   type ImageURISource,
-  Modal,
   Platform,
   Pressable,
   StyleSheet,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LongPressGestureHandler, State } from 'react-native-gesture-handler';
 import {
   Bubble,
   type BubbleProps,
@@ -49,6 +48,9 @@ import AttachmentPopup from './AttachmentPopup';
 import ListeningAnimation from './ListeningAnimation';
 import { type ChatCoreProps } from './types';
 import { cropPhoto, getVoiceLanguage, handlePermission, onSelectDocument } from './utils';
+
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 
 const ChatCoreWithoutI18n = ({
   userId,
@@ -240,6 +242,10 @@ const ChatCoreWithoutI18n = ({
     messageContainer: {
       borderTopColor: colors.chat.cardsBackgroundColor,
     },
+    modalOverlay: {
+      height: windowHeight,
+      width: windowWidth,
+    },
   });
 
   const renderMessageText = (props: RenderMessageTextProps<IMessage>) => {
@@ -288,19 +294,17 @@ const ChatCoreWithoutI18n = ({
         <AttachImageIcon style={styles.icon} />
       </TouchableOpacity>
       {isAttachedPopupVisible && (
-        <Modal
-          transparent={true}
-          visible={isAttachedPopupVisible}
-          onRequestClose={() => setIsAttachedPopupVisible(false)}
-        >
-          <Pressable style={styles.modalOverlay} onPress={() => setIsAttachedPopupVisible(false)}>
-            <AttachmentPopup
-              onCameraPress={() => handlePhotoAction(PermissionAction.Camera)}
-              onGalleryPress={() => handlePhotoAction(PermissionAction.Gallery)}
-              onDocumentPress={handleDocumentAction}
-            />
-          </Pressable>
-        </Modal>
+        <>
+          <Pressable
+            style={[styles.modalOverlay, computedStyles.modalOverlay]}
+            onPress={() => setIsAttachedPopupVisible(false)}
+          />
+          <AttachmentPopup
+            onCameraPress={() => handlePhotoAction(PermissionAction.Camera)}
+            onGalleryPress={() => handlePhotoAction(PermissionAction.Gallery)}
+            onDocumentPress={handleDocumentAction}
+          />
+        </>
       )}
     </>
   );
@@ -323,20 +327,11 @@ const ChatCoreWithoutI18n = ({
     }
 
     return (
-      <LongPressGestureHandler
-        onHandlerStateChange={({ nativeEvent }) => {
-          if (nativeEvent.state === State.ACTIVE) {
-            handleVoiceRecord();
-          } else if (nativeEvent.state === State.END && isListening) {
-            stopListening();
-          }
-        }}
-        minDurationMs={500}
-      >
+      <Pressable onLongPress={handleVoiceRecord} onPressOut={stopListening}>
         <View style={[styles.sendButton, computedStyles.sendButton]}>
           <VoiceChatIcon style={styles.voiceIcon} />
         </View>
-      </LongPressGestureHandler>
+      </Pressable>
     );
   };
 
@@ -426,7 +421,7 @@ const ChatCore = (props: ChatCoreProps) => (
 
 const styles = StyleSheet.create({
   modalOverlay: {
-    flex: 1,
+    position: 'absolute',
   },
   messageContainer: {
     paddingBottom: 10,
