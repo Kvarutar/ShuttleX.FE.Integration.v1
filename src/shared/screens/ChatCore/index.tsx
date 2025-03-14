@@ -369,7 +369,7 @@ const ChatCoreWithoutI18n = ({
         onLoadEarlier={onLoadEarlier}
         isLoadingEarlier={isLoadingEarlier}
         infiniteScroll
-        isScrollToBottomEnabled
+        isStatusBarTranslucentAndroid
       />
 
       <ImageView images={selectedImages} imageIndex={0} visible={isModalVisible} onRequestClose={closeImageModal} />
