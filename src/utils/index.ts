@@ -146,6 +146,27 @@ const formatNumbersToMask = (numbers: string, mask: string): string => {
 };
 
 /**
+ * Converts total amount to short format
+ * @param number
+ * @returns 999/1k/32.4m/3.3b format
+ */
+const formatCompactNumber = (number: number): string => {
+  if (number >= 1000000000) {
+    return (number / 1000000000).toFixed(1).replace('.0', '') + 'b';
+  }
+
+  if (number >= 1000000) {
+    return (number / 1000000).toFixed(1).replace('.0', '') + 'm';
+  }
+
+  if (number >= 1000) {
+    return (number / 1000).toFixed(1).replace('.0', '') + 'k';
+  }
+
+  return number.toString();
+};
+
+/**
  * Converts metres to kilometres
  * @param distance value
  * @returns 10.7 format
@@ -169,6 +190,7 @@ const openRouteOnGoogleMaps = (startPoint: LatLng, endPoint: LatLng) => {
 
 export {
   boolToSign,
+  formatCompactNumber,
   formatDate,
   formatNumbersToMask,
   formatPhone,

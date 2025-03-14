@@ -119,6 +119,7 @@ import EarthIcon from './shared/icons/EarthIcon';
 import EmergencyServiceIcon from './shared/icons/EmergencyServiceIcon';
 import EmojiIcon from './shared/icons/EmojiIcon';
 import ExternalMapIcon from './shared/icons/ExternalMapIcon';
+import EyeIcon from './shared/icons/EyeIcon';
 import FeedbackCleanIcon from './shared/icons/FeedbackCleanIcon';
 import FeedbackDirtyIcon from './shared/icons/FeedbackDirtyIcon';
 import FeedbackHeartBrokenIcon from './shared/icons/FeedbackHeartBrokenIcon';
@@ -172,6 +173,7 @@ import PointIcon from './shared/icons/PointIcon';
 import PointIcon2 from './shared/icons/PointIcon2';
 import PreferencesIcon from './shared/icons/PreferencesIcon';
 import PrizePedestalIcon from './shared/icons/PrizePedestalIcon';
+import Profile2Icon from './shared/icons/Profile2Icon';
 import ProfileIcon from './shared/icons/ProfileIcon';
 import ProfileIconMini from './shared/icons/ProfileIconMini';
 import PromocodesIcon from './shared/icons/PromocodesIcon';
@@ -185,10 +187,12 @@ import RouteIcon from './shared/icons/RouteIcon';
 import SearchIcon from './shared/icons/SearchIcon';
 import SelectOnMapIcon from './shared/icons/SelectOnMapIcon';
 import SettingsIcon from './shared/icons/SettingsIcon';
+import ShareArrowIcon from './shared/icons/ShareArrowIcon';
 import ShareIcon from './shared/icons/ShareIcon';
 import ShortArrowIcon from './shared/icons/ShortArrowIcon';
 import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/icons/SpinnerIcon';
+import Star2Icon from './shared/icons/Star2Icon';
 import StarIcon from './shared/icons/StarIcon';
 import StatisticsIcon from './shared/icons/StatisticsIcon';
 import SteeringWheelIcon from './shared/icons/SteeringWheelIcon';
@@ -267,6 +271,7 @@ import SafeAreaView from './shared/molecules/SafeAreaView';
 import ScrollViewWithCustomScroll from './shared/molecules/ScrollViewWithCustomScroll';
 import ServerErrorModal from './shared/molecules/ServerErrorModal';
 import SliderWithCustomGesture from './shared/molecules/SliderWithCustomGesture';
+import StarProgressBar from './shared/molecules/StarProgressBar';
 import StatsBlock from './shared/molecules/StatsBlock';
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/types';
 import SwipeButtonV1 from './shared/molecules/SwipeButton/v1';
@@ -317,6 +322,7 @@ import { SignInMethod } from './shared/screens/SignInScreen/types';
 import SignUpScreen from './shared/screens/SignUpScreen';
 import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
 import {
+  formatCompactNumber,
   formatNumbersToMask,
   formatPhone,
   formatTime,
@@ -468,6 +474,7 @@ export {
   EmergencyServiceIcon,
   EmojiIcon,
   ExternalMapIcon,
+  EyeIcon,
   FeedbackCleanIcon,
   FeedbackDirtyIcon,
   FeedbackHeartBrokenIcon,
@@ -482,6 +489,7 @@ export {
   FlatListWithCustomScroll,
   Fog,
   FolderIcon,
+  formatCompactNumber,
   formatCurrency,
   formatNumbersToMask,
   formatPhone,
@@ -624,6 +632,7 @@ export {
   Popup,
   PreferencesIcon,
   PrizePedestalIcon,
+  Profile2Icon,
   ProfileIcon,
   ProfileIconMini,
   PromocodesIcon,
@@ -652,6 +661,7 @@ export {
   ServerErrorModal,
   SettingsIcon,
   Shade,
+  ShareArrowIcon,
   ShareIcon,
   ShortArrowIcon,
   ShortArrowSmallIcon,
@@ -667,7 +677,9 @@ export {
   SliderWithCustomGesture,
   SpinnerIcon,
   SquareButtonModes,
+  Star2Icon,
   StarIcon,
+  StarProgressBar,
   StatisticsIcon,
   StatsBlock,
   SteeringWheelIcon,
