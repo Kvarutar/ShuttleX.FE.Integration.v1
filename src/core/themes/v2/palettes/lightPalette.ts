@@ -149,6 +149,7 @@ const chat: ChatColors = {
   tagColor: '#B0C1D1',
   starIconColor: '#FAD02C',
   strokeColor: '#A0B84A',
+  navButtonBackgroundColor: '#F9F9F9',
 };
 
 export const lightPalette: Palette = {

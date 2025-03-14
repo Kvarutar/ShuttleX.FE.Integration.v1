@@ -26,6 +26,7 @@ export type ChatColors = {
   tagColor: string;
   starIconColor: string;
   strokeColor: string;
+  navButtonBackgroundColor: string;
 };
 
 export type PaletteCircleButtonModes = { [key in CircleButtonModes]: PaletteButtonMode };

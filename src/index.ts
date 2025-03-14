@@ -145,6 +145,7 @@ import LocationIcon from './shared/icons/LocationIcon';
 import LockIcon from './shared/icons/LockIcon';
 import LotteryIcon from './shared/icons/LotteryIcon';
 import MaestroIcon from './shared/icons/MaestroIcon';
+import MailIcon from './shared/icons/MailIcon';
 import MapNavigationPlaneIcon from './shared/icons/MapNavigationPlaneIcon';
 import MapPinIcon from './shared/icons/MapPinIcon';
 import MasterCardIcon from './shared/icons/MasterCardIcon';
@@ -200,6 +201,7 @@ import ComfortPlusImage from './shared/icons/Tariffs/ComfortPlusImage';
 import ElectricImage from './shared/icons/Tariffs/ElectricImage';
 import { type TariffIconData, type TariffType, useTariffsIcons } from './shared/icons/Tariffs/TariffsCarImage';
 import TimeIcon from './shared/icons/TimeIcon';
+import TLettersIcon from './shared/icons/TLettersIcon';
 import { TriangleIcon } from './shared/icons/TriangleIcon';
 import TrueTypeIcon from './shared/icons/TrueTypeIcon';
 import UnknownCardIcon from './shared/icons/UnknownCardIcon';
@@ -548,6 +550,7 @@ export {
   LockOutScreen,
   LotteryIcon,
   MaestroIcon,
+  MailIcon,
   type MapCameraMode,
   MapCameraModeButton,
   mapConstants,
@@ -699,6 +702,7 @@ export {
   TimerV1,
   TimerV1Modes,
   TitleWithCloseButton,
+  TLettersIcon,
   TrafficIndicator,
   type TrafficIndicatorProps,
   TrafficLevel,
