@@ -151,6 +151,7 @@ import MapNavigationPlaneIcon from './shared/icons/MapNavigationPlaneIcon';
 import MapPinIcon from './shared/icons/MapPinIcon';
 import MasterCardIcon from './shared/icons/MasterCardIcon';
 import MenuIcon from './shared/icons/MenuIcon';
+import MessengerIcon from './shared/icons/MessengerIcon';
 import MinusIcon from './shared/icons/MinusIcon';
 import MyRideIcon from './shared/icons/MyRideIcon';
 import MysteryBoxIcon from './shared/icons/MysteryBoxIcon';
@@ -583,6 +584,7 @@ export {
   type MenuNavigation,
   MenuUserImage,
   MenuUserImage2,
+  MessengerIcon,
   milSecToHours,
   milSecToMin,
   milSecToTime,
