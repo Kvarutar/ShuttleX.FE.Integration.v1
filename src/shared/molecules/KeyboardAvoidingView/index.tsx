@@ -12,7 +12,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import {
   type AndroidKeyboardAvoidingViewProps,
   type KeyboardAvoidingViewAndroidMode,

@@ -5,7 +5,7 @@ import Slider from 'react-native-slide-to-unlock';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import { defaultShadow } from '../../../../core/themes/shadows';
-import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import ButtonV1 from '../../../atoms/Button/v1/index';
 import { ButtonV1Modes } from '../../../atoms/Button/v1/props';
 import Text from '../../../atoms/Text';
@@ -13,7 +13,7 @@ import ArrowIcon from '../../../icons/ArrowIcon';
 import { SwipeButtonModes, type SwipeButtonProps } from '../types';
 
 const SwipeButtonWithoutI18n = ({ onSwipeEnd, mode, text }: SwipeButtonProps): JSX.Element => {
-  const { colors, themeMode } = useThemeV1();
+  const { colors, themeMode } = useTheme();
 
   const shadowProps = defaultShadow(colors.weakShadowColor);
   const { t } = useTranslation();

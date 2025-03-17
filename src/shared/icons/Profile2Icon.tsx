@@ -1,7 +1,7 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-import { useTheme } from '../../core/themes/v2/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 
 const Profile2Icon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }) => {
   const { colors } = useTheme();

@@ -7,7 +7,7 @@ import { type ImagePickerResponse, launchCamera, launchImageLibrary } from 'reac
 import { type PermissionStatus, RESULTS } from 'react-native-permissions';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import {
   checkCameraUsagePermission,
   checkGalleryUsagePermission,

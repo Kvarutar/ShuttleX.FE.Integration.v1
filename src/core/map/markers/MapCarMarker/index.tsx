@@ -13,7 +13,7 @@ import { Shadow } from 'react-native-shadow-2';
 
 import TopViewCarImage from '../../../../shared/images/TopViewCarImage';
 import LoadingAnimation3dots from '../../../../shared/molecules/LoadingAnimation3dots';
-import { useTheme } from '../../../themes/v2/themeContext';
+import { useTheme } from '../../../themes/themeContext';
 import { AnimatedMarker } from '../../hooks';
 import { type MapCarMarkerProps } from './types';
 

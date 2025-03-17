@@ -5,7 +5,7 @@ import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../core/themes/shadows';
 import sizes from '../../../core/themes/sizes';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import Shade from '../../atoms/Shade';
 import { type BottomWindowProps, type BottomWindowRef } from './props';
 
@@ -19,7 +19,7 @@ const animationsDurations = {
 const BottomWindow = forwardRef<BottomWindowRef, BottomWindowProps>(
   ({ children, additionalTopContent, alerts, showAlerts = true, style, windowStyle, withShade = false }, ref) => {
     const viewRef = useRef<View>(null);
-    const { colors } = useThemeV1();
+    const { colors } = useTheme();
     const { backgroundPrimaryColor, weakShadowColor } = colors;
     const shadowProps = defaultShadow(weakShadowColor);
 

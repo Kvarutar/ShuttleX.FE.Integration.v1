@@ -2,11 +2,11 @@ import { StyleSheet, View, type ViewStyle } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../../core/themes/shadows';
-import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import { BarModes, type BarPropertiesTypeV1, type BarProps } from '../types';
 
 const BarV1 = ({ children, style, mode = BarModes.Active, disableShadow = false }: BarProps): JSX.Element => {
-  const { colors, themeMode } = useThemeV1();
+  const { colors, themeMode } = useTheme();
   const { backgroundPrimaryColor, backgroundSecondaryColor, strongShadowColor, strokeColor, borderColor } = colors;
 
   const barProperties: BarPropertiesTypeV1 = {

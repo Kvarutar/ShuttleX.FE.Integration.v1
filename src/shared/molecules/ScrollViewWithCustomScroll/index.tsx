@@ -3,7 +3,7 @@ import { Animated, StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { type ScrollViewWithCustomScrollProps } from './props';
 
 const ScrollViewWithCustomScroll = ({

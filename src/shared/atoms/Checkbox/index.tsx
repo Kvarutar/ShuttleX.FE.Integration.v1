@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import CheckIcon from '../../icons/CheckIcon';
 import Text from '../Text';
 import { type CheckBoxProps } from './props';

@@ -34,7 +34,7 @@ import { RESULTS } from 'react-native-permissions';
 import { MediaFileType } from 'shuttlex-integration';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { checkMicrophonUsagePermission, PermissionAction, usePermissionAlert } from '../../../utils/permissions';
 import Button from '../../atoms/Button/v2';
 import { ButtonShapes, CircleButtonModes } from '../../atoms/Button/v2/props';

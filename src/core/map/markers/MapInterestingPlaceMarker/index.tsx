@@ -23,7 +23,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
-import { useTheme } from '../../../themes/v2/themeContext';
+import { useTheme } from '../../../themes/themeContext';
 import { AnimatedMarker } from '../../hooks';
 import { MapInterestingPlaceMarkerModes, type MapInterestingPlaceMarkerProps } from './types';
 

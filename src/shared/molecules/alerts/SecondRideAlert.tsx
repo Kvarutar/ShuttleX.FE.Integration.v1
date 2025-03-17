@@ -2,7 +2,7 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import Text from '../../atoms/Text';
 import WarningIcon from '../../icons/WarningIcon';
 import AlertV1 from './Alert/V1';
@@ -10,7 +10,7 @@ import { type AlertDescendantProps } from './Alert/V1/props';
 
 const SecondRideAlertWithoutI18n = ({ style, ...props }: AlertDescendantProps) => {
   const { t } = useTranslation();
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
 
   return (
     <AlertV1 style={[styles.container, style]} {...props}>

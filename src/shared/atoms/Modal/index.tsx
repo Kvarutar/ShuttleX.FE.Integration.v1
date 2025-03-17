@@ -1,6 +1,6 @@
 import { Modal as ModalBase, StyleSheet, View } from 'react-native';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import Blur from '../Blur';
 import { type ModalProps } from './props';
 

@@ -6,7 +6,7 @@ import DateTimePicker, {
 import { useState } from 'react';
 import { Platform } from 'react-native';
 
-import { useTheme } from '../../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import { type DatePickerProps } from '../props';
 
 const DatePicker = ({ onDateSelect, maximumDate, minimumDate }: DatePickerProps): JSX.Element => {

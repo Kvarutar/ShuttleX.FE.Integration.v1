@@ -2,10 +2,10 @@ import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Mask, Path, Rect } from 'react-native-svg';
 
 import sizes from '../../core/themes/sizes';
-import { useThemeV1 } from '../../core/themes/v1/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 
 const PreferencesIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
 
   return (
     <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.PreferencesIcon, style]} fill="none" viewBox="0 0 24 24">

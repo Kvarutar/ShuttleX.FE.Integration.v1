@@ -4,7 +4,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-na
 import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../../core/themes/shadows';
-import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import ButtonV1 from '../../../atoms/Button/v1';
 import { ButtonV1Modes, type ButtonV1Props } from '../../../atoms/Button/v1/props';
 import { type GroupedButtonsV1Props } from './props';
@@ -22,7 +22,7 @@ const GroupedButtonsV1 = ({
   secondButtonText,
   style,
 }: GroupedButtonsV1Props): JSX.Element => {
-  const { colors, themeMode } = useThemeV1();
+  const { colors, themeMode } = useTheme();
 
   const [endButtonPosition, setEndButtonPosition] = useState(0);
 

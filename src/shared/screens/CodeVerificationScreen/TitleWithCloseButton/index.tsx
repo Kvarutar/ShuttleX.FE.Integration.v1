@@ -2,7 +2,7 @@ import { I18nextProvider } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../../core/locales/i18n';
-import { useTheme } from '../../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import Button from '../../../atoms/Button/v2';
 import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../../atoms/Button/v2/props';
 import Text from '../../../atoms/Text';

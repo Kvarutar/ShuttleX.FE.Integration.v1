@@ -2,7 +2,7 @@ import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 
-import { useTheme } from '../../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import { type Nullable } from '../../../../utils/typescript';
 import Button from '../../../atoms/Button/v2';
 import {

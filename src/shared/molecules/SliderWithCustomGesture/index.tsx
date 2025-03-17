@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import Text from '../../atoms/Text';
 import { SwipeButtonModes } from '../SwipeButton/types';
 import { useCreateRightToLeftGesture } from './hooks';

@@ -3,7 +3,7 @@ import { Image, StyleSheet, View } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../../core/themes/shadows';
-import { useTheme } from '../../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import Bar from '../../../atoms/Bar/v2/index';
 import Text from '../../../atoms/Text';
 import ClockIcon2 from '../../../icons/ClockIcon2';

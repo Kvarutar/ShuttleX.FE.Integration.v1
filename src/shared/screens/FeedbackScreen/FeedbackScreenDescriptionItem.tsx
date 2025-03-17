@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import BarV1 from '../../atoms/Bar/v1';
 import { type Option } from './props';
 
 const FeedbackScreenDescriptionItem = ({ option, onOptionSelect }: { option: Option; onOptionSelect: () => void }) => {
   const [isActive, setIsActive] = useState(false);
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
 
   const onPress = () => {
     setIsActive(state => !state);

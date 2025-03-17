@@ -1,7 +1,7 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 
-import { useTheme } from '../../core/themes/v2/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 
 const PointIcon2 = ({
   style,

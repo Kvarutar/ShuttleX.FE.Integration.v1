@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import ReanimatedSkeleton from 'react-native-reanimated-skeleton';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { type SkeletonProps } from './types';
 
 const Skeleton = ({

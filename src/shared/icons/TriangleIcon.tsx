@@ -1,7 +1,7 @@
 import { type LayoutChangeEvent } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-import { useTheme } from '../../core/themes/v2/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 
 type TriangleIconProps = {
   onLayout?: (event: LayoutChangeEvent) => void;

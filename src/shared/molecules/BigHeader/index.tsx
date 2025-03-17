@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import Text from '../../atoms/Text';
 import HeaderWithTwoTitles from '../HeaderWithTwoTitles';
 import { type BigHeaderProps } from './types';

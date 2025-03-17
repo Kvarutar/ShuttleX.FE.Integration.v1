@@ -5,7 +5,7 @@ import Animated from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import SuperCluster from 'supercluster';
 
-import { useTheme } from '../../../themes/v2/themeContext';
+import { useTheme } from '../../../themes/themeContext';
 import { type MapInterestingPlace } from '../../markers/MapInterestingPlaceMarker/types';
 import { type MapInterestingPlaceClusterType } from '../types';
 

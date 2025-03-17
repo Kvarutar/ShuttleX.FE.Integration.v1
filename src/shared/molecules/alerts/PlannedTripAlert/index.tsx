@@ -2,7 +2,7 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../../core/locales/i18n';
-import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import ButtonV1 from '../../../atoms/Button/v1/index';
 import { ButtonV1Modes } from '../../../atoms/Button/v1/props';
 import Text from '../../../atoms/Text';
@@ -18,7 +18,7 @@ const PlannedTripAlertWithoutI18n = ({
   style,
   ...props
 }: PlannedTripAlertProps & AlertDescendantProps) => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
   const { t } = useTranslation();
 
   return (

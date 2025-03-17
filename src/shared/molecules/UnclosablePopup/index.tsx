@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Keyboard, StyleSheet, View } from 'react-native';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import Text from '../../atoms/Text';
 import BottomWindow from '../BottomWindow';
 import { type UnclosablePopupProps } from './props';

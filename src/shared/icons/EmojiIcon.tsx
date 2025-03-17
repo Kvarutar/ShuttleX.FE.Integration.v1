@@ -1,7 +1,7 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import { Circle, Svg, Text } from 'react-native-svg';
 
-import { useTheme } from '../../core/themes/v2/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 
 const EmojiIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => {
   const { colors } = useTheme();

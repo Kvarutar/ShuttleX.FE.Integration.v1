@@ -4,7 +4,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-na
 import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../../core/themes/shadows';
-import { useTheme } from '../../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import Button from '../../../atoms/Button/v2';
 import { type ButtonProps, CircleButtonModes } from '../../../atoms/Button/v2/props';
 import { GroupedButtonsMode, type GroupedButtonsProps } from './props';

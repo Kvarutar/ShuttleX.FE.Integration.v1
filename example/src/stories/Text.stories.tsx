@@ -2,7 +2,7 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { palettes, Text, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
+import { palettes, Text, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
 import { TextElipsizeMode } from '../../../src/shared/atoms/Text/props';
 
@@ -44,10 +44,10 @@ const TextWithHooks = ({
   children,
   ...args
 }: {
-  themeName: ThemeContextTypeV1['themeMode'];
+  themeName: ThemeContextType['themeMode'];
   children: React.ReactNode;
 }) => {
-  const { setThemeMode } = useThemeV1();
+  const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(themeName);

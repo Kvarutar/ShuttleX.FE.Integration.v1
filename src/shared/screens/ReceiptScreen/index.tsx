@@ -7,7 +7,7 @@ import i18nIntegration from '../../../core/locales/i18n';
 import MapView from '../../../core/map/MapView';
 import { type MapViewRef } from '../../../core/map/types';
 import { decodeGooglePolyline } from '../../../core/map/utils';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { formatTime, minToMilSec, mtrToKm } from '../../../utils';
 import { getDistanceBetweenPoints } from '../../../utils/geolocation';
 import { getPaymentIcon } from '../../../utils/payment/cardIcons';

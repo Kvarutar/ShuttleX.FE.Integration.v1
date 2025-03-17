@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { getPaymentIcon } from '../../../utils/payment/cardIcons';
 import { BarModes } from '../../atoms/Bar/types';
 import Bar from '../../atoms/Bar/v2';

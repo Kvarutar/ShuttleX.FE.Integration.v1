@@ -6,7 +6,7 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 import { getCountryPhoneMaskByCountryName } from '../../../core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from '../../../core/countries/types';
 import i18nIntegration from '../../../core/locales/i18n';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import Button from '../../atoms/Button/v2';
 import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';

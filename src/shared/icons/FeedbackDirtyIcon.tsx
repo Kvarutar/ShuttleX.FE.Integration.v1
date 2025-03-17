@@ -1,10 +1,10 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
 
-import { useThemeV1 } from '../../core/themes/v1/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 
 const FeedbackDirtyIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
-  const { colors, themeMode } = useThemeV1();
+  const { colors, themeMode } = useTheme();
 
   const color1 = color ?? (themeMode === 'light' ? colors.iconPrimaryColor : colors.iconTertiaryColor);
   const color2 = themeMode === 'light' ? colors.iconTertiaryColor : colors.iconPrimaryColor;

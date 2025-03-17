@@ -2,7 +2,7 @@ import { Platform, SafeAreaView as SafeAreaViewBase, StyleSheet, View } from 're
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { type SafeAreaViewProps } from './props';
 
 const SafeAreaView = ({ children, containerStyle, wrapperStyle, withTransparentBackground }: SafeAreaViewProps) => {

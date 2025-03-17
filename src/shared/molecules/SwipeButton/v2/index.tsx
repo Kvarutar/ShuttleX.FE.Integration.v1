@@ -6,7 +6,7 @@ import { Shadow } from 'react-native-shadow-2';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import { defaultShadow } from '../../../../core/themes/shadows';
-import { useTheme } from '../../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import ArrowIcon from '../../../icons/ArrowIcon';
 import SpinnerIcon from '../../../icons/SpinnerIcon';
 import SliderWithCustomGesture from '../../SliderWithCustomGesture';

@@ -2,9 +2,9 @@ import { forwardRef, type ReactNode, useImperativeHandle, useRef, useState } fro
 import { Pressable, type StyleProp, StyleSheet, type TextStyle, View, type ViewStyle } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 
+import { type PaletteButtonMode } from '../../../../core/themes/palettes/paletteTypes';
 import { buttonShadow, DISABLED_SHADOW_COLOR } from '../../../../core/themes/shadows';
-import { type PaletteButtonMode } from '../../../../core/themes/v2/palettes/paletteTypes';
-import { useTheme } from '../../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import LoadingSpinner from '../../../molecules/LoadingSpinner';
 import { LoadingSpinnerIconModes } from '../../../molecules/LoadingSpinner/types';
 import Blur from '../../Blur';

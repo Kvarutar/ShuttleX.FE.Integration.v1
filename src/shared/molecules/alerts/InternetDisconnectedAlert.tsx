@@ -2,14 +2,14 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import { useThemeV1 } from '../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import Text from '../../atoms/Text';
 import LowSignalIcon from '../../icons/LowSignalIcon';
 import AlertV1 from './Alert/V1';
 import { type AlertDescendantProps } from './Alert/V1/props';
 
 const InternetDisconnectedAlertWithoutI18n = ({ style, ...props }: AlertDescendantProps) => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
   const { t } = useTranslation();
 
   const computedStyles = StyleSheet.create({

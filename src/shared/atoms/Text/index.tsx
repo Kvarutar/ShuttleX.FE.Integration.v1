@@ -1,6 +1,6 @@
 import { StyleSheet, Text as TextNative, type TextStyle } from 'react-native';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { TextElipsizeMode, type TextProps } from './props';
 
 const Text = ({ children, style, numberOfLines, elipsizeMode = TextElipsizeMode.Tail }: TextProps): JSX.Element => {

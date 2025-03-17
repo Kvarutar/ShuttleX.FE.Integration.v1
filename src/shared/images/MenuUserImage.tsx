@@ -1,6 +1,6 @@
 import { Image, type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 
-import { useTheme } from '../../core/themes/v2/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 
 const MenuUserImage = ({ url, style }: { url?: string; style?: StyleProp<ViewStyle> }) => {
   const { colors } = useTheme();

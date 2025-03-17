@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, StyleSheet, TextInput as TextInputNative, View } from 'react-native';
 
-import { useTheme } from '../../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import InputXIcon from '../../../icons/InputXIcon';
 import Text from '../../Text';
 import { type TextInputBaseProps, type TextInputRef } from './props';

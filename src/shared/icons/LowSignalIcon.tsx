@@ -1,10 +1,10 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Rect } from 'react-native-svg';
 
-import { useThemeV1 } from '../../core/themes/v1/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 
 const LowSignalIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
   const svgColor = color ?? colors.backgroundPrimaryColor;
 
   return (

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { useTheme } from '../../../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../../../core/themes/themeContext';
 import Text from '../../../../atoms/Text';
 import { type AlertType } from './props';
 

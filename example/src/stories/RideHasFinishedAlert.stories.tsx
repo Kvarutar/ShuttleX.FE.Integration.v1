@@ -1,10 +1,10 @@
 import { type Meta } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { palettes, RideHasFinishedAlert, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
+import { palettes, RideHasFinishedAlert, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
 import { type RideHasFinishedAlertProps } from '../../../src/shared/molecules/alerts/RideHasFinishedAlert/props';
 
-type RideHasFinishedAlertStorybookProps = { theme: ThemeContextTypeV1['themeMode'] } & RideHasFinishedAlertProps;
+type RideHasFinishedAlertStorybookProps = { theme: ThemeContextType['themeMode'] } & RideHasFinishedAlertProps;
 
 const RideHasFinishedAlertMeta: Meta<RideHasFinishedAlertStorybookProps> = {
   title: 'RideHasFinishedAlert',
@@ -24,7 +24,7 @@ const RideHasFinishedAlertMeta: Meta<RideHasFinishedAlertStorybookProps> = {
 export default RideHasFinishedAlertMeta;
 
 const RideHasFinishedAlertWithHooks = ({ theme, ...props }: RideHasFinishedAlertStorybookProps) => {
-  const { setThemeMode } = useThemeV1();
+  const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(theme);

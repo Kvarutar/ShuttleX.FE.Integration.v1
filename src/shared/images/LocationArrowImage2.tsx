@@ -8,7 +8,7 @@ const LocationArrowImage2 = ({
   colorMode?: 'first' | 'second';
 }): JSX.Element => {
   // TODO: for theme support
-  // const { themeMode } = useThemeV1();
+  // const { themeMode } = useTheme();
 
   // const sourceLocationArrow2_1_dark = require('../../assets/img/LocationArrow2_1_dark.png');
   // const sourceLocationArrow2_1_light = require('../../assets/img/LocationArrow2_1_light.png');

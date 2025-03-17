@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import Animated, { Easing, runOnJS, useAnimatedProps, useSharedValue, withTiming } from 'react-native-reanimated';
 import Svg, { Circle, G } from 'react-native-svg';
 
-import { useTheme } from '../../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import { type ButtonAnimationProps, type ButtonAnimationRef } from './props';
 
 const ButtonAnimation = forwardRef<ButtonAnimationRef, ButtonAnimationProps>(

@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet, View } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import LoadingCircularAnimation from './LoadingCircularAnimation';
 import { type FogProps } from './types';
 

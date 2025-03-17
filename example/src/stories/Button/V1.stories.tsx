@@ -1,7 +1,7 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { ButtonV1, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
+import { ButtonV1, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
 import {
   ButtonV1Modes,
@@ -45,10 +45,10 @@ const ButtonMeta: Meta<typeof ButtonV1> = {
 
 export default ButtonMeta;
 
-type ButtonWithHooksProps = { themeName: ThemeContextTypeV1['themeMode'] } & ButtonV1Props;
+type ButtonWithHooksProps = { themeName: ThemeContextType['themeMode'] } & ButtonV1Props;
 
 const ButtonWithHooks = ({ themeName, ...props }: ButtonWithHooksProps) => {
-  const { setThemeMode } = useThemeV1();
+  const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(themeName);

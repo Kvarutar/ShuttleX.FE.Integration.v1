@@ -1,7 +1,7 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 
-import { useThemeV1 } from '../../core/themes/v1/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 
 type IconModes = 'filled' | 'default';
 type IconStylesOptions = {
@@ -20,7 +20,7 @@ const DropDownIcon = ({
   color?: string;
   mode?: IconModes;
 }): JSX.Element => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
   const svgColor = color ?? colors.iconSecondaryColor;
 
   const iconModes: IconStyles = {

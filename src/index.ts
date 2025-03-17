@@ -50,11 +50,10 @@ import {
 import { nameof } from './core/monkey-patch/ts.helper';
 import { initCreateAppAsyncThunk, type InitCreateAppAsyncThunkDispatch } from './core/redux/initCreateAppAsyncThunk';
 import { createSignalRSlice } from './core/signalR/slice';
+import palettes from './core/themes/palettes';
 import { defaultShadow } from './core/themes/shadows';
 import sizes from './core/themes/sizes';
-import palettes from './core/themes/v1/palettes';
-import { type ThemeContextTypeV1, ThemeProviderV1, useThemeV1 } from './core/themes/v1/themeContext';
-import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/v2/themeContext';
+import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/themeContext';
 import { BarModes } from './shared/atoms/Bar/types';
 import BarV1 from './shared/atoms/Bar/v1';
 import Bar from './shared/atoms/Bar/v2';
@@ -703,9 +702,7 @@ export {
   TextInputV1,
   TextInputV1InputMode,
   type ThemeContextType,
-  type ThemeContextTypeV1,
   ThemeProvider,
-  ThemeProviderV1,
   TimeIcon,
   TimePicker,
   TimePickerV1,
@@ -736,7 +733,6 @@ export {
   useProfileForm,
   useTariffsIcons,
   useTheme,
-  useThemeV1,
   useThrottleCallback,
   VerifyDataPopUp,
   VisaIcon,

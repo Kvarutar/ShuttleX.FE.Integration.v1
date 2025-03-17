@@ -1,13 +1,13 @@
 import { StyleSheet, View } from 'react-native';
 
-import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import BarV1 from '../../../atoms/Bar/v1';
 import ClockIcon from '../../../icons/ClockIcon';
 import CountingComponentV1 from '../CountingComponent/V1';
 import { type StopWatchProps } from './props';
 
 const StopWatch = ({ initialDate, onAfterCountdownEnds, mask }: StopWatchProps) => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
 
   return (
     <View style={styles.stopwatchWrapper}>

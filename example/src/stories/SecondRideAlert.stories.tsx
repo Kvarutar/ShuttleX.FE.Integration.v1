@@ -1,8 +1,8 @@
 import { type Meta } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { palettes, SecondRideAlert, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
+import { palettes, SecondRideAlert, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-type SecondRideAlertStorybookProps = { theme: ThemeContextTypeV1['themeMode'] };
+type SecondRideAlertStorybookProps = { theme: ThemeContextType['themeMode'] };
 
 const SecondRideAlertMeta: Meta<SecondRideAlertStorybookProps> = {
   title: 'SecondRideAlert',
@@ -21,7 +21,7 @@ const SecondRideAlertMeta: Meta<SecondRideAlertStorybookProps> = {
 export default SecondRideAlertMeta;
 
 const SecondRideAlertWithHooks = ({ theme, ...props }: SecondRideAlertStorybookProps) => {
-  const { setThemeMode } = useThemeV1();
+  const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(theme);

@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { StyleSheet, TextInput as TextInputNative, View } from 'react-native';
 
-import { useThemeV1 } from '../../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../../core/themes/themeContext';
 import Text from '../../Text';
 import { type TextInputBaseV1Props, type TextInputV1Ref } from './props';
 
@@ -27,7 +27,7 @@ const TextInputBase = forwardRef<TextInputV1Ref, TextInputBaseV1Props>(
   ) => {
     const [isFocused, setIsFocused] = useState(false);
 
-    const { colors } = useThemeV1();
+    const { colors } = useTheme();
 
     const innerRef = useRef<TextInputNative>(null);
 

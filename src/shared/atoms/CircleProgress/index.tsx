@@ -14,7 +14,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Line } from 'react-native-svg';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { type AnimatedLineComponentProps, type CircularProps } from './props';
 
 const AnimatedLine = Animated.createAnimatedComponent(Line);

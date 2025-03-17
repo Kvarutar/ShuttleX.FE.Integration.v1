@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Keyboard, Pressable, StyleSheet, View } from 'react-native';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { formatNumbersToMask } from '../../../utils';
 import Text from '../../atoms/Text';
 import { type TextInputV1Props } from '../../atoms/TextInput/v1/props';

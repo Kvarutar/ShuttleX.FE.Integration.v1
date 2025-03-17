@@ -13,7 +13,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { getPaymentIcon } from '../../../utils/payment/cardIcons';
 import Button from '../../atoms/Button/v2';
 import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';

@@ -1,10 +1,10 @@
 import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-import { useThemeV1 } from '../../core/themes/v1/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 
 const BrandTextIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
 
   return (
     <Svg style={[styles.BrandTextIcon, style]} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 173 49">

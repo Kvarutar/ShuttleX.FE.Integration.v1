@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeOut } from 'react-native-reanimated';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import LoadingBrandIcon from '../../icons/LoadingBrandIcon';
 import { type LoadingStubProps } from './types';
 

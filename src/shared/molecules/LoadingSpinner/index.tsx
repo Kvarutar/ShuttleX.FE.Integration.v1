@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import SpinnerIcon from '../../icons/SpinnerIcon';
 import { type CustomLoadingSpinnerIconSize, LoadingSpinnerIconModes, type LoadingSpinnerProps } from './types';
 

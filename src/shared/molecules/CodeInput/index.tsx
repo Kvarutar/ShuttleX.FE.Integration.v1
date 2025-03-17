@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 're
 import { StyleSheet } from 'react-native';
 import { OtpInput, type OtpInputRef } from 'react-native-otp-entry';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { type CodeInputProps, type CodeInputRef } from './types';
 
 const numberOfDigits = 4;

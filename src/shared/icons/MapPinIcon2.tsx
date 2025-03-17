@@ -1,7 +1,7 @@
 import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
 import Svg, { Rect } from 'react-native-svg';
 
-import { useTheme } from '../../core/themes/v2/themeContext';
+import { useTheme } from '../../core/themes/themeContext';
 import Text from '../atoms/Text';
 
 export type MapPinIcon2Props = {

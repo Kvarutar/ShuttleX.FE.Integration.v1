@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, { useAnimatedStyle, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { formatTime } from '../../../utils';
 import Text from '../../atoms/Text';
 import { TriangleIcon } from '../../icons/TriangleIcon';

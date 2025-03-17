@@ -1,11 +1,11 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { PaidTimeAlert, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
+import { PaidTimeAlert, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
 import { type PaidTimeAlertProps } from '../../../src/shared/molecules/alerts/PaidTimeAlert/props';
 
-type PaidTimeAlertStorybookProps = { theme: ThemeContextTypeV1['themeMode'] } & PaidTimeAlertProps;
+type PaidTimeAlertStorybookProps = { theme: ThemeContextType['themeMode'] } & PaidTimeAlertProps;
 
 const PaidTimeAlertMeta: Meta<PaidTimeAlertStorybookProps> = {
   title: 'PaidTimeAlert',
@@ -25,7 +25,7 @@ const PaidTimeAlertMeta: Meta<PaidTimeAlertStorybookProps> = {
 export default PaidTimeAlertMeta;
 
 const PaidTimeAlertWithHooks = ({ theme, ...props }: PaidTimeAlertStorybookProps) => {
-  const { setThemeMode } = useThemeV1();
+  const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(theme);

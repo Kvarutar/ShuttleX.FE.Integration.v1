@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import Text from '../../atoms/Text';
 import CameraOutlineIcon from '../../icons/CameraOutlineIcon';
 import FolderIcon from '../../icons/FolderIcon';

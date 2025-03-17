@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 
-import { lightPalette } from '../../../../../core/themes/v2/palettes/lightPalette';
-import { useTheme } from '../../../../../core/themes/v2/themeContext';
+import { lightPalette } from '../../../../../core/themes/palettes/lightPalette';
+import { useTheme } from '../../../../../core/themes/themeContext';
 import CircularTimerIcon from '../../../../icons/CircularTimerIcon';
 import CountingComponent from '../../CountingComponent/V2';
 import { TimerColorModes, type TimerProps, TimerSizesModes, type TimerSizesType } from './props';

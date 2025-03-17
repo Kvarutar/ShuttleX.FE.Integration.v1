@@ -13,7 +13,7 @@ import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-g
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import { getMenuIcons } from '../../../utils/menu/menuIcons';
 import { type MenuNavigationBlocks } from '../../../utils/menu/type';
 import Skeleton from '../../atoms/Skeleton';

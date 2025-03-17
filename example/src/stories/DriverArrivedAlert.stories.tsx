@@ -1,9 +1,9 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { DriverArrivedAlert, palettes, type ThemeContextTypeV1, useThemeV1 } from 'shuttlex-integration';
+import { DriverArrivedAlert, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-type DriverArrivedAlertStorybookProps = { theme: ThemeContextTypeV1['themeMode'] };
+type DriverArrivedAlertStorybookProps = { theme: ThemeContextType['themeMode'] };
 
 const DriverArrivedAlertMeta: Meta<DriverArrivedAlertStorybookProps> = {
   title: 'DriverArrivedAlert',
@@ -22,7 +22,7 @@ const DriverArrivedAlertMeta: Meta<DriverArrivedAlertStorybookProps> = {
 export default DriverArrivedAlertMeta;
 
 const DriverArrivedAlertWithHooks = ({ theme }: DriverArrivedAlertStorybookProps) => {
-  const { setThemeMode } = useThemeV1();
+  const { setThemeMode } = useTheme();
 
   useEffect(() => {
     setThemeMode(theme);

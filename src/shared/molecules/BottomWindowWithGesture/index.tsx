@@ -16,7 +16,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import sizes from '../../../core/themes/sizes';
-import { useTheme } from '../../../core/themes/v2/themeContext';
+import { useTheme } from '../../../core/themes/themeContext';
 import Shade from '../../atoms/Shade';
 import BottomWindow from '../BottomWindow';
 import { type BottomWindowRef } from '../BottomWindow/props';

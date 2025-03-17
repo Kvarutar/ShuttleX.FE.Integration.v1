@@ -4,7 +4,7 @@ import { Shadow } from 'react-native-shadow-2';
 
 import emojiIcons from '../../assets/img/emojiIcons';
 import { defaultShadow } from '../themes/shadows';
-import { useTheme } from '../themes/v2/themeContext';
+import { useTheme } from '../themes/themeContext';
 
 const EmojiPanel = () => {
   const { colors } = useTheme();

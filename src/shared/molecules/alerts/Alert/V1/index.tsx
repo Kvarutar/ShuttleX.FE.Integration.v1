@@ -5,7 +5,7 @@ import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 
 import { Shadow } from 'react-native-shadow-2';
 
 import { defaultShadow } from '../../../../../core/themes/shadows';
-import { useThemeV1 } from '../../../../../core/themes/v1/themeContext';
+import { useTheme } from '../../../../../core/themes/themeContext';
 import { type AlertV1Props } from './props';
 
 const screenWidth = Dimensions.get('window').width;
@@ -13,7 +13,7 @@ const disappearThreshold = screenWidth * 0.3;
 const closeAnimationDuration = 200;
 
 const AlertV1 = ({ children, style, isClosable = true, closeTimeout, onClose }: AlertV1Props) => {
-  const { colors } = useThemeV1();
+  const { colors } = useTheme();
 
   const computedStyles = StyleSheet.create({
     container: {
