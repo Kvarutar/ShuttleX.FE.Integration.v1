@@ -6,6 +6,7 @@ import { PhoneSlidingPanel } from 'shuttlex-integration';
 import { countryDtos } from '../../../../../core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from '../../../../../core/countries/types';
 import i18nIntegration from '../../../../../core/locales/i18n';
+import sizes from '../../../../../core/themes/sizes';
 import { useTheme } from '../../../../../core/themes/v2/themeContext';
 import Button from '../../../../atoms/Button/v2';
 import { SquareButtonModes } from '../../../../atoms/Button/v2/props';
@@ -68,6 +69,9 @@ const ChangeDataPopUpWithoutI18n = ({
     },
     inputHeader: {
       color: colors.textSecondaryColor,
+    },
+    phoneSlidingBottomWindow: {
+      marginHorizontal: -sizes.paddingHorizontal,
     },
   });
 
@@ -147,6 +151,7 @@ const ChangeDataPopUpWithoutI18n = ({
               isPanelOpen={isVisible}
               setIsPanelOpen={value => setPhonePanelVisibility(prev => ({ ...prev, [field]: value }))}
               withShade={false}
+              bottomWindowStyle={[styles.phoneSlidingBottomWindow, computedStyles.phoneSlidingBottomWindow]}
             />
           ),
       )}
@@ -164,6 +169,9 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     gap: 50,
+  },
+  phoneSlidingBottomWindow: {
+    marginBottom: 8,
   },
   textsStyle: {
     gap: 9,

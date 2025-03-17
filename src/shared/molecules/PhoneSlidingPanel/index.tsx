@@ -10,10 +10,13 @@ const SlidingPanel = ({
   isPanelOpen,
   setIsPanelOpen,
   withShade = true,
+  bottomWindowStyle,
 }: SlidingPanelProps): JSX.Element => {
   return (
     <BottomWindowWithGesture
       hiddenPartStyle={styles.hiddenPart}
+      hiddenPartWrapperStyle={styles.hiddenPartWrapper}
+      bottomWindowStyle={bottomWindowStyle}
       setIsOpened={setIsPanelOpen}
       opened={isPanelOpen}
       maxHeight={0.85}
@@ -29,6 +32,9 @@ const SlidingPanel = ({
 const styles = StyleSheet.create({
   hiddenPart: {
     height: '100%',
+  },
+  hiddenPartWrapper: {
+    paddingBottom: 0,
   },
 });
 

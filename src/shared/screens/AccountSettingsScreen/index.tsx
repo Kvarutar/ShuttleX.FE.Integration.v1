@@ -165,6 +165,7 @@ const AccountSettingsScreenWithoutI18n = forwardRef<AccountSettingsRef, AccountS
                 hiddenPartStyle={computedStyles.hiddenPartChange}
                 opened
                 withHiddenPartScroll={false}
+                maxHeight={0.85}
                 hiddenPart={
                   <ChangeDataPopUp
                     newValueErrorMessage={newValueErrorMessage}

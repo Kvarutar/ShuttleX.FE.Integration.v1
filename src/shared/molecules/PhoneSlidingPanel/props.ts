@@ -1,3 +1,5 @@
+import { type StyleProp, type ViewStyle } from 'react-native';
+
 import { type CountryPhoneMaskDto } from '../../../core/countries/types';
 
 export type SlidingPanelProps = {
@@ -6,4 +8,5 @@ export type SlidingPanelProps = {
   isPanelOpen: boolean;
   setIsPanelOpen: (isPanelOpen: boolean) => void;
   withShade?: boolean;
+  bottomWindowStyle?: StyleProp<ViewStyle>;
 };

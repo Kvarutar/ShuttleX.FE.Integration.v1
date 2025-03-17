@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 
 import { countryDtos } from '../../../../core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from '../../../../core/countries/types';
+import sizes from '../../../../core/themes/sizes';
 import { useTheme } from '../../../../core/themes/v2/themeContext';
 import { useDebounce } from '../../../../utils/hooks/useDebounce';
 import Text from '../../../atoms/Text';
@@ -54,6 +55,9 @@ const PhoneSelect = ({ flagState, onFlagSelect, hidePanel }: PhoneSelectProps): 
     listItemCountryName: {
       color: colors.textSecondaryColor,
     },
+    listContentContainer: {
+      paddingBottom: sizes.paddingVertical / 2,
+    },
   });
 
   const renderItem = ({ item }: { item: CountryPhoneMaskDto }) => (
@@ -85,6 +89,7 @@ const PhoneSelect = ({ flagState, onFlagSelect, hidePanel }: PhoneSelectProps): 
         windowSize={10}
         initialNumToRender={15}
         keyExtractor={item => item.countryCode}
+        contentContainerStyle={computedStyles.listContentContainer}
       />
     </>
   );
