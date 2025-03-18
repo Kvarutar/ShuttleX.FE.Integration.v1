@@ -273,9 +273,8 @@ import ServerErrorModal from './shared/molecules/ServerErrorModal';
 import SliderWithCustomGesture from './shared/molecules/SliderWithCustomGesture';
 import StarProgressBar from './shared/molecules/StarProgressBar';
 import StatsBlock from './shared/molecules/StatsBlock';
+import SwipeButton from './shared/molecules/SwipeButton';
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/types';
-import SwipeButtonV1 from './shared/molecules/SwipeButton/v1';
-import SwipeButton from './shared/molecules/SwipeButton/v2';
 import TemporaryLockoutPopup from './shared/molecules/TemporaryLockoutPopup';
 import TimePickerV1 from './shared/molecules/TimePicker/v1';
 import TimePicker from './shared/molecules/TimePicker/v2';
@@ -691,7 +690,6 @@ export {
   SupportIcon,
   SwipeButton,
   SwipeButtonModes,
-  SwipeButtonV1,
   type TariffIconData,
   type TariffType,
   TemporaryLockoutPopup,

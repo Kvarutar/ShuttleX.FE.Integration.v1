@@ -4,13 +4,13 @@ import { Pressable, StyleSheet } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { Shadow } from 'react-native-shadow-2';
 
-import i18nIntegration from '../../../../core/locales/i18n';
-import { defaultShadow } from '../../../../core/themes/shadows';
-import { useTheme } from '../../../../core/themes/themeContext';
-import ArrowIcon from '../../../icons/ArrowIcon';
-import SpinnerIcon from '../../../icons/SpinnerIcon';
-import SliderWithCustomGesture from '../../SliderWithCustomGesture';
-import { type SwipeButtonColors, SwipeButtonModes, type SwipeButtonProps } from '../types';
+import i18nIntegration from '../../../core/locales/i18n';
+import { defaultShadow } from '../../../core/themes/shadows';
+import { useTheme } from '../../../core/themes/themeContext';
+import ArrowIcon from '../../icons/ArrowIcon';
+import SpinnerIcon from '../../icons/SpinnerIcon';
+import SliderWithCustomGesture from '../SliderWithCustomGesture';
+import { type SwipeButtonColors, SwipeButtonModes, type SwipeButtonProps } from './types';
 
 const SwipeButtonWithoutI18n = ({
   onSwipeEnd,
