@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Marker } from 'react-native-maps';
-import Animated from 'react-native-reanimated';
+import Animated, { Easing, ReduceMotion, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import SuperCluster from 'supercluster';
 
@@ -10,6 +10,7 @@ import { type MapInterestingPlace } from '../../markers/MapInterestingPlaceMarke
 import { type MapInterestingPlaceClusterType } from '../types';
 
 const clusterMarkerSize = 150;
+const animationDuration = 1000;
 
 const MapInterestingPlaceCluster = ({
   cluster,
@@ -19,6 +20,8 @@ const MapInterestingPlaceCluster = ({
   getClusterItems: (clusterId: number) => SuperCluster.PointFeature<MapInterestingPlace>[];
 }) => {
   const { colors } = useTheme();
+
+  const clusterMarkerSizeShared = useSharedValue(0);
 
   const [clusterItem, setClusterItem] = useState<MapInterestingPlace | null>(null);
 
@@ -31,6 +34,22 @@ const MapInterestingPlaceCluster = ({
       setClusterItem(clusterItems[0].properties);
     }
   }, [getClusterItems, properties.cluster_id]);
+
+  useEffect(() => {
+    clusterMarkerSizeShared.value = withTiming(clusterMarkerSize, {
+      duration: animationDuration,
+      easing: Easing.bounce,
+      reduceMotion: ReduceMotion.System,
+    });
+    return () => {
+      clusterMarkerSizeShared.value = 0;
+    };
+  }, [clusterItem, clusterMarkerSizeShared]);
+
+  const clusterMarkerAnimatedStyle = useAnimatedStyle(() => ({
+    width: clusterMarkerSizeShared.value,
+    height: clusterMarkerSizeShared.value,
+  }));
 
   const computedStyles = StyleSheet.create({
     contentAndGradientContainer: {
@@ -78,7 +97,13 @@ const MapInterestingPlaceCluster = ({
             <Rect width="100%" height="100%" fill="url(#gradient)" />
           </Svg>
 
-          <Animated.View style={[styles.placeContainer, computedStyles.placeContainer]}>
+          <Animated.View
+            style={[
+              styles.placeContainer,
+              computedStyles.placeContainer,
+              Platform.OS === 'ios' ? clusterMarkerAnimatedStyle : undefined,
+            ]}
+          >
             <View style={styles.placeTitleFlexWrapper}>
               <Animated.View style={[styles.placeTitleContainer, computedStyles.placeTitleContainer]}>
                 <Text style={[styles.placeTitle, computedStyles.placeTitle]} numberOfLines={1}>
