@@ -284,10 +284,8 @@ import TimePicker from './shared/molecules/TimePicker/v2';
 import CountingComponentV1 from './shared/molecules/timerAndStopwatch/CountingComponent/V1';
 import CountingComponent from './shared/molecules/timerAndStopwatch/CountingComponent/V2';
 import StopWatch from './shared/molecules/timerAndStopwatch/StopWatch';
-import TimerV1 from './shared/molecules/timerAndStopwatch/Timer/V1';
-import { TimerV1Modes } from './shared/molecules/timerAndStopwatch/Timer/V1/props';
-import Timer, { timerSizes } from './shared/molecules/timerAndStopwatch/Timer/V2';
-import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/V2/props';
+import Timer, { timerSizes } from './shared/molecules/timerAndStopwatch/Timer';
+import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/types';
 import TrafficIndicator from './shared/molecules/TrafficIndicator';
 import { type TrafficIndicatorProps, TrafficLevel } from './shared/molecules/TrafficIndicator/types';
 import UnclosablePopup from './shared/molecules/UnclosablePopup';
@@ -721,8 +719,6 @@ export {
   TimerColorModes,
   timerSizes,
   TimerSizesModes,
-  TimerV1,
-  TimerV1Modes,
   TitleWithCloseButton,
   TLettersIcon,
   TrafficIndicator,

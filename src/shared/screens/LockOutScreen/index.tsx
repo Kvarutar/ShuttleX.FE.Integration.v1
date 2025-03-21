@@ -2,36 +2,38 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import { useTheme } from '../../../core/themes/themeContext';
 import ButtonV1 from '../../atoms/Button/v1';
 import { ButtonV1Modes } from '../../atoms/Button/v1/props';
 import Text from '../../atoms/Text';
-import TimerV1 from '../../molecules/timerAndStopwatch/Timer/V1';
-import { TimerV1Modes } from '../../molecules/timerAndStopwatch/Timer/V1/props';
 import { type LockOutScreenProps } from './props';
 
 const LockOutScreenWithoutI18n = ({
   onRequestCodeAgain,
   onContactSupport,
-  lockoutEndTimestamp,
-  onAfterCountdownEnds,
+  // Removed on Task-remove-timer-v1
+  // lockoutEndTimestamp,
+  // onAfterCountdownEnds,
   isLockedOut,
 }: LockOutScreenProps): JSX.Element => {
   const { t } = useTranslation();
-  const { colors } = useTheme();
+  // Removed on Task-remove-timer-v1
+  // const { colors } = useTheme();
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerDummy} />
         <Text style={[styles.headerTitle]}>{t('LockOut_headerTitle')}</Text>
-        <TimerV1
+        {/* Removed on Task-remove-timer-v1 */}
+        {/* Here was a TimerV1, but this component (LockOutScreen) is not in use for now.
+        TODO: Check if this component is needed or remove it */}
+        {/* <TimerV1
           initialDate={new Date(lockoutEndTimestamp)}
           onAfterCountdownEnds={onAfterCountdownEnds}
           startColor={colors.secondaryGradientStartColor}
           endColor={colors.secondaryGradientEndColor}
           mode={TimerV1Modes.Mini}
-        />
+        /> */}
       </View>
 
       <View style={styles.body}>

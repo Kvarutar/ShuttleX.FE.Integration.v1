@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 
-import { lightPalette } from '../../../../../core/themes/palettes/lightPalette';
-import { useTheme } from '../../../../../core/themes/themeContext';
-import CircularTimerIcon from '../../../../icons/CircularTimerIcon';
-import CountingComponent from '../../CountingComponent/V2';
-import { TimerColorModes, type TimerProps, TimerSizesModes, type TimerSizesType } from './props';
+import { lightPalette } from '../../../../core/themes/palettes/lightPalette';
+import { useTheme } from '../../../../core/themes/themeContext';
+import CircularTimerIcon from '../../../icons/CircularTimerIcon';
+import CountingComponent from '../CountingComponent/V2';
+import { TimerColorModes, type TimerProps, TimerSizesModes, type TimerSizesType } from './types';
 
 export const timerSizes: TimerSizesType = {
   s: {

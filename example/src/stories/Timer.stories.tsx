@@ -9,7 +9,7 @@ import {
   TimerColorModes,
   type TimerProps,
   TimerSizesModes,
-} from '../../../../src/shared/molecules/timerAndStopwatch/Timer/V2/props';
+} from '../../../src/shared/molecules/timerAndStopwatch/Timer/types';
 
 const sizeModes: TimerProps['sizeMode'][] = Object.values(TimerSizesModes);
 const colorModes: TimerProps['colorMode'][] = Object.values(TimerColorModes);
