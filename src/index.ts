@@ -252,9 +252,8 @@ import DatePickerV1 from './shared/molecules/DatePicker/v1';
 import DatePicker from './shared/molecules/DatePicker/v2';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
 import Fog from './shared/molecules/Fog';
-import GroupedButtonsV1 from './shared/molecules/GroupedButtons/V1';
-import GroupedButtons from './shared/molecules/GroupedButtons/V2';
-import { GroupedButtonsMode } from './shared/molecules/GroupedButtons/V2/props';
+import GroupedButtons from './shared/molecules/GroupedButtons';
+import { GroupedButtonsMode } from './shared/molecules/GroupedButtons/props';
 import HeaderWithTwoTitles from './shared/molecules/HeaderWithTwoTitles';
 import CustomKeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
 import { type KeyboardAvoidingViewMode } from './shared/molecules/KeyboardAvoidingView/types';
@@ -524,7 +523,6 @@ export {
   GroupedBrandIconMiniV1,
   GroupedButtons,
   GroupedButtonsMode,
-  GroupedButtonsV1,
   GroupIcon,
   HeaderWithTwoTitles,
   HelpIcon,

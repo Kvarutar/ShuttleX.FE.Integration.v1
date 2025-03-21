@@ -4,7 +4,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import sizes from '../../../../core/themes/sizes';
-import GroupedButtonsV1 from '../../../molecules/GroupedButtons/V1';
+import GroupedButtons from '../../../molecules/GroupedButtons';
 import ScrollViewWithCustomScroll from '../../../molecules/ScrollViewWithCustomScroll';
 import { type NotificationsScreenProps } from '../props';
 import NotificationScreenItem from './NotificationScreenItem';
@@ -21,7 +21,7 @@ const NotificationsScreenWithoutI18n = ({ notifications }: NotificationsScreenPr
 
   return (
     <>
-      <GroupedButtonsV1
+      <GroupedButtons
         style={styles.groupedButtons}
         width={windowWidth - sizes.paddingHorizontal * 2}
         firstButtonText={t('Notifications_GroupedButton_firstButton')}

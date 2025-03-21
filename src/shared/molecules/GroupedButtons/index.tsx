@@ -3,26 +3,27 @@ import { StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { Shadow } from 'react-native-shadow-2';
 
-import { defaultShadow } from '../../../../core/themes/shadows';
-import { useTheme } from '../../../../core/themes/themeContext';
-import ButtonV1 from '../../../atoms/Button/v1';
-import { ButtonV1Modes, type ButtonV1Props } from '../../../atoms/Button/v1/props';
-import { type GroupedButtonsV1Props } from './props';
+import { defaultShadow } from '../../../core/themes/shadows';
+import { useTheme } from '../../../core/themes/themeContext';
+import Button from '../../atoms/Button/v2';
+import { type ButtonProps, CircleButtonModes } from '../../atoms/Button/v2/props';
+import { GroupedButtonsMode, type GroupedButtonsProps } from './props';
 
 const constants = {
-  paddingGroupedButton: 5,
+  paddingGroupedButton: 2,
   animationDuration: 200,
 };
 
-const GroupedButtonsV1 = ({
+const GroupedButtons = ({
   width,
   isFirstButtonSelected,
   setIsFirstButtonSelected,
   firstButtonText,
   secondButtonText,
   style,
-}: GroupedButtonsV1Props): JSX.Element => {
-  const { colors, themeMode } = useTheme();
+  mode = GroupedButtonsMode.Light,
+}: GroupedButtonsProps): JSX.Element => {
+  const { colors } = useTheme();
 
   const [endButtonPosition, setEndButtonPosition] = useState(0);
 
@@ -36,10 +37,10 @@ const GroupedButtonsV1 = ({
     }
   }, [isFirstButtonSelected, translateX, endButtonPosition]);
 
-  const commonButtonProps: ButtonV1Props = {
-    mode: ButtonV1Modes.Mode2,
-    disableShadow: true,
+  const commonButtonProps: ButtonProps = {
     style: styles.button,
+    mode: CircleButtonModes.Mode2,
+    disableShadow: true,
     containerStyle: styles.buttonContainer,
   };
 
@@ -47,15 +48,21 @@ const GroupedButtonsV1 = ({
     transform: [{ translateX: translateX.value }],
   }));
 
+  const isDarkMode = mode === GroupedButtonsMode.Dark;
+
+  const getTextColor = (isSelected: boolean) => {
+    if (isDarkMode) {
+      return isSelected ? colors.textTertiaryColor : colors.textPrimaryColor;
+    }
+    return colors.textPrimaryColor;
+  };
+
   const computedStyles = StyleSheet.create({
     groupedButtons: {
-      backgroundColor: themeMode === 'light' ? colors.backgroundPrimaryColor : colors.backgroundSecondaryColor,
-    },
-    passiveTextColor: {
-      color: colors.textSecondaryColor,
+      backgroundColor: '#7676801F', //with opacity
     },
     animatedToggleButton: {
-      backgroundColor: themeMode === 'light' ? colors.backgroundSecondaryColor : colors.backgroundTertiaryColor,
+      backgroundColor: isDarkMode ? colors.backgroundTertiaryColor : colors.backgroundPrimaryColor,
     },
   });
 
@@ -67,16 +74,16 @@ const GroupedButtonsV1 = ({
           onLayout={event => setEndButtonPosition(event.nativeEvent.layout.width / 2)}
         >
           <Animated.View style={[styles.animatedToggleButton, computedStyles.animatedToggleButton, animatedStyles]} />
-          <ButtonV1
+          <Button
             {...commonButtonProps}
             text={firstButtonText}
-            textStyle={isFirstButtonSelected ? undefined : computedStyles.passiveTextColor}
+            textStyle={[styles.buttonText, { color: getTextColor(isFirstButtonSelected) }]}
             onPress={() => setIsFirstButtonSelected(true)}
           />
-          <ButtonV1
+          <Button
             {...commonButtonProps}
             text={secondButtonText}
-            textStyle={!isFirstButtonSelected ? undefined : computedStyles.passiveTextColor}
+            textStyle={[styles.buttonText, { color: getTextColor(!isFirstButtonSelected) }]}
             onPress={() => setIsFirstButtonSelected(false)}
           />
         </View>
@@ -96,8 +103,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
+    height: 44,
     backgroundColor: 'transparent',
     paddingHorizontal: 0,
+  },
+  buttonText: {
+    fontFamily: 'Inter Medium',
+    fontSize: 13,
+    letterSpacing: -0.08,
   },
   animatedToggleButton: {
     position: 'absolute',
@@ -108,4 +121,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GroupedButtonsV1;
+export default GroupedButtons;
