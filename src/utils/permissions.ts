@@ -60,7 +60,6 @@ const checkGeolocationPermissionAndAccuracy = async (
   }
 };
 
-//TODO use this permissions on ChatCore
 const requestMicrophonUsagePermission = async (): Promise<PermissionStatus> => {
   if (Platform.OS === 'ios') {
     return await request(PERMISSIONS.IOS.MICROPHONE);
@@ -121,6 +120,22 @@ const checkGalleryUsagePermission = async (): Promise<PermissionStatus> => {
   return result;
 };
 
+const requestContactsUsagePermission = async (): Promise<PermissionStatus> => {
+  if (Platform.OS === 'ios') {
+    return await request(PERMISSIONS.IOS.CONTACTS);
+  } else {
+    return await request(PERMISSIONS.ANDROID.READ_CONTACTS);
+  }
+};
+
+const checkContactsUsagePermission = async (): Promise<PermissionStatus> => {
+  if (Platform.OS === 'ios') {
+    return await check(PERMISSIONS.IOS.CONTACTS);
+  } else {
+    return await check(PERMISSIONS.ANDROID.READ_CONTACTS);
+  }
+};
+
 export enum PermissionAction {
   Camera = 'camera',
   Gallery = 'gallery',
@@ -159,10 +174,12 @@ const usePermissionAlert = () => {
 
 export {
   checkCameraUsagePermission,
+  checkContactsUsagePermission,
   checkGalleryUsagePermission,
   checkGeolocationPermissionAndAccuracy,
   checkMicrophonUsagePermission,
   requestCameraUsagePermission,
+  requestContactsUsagePermission,
   requestGalleryUsagePermission,
   requestGeolocationPermission,
   requestMicrophonUsagePermission,

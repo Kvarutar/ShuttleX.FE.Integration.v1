@@ -150,6 +150,7 @@ const chat: ChatColors = {
   starIconColor: '#FAD02C',
   strokeColor: '#A0B84A',
   navButtonBackgroundColor: '#F9F9F9',
+  systemMessageColor: '#B4B4B4',
 };
 
 export const testPalette: Palette = {

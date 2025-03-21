@@ -25,6 +25,7 @@ import {
   type RenderMessageTextProps,
   Send,
   type SendProps,
+  SystemMessage,
 } from 'react-native-gifted-chat';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import ImageView from 'react-native-image-viewing';
@@ -36,8 +37,6 @@ import { MediaFileType } from 'shuttlex-integration';
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/themeContext';
 import { checkMicrophonUsagePermission, PermissionAction, usePermissionAlert } from '../../../utils/permissions';
-import Button from '../../atoms/Button/v2';
-import { ButtonShapes, CircleButtonModes } from '../../atoms/Button/v2/props';
 import Text from '../../atoms/Text';
 import ArrowSendMessageIcon from '../../icons/ArrowSendMessageIcon';
 import AttachImageIcon from '../../icons/AttachImageIcon';
@@ -246,6 +245,9 @@ const ChatCoreWithoutI18n = ({
       height: windowHeight,
       width: windowWidth,
     },
+    systemMessageText: {
+      color: colors.chat.systemMessageColor,
+    },
   });
 
   const renderMessageText = (props: RenderMessageTextProps<IMessage>) => {
@@ -338,11 +340,11 @@ const ChatCoreWithoutI18n = ({
   return (
     <SafeAreaView>
       <View style={styles.headerContainer}>
-        <Button containerStyle={styles.leftButton} />
+        <Pressable style={styles.headerIconStyle} />
         <Text style={[styles.headerText, computedStyles.headerText]}>{chatName ?? t('ChatCore_Header')}</Text>
-        <Button onPress={onBackButtonPress} shape={ButtonShapes.Circle} mode={CircleButtonModes.Mode2}>
-          <CloseIcon />
-        </Button>
+        <Pressable onPress={onBackButtonPress}>
+          <CloseIcon style={styles.headerIconStyle} />
+        </Pressable>
       </View>
 
       <GiftedChat
@@ -370,8 +372,17 @@ const ChatCoreWithoutI18n = ({
         isLoadingEarlier={isLoadingEarlier}
         infiniteScroll
         isStatusBarTranslucentAndroid
+        //TODO change to true dynamicly adding isloading
+        isTyping={false}
+        //TODO find the way to localize this message on the very top of container
+        renderSystemMessage={props => (
+          <SystemMessage
+            {...props}
+            containerStyle={styles.systemMessageWrapper}
+            textStyle={[styles.systemMessageText, computedStyles.systemMessageText]}
+          />
+        )}
       />
-
       <ImageView images={selectedImages} imageIndex={0} visible={isModalVisible} onRequestClose={closeImageModal} />
     </SafeAreaView>
   );
@@ -438,10 +449,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 5,
     flexDirection: 'row',
+    paddingHorizontal: 7,
   },
   //TODO Change style when we will have multiply chats-add button for chats menu
-  leftButton: {
-    opacity: 0,
+  headerIconStyle: {
+    width: 13,
+    height: 13,
   },
   bubbleWrapper: {
     padding: 10,
@@ -456,6 +469,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontFamily: 'Inter Medium',
+    lineHeight: 32,
+    fontSize: 17,
   },
   messageImage: {
     width: 150,
@@ -490,6 +505,15 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  systemMessageWrapper: {
+    marginBottom: 20,
+    paddingHorizontal: 28,
+  },
+  systemMessageText: {
+    fontSize: 14,
+    textAlign: 'center',
+    letterSpacing: 0.64,
   },
 });
 

@@ -105,6 +105,7 @@ import ClockIcon2 from './shared/icons/ClockIcon2';
 import CloseIcon from './shared/icons/CloseIcon';
 import CloseIconMini from './shared/icons/CloseIconMini';
 import CoinIcon from './shared/icons/CoinIcon';
+import ContactIcon from './shared/icons/ContactIcon';
 import CreditCardIcon from './shared/icons/CreditCardIcon';
 import CreditCheckIcon from './shared/icons/CreditCheckIcon';
 import CrownIcon from './shared/icons/CrownIcon';
@@ -133,6 +134,7 @@ import GameIcon from './shared/icons/GameIcon';
 import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
 import GroupedBrandIconMiniV1 from './shared/icons/GroupedBrandIconMini/V1';
 import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
+import GroupIcon from './shared/icons/GroupIcon';
 import HelpIcon from './shared/icons/HelpIcon';
 import HomeIcon from './shared/icons/HomeIcon';
 import InfoIcon from './shared/icons/InfoIcon';
@@ -160,6 +162,7 @@ import PassengerIcon from './shared/icons/PassengerIcon';
 import PassengerIcon2 from './shared/icons/PassengerIcon2';
 import PauseRoundIcon from './shared/icons/PauseRoundIcon';
 import PayPalIcon from './shared/icons/PayPalIcon';
+import PenIcon from './shared/icons/PenIcon';
 import PhoneIcon from './shared/icons/PhoneIcon';
 import PickUpIcon from './shared/icons/PickUpIcon';
 import PinIcon from './shared/icons/PinIcon';
@@ -194,6 +197,7 @@ import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/icons/SpinnerIcon';
 import Star2Icon from './shared/icons/Star2Icon';
 import StarIcon from './shared/icons/StarIcon';
+import StarsIcon from './shared/icons/StarsIcon';
 import StatisticsIcon from './shared/icons/StatisticsIcon';
 import SteeringWheelIcon from './shared/icons/SteeringWheelIcon';
 import SubscriptionIcon from './shared/icons/SubscriptionIcon';
@@ -356,11 +360,14 @@ import { getPaymentIcon } from './utils/payment/cardIcons';
 import { type PaymentMethod } from './utils/payment/types';
 import {
   checkCameraUsagePermission,
+  checkContactsUsagePermission,
   checkGalleryUsagePermission,
   checkGeolocationPermissionAndAccuracy,
   requestCameraUsagePermission,
+  requestContactsUsagePermission,
   requestGalleryUsagePermission,
   requestGeolocationPermission,
+  usePermissionAlert,
 } from './utils/permissions';
 import { getDefaultDevSentryConfig, getDefaultProdSentryConfig } from './utils/sentryConfig';
 import { type Nullable } from './utils/typescript';
@@ -423,6 +430,7 @@ export {
   ChatIcon2,
   CheckBox,
   checkCameraUsagePermission,
+  checkContactsUsagePermission,
   checkGalleryUsagePermission,
   checkGeolocationPermissionAndAccuracy,
   CheckIcon2,
@@ -439,6 +447,7 @@ export {
   ComfortPlusImage,
   Confetti,
   ConfirmDeleteAccountPopup,
+  ContactIcon,
   convertBlobToImgUri,
   CountingComponent,
   CountingComponentV1,
@@ -516,6 +525,7 @@ export {
   GroupedButtons,
   GroupedButtonsMode,
   GroupedButtonsV1,
+  GroupIcon,
   HeaderWithTwoTitles,
   HelpIcon,
   HomeIcon,
@@ -614,6 +624,7 @@ export {
   PaymentBar,
   type PaymentMethod,
   PayPalIcon,
+  PenIcon,
   PhoneIcon,
   PhoneInput,
   PhoneSlidingPanel,
@@ -641,6 +652,7 @@ export {
   ReceiptScreen,
   ReportIcon,
   requestCameraUsagePermission,
+  requestContactsUsagePermission,
   requestGalleryUsagePermission,
   requestGeolocationPermission,
   RideHasFinishedAlert,
@@ -680,6 +692,7 @@ export {
   Star2Icon,
   StarIcon,
   StarProgressBar,
+  StarsIcon,
   StatisticsIcon,
   StatsBlock,
   SteeringWheelIcon,
@@ -728,6 +741,7 @@ export {
   useDebounceCallback,
   useGeolocationStartWatch,
   useNetworkConnectionStartWatch,
+  usePermissionAlert,
   useProfileForm,
   useTariffsIcons,
   useTheme,
