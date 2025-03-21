@@ -306,6 +306,7 @@ import { type AccountSettingsVerificationMethod } from './shared/screens/Account
 import AddCardScreen from './shared/screens/AddCardScreen';
 import { type Card } from './shared/screens/AddCardScreen/props';
 import ChatCore from './shared/screens/ChatCore';
+import { handlePermission } from './shared/screens/ChatCore/utils';
 import CodeVerificationScreen from './shared/screens/CodeVerificationScreen';
 import TitleWithCloseButton from './shared/screens/CodeVerificationScreen/TitleWithCloseButton';
 import { type CodeVerificationScreenRef } from './shared/screens/CodeVerificationScreen/types';
@@ -524,6 +525,7 @@ export {
   GroupedButtons,
   GroupedButtonsMode,
   GroupIcon,
+  handlePermission,
   HeaderWithTwoTitles,
   HelpIcon,
   HomeIcon,

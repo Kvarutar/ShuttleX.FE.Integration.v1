@@ -140,6 +140,7 @@ export enum PermissionAction {
   Camera = 'camera',
   Gallery = 'gallery',
   Microphone = 'microphone',
+  Contact = 'contact',
 }
 
 const usePermissionAlert = () => {
@@ -158,6 +159,9 @@ const usePermissionAlert = () => {
         break;
       case PermissionAction.Microphone:
         message = t('ChatCore_permissionDeniedMicrophoneMessage');
+        break;
+      case PermissionAction.Contact:
+        message = t('ChatCore_permissionDeniedContactsMessage');
         break;
       default:
         message = t('PermissionDeniedTitle');

@@ -6,10 +6,12 @@ import { type PermissionStatus, RESULTS } from 'react-native-permissions';
 
 import {
   checkCameraUsagePermission,
+  checkContactsUsagePermission,
   checkGalleryUsagePermission,
   checkMicrophonUsagePermission,
   PermissionAction,
   requestCameraUsagePermission,
+  requestContactsUsagePermission,
   requestGalleryUsagePermission,
   requestMicrophonUsagePermission,
 } from '../../../utils/permissions';
@@ -26,6 +28,10 @@ const permissionConfigs = {
   [PermissionAction.Microphone]: {
     check: checkMicrophonUsagePermission,
     request: requestMicrophonUsagePermission,
+  },
+  [PermissionAction.Contact]: {
+    check: checkContactsUsagePermission,
+    request: requestContactsUsagePermission,
   },
 };
 

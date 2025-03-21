@@ -201,6 +201,7 @@
   "ChatCore_titleAlertDuplicateFile": "The file has already been uploaded",
   "ChatCore_messageAlertDuplicateFile": "This file has already been added",
   "ChatCore_permissionDeniedMicrophoneMessage": "You have denied microphone access. Please enable it in the app settings to use the microphone.",
+  "ChatCore_permissionDeniedContactsMessage": "You have denied contacts access. Please enable it in the app settings to use the contacts book.",
   "PermissionDeniedTitle": "Permission Denied",
   "PermissionDeniedCancel": "Cancel",
   "PermissionDeniedGoToSettings": "Go to Settings"
