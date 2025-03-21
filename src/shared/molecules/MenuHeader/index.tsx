@@ -14,6 +14,7 @@ const MenuHeader = ({
     mode: CircleButtonModes.Mode2,
     size: ButtonSizes.S,
   },
+  leftButtonIcon,
 }: MenuHeaderTypes) => {
   const computedStyles = StyleSheet.create({
     rightButton: {
@@ -23,7 +24,7 @@ const MenuHeader = ({
   return (
     <View style={[styles.header, style]}>
       <Button {...leftButtonProps} shape={ButtonShapes.Circle} onPress={onMenuPress}>
-        <MenuIcon />
+        {leftButtonIcon ?? <MenuIcon />}
       </Button>
       {children}
       <View style={computedStyles.rightButton}>{rightButton}</View>

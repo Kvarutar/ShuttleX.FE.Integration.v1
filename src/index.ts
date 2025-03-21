@@ -196,6 +196,7 @@ import ShortArrowIcon from './shared/icons/ShortArrowIcon';
 import ShortArrowSmallIcon from './shared/icons/ShortArrowSmallIcon';
 import SpinnerIcon from './shared/icons/SpinnerIcon';
 import Star2Icon from './shared/icons/Star2Icon';
+import Star3Icon from './shared/icons/Star3Icon';
 import StarIcon from './shared/icons/StarIcon';
 import StarsIcon from './shared/icons/StarsIcon';
 import StatisticsIcon from './shared/icons/StatisticsIcon';
@@ -257,6 +258,8 @@ import { GroupedButtonsMode } from './shared/molecules/GroupedButtons/props';
 import HeaderWithTwoTitles from './shared/molecules/HeaderWithTwoTitles';
 import CustomKeyboardAvoidingView from './shared/molecules/KeyboardAvoidingView';
 import { type KeyboardAvoidingViewMode } from './shared/molecules/KeyboardAvoidingView/types';
+import LinkedWrapper from './shared/molecules/LinkedWrapper';
+import { LinkedWrapperShadows } from './shared/molecules/LinkedWrapper/types';
 import LoadingAnimation3dots from './shared/molecules/LoadingAnimation3dots';
 import LoadingSpinner from './shared/molecules/LoadingSpinner';
 import { LoadingSpinnerIconModes } from './shared/molecules/LoadingSpinner/types';
@@ -551,6 +554,8 @@ export {
   LightningIcon,
   Like2Icon,
   LikeIcon,
+  LinkedWrapper,
+  LinkedWrapperShadows,
   LoadingAnimation3dots,
   LoadingBrandIcon,
   LoadingBrandIconModes,
@@ -690,6 +695,7 @@ export {
   SpinnerIcon,
   SquareButtonModes,
   Star2Icon,
+  Star3Icon,
   StarIcon,
   StarProgressBar,
   StarsIcon,

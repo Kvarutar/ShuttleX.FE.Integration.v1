@@ -22,6 +22,7 @@ const colors: Omit<Palette, 'squareButtonModes' | 'circleButtonModes' | 'timerCo
   backgroundPrimaryColor: '#FFFFFF',
   backgroundSecondaryColor: '#23FF17',
   backgroundTertiaryColor: '#EFF1F2',
+  backgroundQuadraticColor: '#D8D8D8',
   iconPrimaryColor: '#000000',
   iconSecondaryColor: '#B4B4B4',
   iconTertiaryColor: '#FFFFFF',

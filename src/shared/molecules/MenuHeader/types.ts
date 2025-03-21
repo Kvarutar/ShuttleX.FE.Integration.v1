@@ -9,4 +9,5 @@ export type MenuHeaderTypes = {
   leftButtonProps?: ButtonProps;
   style?: StyleProp<ViewStyle>;
   rightButton?: ReactNode;
+  leftButtonIcon?: ReactNode;
 };

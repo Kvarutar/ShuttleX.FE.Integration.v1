@@ -50,6 +50,7 @@ export type Palette = {
   backgroundPrimaryColor: string;
   backgroundSecondaryColor: string;
   backgroundTertiaryColor: string; // mainly used for the background of some icons
+  backgroundQuadraticColor: string;
   iconPrimaryColor: string;
   iconSecondaryColor: string;
   iconTertiaryColor: string;
