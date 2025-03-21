@@ -8,6 +8,7 @@ import {
   type ImageURISource,
   Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -23,8 +24,6 @@ import {
   type InputToolbarProps,
   type MessageImageProps,
   type RenderMessageTextProps,
-  Send,
-  type SendProps,
   SystemMessage,
 } from 'react-native-gifted-chat';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
@@ -32,7 +31,8 @@ import ImageView from 'react-native-image-viewing';
 import { getLocales } from 'react-native-localize';
 import Markdown from 'react-native-marked';
 import { RESULTS } from 'react-native-permissions';
-import { MediaFileType } from 'shuttlex-integration';
+import { MediaFileType, PlusIcon } from 'shuttlex-integration';
+import { v4 as uuidv4 } from 'uuid';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/themeContext';
@@ -42,6 +42,7 @@ import ArrowSendMessageIcon from '../../icons/ArrowSendMessageIcon';
 import AttachImageIcon from '../../icons/AttachImageIcon';
 import CloseIcon from '../../icons/CloseIcon';
 import VoiceChatIcon from '../../icons/VoiceChatIcon';
+import XIcon from '../../icons/XIcon';
 import SafeAreaView from '../../molecules/SafeAreaView';
 import AttachmentPopup from './AttachmentPopup';
 import ListeningAnimation from './ListeningAnimation';
@@ -68,6 +69,7 @@ const ChatCoreWithoutI18n = ({
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedImages, setSelectedImages] = useState<ImageURISource[]>([]);
+  const [attachedImages, setAttachedImages] = useState<IMessage[]>([]);
   const [inputText, setInputText] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [isAttachedPopupVisible, setIsAttachedPopupVisible] = useState(false);
@@ -146,7 +148,7 @@ const ChatCoreWithoutI18n = ({
     const response =
       action === 'camera'
         ? await launchCamera({ mediaType: MediaFileType.Photo, quality: 0.8 })
-        : await launchImageLibrary({ mediaType: MediaFileType.Photo, selectionLimit: 0, quality: 0.8 });
+        : await launchImageLibrary({ mediaType: MediaFileType.Photo, selectionLimit: 5, quality: 0.8 });
 
     if (!response.assets || response.assets.length === 0) {
       return;
@@ -170,7 +172,7 @@ const ChatCoreWithoutI18n = ({
     });
 
     if (images.length > 1) {
-      onSend(images);
+      setAttachedImages(prev => [...prev, ...images]);
       return;
     }
 
@@ -184,7 +186,10 @@ const ChatCoreWithoutI18n = ({
       return;
     }
 
-    onSend([{ _id: croppedUri, text: '', createdAt: new Date(), user: { _id: userId }, image: croppedUri }]);
+    setAttachedImages(prev => [
+      ...prev,
+      { _id: croppedUri, text: '', createdAt: new Date(), user: { _id: userId }, image: croppedUri },
+    ]);
   };
 
   const handleDocumentAction = async () => {
@@ -208,6 +213,10 @@ const ChatCoreWithoutI18n = ({
     if (permissionStatus === RESULTS.GRANTED) {
       startListening();
     }
+  };
+
+  const removeAttachedImage = (_id: IMessage['_id']) => {
+    setAttachedImages(prev => prev.filter(image => image._id !== _id));
   };
 
   const computedStyles = StyleSheet.create({
@@ -244,6 +253,12 @@ const ChatCoreWithoutI18n = ({
     modalOverlay: {
       height: windowHeight,
       width: windowWidth,
+    },
+    addAttachedImageButton: {
+      borderColor: colors.iconSecondaryColor,
+    },
+    removeAttachedImageButton: {
+      backgroundColor: colors.backgroundPrimaryColor,
     },
     systemMessageText: {
       color: colors.chat.systemMessageColor,
@@ -283,7 +298,37 @@ const ChatCoreWithoutI18n = ({
   };
 
   const renderInputToolbar = (props: InputToolbarProps<IMessage>) => (
-    <InputToolbar {...props} containerStyle={[styles.inputToolbar, computedStyles.inputToolBar]} />
+    <>
+      {attachedImages.length > 0 && (
+        <View style={styles.attachedImagesContainer}>
+          <Pressable
+            style={[styles.addAttachedImageButton, computedStyles.addAttachedImageButton]}
+            onPress={() => handlePhotoAction(PermissionAction.Gallery)}
+          >
+            <PlusIcon color={colors.iconSecondaryColor} />
+          </Pressable>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.attachedImagesScrollStyle}
+            contentContainerStyle={styles.attachedImagesScrollContentContainerStyle}
+          >
+            {attachedImages.map(attachedImage => (
+              <View style={[styles.attachedImageContainer]}>
+                <Pressable
+                  style={[styles.removeAttachedImageButton, computedStyles.removeAttachedImageButton]}
+                  onPress={() => removeAttachedImage(attachedImage._id)}
+                >
+                  <XIcon style={styles.removeAttachedImageButtonIcon} />
+                </Pressable>
+                <Image source={{ uri: attachedImage.image }} style={styles.attachedImage} />
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+      )}
+      <InputToolbar {...props} containerStyle={[styles.inputToolbar, computedStyles.inputToolBar]} />
+    </>
   );
 
   const renderActions = () => (
@@ -319,12 +364,39 @@ const ChatCoreWithoutI18n = ({
     </>
   );
 
-  const renderSend = (props: SendProps<IMessage>) => {
-    if (inputText.trim() !== '' && !isListening) {
+  const renderSend = () => {
+    const handleSend = () => {
+      if (inputText.trim() === '' && attachedImages.length === 0) {
+        return;
+      }
+
+      const newMessages: IMessage[] = [];
+
+      if (inputText.trim() !== '') {
+        newMessages.push({
+          _id: uuidv4(),
+          text: inputText,
+          createdAt: new Date(),
+          user: { _id: userId },
+        });
+      }
+
+      if (attachedImages.length > 0) {
+        newMessages.push(...attachedImages);
+      }
+
+      onSend(newMessages);
+      setInputText('');
+      setAttachedImages([]);
+    };
+
+    if ((inputText.trim() !== '' || attachedImages.length > 0) && !isListening) {
       return (
-        <Send {...props} containerStyle={[styles.sendButton, computedStyles.sendButton]}>
-          <ArrowSendMessageIcon />
-        </Send>
+        <Pressable onPress={handleSend}>
+          <View style={[styles.sendButton, computedStyles.sendButton]}>
+            <ArrowSendMessageIcon />
+          </View>
+        </Pressable>
       );
     }
 
@@ -489,6 +561,49 @@ const styles = StyleSheet.create({
   icon: {
     width: 18,
     height: 18,
+  },
+  attachedImagesContainer: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  attachedImagesScrollStyle: {
+    marginBottom: 12,
+  },
+  attachedImagesScrollContentContainerStyle: {
+    gap: 4,
+  },
+  attachedImageContainer: {
+    borderRadius: 8,
+    width: 92,
+    height: 92,
+    overflow: 'hidden',
+  },
+  attachedImage: {
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  addAttachedImageButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 92,
+    width: 92,
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderRadius: 12,
+  },
+  removeAttachedImageButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    width: 18,
+    height: 18,
+    zIndex: 1,
+    borderRadius: 100,
+    padding: 4,
+  },
+  removeAttachedImageButtonIcon: {
+    width: '100%',
+    height: '100%',
   },
   inputToolbar: {
     borderTopWidth: 0,
