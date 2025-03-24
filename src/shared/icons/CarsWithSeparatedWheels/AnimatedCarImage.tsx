@@ -6,6 +6,7 @@ import Animated, {
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
+  withDelay,
   withTiming,
 } from 'react-native-reanimated';
 
@@ -80,6 +81,7 @@ const AnimatedCarImage = ({
   const wheelsRotation = useSharedValue(0);
   const carPosition = useSharedValue(0);
   const isReadyForAnimation = useSharedValue(false);
+  const isDelayedAnimationStarted = useSharedValue(false);
 
   const onLayout = (event: LayoutChangeEvent) => {
     if (withAnimation || leaveInStartPosition) {
@@ -102,12 +104,24 @@ const AnimatedCarImage = ({
     isReadyForAnimation.value = false;
   };
 
-  //There is timeout because "withDelay" works incorrect in this case
-  //TODO: Try to rewrite it with "withDelay"
-  const startAnimationWithTimeout = () => {
-    setTimeout(() => {
-      startAnimation();
-    }, startDelayInMilSec);
+  const startAnimationWithDelay = () => {
+    carPosition.value = withDelay(
+      startDelayInMilSec,
+      withTiming(0, {
+        duration: animationDurationInMilSec,
+        easing: Easing.out(Easing.exp),
+        reduceMotion: ReduceMotion.System,
+      }),
+    );
+
+    wheelsRotation.value = withDelay(
+      startDelayInMilSec,
+      withTiming(-1440, {
+        duration: animationDurationInMilSec,
+        easing: Easing.out(Easing.exp),
+        reduceMotion: ReduceMotion.System,
+      }),
+    );
   };
 
   useDerivedValue(() => {
@@ -120,8 +134,9 @@ const AnimatedCarImage = ({
     if (isReadyForAnimation.value) {
       if (startDelayInMilSec === 0) {
         runOnJS(startAnimation)();
-      } else {
-        runOnJS(startAnimationWithTimeout)();
+      } else if (!isDelayedAnimationStarted.value) {
+        runOnJS(startAnimationWithDelay)();
+        isDelayedAnimationStarted.value = true;
       }
     }
   });
