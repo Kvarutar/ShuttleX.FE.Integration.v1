@@ -2,17 +2,11 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { palettes, type ThemeContextType, TimePickerV1, useTheme } from 'shuttlex-integration';
+import { DateTimePicker, DateTimePickerMode, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-const formatTime = (time: Date): string =>
-  new Intl.DateTimeFormat('en', {
-    hour: 'numeric',
-    minute: 'numeric',
-  }).format(time);
-
-const TimePickerMeta: Meta<typeof TimePickerV1> = {
+const TimePickerMeta: Meta<typeof DateTimePicker> = {
   title: 'TimePicker',
-  component: TimePickerV1,
+  component: DateTimePicker,
   decorators: [
     Story => (
       <View style={styles.container}>
@@ -42,10 +36,10 @@ const TimePickerWithHooks = ({ themeName }: TimePickerWithHooksProps) => {
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <TimePickerV1 placeholder="Time" onTimeSelect={() => {}} formatTime={formatTime} />;
+  return <DateTimePicker mode={DateTimePickerMode.Time} onValueSelect={() => {}} />;
 };
 
-type Story = StoryObj<typeof TimePickerV1>;
+type Story = StoryObj<typeof DateTimePicker>;
 
 export const BasicExample: Story = {
   render: function Render(args) {

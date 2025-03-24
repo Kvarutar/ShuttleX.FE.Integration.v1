@@ -71,10 +71,21 @@ const getTimezoneOffsetInMilSec = () => -new Date().getTimezoneOffset() * 60000;
 /**
  * Converts date to normal format
  * @param date value
- * @returns d/m/y format
+ * @param type weekday | year (default)
+ * - weekday: returns w/m/d (Sun Aug 19)
+ * - year: returns dd/mm/yy
+ * @returns formatted date string
  */
-const formatDate = (date: Date): string => {
+const formatDate = (date: Date, type?: 'weekday' | 'year'): string => {
   const langCode = getLocales()[0]?.languageCode;
+
+  if (type === 'weekday') {
+    return date.toLocaleDateString(langCode, {
+      weekday: 'short',
+      day: '2-digit',
+      month: 'short',
+    });
+  }
 
   return date.toLocaleDateString(langCode, {
     day: '2-digit',

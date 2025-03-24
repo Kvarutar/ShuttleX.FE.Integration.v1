@@ -249,8 +249,8 @@ import {
 } from './shared/molecules/BottomWindowWithGesture/props';
 import CodeInput from './shared/molecules/CodeInput';
 import Confetti from './shared/molecules/Confetti';
-import DatePickerV1 from './shared/molecules/DatePicker/v1';
-import DatePicker from './shared/molecules/DatePicker/v2';
+import DateTimePicker from './shared/molecules/DateTimePicker';
+import { DateTimePickerDisplay, DateTimePickerMode } from './shared/molecules/DateTimePicker/types';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
 import Fog from './shared/molecules/Fog';
 import GroupedButtons from './shared/molecules/GroupedButtons';
@@ -282,8 +282,6 @@ import StatsBlock from './shared/molecules/StatsBlock';
 import SwipeButton from './shared/molecules/SwipeButton';
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/types';
 import TemporaryLockoutPopup from './shared/molecules/TemporaryLockoutPopup';
-import TimePickerV1 from './shared/molecules/TimePicker/v1';
-import TimePicker from './shared/molecules/TimePicker/v2';
 import CountingComponentV1 from './shared/molecules/timerAndStopwatch/CountingComponent/V1';
 import CountingComponent from './shared/molecules/timerAndStopwatch/CountingComponent/V2';
 import StopWatch from './shared/molecules/timerAndStopwatch/StopWatch';
@@ -325,6 +323,7 @@ import SignUpScreen from './shared/screens/SignUpScreen';
 import { type SignUpForm, type SignUpScreenRef } from './shared/screens/SignUpScreen/types';
 import {
   formatCompactNumber,
+  formatDate,
   formatNumbersToMask,
   formatPhone,
   formatTime,
@@ -463,8 +462,9 @@ export {
   CryptoIcon,
   CurrencyIcon,
   CustomKeyboardAvoidingView,
-  DatePicker,
-  DatePickerV1,
+  DateTimePicker,
+  DateTimePickerDisplay,
+  DateTimePickerMode,
   decodeGooglePolyline,
   decodeGooglePolylineArr,
   defaultAxiosRetryConfig,
@@ -496,6 +496,7 @@ export {
   FolderIcon,
   formatCompactNumber,
   formatCurrency,
+  formatDate,
   formatNumbersToMask,
   formatPhone,
   formatTime,
@@ -716,8 +717,6 @@ export {
   type ThemeContextType,
   ThemeProvider,
   TimeIcon,
-  TimePicker,
-  TimePickerV1,
   Timer,
   TimerColorModes,
   timerSizes,

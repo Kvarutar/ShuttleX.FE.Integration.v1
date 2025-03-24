@@ -2,22 +2,12 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { DatePickerV1, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { DateTimePicker, DateTimePickerDisplay, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import type { DateTimePickerProps } from '../../../src/shared/molecules/DateTimePicker/types';
 
-import { DatePickerDisplay, type DatePickerPropsV1 } from '../../../src/shared/molecules/DatePicker/props';
-
-const formatDate = (date: Date): string =>
-  new Intl.DateTimeFormat('en', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  })
-    .format(date)
-    .replace(/[^+\d]/g, '-');
-
-const DatePickerMeta: Meta<typeof DatePickerV1> = {
+const DatePickerMeta: Meta<typeof DateTimePicker> = {
   title: 'DatePicker',
-  component: DatePickerV1,
+  component: DateTimePicker,
   decorators: [
     Story => (
       <View style={styles.container}>
@@ -27,7 +17,7 @@ const DatePickerMeta: Meta<typeof DatePickerV1> = {
   ],
   args: {
     theme: 'light',
-    display: DatePickerDisplay.Calendar,
+    display: DateTimePickerDisplay.Calendar,
   },
   argTypes: {
     theme: {
@@ -35,7 +25,7 @@ const DatePickerMeta: Meta<typeof DatePickerV1> = {
       control: { type: 'select' },
     },
     display: {
-      options: Object.values(DatePickerDisplay),
+      options: Object.values(DateTimePickerDisplay),
       control: { type: 'select' },
     },
   },
@@ -43,7 +33,7 @@ const DatePickerMeta: Meta<typeof DatePickerV1> = {
 
 export default DatePickerMeta;
 
-type DatePickerWithHooksProps = { themeName: ThemeContextType['themeMode'] } & DatePickerPropsV1;
+type DatePickerWithHooksProps = { themeName: ThemeContextType['themeMode'] } & DateTimePickerProps;
 
 const DatePickerWithHooks = ({ themeName, ...props }: DatePickerWithHooksProps) => {
   const { setThemeMode } = useTheme();
@@ -52,24 +42,16 @@ const DatePickerWithHooks = ({ themeName, ...props }: DatePickerWithHooksProps) 
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <DatePickerV1 {...props} />;
+  return <DateTimePicker {...props} />;
 };
 
-type Story = StoryObj<typeof DatePickerV1>;
+type Story = StoryObj<typeof DateTimePicker>;
 
 export const BasicExample: Story = {
   render: function Render(args) {
     const [{ theme }] = useArgs();
 
-    return (
-      <DatePickerWithHooks
-        onDateSelect={() => {}}
-        {...args}
-        themeName={theme}
-        placeholder="Date of birth"
-        formatDate={formatDate}
-      />
-    );
+    return <DatePickerWithHooks onValueSelect={() => {}} {...args} themeName={theme} />;
   },
 };
 

@@ -54,7 +54,7 @@ const PaymentBar = ({
   const titleText = method.details?.length ? (
     <View style={styles.detailsContainer}>
       <Text style={[styles.stars, computedStyles.stars]}>****</Text>
-      <Text style={styles.text}>{method.details}</Text>
+      <Text style={styles.text}>{method.details.slice(-4)}</Text>
     </View>
   ) : (
     <Text style={styles.text}>{title}</Text>
