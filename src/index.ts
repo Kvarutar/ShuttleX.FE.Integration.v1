@@ -311,8 +311,6 @@ import { handlePermission } from './shared/screens/ChatCore/utils';
 import CodeVerificationScreen from './shared/screens/CodeVerificationScreen';
 import TitleWithCloseButton from './shared/screens/CodeVerificationScreen/TitleWithCloseButton';
 import { type CodeVerificationScreenRef } from './shared/screens/CodeVerificationScreen/types';
-import FeedbackScreen from './shared/screens/FeedbackScreen';
-import { type FeedbackRating, type FeedbackType } from './shared/screens/FeedbackScreen/props';
 import LockOutScreen from './shared/screens/LockOutScreen';
 import MediaCore from './shared/screens/MediaCore';
 import { type FileInfo, MediaAmount, MediaFileType } from './shared/screens/MediaCore/types';
@@ -489,11 +487,8 @@ export {
   FeedbackDirtyIcon,
   FeedbackHeartBrokenIcon,
   FeedbackHeartIcon,
-  type FeedbackRating,
-  FeedbackScreen,
   FeedbackThumbDownIcon,
   FeedbackThumbUpIcon,
-  type FeedbackType,
   FeedbackWheelIcon,
   type FileInfo,
   FlatListWithCustomScroll,
