@@ -272,6 +272,7 @@ import MenuHeader from './shared/molecules/MenuHeader';
 import PaymentBar from './shared/molecules/PaymentBar';
 import PhoneInput from './shared/molecules/PhoneInput';
 import PhoneSlidingPanel from './shared/molecules/PhoneSlidingPanel';
+import Popup from './shared/molecules/Popup';
 import SafeAreaView from './shared/molecules/SafeAreaView';
 import ScrollViewWithCustomScroll from './shared/molecules/ScrollViewWithCustomScroll';
 import ServerErrorModal from './shared/molecules/ServerErrorModal';
@@ -639,6 +640,7 @@ export {
   PlusRoundIcon,
   PointIcon,
   PointIcon2,
+  Popup,
   PreferencesIcon,
   PrizePedestalIcon,
   Profile2Icon,
