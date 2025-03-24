@@ -17,6 +17,7 @@ export type DateTimePickerProps = {
   mode?: DateTimePickerMode;
   maximumDate?: Date;
   minimumDate?: Date;
+  defaultValue?: Date | null;
   androidOptions?: {
     format: (date: Date) => string;
     placeholder: string;

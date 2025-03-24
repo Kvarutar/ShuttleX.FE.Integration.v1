@@ -19,10 +19,11 @@ const DateTimePicker = ({
   androidOptions,
   display = DateTimePickerDisplay.Spinner,
   mode = DateTimePickerMode.Date,
+  defaultValue = null,
 }: DateTimePickerProps) => {
   const { colors, themeMode } = useTheme();
 
-  const [value, setValue] = useState<Date | null>(null);
+  const [value, setValue] = useState<Date | null>(defaultValue);
   const [isVisible, setIsVisible] = useState(false);
   const [isDateSelected, setIsDateSelected] = useState(false);
 
