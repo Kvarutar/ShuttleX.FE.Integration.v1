@@ -21254,15 +21254,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
-  version: 0.1.6
-  resolution: "react-native-slide-to-unlock@https://github.com/DevShuttleXInc/react-native-slide-to-unlock.git#commit=cb240ecc52d8079598193199671690cad46f8885"
-  dependencies:
-    prop-types: "npm:^15.7.2"
-  checksum: f13008b2f307fe73075f1eda4e2e40485558450313764991ae574b594f3d33853338be0707e115a8f451335331745ba9a71ab63c2228f10c537719e993818221
-  languageName: node
-  linkType: hard
-
 "react-native-svg-transformer@npm:^1.1.0":
   version: 1.3.0
   resolution: "react-native-svg-transformer@npm:1.3.0"
@@ -22874,7 +22865,6 @@ react-native-slide-to-unlock@DevShuttleXInc/react-native-slide-to-unlock:
     react-native-safe-area-context: "npm:^4.7.4"
     react-native-sensors: "npm:^7.3.6"
     react-native-shadow-2: "npm:^7.0.8"
-    react-native-slide-to-unlock: DevShuttleXInc/react-native-slide-to-unlock
     react-native-svg: "npm:^13.14.0"
     react-native-svg-transformer: "npm:^1.1.0"
     react-redux: "npm:^8.1.3"
