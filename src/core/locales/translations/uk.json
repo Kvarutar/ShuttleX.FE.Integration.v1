@@ -130,5 +130,9 @@
   "ChatCore_messageAlertSelectDocument": "Не вдалося обрати документ. Спробуйте ще раз",
   "PermissionDeniedTitle": "Доступ заборонено",
   "PermissionDeniedCancel": "Скасувати",
-  "PermissionDeniedGoToSettings": "Перейти до налаштувань"
+  "PermissionDeniedGoToSettings": "Перейти до налаштувань",
+  "DatePickerPopup_advanceBooking": "Відкладена поїздка",
+  "DatePickerPopup_pickTime": "Обрати час",
+  "DatePickerPopup_pickDate": "Обрати дату",
+  "DatePickerPopup_confirm": "Ок"
 }

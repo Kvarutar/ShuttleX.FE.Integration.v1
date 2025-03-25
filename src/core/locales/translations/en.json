@@ -204,5 +204,9 @@
   "ChatCore_permissionDeniedContactsMessage": "You have denied contacts access. Please enable it in the app settings to use the contacts book.",
   "PermissionDeniedTitle": "Permission Denied",
   "PermissionDeniedCancel": "Cancel",
-  "PermissionDeniedGoToSettings": "Go to Settings"
+  "PermissionDeniedGoToSettings": "Go to Settings",
+  "DatePickerPopup_advanceBooking": "Advance Booking",
+  "DatePickerPopup_pickTime": "Pick a time",
+  "DatePickerPopup_pickDate": "Pick a date",
+  "DatePickerPopup_confirm": "Confirm"
 }

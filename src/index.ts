@@ -249,6 +249,7 @@ import CodeInput from './shared/molecules/CodeInput';
 import Confetti from './shared/molecules/Confetti';
 import DateTimePicker from './shared/molecules/DateTimePicker';
 import { DateTimePickerDisplay, DateTimePickerMode } from './shared/molecules/DateTimePicker/types';
+import DatePickerPopup from './shared/molecules/DateTimePickerPopup';
 import FlatListWithCustomScroll from './shared/molecules/FlatListWithCustomScroll';
 import Fog from './shared/molecules/Fog';
 import GroupedButtons from './shared/molecules/GroupedButtons';
@@ -337,6 +338,7 @@ import {
   secToMilSec,
 } from './utils';
 import { calculateExtendedHeading, useCompass } from './utils/compass';
+import { IS_ANDROID, IS_IOS, WINDOW_HEIGHT, WINDOW_WIDTH } from './utils/constants';
 import { formatCurrency, getCurrencySign } from './utils/currency';
 import {
   degToRad,
@@ -456,6 +458,7 @@ export {
   CryptoIcon,
   CurrencyIcon,
   CustomKeyboardAvoidingView,
+  DatePickerPopup,
   DateTimePicker,
   DateTimePickerDisplay,
   DateTimePickerMode,
@@ -528,6 +531,8 @@ export {
   InputXIcon,
   IntegrationModule,
   InternetDisconnectedAlert,
+  IS_ANDROID,
+  IS_IOS,
   isAllFieldsFilled,
   isCoordinatesEqualZero,
   isEmailValid,
@@ -743,5 +748,7 @@ export {
   VoiceChatIcon,
   WalletIcon,
   WarningIcon,
+  WINDOW_HEIGHT,
+  WINDOW_WIDTH,
   WorkIcon,
 };
