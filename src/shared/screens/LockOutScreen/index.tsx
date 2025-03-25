@@ -2,8 +2,8 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import ButtonV1 from '../../atoms/Button/v1';
-import { ButtonV1Modes } from '../../atoms/Button/v1/props';
+import Button from '../../atoms/Button';
+import { SquareButtonModes } from '../../atoms/Button/types';
 import Text from '../../atoms/Text';
 import { type LockOutScreenProps } from './props';
 
@@ -39,9 +39,11 @@ const LockOutScreenWithoutI18n = ({
       <View style={styles.body}>
         <Text style={[styles.codeText]}>{t('LockOut_description')}</Text>
         <View style={styles.buttonsContainer}>
-          <ButtonV1 mode={ButtonV1Modes.Mode3} text={t('LockOut_supportButton')} onPress={onContactSupport} />
-          <ButtonV1
-            mode={ButtonV1Modes.Mode2}
+          {/* Changed to lastest Button version in Task-remove-button-v1 */}
+          {/* TODO: Check this buttons by desing when add this screen */}
+          <Button mode={SquareButtonModes.Mode3} text={t('LockOut_supportButton')} onPress={onContactSupport} />
+          <Button
+            mode={SquareButtonModes.Mode2}
             text={t('LockOut_requestButton')}
             onPress={onRequestCodeAgain}
             disableShadow={isLockedOut}

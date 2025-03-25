@@ -2,8 +2,8 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import Button from '../../atoms/Button/v2';
-import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
+import Button from '../../atoms/Button';
+import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/types';
 import BigHeader from '../BigHeader';
 import BottomWindow from '../BottomWindow';
 import { type TemporaryLockoutPopupProps } from './types';

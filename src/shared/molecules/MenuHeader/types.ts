@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { type StyleProp, type ViewStyle } from 'react-native';
 
-import { type ButtonProps } from '../../atoms/Button/v2/props';
+import { type ButtonProps } from '../../atoms/Button/types';
 
 export type MenuHeaderTypes = {
   onMenuPress: () => void;

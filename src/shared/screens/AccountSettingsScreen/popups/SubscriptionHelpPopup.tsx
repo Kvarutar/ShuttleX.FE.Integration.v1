@@ -2,8 +2,8 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Linking, StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../../core/locales/i18n';
-import Button from '../../../atoms/Button/v2';
-import { SquareButtonModes } from '../../../atoms/Button/v2/props';
+import Button from '../../../atoms/Button';
+import { SquareButtonModes } from '../../../atoms/Button/types';
 import BigHeader from '../../../molecules/BigHeader';
 import BottomWindowWithGesture from '../../../molecules/BottomWindowWithGesture';
 import { type SubscriptionHelpPopupProps } from '../types';

@@ -4,7 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import Button from '../../atoms/Button/v2';
+import Button from '../../atoms/Button';
 import BigHeader from '../BigHeader';
 import BottomWindowWithGesture from '../BottomWindowWithGesture';
 import { type ServerErrorModalProps } from './types';

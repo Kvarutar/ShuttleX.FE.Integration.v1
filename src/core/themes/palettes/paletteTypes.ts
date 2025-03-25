@@ -1,4 +1,4 @@
-import { CircleButtonModes, type SquareButtonModes } from '../../../shared/atoms/Button/v2/props';
+import { CircleButtonModes, type SquareButtonModes } from '../../../shared/atoms/Button/types';
 import { TimerColorModes } from '../../../shared/molecules/timerAndStopwatch/Timer/types';
 
 export type PaletteButtonMode = {

@@ -1,8 +1,8 @@
 import { Image, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
-import Button from '../../../atoms/Button/v2';
-import { ButtonShapes, CircleButtonModes } from '../../../atoms/Button/v2/props';
+import Button from '../../../atoms/Button';
+import { ButtonShapes, CircleButtonModes } from '../../../atoms/Button/types';
 import CloseIcon from '../../../icons/CloseIcon';
 import { getCorrectURI } from '../index';
 import { mediaConsts } from '../types';

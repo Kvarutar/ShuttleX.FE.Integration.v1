@@ -15,8 +15,8 @@ import Animated, {
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/themeContext';
 import { getPaymentIcon } from '../../../utils/payment/cardIcons';
-import Button from '../../atoms/Button/v2';
-import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
+import Button from '../../atoms/Button';
+import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/types';
 import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
 import { TextInputInputMode } from '../../atoms/TextInput/v2/props';

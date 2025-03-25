@@ -2,7 +2,7 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Dimensions, StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import Button from '../../atoms/Button/v2';
+import Button from '../../atoms/Button';
 import BigHeader from '../BigHeader';
 import BottomWindowWithGesture from '../BottomWindowWithGesture';
 import { type VerifyDataPopUpType } from './types';

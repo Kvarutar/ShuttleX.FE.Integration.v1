@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../../src/shared/atoms/Button/v2/props';
+import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../../src/shared/atoms/Button/types';
 import ChatInput from '../../../src/shared/molecules/ChatInput/index';
 import { type ChatInputProps } from '../../../src/shared/molecules/ChatInput/props';
 

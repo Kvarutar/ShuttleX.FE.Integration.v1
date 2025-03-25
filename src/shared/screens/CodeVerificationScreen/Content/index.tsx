@@ -4,14 +4,14 @@ import { Pressable, StyleSheet, View } from 'react-native';
 
 import { useTheme } from '../../../../core/themes/themeContext';
 import { type Nullable } from '../../../../utils/typescript';
-import Button from '../../../atoms/Button/v2';
+import Button from '../../../atoms/Button';
 import {
   type ButtonRef,
   ButtonShadows,
   ButtonShapes,
   ButtonSizes,
   CircleButtonModes,
-} from '../../../atoms/Button/v2/props';
+} from '../../../atoms/Button/types';
 import Text from '../../../atoms/Text';
 import CodeInput from '../../../molecules/CodeInput';
 import { type CodeInputRef } from '../../../molecules/CodeInput/types';

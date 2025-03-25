@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 
-import Button from '../../atoms/Button/v2';
-import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
+import Button from '../../atoms/Button';
+import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/types';
 import MenuIcon from '../../icons/MenuIcon';
 import { type MenuHeaderTypes } from './types';
 

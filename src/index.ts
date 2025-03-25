@@ -58,10 +58,8 @@ import { BarModes } from './shared/atoms/Bar/types';
 import BarV1 from './shared/atoms/Bar/v1';
 import Bar from './shared/atoms/Bar/v2';
 import Blur from './shared/atoms/Blur';
-import ButtonV1 from './shared/atoms/Button/v1';
-import { ButtonV1Modes, ButtonV1Shadows, ButtonV1Shapes } from './shared/atoms/Button/v1/props';
-import Button from './shared/atoms/Button/v2';
-import ButtonAnimation from './shared/atoms/Button/v2/ButtonAnimation';
+import Button from './shared/atoms/Button';
+import ButtonAnimation from './shared/atoms/Button/ButtonAnimation';
 import {
   type ButtonProps,
   ButtonShadows,
@@ -69,7 +67,7 @@ import {
   ButtonSizes,
   CircleButtonModes,
   SquareButtonModes,
-} from './shared/atoms/Button/v2/props';
+} from './shared/atoms/Button/types';
 import CheckBox from './shared/atoms/Checkbox';
 import CircleAnimatedProgress from './shared/atoms/CircleProgress';
 import Separator from './shared/atoms/Separator';
@@ -412,10 +410,6 @@ export {
   ButtonShadows,
   ButtonShapes,
   ButtonSizes,
-  ButtonV1,
-  ButtonV1Modes,
-  ButtonV1Shadows,
-  ButtonV1Shapes,
   calculateExtendedHeading,
   calculateNewMapRoute,
   CalendarIcon,

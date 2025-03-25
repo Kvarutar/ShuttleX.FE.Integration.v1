@@ -49,8 +49,7 @@ const getStories = () => {
   return {
     "./src/stories/Alert.stories.tsx": require("../src/stories/Alert.stories.tsx"),
     "./src/stories/Bar.stories.tsx": require("../src/stories/Bar.stories.tsx"),
-    "./src/stories/Button/V1.stories.tsx": require("../src/stories/Button/V1.stories.tsx"),
-    "./src/stories/Button/V2.stories.tsx": require("../src/stories/Button/V2.stories.tsx"),
+    "./src/stories/Button.stories.tsx": require("../src/stories/Button.stories.tsx"),
     "./src/stories/ChatInput.stories.tsx": require("../src/stories/ChatInput.stories.tsx"),
     "./src/stories/CheckBox.stories.tsx": require("../src/stories/CheckBox.stories.tsx"),
     "./src/stories/CodeInput.stories.tsx": require("../src/stories/CodeInput.stories.tsx"),

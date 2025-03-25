@@ -7,8 +7,8 @@ import { getCountryPhoneMaskByCountryName } from '../../../core/countries/countr
 import { type CountryPhoneMaskDto } from '../../../core/countries/types';
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/themeContext';
-import Button from '../../atoms/Button/v2';
-import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
+import Button from '../../atoms/Button';
+import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/types';
 import Text from '../../atoms/Text';
 import TextInput from '../../atoms/TextInput/v2';
 import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';

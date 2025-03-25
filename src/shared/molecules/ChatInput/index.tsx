@@ -1,8 +1,8 @@
 import { StyleSheet, TextInput as TextInputNative, View } from 'react-native';
 
 import { useTheme } from '../../../core/themes/themeContext';
-import Button from '../../atoms/Button/v2';
-import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
+import Button from '../../atoms/Button';
+import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/types';
 import ArrowSendMessageIcon from '../../icons/ArrowSendMessageIcon';
 import AttachImageIcon from '../../icons/AttachImageIcon';
 import { type ChatInputProps } from './props';

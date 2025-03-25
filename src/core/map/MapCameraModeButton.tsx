@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import Button from '../../shared/atoms/Button/v2';
-import { ButtonShapes, CircleButtonModes } from '../../shared/atoms/Button/v2/props';
+import Button from '../../shared/atoms/Button';
+import { ButtonShapes, CircleButtonModes } from '../../shared/atoms/Button/types';
 import LocationArrowImage2 from '../../shared/images/LocationArrowImage2';
 import { type MapCameraModeButtonProps } from './types';
 

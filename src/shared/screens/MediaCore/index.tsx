@@ -16,8 +16,8 @@ import {
   requestGalleryUsagePermission,
   usePermissionAlert,
 } from '../../../utils/permissions';
-import Button from '../../atoms/Button/v2';
-import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/v2/props';
+import Button from '../../atoms/Button';
+import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/types';
 import CameraIcon from '../../icons/CameraIcon';
 import DocumentIcon from '../../icons/DocumentIcon';
 import GalleryIcon from '../../icons/GalleryIcon';

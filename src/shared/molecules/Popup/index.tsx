@@ -4,8 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import sizes from '../../../core/themes/sizes';
 import Blur from '../../atoms/Blur';
-import ButtonV1 from '../../atoms/Button/v1/index';
-import { ButtonV1Shapes } from '../../atoms/Button/v1/props';
+import Button from '../../atoms/Button';
+import { ButtonShapes, CircleButtonModes } from '../../atoms/Button/types';
 import CloseIcon from '../../icons/CloseIcon';
 import ShortArrowIcon from '../../icons/ShortArrowIcon';
 import BottomWindow from '../BottomWindow';
@@ -40,9 +40,9 @@ const Popup = ({
           style={styles.topButtons}
         >
           <SafeAreaView style={computetStyles.container}>
-            <ButtonV1 shape={ButtonV1Shapes.Circle} onPress={onBackButtonPress}>
+            <Button shape={ButtonShapes.Circle} mode={CircleButtonModes.Mode2} onPress={onBackButtonPress}>
               <ShortArrowIcon />
-            </ButtonV1>
+            </Button>
           </SafeAreaView>
         </Animated.View>
       )}
@@ -52,9 +52,14 @@ const Popup = ({
             entering={FadeIn.duration(animationDuration.closeButtonDuration)}
             exiting={FadeOut.duration(animationDuration.closeButtonDuration)}
           >
-            <ButtonV1 shape={ButtonV1Shapes.Circle} style={styles.closeButton} onPress={onCloseButtonPress}>
+            <Button
+              shape={ButtonShapes.Circle}
+              mode={CircleButtonModes.Mode2}
+              style={styles.closeButton}
+              onPress={onCloseButtonPress}
+            >
               <CloseIcon />
-            </ButtonV1>
+            </Button>
           </Animated.View>
         )}
         <Animated.View

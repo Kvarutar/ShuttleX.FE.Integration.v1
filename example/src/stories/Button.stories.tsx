@@ -1,24 +1,27 @@
 import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
-import { ButtonV1, palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
+import Button from '../../../src/shared/atoms/Button';
 import {
-  ButtonV1Modes,
-  type ButtonV1Props,
-  ButtonV1Shadows,
-  ButtonV1Shapes,
-} from '../../../../src/shared/atoms/Button/v1/props';
+  type ButtonProps,
+  ButtonShadows,
+  ButtonShapes,
+  ButtonSizes,
+  CircleButtonModes,
+} from '../../../src/shared/atoms/Button/types';
 
-const ButtonMeta: Meta<typeof ButtonV1> = {
-  title: 'ButtonV1',
-  component: ButtonV1,
+const ButtonMeta: Meta<ButtonProps & { theme: ThemeContextType['themeMode'] }> = {
+  title: 'ButtonV2',
+  component: Button,
   args: {
     theme: 'light',
-    mode: ButtonV1Modes.Mode1,
-    shape: ButtonV1Shapes.Square,
+    mode: undefined,
+    shape: undefined,
+    size: undefined,
+    innerSpacing: 0,
     text: 'Sample text',
-    borderRadius: 28,
     shadow: undefined,
     disableShadow: false,
     disabled: false,
@@ -28,16 +31,21 @@ const ButtonMeta: Meta<typeof ButtonV1> = {
       options: Object.keys(palettes),
       control: { type: 'select' },
     },
+    //TODO: create separate modes argTypes for options
     mode: {
-      options: Object.values(ButtonV1Modes),
-      control: { type: 'select' },
-    },
-    shadow: {
-      options: [undefined, ...Object.values(ButtonV1Shadows)],
+      options: [undefined, ...Object.values(CircleButtonModes)],
       control: { type: 'select' },
     },
     shape: {
-      options: Object.values(ButtonV1Shapes),
+      options: [undefined, ...Object.values(ButtonShapes)],
+      control: { type: 'select' },
+    },
+    size: {
+      options: [undefined, ...Object.values(ButtonSizes)],
+      control: { type: 'select' },
+    },
+    shadow: {
+      options: [undefined, ...Object.values(ButtonShadows)],
       control: { type: 'select' },
     },
   },
@@ -45,7 +53,7 @@ const ButtonMeta: Meta<typeof ButtonV1> = {
 
 export default ButtonMeta;
 
-type ButtonWithHooksProps = { themeName: ThemeContextType['themeMode'] } & ButtonV1Props;
+type ButtonWithHooksProps = { themeName: ThemeContextType['themeMode'] } & ButtonProps;
 
 const ButtonWithHooks = ({ themeName, ...props }: ButtonWithHooksProps) => {
   const { setThemeMode } = useTheme();
@@ -54,7 +62,7 @@ const ButtonWithHooks = ({ themeName, ...props }: ButtonWithHooksProps) => {
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <ButtonV1 {...props} />;
+  return <Button {...props} />;
 };
 
 type Story = StoryObj<typeof ButtonWithHooks>;

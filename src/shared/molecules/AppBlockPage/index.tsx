@@ -2,8 +2,8 @@ import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Linking, StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../core/locales/i18n';
-import Button from '../../atoms/Button/v2';
-import { CircleButtonModes } from '../../atoms/Button/v2/props';
+import Button from '../../atoms/Button';
+import { CircleButtonModes } from '../../atoms/Button/types';
 import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini/V2';
 import BigHeader from '../BigHeader';
 import SafeAreaView from '../SafeAreaView';

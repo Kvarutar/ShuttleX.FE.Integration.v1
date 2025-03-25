@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import i18nIntegration from '../../../../core/locales/i18n';
 import { useTheme } from '../../../../core/themes/themeContext';
-import Button from '../../../atoms/Button/v2';
+import Button from '../../../atoms/Button';
 import Text from '../../../atoms/Text';
 import BigHeader from '../../../molecules/BigHeader';
 import BottomWindowWithGesture from '../../../molecules/BottomWindowWithGesture';
