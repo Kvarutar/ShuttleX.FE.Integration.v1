@@ -144,6 +144,7 @@ import LoadingBrandIcon, { LoadingBrandIconModes } from './shared/icons/LoadingB
 import LocationIcon from './shared/icons/LocationIcon';
 import LockIcon from './shared/icons/LockIcon';
 import LotteryIcon from './shared/icons/LotteryIcon';
+import LoudSpeakerIcon from './shared/icons/LoudSpeakerIcon';
 import MaestroIcon from './shared/icons/MaestroIcon';
 import MailIcon from './shared/icons/MailIcon';
 import MapNavigationPlaneIcon from './shared/icons/MapNavigationPlaneIcon';
@@ -179,6 +180,7 @@ import ProfileIcon from './shared/icons/ProfileIcon';
 import ProfileIconMini from './shared/icons/ProfileIconMini';
 import PromocodesIcon from './shared/icons/PromocodesIcon';
 import QuestionRoundIcon from './shared/icons/QuestionRoundIcon';
+import QuietSpeakerIcon from './shared/icons/QuietSpeakerIcon';
 import ReportIcon from './shared/icons/ReportIcon';
 import RoundCheckIcon1 from './shared/icons/RoundCheckIcon1';
 import RoundCheckIcon2 from './shared/icons/RoundCheckIcon2';
@@ -565,6 +567,7 @@ export {
   LockIcon,
   LockOutScreen,
   LotteryIcon,
+  LoudSpeakerIcon,
   MaestroIcon,
   MailIcon,
   type MapCameraMode,
@@ -648,6 +651,7 @@ export {
   ProfileIconMini,
   PromocodesIcon,
   QuestionRoundIcon,
+  QuietSpeakerIcon,
   radToDeg,
   ReceiptScreen,
   ReportIcon,
