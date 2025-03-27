@@ -14,6 +14,7 @@ import {
   View,
 } from 'react-native';
 import {
+  type AvatarProps,
   Bubble,
   type BubbleProps,
   Composer,
@@ -62,6 +63,7 @@ const ChatCoreWithoutI18n = ({
   loadEarlier,
   onLoadEarlier,
   isLoadingEarlier,
+  isTyping,
 }: ChatCoreProps) => {
   const { colors } = useTheme();
   const { t } = useTranslation();
@@ -364,6 +366,16 @@ const ChatCoreWithoutI18n = ({
     </>
   );
 
+  const renderAvatar = (props: AvatarProps<IMessage>) => {
+    const avatarSource = props.currentMessage?.user?.avatar;
+
+    if (typeof avatarSource !== 'string') {
+      errorLogger(`Invalid avatar source: ${JSON.stringify(avatarSource)}`);
+      return null;
+    }
+    return <Image source={{ uri: avatarSource }} style={styles.avatar} />;
+  };
+
   const renderSend = () => {
     const handleSend = () => {
       if (inputText.trim() === '' && attachedImages.length === 0) {
@@ -438,14 +450,14 @@ const ChatCoreWithoutI18n = ({
         renderTime={() => null}
         renderDay={() => null}
         alwaysShowSend
-        renderAvatar={null}
+        renderAvatar={renderAvatar}
         loadEarlier={loadEarlier}
         onLoadEarlier={onLoadEarlier}
         isLoadingEarlier={isLoadingEarlier}
         infiniteScroll
         isStatusBarTranslucentAndroid
         //TODO change to true dynamicly adding isloading
-        isTyping={false}
+        isTyping={isTyping}
         //TODO find the way to localize this message on the very top of container
         renderSystemMessage={props => (
           <SystemMessage
@@ -629,6 +641,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'center',
     letterSpacing: 0.64,
+  },
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 50,
   },
 });
 

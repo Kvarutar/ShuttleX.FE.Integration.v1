@@ -11,6 +11,7 @@ export type ChatCoreProps = {
   onLoadEarlier?: () => void;
   loadEarlier?: boolean;
   isLoadingEarlier?: boolean;
+  isTyping?: boolean;
 };
 
 export type AttachmentPopupState = {
