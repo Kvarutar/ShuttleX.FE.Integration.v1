@@ -369,11 +369,17 @@ const ChatCoreWithoutI18n = ({
   const renderAvatar = (props: AvatarProps<IMessage>) => {
     const avatarSource = props.currentMessage?.user?.avatar;
 
-    if (typeof avatarSource !== 'string') {
-      errorLogger(`Invalid avatar source: ${JSON.stringify(avatarSource)}`);
-      return null;
+    switch (typeof avatarSource) {
+      case 'string':
+        return <Image source={{ uri: avatarSource }} style={styles.avatar} />;
+
+      case 'number':
+        return <Image source={avatarSource} style={styles.avatar} />;
+
+      default:
+        errorLogger(`Invalid avatar source: ${JSON.stringify(avatarSource)}`);
+        return null;
     }
-    return <Image source={{ uri: avatarSource }} style={styles.avatar} />;
   };
 
   const renderSend = () => {
