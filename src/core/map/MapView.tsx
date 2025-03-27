@@ -76,6 +76,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       cameraMode,
       mapPadding,
       setCameraModeOnDrag,
+      onDrag,
       onDragComplete,
       onFirstCameraAnimationComplete,
     },
@@ -219,10 +220,11 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       runOnJS(setCurrentLocationMarkerPosition)(coordinates);
     }, [currentLocationMarkerCoordinates]);
 
-    const onDrag = () => {
+    const onPanDrag = () => {
       if (cameraMode !== 'free') {
         setCameraModeOnDragRef.current?.('free');
       }
+      onDrag?.();
     };
 
     const onRegionChange = async () => {
@@ -389,7 +391,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           customMapStyle={lightMapStyle}
           mapPadding={mapPaddingProp}
           rotateEnabled={cameraMode === 'free'}
-          onPanDrag={onDrag}
+          onPanDrag={onPanDrag}
           onRegionChange={onRegionChange}
           onRegionChangeComplete={onRegionChangeComplete}
           onMapLoaded={() => setIsMapLoaded(true)}

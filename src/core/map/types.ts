@@ -68,6 +68,7 @@ export type MapViewProps = {
   cameraMode?: MapCameraMode;
   mapPadding?: Partial<NativeMapViewProps['mapPadding']>;
   setCameraModeOnDrag?: (cameraMode: MapCameraMode) => void;
+  onDrag?: () => void;
   onDragComplete?: (coordinates: LatLng) => void;
   onFirstCameraAnimationComplete?: () => void;
 };
