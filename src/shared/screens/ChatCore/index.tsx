@@ -432,7 +432,7 @@ const ChatCoreWithoutI18n = ({
       <View style={styles.headerContainer}>
         <Pressable style={styles.headerIconStyle} />
         <Text style={[styles.headerText, computedStyles.headerText]}>{chatName ?? t('ChatCore_Header')}</Text>
-        <Pressable onPress={onBackButtonPress}>
+        <Pressable onPress={onBackButtonPress} hitSlop={10}>
           <CloseIcon style={styles.headerIconStyle} />
         </Pressable>
       </View>
@@ -541,7 +541,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 7,
   },
-  //TODO Change style when we will have multiply chats-add button for chats menu
   headerIconStyle: {
     width: 13,
     height: 13,
