@@ -229,8 +229,6 @@ import PassengerDefaultCarImage from './shared/images/PassengerDefaultCarImage';
 import { type AlertDescendantProps } from './shared/molecules/alerts/Alert/V1/props';
 import Alert from './shared/molecules/alerts/Alert/V2';
 import DriverArrivedAlert from './shared/molecules/alerts/DriverArrivedAlert';
-import FreeTimeAlert from './shared/molecules/alerts/FreeTimeAlert';
-import { type FreeTimeAlertProps } from './shared/molecules/alerts/FreeTimeAlert/props';
 import InternetDisconnectedAlert from './shared/molecules/alerts/InternetDisconnectedAlert';
 import PaidTimeAlert from './shared/molecules/alerts/PaidTimeAlert';
 import { type PaidTimeAlertProps } from './shared/molecules/alerts/PaidTimeAlert/props';
@@ -499,8 +497,6 @@ export {
   formatNumbersToMask,
   formatPhone,
   formatTime,
-  FreeTimeAlert,
-  type FreeTimeAlertProps,
   GalleryIcon,
   GameIcon,
   getAngleBetweenPoints,
