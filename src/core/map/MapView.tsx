@@ -77,6 +77,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
       mapPadding,
       setCameraModeOnDrag,
       onDrag,
+      onPress,
       onDragComplete,
       onFirstCameraAnimationComplete,
     },
@@ -392,6 +393,7 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(
           mapPadding={mapPaddingProp}
           rotateEnabled={cameraMode === 'free'}
           onPanDrag={onPanDrag}
+          onPress={onPress}
           onRegionChange={onRegionChange}
           onRegionChangeComplete={onRegionChangeComplete}
           onMapLoaded={() => setIsMapLoaded(true)}
