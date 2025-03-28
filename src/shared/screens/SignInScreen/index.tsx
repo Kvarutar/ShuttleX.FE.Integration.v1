@@ -2,6 +2,7 @@ import { forwardRef, type ReactNode, useEffect, useImperativeHandle, useState } 
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { getCountryPhoneMaskByCountryName } from '../../../core/countries/countryDtos';
 import { type CountryPhoneMaskDto } from '../../../core/countries/types';
@@ -32,6 +33,7 @@ const SignInScreenWithoutI18n = forwardRef<SignInScreenRef, SignInScreenProps>(
   ): JSX.Element => {
     const { colors } = useTheme();
     const { t } = useTranslation();
+    const insets = useSafeAreaInsets();
 
     const [flagState, setFlagState] = useState<CountryPhoneMaskDto>(
       getCountryPhoneMaskByCountryName('United States') ?? ({} as CountryPhoneMaskDto),
@@ -87,6 +89,9 @@ const SignInScreenWithoutI18n = forwardRef<SignInScreenRef, SignInScreenProps>(
       },
       checkBoxText: {
         color: colors.textSecondaryColor,
+      },
+      phoneSlidingBottomWindow: {
+        marginBottom: -insets.bottom,
       },
     });
 
@@ -192,6 +197,7 @@ const SignInScreenWithoutI18n = forwardRef<SignInScreenRef, SignInScreenProps>(
         {content}
         {isPanelPhoneSelectVisible && (
           <PhoneSlidingPanel
+            bottomWindowStyle={computedStyles.phoneSlidingBottomWindow}
             flagState={flagState}
             onFlagSelect={flag => setFlagState(flag)}
             isPanelOpen={isPanelPhoneSelectVisible}

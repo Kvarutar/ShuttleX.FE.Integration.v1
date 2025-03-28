@@ -1,6 +1,7 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { emailRegex } from '../../../core/consts/regex.consts';
 import { getCountryPhoneMaskByCountryName } from '../../../core/countries/countryDtos';
@@ -22,6 +23,7 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
   ({ navigateToSignIn, navigateToTerms, onSubmit, isLoading, setPanelPhoneVisible }, ref): JSX.Element => {
     const { colors } = useTheme();
     const { t } = useTranslation();
+    const insets = useSafeAreaInsets();
 
     //TODO: all fields should be false. Currently isAllowedProcessPersonalData is true because we temporary hide it
     const [userDataForm, setUserDataForm] = useState<SignUpForm>({
@@ -137,6 +139,9 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
       checkBoxText: {
         color: colors.textSecondaryColor,
       },
+      phoneSlidingBottomWindow: {
+        marginBottom: -insets.bottom,
+      },
     });
 
     const content = (
@@ -228,6 +233,7 @@ const SignUpScreenWithoutI18n = forwardRef<SignUpScreenRef, SignUpProps>(
         {content}
         {isPanelPhoneSelectVisible && (
           <SlidingPanel
+            bottomWindowStyle={computedStyles.phoneSlidingBottomWindow}
             flagState={flagState}
             onFlagSelect={setFlagState}
             isPanelOpen={isPanelPhoneSelectVisible}
