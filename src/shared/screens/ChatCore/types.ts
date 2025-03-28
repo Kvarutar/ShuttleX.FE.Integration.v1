@@ -12,6 +12,7 @@ export type ChatCoreProps = {
   loadEarlier?: boolean;
   isLoadingEarlier?: boolean;
   isTyping?: boolean;
+  withRenderAvatar?: boolean;
 };
 
 export type AttachmentPopupState = {

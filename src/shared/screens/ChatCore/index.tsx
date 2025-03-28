@@ -64,6 +64,7 @@ const ChatCoreWithoutI18n = ({
   onLoadEarlier,
   isLoadingEarlier,
   isTyping,
+  withRenderAvatar = false,
 }: ChatCoreProps) => {
   const { colors } = useTheme();
   const { t } = useTranslation();
@@ -456,7 +457,7 @@ const ChatCoreWithoutI18n = ({
         renderTime={() => null}
         renderDay={() => null}
         alwaysShowSend
-        renderAvatar={renderAvatar}
+        renderAvatar={withRenderAvatar ? renderAvatar : null}
         loadEarlier={loadEarlier}
         onLoadEarlier={onLoadEarlier}
         isLoadingEarlier={isLoadingEarlier}
