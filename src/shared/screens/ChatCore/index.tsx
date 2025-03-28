@@ -1,5 +1,4 @@
-import Voice, { type SpeechVolumeChangeEvent } from '@react-native-voice/voice';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import {
   Alert,
@@ -29,15 +28,13 @@ import {
 } from 'react-native-gifted-chat';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import ImageView from 'react-native-image-viewing';
-import { getLocales } from 'react-native-localize';
 import Markdown from 'react-native-marked';
-import { RESULTS } from 'react-native-permissions';
-import { MediaFileType, PlusIcon } from 'shuttlex-integration';
+import { Button, ButtonShapes, MediaFileType, PlusIcon } from 'shuttlex-integration';
 import { v4 as uuidv4 } from 'uuid';
 
 import i18nIntegration from '../../../core/locales/i18n';
 import { useTheme } from '../../../core/themes/themeContext';
-import { checkMicrophonUsagePermission, PermissionAction, usePermissionAlert } from '../../../utils/permissions';
+import { PermissionAction, usePermissionAlert } from '../../../utils/permissions';
 import Text from '../../atoms/Text';
 import ArrowSendMessageIcon from '../../icons/ArrowSendMessageIcon';
 import AttachImageIcon from '../../icons/AttachImageIcon';
@@ -46,9 +43,8 @@ import VoiceChatIcon from '../../icons/VoiceChatIcon';
 import XIcon from '../../icons/XIcon';
 import SafeAreaView from '../../molecules/SafeAreaView';
 import AttachmentPopup from './AttachmentPopup';
-import ListeningAnimation from './ListeningAnimation';
 import { type ChatCoreProps } from './types';
-import { cropPhoto, getVoiceLanguage, handlePermission, onSelectDocument } from './utils';
+import { cropPhoto, handlePermission, onSelectDocument } from './utils';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -65,6 +61,7 @@ const ChatCoreWithoutI18n = ({
   isLoadingEarlier,
   isTyping,
   withRenderAvatar = false,
+  onVoiceButtonPress,
 }: ChatCoreProps) => {
   const { colors } = useTheme();
   const { t } = useTranslation();
@@ -74,12 +71,8 @@ const ChatCoreWithoutI18n = ({
   const [selectedImages, setSelectedImages] = useState<ImageURISource[]>([]);
   const [attachedImages, setAttachedImages] = useState<IMessage[]>([]);
   const [inputText, setInputText] = useState('');
-  const [isListening, setIsListening] = useState(false);
   const [isAttachedPopupVisible, setIsAttachedPopupVisible] = useState(false);
-  const [iconWidth, setIconWidth] = useState(0);
-  const [volumeChangeEvent, setVolumeChangeEvent] = useState<SpeechVolumeChangeEvent>();
   const [selectedFiles, setSelectedFiles] = useState<IMessage[]>([]);
-  const deviceLanguage = getVoiceLanguage(getLocales()[0]?.languageCode);
 
   const addSelectedFile = (file: IMessage) => {
     const fileExists = selectedFiles.some(selectedFile => selectedFile.image === file.image);
@@ -88,49 +81,6 @@ const ChatCoreWithoutI18n = ({
       Alert.alert(t('ChatCore_titleAlertDuplicateFile'), t('ChatCore_messageAlertDuplicateFile'));
     } else {
       setSelectedFiles(prevFiles => [...prevFiles, file]);
-    }
-  };
-
-  useEffect(() => {
-    Voice.onSpeechStart = () => setIsListening(true);
-    Voice.onSpeechError = event => {
-      errorLogger('Voice library error', event);
-      setIsListening(false);
-    };
-    Voice.onSpeechEnd = () => setIsListening(false);
-
-    Voice.onSpeechResults = event => {
-      if (event.value && event.value.length > 0 && event.value[0]) {
-        setInputText(event.value[0]);
-      }
-    };
-
-    Voice.onSpeechVolumeChanged = e => {
-      setVolumeChangeEvent(e);
-    };
-
-    return () => {
-      Voice.destroy().then(Voice.removeAllListeners);
-    };
-  }, [errorLogger]);
-
-  const startListening = async () => {
-    try {
-      await Voice.start(deviceLanguage, {
-        RECOGNIZER_ENGINE: 'services',
-        EXTRA_PARTIAL_RESULTS: true,
-      });
-    } catch (error) {
-      errorLogger('Voice start error:', error);
-    }
-  };
-
-  const stopListening = async () => {
-    setIsListening(false);
-    try {
-      await Voice.stop();
-    } catch (error) {
-      errorLogger('Voice stop error:', error);
     }
   };
 
@@ -210,14 +160,6 @@ const ChatCoreWithoutI18n = ({
     }
   };
 
-  const handleVoiceRecord = async () => {
-    const permissionStatus = await checkMicrophonUsagePermission();
-    handlePermission(PermissionAction.Microphone, showPermissionAlert);
-    if (permissionStatus === RESULTS.GRANTED) {
-      startListening();
-    }
-  };
-
   const removeAttachedImage = (_id: IMessage['_id']) => {
     setAttachedImages(prev => prev.filter(image => image._id !== _id));
   };
@@ -243,12 +185,7 @@ const ChatCoreWithoutI18n = ({
     },
     composer: {
       color: colors.textPrimaryColor,
-      opacity: isListening ? 0 : 1,
       alignSelf: Platform.OS === 'android' ? 'center' : 'flex-start',
-    },
-    sendButton: {
-      backgroundColor: colors.primaryColor,
-      opacity: isListening ? 0.3 : 1,
     },
     messageContainer: {
       borderTopColor: colors.chat.cardsBackgroundColor,
@@ -339,7 +276,6 @@ const ChatCoreWithoutI18n = ({
       <TouchableOpacity
         style={styles.actionsContainer}
         onPress={() => setIsAttachedPopupVisible(!isAttachedPopupVisible)}
-        onLayout={e => setIconWidth(e.nativeEvent.layout.width)}
       >
         <AttachImageIcon style={styles.icon} />
       </TouchableOpacity>
@@ -361,8 +297,6 @@ const ChatCoreWithoutI18n = ({
 
   const renderComposer = (props: ComposerProps) => (
     <>
-      {isListening && <ListeningAnimation iconWidth={iconWidth} event={volumeChangeEvent} />}
-
       <Composer {...props} textInputStyle={[styles.composer, computedStyles.composer]} />
     </>
   );
@@ -409,22 +343,18 @@ const ChatCoreWithoutI18n = ({
       setAttachedImages([]);
     };
 
-    if ((inputText.trim() !== '' || attachedImages.length > 0) && !isListening) {
+    if (inputText.trim() !== '' || attachedImages.length > 0) {
       return (
-        <Pressable onPress={handleSend}>
-          <View style={[styles.sendButton, computedStyles.sendButton]}>
-            <ArrowSendMessageIcon />
-          </View>
-        </Pressable>
+        <Button onPress={handleSend} shape={ButtonShapes.Circle} style={styles.sendButton}>
+          <ArrowSendMessageIcon />
+        </Button>
       );
     }
 
     return (
-      <Pressable onLongPress={handleVoiceRecord} onPressOut={stopListening}>
-        <View style={[styles.sendButton, computedStyles.sendButton]}>
-          <VoiceChatIcon style={styles.voiceIcon} />
-        </View>
-      </Pressable>
+      <Button onPress={onVoiceButtonPress} shape={ButtonShapes.Circle} style={styles.sendButton}>
+        <VoiceChatIcon style={styles.voiceIcon} />
+      </Button>
     );
   };
 
@@ -635,9 +565,6 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     width: 48,
     height: 48,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   systemMessageWrapper: {
     marginBottom: 20,
