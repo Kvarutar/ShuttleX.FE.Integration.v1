@@ -9,7 +9,7 @@ const SvgComponent = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: 
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.timeIcon, style]} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.timeIcon, style]} viewBox="0 0 24 24" fill="none">
       <Circle cx={12} cy={12} r={8.25} stroke={svgColor} strokeWidth={1.5} />
       <Path d="M12 7v4a1 1 0 001 1h2" stroke={svgColor} strokeWidth={1.5} strokeLinecap="round" />
     </Svg>

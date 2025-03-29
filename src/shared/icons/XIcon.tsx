@@ -4,7 +4,7 @@ import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
 import sizes from '../../core/themes/sizes';
 
 const XIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg style={[styles.XIcon, style]} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+  <Svg style={[styles.XIcon, style]} fill="none" viewBox="0 0 24 24">
     <G clipPath="url(#clip0_117_2818)">
       <Path d="M18.3642 18.3848L5.98985 6.01043" stroke="black" strokeWidth={2} strokeLinecap="round" />
       <Path d="M5.6357 18.3847L18.0101 6.01036" stroke="black" strokeWidth={2} strokeLinecap="round" />

@@ -8,7 +8,7 @@ const DropOffIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element =
   const { colors } = useTheme();
 
   return (
-    <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.DropOffIcon, style]} fill="none" viewBox="0 0 24 24">
+    <Svg style={[styles.DropOffIcon, style]} fill="none" viewBox="0 0 24 24">
       <Path d="M12 15V21" stroke="#B4B4B4" strokeWidth={1.5} strokeLinecap="round" />
       <Circle cx={12} cy={9} r={5.25} fill={colors.primaryColor} stroke="#F4F4F4" strokeWidth={1.5} />
       <Path

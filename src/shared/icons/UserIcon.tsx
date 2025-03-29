@@ -8,7 +8,7 @@ const UserIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: stri
   const svgColor = color ?? colors.textSecondaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 25 26" fill="none">
       <Path
         d="M15.027 8.73061C15.027 10.9045 13.4842 12.4612 11.8201 12.4612C10.1561 12.4612 8.61328 10.9045 8.61328 8.73061C8.61328 6.55671 10.1561 5 11.8201 5C13.4842 5 15.027 6.55671 15.027 8.73061Z"
         stroke={svgColor}

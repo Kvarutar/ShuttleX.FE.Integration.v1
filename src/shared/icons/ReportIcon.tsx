@@ -10,7 +10,7 @@ const ReportIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element =>
   const svgColor = colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.ReportIcon, style]} viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.ReportIcon, style]} viewBox="0 0 24 22" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

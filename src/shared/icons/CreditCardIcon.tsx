@@ -8,7 +8,7 @@ const CreditCardIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?
   const svgColor = color ?? colors.textPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 24 21" fill="none">
       <Path
         d="M24 5.0664C24 5.87214 23.352 6.53138 22.56 6.53138H1.44C0.648 6.53138 0 5.87214 0 5.0664V5.05419C0 2.25852 2.22 0 4.968 0H19.02C21.768 0 24 2.27072 24 5.0664Z"
         fill={svgColor}

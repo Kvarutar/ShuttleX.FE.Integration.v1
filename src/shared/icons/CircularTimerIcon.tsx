@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
   cancelAnimation,

@@ -17,7 +17,7 @@ const InfoIcon = ({
   const svgBackgroundColor = backgroundColor ?? colors.backgroundSecondaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 18 18" fill="none">
       <Rect width="18" height="18" rx="9" fill={svgBackgroundColor} />
       <Path d="M9 13V9" stroke={svgColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       <Path d="M8.99988 5H9.00988" stroke={svgColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

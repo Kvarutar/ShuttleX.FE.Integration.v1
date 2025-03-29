@@ -19,7 +19,7 @@ const GroupedBrandIconMini = ({
   };
 
   return (
-    <Svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 259 75" style={[styles.icon, style]}>
+    <Svg fill="none" viewBox="0 0 259 75" style={[styles.icon, style]}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

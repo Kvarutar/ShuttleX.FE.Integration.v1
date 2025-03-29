@@ -7,7 +7,7 @@ const CheckIcon2 = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: st
   const { colors } = useTheme();
   const svgColor = color ?? colors.iconPrimaryColor;
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 15 11" fill="none">
       <Path d="M2 6.66405L4.83391 9.22653L13 2" stroke={svgColor} strokeWidth="2.5" strokeLinecap="round" />
     </Svg>
   );

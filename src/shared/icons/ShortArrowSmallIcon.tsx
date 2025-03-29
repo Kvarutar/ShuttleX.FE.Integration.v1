@@ -8,7 +8,7 @@ const ShortArrowSmallIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; c
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.ShortArrowSmallIcon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
+    <Svg style={[styles.ShortArrowSmallIcon, style]} viewBox="0 0 16 16" fill="none">
       <Path
         d="M6.97489 3.99972L10.088 7.27412C10.45 7.65483 10.4557 8.25068 10.101 8.63823L7.02515 11.9998"
         stroke={svgColor}

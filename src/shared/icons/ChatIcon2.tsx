@@ -2,13 +2,7 @@ import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Defs, Image, Pattern, Rect, Use } from 'react-native-svg';
 
 const ChatIcon2 = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg
-    style={[styles.icon, style]}
-    viewBox="0 0 18 18"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-  >
+  <Svg style={[styles.icon, style]} viewBox="0 0 18 18" fill="none">
     <Rect width={18} height={18} fill="url(#pattern0_20193_24733)" />
     <Defs>
       <Pattern id="pattern0_20193_24733" patternContentUnits="objectBoundingBox" width={1} height={1}>

@@ -8,7 +8,7 @@ const BookMarkIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: 
   const svgColor = color ?? colors.iconSecondaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 12 16" fill="none">
       <Path
         fill-rule="evenodd"
         clip-rule="evenodd"

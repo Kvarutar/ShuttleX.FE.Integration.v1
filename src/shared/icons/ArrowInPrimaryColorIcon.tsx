@@ -17,7 +17,7 @@ const ArrowInPrimaryColorIcon = ({
   const arrowColor = lineColor ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 32 32" fill="none">
       <Circle cx={16} cy={16} r={16} fill={backgroundColor} />
       <Path d="M14 11L18 16L14 21" stroke={arrowColor} strokeWidth={1.5} strokeLinecap="round" />
     </Svg>

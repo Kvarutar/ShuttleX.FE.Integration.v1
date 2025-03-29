@@ -8,7 +8,7 @@ const ApplePayIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: 
   const svgColor = color ?? colors.textSecondaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 26 26" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

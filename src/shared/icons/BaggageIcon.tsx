@@ -8,7 +8,7 @@ const BaggageIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: s
   const svgColor = color ?? colors.iconSecondaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 12 12" fill="none">
       <Path
         d="M1.95771 2.23828C1.45835 2.29855 1.13476 2.34374 1.13476 2.34374C0.500237 2.53742 0 2.85184 0 3.4785V6.05174V6.88889V7.56358V10.0366V10.06C0 10.6866 0.493904 10.996 1.13476 11.1947C1.13476 11.1947 1.4601 11.2369 1.95771 11.2932V2.23828Z"
         fill={svgColor}

@@ -8,7 +8,7 @@ const Star3Icon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: str
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 18 17" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

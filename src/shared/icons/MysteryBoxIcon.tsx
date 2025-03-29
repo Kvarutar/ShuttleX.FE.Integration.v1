@@ -3,7 +3,7 @@ import Svg, { Path } from 'react-native-svg';
 
 const MysteryBoxIcon = ({ style }: { style?: StyleProp<ViewStyle>; color?: string }): JSX.Element => {
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 161 161" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 161 161" fill="none">
       <Path
         d="M56.4989 138.313C68.2761 144.494 74.1647 147.584 80.4993 147.584V80.5007L17.6961 47.4464C17.6036 47.5951 17.5128 47.7451 17.4236 47.8966C13.416 54.7022 13.416 63.1709 13.416 80.1083V80.8932C13.416 97.8304 13.416 106.3 17.4236 113.105C21.4311 119.911 28.6482 123.698 43.0822 131.273L56.4989 138.313Z"
         fill="#B2CD4D"

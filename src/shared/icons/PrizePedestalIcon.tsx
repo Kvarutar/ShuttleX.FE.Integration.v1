@@ -61,7 +61,7 @@ const PrizePedestalIconWithoutI18n = ({
 
   const FirstPlace = (
     <Animated.View style={[firstDefaultAnimatedStyle]}>
-      <Svg width="137" height="167" viewBox="0 0 137 167" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Svg width="137" height="167" viewBox="0 0 137 167" fill="none">
         <Path d="M20 0H117L137 43H0L20 0Z" fill="url(#paint1_linear)" />
         <Rect y="43" width="137" height="124" fill={'#FFFFFF'} />
 
@@ -84,7 +84,7 @@ const PrizePedestalIconWithoutI18n = ({
 
   const FirstPlaceColored = (
     <Animated.View style={[firstAlternateAnimatedStyle, StyleSheet.absoluteFill]}>
-      <Svg width="137" height="167" viewBox="0 0 137 167" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Svg width="137" height="167" viewBox="0 0 137 167" fill="none">
         <Path d="M20 0H117L137 43H0L20 0Z" fill="url(#paint1_linear)" />
         <Rect y="43" width="137" height="124" fill={'#C5FB02'} />
 
@@ -107,7 +107,7 @@ const PrizePedestalIconWithoutI18n = ({
 
   const SecondPlace = (
     <Animated.View style={[secondDefaultAnimatedStyle]}>
-      <Svg width="104" height="170" viewBox="0 0 104 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Svg width="104" height="170" viewBox="0 0 104 170" fill="none">
         <Path d="M20 30H117V63H0L20 30Z" fill="url(#paint2_linear)" />
         <Rect y="63" width="117" height="104" fill={'#F9F9F9'} />
         <Text x="55" y="150" fontSize="100" fill={numberColor} fontWeight="bold" textAnchor="middle">
@@ -125,7 +125,7 @@ const PrizePedestalIconWithoutI18n = ({
 
   const SecondPlaceColored = (
     <Animated.View style={[secondAlternateAnimatedStyle, StyleSheet.absoluteFill]}>
-      <Svg width="117" height="170" viewBox="0 0 117 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Svg width="117" height="170" viewBox="0 0 117 170" fill="none">
         <Path d="M20 30H117V63H0L20 30Z" fill="url(#paint2_linear)" />
         <Rect y="63" width="117" height="104" fill={'#AFDF04'} />
         <Text x="55" y="150" fontSize="100" fill={numberColor} fontWeight="bold" textAnchor="middle">
@@ -143,7 +143,7 @@ const PrizePedestalIconWithoutI18n = ({
 
   const ThirdPlace = (
     <Animated.View style={[thirdDefaultAnimatedStyle]}>
-      <Svg width="103" height="167" viewBox="0 0 103 167" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Svg width="103" height="167" viewBox="0 0 103 167" fill="none">
         <Path d="M100 50H-14V83H103L90 50Z" fill="url(#paint3_linear)" />
         <Rect width={103} height={84} transform="matrix(-1 0 0 1 103 83)" fill={'#F9F9F9'} />
 
@@ -163,7 +163,7 @@ const PrizePedestalIconWithoutI18n = ({
 
   const ThirdPlaceColored = (
     <Animated.View style={[thirdAlternateAnimatedStyle, StyleSheet.absoluteFill]}>
-      <Svg width="103" height="167" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Svg width="103" height="167" fill="none">
         <Path d="M100 50H-14V83H103L90 50Z" fill="url(#paint3_linear)" />
         <Rect width={103} height={84} transform="matrix(-1 0 0 1 103 83)" fill={'#AFDF04'} />
 

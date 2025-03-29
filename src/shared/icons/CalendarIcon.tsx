@@ -9,7 +9,7 @@ const CalendarIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: 
   const svgColor = color ?? colors.textSecondaryColor;
 
   return (
-    <Svg style={[styles.calendarIcon, style]} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.calendarIcon, style]} viewBox="0 0 24 24" fill="none">
       <Path
         d="M3.75 8A2.25 2.25 0 016 5.75h12A2.25 2.25 0 0120.25 8v8A2.25 2.25 0 0118 18.25H6A2.25 2.25 0 013.75 16V8z"
         stroke={svgColor}

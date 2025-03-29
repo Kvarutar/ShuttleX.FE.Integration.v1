@@ -19,7 +19,7 @@ const RoundCheckIcon4 = ({
   const outerSvgColor = outerColor ?? colors.primaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none">
       <Circle cx="12" cy="12" r="12" fill={outerSvgColor} />
       <Path d="M8 13.5945L9.69889 15.1307L16.3928 9" stroke={innerSvgColor} strokeWidth="2.5" strokeLinecap="round" />
     </Svg>

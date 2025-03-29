@@ -9,7 +9,7 @@ const MyRideIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: st
   const svgColor = color ?? colors.textSecondaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none">
       <Path
         d="M9 20L3 17V4L9 7M9 20L15 17M9 20V7M9 7L15 4M15 17L21 20V7L15 4M15 17V4"
         stroke={svgColor}

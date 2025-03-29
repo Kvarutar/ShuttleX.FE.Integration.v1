@@ -9,13 +9,7 @@ const CarIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => {
   const svgColor = colors.iconPrimaryColor;
 
   return (
-    <Svg
-      style={[styles.icon, style]}
-      viewBox="0 0 17 15"
-      fill={svgColor}
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-    >
+    <Svg style={[styles.icon, style]} viewBox="0 0 17 15" fill={svgColor}>
       <Rect width={17} height={15} transform="matrix(-1 0 0 1 17 0)" fill="url(#pattern0_19989_16347)" />
       <Defs>
         <Pattern id="pattern0_19989_16347" patternContentUnits="objectBoundingBox" width={1} height={1}>

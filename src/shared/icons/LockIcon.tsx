@@ -9,7 +9,7 @@ const LockIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: stri
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none">
       <Rect x={11} y={15} width={2} height={3} rx={1} fill={svgColor} />
       <Circle cx={12} cy={14} r={2} fill={svgColor} />
       <Rect x={4.75} y={9.75} width={14.5} height={10.5} rx={2.25} stroke={svgColor} strokeWidth={1.5} />

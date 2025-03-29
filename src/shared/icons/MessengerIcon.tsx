@@ -8,7 +8,7 @@ const MessengerIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?:
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 28 27" fill="none">
       <Path
         d="M8.2133 15.2734L3.23517 13.6703C2.39142 13.4172 2.30705 12.2359 3.1508 11.8984L22.9789 3.88281C23.8227 3.54531 24.6664 4.30469 24.4133 5.14844L20.532 22.6984C20.3633 23.3734 19.5195 23.7109 19.0133 23.2047L12.9383 18.3953"
         stroke={svgColor}

@@ -15,7 +15,7 @@ const PlusInCircleIcon = ({ style, color, background }: PlusInCircleIconProps): 
   const svgColorPlus = color ?? colors.iconTertiaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 16 16" fill="none">
       <Circle cx="8" cy="8" r="8" fill={svgColorCircle} />
       <Path d="M7.412 5H8.636V7.424H11.048V8.648H8.636V11.072H7.412V8.648H5V7.424H7.412V5Z" fill={svgColorPlus} />
     </Svg>

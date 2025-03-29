@@ -17,7 +17,7 @@ const PointIcon2 = ({
   const outerSvgColor = innerColor ?? '#ECEFF2';
 
   return (
-    <Svg style={[styles.DropOffIcon, style]} viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.DropOffIcon, style]} viewBox="0 0 19 19" fill="none">
       <Circle cx="9.5" cy="9.5" r="9.5" fill={outerSvgColor} />
       <Circle cx="9.5" cy="9.5" r="3.5" fill={innerSvgColor} />
     </Svg>

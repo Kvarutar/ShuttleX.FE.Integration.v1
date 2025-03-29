@@ -18,7 +18,7 @@ const PointIcon = ({
   const innerSvgColor = innerColor ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.DropOffIcon, style]} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.DropOffIcon, style]} viewBox="0 0 24 24" fill="none">
       <Path fill={outerSvgColor} d="M24 12A12 12 0 0 1 12 24A12 12 0 0 1 0 12A12 12 0 0 1 24 12z" />
       <Path
         fill={innerSvgColor}

@@ -18,7 +18,7 @@ const FeedbackWheelIcon = ({
   const color2 = color ?? (themeMode === 'light' ? colors.iconTertiaryColor : colors.iconPrimaryColor);
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 30 30" fill="none">
       <Rect width={30} height={30} rx={8} fill={color1} />
       <Circle cx={15} cy={15} r={8.25} stroke={color2} strokeWidth={1.5} />
       <Circle cx={15} cy={15} r={2.25} stroke={color2} strokeWidth={1.5} />

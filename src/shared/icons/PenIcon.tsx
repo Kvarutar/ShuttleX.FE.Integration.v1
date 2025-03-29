@@ -9,7 +9,7 @@ const PenIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: strin
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.PenIcon, style]} viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.PenIcon, style]} viewBox="0 0 27 27" fill="none">
       <Rect
         x="20.4727"
         y="0.472656"

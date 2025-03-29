@@ -9,13 +9,7 @@ const EarthIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => 
   const svgColor = colors.iconPrimaryColor;
 
   return (
-    <Svg
-      style={[styles.icon, style]}
-      viewBox="0 0 17 17"
-      fill={svgColor}
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-    >
+    <Svg style={[styles.icon, style]} viewBox="0 0 17 17" fill={svgColor}>
       <Rect width={17} height={17} fill="url(#pattern0_19989_16459)" />
       <Defs>
         <Pattern id="pattern0_19989_16459" patternContentUnits="objectBoundingBox" width={1} height={1}>

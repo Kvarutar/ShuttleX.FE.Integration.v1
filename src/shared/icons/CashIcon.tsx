@@ -8,7 +8,7 @@ const CashIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: stri
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.icon, style]} fill="none" viewBox="0 0 24 19">
+    <Svg style={[styles.icon, style]} fill="none" viewBox="0 0 24 19">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

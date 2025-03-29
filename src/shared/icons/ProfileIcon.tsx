@@ -7,7 +7,7 @@ const ProfileIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: s
   const { colors } = useTheme();
   const svgColor = color ?? colors.iconSecondaryColor;
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 12 15" fill="none">
       <Path
         d="M3.20053 4.97229C3.36337 6.68142 4.45374 7.8102 5.99989 7.8102C7.54597 7.8102 8.63623 6.68139 8.79913 4.97229L9.02996 3.12574C9.17315 1.31156 7.71292 0 5.99989 0C4.2868 0 2.82656 1.31156 2.96966 3.12574L3.20053 4.97229Z"
         fill={svgColor}

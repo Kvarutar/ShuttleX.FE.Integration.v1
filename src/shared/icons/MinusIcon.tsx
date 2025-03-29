@@ -8,7 +8,7 @@ const MinusIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: str
   const svgColor = color ?? colors.primaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 2" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 18 2" fill="none">
       <Path d="M17 1L1 1" stroke={svgColor} strokeWidth={2} strokeLinecap="round" />
     </Svg>
   );

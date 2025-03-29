@@ -10,7 +10,7 @@ const RouteIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: str
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none">
       <Path
         d="M7 21C8.10457 21 9 20.1046 9 19C9 17.8954 8.10457 17 7 17C5.89543 17 5 17.8954 5 19C5 20.1046 5.89543 21 7 21Z"
         stroke={svgColor}

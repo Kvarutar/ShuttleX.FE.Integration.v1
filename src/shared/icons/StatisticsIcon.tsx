@@ -9,7 +9,7 @@ const StatisticsIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?
   const svgColor = color ?? colors.textSecondaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none">
       <Rect x={3} y={13} width={4} height={6} rx={1} stroke={svgColor} strokeWidth={2} />
       <Rect x={17} y={5} width={4} height={14} rx={1} stroke={svgColor} strokeWidth={2} />
       <Rect x={10} y={9} width={4} height={10} rx={1} stroke={svgColor} strokeWidth={2} />

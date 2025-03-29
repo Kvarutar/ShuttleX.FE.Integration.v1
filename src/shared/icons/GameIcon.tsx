@@ -8,7 +8,7 @@ const GameIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: stri
   const { colors } = useTheme();
   const svgColor = color ?? colors.iconPrimaryColor;
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none">
       <Path
         d="M9.56953 12.4609L6.51953 15.5109"
         stroke={svgColor}

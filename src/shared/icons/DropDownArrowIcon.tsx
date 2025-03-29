@@ -37,12 +37,7 @@ const DropDownIcon = ({
   };
 
   return (
-    <Svg
-      xmlns="http://www.w3.org/2000/svg"
-      style={[styles.icon, style]}
-      fill={iconModes[mode].fill}
-      viewBox="0 0 30 30"
-    >
+    <Svg style={[styles.icon, style]} fill={iconModes[mode].fill} viewBox="0 0 30 30">
       <Circle
         cx={15}
         cy={15}

@@ -8,7 +8,7 @@ const CryptoIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: st
   const svgColor = color ?? colors.textPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 26 26" fill="none">
       <Path
         d="M0.000932693 8.45C0.000932693 12.688 3.12092 16.185 7.1769 16.796V16.718C7.5799 11.674 11.6749 7.579 16.7579 7.176H16.7969C16.1859 3.12 12.6889 0 8.45089 0C3.78391 0 0.000932693 3.783 0.000932693 8.45Z"
         fill={svgColor}

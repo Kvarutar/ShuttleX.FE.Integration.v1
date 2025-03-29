@@ -10,12 +10,7 @@ const EmergencyServiceIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.
   const svgColor = colors.iconPrimaryColor;
 
   return (
-    <Svg
-      style={[styles.EmergencyServiceIcon, style]}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <Svg style={[styles.EmergencyServiceIcon, style]} viewBox="0 0 24 24" fill="none">
       <Rect width={24} height={24} fill="white" fillOpacity={0.01} />
       <Path
         d="M18 17.5H6V10.5C6 7.18629 8.68629 4.5 12 4.5C15.3137 4.5 18 7.18629 18 10.5V17.5Z"

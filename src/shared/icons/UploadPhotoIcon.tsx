@@ -2,7 +2,7 @@ import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Circle, Mask, Path, Rect } from 'react-native-svg';
 
 const UploadPhotoIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg style={[styles.style, style]} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <Svg style={[styles.style, style]} viewBox="0 0 64 64" fill="none">
     <Rect x="0.5" y="0.5" width="63" height="63" rx="31.5" stroke="#ECECEC" />
     <Mask id="path-2-inside-1_11076_25776" fill="white">
       <Path

@@ -14,7 +14,7 @@ export const TriangleIcon = ({ onLayout, color }: TriangleIconProps): JSX.Elemen
   const svgColor = color ?? colors.backgroundTertiaryColor;
 
   return (
-    <Svg width="9" height="5" viewBox="0 0 9 5 " fill="none" xmlns="http://www.w3.org/2000/svg" onLayout={onLayout}>
+    <Svg width="9" height="5" viewBox="0 0 9 5 " fill="none" onLayout={onLayout}>
       <Path d="M4.5 5L9 0H0L4.5 5Z" fill={svgColor} />
     </Svg>
   );

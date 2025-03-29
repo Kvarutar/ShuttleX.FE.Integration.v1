@@ -9,7 +9,7 @@ const WalletIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: st
   const svgColor = color ?? colors.textSecondaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

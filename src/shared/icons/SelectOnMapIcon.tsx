@@ -6,7 +6,7 @@ const SelectOnMapIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color
   const svgColorLocation = color ?? '#29931A';
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 16 17" fill="none">
       <Path
         d="M15.9781 15.137L14.6456 7.13711C14.5192 6.35462 13.8404 5.78292 13.0499 5.79312H2.94879C2.16084 5.7823 1.48299 6.34981 1.35304 7.12911L0.0205919 15.145C-0.0548797 15.6116 0.0792957 16.0878 0.387125 16.4459C0.694955 16.8039 1.14493 17.0071 1.61634 17.001H14.3823C14.8554 17.0075 15.3069 16.8032 15.6151 16.4433C15.9232 16.0834 16.0562 15.6049 15.9781 15.137Z"
         fill={svgColorMap}

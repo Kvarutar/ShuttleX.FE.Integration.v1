@@ -4,7 +4,7 @@ import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
 import sizes from '../../core/themes/sizes';
 
 const MasterCardIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.MasterCardIcon, style]} fill="none" viewBox="0 0 24 24">
+  <Svg style={[styles.MasterCardIcon, style]} fill="none" viewBox="0 0 24 24">
     <G clipPath="url(#clip0_79_1520)">
       <Path d="M15.237 6.09888H8.74212V17.8513H15.237V6.09888Z" fill="#FF5A00" />
       <Path

@@ -8,7 +8,7 @@ const CloseIconMini = ({ style, color }: { style?: StyleProp<ViewStyle>; color?:
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 12 12" fill="none">
       <Path d="M9 9L3 3" stroke={svgColor} strokeWidth={1.5} strokeLinecap="round" />
       <Path d="M3 9L9 3" stroke={svgColor} strokeWidth={1.5} strokeLinecap="round" />
     </Svg>

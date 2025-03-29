@@ -2,13 +2,7 @@ import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Defs, Image, Pattern, Rect, Use } from 'react-native-svg';
 
 const NoteIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg
-    viewBox="0 0 8 14"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    style={[styles.icon, style]}
-  >
+  <Svg viewBox="0 0 8 14" fill="none" style={[styles.icon, style]}>
     <Rect width={8} height={14} fill="url(#pattern0_20193_24726)" />
     <Defs>
       <Pattern id="pattern0_20193_24726" patternContentUnits="objectBoundingBox" width={1} height={1}>

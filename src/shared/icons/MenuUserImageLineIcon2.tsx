@@ -8,12 +8,7 @@ const MenuUserImageLineIcon2 = ({ style, color }: { style?: StyleProp<ViewStyle>
   const svgColor = color ?? colors.primaryColor;
 
   return (
-    <Svg
-      style={[styles.MenuUserImageLineIcon2, style]}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 102 142"
-      fill="none"
-    >
+    <Svg style={[styles.MenuUserImageLineIcon2, style]} viewBox="0 0 102 142" fill="none">
       <Path
         d="M101 1H41C18.9086 1 1 18.9086 1 41V101C1 123.091 18.9086 141 41 141H71.1873"
         stroke={svgColor}

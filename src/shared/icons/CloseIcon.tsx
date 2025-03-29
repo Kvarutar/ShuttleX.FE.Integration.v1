@@ -8,7 +8,7 @@ const CloseIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: str
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 10 11" fill="none">
       <Path
         d="M8.85909 0.842487L9.72459 1.70799L5.88924 5.54333L9.7161 9.37019L8.8506 10.2357L5.02374 6.40883L1.18839 10.2442L0.322896 9.37868L4.15824 5.54333L0.331381 1.71647L1.19688 0.850972L5.02374 4.67783L8.85909 0.842487Z"
         fill={svgColor}

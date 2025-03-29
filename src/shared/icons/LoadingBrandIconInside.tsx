@@ -8,7 +8,7 @@ const LoadingBrandIconInside = ({ style, color }: { style?: StyleProp<ViewStyle>
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 33 33" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

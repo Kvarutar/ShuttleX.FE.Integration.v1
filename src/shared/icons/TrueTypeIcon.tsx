@@ -5,13 +5,7 @@ import sizes from '../../core/themes/sizes';
 
 const TrueTypeIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => {
   return (
-    <Svg
-      style={[styles.icon, style]}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-    >
+    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none">
       <Rect width="24" height="24" fill="url(#pattern0_20430_26892)" fill-opacity="0.3" />
       <Defs>
         <Pattern id="pattern0_20430_26892" patternContentUnits="objectBoundingBox" width="1" height="1">

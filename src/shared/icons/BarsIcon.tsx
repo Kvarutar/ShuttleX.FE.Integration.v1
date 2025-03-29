@@ -8,7 +8,7 @@ const BarsIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: stri
   const svgColor = color ?? colors.iconSecondaryColor;
 
   return (
-    <Svg style={[styles.ArrowIcon, style]} viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.ArrowIcon, style]} viewBox="0 0 16 12" fill="none">
       <Rect width="16" height="2" fill={svgColor} />
       <Rect y="5" width="16" height="2" fill={svgColor} />
       <Rect y="10" width="16" height="2" fill={svgColor} />

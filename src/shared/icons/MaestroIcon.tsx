@@ -2,7 +2,7 @@ import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
 const MaestroIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.icon, style]} fill="none" viewBox="0 0 32 32">
+  <Svg style={[styles.icon, style]} fill="none" viewBox="0 0 32 32">
     <Path
       d="M21.9987 7.3335C19.7002 7.3335 17.4958 8.24659 15.8704 9.8719C14.2451 11.4972 13.332 13.7016 13.332 16.0002C13.332 18.2987 14.2451 20.5031 15.8704 22.1284C17.4958 23.7537 19.7002 24.6668 21.9987 24.6668C24.2972 24.6668 26.5016 23.7537 28.127 22.1284C29.7523 20.5031 30.6654 18.2987 30.6654 16.0002C30.6654 13.7016 29.7523 11.4972 28.127 9.8719C26.5016 8.24659 24.2972 7.3335 21.9987 7.3335Z"
       fill="#F44336"

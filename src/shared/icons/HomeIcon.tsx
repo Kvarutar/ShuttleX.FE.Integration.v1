@@ -3,13 +3,7 @@ import Svg, { Defs, Image, Pattern, Rect, Use } from 'react-native-svg';
 
 const HomeIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => {
   return (
-    <Svg
-      style={[styles.icon, style]}
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-    >
+    <Svg style={[styles.icon, style]} viewBox="0 0 16 16" fill="none">
       <Rect width="16" height="16" fill="url(#pattern0_20430_26866)" />
       <Defs>
         <Pattern id="pattern0_20430_26866" patternContentUnits="objectBoundingBox" width="1" height="1">

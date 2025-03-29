@@ -14,7 +14,7 @@ const CameraOutlineIcon = ({
   const stroke = strokeColor ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 18 17" fill="none">
       <Mask id="mask0_4_14" maskUnits="userSpaceOnUse" x="1" y="2" width="16" height="14">
         <Path
           fillRule="evenodd"

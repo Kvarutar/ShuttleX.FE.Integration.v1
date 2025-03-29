@@ -5,7 +5,7 @@ const MapNavigationPlaneIcon = ({ style, color }: { style?: StyleProp<ViewStyle>
   const svgColor = color ?? '#969CA0';
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 16 16" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

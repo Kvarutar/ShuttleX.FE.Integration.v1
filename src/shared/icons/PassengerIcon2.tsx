@@ -9,7 +9,7 @@ const PassengerIcon2 = ({ style, color }: { style?: StyleProp<ViewStyle>; color?
   const svgColor = color ?? colors.iconSecondaryColor;
 
   return (
-    <Svg style={[styles.PassengerIcon2, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+    <Svg style={[styles.PassengerIcon2, style]} viewBox="0 0 24 24" fill="none">
       <Path
         d="M16 8.5V6.5C16 4.567 14.433 3 12.5 3C10.567 3 9 4.567 9 6.5V8.5C9 10.433 10.567 12 12.5 12C14.433 12 16 10.433 16 8.5Z"
         stroke={svgColor}

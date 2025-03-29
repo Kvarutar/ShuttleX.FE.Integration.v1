@@ -8,7 +8,7 @@ const LowSignalIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?:
   const svgColor = color ?? colors.backgroundPrimaryColor;
 
   return (
-    <Svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 11 10" style={[styles.icon, style]}>
+    <Svg fill="none" viewBox="0 0 11 10" style={[styles.icon, style]}>
       <Rect y={6} width={3} height={4} rx={1.5} fill={svgColor} />
       <Rect x={4} y={3} width={3} height={7} rx={1.5} fill={svgColor} fillOpacity={0.5} />
       <Rect x={8} width={3} height={10} rx={1.5} fill={svgColor} fillOpacity={0.5} />

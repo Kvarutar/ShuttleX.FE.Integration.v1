@@ -9,7 +9,7 @@ const CreditCheckIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+    <Svg style={[styles.icon, style]} viewBox="0 0 24 24" fill="none">
       <Path
         d="M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4"
         stroke={svgColor}

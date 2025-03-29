@@ -7,7 +7,7 @@ const BrandTextIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element
   const { colors } = useTheme();
 
   return (
-    <Svg style={[styles.BrandTextIcon, style]} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 173 49">
+    <Svg style={[styles.BrandTextIcon, style]} fill="none" viewBox="0 0 173 49">
       <Path
         fill={colors.textPrimaryColor}
         fillRule="evenodd"

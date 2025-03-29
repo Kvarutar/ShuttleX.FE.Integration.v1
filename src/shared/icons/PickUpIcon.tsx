@@ -9,7 +9,7 @@ const PickUpIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: st
   const svgColor = color ?? colors.primaryColor;
 
   return (
-    <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.PickUpIcon, style]} fill="none" viewBox="0 0 24 24">
+    <Svg style={[styles.PickUpIcon, style]} fill="none" viewBox="0 0 24 24">
       <Circle cx={12} cy={12} r={5.75} fill={svgColor} stroke="#F4F4F4" strokeWidth={1.5} />
     </Svg>
   );

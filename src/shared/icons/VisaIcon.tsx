@@ -2,7 +2,7 @@ import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
 const VisaIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Element => (
-  <Svg style={[styles.VisaIcon, style]} viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <Svg style={[styles.VisaIcon, style]} viewBox="0 0 24 18" fill="none">
     <Path
       fillRule="evenodd"
       clipRule="evenodd"

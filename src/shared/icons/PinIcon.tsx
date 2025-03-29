@@ -9,7 +9,7 @@ const PinIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: strin
   const rectColor = colors.iconTertiaryColor;
 
   return (
-    <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.PinIcon, style]} fill="none" viewBox="0 0 20 20">
+    <Svg style={[styles.PinIcon, style]} fill="none" viewBox="0 0 20 20">
       <G clip-path="url(#clip0_20321_16541)">
         <Path
           d="M10 9.1665C10.6904 9.1665 11.25 8.60686 11.25 7.9165C11.25 7.22615 10.6904 6.6665 10 6.6665C9.30964 6.6665 8.75 7.22615 8.75 7.9165C8.75 8.60686 9.30964 9.1665 10 9.1665Z"

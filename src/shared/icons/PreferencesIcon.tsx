@@ -8,7 +8,7 @@ const PreferencesIcon = ({ style }: { style?: StyleProp<ViewStyle> }): JSX.Eleme
   const { colors } = useTheme();
 
   return (
-    <Svg xmlns="http://www.w3.org/2000/svg" style={[styles.PreferencesIcon, style]} fill="none" viewBox="0 0 24 24">
+    <Svg style={[styles.PreferencesIcon, style]} fill="none" viewBox="0 0 24 24">
       <Path d="M19.0779 7.54297H5" stroke={colors.iconPrimaryColor} strokeWidth={1.5} strokeLinecap="round" />
       <Path d="M18.7192 12.9995L5 13.0434" stroke={colors.iconPrimaryColor} strokeWidth={1.5} strokeLinecap="round" />
       <Path d="M15.9116 18.523L5 18.5669" stroke={colors.iconPrimaryColor} strokeWidth={1.5} strokeLinecap="round" />

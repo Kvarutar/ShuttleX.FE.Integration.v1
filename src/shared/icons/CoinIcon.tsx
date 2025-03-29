@@ -8,7 +8,7 @@ const CoinIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: stri
   const svgColor = color ?? colors.iconTertiaryColor;
 
   return (
-    <Svg style={[styles.icon, style]} viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg style={[styles.icon, style]} viewBox="0 0 17 17" fill="none">
       <Path
         d="M16.9614 12.7919C16.6952 14.9372 14.9366 16.6953 12.7908 16.9615C11.492 17.1228 10.2819 16.7679 9.33807 16.0743C8.79758 15.6792 8.92665 14.8404 9.57202 14.6469C12.0002 13.913 13.9121 11.9935 14.6543 9.56596C14.8479 8.92883 15.6869 8.79979 16.0821 9.33208C16.7678 10.2837 17.1228 11.4935 16.9614 12.7919Z"
         fill={svgColor}

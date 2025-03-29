@@ -8,7 +8,7 @@ const BrandFavIcon = ({ style, color }: { style?: StyleProp<ViewStyle>; color?: 
   const svgColor = color ?? colors.iconPrimaryColor;
 
   return (
-    <Svg style={[styles.BrandFavIcon, style]} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 75">
+    <Svg style={[styles.BrandFavIcon, style]} fill="none" viewBox="0 0 74 75">
       <Path
         fill={svgColor}
         fillRule="evenodd"
