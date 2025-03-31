@@ -309,9 +309,6 @@ import { type CodeVerificationScreenRef } from './shared/screens/CodeVerificatio
 import LockOutScreen from './shared/screens/LockOutScreen';
 import MediaCore from './shared/screens/MediaCore';
 import { type FileInfo, MediaAmount, MediaFileType } from './shared/screens/MediaCore/types';
-import { type Notification, NotificationType } from './shared/screens/NotificationsScreen/props';
-import NotificationsScreenV1 from './shared/screens/NotificationsScreen/v1';
-import NotificationsScreen from './shared/screens/NotificationsScreen/v2';
 import ReceiptScreen from './shared/screens/ReceiptScreen';
 import SignInScreen from './shared/screens/SignInScreen';
 import { type SignInScreenRef } from './shared/screens/SignInScreen/types';
@@ -603,11 +600,7 @@ export {
   type NetworkErrorsBodies,
   NetworkErrorsStatuses,
   NoteIcon,
-  type Notification,
   NotificationIcon,
-  NotificationsScreen,
-  NotificationsScreenV1,
-  NotificationType,
   type Nullable,
   openRouteOnGoogleMaps,
   PaidTimeAlert,
