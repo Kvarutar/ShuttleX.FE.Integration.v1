@@ -2,13 +2,14 @@ import { useArgs } from '@storybook/client-api';
 import { type Meta, type StoryObj } from '@storybook/react-native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { palettes, TextInputV1, type ThemeContextType, useTheme } from 'shuttlex-integration';
+import { palettes, type ThemeContextType, useTheme } from 'shuttlex-integration';
 
-import { TextInputV1InputMode, type TextInputV1Props } from '../../../../src/shared/atoms/TextInput/v1/props';
+import TextInput from '../../../src/shared/atoms/TextInput';
+import { TextInputInputMode, type TextInputProps } from '../../../src/shared/atoms/TextInput/types';
 
-const TextInputMeta: Meta<TextInputV1Props & { theme: ThemeContextType['themeMode'] }> = {
-  title: 'TextInputV1',
-  component: TextInputV1,
+const TextInputMeta: Meta<TextInputProps & { theme: ThemeContextType['themeMode'] }> = {
+  title: 'TextInput',
+  component: TextInput,
   decorators: [
     Story => (
       <View style={styles.container}>
@@ -21,7 +22,6 @@ const TextInputMeta: Meta<TextInputV1Props & { theme: ThemeContextType['themeMod
     placeholder: 'Example',
     maxLength: 100,
     inputMode: undefined,
-    editable: true,
   },
   argTypes: {
     theme: {
@@ -29,7 +29,7 @@ const TextInputMeta: Meta<TextInputV1Props & { theme: ThemeContextType['themeMod
       control: { type: 'select' },
     },
     inputMode: {
-      options: [undefined, ...Object.values(TextInputV1InputMode)],
+      options: [undefined, ...Object.values(TextInputInputMode)],
       control: { type: 'select' },
     },
   },
@@ -44,10 +44,10 @@ const TextInputWithHooks = ({ themeName, ...args }: { themeName: ThemeContextTyp
     setThemeMode(themeName);
   }, [themeName, setThemeMode]);
 
-  return <TextInputV1 {...args} />;
+  return <TextInput {...args} />;
 };
 
-type Story = StoryObj<typeof TextInputV1>;
+type Story = StoryObj<typeof TextInput>;
 
 export const BasicExample: Story = {
   render: function Render(args) {

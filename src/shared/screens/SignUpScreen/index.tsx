@@ -12,7 +12,7 @@ import Button from '../../atoms/Button';
 import { ButtonShadows, ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/types';
 import CheckBox from '../../atoms/Checkbox';
 import Text from '../../atoms/Text';
-import TextInput from '../../atoms/TextInput/v2';
+import TextInput from '../../atoms/TextInput';
 import HeaderWithTwoTitles from '../../molecules/HeaderWithTwoTitles';
 import PhoneInput from '../../molecules/PhoneInput';
 import SlidingPanel from '../../molecules/PhoneSlidingPanel';

@@ -7,7 +7,7 @@ import sizes from '../../../../core/themes/sizes';
 import { useTheme } from '../../../../core/themes/themeContext';
 import { useDebounce } from '../../../../utils/hooks/useDebounce';
 import Text from '../../../atoms/Text';
-import TextInput from '../../../atoms/TextInput/v2';
+import TextInput from '../../../atoms/TextInput';
 import CheckIcon2 from '../../../icons/CheckIcon2';
 import { countryFlags } from '../../../icons/Flags';
 import FlatListWithCustomScroll from '../../FlatListWithCustomScroll';

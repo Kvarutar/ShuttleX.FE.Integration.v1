@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { Platform, Pressable, StyleSheet } from 'react-native';
 
 import { useTheme } from '../../../core/themes/themeContext';
-import TextInput from '../../atoms/TextInput/v2';
+import TextInput from '../../atoms/TextInput';
 import CalendarIcon from '../../icons/CalendarIcon';
 import TimeIcon from '../../icons/TimeIcon';
 import { DateTimePickerDisplay, DateTimePickerMode, type DateTimePickerProps } from './types';

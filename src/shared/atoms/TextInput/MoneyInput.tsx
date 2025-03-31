@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useEffect, useState } from 'react';
 
-import { TextInputInputMode, type TextInputProps, type TextInputRef } from './props';
 import TextInputBase from './TextInputBase';
+import { TextInputInputMode, type TextInputProps, type TextInputRef } from './types';
 
 const parseNumber = (str: string): number => Number(str.replace(/[^0-9.]+/g, ''));
 

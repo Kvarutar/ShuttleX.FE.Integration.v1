@@ -75,10 +75,8 @@ import Shade from './shared/atoms/Shade';
 import Skeleton from './shared/atoms/Skeleton';
 import Text from './shared/atoms/Text';
 import { TextElipsizeMode } from './shared/atoms/Text/props';
-import TextInputV1 from './shared/atoms/TextInput/v1';
-import { TextInputV1InputMode } from './shared/atoms/TextInput/v1/props';
-import TextInput from './shared/atoms/TextInput/v2';
-import { TextInputInputMode } from './shared/atoms/TextInput/v2/props';
+import TextInput from './shared/atoms/TextInput';
+import { TextInputInputMode } from './shared/atoms/TextInput/types';
 import ActivityIcon from './shared/icons/ActivityIcon';
 import ApplePayIcon from './shared/icons/ApplePayIcon';
 import ArrowIcon from './shared/icons/ArrowIcon';
@@ -711,8 +709,6 @@ export {
   TextElipsizeMode,
   TextInput,
   TextInputInputMode,
-  TextInputV1,
-  TextInputV1InputMode,
   type ThemeContextType,
   ThemeProvider,
   TimeIcon,

@@ -10,7 +10,7 @@ import Bar from '../../atoms/Bar/v2';
 import Button from '../../atoms/Button';
 import { SquareButtonModes } from '../../atoms/Button/types';
 import Text from '../../atoms/Text';
-import TextInput from '../../atoms/TextInput/v2';
+import TextInput from '../../atoms/TextInput';
 import { countryFlags } from '../../icons/Flags';
 import QuestionRoundIcon from '../../icons/QuestionRoundIcon';
 import WarningIcon from '../../icons/WarningIcon';

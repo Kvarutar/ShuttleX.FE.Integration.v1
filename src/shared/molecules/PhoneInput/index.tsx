@@ -4,12 +4,11 @@ import { Keyboard, Pressable, StyleSheet, View } from 'react-native';
 import { useTheme } from '../../../core/themes/themeContext';
 import { formatNumbersToMask } from '../../../utils';
 import Text from '../../atoms/Text';
-import { type TextInputV1Props } from '../../atoms/TextInput/v1/props';
-import TextInput from '../../atoms/TextInput/v2';
-import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
+import TextInput from '../../atoms/TextInput';
+import { TextInputInputMode, type TextInputProps } from '../../atoms/TextInput/types';
 import { countryFlags } from '../../icons/Flags';
 import ShortArrowIcon from '../../icons/ShortArrowIcon';
-import { type PhoneInputProps } from './props';
+import { type PhoneInputProps } from './types';
 
 const PhoneInput = ({
   style,
@@ -50,7 +49,7 @@ const PhoneInput = ({
     }
   }, [onlyNumbersInputValue, flagState, fullPhoneMask]);
 
-  const onInputChangeText: TextInputV1Props['onChangeText'] = text => {
+  const onInputChangeText: TextInputProps['onChangeText'] = text => {
     // Checks is phone is fully entered
     if (flagState && text.length >= fullPhoneMask.length) {
       setIsInputDone(true);

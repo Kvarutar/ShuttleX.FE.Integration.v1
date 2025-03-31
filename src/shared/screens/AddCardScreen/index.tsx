@@ -18,8 +18,8 @@ import { getPaymentIcon } from '../../../utils/payment/cardIcons';
 import Button from '../../atoms/Button';
 import { ButtonShapes, ButtonSizes, CircleButtonModes } from '../../atoms/Button/types';
 import Text from '../../atoms/Text';
-import TextInput from '../../atoms/TextInput/v2';
-import { TextInputInputMode } from '../../atoms/TextInput/v2/props';
+import TextInput from '../../atoms/TextInput';
+import { TextInputInputMode } from '../../atoms/TextInput/types';
 import CreditCardIcon from '../../icons/CreditCardIcon';
 import { type AddCardScreenProps, type Card } from './props';
 

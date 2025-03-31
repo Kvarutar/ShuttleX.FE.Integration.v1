@@ -65,8 +65,7 @@ const getStories = () => {
     "./src/stories/SecondRideAlert.stories.tsx": require("../src/stories/SecondRideAlert.stories.tsx"),
     "./src/stories/StopWatch.stories.tsx": require("../src/stories/StopWatch.stories.tsx"),
     "./src/stories/Text.stories.tsx": require("../src/stories/Text.stories.tsx"),
-    "./src/stories/TextInput/V1.stories.tsx": require("../src/stories/TextInput/V1.stories.tsx"),
-    "./src/stories/TextInput/V2.stories.tsx": require("../src/stories/TextInput/V2.stories.tsx"),
+    "./src/stories/TextInput.stories.tsx": require("../src/stories/TextInput/V2.stories.tsx"),
     "./src/stories/TimePicker.stories.tsx": require("../src/stories/TimePicker.stories.tsx"),
     "./src/stories/Timer.stories.tsx": require("../src/stories/Timer.stories.tsx"),
   };
