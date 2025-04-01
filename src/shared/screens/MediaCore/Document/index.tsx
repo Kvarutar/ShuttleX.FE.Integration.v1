@@ -1,8 +1,8 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
+import Bar from '../../../atoms/Bar';
 import { BarModes } from '../../../atoms/Bar/types';
-import Bar from '../../../atoms/Bar/v2';
 import Text from '../../../atoms/Text';
 import { TextElipsizeMode } from '../../../atoms/Text/props';
 import CloseIconMini from '../../../icons/CloseIconMini';

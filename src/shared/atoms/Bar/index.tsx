@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, type ViewStyle } from 'react-native';
 
-import { useTheme } from '../../../../core/themes/themeContext';
-import { BarModes, type BarPressableProps, type BarPropertiesType, type BarProps } from '../types';
+import { useTheme } from '../../../core/themes/themeContext';
+import { BarModes, type BarPressableProps, type BarPropertiesType, type BarProps } from './types';
 
 const Bar = ({
   children,

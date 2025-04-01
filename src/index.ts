@@ -54,9 +54,8 @@ import palettes from './core/themes/palettes';
 import { defaultShadow } from './core/themes/shadows';
 import sizes from './core/themes/sizes';
 import { type ThemeContextType, ThemeProvider, useTheme } from './core/themes/themeContext';
+import Bar from './shared/atoms/Bar';
 import { BarModes } from './shared/atoms/Bar/types';
-import BarV1 from './shared/atoms/Bar/v1';
-import Bar from './shared/atoms/Bar/v2';
 import Blur from './shared/atoms/Blur';
 import Button from './shared/atoms/Button';
 import ButtonAnimation from './shared/atoms/Button/ButtonAnimation';
@@ -386,7 +385,6 @@ export {
   Bar,
   BarModes,
   BarsIcon,
-  BarV1,
   BasicImage,
   BasicXLImage,
   BecomeDriverIcon,

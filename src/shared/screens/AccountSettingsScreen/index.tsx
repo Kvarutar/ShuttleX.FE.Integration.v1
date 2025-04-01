@@ -6,7 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import i18nIntegration from '../../../core/locales/i18n';
 import { formatNumbersToMask } from '../../../utils';
 import { type Nullable } from '../../../utils/typescript';
-import Bar from '../../atoms/Bar/v2';
+import Bar from '../../atoms/Bar';
 import Button from '../../atoms/Button';
 import { SquareButtonModes } from '../../atoms/Button/types';
 import Text from '../../atoms/Text';

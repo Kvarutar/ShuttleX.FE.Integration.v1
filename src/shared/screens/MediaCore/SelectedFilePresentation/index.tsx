@@ -1,8 +1,8 @@
 import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
+import Bar from '../../../atoms/Bar';
 import { BarModes } from '../../../atoms/Bar/types';
-import Bar from '../../../atoms/Bar/v2';
 import BigCameraIcon from '../../../icons/BigCameraIcon';
 import Document from '../Document';
 import Photo from '../Photo';

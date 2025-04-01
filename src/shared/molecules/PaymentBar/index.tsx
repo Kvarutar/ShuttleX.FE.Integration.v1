@@ -2,8 +2,8 @@ import { StyleSheet, View } from 'react-native';
 
 import { useTheme } from '../../../core/themes/themeContext';
 import { getPaymentIcon } from '../../../utils/payment/cardIcons';
+import Bar from '../../atoms/Bar';
 import { BarModes } from '../../atoms/Bar/types';
-import Bar from '../../atoms/Bar/v2';
 import Text from '../../atoms/Text';
 import PlusInCircleIcon from '../../icons/PlusInCircleIcon';
 import RoundCheckIcon4 from '../../icons/RoundCheckIcon4';
