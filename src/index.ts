@@ -281,7 +281,6 @@ import { SwipeButtonModes } from './shared/molecules/SwipeButton/types';
 import TemporaryLockoutPopup from './shared/molecules/TemporaryLockoutPopup';
 import CountingComponentV1 from './shared/molecules/timerAndStopwatch/CountingComponent/V1';
 import CountingComponent from './shared/molecules/timerAndStopwatch/CountingComponent/V2';
-import StopWatch from './shared/molecules/timerAndStopwatch/StopWatch';
 import Timer, { timerSizes } from './shared/molecules/timerAndStopwatch/Timer';
 import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/types';
 import TrafficIndicator from './shared/molecules/TrafficIndicator';
@@ -688,7 +687,6 @@ export {
   StatisticsIcon,
   StatsBlock,
   SteeringWheelIcon,
-  StopWatch,
   SubscriptionHelpPopup,
   SubscriptionIcon,
   SuccessIcon,
