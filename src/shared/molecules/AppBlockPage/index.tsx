@@ -4,7 +4,7 @@ import { Linking, StyleSheet, View } from 'react-native';
 import i18nIntegration from '../../../core/locales/i18n';
 import Button from '../../atoms/Button';
 import { CircleButtonModes } from '../../atoms/Button/types';
-import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini/V2';
+import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini';
 import BigHeader from '../BigHeader';
 import SafeAreaView from '../SafeAreaView';
 import { type AppBlockPageProps } from './types';

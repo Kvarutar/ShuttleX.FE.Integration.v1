@@ -127,8 +127,7 @@ import FolderIcon from './shared/icons/FolderIcon';
 import GalleryIcon from './shared/icons/GalleryIcon';
 import GameIcon from './shared/icons/GameIcon';
 import GroupedBrandIcon from './shared/icons/GroupedBrandIcon';
-import GroupedBrandIconMiniV1 from './shared/icons/GroupedBrandIconMini/V1';
-import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini/V2';
+import GroupedBrandIconMini from './shared/icons/GroupedBrandIconMini';
 import GroupIcon from './shared/icons/GroupIcon';
 import HelpIcon from './shared/icons/HelpIcon';
 import HomeIcon from './shared/icons/HomeIcon';
@@ -504,7 +503,6 @@ export {
   getTokens,
   GroupedBrandIcon,
   GroupedBrandIconMini,
-  GroupedBrandIconMiniV1,
   GroupedButtons,
   GroupedButtonsMode,
   GroupIcon,

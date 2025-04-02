@@ -1,7 +1,8 @@
-import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Svg, { G, Mask, Path, Rect } from 'react-native-svg';
 
 import { useTheme } from '../../../core/themes/themeContext';
+import { type GroupedBrandIconMiniProps } from './types';
 
 const GroupedBrandIconMini = ({
   style,
@@ -9,13 +10,7 @@ const GroupedBrandIconMini = ({
   favIconInnerColor,
   textIconColor,
   isContractorIcon,
-}: {
-  style?: StyleProp<ViewStyle>;
-  favIconColor?: string;
-  favIconInnerColor?: string;
-  textIconColor?: string;
-  isContractorIcon?: boolean;
-}): JSX.Element => {
+}: GroupedBrandIconMiniProps): JSX.Element => {
   const { colors } = useTheme();
 
   const computedColors = {

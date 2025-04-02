@@ -56,7 +56,7 @@ const getStories = () => {
     "./src/stories/DatePicker.stories.tsx": require("../src/stories/DatePicker.stories.tsx"),
     "./src/stories/DriverArrivedAlert.stories.tsx": require("../src/stories/DriverArrivedAlert.stories.tsx"),
     "./src/stories/GroupedBrandIcon.stories.tsx": require("../src/stories/GroupedBrandIcon.stories.tsx"),
-    "./src/stories/GroupedBrandIconMini/V2.stories.tsx": require("../src/stories/GroupedBrandIconMini/V2.stories.tsx"),
+    "./src/stories/GroupedBrandIconMini.stories.tsx": require("../src/stories/GroupedBrandIconMini.stories.tsx"),
     "./src/stories/InternetDisconnectedAlert.stories.tsx": require("../src/stories/InternetDisconnectedAlert.stories.tsx"),
     "./src/stories/PaidTimeAlert.stories.tsx": require("../src/stories/PaidTimeAlert.stories.tsx"),
     "./src/stories/PhoneInput.stories.tsx": require("../src/stories/PhoneInput.stories.tsx"),
@@ -64,7 +64,7 @@ const getStories = () => {
     "./src/stories/RideHasFinishedAlert.stories.tsx": require("../src/stories/RideHasFinishedAlert.stories.tsx"),
     "./src/stories/SecondRideAlert.stories.tsx": require("../src/stories/SecondRideAlert.stories.tsx"),
     "./src/stories/Text.stories.tsx": require("../src/stories/Text.stories.tsx"),
-    "./src/stories/TextInput.stories.tsx": require("../src/stories/TextInput/V2.stories.tsx"),
+    "./src/stories/TextInput.stories.tsx": require("../src/stories/TextInput.stories.tsx"),
     "./src/stories/TimePicker.stories.tsx": require("../src/stories/TimePicker.stories.tsx"),
     "./src/stories/Timer.stories.tsx": require("../src/stories/Timer.stories.tsx"),
   };

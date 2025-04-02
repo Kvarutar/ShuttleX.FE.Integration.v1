@@ -18,7 +18,7 @@ import { getMenuIcons } from '../../../utils/menu/menuIcons';
 import { type MenuNavigationBlocks } from '../../../utils/menu/type';
 import Skeleton from '../../atoms/Skeleton';
 import Text from '../../atoms/Text';
-import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini/V2';
+import GroupedBrandIconMini from '../../icons/GroupedBrandIconMini';
 import MenuUserImage from '../../images/MenuUserImage';
 import ScrollViewWithCustomScroll from '../ScrollViewWithCustomScroll';
 import { type MenuBaseProps } from './props';
