@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
-import i18nIntegration from '../../../../../core/locales/i18n';
-import Text from '../../../../atoms/Text';
-import { type CountingComponentProps } from './props';
+import i18nIntegration from '../../../../core/locales/i18n';
+import Text from '../../../atoms/Text';
+import { type CountingComponentProps } from './types';
 
 const calculateTime = (difference: number) => {
   const totalSeconds = Math.max(Math.round(difference / 1000), 0);

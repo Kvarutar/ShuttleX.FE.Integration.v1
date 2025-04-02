@@ -278,8 +278,7 @@ import StatsBlock from './shared/molecules/StatsBlock';
 import SwipeButton from './shared/molecules/SwipeButton';
 import { SwipeButtonModes } from './shared/molecules/SwipeButton/types';
 import TemporaryLockoutPopup from './shared/molecules/TemporaryLockoutPopup';
-import CountingComponentV1 from './shared/molecules/timerAndStopwatch/CountingComponent/V1';
-import CountingComponent from './shared/molecules/timerAndStopwatch/CountingComponent/V2';
+import CountingComponent from './shared/molecules/timerAndStopwatch/CountingComponent';
 import Timer, { timerSizes } from './shared/molecules/timerAndStopwatch/Timer';
 import { TimerColorModes, TimerSizesModes } from './shared/molecules/timerAndStopwatch/Timer/types';
 import TrafficIndicator from './shared/molecules/TrafficIndicator';
@@ -437,7 +436,6 @@ export {
   ContactIcon,
   convertBlobToImgUri,
   CountingComponent,
-  CountingComponentV1,
   countryDtos,
   countryFlags,
   type CountryPhoneMaskDto,
